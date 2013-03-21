@@ -1,0 +1,53 @@
+﻿<orario>
+<treno>
+<numerotreno>1151</numerotreno>
+<stazione>Via Accademia
+<arrivo>8:00</arrivo>
+<partenza>8:10</partenza>
+<binarioprogrammato>2</binarioprogrammato>
+</stazione>
+
+<stazione>Piazza Università
+<arrivo>8:20</arrivo>
+<partenza>8:30</partenza>
+<binarioprogrammato>2</binarioprogrammato>
+</stazione>
+
+<stazione>Via Verdi
+<arrivo>8:40</arrivo>
+<partenza>8:50</partenza>
+<binarioprogrammato>2</binarioprogrammato>
+</stazione>
+
+<stazione>Piazza Dante
+<arrivo>9:00</arrivo>
+<partenza>9:10</partenza>
+<binarioprogrammato>2</binarioprogrammato>
+</stazione>
+
+<stazione>Via Marco Polo
+<arrivo>9:20</arrivo>
+<partenza>9:30</partenza>
+<binarioprogrammato>2</binarioprogrammato>
+</stazione>
+
+<stazione>Via Roma
+<arrivo>9:40</arrivo>
+<partenza>9:50</partenza>
+<binarioprogrammato>2</binarioprogrammato>
+</stazione>
+
+<stazione>Viale dei Giardini
+<arrivo>10:00</arrivo>
+<partenza>10:10</partenza>
+<binarioprogrammato>2</binarioprogrammato>
+</stazione>
+
+<stazione>Parco della Vittoria
+<arrivo>10:20</arrivo>
+<partenza>10:30</partenza>
+<binarioprogrammato>2</binarioprogrammato>
+</stazione>
+
+</treno>
+</orario>
