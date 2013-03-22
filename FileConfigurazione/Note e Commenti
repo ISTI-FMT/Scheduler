@@ -4,10 +4,14 @@ Tale lista potrebbe essere visualizzabile dall'operatore per decidere di modific
   Franco
 
 ---
-Nelle info dei treni fisici, oltre all'IP  e' probabilmente necesario anche il portnumber.
+Nelle info dei treni fisici, oltre all'IP  e' probabilmente necessario anche il portnumber.
   Franco
 ---
 Nell'orario, per ogni treno, per ogni stazione c'e' un arrivo e una partenza. 
 Non so se e' gratis nella struttura XML data che possa esserci solo una partenza (senza arrivo) o solo arrivo (senza partenza).
   Franco
 ---
+In realta' la tabella orario ha la funzione anche di tabella "missione" per i vari treni? 
+O si prevede un ulteriore file di configurazione "missioni"?
+Se orario include missioni, significa che gli elementi della sequenza sono tutte le stazioni traversate, 
+non necessariamente quelle in cui ci si ferma e questa info andrebbe aggiunta, forse anche assieme alle le info sulle porte.
