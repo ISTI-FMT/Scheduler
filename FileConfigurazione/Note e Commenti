@@ -7,3 +7,7 @@ Tale lista potrebbe essere visualizzabile dall'operatore per decidere di modific
 Nelle info dei treni fisici, oltre all'IP  e' probabilmente necesario anche il portnumber.
   Franco
 ---
+Nell'orario, per ogni treno, per ogni stazione c'e' un arrivo e una partenza. 
+Non so se e' gratis nella struttura XML data che possa esserci solo una partenza (senza arrivo) o solo arrivo (senza partenza).
+  Franco
+---
