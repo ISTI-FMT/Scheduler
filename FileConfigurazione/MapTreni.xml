@@ -1,18 +1,22 @@
 ﻿<bind>
 <map>
 <trenologico>1151</trenologico>
+<idtrenofisico>113322</idtrenofisico>
 <trenofisico>192.168.1.51</trenofisico>
+
 </map>
 
 <map>
 <trenologico>1152</trenologico>
+<idtrenofisico>113322</idtrenofisico>
 <trenofisico>192.168.1.53</trenofisico>
 </map>
 
 <map>
 <trenologico>1153</trenologico>
+<idtrenofisico>113322</idtrenofisico>
 <trenofisico>192.168.1.53</trenofisico>
 </map>
 
 
-<bind>
+</bind>
