@@ -1,3 +1,8 @@
+Il modo corretto di porre le domande è quello di aprire delle nuove issues qui https://github.com/ISTI-FMT/Scheduler/issues?milestone=1&state=open e collegarge ad un milestone
+ Giorgio
+
+----
+
 Forse ha senso prevedere una lista di treni disponibili indipendentemente dal loro binding ai treni virtuali.
 Ad esempio potrebbero esserci treni disponibili ma non utilizzati in condizioni ordinarie.
 Tale lista potrebbe essere visualizzabile dall'operatore per decidere di modificare i binding predefiniti.
