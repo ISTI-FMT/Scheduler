@@ -4,18 +4,21 @@
     <arrivo>08:00:00</arrivo>
     <partenza>08:10:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
   </stazione>
 
   <stazione id="Piazza Università">
     <arrivo>08:20:00</arrivo>
     <partenza>08:30:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
   </stazione>
 
   <stazione id="Via Verdi">
     <arrivo>08:40:00</arrivo>
     <partenza>08:50:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
   </stazione>
 
 
@@ -23,30 +26,35 @@
     <arrivo>09:00:00</arrivo>
     <partenza>09:10:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
   </stazione>
 
   <stazione id="Via Marco Polo">
     <arrivo>09:20:00</arrivo>
     <partenza>09:30:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
   </stazione>
 
   <stazione id="Via Roma">
     <arrivo>09:40:00</arrivo>
     <partenza>09:50:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
   </stazione>
 
   <stazione id="Viale dei Giardini">
     <arrivo>10:00:00</arrivo>
     <partenza>10:10:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
   </stazione>
 
   <stazione id="Parco della Vittoria">
     <arrivo>10:20:00</arrivo>
     <partenza>10:30:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
   </stazione>
 
 </treno>
@@ -55,49 +63,57 @@
     <stazione id="Parco della Vittoria">
       <arrivo>08:00:00</arrivo>
       <partenza>08:10:00</partenza>
-      <binarioprogrammato>1</binarioprogrammato>
+       <binarioprogrammato>1</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
     </stazione>
 
     <stazione id="Viale dei Giardini">
       <arrivo>08:20:00</arrivo>
       <partenza>08:30:00</partenza>
-      <binarioprogrammato>1</binarioprogrammato>
+       <binarioprogrammato>1</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
     </stazione>
 
     <stazione id="Via Roma">
       <arrivo>08:40:00</arrivo>
       <partenza>08:50:00</partenza>
-      <binarioprogrammato>1</binarioprogrammato>
+       <binarioprogrammato>1</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
     </stazione>
 
     <stazione id="Via Marco Polo">
       <arrivo>09:00:00</arrivo>
       <partenza>09:10:00</partenza>
-      <binarioprogrammato>1</binarioprogrammato>
+       <binarioprogrammato>1</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
     </stazione>
 
     <stazione id="Piazza Dante">
       <arrivo>09:20:00</arrivo>
       <partenza>09:30:00</partenza>
-      <binarioprogrammato>1</binarioprogrammato>
+       <binarioprogrammato>1</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
     </stazione>
 
     <stazione id="Via Verdi">
       <arrivo>09:40:00</arrivo>
       <partenza>09:50:00</partenza>
-      <binarioprogrammato>1</binarioprogrammato>
+       <binarioprogrammato>1</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
     </stazione>
 
     <stazione id="Piazza Università">
       <arrivo>10:00:00</arrivo>
       <partenza>10:10:00</partenza>
-      <binarioprogrammato>1</binarioprogrammato>
+       <binarioprogrammato>1</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
     </stazione>
 
     <stazione id="Via Accademia">
       <arrivo>10:20:00</arrivo>
       <partenza>10:30:00</partenza>
-      <binarioprogrammato>1</binarioprogrammato>
+       <binarioprogrammato>1</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
     </stazione>
 
   </treno>
