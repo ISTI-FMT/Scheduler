@@ -69,6 +69,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Fermata.h" />
+    <ClInclude Include="TabellaOrario.h" />
+    <ClInclude Include="TrenoFermate.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Fermata.cpp" />
+    <ClCompile Include="TabellaOrario.cpp" />
+    <ClCompile Include="TrenoFermate.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
