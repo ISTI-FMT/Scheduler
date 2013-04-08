@@ -15,3 +15,7 @@
 Debug
 
 
+*.sdf
+*.opensdf
+*.suo
+*.sln
