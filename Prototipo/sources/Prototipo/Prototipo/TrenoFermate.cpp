@@ -1,6 +1,7 @@
 #include "TrenoFermate.h"
 
 
-TrenoFermate::TrenoFermate(void)
+TrenoFermate::TrenoFermate(int id)
 {
+	idTreno = id;
 }

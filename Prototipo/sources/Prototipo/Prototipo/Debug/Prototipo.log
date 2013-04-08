@@ -1,0 +1,13 @@
+﻿Compilazione avviata 08/04/2013 12:45:38.
+     1>Progetto "C:\Users\FMTLAB\Documents\GitHub\Scheduler\Prototipo\sources\Prototipo\Prototipo\Prototipo.vcxproj" sul nodo 2 (destinazioni: Build).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\FMTLAB\Documents\GitHub\Scheduler\Prototipo\sources\Prototipo\Debug\Prototipo.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\FMTLAB\Documents\GitHub\Scheduler\Prototipo\sources\Prototipo\Debug\Prototipo.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\Fermata.obj
+         Debug\TabellaOrario.obj
+         Debug\TrenoFermate.obj
+         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+     1>LINK : fatal error LNK1561: il punto d'ingresso deve essere definito
+     1>Compilazione progetto "C:\Users\FMTLAB\Documents\GitHub\Scheduler\Prototipo\sources\Prototipo\Prototipo\Prototipo.vcxproj" (destinazioni: Build) NON COMPLETATA.
+
+Compilazione NON RIUSCITA.
+
+Tempo trascorso 00:00:00.15
