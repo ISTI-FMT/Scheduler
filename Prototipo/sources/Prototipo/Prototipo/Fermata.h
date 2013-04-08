@@ -8,6 +8,7 @@ enum aperturaPorte {destra, sinistra, destraSinistra, noApertura};
 Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di un singolo treno.
 Un oggetto di tipo fermata rappresenta una fermata di un treno
 */
+// Commento inutile
 class Fermata
 {
 	int idStazione;
