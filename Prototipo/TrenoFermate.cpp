@@ -56,6 +56,14 @@ void TrenoFermate::aggiungiFermata(Fermata &stop)
 		fermate.insert(it, stop);
 }
 
+ostream& operator<<(ostream& out, TrenoFermate &treno)
+{
+	out << "Id treno : " << treno.idTreno << endl;
+	for (std::list<Fermata>::iterator it=treno.fermate.begin(); it != treno.fermate.end(); ++it)
+		out << (*it) << endl;
+	return out;
+}
+
 TrenoFermate::~TrenoFermate()
 {
 	// scorro tutta la lista...

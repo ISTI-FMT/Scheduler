@@ -1,6 +1,8 @@
 #pragma once
 #include <list>
 #include "Fermata.h"
+#include <iostream>
+using namespace std;
 
 /*
 Questa classe è utilizzata dalla tabella orario per gestire tutte le fermate di un treno.
@@ -16,6 +18,7 @@ class TrenoFermate
 	// La funzione ritorna 1 se il primo orario è maggiore del secondo; -1 se il primo orario è minore del secondo; 0 se 
 	// i due orari sono uguali.
 	int confrontaTempi(tm &orario1, tm &orario2);
+	friend ostream& operator<<(ostream& out, TrenoFermate &treno);
 public:
 	TrenoFermate(int id);
 	// funzione che permette l'inserimento di una nuova fermata della tabella orario del treno in questione.

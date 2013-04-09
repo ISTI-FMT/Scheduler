@@ -29,7 +29,7 @@ string TabellaOrario::convertiString2string(System::String ^StringValue)
 // questa funzione legge il file di configurazione contenente la descrizione della tabella orario
 void TabellaOrario::leggiTabellaOrario(string nomeFile)
 {
-	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("..\\FileConfigurazione\\TabellaOrario.xml");
+	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("..\\..\\FileConfigurazione\\TabellaOrario.xml");
 	// per ogni treno presente nel file di configurazione della tabella orario...
 	while (reader->ReadToFollowing("treno")){
 		System::Xml::XmlReader ^inner = reader->ReadSubtree();
@@ -47,7 +47,7 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			// leggo l'id della stazione
 			System::String ^SystemStringIdStazione = inner->GetAttribute("id");
 			// converto l'id della stazione da System::String a int
-			int idStazione = convertiString2int(SystemStringIdStazione);
+			string idStazione = convertiString2string(SystemStringIdStazione);
 			// configuro l'id della stazione
 			stop->setIdStazione(idStazione);
 
@@ -112,17 +112,11 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			// configuro il lato apertura porte programmato programmato
 			stop->setLatoAperturaPorte(latoParturaPorte);
 
-			// ??????
-			// stop->setTempoAperturaPorte();
-
 			// a questo punto posso aggiungere la fermata alla lista delle fermate del treno in questione
 			treno->aggiungiFermata(*stop);
 
 			//System::Console::WriteLine(idTreno+idSTazione+orarioArrivo+orarioPartenza+binarioProgrammato+latoProgrammato);
 			System::Console::WriteLine();
-
-			//std::string stdString = msclr::interop::marshal_as< std::string >(idTreno);
-			//std::cout<<stdString;
 		}
 		// a questo punto aggiungo il treno alla tabella orario
 		aggiungiTreno(*treno);
@@ -132,6 +126,13 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 void TabellaOrario::aggiungiTreno(TrenoFermate &treno)
 {
 	tabella.push_front(treno);
+}
+
+ostream& operator<<(ostream &out, TabellaOrario &tabella)
+{
+	for (std::list<TrenoFermate>::iterator it=tabella.tabella.begin(); it != tabella.tabella.end(); ++it)
+		out << (*it) << endl;
+	return out;
 }
 
 TabellaOrario::~TabellaOrario()
