@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Fermata.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="TabellaOrario.cpp" />
     <ClCompile Include="TrenoFermate.cpp" />
   </ItemGroup>

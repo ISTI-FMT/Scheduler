@@ -1,6 +1,8 @@
 #pragma once
 
 #include <time.h>
+#include <iostream>
+using namespace std;
 
 enum aperturaPorte {destra, sinistra, destraSinistra, noApertura};
 
@@ -11,18 +13,17 @@ Un oggetto di tipo fermata rappresenta una fermata di un treno
 // Commento inutile
 class Fermata
 {
-	int idStazione;
+	string idStazione;
 	tm orarioArrivo;
 	tm orarioPartenza;
 	int binarioProgrammato;
-	int tempoAperturaPorte;
 	aperturaPorte latoAperturaPorte;
-
+	friend ostream& operator<<(ostream &out, const Fermata &stop);
 public:
 	Fermata(void);
 	// Funzioni per la manipolazione (set e get) dell'id della stazione
-	void setIdStazione(int id){idStazione = id;};
-	int getIdStazione(){return idStazione;};
+	void setIdStazione(string id){idStazione = id;};
+	string getIdStazione(){return idStazione;};
 	// Funzioni per la manipolazione (set e get) dell'orario di arrivo
 	void setOrarioArrivo(tm orario){orarioArrivo = orario;};
 	void setOrarioArrivo_Ora(int ora){orarioArrivo.tm_hour = ora;};
@@ -44,9 +45,6 @@ public:
 	// Funzioni per la manipolazione del binario programmato
 	void setBinarioProgrammato(int binario){binarioProgrammato = binario;};
 	int getBinarioProgrammato(){return binarioProgrammato;};
-	// Funzioni per la manipolazione del tempo di apertura delle porte
-	void setTempoAperturaPorte(int tempo){tempoAperturaPorte = tempo;};
-	int getTempoAperturaPorte(){return tempoAperturaPorte;};
 	// Funzioni per la manipolazione del tempo di apertura delle porte
 	void setLatoAperturaPorte(aperturaPorte lato){latoAperturaPorte = lato;};
 	int getLatoAperturaPorte(){return latoAperturaPorte;};
