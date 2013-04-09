@@ -1,0 +1,57 @@
+<map>
+<stazione id="Via Accademia">
+<nidlrbg>2525</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Piazza Università">
+<nidlrbg>2527</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Via Verdi">
+<nidlrbg>2575</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Piazza Dante">
+<nidlrbg>2555</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Via Marco Polo">
+<nidlrbg>2345</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Via Roma">
+<nidlrbg>2425</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Viale dei Giardini">
+<nidlrbg>2655</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Parco della Vittoria">
+<nidlrbg>2755</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Vicolo Corto">
+<nidlrbg>2875</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Vicolo Stretto">
+<nidlrbg>2905</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+<stazione id="Viale Monterosa">
+<nidlrbg>2325</nidlrbg>
+<dstop>250</dstop>
+</stazione>
+
+</map>
