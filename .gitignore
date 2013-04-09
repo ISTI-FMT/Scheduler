@@ -19,3 +19,7 @@ Debug
 *.opensdf
 *.suo
 *.sln
+
+*.cache
+*.obj
+*.clog
