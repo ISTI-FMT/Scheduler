@@ -23,3 +23,5 @@ Debug
 *.cache
 *.obj
 *.clog
+
+Prototipo.vcxprojResolveAssemblyReference.cache
