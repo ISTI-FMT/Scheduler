@@ -8,7 +8,9 @@ Un oggetto di tipo fermata rappresenta una fermata di un treno.
 */
 class TrenoFermate
 {
+	// id del treno
 	int idTreno;
+	// lista delle fermate del treno
 	std::list<Fermata> fermate;
 	// funzione di utilità che confronta due orari. 
 	// La funzione ritorna 1 se il primo orario è maggiore del secondo; -1 se il primo orario è minore del secondo; 0 se 
