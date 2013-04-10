@@ -1,57 +1,162 @@
 <map>
 <stazione id="Via Accademia">
+<sx>
+
 <nidlrbg>2525</nidlrbg>
 <dstop>250</dstop>
+
+<nidlrbg>2525</nidlrbg>
+<dstop>250</dstop>
+
+</sx>
+<dx>
+
+<nidlrbg>2524</nidlrbg>
+<dstop>250</dstop>
+
+</dx>
+
 </stazione>
 
 <stazione id="Piazza Università">
+<sx>
 <nidlrbg>2527</nidlrbg>
 <dstop>250</dstop>
+</sx>
+<dx>
+<nidlrbg>2526</nidlrbg>
+<dstop>250</dstop>
+</dx>
 </stazione>
 
 <stazione id="Via Verdi">
+<sx>
+<nidlrbg>2574</nidlrbg>
+<dstop>250</dstop>
+</sx>
+<dx>
 <nidlrbg>2575</nidlrbg>
 <dstop>250</dstop>
+</dx>
 </stazione>
 
+
+
 <stazione id="Piazza Dante">
+<sx>
 <nidlrbg>2555</nidlrbg>
 <dstop>250</dstop>
+<nidlrbg>2556</nidlrbg>
+<dstop>250</dstop>
+
+</sx>
+<dx>
+<nidlrbg>2554</nidlrbg>
+<dstop>250</dstop>
+<nidlrbg>2553</nidlrbg>
+<dstop>250</dstop>
+</dx>
+
 </stazione>
 
 <stazione id="Via Marco Polo">
+<sx>
 <nidlrbg>2345</nidlrbg>
 <dstop>250</dstop>
+<nidlrbg>2344</nidlrbg>
+<dstop>250</dstop>
+</sx>
+<dx>
+<nidlrbg>2347</nidlrbg>
+<dstop>250</dstop>
+<nidlrbg>2346</nidlrbg>
+<dstop>250</dstop>
+</dx>
+
 </stazione>
 
 <stazione id="Via Roma">
+<sx>
+<nidlrbg>2424</nidlrbg>
+<dstop>250</dstop>
 <nidlrbg>2425</nidlrbg>
 <dstop>250</dstop>
+</sx>
+<dx>
+<nidlrbg>2426</nidlrbg>
+<dstop>250</dstop>
+<nidlrbg>2427</nidlrbg>
+<dstop>250</dstop>
+</dx>
+
+
 </stazione>
 
 <stazione id="Viale dei Giardini">
+<sx>
+<nidlrbg>2654</nidlrbg>
+<dstop>250</dstop>
 <nidlrbg>2655</nidlrbg>
 <dstop>250</dstop>
+
+</sx><dx>
+<nidlrbg>2656</nidlrbg>
+<dstop>250</dstop>
+<nidlrbg>2657</nidlrbg>
+<dstop>250</dstop>
+
+</dx>
 </stazione>
 
 <stazione id="Parco della Vittoria">
+<sx>
 <nidlrbg>2755</nidlrbg>
 <dstop>250</dstop>
+<nidlrbg>2754</nidlrbg>
+<dstop>250</dstop>
+
+</sx><dx>
+<nidlrbg>2756</nidlrbg>
+<dstop>250</dstop>
+<nidlrbg>2757</nidlrbg>
+<dstop>250</dstop>
+<nidlrbg>2758</nidlrbg>
+<dstop>250</dstop>
+<nidlrbg>2759</nidlrbg>
+<dstop>250</dstop>
+</dx>
 </stazione>
 
 <stazione id="Vicolo Corto">
+<sx>
 <nidlrbg>2875</nidlrbg>
 <dstop>250</dstop>
+<nidlrbg>2874</nidlrbg>
+<dstop>250</dstop>
+</sx><dx>
+<nidlrbg>2876</nidlrbg>
+<dstop>250</dstop>
+</dx>
 </stazione>
 
 <stazione id="Vicolo Stretto">
+<sx>
 <nidlrbg>2905</nidlrbg>
 <dstop>250</dstop>
+</sx><dx>
+<nidlrbg>2906</nidlrbg>
+<dstop>250</dstop>
+</dx>
 </stazione>
 
 <stazione id="Viale Monterosa">
+<sx>
 <nidlrbg>2325</nidlrbg>
 <dstop>250</dstop>
+</sx><dx>
+<nidlrbg>2326</nidlrbg>
+<dstop>250</dstop>
+</dx>
 </stazione>
 
 </map>
