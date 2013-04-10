@@ -70,12 +70,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Fermata.h" />
+    <ClInclude Include="pacchettoCommandData2.h" />
+    <ClInclude Include="struttureDatiMessaggi.h" />
+    <ClInclude Include="pacchettoCommandData1.h" />
     <ClInclude Include="TabellaOrario.h" />
     <ClInclude Include="TrenoFermate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Fermata.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pacchettoCommandData1.cpp" />
+    <ClCompile Include="pacchettoCommandData2.cpp" />
     <ClCompile Include="TabellaOrario.cpp" />
     <ClCompile Include="TrenoFermate.cpp" />
   </ItemGroup>
