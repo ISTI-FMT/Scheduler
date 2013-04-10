@@ -33,6 +33,9 @@
     <ClInclude Include="pacchettoCommandData2.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="pacchettoCommandData3.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TabellaOrario.cpp">
@@ -51,6 +54,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="pacchettoCommandData2.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="pacchettoCommandData3.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

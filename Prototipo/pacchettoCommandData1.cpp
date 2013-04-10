@@ -4,7 +4,7 @@
 pacchettoCommandData1::pacchettoCommandData1(void)
 {
 	for(int i = 0; i < 10; ++i)
-		data.flatCommandData[i] = 0;
+		data.flatData[i] = 0;
 }
 
 // questa funzione prende in ingresso un buffer di byte (la cui dimensione deve essere almeno 10, ma il controllo sulla 
@@ -12,7 +12,7 @@ pacchettoCommandData1::pacchettoCommandData1(void)
 void pacchettoCommandData1::serializepacchettoCommandData(byte *buffer)
 {
 	for(int i = 0; i < 10; ++i)
-		buffer[i+8] = data.flatCommandData[i];
+		buffer[i+8] = data.flatData[i];
 }
 
 pacchettoCommandData1::~pacchettoCommandData1(void)
