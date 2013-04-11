@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConfigurazioneItinerari>
+  <stazione id="Via Accademia">
+    <itinerari>
+      <ingresso id="01" direzione="sx">
+        <binario id="I" nid_lrgb="5225" d_stop="222">
+         <cdb>13010</cdb><cdb>13011</cdb><cdb>13012</cdb> <cdb>301</cdb> </binario>
+        <binario id="II" nid_lrgb="5225" d_stop="222">
+          <cdb>13010</cdb><cdb>13011</cdb><cdb>13012</cdb><cdb>302</cdb> </binario>
+      </ingresso>
+      <partenza id="I">
+        <uscita id="01"  direzione="dx"> 
+         <cdb>301</cdb> <cdb>13012</cdb> <cdb>13011</cdb><cdb>13010</cdb> </uscita>
+      </partenza>
+      <partenza id="II">
+        <uscita id="01" direzione="dx">
+         <cdb>302</cdb> <cdb>13012</cdb> <cdb>13011</cdb><cdb>13010</cdb> </uscita>
+      </partenza>
+    </itinerari>
+  </stazione>  
+  
+ <stazione id="Piazza Università">
+    <itinerari>
+      <ingresso id="02" direzione="dx">
+        <binario id="I" nid_lrgb="5225" d_stop="222">  
+           <cdb>14020</cdb><cdb>14021</cdb><cdb>14022</cdb><cdb>301</cdb> </binario>
+        <binario id="II" nid_lrgb="5225" d_stop="222" > 
+          <cdb>14020</cdb><cdb>14021</cdb><cdb>14022</cdb><cdb>302</cdb> </binario>
+      </ingresso>
+       <ingresso id="01" direzione="sx">
+        <binario id="I" nid_lrgb="5225" d_stop="222"> 
+           <cdb>14010</cdb><cdb>14011</cdb><cdb>14012</cdb><cdb>301</cdb> </binario>
+        <binario id="II" nid_lrgb="5225" d_stop="222" > 
+           <cdb>14010</cdb><cdb>14011</cdb><cdb>14012</cdb><cdb>302</cdb> </binario>
+      </ingresso>
+      <partenza id="I">
+        <uscita id="01" direzione="dx">
+          <cdb>301</cdb> <cdb>14012</cdb> <cdb>14011</cdb><cdb>14010</cdb> </uscita>
+        <uscita id="02" direzione="sx" >
+          <cdb>301</cdb> <cdb>14022</cdb> <cdb>14021</cdb><cdb>14020</cdb> </uscita>
+      </partenza>
+      <partenza id="II">
+        <uscita id="01" direzione="dx">
+          <cdb>302</cdb> <cdb>14012</cdb> <cdb>14011</cdb><cdb>14010</cdb> </uscita>
+        <uscita id="02" direzione="sx" >
+          <cdb>302</cdb> <cdb>14022</cdb> <cdb>14021</cdb><cdb>14020</cdb> </uscita>
+      </partenza>
+    </itinerari>
+  </stazione> 
+  
+  <stazione id="via Verdi">
+    <itinerari>
+      <ingresso id="02" direzione="dx">
+        <binario id="I" nid_lrgb="5225" d_stop="222" />         
+        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+       <ingresso id="01" direzione="sx">
+        <binario id="I" nid_lrgb="5225" d_stop="222" />         
+        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+      <partenza id="I">
+        <uscita id="01" direzione="dx"/>
+        <uscita id="02" direzione="sx" />
+      </partenza>
+      <partenza id="II">
+        <uscita id="01" direzione="dx" />
+        <uscita id="02" direzione="sx" />
+      </partenza>
+    </itinerari>
+  </stazione> 
+  
+  
+    
+
+   <stazione id="Piazza Dante">
+    <itinerari>
+      <ingresso id="01" direzione="dx">
+        <binario id="I" nid_lrgb="5225" d_stop="222" />         
+        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
+       <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+       <ingresso id="03" direzione="dx">
+        <binario id="II" nid_lrgb="5225" d_stop="222" />         
+        <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+       <ingresso id="04" direzione="sx">
+        <binario id="I" nid_lrgb="5225" d_stop="222" />         
+        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
+          <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+       <ingresso id="02" direzione="sx">
+        <binario id="II" nid_lrgb="5225" d_stop="222" />         
+        <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+      <partenza id="I">
+        <uscita id="01" direzione="sx" />
+        <uscita id="04" direzione="dx" />
+      </partenza>
+      <partenza id="II">
+        <uscita id="01" direzione="sx" />
+        <uscita id="03" direzione="sx"/>
+        <uscita id="04" direzione="dx"/>
+        <uscita id="02" direzione="dx"/>
+      </partenza>
+      <partenza id="III">
+        <uscita id="01" direzione="sx"/>
+        <uscita id="03" direzione="sx" />
+        <uscita id="04" direzione="dx" />
+        <uscita id="02" direzione="dx"/>
+      </partenza>
+    </itinerari>
+  </stazione> 
+  
+  <stazione id="Viale dei Giardini">
+    <itinerari>
+      <ingresso id="02" direzione="dx">   
+        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
+       <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+       <ingresso id="04" direzione="dx">
+        <binario id="I" nid_lrgb="5225" d_stop="222" />       
+        <binario id="II" nid_lrgb="5225" d_stop="222" />         
+        <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+       <ingresso id="03" direzione="sx">      
+        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
+          <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+       <ingresso id="01" direzione="sx">
+         <binario id="I" nid_lrgb="5225" d_stop="222" />       
+        <binario id="II" nid_lrgb="5225" d_stop="222" />         
+        <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+      <partenza id="I">
+        <uscita id="01" direzione="dx" />
+        <uscita id="04" direzione="sx" />
+      </partenza>
+      <partenza id="II">
+        <uscita id="02" direzione="sx" />
+        <uscita id="04" direzione="sx"/>
+        <uscita id="03" direzione="dx"/>
+        <uscita id="01" direzione="dx"/>
+      </partenza>
+      <partenza id="III">
+        <uscita id="02" direzione="sx" />
+        <uscita id="04" direzione="sx" />
+        <uscita id="03" direzione="dx" />
+        <uscita id="01" direzione="dx" />
+      </partenza>
+    </itinerari>
+  </stazione> 
+
+   <stazione id="Parco della Vittoria">
+    <itinerari>
+      <ingresso id="01" direzione="dx">  
+         <binario id="I" nid_lrgb="5225" d_stop="222" /> 
+        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
+       <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+       <binario id="IV" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+
+       <ingresso id="03" direzione="dx">      
+         <binario id="I" nid_lrgb="5225" d_stop="222" /> 
+        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
+       <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+       <binario id="IV" nid_lrgb="5225" d_stop="222" /> 
+      </ingresso>
+      
+      <partenza id="I">
+        <uscita id="01" direzione="sx" />
+        <uscita id="03" direzione="sx" />
+      </partenza>
+      <partenza id="II">
+        <uscita id="01" direzione="sx" />
+        <uscita id="03" direzione="sx"/>
+      </partenza>
+      <partenza id="III">
+        <uscita id="03" direzione="sx" />
+        <uscita id="01" direzione="sx" />
+      </partenza>
+      <partenza id="IV">
+        <uscita id="03" direzione="sx" />
+        <uscita id="01" direzione="sx" />
+      </partenza>
+    </itinerari>
+  </stazione> 
+
+
+
+
+
+</ConfigurazioneItinerari>
