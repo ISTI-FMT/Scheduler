@@ -72,6 +72,7 @@
     <ClInclude Include="Fermata.h" />
     <ClInclude Include="pacchettoCommandData2.h" />
     <ClInclude Include="pacchettoCommandData3.h" />
+    <ClInclude Include="pacchettoMissionPlan.h" />
     <ClInclude Include="struttureDatiMessaggi.h" />
     <ClInclude Include="pacchettoCommandData1.h" />
     <ClInclude Include="TabellaOrario.h" />
@@ -83,6 +84,7 @@
     <ClCompile Include="pacchettoCommandData1.cpp" />
     <ClCompile Include="pacchettoCommandData2.cpp" />
     <ClCompile Include="pacchettoCommandData3.cpp" />
+    <ClCompile Include="pacchettoMissionPlan.cpp" />
     <ClCompile Include="TabellaOrario.cpp" />
     <ClCompile Include="TrenoFermate.cpp" />
   </ItemGroup>

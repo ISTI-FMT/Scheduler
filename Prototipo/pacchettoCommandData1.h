@@ -7,6 +7,12 @@ class pacchettoCommandData1
 public:
 	pacchettoCommandData1(void);
 	// funzioni di interfaccia per l'accesso in scrittura e lettura dei campi dati della struttura commandData
+	void setNID_MESSAGE(int N){data.structuredData.head.NID_MESSAGE = N;};
+	int getNID_MESSAGE(){return data.structuredData.head.NID_MESSAGE;};
+	void setL_MESSAGE(int N){data.structuredData.head.L_MESSAGE = N;};
+	int getL_MESSAGE(){return data.structuredData.head.L_MESSAGE;};
+	void setT_TRAIN(int N){data.structuredData.head.T_TRAIN = N;};
+	int getT_TRAIN(){return data.structuredData.head.T_TRAIN;};
 	void setNID_PACKET(int NID){data.structuredData.NID_PACKET = NID;};
 	int getNID_PACKET(){return data.structuredData.NID_PACKET;};
 	void setL_PACKET(int L){data.structuredData.L_PACKET = L;};
