@@ -171,38 +171,58 @@
   <stazione id="Viale dei Giardini">
     <itinerari>
       <ingresso id="02" direzione="dx">   
-        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
-       <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+          <binario id="II" nid_lrgb="5225" d_stop="222" >
+              <cdb>16020</cdb><cdb>16021</cdb><cdb>16022</cdb><cdb>16023</cdb><cdb>16302</cdb> </binario>
+          <binario id="III" nid_lrgb="5225" d_stop="222" >
+              <cdb>16020</cdb><cdb>16021</cdb><cdb>16022</cdb><cdb>16023</cdb><cdb>16303</cdb> </binario>
       </ingresso>
        <ingresso id="04" direzione="dx">
-        <binario id="I" nid_lrgb="5225" d_stop="222" />       
-        <binario id="II" nid_lrgb="5225" d_stop="222" />         
-        <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+           <binario id="I" nid_lrgb="5225" d_stop="222" >
+               <cdb>16024</cdb><cdb>16025</cdb><cdb>16026</cdb><cdb>16301</cdb> </binario>
+           <binario id="II" nid_lrgb="5225" d_stop="222" >
+               <cdb>16024</cdb><cdb>16025</cdb><cdb>16026</cdb><cdb>16023</cdb><cdb>16302</cdb> </binario>
+           <binario id="III" nid_lrgb="5225" d_stop="222" >
+               <cdb>16024</cdb><cdb>16025</cdb><cdb>16026</cdb><cdb>16023</cdb><cdb>16303</cdb> </binario>
       </ingresso>
        <ingresso id="03" direzione="sx">      
-        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
-          <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+           <binario id="II" nid_lrgb="5225" d_stop="222" >
+               <cdb>16013</cdb><cdb>16014</cdb><cdb>16015</cdb><cdb>16016</cdb><cdb>16302</cdb> </binario>
+           <binario id="III" nid_lrgb="5225" d_stop="222" >
+               <cdb>16013</cdb><cdb>16014</cdb><cdb>16015</cdb><cdb>16016</cdb><cdb>16303</cdb> </binario>
       </ingresso>
        <ingresso id="01" direzione="sx">
-         <binario id="I" nid_lrgb="5225" d_stop="222" />       
-        <binario id="II" nid_lrgb="5225" d_stop="222" />         
-        <binario id="III" nid_lrgb="5225" d_stop="222" /> 
+           <binario id="I" nid_lrgb="5225" d_stop="222" >
+               <cdb>16010</cdb><cdb>16011</cdb><cdb>16012</cdb><cdb>16301</cdb> </binario>
+           <binario id="II" nid_lrgb="5225" d_stop="222" >
+               <cdb>16010</cdb><cdb>16011</cdb><cdb>16012</cdb><cdb>16016</cdb><cdb>16302</cdb> </binario>
+           <binario id="III" nid_lrgb="5225" d_stop="222" >
+               <cdb>16010</cdb><cdb>16011</cdb><cdb>16012</cdb><cdb>16016</cdb><cdb>16303</cdb> </binario>
       </ingresso>
       <partenza id="I">
-        <uscita id="01" direzione="dx" />
-        <uscita id="04" direzione="sx" />
+          <uscita id="01" direzione="dx" >
+              <cdb>16301</cdb> <cdb>16012</cdb> <cdb>16011</cdb> <cdb>16010</cdb> </uscita>
+          <uscita id="04" direzione="sx" >
+              <cdb>16301</cdb><cdb>16026</cdb> <cdb>16025</cdb> <cdb>16024</cdb> </uscita>
       </partenza>
       <partenza id="II">
-        <uscita id="02" direzione="sx" />
-        <uscita id="04" direzione="sx"/>
-        <uscita id="03" direzione="dx"/>
-        <uscita id="01" direzione="dx"/>
+          <uscita id="02" direzione="sx" >
+              <cdb>16302</cdb><cdb>16023</cdb><cdb>16022</cdb> <cdb>16021</cdb> <cdb>16020</cdb> </uscita>
+          <uscita id="04" direzione="sx" >
+              <cdb>16302</cdb><cdb>16023</cdb><cdb>16026</cdb> <cdb>16025</cdb> <cdb>16024</cdb> </uscita>
+          <uscita id="03" direzione="dx" >
+              <cdb>16302</cdb><cdb>16016</cdb><cdb>16015</cdb> <cdb>16014</cdb> <cdb>16013</cdb> </uscita>
+          <uscita id="01" direzione="dx">
+              <cdb>16302</cdb><cdb>16016</cdb> <cdb>16012</cdb> <cdb>16011</cdb> <cdb>16010</cdb> </uscita>
       </partenza>
       <partenza id="III">
-        <uscita id="02" direzione="sx" />
-        <uscita id="04" direzione="sx" />
-        <uscita id="03" direzione="dx" />
-        <uscita id="01" direzione="dx" />
+          <uscita id="02" direzione="sx" >
+              <cdb>16303</cdb><cdb>16023</cdb><cdb>16022</cdb> <cdb>16021</cdb> <cdb>16020</cdb> </uscita>
+          <uscita id="04" direzione="sx" >
+              <cdb>16303</cdb><cdb>16023</cdb><cdb>16026</cdb> <cdb>16025</cdb> <cdb>16024</cdb> </uscita>
+          <uscita id="03" direzione="dx" >
+              <cdb>16303</cdb><cdb>16016</cdb><cdb>16015</cdb> <cdb>16014</cdb> <cdb>16013</cdb> </uscita>
+          <uscita id="01" direzione="dx" >
+              <cdb>16303</cdb><cdb>16016</cdb> <cdb>16012</cdb> <cdb>16011</cdb> <cdb>16010</cdb> </uscita>
       </partenza>
     </itinerari>
   </stazione> 
@@ -210,34 +230,51 @@
    <stazione id="Parco della Vittoria">
     <itinerari>
       <ingresso id="01" direzione="dx">  
-         <binario id="I" nid_lrgb="5225" d_stop="222" /> 
-        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
-       <binario id="III" nid_lrgb="5225" d_stop="222" /> 
-       <binario id="IV" nid_lrgb="5225" d_stop="222" /> 
+          <binario id="I" nid_lrgb="5225" d_stop="222" >
+              <cdb>17010</cdb><cdb>17011</cdb><cdb>17012</cdb><cdb>17013</cdb><cdb>17014</cdb><cdb>17301</cdb> </binario>
+ 
+          <binario id="II" nid_lrgb="5225" d_stop="222" >
+              <cdb>17010</cdb><cdb>17011</cdb><cdb>17012</cdb><cdb>17013</cdb><cdb>17014</cdb><cdb>17302</cdb> </binario>
+          <binario id="III" nid_lrgb="5225" d_stop="222" >
+              <cdb>17010</cdb><cdb>17011</cdb><cdb>17012</cdb><cdb>17013</cdb><cdb>17033</cdb><cdb>17034</cdb><cdb>17303</cdb> </binario>
+          <binario id="IV" nid_lrgb="5225" d_stop="222" >
+              <cdb>17010</cdb><cdb>17011</cdb><cdb>17012</cdb><cdb>17013</cdb><cdb>17033</cdb><cdb>17034</cdb><cdb>17304</cdb> </binario>
       </ingresso>
 
        <ingresso id="03" direzione="dx">      
-         <binario id="I" nid_lrgb="5225" d_stop="222" /> 
-        <binario id="II" nid_lrgb="5225" d_stop="222" /> 
-       <binario id="III" nid_lrgb="5225" d_stop="222" /> 
-       <binario id="IV" nid_lrgb="5225" d_stop="222" /> 
+           <binario id="I" nid_lrgb="5225" d_stop="222" >
+               <cdb>17030</cdb><cdb>17031</cdb><cdb>17032</cdb><cdb>17012</cdb><cdb>17013</cdb><cdb>17014</cdb><cdb>17301</cdb> </binario>
+           <binario id="II" nid_lrgb="5225" d_stop="222" >
+               <cdb>17030</cdb><cdb>17031</cdb><cdb>17032</cdb><cdb>17012</cdb><cdb>17013</cdb><cdb>17014</cdb><cdb>17302</cdb> </binario>
+           <binario id="III" nid_lrgb="5225" d_stop="222" >
+               <cdb>17030</cdb><cdb>17031</cdb><cdb>17032</cdb><cdb>17033</cdb><cdb>17034</cdb><cdb>17303</cdb> </binario>
+           <binario id="IV" nid_lrgb="5225" d_stop="222" >
+               <cdb>17030</cdb><cdb>17031</cdb><cdb>17032</cdb><cdb>17033</cdb><cdb>17034</cdb><cdb>17304</cdb> </binario>
       </ingresso>
       
       <partenza id="I">
-        <uscita id="01" direzione="sx" />
-        <uscita id="03" direzione="sx" />
+          <uscita id="01" direzione="sx" >
+              <cdb>17301</cdb><cdb>17014</cdb> <cdb>17013</cdb> <cdb>17012</cdb> <cdb>17011</cdb><cdb>17010</cdb> </uscita>
+          <uscita id="03" direzione="sx" >
+              <cdb>17301</cdb><cdb>17014</cdb> <cdb>17013</cdb> <cdb>17012</cdb> <cdb>17032</cdb> <cdb>17031</cdb><cdb>17030</cdb> </uscita>
       </partenza>
       <partenza id="II">
-        <uscita id="01" direzione="sx" />
-        <uscita id="03" direzione="sx"/>
+          <uscita id="01" direzione="sx" >
+              <cdb>17302</cdb><cdb>17014</cdb> <cdb>17013</cdb> <cdb>17012</cdb> <cdb>17011</cdb><cdb>17010</cdb> </uscita>
+          <uscita id="03" direzione="sx">
+              <cdb>17302</cdb><cdb>17014</cdb> <cdb>17013</cdb> <cdb>17012</cdb> <cdb>17032</cdb> <cdb>17031</cdb><cdb>17030</cdb> </uscita>
       </partenza>
       <partenza id="III">
-        <uscita id="03" direzione="sx" />
-        <uscita id="01" direzione="sx" />
+          <uscita id="03" direzione="sx" >
+              <cdb>17303</cdb><cdb>17034</cdb> <cdb>17033</cdb> <cdb>17032</cdb> <cdb>17031</cdb><cdb>17030</cdb> </uscita>
+          <uscita id="01" direzione="sx" >
+              <cdb>17303</cdb><cdb>17034</cdb><cdb>17033</cdb><cdb>17013</cdb> <cdb>17012</cdb> <cdb>17011</cdb><cdb>17010</cdb> </uscita>
       </partenza>
       <partenza id="IV">
-        <uscita id="03" direzione="sx" />
-        <uscita id="01" direzione="sx" />
+          <uscita id="03" direzione="sx" >
+              <cdb>17304</cdb><cdb>17034</cdb> <cdb>17033</cdb> <cdb>17032</cdb> <cdb>17031</cdb><cdb>17030</cdb> </uscita>
+          <uscita id="01" direzione="sx" >
+              <cdb>17304</cdb><cdb>17034</cdb><cdb>17033</cdb><cdb>17013</cdb> <cdb>17012</cdb> <cdb>17011</cdb><cdb>17010</cdb> </uscita>
       </partenza>
     </itinerari>
   </stazione> 
