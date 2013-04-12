@@ -9,11 +9,11 @@
           <cdb>13010</cdb><cdb>13011</cdb><cdb>13012</cdb><cdb>13302</cdb> </binario>
       </ingresso>
       <partenza id="I">
-        <uscita id="01"  direzione="dx"> 
+        <uscita id="01"  direzione="dx" v_mission="50" d_mission="250"> 
          <cdb>13301</cdb> <cdb>13012</cdb> <cdb>13011</cdb><cdb>13010</cdb> </uscita>
       </partenza>
       <partenza id="II">
-        <uscita id="01" direzione="dx">
+        <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
          <cdb>13302</cdb> <cdb>13012</cdb> <cdb>13011</cdb><cdb>13010</cdb> </uscita>
       </partenza>
     </itinerari>
@@ -34,13 +34,13 @@
            <cdb>14010</cdb><cdb>14011</cdb><cdb>14012</cdb><cdb>14302</cdb> </binario>
       </ingresso>
       <partenza id="I">
-        <uscita id="01" direzione="dx">
+        <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
           <cdb>14301</cdb> <cdb>14012</cdb> <cdb>14011</cdb><cdb>14010</cdb> </uscita>
         <uscita id="02" direzione="sx" >
           <cdb>14301</cdb> <cdb>14022</cdb> <cdb>14021</cdb><cdb>14020</cdb> </uscita>
       </partenza>
       <partenza id="II">
-        <uscita id="01" direzione="dx">
+        <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
           <cdb>14302</cdb> <cdb>14012</cdb> <cdb>14011</cdb><cdb>14010</cdb> </uscita>
         <uscita id="02" direzione="sx" >
           <cdb>14302</cdb> <cdb>14022</cdb> <cdb>14021</cdb><cdb>14020</cdb> </uscita>
@@ -63,15 +63,15 @@
                     <cdb>15010</cdb><cdb>15011</cdb><cdb>15012</cdb><cdb>15302</cdb> </binario>
             </ingresso>
             <partenza id="I">
-                <uscita id="01" direzione="dx">
+                <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
                     <cdb>15301</cdb> <cdb>15012</cdb> <cdb>15011</cdb><cdb>15010</cdb> </uscita>
-                <uscita id="02" direzione="sx" >
+                <uscita id="02" direzione="sx" v_mission="50" d_mission="250">
                     <cdb>15301</cdb> <cdb>15022</cdb> <cdb>15021</cdb><cdb>15020</cdb> </uscita>
             </partenza>
             <partenza id="II">
-                <uscita id="01" direzione="dx">
+                <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
                     <cdb>15302</cdb> <cdb>15012</cdb> <cdb>15011</cdb><cdb>15010</cdb> </uscita>
-                <uscita id="02" direzione="sx" >
+                <uscita id="02" direzione="sx" v_mission="50" d_mission="250">
                     <cdb>15302</cdb> <cdb>15022</cdb> <cdb>15021</cdb><cdb>15020</cdb> </uscita>
             </partenza>
         </itinerari>
@@ -93,15 +93,15 @@
                     <cdb>11010</cdb><cdb>11011</cdb><cdb>11012</cdb><cdb>11302</cdb> </binario>
             </ingresso>
             <partenza id="I">
-                <uscita id="01" direzione="dx">
+                <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
                     <cdb>11301</cdb> <cdb>11012</cdb> <cdb>11011</cdb><cdb>11010</cdb> </uscita>
-                <uscita id="02" direzione="sx" >
+                <uscita id="02" direzione="sx" v_mission="50" d_mission="250">
                     <cdb>11301</cdb> <cdb>11022</cdb> <cdb>11021</cdb><cdb>11020</cdb> </uscita>
             </partenza>
             <partenza id="II">
-                <uscita id="01" direzione="dx">
+                <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
                     <cdb>11302</cdb> <cdb>11012</cdb> <cdb>11011</cdb><cdb>11010</cdb> </uscita>
-                <uscita id="02" direzione="sx" >
+                <uscita id="02" direzione="sx" v_mission="50" d_mission="250" >
                     <cdb>11302</cdb> <cdb>11022</cdb> <cdb>11021</cdb><cdb>11020</cdb> </uscita>
             </partenza>
         </itinerari>
@@ -140,29 +140,29 @@
                <cdb>12020</cdb><cdb>12021</cdb><cdb>12022</cdb><cdb>12023</cdb><cdb>12303</cdb> </binario>
       </ingresso>
       <partenza id="I">
-          <uscita id="01" direzione="sx" >
+          <uscita id="01" direzione="sx" v_mission="50" d_mission="250" >
               <cdb>12301</cdb> <cdb>12012</cdb> <cdb>12011</cdb><cdb>12010</cdb> </uscita>
-          <uscita id="04" direzione="dx" >
+          <uscita id="04" direzione="dx" v_mission="50" d_mission="250" >
               <cdb>12301</cdb> <cdb>12026</cdb> <cdb>12025</cdb> <cdb>12024</cdb> </uscita>
       </partenza>
       <partenza id="II">
-          <uscita id="01" direzione="sx" >
+          <uscita id="01" direzione="sx" v_mission="50" d_mission="250" >
               <cdb>12302</cdb> <cdb>12016</cdb> <cdb>12012</cdb> <cdb>12011</cdb><cdb>12010</cdb> </uscita>
-        <uscita id="03" direzione="sx">
+        <uscita id="03" direzione="sx" v_mission="50" d_mission="250">
              <cdb>12302</cdb> <cdb>12015</cdb><cdb>12014</cdb> <cdb>12013</cdb>  </uscita>
-          <uscita id="04" direzione="dx">
+          <uscita id="04" direzione="dx" v_mission="50" d_mission="250">
               <cdb>12302</cdb> <cdb>12023</cdb><cdb>12026</cdb> <cdb>12025</cdb> <cdb>12024</cdb> </uscita>
-        <uscita id="02" direzione="dx">
+        <uscita id="02" direzione="dx" v_mission="50" d_mission="250">
              <cdb>12302</cdb> <cdb>12023</cdb><cdb>12022</cdb> <cdb>12021</cdb> <cdb>12020</cdb> </uscita>
       </partenza>
       <partenza id="III">
-          <uscita id="01" direzione="sx" >
+          <uscita id="01" direzione="sx" v_mission="50" d_mission="250" >
               <cdb>12303</cdb> <cdb>12016</cdb> <cdb>12012</cdb> <cdb>12011</cdb><cdb>12010</cdb> </uscita>
-        <uscita id="03" direzione="sx" >
+        <uscita id="03" direzione="sx" v_mission="50" d_mission="250">
              <cdb>12303</cdb> <cdb>12016</cdb><cdb>12015</cdb> <cdb>12014</cdb> <cdb>12013</cdb> </uscita>
-        <uscita id="04" direzione="dx" >
+        <uscita id="04" direzione="dx" v_mission="50" d_mission="250">
              <cdb>12303</cdb> <cdb>12023</cdb><cdb>12026</cdb> <cdb>12025</cdb> <cdb>12024</cdb> </uscita>
-          <uscita id="02" direzione="dx" >
+          <uscita id="02" direzione="dx" v_mission="50" d_mission="250">
               <cdb>12303</cdb> <cdb>12023</cdb><cdb>12022</cdb> <cdb>12021</cdb> <cdb>12020</cdb> </uscita>
       </partenza>
     </itinerari>
@@ -199,29 +199,29 @@
                <cdb>16010</cdb><cdb>16011</cdb><cdb>16012</cdb><cdb>16016</cdb><cdb>16303</cdb> </binario>
       </ingresso>
       <partenza id="I">
-          <uscita id="01" direzione="dx" >
+          <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
               <cdb>16301</cdb> <cdb>16012</cdb> <cdb>16011</cdb> <cdb>16010</cdb> </uscita>
-          <uscita id="04" direzione="sx" >
+          <uscita id="04" direzione="sx" v_mission="50" d_mission="250">
               <cdb>16301</cdb><cdb>16026</cdb> <cdb>16025</cdb> <cdb>16024</cdb> </uscita>
       </partenza>
       <partenza id="II">
-          <uscita id="02" direzione="sx" >
+          <uscita id="02" direzione="sx" v_mission="50" d_mission="250">
               <cdb>16302</cdb><cdb>16023</cdb><cdb>16022</cdb> <cdb>16021</cdb> <cdb>16020</cdb> </uscita>
-          <uscita id="04" direzione="sx" >
+          <uscita id="04" direzione="sx" v_mission="50" d_mission="250">
               <cdb>16302</cdb><cdb>16023</cdb><cdb>16026</cdb> <cdb>16025</cdb> <cdb>16024</cdb> </uscita>
-          <uscita id="03" direzione="dx" >
+          <uscita id="03" direzione="dx" v_mission="50" d_mission="250">
               <cdb>16302</cdb><cdb>16016</cdb><cdb>16015</cdb> <cdb>16014</cdb> <cdb>16013</cdb> </uscita>
-          <uscita id="01" direzione="dx">
+          <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
               <cdb>16302</cdb><cdb>16016</cdb> <cdb>16012</cdb> <cdb>16011</cdb> <cdb>16010</cdb> </uscita>
       </partenza>
       <partenza id="III">
-          <uscita id="02" direzione="sx" >
+          <uscita id="02" direzione="sx" v_mission="50" d_mission="250">
               <cdb>16303</cdb><cdb>16023</cdb><cdb>16022</cdb> <cdb>16021</cdb> <cdb>16020</cdb> </uscita>
-          <uscita id="04" direzione="sx" >
+          <uscita id="04" direzione="sx" v_mission="50" d_mission="250">
               <cdb>16303</cdb><cdb>16023</cdb><cdb>16026</cdb> <cdb>16025</cdb> <cdb>16024</cdb> </uscita>
-          <uscita id="03" direzione="dx" >
+          <uscita id="03" direzione="dx" v_mission="50" d_mission="250">
               <cdb>16303</cdb><cdb>16016</cdb><cdb>16015</cdb> <cdb>16014</cdb> <cdb>16013</cdb> </uscita>
-          <uscita id="01" direzione="dx" >
+          <uscita id="01" direzione="dx" v_mission="50" d_mission="250">
               <cdb>16303</cdb><cdb>16016</cdb> <cdb>16012</cdb> <cdb>16011</cdb> <cdb>16010</cdb> </uscita>
       </partenza>
     </itinerari>
@@ -253,27 +253,27 @@
       </ingresso>
       
       <partenza id="I">
-          <uscita id="01" direzione="sx" >
+          <uscita id="01" direzione="sx" v_mission="50" d_mission="250">
               <cdb>17301</cdb><cdb>17014</cdb> <cdb>17013</cdb> <cdb>17012</cdb> <cdb>17011</cdb><cdb>17010</cdb> </uscita>
-          <uscita id="03" direzione="sx" >
+          <uscita id="03" direzione="sx" v_mission="50" d_mission="250">
               <cdb>17301</cdb><cdb>17014</cdb> <cdb>17013</cdb> <cdb>17012</cdb> <cdb>17032</cdb> <cdb>17031</cdb><cdb>17030</cdb> </uscita>
       </partenza>
       <partenza id="II">
-          <uscita id="01" direzione="sx" >
+          <uscita id="01" direzione="sx" v_mission="50" d_mission="250">
               <cdb>17302</cdb><cdb>17014</cdb> <cdb>17013</cdb> <cdb>17012</cdb> <cdb>17011</cdb><cdb>17010</cdb> </uscita>
-          <uscita id="03" direzione="sx">
+          <uscita id="03" direzione="sx" v_mission="50" d_mission="250">
               <cdb>17302</cdb><cdb>17014</cdb> <cdb>17013</cdb> <cdb>17012</cdb> <cdb>17032</cdb> <cdb>17031</cdb><cdb>17030</cdb> </uscita>
       </partenza>
       <partenza id="III">
-          <uscita id="03" direzione="sx" >
+          <uscita id="03" direzione="sx" v_mission="50" d_mission="250" >
               <cdb>17303</cdb><cdb>17034</cdb> <cdb>17033</cdb> <cdb>17032</cdb> <cdb>17031</cdb><cdb>17030</cdb> </uscita>
-          <uscita id="01" direzione="sx" >
+          <uscita id="01" direzione="sx" v_mission="50" d_mission="250" >
               <cdb>17303</cdb><cdb>17034</cdb><cdb>17033</cdb><cdb>17013</cdb> <cdb>17012</cdb> <cdb>17011</cdb><cdb>17010</cdb> </uscita>
       </partenza>
       <partenza id="IV">
-          <uscita id="03" direzione="sx" >
+          <uscita id="03" direzione="sx" v_mission="50" d_mission="250">
               <cdb>17304</cdb><cdb>17034</cdb> <cdb>17033</cdb> <cdb>17032</cdb> <cdb>17031</cdb><cdb>17030</cdb> </uscita>
-          <uscita id="01" direzione="sx" >
+          <uscita id="01" direzione="sx" v_mission="50" d_mission="250">
               <cdb>17304</cdb><cdb>17034</cdb><cdb>17033</cdb><cdb>17013</cdb> <cdb>17012</cdb> <cdb>17011</cdb><cdb>17010</cdb> </uscita>
       </partenza>
     </itinerari>

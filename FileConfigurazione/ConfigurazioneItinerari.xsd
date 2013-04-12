@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" >
+  <xs:element name="ConfigurazioneItinerari" >
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="stazione" maxOccurs="unbounded" >
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="itinerari" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ingresso" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="binario" maxOccurs="unbounded" >
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cdb" maxOccurs="unbounded" type="xs:int" />
+                              </xs:sequence>
+                              <xs:attribute name="id" type="xs:string" />
+                              <xs:attribute name="nid_lrgb" type="xs:int" />
+                              <xs:attribute name="d_stop" type="xs:int" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:int"  />
+                        <xs:attribute name="direzione" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="partenza" maxOccurs="unbounded" >
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="uscita" maxOccurs="unbounded" >
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cdb" maxOccurs="unbounded" type="xs:int" />
+                              </xs:sequence>
+                              <xs:attribute name="id" type="xs:int" />
+                              <xs:attribute name="direzione" type="xs:string" />
+                              <xs:attribute name="v_mission" type="xs:int" />
+                              <xs:attribute name="d_mission" type="xs:int" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:string"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
