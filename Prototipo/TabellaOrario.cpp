@@ -29,7 +29,8 @@ string TabellaOrario::convertiString2string(System::String ^StringValue)
 // questa funzione legge il file di configurazione contenente la descrizione della tabella orario
 void TabellaOrario::leggiTabellaOrario(string nomeFile)
 {
-	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("..\\..\\FileConfigurazione\\TabellaOrario.xml");
+	System::String^ nome = gcnew System::String(nomeFile.c_str());
+	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nome);
 	// per ogni treno presente nel file di configurazione della tabella orario...
 	while (reader->ReadToFollowing("treno")){
 		System::Xml::XmlReader ^inner = reader->ReadSubtree();
@@ -83,9 +84,9 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			int minutoPartenza = atoi(stringMinutoPartenza.c_str());
 			int secondoPartenza = atoi(stringSecondoPartenza.c_str());
 			// configuro l'orario di arrivo della farmata
-			stop->setOrarioArrivo_Ora(oraPartenza);
-			stop->setOrarioArrivo_Minuto(minutoPartenza);
-			stop->setOrarioArrivo_Secondo(secondoPartenza);
+			stop->setOrarioPartenza_Ora(oraPartenza);
+			stop->setOrarioPartenza_Minuto(minutoPartenza);
+			stop->setOrarioPartenza_Secondo(secondoPartenza);
 
 			// leggo il binario programmato
 			inner->ReadToFollowing("binarioprogrammato");
