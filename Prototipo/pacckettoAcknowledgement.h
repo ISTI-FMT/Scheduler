@@ -23,7 +23,8 @@ public:
 	int getT_TRAIN(){return data.structuredData.ack.T_TRAIN;};
 	void setQ_MISSION_RESPONSE(int Q){data.structuredData.ack.Q_MISSION_RESPONSE = !;};
 	int getQ_MISSION_RESPONSE(){return data.structuredData.ack.Q_MISSION_RESPONSE;};
-	// da definire
+	// metodi per la serializzazione e deserializzazione del messaggio
+	// il buffer di byte deve essere stato precedentemente correttamente allocato.
 	void serialize(byte *buff);
 	void deserialize(byte *buff);
 	~pacckettoAcknowledgement(void);
