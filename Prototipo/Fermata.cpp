@@ -18,7 +18,7 @@ Fermata::Fermata(void)
 ostream& operator<<(ostream &out, const Fermata &stop)
 {
 	out << "ID stazione : " << stop.idStazione.c_str() << endl;
-	out << "orario partenza : " << stop.orarioArrivo.tm_hour << ":" << stop.orarioArrivo.tm_min << ":" << stop.orarioArrivo.tm_sec << endl;
+	out << "orario arrivo : " << stop.orarioArrivo.tm_hour << ":" << stop.orarioArrivo.tm_min << ":" << stop.orarioArrivo.tm_sec << endl;
 	out << "orario partenza : " << stop.orarioPartenza.tm_hour << ":" << stop.orarioPartenza.tm_min << ":" << stop.orarioPartenza.tm_sec << endl;
 	out << "binario programmato : " << stop.binarioProgrammato << endl;
 	string lato;
