@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" >
+  <!-- XML Schema Generated from XML Document on Mon Apr 15 2013 11:13:17 GMT+0200 (ora legale Europa occidentale) -->
+  <!-- with XmlGrid.net Free Online Service http://xmlgrid.net -->
   <xs:element name="ConfigurazioneItinerari" >
     <xs:complexType>
       <xs:sequence>
         <xs:element name="stazione" maxOccurs="unbounded" >
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="itinerari" maxOccurs="unbounded">
+              <xs:element name="itinerari"  maxOccurs="unbounded"  >
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="ingresso" maxOccurs="unbounded">
+                    <xs:element name="ingresso"  maxOccurs="unbounded" >
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="binario" maxOccurs="unbounded" >
@@ -23,14 +25,14 @@
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="id" type="xs:int"  />
+                        <xs:attribute name="id" type="xs:int" />
                         <xs:attribute name="direzione" type="xs:string" />
                       </xs:complexType>
                     </xs:element>
                     <xs:element name="partenza" maxOccurs="unbounded" >
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="uscita" maxOccurs="unbounded" >
+                          <xs:element name="uscita" >
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="cdb" maxOccurs="unbounded" type="xs:int" />
@@ -42,7 +44,7 @@
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="id" type="xs:string"/>
+                        <xs:attribute name="id" type="xs:string" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
@@ -50,6 +52,7 @@
               </xs:element>
             </xs:sequence>
             <xs:attribute name="id" type="xs:string" />
+            <xs:attribute name="offset" type="xs:int" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>
