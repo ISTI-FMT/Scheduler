@@ -1,5 +1,6 @@
 #include "pacchettoMissionPlan.h"
 #include <iostream>
+using namespace std;
 
 
 pacchettoMissionPlan::pacchettoMissionPlan()
@@ -143,41 +144,93 @@ int pacchettoMissionPlan::getT_DOORS_TIME(int index)
 
 void pacchettoMissionPlan::serializeStructuredHeader(byte *buff, structuredHeader &h, int &index)
 {
-	int mask;
-	// serializzo NID_MESSAGE
-	buff[0] = h.NID_MESSAGE;
+	byte mask;
+	// serializzo NID_MESSAGE (che è esattamente un byte)
+	buff[index/8] = h.NID_MESSAGE;
 	index += 8;
 	// serializzo i primi 8 bit di L_MESSAGE
-	while(index < 16)
-	{
-		mask = h.L_MESSAGE & (1 << (index - 8));
-		buff[1] |= mask;
-		++index;
-	}
+	//while(index < 16)
+	//{
+		// con (1 << (index - 8)) costruisco una maschera con tutti 0 e un 1 
+		// nella posizione desiderata
+		// poi devo sciftare a destra per riportare il byte che voglio serializzare
+		// nella posizione meno significativa
+		//mask = (h.L_MESSAGE >> (8)) & (1 << (index - 8));
+		mask = h.L_MESSAGE >> 3;
+		// con l'or bit a bit modifico il contenuto del buffer
+		buff[(index/8)] |= mask;
+		index += 8;
+	//}
 	// serializzo i rimanenti 3 bit di L_MESSAGE
-	while(index < 19)
+	//while(index < 19)
+	//{
+		// con (1 << (index - 8)) costruisco una maschera con tutti 0 e un 1 
+		// nella posizione desiderata
+		// poi devo sciftare a destra per riportare il byte che voglio serializzare
+		// nella posizione meno significativa
+		//mask = (h.L_MESSAGE & (1 << (index - 16))) << (5 + (index%8));
+		mask = h.L_MESSAGE << 1;
+		// con l'or bit a bit modifico il contenuto del buffer
+		buff[(index/8)] |= mask;
+		index += 3;
+	//}
+	/*
+	// serializzo T_TRAIN
+	for(int i = 3; i >= 0; --i)
 	{
-		mask = h.L_MESSAGE & (1 << (index - 8));
-		buff[2] |= mask;
-		++index;
-	}
-	// serializzo i primi 5 bit di T_TRAIN
-	while(index < 24)
-	{
-		mask = h.T_TRAIN & (1 << (index - 19));
-		buff[2] |= mask;
-		++index;
-	}
-	// serializzo i due byte "centrali" di T_TRAIN
-	for(int i = 3; i < 5; ++i)
-	{
-		while(index < 24)
+		for(int j = 0; j < 8; ++j)
 		{
-			mask = h.T_TRAIN & (1 << (index - 19));
-			buff[2] |= mask;
+			// con (1 << (index - 19)) costruisco una maschera con tutti 0 e un 1 
+			// nella posizione desiderata
+			// poi devo sciftare a destra per riportare il byte che voglio serializzare
+			// nella posizione meno significativa
+			mask = (h.T_TRAIN & (1 << (index - 19))) >> (i*8);
+			// con l'or bit a bit modifico il contenuto del buffer
+			buff[index/8] |= mask;
 			++index;
 		}
 	}
+	*/
+
+
+	/*
+	// serializzo i primi 5 bit di T_TRAIN
+	while(index < 24)
+	{
+		// con (1 << (index - 19)) costruisco una maschera con tutti 0 e un 1 
+		// nella posizione desiderata
+		// poi devo sciftare a destra per riportare il byte che voglio serializzare
+		// nella posizione meno significativa
+		mask = (h.T_TRAIN & (1 << (index - 19))) >> (0);
+		// con l'or bit a bit modifico il contenuto del buffer
+		buff[2] |= mask;
+		++index;
+	}
+	// serializzo i tre byte "centrali" di T_TRAIN
+	for(int i = 3; i < 6; ++i)
+	{
+		//while(index < 24)
+		for(int j = 0; j < 8; ++j)
+		{
+			// con (1 << (index - 19)) costruisco una maschera con tutti 0 e un 1 
+			// nella posizione desiderata
+			// poi devo sciftare a destra per riportare il byte che voglio serializzare
+			// nella posizione meno significativa
+			int offset;
+			if()
+			mask = (h.T_TRAIN & (1 << j)) >> (0);
+			buff[i] |= mask;
+			++index;
+		}
+	}
+	// serializzo gli ultimi 3 bit di T_TRAIN
+	while(index < 51)
+	{
+		mask = h.T_TRAIN & (1 << (index - 19));
+		buff[6] |= mask;
+		++index;
+	}
+	*/
 }
 
 pacchettoMissionPlan::~pacchettoMissionPlan(void)

@@ -11,5 +11,5 @@ pacchettoCommandData2::pacchettoCommandData2(void)
 void pacchettoCommandData2::serializepacchettoCommandData(byte *buffer)
 {
 	for(int i = 0; i < 10; ++i)
-		buffer[i+8] = data.flatData[i];
+		buffer[i] = data.flatData[i];
 }

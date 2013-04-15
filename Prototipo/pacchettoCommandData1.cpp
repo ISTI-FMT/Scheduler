@@ -12,7 +12,7 @@ pacchettoCommandData1::pacchettoCommandData1(void)
 void pacchettoCommandData1::serializepacchettoCommandData(byte *buffer)
 {
 	for(int i = 0; i < 10; ++i)
-		buffer[i+8] = data.flatData[i];
+		buffer[i] = data.flatData[i];
 }
 
 pacchettoCommandData1::~pacchettoCommandData1(void)

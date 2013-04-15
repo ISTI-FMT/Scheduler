@@ -39,6 +39,9 @@
     <ClInclude Include="pacchettoMissionPlan.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="pacckettoAcknowledgement.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TabellaOrario.cpp">
@@ -63,6 +66,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="pacchettoMissionPlan.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="pacckettoAcknowledgement.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

@@ -14,6 +14,7 @@ class pacchettoMissionPlan
 	void serializeMissionStruct1(byte *buff, missionStruct1 &ms, int &index);
 	void serializeMissionStruct2(byte *buff, missionStruct2 &ms, int &index);
 public:
+	void serializeStructuredHeader(byte *buff, int &index){serializeStructuredHeader(buff, data.head, index);};
 	pacchettoMissionPlan();
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	void setNID_MESSAGE(int N){data.head.NID_MESSAGE = N;};

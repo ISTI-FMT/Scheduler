@@ -3,6 +3,7 @@
 typedef __int8 byte;
 
 // questa struttura codifica i primi tre campi del messaggio generico
+// 51 bit
 struct structuredHeader
 {
 	unsigned int NID_MESSAGE : 8;
@@ -137,3 +138,31 @@ struct missionData
 	// questa struttura dati. Quello che può essere fatto è: sapendo che la parte fissa del messaggio è lunga 122 bit,
 	// e sapendo che ogni "N_ITER" aggiunge 89 bit si può calcolare il numero di bit di padding ed
 };
+
+// struttura dati per la gestione del mission ack
+// 54 bit
+struct missionAck 
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	unsigned int T_TRAIN : 32;
+	unsigned int Q_MISSION_RESPONSE : 1;
+};
+
+// Struttura dati per la gestione dell'acknowledgement
+// 129 bit => 17 byte (7 bit di padding)
+// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
+// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
+typedef union _acknowledgement
+{
+	byte flatData[17];
+
+	struct _structuredData
+	{
+		structuredHeader head;
+		unsigned int NID_ENGINE : 24;
+		missionAck ack;
+		unsigned int padding : 7;
+	}structuredData;
+
+}acknowledgement;

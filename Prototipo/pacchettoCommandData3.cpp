@@ -10,7 +10,7 @@ pacchettoCommandData3::pacchettoCommandData3(void)
 void pacchettoCommandData3::serializepacchettoCommandData(byte *buffer)
 {
 	for(int i = 0; i < 14; ++i)
-		buffer[i+8] = data.flatData[i];
+		buffer[i] = data.flatData[i];
 }
 
 pacchettoCommandData3::~pacchettoCommandData3(void)
