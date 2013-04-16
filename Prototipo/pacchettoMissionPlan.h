@@ -23,12 +23,12 @@ public:
 	int getL_MESSAGE(){return data.head.L_MESSAGE;};
 	void setT_TRAIN(int N){data.head.T_TRAIN = N;};
 	int getT_TRAIN(){return data.head.T_TRAIN;};
-	void setNID_PACKET(int NID){data.missionHead.structuredData.NID_PACKET = NID;};
-	int getNID_PACKET(){return data.missionHead.structuredData.NID_PACKET;};
-	void setL_PACKET(int L){data.missionHead.structuredData.L_PACKET = L;};
-	int getL_PACKET(){return data.missionHead.structuredData.L_PACKET;};
-	void setQ_SCALE(int Q){data.missionHead.structuredData.Q_SCALE = Q;};
-	int getQ_SCALE(){return data.missionHead.structuredData.Q_SCALE;};
+	void setNID_PACKET(int NID){data.missionHead.NID_PACKET = NID;};
+	int getNID_PACKET(){return data.missionHead.NID_PACKET;};
+	void setL_PACKET(int L){data.missionHead.L_PACKET = L;};
+	int getL_PACKET(){return data.missionHead.L_PACKET;};
+	void setQ_SCALE(int Q){data.missionHead.Q_SCALE = Q;};
+	int getQ_SCALE(){return data.missionHead.Q_SCALE;};
 	// metodo che setta N_ITER ed alloca conseguentemente i vettori mS1_vecte mS2_vect
 	void setN_ITER(int N);
 	int getN_ITER(){return data.N_ITER1;};

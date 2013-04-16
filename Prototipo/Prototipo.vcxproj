@@ -70,10 +70,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Fermata.h" />
+    <ClInclude Include="utility.h" />
     <ClInclude Include="pacchettoCommandData2.h" />
     <ClInclude Include="pacchettoCommandData3.h" />
     <ClInclude Include="pacchettoMissionPlan.h" />
     <ClInclude Include="pacckettoAcknowledgement.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="struttureDatiMessaggi.h" />
     <ClInclude Include="pacchettoCommandData1.h" />
     <ClInclude Include="TabellaOrario.h" />
@@ -82,6 +84,7 @@
   <ItemGroup>
     <ClCompile Include="Fermata.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="utility.cpp" />
     <ClCompile Include="pacchettoCommandData1.cpp" />
     <ClCompile Include="pacchettoCommandData2.cpp" />
     <ClCompile Include="pacchettoCommandData3.cpp" />
@@ -89,6 +92,9 @@
     <ClCompile Include="pacckettoAcknowledgement.cpp" />
     <ClCompile Include="TabellaOrario.cpp" />
     <ClCompile Include="TrenoFermate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Prototipo.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
