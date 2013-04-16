@@ -19,9 +19,9 @@ public:
 	int getNID_PACKET(){return data.structuredData.ack.NID_PACKET;};
 	void setL_PACKET(int L){data.structuredData.ack.L_PACKET = L;};
 	int getL_PACKET(){return data.structuredData.ack.L_PACKET;};
-	void setT_TRAIN(int T){data.structuredData.ack.T_TRAIN = T;};
-	int getT_TRAIN(){return data.structuredData.ack.T_TRAIN;};
-	void setQ_MISSION_RESPONSE(int Q){data.structuredData.ack.Q_MISSION_RESPONSE = !;};
+	//void setT_TRAIN(int T){data.structuredData.ack.T_TRAIN = T;};
+	//int getT_TRAIN(){return data.structuredData.ack.T_TRAIN;};
+	void setQ_MISSION_RESPONSE(int Q){data.structuredData.ack.Q_MISSION_RESPONSE = Q;};
 	int getQ_MISSION_RESPONSE(){return data.structuredData.ack.Q_MISSION_RESPONSE;};
 	// metodi per la serializzazione e deserializzazione del messaggio
 	// il buffer di byte deve essere stato precedentemente correttamente allocato.

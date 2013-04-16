@@ -3,7 +3,7 @@
 typedef __int8 byte;
 
 // questa struttura codifica i primi tre campi del messaggio generico
-// 51 bit
+// 51 bit, in memoria però, causa allineamento, occupa 64 bit
 struct structuredHeader
 {
 	unsigned int NID_MESSAGE : 8;
@@ -16,7 +16,7 @@ struct structuredHeader
 // oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
 typedef union _commandData1
 {
-	byte flatData[10];
+	byte flatData[12];
 
 	struct _structuredCommandData
 	{
@@ -166,3 +166,6 @@ typedef union _acknowledgement
 	}structuredData;
 
 }acknowledgement;
+
+// funzione di interfaccia con franco
+void push(byte *buff, unsigned int data, int len, int offset);
