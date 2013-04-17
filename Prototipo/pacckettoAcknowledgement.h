@@ -1,6 +1,10 @@
 #pragma once
 #include "struttureDatiMessaggi.h"
 
+/*-----------------------------------------------------------------------------------------------
+L'ATS riceve dal treno dei messaggi di acnowledgement
+-------------------------------------------------------------------------------------------------*/
+
 class pacckettoAcknowledgement
 {
 	acknowledgement data;

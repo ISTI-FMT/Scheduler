@@ -1,6 +1,11 @@
 #pragma once
 #include "struttureDatiMessaggi.h"
 
+/*-----------------------------------------------------------------------------------------------
+L'ATS manda messaggi di tipo COMMAND_DATA con il campo Q_COMMAND_TYPE settato a Train_Running_Number 
+e contenenti un campo NID_OPERATIONAL opportunamente settato per assegnare un TRN ad un treno
+-------------------------------------------------------------------------------------------------*/
+
 class pacchettoCommandData3
 {
 	commandData3 data;

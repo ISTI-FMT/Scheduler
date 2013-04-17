@@ -1,6 +1,11 @@
 #pragma once
 #include "struttureDatiMessaggi.h"
 
+/*-----------------------------------------------------------------------------------------------
+L'ATS manda messaggi di tipo COMMAND_DATA con il campo Q_COMMAND_TYPE settato a Change_GOA_Level 
+e contenenti un campo M_GOA_LEVEL opportunamente settato per cambiare il GOA Level di un treno
+-------------------------------------------------------------------------------------------------*/
+
 class pacchettoCommandData2
 {
 	commandData2 data;

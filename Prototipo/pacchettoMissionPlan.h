@@ -1,6 +1,10 @@
 #pragma once
 #include "struttureDatiMessaggi.h"
 
+/*-----------------------------------------------------------------------------------------------
+L'ATS manda una missione al treno
+-------------------------------------------------------------------------------------------------*/
+
 class pacchettoMissionPlan
 {
 	missionData data;
