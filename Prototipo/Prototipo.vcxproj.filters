@@ -42,6 +42,12 @@
     <ClInclude Include="pacckettoAcknowledgement.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="utility.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TabellaOrario.cpp">
@@ -71,5 +77,13 @@
     <ClCompile Include="pacckettoAcknowledgement.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="utility.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Prototipo.rc">
+      <Filter>File di risorse</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

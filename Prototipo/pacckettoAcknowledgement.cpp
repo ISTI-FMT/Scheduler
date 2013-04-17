@@ -1,32 +1,37 @@
 #include "pacckettoAcknowledgement.h"
-
+#include "utility.h"
 
 pacckettoAcknowledgement::pacckettoAcknowledgement(void)
 {
-	data.structuredData.head.NID_MESSAGE = 0;
-	data.structuredData.head.L_MESSAGE = 0;
-	data.structuredData.head.T_TRAIN = 0;
-	data.structuredData.NID_ENGINE = 0;
-	data.structuredData.ack.NID_PACKET = 0;
-	data.structuredData.ack.L_PACKET = 0;
-	data.structuredData.ack.T_TRAIN = 0;
-	data.structuredData.ack.Q_MISSION_RESPONSE = 0;
+	data.head.NID_MESSAGE = 0;
+	data.head.L_MESSAGE = 0;
+	data.head.T_TRAIN = 0;
+	data.NID_ENGINE = 0;
+	data.ack.NID_PACKET = 0;
+	data.ack.L_PACKET = 0;
+	data.ack.T_TRAIN = 0;
+	data.ack.Q_MISSION_RESPONSE = 0;
 }
 
 // metodo per la serializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
-void pacckettoAcknowledgement::serialize(byte *buff)
+void pacckettoAcknowledgement::serialize(byte *buffer)
 {
-	for(int i = 0; i < 17; ++i)
-		buff[i] = data.flatData[i];
+	push(buffer, data.head.NID_MESSAGE, 8, 0);
+	push(buffer, data.head.L_MESSAGE, 11, 8);
+	push(buffer, data.head.T_TRAIN, 32, 19);
+	push(buffer, data.NID_ENGINE, 24, 51);
+	push(buffer, data.ack.NID_PACKET, 8, 75);
+	push(buffer, data.ack.L_PACKET, 13, 83);
+	push(buffer, data.ack.T_TRAIN, 32, 96);
+	push(buffer, data.ack.Q_MISSION_RESPONSE, 1, 128);
 }
 
 // metodo per la deserializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
 void pacckettoAcknowledgement::deserialize(byte *buff)
 {
-	for(int i = 0; i < 17; ++i)
-		data.flatData[i] = buff[i];
+
 }
 
 pacckettoAcknowledgement::~pacckettoAcknowledgement(void)

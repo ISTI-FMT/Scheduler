@@ -3,9 +3,12 @@
 #include <iostream>
 using namespace std;
 
-/*
-Questa classe è utilizzata per gestire la tabella orario dell'ATS attraverso una lista di oggetti di tipo TrenoFermate
-*/
+/*-----------------------------------------------------------------------------------------------
+L'ATS legge il contenuto della tabella orario da un file di configurazione e memorizza queste informazioni
+in apposite strutture dati.
+-------------------------------------------------------------------------------------------------*/
+
+// Questa classe è utilizzata per gestire la tabella orario dell'ATS attraverso una lista di oggetti di tipo TrenoFermate
 class TabellaOrario
 {
 	std::list<TrenoFermate> tabella;
