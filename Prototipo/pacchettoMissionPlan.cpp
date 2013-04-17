@@ -33,7 +33,7 @@ void pacchettoMissionPlan::setN_ITER1(int N)
 }
 
 // funzione che sette N_ITER2
-void pacchettoMissionPlan::setN_ITER1(int N)
+void pacchettoMissionPlan::setN_ITER2(int N)
 {
 	data.N_ITER2 = N;
 	data.mS2_vect = new missionStruct2[N];
@@ -163,7 +163,7 @@ void pacchettoMissionPlan::serializeStructuredHeader(byte *buffer, structuredHea
 	push(buffer, data.mS1.V_MISSION, 7, 89);
 	push(buffer, data.N_ITER1, 5, 96);
 	int offset = 101;
-	for(int i = 0; i < data.N_ITER1; ++i)
+	for(unsigned int i = 0; i < data.N_ITER1; ++i)
 	{
 		push(buffer, data.mS1_vect[i].D_MISSION, 15, offset);
 		offset += 15;
@@ -182,7 +182,7 @@ void pacchettoMissionPlan::serializeStructuredHeader(byte *buffer, structuredHea
 	offset += 12;
 	push(buffer, data.N_ITER2, 5, offset);
 	offset += 5;
-	for(int i = 0; i < data.N_ITER2; ++i)
+	for(unsigned int i = 0; i < data.N_ITER2; ++i)
 	{
 		push(buffer, data.mS2_vect[i].T_START_TIME, 12, offset);
 		offset += 12;
