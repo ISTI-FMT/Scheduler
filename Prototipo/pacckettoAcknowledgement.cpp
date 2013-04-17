@@ -1,5 +1,5 @@
 #include "pacckettoAcknowledgement.h"
-
+#include "utility.h"
 
 pacckettoAcknowledgement::pacckettoAcknowledgement(void)
 {
@@ -15,9 +15,16 @@ pacckettoAcknowledgement::pacckettoAcknowledgement(void)
 
 // metodo per la serializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
-void pacckettoAcknowledgement::serialize(byte *buff)
+void pacckettoAcknowledgement::serialize(byte *buffer)
 {
-
+	push(buffer, data.head.NID_MESSAGE, 8, 0);
+	push(buffer, data.head.L_MESSAGE, 11, 8);
+	push(buffer, data.head.T_TRAIN, 32, 19);
+	push(buffer, data.NID_ENGINE, 24, 51);
+	push(buffer, data.ack.NID_PACKET, 8, 75);
+	push(buffer, data.ack.L_PACKET, 13, 83);
+	push(buffer, data.ack.T_TRAIN, 32, 96);
+	push(buffer, data.ack.Q_MISSION_RESPONSE, 1, 128);
 }
 
 // metodo per la deserializzazion del messaggio

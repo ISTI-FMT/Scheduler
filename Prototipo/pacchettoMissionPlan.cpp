@@ -1,4 +1,5 @@
 #include "pacchettoMissionPlan.h"
+#include "utility.h"
 #include <iostream>
 using namespace std;
 
@@ -24,12 +25,17 @@ pacchettoMissionPlan::pacchettoMissionPlan()
 	data.mS2_vect = NULL;
 }
 
-// funzione che sette N_ITER
-void pacchettoMissionPlan::setN_ITER(int N)
+// funzione che sette N_ITER1
+void pacchettoMissionPlan::setN_ITER1(int N)
 {
 	data.N_ITER1 = N;
-	data.N_ITER2 = N;
 	data.mS1_vect = new missionStruct1[N];
+}
+
+// funzione che sette N_ITER2
+void pacchettoMissionPlan::setN_ITER1(int N)
+{
+	data.N_ITER2 = N;
 	data.mS2_vect = new missionStruct2[N];
 }
 
@@ -145,13 +151,71 @@ int pacchettoMissionPlan::getT_DOORS_TIME(int index)
 		return data.mS2_vect[index - 1].T_DOORS_TIME;
 }
 
-void pacchettoMissionPlan::serializeStructuredHeader(byte *buff, structuredHeader &h, int &index)
+void pacchettoMissionPlan::serializeStructuredHeader(byte *buffer, structuredHeader &h, int &index)
 {
-
+	push(buffer, data.head.NID_MESSAGE, 8, 0);
+	push(buffer, data.head.L_MESSAGE, 11, 8);
+	push(buffer, data.head.T_TRAIN, 32, 19);
+	push(buffer, data.missionHead.NID_PACKET, 8, 51);
+	push(buffer, data.missionHead.L_PACKET, 13, 59);
+	push(buffer, data.missionHead.Q_SCALE, 2, 72);
+	push(buffer, data.mS1.D_MISSION, 15, 74);
+	push(buffer, data.mS1.V_MISSION, 7, 89);
+	push(buffer, data.N_ITER1, 5, 96);
+	int offset = 101;
+	for(int i = 0; i < data.N_ITER1; ++i)
+	{
+		push(buffer, data.mS1_vect[i].D_MISSION, 15, offset);
+		offset += 15;
+		push(buffer, data.mS1_vect[i].V_MISSION, 7, offset);
+		offset += 7;
+	}
+	push(buffer, data.mS2.T_START_TIME, 12, offset);
+	offset += 12;
+	push(buffer, data.mS2.NID_LRGB, 24, offset);
+	offset += 24;
+	push(buffer, data.mS2.D_STOP, 15, offset);
+	offset += 15;
+	push(buffer, data.mS2.Q_DOORS, 4, offset);
+	offset += 4;
+	push(buffer, data.mS2.T_DOORS_TIME, 12, offset);
+	offset += 12;
+	push(buffer, data.N_ITER2, 5, offset);
+	offset += 5;
+	for(int i = 0; i < data.N_ITER2; ++i)
+	{
+		push(buffer, data.mS2_vect[i].T_START_TIME, 12, offset);
+		offset += 12;
+		push(buffer, data.mS2_vect[i].NID_LRGB, 24, offset);
+		offset += 24;
+		push(buffer, data.mS2_vect[i].D_STOP, 15, offset);
+		offset += 15;
+		push(buffer, data.mS2_vect[i].Q_DOORS, 4, offset);
+		offset += 4;
+		push(buffer, data.mS2_vect[i].T_DOORS_TIME, 12, offset);
+		offset += 12;
+	}
 }
 
 pacchettoMissionPlan::~pacchettoMissionPlan(void)
 {
 	delete data.mS1_vect;
 	delete data.mS2_vect;
+}
+
+// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
+// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
+// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
+int pacchettoMissionPlan::getSize()
+{
+	// intero che rappresenta la dimensione in bit
+	int size = 0;
+	// 51 bit per l'header
+	size += 51;
+	// 122 per la parte fissa del mission data (considerando 2 volte N_ITER
+	size += 122;
+	// 89 bit per ogni N_ITER
+	size += 89 * data.N_ITER1;
+	// ritorno il numero di byte occupato dalla struttura dati
+	return (size / 8) + 1;
 }

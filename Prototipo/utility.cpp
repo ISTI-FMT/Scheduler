@@ -8,7 +8,7 @@ char vet[5]; // il buffer su cui si deve scrivere
 // dato un offset >=0 (0..*) che rappresenta la posizione di un bit all'interno
 // del vettore di caratteri buf, setta a 1 tale bit.
 //
-void setbit( char buf[], int offset) {
+void setbit(char buf[], int offset) {
   //
   // estrai il byte da modifcare
   //
@@ -43,7 +43,7 @@ void push (char buf[], unsigned int data, int len, int off) {
 }
 
 // converte un char in un intero senza segno 0x80 = 128 non -128!!
-unsigned int toint( char C) {
+unsigned int toint(char C) {
  int res =0;
   if ((C & (1<<7)) != 0) res = res+128;
   if ((C & (1<<6)) != 0) res = res+64;

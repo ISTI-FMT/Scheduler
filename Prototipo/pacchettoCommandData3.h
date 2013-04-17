@@ -1,12 +1,15 @@
 #pragma once
 #include "struttureDatiMessaggi.h"
-#include "utility.h"
 
 class pacchettoCommandData3
 {
 	commandData3 data;
 public:
 	pacchettoCommandData3(void);
+	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
+	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
+	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
+	int getSize(){return 14;};
 	// funzioni di interfaccia per l'accesso in scrittura e lettura dei campi dati della struttura commandData
 	void setNID_MESSAGE(int N){data.head.NID_MESSAGE = N;};
 	int getNID_MESSAGE(){return data.head.NID_MESSAGE;};
