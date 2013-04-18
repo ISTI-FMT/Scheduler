@@ -60,11 +60,14 @@ unsigned int toint(char C) {
 void copiaByteInArray(byte *source, array<Byte> ^dest, int N)
 {
 	for(int i = 0; i < N; ++i)
-	{
-		cout << source[i] << endl;
 		dest[i] = source[i];
-		cout << dest[i] << endl;
-	}
+}
+
+// funzione che copia gli N elementi di un array<Byte> in un byte[]
+void copiaArrayInByte(array<Byte> ^source, byte *dest, int N)
+{
+	for(int i = 0; i < N; ++i)
+		dest[i] = source[i];
 }
 
 //

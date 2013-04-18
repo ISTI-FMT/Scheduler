@@ -5,11 +5,11 @@
 L'ATS riceve dal treno dei messaggi di acnowledgement
 -------------------------------------------------------------------------------------------------*/
 
-class pacckettoAcknowledgement
+class pacchettoAcknowledgement
 {
 	acknowledgement data;
 public:
-	pacckettoAcknowledgement(void);
+	pacchettoAcknowledgement(void);
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
@@ -33,6 +33,6 @@ public:
 	// il buffer di byte deve essere stato precedentemente correttamente allocato.
 	void serialize(byte *buff);
 	void deserialize(byte *buff);
-	~pacckettoAcknowledgement(void);
+	~pacchettoAcknowledgement(void);
 };
 

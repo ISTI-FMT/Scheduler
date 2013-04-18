@@ -25,6 +25,9 @@ unsigned int toint(char C);
 // funzione che copia gli N elementi di un byte[] in un array<Byte>
 void copiaByteInArray(byte *source, array<Byte> ^dest, int N);
 
+// funzione che copia gli N elementi di un array<Byte> in un byte[]
+void copiaArrayInByte(array<Byte> ^ource, byte *dest, int N);
+
 //
 // dato un offset >=0 (0..*) che rappresenta la posizione di un bit all'interno
 // del vettore di caratteri buf, restituisce il valore numerico del bit.

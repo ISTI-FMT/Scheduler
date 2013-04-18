@@ -1,6 +1,8 @@
 #include "TabellaOrario.h"
 #using <System.dll>
+#include "utility.h"
 #include "pacchettoMissionPlan.h"
+#include "pacchettoAcknowledgement.h"
 #include "pacchettoCommandData1.h"
 #include <iostream>
 using namespace std;
@@ -10,72 +12,6 @@ using namespace System::Net;
 using namespace System::Net::Sockets;
 using namespace System::Text;
 using namespace System::Threading;
-
-const int listenerPort = 13000;
-
-void TCP_Management()
-{
-   try
-   {
-
-      // Set the TcpListener on port 13000.
-      Int32 port = listenerPort;
-      IPAddress^ localAddr = IPAddress::Parse( "127.0.0.1" );
-
-      // TcpListener* server = new TcpListener(port);
-      TcpListener^ server = gcnew TcpListener( localAddr,port );
-
-      // Start listening for client requests.
-      server->Start();
-
-      // Buffer for reading data
-      array<Byte>^bytes = gcnew array<Byte>(1024);
-      String^ data = nullptr;
-
-      // Enter the listening loop.
-      while ( true )
-      {
-         Console::Write( "Waiting for a connection... " );
-
-         // Perform a blocking call to accept requests.
-         // You could also user server.AcceptSocket() here.
-         TcpClient^ client = server->AcceptTcpClient();
-         Console::WriteLine( "Connected!" );
-         data = nullptr;
-
-         // Get a stream Object* for reading and writing
-         NetworkStream^ stream = client->GetStream();
-         Int32 i;
-
-         // Loop to receive all the data sent by the client.
-         while ( i = stream->Read( bytes, 0, bytes->Length ) )
-         {
-
-            // Translate data bytes to a ASCII String*.
-            data = Text::Encoding::ASCII->GetString( bytes, 0, i );
-            Console::WriteLine( "Received: {0}", data );
-
-            // Process the data sent by the client.
-            data = data->ToUpper();
-            array<Byte>^msg = Text::Encoding::ASCII->GetBytes( data );
-
-            // Send back a response.
-            stream->Write( msg, 0, msg->Length );
-            Console::WriteLine( "Sent: {0}", data );
-         }
-
-         // Shutdown and end connection
-         client->Close();
-      }
-   }
-   catch ( SocketException^ e ) 
-   {
-      Console::WriteLine( "SocketException: {0}", e );
-   }
-
-   Console::WriteLine( "\nHit enter to continue..." );
-   Console::Read();
-}
 
 void stampaBuffer(byte *buff, int nBit)
 {
@@ -123,12 +59,133 @@ void provaSerializePacchettoCommandData1(pacchettoCommandData1 &pkt)
 	cout << "Insert Q_COMMAND_TYPE" << endl;
 	cin >> Q_COMMAND_TYPE;
 	pkt.setQ_COMMAND_TYPE(Q_COMMAND_TYPE);
-	byte buff[100];
-	for(int i = 0; i < 100; ++i)
-		buff[i] = 0;
-	int len = 0;
-	pkt.serializepacchettoCommandData(buff);
-	stampaBuffer(buff, 80);
+	//byte buff[100];
+	//for(int i = 0; i < 100; ++i)
+	//	buff[i] = 0;
+	//int len = 0;
+	//pkt.serializepacchettoCommandData(buff);
+	//stampaBuffer(buff, 80);
+}
+
+
+// porta su cui il treno è in ascolto
+const int listenerPort = 5610;
+
+/*------------------------------------------------------------------------------------
+L'ATS gestisce delle connessioni TCP/IP con gli ATO dei treni sotto il suo controllo.
+Attraverso queste connessioni l'ATS invia e riceve messaggi da e verso gli ATO.
+------------------------------------------------------------------------------------*/
+
+void TCP_Management()
+{
+   try
+   {
+
+      // Set the TcpListener on port 13000.
+      Int32 port = listenerPort;
+      IPAddress^ localAddr = IPAddress::Parse( "146.48.84.52" );
+      //IPAddress^ localAddr = IPAddress::Parse( "127.0.0.1" );
+
+
+      // TcpListener* server = new TcpListener(port);
+      //TcpListener^ server = gcnew TcpListener( localAddr,port );
+
+      // Start listening for client requests.
+      //server->Start();
+
+      //String^ data = nullptr;
+
+	  pacchettoCommandData1 pkt1;
+	  provaSerializePacchettoCommandData1(pkt1);
+
+	  byte *buffer = new byte[pkt1.getSize()];
+	  for(int i = 0; i < pkt1.getSize(); ++i)
+		  buffer[i] = 0;
+
+	  pkt1.serializepacchettoCommandData(buffer);
+	  stampaBuffer(buffer, 80);
+
+	  // Buffer for reading data
+      array<Byte>^bytes_buffer = gcnew array<Byte>(pkt1.getSize());
+
+	  copiaByteInArray(buffer, bytes_buffer, pkt1.getSize());
+	  
+	  // Creates the Socket to send data over a TCP connection.
+	  Socket ^sock = gcnew Socket( AddressFamily::InterNetwork,SocketType::Stream,ProtocolType::Tcp );
+	  sock->Connect(localAddr, listenerPort);
+
+	  NetworkStream ^myStream = gcnew NetworkStream(sock);
+
+	  myStream->Write(bytes_buffer, 0, pkt1.getSize());
+
+
+
+
+
+	  pacchettoAcknowledgement pktAck;
+
+	  byte *buffer2 = new byte[pktAck.getSize()];
+	  for(int i = 0; i < pktAck.getSize(); ++i)
+		  buffer[i] = 0;
+
+	  // Buffer for reading data
+      array<Byte>^bytes_buffer2 = gcnew array<Byte>(pktAck.getSize());
+
+	  myStream->Read(bytes_buffer2, 0, pktAck.getSize());
+
+	  copiaArrayInByte(bytes_buffer2, buffer2, pktAck.getSize());
+
+	  pktAck.deserialize(buffer2);
+	  stampaBuffer(buffer2, 136);
+
+
+	  cout << "DONE\n";
+
+	  /*
+      // Enter the listening loop.
+      while ( true )
+      {
+         Console::Write( "Waiting for a connection... " );
+
+         // Perform a blocking call to accept requests.
+         // You could also user server.AcceptSocket() here.
+         TcpClient^ client = server->AcceptTcpClient();
+         Console::WriteLine( "Connected!" );
+         data = nullptr;
+
+         // Get a stream Object* for reading and writing
+         NetworkStream^ stream = client->GetStream();
+         Int32 i;
+
+         // Loop to receive all the data sent by the client.
+         while ( i = stream->Read( bytes, 0, bytes->Length ) )
+         {
+
+            // Translate data bytes to a ASCII String*.
+            data = Text::Encoding::ASCII->GetString( bytes, 0, i );
+            Console::WriteLine( "Received: {0}", data );
+
+            // Process the data sent by the client.
+            data = data->ToUpper();
+            array<Byte>^msg = Text::Encoding::ASCII->GetBytes( data );
+
+            // Send back a response.
+            stream->Write( msg, 0, msg->Length );
+            Console::WriteLine( "Sent: {0}", data );
+         }
+
+         // Shutdown and end connection
+         client->Close();
+      }
+	  */
+   }
+   catch ( SocketException^ e ) 
+   {
+      Console::WriteLine( "SocketException: {0}", e );
+   }
+
+   Console::WriteLine( "\nHit enter to continue..." );
+   Console::Read();
 }
 
 int main()
@@ -158,9 +215,9 @@ int main()
 	stampaBuffer(buff,i);
 	*/
 
-	pacchettoCommandData1 pkt1;
-	cout << sizeof(pkt1) << endl;
-	provaSerializePacchettoCommandData1(pkt1);
+	//pacchettoCommandData1 pkt1;
+	//cout << sizeof(pkt1) << endl;
+	//provaSerializePacchettoCommandData1(pkt1);
 
 	TCP_Management();
 

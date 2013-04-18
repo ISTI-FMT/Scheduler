@@ -39,13 +39,13 @@
     <ClInclude Include="pacchettoMissionPlan.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="pacckettoAcknowledgement.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="utility.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="pacchettoAcknowledgement.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,10 +74,10 @@
     <ClCompile Include="pacchettoMissionPlan.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="pacckettoAcknowledgement.cpp">
+    <ClCompile Include="utility.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="utility.cpp">
+    <ClCompile Include="pacchettoAcknowledgement.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
