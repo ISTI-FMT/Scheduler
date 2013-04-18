@@ -1,7 +1,7 @@
-#include "pacckettoAcknowledgement.h"
+#include "pacchettoAcknowledgement.h"
 #include "utility.h"
 
-pacckettoAcknowledgement::pacckettoAcknowledgement(void)
+pacchettoAcknowledgement::pacchettoAcknowledgement(void)
 {
 	data.head.NID_MESSAGE = 0;
 	data.head.L_MESSAGE = 0;
@@ -15,7 +15,7 @@ pacckettoAcknowledgement::pacckettoAcknowledgement(void)
 
 // metodo per la serializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
-void pacckettoAcknowledgement::serialize(byte *buffer)
+void pacchettoAcknowledgement::serialize(byte *buffer)
 {
 	push(buffer, data.head.NID_MESSAGE, 8, 0);
 	push(buffer, data.head.L_MESSAGE, 11, 8);
@@ -29,11 +29,18 @@ void pacckettoAcknowledgement::serialize(byte *buffer)
 
 // metodo per la deserializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
-void pacckettoAcknowledgement::deserialize(byte *buff)
+void pacchettoAcknowledgement::deserialize(byte *buff)
 {
-
+	data.head.NID_MESSAGE = pop(buff, 8, 0);
+	data.head.L_MESSAGE = pop(buff, 11, 8);
+	data.head.T_TRAIN = pop(buff, 32, 19);
+	data.NID_ENGINE = pop(buff, 24, 51);
+	data.ack.NID_PACKET = pop(buff, 8, 75);
+	data.ack.L_PACKET = pop(buff, 13, 83);
+	data.ack.T_TRAIN = pop(buff, 32, 96);
+	data.ack.Q_MISSION_RESPONSE = pop(buff, 1, 128);
 }
 
-pacckettoAcknowledgement::~pacckettoAcknowledgement(void)
+pacchettoAcknowledgement::~pacchettoAcknowledgement(void)
 {
 }

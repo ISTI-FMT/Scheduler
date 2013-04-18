@@ -55,3 +55,52 @@ unsigned int toint(char C) {
   if ((C & (1<<0)) != 0) res = res+1;
   return res;
 };
+
+// funzione che copia gli N elementi di un byte[] in un array<Byte>
+void copiaByteInArray(byte *source, array<Byte> ^dest, int N)
+{
+	for(int i = 0; i < N; ++i)
+		dest[i] = source[i];
+}
+
+// funzione che copia gli N elementi di un array<Byte> in un byte[]
+void copiaArrayInByte(array<Byte> ^source, byte *dest, int N)
+{
+	for(int i = 0; i < N; ++i)
+		dest[i] = source[i];
+}
+
+//
+// dato un offset >=0 (0..*) che rappresenta la posizione di un bit all'interno
+// del vettore di caratteri buf, restituisce il valore numerico del bit.
+//
+int getbit(char buf[], int offset) {
+  //
+  // estrai il byte da leggere
+  //
+  int res;
+  int byteoffset = offset/8;
+  int bitoffset = offset%8;
+  char workbyte;
+  workbyte= buf[byteoffset];
+  //
+  // leggi il bit;
+  //
+  res = (workbyte & masks[bitoffset]) != 0;
+  return res;
+}
+
+//
+// dato un vettore buf, un indice assoluto di posizione di bit nel vettore,
+// ed una lunghezza len, restituisce il valore numerico corrispondente
+// ai bits off..off+len-1 del vettore.
+//
+unsigned int pop (char buf[], int len, int off) {
+   //
+   // partendo dal bit piu' significativi ricostruisco il valore numerico
+   //
+   unsigned int work=getbit(buf,off);
+   for (int i=1; i<len; i++)
+       work = work*2 +getbit(buf,off+i);
+   return work;
+}
