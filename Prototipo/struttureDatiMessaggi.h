@@ -124,3 +124,20 @@ struct acknowledgement
 	struct missionAck ack;
 	unsigned int padding : 7;
 };
+//struttura dati per gestire il network data
+// 53 bit
+struct networkdata 
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	unsigned int M_PORT : 32;
+	
+};
+
+struct presentation
+{
+	struct structuredHeader head;
+	unsigned int NID_ENGINE : 24;
+	struct networkdata net;
+	//unsigned int padding : 8;
+};
