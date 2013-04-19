@@ -12,6 +12,7 @@ using namespace System::Net;
 using namespace System::Net::Sockets;
 using namespace System::Text;
 using namespace System::Threading;
+using namespace System::Threading::Tasks;
 
 void stampaBuffer(byte *buff, int nBit)
 {
@@ -78,120 +79,148 @@ Attraverso queste connessioni l'ATS invia e riceve messaggi da e verso gli ATO.
 
 void TCP_Management()
 {
-   try
-   {
-
-      // Set the TcpListener on port 13000.
-      Int32 port = listenerPort;
-      IPAddress^ localAddr = IPAddress::Parse( "146.48.84.52" );
-      //IPAddress^ localAddr = IPAddress::Parse( "127.0.0.1" );
+	try
+	{
 
 
-      // TcpListener* server = new TcpListener(port);
-      //TcpListener^ server = gcnew TcpListener( localAddr,port );
-
-      // Start listening for client requests.
-      //server->Start();
-
-      //String^ data = nullptr;
-
-	  pacchettoCommandData1 pkt1;
-	  provaSerializePacchettoCommandData1(pkt1);
-
-	  byte *buffer = new byte[pkt1.getSize()];
-	  for(int i = 0; i < pkt1.getSize(); ++i)
-		  buffer[i] = 0;
-
-	  pkt1.serializepacchettoCommandData(buffer);
-	  stampaBuffer(buffer, 80);
-
-	  // Buffer for reading data
-      array<Byte>^bytes_buffer = gcnew array<Byte>(pkt1.getSize());
-
-	  copiaByteInArray(buffer, bytes_buffer, pkt1.getSize());
-	  
-	  // Creates the Socket to send data over a TCP connection.
-	  Socket ^sock = gcnew Socket( AddressFamily::InterNetwork,SocketType::Stream,ProtocolType::Tcp );
-	  sock->Connect(localAddr, listenerPort);
-
-	  NetworkStream ^myStream = gcnew NetworkStream(sock);
-
-	  myStream->Write(bytes_buffer, 0, pkt1.getSize());
+		Int32 port = listenerPort;
+		IPAddress^ localAddr = IPAddress::Parse( "146.48.84.52" );
 
 
+		pacchettoCommandData1 pkt1;
+		provaSerializePacchettoCommandData1(pkt1);
+
+		byte *buffer = new byte[pkt1.getSize()];
+		for(int i = 0; i < pkt1.getSize(); ++i)
+			buffer[i] = 0;
+
+		pkt1.serializepacchettoCommandData(buffer);
+		stampaBuffer(buffer, 80);
+
+		// Buffer for reading data
+		array<Byte>^bytes_buffer = gcnew array<Byte>(pkt1.getSize());
+
+		copiaByteInArray(buffer, bytes_buffer, pkt1.getSize());
+
+		// Creates the Socket to send data over a TCP connection.
+		Socket ^sock = gcnew Socket( AddressFamily::InterNetwork,SocketType::Stream,ProtocolType::Tcp );
+		sock->Connect(localAddr, listenerPort);
+
+		NetworkStream ^myStream = gcnew NetworkStream(sock);
+
+		myStream->Write(bytes_buffer, 0, pkt1.getSize());
+
+		pacchettoAcknowledgement pktAck;
+
+		byte *buffer2 = new byte[pktAck.getSize()];
+		//for(int i = 0; i < pktAck.getSize(); ++i)
+		//	buffer[i] = 0;
+
+		// Buffer for reading data
+		array<Byte>^bytes_buffer2 = gcnew array<Byte>(pktAck.getSize());
+
+		myStream->Read(bytes_buffer2, 0, pktAck.getSize());
+
+		copiaArrayInByte(bytes_buffer2, buffer2, pktAck.getSize());
+
+		pktAck.deserialize(buffer2);
+		stampaBuffer(buffer2, 136);
 
 
-
-	  pacchettoAcknowledgement pktAck;
-
-	  byte *buffer2 = new byte[pktAck.getSize()];
-	  for(int i = 0; i < pktAck.getSize(); ++i)
-		  buffer[i] = 0;
-
-	  // Buffer for reading data
-      array<Byte>^bytes_buffer2 = gcnew array<Byte>(pktAck.getSize());
-
-	  myStream->Read(bytes_buffer2, 0, pktAck.getSize());
-
-	  copiaArrayInByte(bytes_buffer2, buffer2, pktAck.getSize());
-
-	  pktAck.deserialize(buffer2);
-	  stampaBuffer(buffer2, 136);
+		cout << "DONE\n";
 
 
-	  cout << "DONE\n";
+	}
+	catch ( SocketException^ e ) 
+	{
+		Console::WriteLine( "SocketException: {0}", e );
+	}
 
-	  /*
-      // Enter the listening loop.
-      while ( true )
-      {
-         Console::Write( "Waiting for a connection... " );
-
-         // Perform a blocking call to accept requests.
-         // You could also user server.AcceptSocket() here.
-         TcpClient^ client = server->AcceptTcpClient();
-         Console::WriteLine( "Connected!" );
-         data = nullptr;
-
-         // Get a stream Object* for reading and writing
-         NetworkStream^ stream = client->GetStream();
-         Int32 i;
-
-         // Loop to receive all the data sent by the client.
-         while ( i = stream->Read( bytes, 0, bytes->Length ) )
-         {
-
-            // Translate data bytes to a ASCII String*.
-            data = Text::Encoding::ASCII->GetString( bytes, 0, i );
-            Console::WriteLine( "Received: {0}", data );
-
-            // Process the data sent by the client.
-            data = data->ToUpper();
-            array<Byte>^msg = Text::Encoding::ASCII->GetBytes( data );
-
-            // Send back a response.
-            stream->Write( msg, 0, msg->Length );
-            Console::WriteLine( "Sent: {0}", data );
-         }
-
-         // Shutdown and end connection
-         client->Close();
-      }
-	  */
-   }
-   catch ( SocketException^ e ) 
-   {
-      Console::WriteLine( "SocketException: {0}", e );
-   }
-
-   Console::WriteLine( "\nHit enter to continue..." );
-   Console::Read();
+	Console::WriteLine( "\nHit enter to continue..." );
+	Console::Read();
 }
+
+
+public ref class ThreadExample
+{
+public:
+	static void TCP_Management_receive(){
+		try
+		{
+
+			// Set the TcpListener on port 13000.
+			Int32 port = 13000;
+			IPAddress^ localAddr = IPAddress::Any;//IPAddress::Parse( "127.0.0.1" );
+
+			// TcpListener* server = new TcpListener(port);
+			TcpListener^ server = gcnew TcpListener( localAddr,port );
+
+			// Start listening for client requests.
+			server->Start();
+
+			// Buffer for reading data
+			array<Byte>^bytes = gcnew array<Byte>(256);
+			String^ data = nullptr;
+
+			while ( true )
+			{
+				Console::Write( "Waiting for a connection... " );
+
+				// Perform a blocking call to accept requests.
+				// You could also user server.AcceptSocket() here.
+
+
+
+				TcpClient^ client = server->AcceptTcpClient();
+				Console::WriteLine( "Connected!" );
+				data = nullptr;
+
+				// Get a stream Object* for reading and writing
+				NetworkStream^ stream = client->GetStream();
+				
+
+				stream->Read( bytes, 0, bytes->Length );
+
+				pacchettoCommandData1 pkt1;
+
+				byte *buffer2 = new byte[256];
+
+
+
+				copiaArrayInByte(bytes, buffer2, 256);
+
+
+				stampaBuffer(buffer2, 136);
+				pkt1.deserializepacchettoCommandData(buffer2);
+				Console::WriteLine(pkt1.getNID_MESSAGE());
+				Console::WriteLine(pkt1.getL_MESSAGE());
+
+
+				Console::WriteLine("{1} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
+
+
+				data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
+
+
+
+				Console::WriteLine( String::Format( "Received: {0} ", data) );
+
+				// Shutdown and end connection
+				client->Close();
+			}
+		}
+		catch ( SocketException^ e ) 
+		{
+			Console::WriteLine( "SocketException: {0}", e );
+		}
+
+	}
+};
 
 int main()
 {
 	TabellaOrario tabella;
-	tabella.leggiTabellaOrario("..\\..\\FileConfigurazione\\TabellaOrario.xml");
+	tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 	cout << tabella;
 
 	//byte buff[100];
@@ -219,11 +248,17 @@ int main()
 	//cout << sizeof(pkt1) << endl;
 	//provaSerializePacchettoCommandData1(pkt1);
 
+
+	Thread^ oThread = gcnew Thread( gcnew ThreadStart( &ThreadExample::TCP_Management_receive ) );
+
+	oThread->Start();
+
 	TCP_Management();
+
 
 	Console::WriteLine("Premi un Tasto x USCIRE");
 
-	 Console::Read();
+	Console::Read();
 
-	 return 0;
+	//return 0;
 }
