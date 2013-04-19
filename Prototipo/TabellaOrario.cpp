@@ -138,8 +138,14 @@ ostream& operator<<(ostream &out, TabellaOrario &tabella)
 
 TabellaOrario::~TabellaOrario()
 {
+	
+
 	// scorro tutta la lista...
-	for (std::list<TrenoFermate>::iterator it=tabella.begin(); it != tabella.end(); ++it)
+	//for (std::list<TrenoFermate>::iterator it=tabella.end(); it != tabella.begin(); it--){
 		// ...e cancelo tutti gli elementi uno alla volta
-		tabella.erase(it);
+	//	std::cout <<it;
+
+	//	tabella.erase(it);
+	//}
+		
 }

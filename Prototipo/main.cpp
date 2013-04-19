@@ -194,9 +194,9 @@ int main()
 	tabella.leggiTabellaOrario("..\\..\\FileConfigurazione\\TabellaOrario.xml");
 	cout << tabella;
 
-	byte buff[100];
-	for(int i = 0; i < 100; ++i)
-		buff[i] = 0;
+	//byte buff[100];
+	//for(int i = 0; i < 100; ++i)
+	//	buff[i] = 0;
 
 	/*
 	// Prova di serializzazione di pacchetto missione plan
@@ -221,6 +221,9 @@ int main()
 
 	TCP_Management();
 
-	system("Pause");
+	Console::WriteLine("Premi un Tasto x USCIRE");
 
+	 Console::Read();
+
+	 return 0;
 }

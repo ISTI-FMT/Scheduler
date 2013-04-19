@@ -15,7 +15,8 @@ class pacchettoMissionPlan
 	// All'uscita dalla funzione tale indice sarà incrementato del numero di bit derializzato dalla
 	// funzione stessa.
 	void serializeStructuredHeader(byte *buff, structuredHeader &h, int &index);
-	void serializeMissionStruct1(byte *buff, missionStruct1 &ms, int &index);
+	void deserializeStructuredHeader(byte *buff, structuredHeader &h, int &index);
+	void serializeMissionStruct1(byte *buff, missionStruct1 &ms, int &index);//dove sono definiti questi metodoti?
 	void serializeMissionStruct2(byte *buff, missionStruct2 &ms, int &index);
 public:
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
@@ -23,6 +24,7 @@ public:
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 	int getSize();
 	void serializeStructuredHeader(byte *buff, int &index){serializeStructuredHeader(buff, data.head, index);};
+	void deserializeStructuredHeader(byte *buff, int &index){deserializeStructuredHeader(buff, data.head, index);};
 	pacchettoMissionPlan();
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	void setNID_MESSAGE(int N){data.head.NID_MESSAGE = N;};

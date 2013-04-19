@@ -197,6 +197,53 @@ void pacchettoMissionPlan::serializeStructuredHeader(byte *buffer, structuredHea
 	}
 }
 
+void pacchettoMissionPlan::deserializeStructuredHeader(byte *buffer, structuredHeader &h, int &index)
+{
+	data.head.NID_MESSAGE=pop(buffer, 8, 0);
+	data.head.L_MESSAGE=pop(buffer, 11, 8);
+	data.head.T_TRAIN=pop(buffer, 32, 19);
+	data.missionHead.NID_PACKET=pop(buffer,  8, 51);
+	data.missionHead.L_PACKET=pop(buffer, 13, 59);
+	data.missionHead.Q_SCALE=pop(buffer, 2, 72);
+	data.mS1.D_MISSION=pop(buffer, 15, 74);
+	data.mS1.V_MISSION=pop(buffer, 7, 89);
+	data.N_ITER1=pop(buffer, 5, 96);
+	int offset = 101;
+	for(unsigned int i = 0; i < data.N_ITER1; ++i)
+	{
+		data.mS1_vect[i].D_MISSION=pop(buffer, 15, offset);
+		offset += 15;
+		data.mS1_vect[i].V_MISSION=pop(buffer, 7, offset);
+		offset += 7;
+	}
+	data.mS2.T_START_TIME=pop(buffer, 12, offset);
+	offset += 12;
+	data.mS2.NID_LRGB=pop(buffer, 24, offset);
+	offset += 24;
+	data.mS2.D_STOP=pop(buffer, 15, offset);
+	offset += 15;
+	data.mS2.Q_DOORS=pop(buffer, 4, offset);
+	offset += 4;
+	data.mS2.T_DOORS_TIME=pop(buffer, 12, offset);
+	offset += 12;
+	data.N_ITER2=pop(buffer, 5, offset);
+	offset += 5;
+	for(unsigned int i = 0; i < data.N_ITER2; ++i)
+	{
+		 data.mS2_vect[i].T_START_TIME=pop(buffer, 12, offset);
+		offset += 12;
+		data.mS2_vect[i].NID_LRGB=pop(buffer, 24, offset);
+		offset += 24;
+		data.mS2_vect[i].D_STOP=pop(buffer, 15, offset);
+		offset += 15;
+		data.mS2_vect[i].Q_DOORS=pop(buffer, 4, offset);
+		offset += 4;
+		data.mS2_vect[i].T_DOORS_TIME=pop(buffer, 12, offset);
+		offset += 12;
+	}
+}
+
+
 pacchettoMissionPlan::~pacchettoMissionPlan(void)
 {
 	delete data.mS1_vect;

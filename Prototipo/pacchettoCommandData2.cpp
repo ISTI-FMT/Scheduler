@@ -25,7 +25,16 @@ void pacchettoCommandData2::serializepacchettoCommandData(byte *buffer)
 	push(buffer, data.Q_COMMAND_TYPE, 3, 72);
 	push(buffer, data.M_GOA_LEVEL, 2, 75);
 }
-
+void pacchettoCommandData2::deserializepacchettoCommandData(byte *buffer)
+{
+	data.head.NID_MESSAGE= pop(buffer, 8, 0);
+	data.head.L_MESSAGE=pop(buffer,11, 8);
+	data.head.T_TRAIN=pop(buffer, 32, 19);
+	data.NID_PACKET=pop(buffer,  8, 51);
+	data.L_PACKET=pop(buffer, 13, 59);
+	data.Q_COMMAND_TYPE=pop(buffer,3, 72);
+	data.M_GOA_LEVEL=pop(buffer, 2, 75);
+}
 pacchettoCommandData2::~pacchettoCommandData2(void)
 {
 }

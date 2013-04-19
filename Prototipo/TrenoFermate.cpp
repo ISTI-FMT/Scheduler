@@ -67,7 +67,7 @@ ostream& operator<<(ostream& out, TrenoFermate &treno)
 TrenoFermate::~TrenoFermate()
 {
 	// scorro tutta la lista...
-	for (std::list<Fermata>::iterator it=fermate.begin(); it != fermate.end(); ++it)
+	//for (std::list<Fermata>::iterator it=fermate.begin(); it != fermate.end(); ++it)
 		// ...e cancelo tutti gli elementi uno alla volta
-		fermate.erase(it);
+		//fermate.erase(it);
 }

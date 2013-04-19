@@ -27,6 +27,7 @@ public:
 	// dimensione deve essere fatto all'esterno della funzione) e copia nei primi 12 byte del buffer il contenuto dell'header
 	// e nei successivi 8 byte il contenuto del pacchettoCommandData
 	void serializepacchettoCommandData(byte *buffer);
+	void deserializepacchettoCommandData(byte *buff);
 	~pacchettoCommandData1(void);
 };
 
