@@ -70,6 +70,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Fermata.h" />
+    <ClInclude Include="pacchettopresentazione.h" />
     <ClInclude Include="utility.h" />
     <ClInclude Include="pacchettoCommandData2.h" />
     <ClInclude Include="pacchettoCommandData3.h" />
@@ -84,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="Fermata.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pacchettopresentazione.cpp" />
     <ClCompile Include="utility.cpp" />
     <ClCompile Include="pacchettoCommandData1.cpp" />
     <ClCompile Include="pacchettoCommandData2.cpp" />

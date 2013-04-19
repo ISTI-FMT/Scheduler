@@ -4,6 +4,7 @@
 #include "pacchettoMissionPlan.h"
 #include "pacchettoAcknowledgement.h"
 #include "pacchettoCommandData1.h"
+#include "pacchettopresentazione.h"
 #include <iostream>
 using namespace std;
 using namespace System;
@@ -181,7 +182,7 @@ public:
 
 				stream->Read( bytes, 0, bytes->Length );
 
-				pacchettoCommandData1 pkt1;
+				pacchettopresentazione pkt1;
 
 				byte *buffer2 = new byte[256];
 
@@ -191,9 +192,10 @@ public:
 
 
 				stampaBuffer(buffer2, 136);
-				pkt1.deserializepacchettoCommandData(buffer2);
+				pkt1.deserialize(buffer2);
 				Console::WriteLine(pkt1.getNID_MESSAGE());
 				Console::WriteLine(pkt1.getL_MESSAGE());
+				Console::WriteLine(pkt1.getM_PORT());
 
 
 				Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
