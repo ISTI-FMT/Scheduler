@@ -196,7 +196,7 @@ public:
 				Console::WriteLine(pkt1.getL_MESSAGE());
 
 
-				Console::WriteLine("{1} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
+				Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
 
 
 				data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
