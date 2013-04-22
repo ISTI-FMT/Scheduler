@@ -187,8 +187,8 @@ void TCP_Management()
 
 		pacchettoMissionPlan missionPlanPkt;
 
-		int TRN = tabella.getFirstTRN();
-		tabella.setMissionPlanMessage(TRN, missionPlanPkt);
+		//int TRN = tabella.getFirstTRN();
+		//tabella.setMissionPlanMessage(TRN, missionPlanPkt);
 
 		byte *buffer3 = new byte[missionPlanPkt.getSize()];
 		for(int i = 0; i < missionPlanPkt.getSize(); ++i)
