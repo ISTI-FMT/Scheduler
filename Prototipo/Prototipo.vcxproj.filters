@@ -51,6 +51,15 @@
     <ClInclude Include="pacchettopresentazione.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="phisicalTrain.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="phisicalTrainList.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="String2string.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TabellaOrario.cpp">
@@ -84,6 +93,15 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="pacchettopresentazione.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="phisicalTrain.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="phisicalTrainList.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="String2string.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

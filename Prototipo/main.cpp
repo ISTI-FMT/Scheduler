@@ -4,8 +4,13 @@
 #include "pacchettoMissionPlan.h"
 #include "pacchettoAcknowledgement.h"
 #include "pacchettoCommandData1.h"
+#include "pacchettoCommandData2.h"
+#include "pacchettoCommandData3.h"
 #include "pacchettopresentazione.h"
+#include "phisicalTrainList.h"
+#include "String2string.h"
 #include <iostream>
+
 using namespace std;
 using namespace System;
 using namespace System::IO;
@@ -82,21 +87,27 @@ void TCP_Management()
 {
 	try
 	{
+		//Int32 port = listenerPort;
+		//IPAddress^ localAddr = IPAddress::Parse( "146.48.84.52" );
+		//IPAddress^ localAddr = IPAddress::Parse( "127.0.0.1" );
 
 
-		Int32 port = listenerPort;
-		IPAddress^ localAddr = IPAddress::Parse( "146.48.84.52" );
+		pacchettoCommandData1 wakeUpPkt;
+		pacchettoCommandData2 trainRunningNumberPkt;
+		pacchettoMissionPlan missionPlanPkt;
+		//provaSerializePacchettoCommandData1(pkt1);
 
+		wakeUpPkt.setNID_MESSAGE(0);
+		wakeUpPkt.setNID_PACKET(0);
+		wakeUpPkt.setQ_COMMAND_TYPE(TRN);
+		wakeUpPkt.setT_TRAIN(5);
 
-		pacchettoCommandData1 pkt1;
-		provaSerializePacchettoCommandData1(pkt1);
-
-		byte *buffer = new byte[pkt1.getSize()];
-		for(int i = 0; i < pkt1.getSize(); ++i)
-			buffer[i] = 0;
-
-		pkt1.serializepacchettoCommandData(buffer);
-		stampaBuffer(buffer, 80);
+		byte *buffer1 = new byte[wakeUpPkt.getSize()];
+		for(int i = 0; i < wakeUpPkt.getSize(); ++i)
+			buffer1[i] = 0;
+		
+		wakeUpPkt.serializepacchettoCommandData(buffer1);
+		stampaBuffer(buffer1, wakeUpPkt.getSize() * 8);
 
 		// Buffer for reading data
 		array<Byte>^bytes_buffer = gcnew array<Byte>(pkt1.getSize());
@@ -111,11 +122,19 @@ void TCP_Management()
 
 		myStream->Write(bytes_buffer, 0, pkt1.getSize());
 
+		byte *buffer2 = new byte[trainRunningNumberPkt.getSize()];
+		for(int i = 0; i < trainRunningNumberPkt.getSize(); ++i)
+			buffer2[i] = 0;
+
+		byte *buffer3 = new byte[missionPlanPkt.getSize()];
+		for(int i = 0; i < missionPlanPkt.getSize(); ++i)
+			buffer3[i] = 0;
+
 		pacchettoAcknowledgement pktAck;
 
 		byte *buffer2 = new byte[pktAck.getSize()];
-		//for(int i = 0; i < pktAck.getSize(); ++i)
-		//	buffer[i] = 0;
+		for(int i = 0; i < pktAck.getSize(); ++i)
+			buffer2[i] = 0;
 
 		// Buffer for reading data
 		array<Byte>^bytes_buffer2 = gcnew array<Byte>(pktAck.getSize());
@@ -127,10 +146,7 @@ void TCP_Management()
 		pktAck.deserialize(buffer2);
 		stampaBuffer(buffer2, 136);
 
-
 		cout << "DONE\n";
-
-
 	}
 	catch ( SocketException^ e ) 
 	{
@@ -141,6 +157,7 @@ void TCP_Management()
 	Console::Read();
 }
 
+phisicalTrainList listaTreni;
 
 public ref class ThreadExample
 {
@@ -148,7 +165,6 @@ public:
 	static void TCP_Management_receive(){
 		try
 		{
-
 			// Set the TcpListener on port 13000.
 			Int32 port = 13000;
 			IPAddress^ localAddr = IPAddress::Any;//IPAddress::Parse( "127.0.0.1" );
@@ -170,8 +186,6 @@ public:
 				// Perform a blocking call to accept requests.
 				// You could also user server.AcceptSocket() here.
 
-
-
 				TcpClient^ client = server->AcceptTcpClient();
 				Console::WriteLine( "Connected!" );
 				data = nullptr;
@@ -179,33 +193,40 @@ public:
 				// Get a stream Object* for reading and writing
 				NetworkStream^ stream = client->GetStream();
 				
-
 				stream->Read( bytes, 0, bytes->Length );
 
 				pacchettopresentazione pkt1;
 
-				byte *buffer2 = new byte[256];
+				byte *buffer2 = new byte[pkt1.getSize()];
+				for(int i = 0; i < pkt1.getSize(); ++i)
+					buffer2[i] = 0;
 
-
-
-				copiaArrayInByte(bytes, buffer2, 256);
-
+				copiaArrayInByte(bytes, buffer2, pkt1.getSize());
 
 				stampaBuffer(buffer2, 136);
 				pkt1.deserialize(buffer2);
-				Console::WriteLine(pkt1.getNID_MESSAGE());
-				Console::WriteLine(pkt1.getL_MESSAGE());
-				Console::WriteLine(pkt1.getM_PORT());
+				//Console::WriteLine(pkt1.getNID_MESSAGE());
+				//Console::WriteLine(pkt1.getL_MESSAGE());
+				//Console::WriteLine(pkt1.getM_PORT());
 
+				//Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
 
-				Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
+				// creo l'oggetto di tipo phisicalTrain
+				phisicalTrain treno;
+				treno.setEngineNumber(pkt1.getNID_ENGINE());
+				treno.setTcpPort(pkt1.getM_PORT());
+				// converto da System::String a std::string
+				string ip = String2string((( (IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
+				
+				treno.setIpAddress(ip);
+				// aggiungo il treno alla lista dei treni fisici
+				listaTreni.aggiungiTreno(treno);
 
+				cout << "Aggiunto il treno " << treno.getEngineNumber() << " operativo su " << treno.getIpAddress().c_str() << ":" << treno.getTcpPort() << endl;
 
-				data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
+				//data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
 
-
-
-				Console::WriteLine( String::Format( "Received: {0} ", data) );
+				//Console::WriteLine( String::Format( "Received: {0} ", data) );
 
 				// Shutdown and end connection
 				client->Close();
@@ -218,6 +239,8 @@ public:
 
 	}
 };
+
+
 
 int main()
 {

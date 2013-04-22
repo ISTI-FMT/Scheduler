@@ -1,5 +1,10 @@
 #pragma once
 
+const int WAKE_UP = 0;
+const int CHANGE_GOA_LEVEL = 3;
+const int TRN = 4;
+const int SLEEP = 7;
+
 typedef __int8 byte;
 
 // questa struttura codifica i primi tre campi del messaggio generico

@@ -21,6 +21,8 @@ class TrenoFermate
 	friend ostream& operator<<(ostream& out, TrenoFermate &treno);
 public:
 	TrenoFermate(int id);
+	void setIdTreno(int id){idTreno = id};
+	int getIdTreno(){return idTreno;};
 	// funzione che permette l'inserimento di una nuova fermata della tabella orario del treno in questione.
 	// le fermate sono mantenute in ordine crescente di orario partenza
 	// alla funzione viene passato per riferimento un oggetto di tipo Fermata, che deve essere stato 

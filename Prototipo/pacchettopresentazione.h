@@ -2,7 +2,7 @@
 #include "struttureDatiMessaggi.h"
 
 /*-----------------------------------------------------------------------------------------------
-L'ATS riceve dal treno dei messaggi di acnowledgement
+L'ATS riceve dal treno dei messaggi di 
 -------------------------------------------------------------------------------------------------*/
 
 class pacchettopresentazione
@@ -13,7 +13,7 @@ public:
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
-	int getSize(){return 128;};
+	int getSize(){return 16;};
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	void setNID_MESSAGE(int N){data.head.NID_MESSAGE = N;};
 	int getNID_MESSAGE(){return data.head.NID_MESSAGE;};

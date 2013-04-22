@@ -1,11 +1,10 @@
 #pragma once
 
+#include "struttureDatiMessaggi.h"
 #include <iostream>
 #using <System.dll>
 using namespace System;
 using namespace std;
-
-typedef __int8 byte;
 
 //
 // dato un valore data, copia gli len bit meno significativi nel
