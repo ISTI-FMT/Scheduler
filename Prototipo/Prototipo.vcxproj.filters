@@ -60,6 +60,12 @@
     <ClInclude Include="String2string.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="pacchettostatolineaatc.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadListenerATC.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TabellaOrario.cpp">
@@ -102,6 +108,12 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="String2string.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="pacchettostatolineaatc.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadListenerATC.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

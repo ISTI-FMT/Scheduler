@@ -1,5 +1,6 @@
 #pragma once
-ref class ThreadListenerATC
+#include "struttureDatiMessaggi.h"
+public class ThreadListenerATC
 {
 public:
 	ThreadListenerATC();

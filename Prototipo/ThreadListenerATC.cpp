@@ -11,10 +11,11 @@ using namespace System::Text;
 using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
-public ref class ThreadListenerATC
-{
-public:
-	static void TCP_Management_receive(){
+
+	ThreadListenerATC::ThreadListenerATC(){
+
+	}
+	void ThreadListenerATC::TCP_Management_receive(){
 		try
 		{
 			// Set the TcpListener on port 13000.
@@ -86,7 +87,7 @@ public:
 
 	}
 
-	static void stampaBuffer(byte *buff, int nBit)
+	void ThreadListenerATC::stampaBuffer(byte *buff, int nBit)
 	{
 		cout << nBit << endl;
 
@@ -110,4 +111,3 @@ public:
 		}
 		cout << endl;
 	}
-};

@@ -9,6 +9,7 @@
 #include "pacchettopresentazione.h"
 #include "phisicalTrainList.h"
 #include "String2string.h"
+#include "ThreadListenerATC.h"
 #include <iostream>
 
 using namespace std;
@@ -312,6 +313,11 @@ int main()
 	oThread->Start();
 
 	TCP_Management();
+
+
+	Thread^ oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC::TCP_Management_receive ) );
+
+	oThread1->Start();
 
 
 	Console::WriteLine("Premi un Tasto x USCIRE");
