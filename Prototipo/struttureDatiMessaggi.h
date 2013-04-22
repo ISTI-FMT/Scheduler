@@ -146,3 +146,26 @@ struct presentation
 	struct networkdata net;
 	//unsigned int padding : 8;
 };
+
+struct messtatolinea{
+	struct structuredHeader head;
+	struct pkgstatolinea pkg;
+};
+
+struct pkgstatolinea{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	unsigned int NID_OPERATIONAL : 32;
+	struct pstatolineastruct pstato;
+	unsigned int N_ITER : 5;
+	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
+	struct pstatolineastruct *pstato1;
+
+};
+struct pstatolineastruct{
+
+unsigned int NID_CDB : 32;
+	unsigned int Q_STATOCDB : 2;
+	unsigned int Q_DEVIATIOIO : 2;
+
+};
