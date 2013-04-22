@@ -10,6 +10,8 @@ class phisicalTrainList
 public:
 	phisicalTrainList(void);
 	void aggiungiTreno(phisicalTrain &treno){treni.insert(treni.begin(), treno);};
+	string getFirstTrainIP();
+	int getFirstTrainPort();
 	~phisicalTrainList(void);
 };
 

@@ -20,6 +20,8 @@ class TabellaOrario
 	friend ostream& operator<<(ostream &out, TabellaOrario &tabella);
 public:
 	TabellaOrario(void);
+	// funzione che restituisce un qualsiasi TRN nella tabella orario (di fatto il primo)
+	int getFirstTRN();
 	// questa funzione legge il file di configurazione contenente la descrizione della tabella orario
 	void leggiTabellaOrario(string nomeFile);
 	~TabellaOrario();

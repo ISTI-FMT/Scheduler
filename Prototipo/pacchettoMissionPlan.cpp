@@ -151,7 +151,7 @@ int pacchettoMissionPlan::getT_DOORS_TIME(int index)
 		return data.mS2_vect[index - 1].T_DOORS_TIME;
 }
 
-void pacchettoMissionPlan::serializeStructuredHeader(byte *buffer, structuredHeader &h, int &index)
+void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 {
 	push(buffer, data.head.NID_MESSAGE, 8, 0);
 	push(buffer, data.head.L_MESSAGE, 11, 8);
@@ -197,7 +197,7 @@ void pacchettoMissionPlan::serializeStructuredHeader(byte *buffer, structuredHea
 	}
 }
 
-void pacchettoMissionPlan::deserializeStructuredHeader(byte *buffer, structuredHeader &h, int &index)
+void pacchettoMissionPlan::deserializeMissionPlanPkt(byte *buffer)
 {
 	data.head.NID_MESSAGE=pop(buffer, 8, 0);
 	data.head.L_MESSAGE=pop(buffer, 11, 8);

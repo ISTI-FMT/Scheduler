@@ -26,6 +26,13 @@ string TabellaOrario::convertiString2string(System::String ^StringValue)
 	return stdString;
 }
 
+// funzione che restituisce un qualsiasi TRN nella tabella orario (di fatto il primo)
+int TabellaOrario::getFirstTRN()
+{
+	std::list<TrenoFermate>::iterator it=tabella.begin();
+	return (*it).getIdTreno();
+}
+
 // questa funzione legge il file di configurazione contenente la descrizione della tabella orario
 void TabellaOrario::leggiTabellaOrario(string nomeFile)
 {

@@ -20,6 +20,9 @@ using namespace System::Text;
 using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
+phisicalTrainList listaTreni;
+TabellaOrario tabella;
+
 void stampaBuffer(byte *buff, int nBit)
 {
 	cout << nBit << endl;
@@ -93,14 +96,11 @@ void TCP_Management()
 
 
 		pacchettoCommandData1 wakeUpPkt;
-		pacchettoCommandData2 trainRunningNumberPkt;
-		pacchettoMissionPlan missionPlanPkt;
-		//provaSerializePacchettoCommandData1(pkt1);
 
 		wakeUpPkt.setNID_MESSAGE(0);
 		wakeUpPkt.setNID_PACKET(0);
-		wakeUpPkt.setQ_COMMAND_TYPE(TRN);
-		wakeUpPkt.setT_TRAIN(5);
+		wakeUpPkt.setQ_COMMAND_TYPE(WAKE_UP);
+		wakeUpPkt.setT_TRAIN(tabella.getFirstTRN());
 
 		byte *buffer1 = new byte[wakeUpPkt.getSize()];
 		for(int i = 0; i < wakeUpPkt.getSize(); ++i)
@@ -110,41 +110,74 @@ void TCP_Management()
 		stampaBuffer(buffer1, wakeUpPkt.getSize() * 8);
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer = gcnew array<Byte>(pkt1.getSize());
+		array<Byte>^bytes_buffer1 = gcnew array<Byte>(wakeUpPkt.getSize());
 
-		copiaByteInArray(buffer, bytes_buffer, pkt1.getSize());
+		copiaByteInArray(buffer1, bytes_buffer1, wakeUpPkt.getSize());
 
-		// Creates the Socket to send data over a TCP connection.
-		Socket ^sock = gcnew Socket( AddressFamily::InterNetwork,SocketType::Stream,ProtocolType::Tcp );
-		sock->Connect(localAddr, listenerPort);
 
-		NetworkStream ^myStream = gcnew NetworkStream(sock);
+		pacchettoCommandData3 trainRunningNumberPkt;
 
-		myStream->Write(bytes_buffer, 0, pkt1.getSize());
+		trainRunningNumberPkt.setNID_MESSAGE(1);
+		trainRunningNumberPkt.setNID_PACKET(1);
+		trainRunningNumberPkt.setQ_COMMAND_TYPE(TRN);
+		trainRunningNumberPkt.setT_TRAIN(tabella.getFirstTRN());
+		trainRunningNumberPkt.setNID_OPERATIONAL(tabella.getFirstTRN());
 
 		byte *buffer2 = new byte[trainRunningNumberPkt.getSize()];
 		for(int i = 0; i < trainRunningNumberPkt.getSize(); ++i)
 			buffer2[i] = 0;
+		
+		trainRunningNumberPkt.serializepacchettoCommandData(buffer2);
+		stampaBuffer(buffer2, trainRunningNumberPkt.getSize() * 8);
+
+		// Buffer for reading data
+		array<Byte>^bytes_buffer2 = gcnew array<Byte>(trainRunningNumberPkt.getSize());
+
+		copiaByteInArray(buffer2, bytes_buffer2, trainRunningNumberPkt.getSize());
+
+
+		pacchettoMissionPlan missionPlanPkt;
+
+
 
 		byte *buffer3 = new byte[missionPlanPkt.getSize()];
 		for(int i = 0; i < missionPlanPkt.getSize(); ++i)
 			buffer3[i] = 0;
+		
+		missionPlanPkt.serializeMissionPlanPkt(buffer3);
+		stampaBuffer(buffer3, missionPlanPkt.getSize() * 8);
+
+		// Buffer for reading data
+		array<Byte>^bytes_buffer3 = gcnew array<Byte>(missionPlanPkt.getSize());
+
+		copiaByteInArray(buffer3, bytes_buffer3, missionPlanPkt.getSize());
+
+		// Creates the Socket to send data over a TCP connection.
+		Socket ^sock = gcnew Socket( AddressFamily::InterNetwork,SocketType::Stream,ProtocolType::Tcp );
+		String ^IP = gcnew String(listaTreni.getFirstTrainIP().c_str());
+		sock->Connect(IP, listaTreni.getFirstTrainPort());
+
+		NetworkStream ^myStream = gcnew NetworkStream(sock);
+
+		myStream->Write(bytes_buffer1, 0, wakeUpPkt.getSize());
+		myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt.getSize());
+		myStream->Write(bytes_buffer3, 0, missionPlanPkt.getSize());
 
 		pacchettoAcknowledgement pktAck;
 
-		byte *buffer2 = new byte[pktAck.getSize()];
+		byte *buffer4 = new byte[pktAck.getSize()];
 		for(int i = 0; i < pktAck.getSize(); ++i)
-			buffer2[i] = 0;
+			buffer4[i] = 0;
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer2 = gcnew array<Byte>(pktAck.getSize());
+		array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck.getSize());
 
-		myStream->Read(bytes_buffer2, 0, pktAck.getSize());
+		myStream->Read(bytes_buffer4, 0, pktAck.getSize());
 
-		copiaArrayInByte(bytes_buffer2, buffer2, pktAck.getSize());
+		copiaArrayInByte(bytes_buffer4, buffer4, pktAck.getSize());
 
-		pktAck.deserialize(buffer2);
-		stampaBuffer(buffer2, 136);
+		pktAck.deserialize(buffer4);
+		stampaBuffer(buffer4, pktAck.getSize());
 
 		cout << "DONE\n";
 	}
@@ -156,8 +189,6 @@ void TCP_Management()
 	Console::WriteLine( "\nHit enter to continue..." );
 	Console::Read();
 }
-
-phisicalTrainList listaTreni;
 
 public ref class ThreadExample
 {
@@ -244,7 +275,6 @@ public:
 
 int main()
 {
-	TabellaOrario tabella;
 	tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 	cout << tabella;
 

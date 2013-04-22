@@ -8,7 +8,6 @@ phisicalTrain::phisicalTrain(void)
 	tcpPort = 0;
 }
 
-
 phisicalTrain::~phisicalTrain(void)
 {
 }
