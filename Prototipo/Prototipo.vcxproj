@@ -76,6 +76,7 @@
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
     <ClInclude Include="ThreadListenerATC.h" />
+    <ClInclude Include="ThreadPresentazione.h" />
     <ClInclude Include="utility.h" />
     <ClInclude Include="pacchettoCommandData2.h" />
     <ClInclude Include="pacchettoCommandData3.h" />
@@ -96,6 +97,7 @@
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="ThreadListenerATC.cpp" />
+    <ClCompile Include="ThreadPresentazione.cpp" />
     <ClCompile Include="utility.cpp" />
     <ClCompile Include="pacchettoCommandData1.cpp" />
     <ClCompile Include="pacchettoCommandData2.cpp" />

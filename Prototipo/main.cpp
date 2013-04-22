@@ -11,6 +11,7 @@
 #include "String2string.h"
 #include "ThreadListenerATC.h"
 #include <iostream>
+#include "ThreadPresentazione.h"
 
 using namespace std;
 using namespace System;
@@ -353,10 +354,17 @@ int main()
 	//cout << sizeof(pkt1) << endl;
 	//provaSerializePacchettoCommandData1(pkt1);
 
+	ThreadPresentazione ^sd = gcnew ThreadPresentazione(&listaTreni);
+	
+	
+	Thread^ oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
 
-	Thread^ oThread = gcnew Thread( gcnew ThreadStart( &ThreadExample::TCP_Management_receive ) );
+	oThread2->Start();
 
-	oThread->Start();
+
+	//Thread^ oThread = gcnew Thread( gcnew ThreadStart( &ThreadExample::TCP_Management_receive ) );
+
+	//oThread->Start();
 
 	
 
