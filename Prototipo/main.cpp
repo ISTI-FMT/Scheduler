@@ -312,13 +312,14 @@ int main()
 
 	oThread->Start();
 
-	TCP_Management();
+	
 
 
 	Thread^ oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC::TCP_Management_receive ) );
 
 	oThread1->Start();
 
+	TCP_Management();
 
 	Console::WriteLine("Premi un Tasto x USCIRE");
 

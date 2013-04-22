@@ -29,7 +29,7 @@ using namespace System::Threading::Tasks;
 			server->Start();
 
 			// Buffer for reading data
-			array<Byte>^bytes = gcnew array<Byte>(256);
+			array<Byte>^bytes = gcnew array<Byte>(1024);
 			String^ data = nullptr;
 
 			while ( true )

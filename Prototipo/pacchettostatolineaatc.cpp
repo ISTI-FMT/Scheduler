@@ -105,6 +105,7 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 	push(buffer, data.pkg.pstato.Q_STATOCDB, 2, 155);
 	push(buffer, data.pkg.pstato.Q_DEVIATIOIO, 2, 157);
 	push(buffer, data.pkg.N_ITER, 5, 162);
+	data.pkg.pstato1 = new pstatolineastruct[data.pkg.N_ITER];
 	int offset = 167;
 	for(unsigned int i = 0; i < data.pkg.N_ITER; ++i)
 	{
