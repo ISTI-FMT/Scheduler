@@ -70,6 +70,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Fermata.h" />
+    <ClInclude Include="mapTrenoFisicoLogico.h" />
     <ClInclude Include="pacchettostatolineaatc.h" />
     <ClInclude Include="String2string.h" />
     <ClInclude Include="pacchettopresentazione.h" />
@@ -91,6 +92,7 @@
   <ItemGroup>
     <ClCompile Include="Fermata.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mapTrenoFisicoLogico.cpp" />
     <ClCompile Include="pacchettostatolineaatc.cpp" />
     <ClCompile Include="String2string.cpp" />
     <ClCompile Include="pacchettopresentazione.cpp" />
