@@ -185,10 +185,10 @@ void TCP_Management()
 
 		copiaByteInArray(buffer2, bytes_buffer2, trainRunningNumberPkt.getSize());
 
-
 		pacchettoMissionPlan missionPlanPkt;
 
-
+		int TRN = tabella.getFirstTRN();
+		tabella.setMissionPlanMessage(TRN, missionPlanPkt);
 
 		byte *buffer3 = new byte[missionPlanPkt.getSize()];
 		for(int i = 0; i < missionPlanPkt.getSize(); ++i)
