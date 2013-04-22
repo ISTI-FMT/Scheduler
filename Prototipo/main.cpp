@@ -48,7 +48,53 @@ void stampaBuffer(byte *buff, int nBit)
 	}
 	cout << endl;
 }
+void provaSerializePacchettoPresentazione(pacchettopresentazione &pkt)
+{
+	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, N_PORT;
+	cout << "Insert NID_MESSAGE" << endl;
+	cin >> NID_MESSAGE;
+	pkt.setNID_MESSAGE(NID_MESSAGE);
+	cout << "Insert L_MESSAGE" << endl;
+	cin >> L_MESSAGE;
+	pkt.setL_MESSAGE(L_MESSAGE);
+	cout << "Insert T_TRAIN" << endl;
+	cin >> T_TRAIN;
+	pkt.setT_TRAIN(T_TRAIN);
+	cout << "Insert NID_PACKET" << endl;
+	cin >> NID_PACKET;
+	pkt.setNID_PACKET(NID_PACKET);
+	cout << "Insert L_PACKET" << endl;
+	cin >> L_PACKET;
+	pkt.setL_PACKET(L_PACKET);
+	cout << "Insert M_PORT" << endl;
+	cin >> N_PORT;
+	pkt.setM_PORT(N_PORT);
+	
+}
 
+void provaSerializePacchettoack(pacchettoAcknowledgement &pkt)
+{
+	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, Q_MISSION;
+	cout << "Insert NID_MESSAGE" << endl;
+	cin >> NID_MESSAGE;
+	pkt.setNID_MESSAGE(NID_MESSAGE);
+	cout << "Insert L_MESSAGE" << endl;
+	cin >> L_MESSAGE;
+	pkt.setL_MESSAGE(L_MESSAGE);
+	cout << "Insert T_TRAIN" << endl;
+	cin >> T_TRAIN;
+	pkt.setT_TRAIN(T_TRAIN);
+	cout << "Insert NID_PACKET" << endl;
+	cin >> NID_PACKET;
+	pkt.setNID_PACKET(NID_PACKET);
+	cout << "Insert L_PACKET" << endl;
+	cin >> L_PACKET;
+	pkt.setL_PACKET(L_PACKET);
+	cout << "InsertQMission" << endl;
+	cin >> Q_MISSION;
+	pkt.setQ_MISSION_RESPONSE(Q_MISSION);
+	
+}
 void provaSerializePacchettoCommandData1(pacchettoCommandData1 &pkt)
 {
 	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, Q_COMMAND_TYPE;
@@ -320,6 +366,13 @@ int main()
 	oThread1->Start();
 
 	TCP_Management();
+
+	
+	//pacchettoAcknowledgement ack;
+	//byte *buffer3 = new byte[ack.getSize()];
+	//provaSerializePacchettoack(ack);
+	//ack.serialize(buffer3);
+	//stampaBuffer(buffer3,ack.getSize() );
 
 	Console::WriteLine("Premi un Tasto x USCIRE");
 
