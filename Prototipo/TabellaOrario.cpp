@@ -1,8 +1,7 @@
 #include "TabellaOrario.h"
 #using <System.Xml.dll>
 #include <iostream>
-#include <msclr\marshal_cppstd.h>
-
+#include "String2string.h"
 
 TabellaOrario::TabellaOrario(void)
 {
@@ -12,7 +11,7 @@ TabellaOrario::TabellaOrario(void)
 int TabellaOrario::convertiString2int(System::String ^StringValue)
 {
 	// converto da System::String a std::string
-	std::string stdString = msclr::interop::marshal_as< std::string >(StringValue);
+	std::string stdString = String2string(StringValue);
 	// converto da std::string a int
 	int intValue = atoi(stdString.c_str());
 	return intValue;
@@ -22,7 +21,7 @@ int TabellaOrario::convertiString2int(System::String ^StringValue)
 string TabellaOrario::convertiString2string(System::String ^StringValue)
 {
 	// converto da System::String a std::string
-	std::string stdString = msclr::interop::marshal_as< std::string >(StringValue);
+	std::string stdString = String2string(StringValue);
 	return stdString;
 }
 
@@ -108,13 +107,13 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			System::String ^SystemStringLatoProgrammato = inner->ReadString();	
 			// converto da System::String a std::string
 			string stringLatoAperturaPorte = convertiString2string(SystemStringLatoProgrammato);
-			aperturaPorte latoParturaPorte;
-			if(stringLatoAperturaPorte == "dx")
-				latoParturaPorte = destra;
-			else if(stringLatoAperturaPorte == "sx")
-				latoParturaPorte = sinistra;
-			else if(stringLatoAperturaPorte == "sd")
-				latoParturaPorte = destraSinistra;
+			int latoParturaPorte;
+			if(stringLatoAperturaPorte.c_str() == "dx")
+				latoParturaPorte = aperturaTrenoDx;
+			else if(stringLatoAperturaPorte.c_str() == "sx")
+				latoParturaPorte = aperturaTrenoSx;
+			else if(stringLatoAperturaPorte.c_str() == "sd")
+				latoParturaPorte = aperturaTrenoDxSx;
 			else
 				latoParturaPorte = noApertura;
 			// configuro il lato apertura porte programmato programmato
@@ -129,6 +128,49 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 		// a questo punto aggiungo il treno alla tabella orario
 		aggiungiTreno(*treno);
 	}	
+}
+
+// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
+// alla missione associata al TRN in questione
+void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan &pkt)
+{
+	bool error;
+	// ottengo un riferimento alle fermate del treno TRN
+	TrenoFermate treno = getTrenoFermate(TRN, error);
+	// se il teno esiste
+	if(!error)
+	{
+		// ottengo un riferimento alla lista delle feremate del treno
+		std::list<Fermata> stops = treno.getListaFermate();
+		pkt.setN_ITER1(stops.size());
+		pkt.setN_ITER2(stops.size());
+		int i = 0;
+		for(std::list<Fermata>::iterator it = stops.begin(); it != stops.end(); ++it)
+		{
+			pkt.setQ_DOORS(i, (*it).getLatoAperturaPorte());
+			time_t orarioPartenza = mktime(&(*it).getOrarioPartenza());
+			time_t orarioArrivo = mktime(&(*it).getOrarioArrivo());
+			pkt.setT_DOORS_TIME(i, (orarioPartenza - orarioArrivo));
+			++i;
+		}
+	}
+}
+
+// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
+TrenoFermate& TabellaOrario::getTrenoFermate(int TRN, bool &error)
+{
+	// cerco il treno identificato da TRN
+	std::list<TrenoFermate>::iterator it = tabella.begin();
+	while(it != tabella.end() && (*it).getIdTreno() != TRN)
+		++it;
+	// se il treno esiste
+	if((*it).getIdTreno() != TRN)
+	{
+		return (*it);
+		error = false;
+	}
+	else
+		error = true;
 }
 
 void TabellaOrario::aggiungiTreno(TrenoFermate &treno)

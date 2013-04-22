@@ -28,6 +28,8 @@ public:
 	// alla funzione viene passato per riferimento un oggetto di tipo Fermata, che deve essere stato 
 	// precedentemente correttamente istanziato.
 	void aggiungiFermata(Fermata &stop);
+	// funzione che restituisce un riferimento alla lista delle fermate del treno
+	std::list<Fermata>& getListaFermate(){return fermate;};
 	~TrenoFermate();
 };
 

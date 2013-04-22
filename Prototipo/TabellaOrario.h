@@ -1,5 +1,6 @@
 #pragma once
 #include "TrenoFermate.h"
+#include "pacchettoMissionPlan.h"
 #include <iostream>
 using namespace std;
 
@@ -24,6 +25,11 @@ public:
 	int getFirstTRN();
 	// questa funzione legge il file di configurazione contenente la descrizione della tabella orario
 	void leggiTabellaOrario(string nomeFile);
+	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
+	// alla missione associata al TRN in questione
+	void setMissionPlanMessage(int TRN, pacchettoMissionPlan &pkt);
+	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
+	TrenoFermate& getTrenoFermate(int TRN, bool &error);
 	~TabellaOrario();
 };
 

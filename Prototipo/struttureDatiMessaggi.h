@@ -129,6 +129,15 @@ struct acknowledgement
 	struct missionAck ack;
 	unsigned int padding : 7;
 };
+
+struct pstatolineastruct{
+
+unsigned int NID_CDB : 32;
+	unsigned int Q_STATOCDB : 2;
+	unsigned int Q_DEVIATIOIO : 2;
+
+};
+
 //struttura dati per gestire il network data
 // 53 bit
 struct networkdata 
@@ -147,11 +156,6 @@ struct presentation
 	//unsigned int padding : 8;
 };
 
-struct messtatolinea{
-	struct structuredHeader head;
-	struct pkgstatolinea pkg;
-};
-
 struct pkgstatolinea{
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
@@ -160,12 +164,9 @@ struct pkgstatolinea{
 	unsigned int N_ITER : 5;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	struct pstatolineastruct *pstato1;
-
 };
-struct pstatolineastruct{
 
-unsigned int NID_CDB : 32;
-	unsigned int Q_STATOCDB : 2;
-	unsigned int Q_DEVIATIOIO : 2;
-
+struct messtatolinea{
+	struct structuredHeader head;
+	struct pkgstatolinea pkg;
 };

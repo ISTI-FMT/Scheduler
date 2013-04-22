@@ -4,7 +4,13 @@
 #include <iostream>
 using namespace std;
 
-enum aperturaPorte {destra, sinistra, destraSinistra, noApertura};
+const int noApertura = 0;
+const int aperturaTrenoDx = 1;
+const int aperturaTrenoSx = 2;
+const int aperturaTrenoDxSx = 3;
+const int aperturaTrenoBanchinaDx = 4;
+const int aperturaTrenoBanchinaSx = 5;
+const int aperturaTrenoBanchinaDxSx = 6;
 
 /*
 Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di un singolo treno.
@@ -17,7 +23,7 @@ class Fermata
 	tm orarioArrivo;
 	tm orarioPartenza;
 	int binarioProgrammato;
-	aperturaPorte latoAperturaPorte;
+	int latoAperturaPorte;
 	friend ostream& operator<<(ostream &out, const Fermata &stop);
 public:
 	Fermata(void);
@@ -46,7 +52,7 @@ public:
 	void setBinarioProgrammato(int binario){binarioProgrammato = binario;};
 	int getBinarioProgrammato(){return binarioProgrammato;};
 	// Funzioni per la manipolazione del tempo di apertura delle porte
-	void setLatoAperturaPorte(aperturaPorte lato){latoAperturaPorte = lato;};
+	void setLatoAperturaPorte(int lato){latoAperturaPorte = lato;};
 	int getLatoAperturaPorte(){return latoAperturaPorte;};
 	~Fermata();
 };

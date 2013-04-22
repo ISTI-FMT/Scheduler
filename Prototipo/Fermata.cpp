@@ -22,11 +22,11 @@ ostream& operator<<(ostream &out, const Fermata &stop)
 	out << "orario partenza : " << stop.orarioPartenza.tm_hour << ":" << stop.orarioPartenza.tm_min << ":" << stop.orarioPartenza.tm_sec << endl;
 	out << "binario programmato : " << stop.binarioProgrammato << endl;
 	string lato;
-	if(stop.latoAperturaPorte == destra)
+	if(stop.latoAperturaPorte == aperturaTrenoDx)
 		lato = "destra";
-	else if(stop.latoAperturaPorte == sinistra)
+	else if(stop.latoAperturaPorte == aperturaTrenoSx)
 		lato = "sinistra";
-	else if(stop.latoAperturaPorte == destraSinistra)
+	else if(stop.latoAperturaPorte == aperturaTrenoDxSx)
 		lato = "destra/sinistra";
 	else
 		lato = "no apertura";
