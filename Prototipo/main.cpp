@@ -94,6 +94,9 @@ void TCP_Management()
 		//IPAddress^ localAddr = IPAddress::Parse( "146.48.84.52" );
 		//IPAddress^ localAddr = IPAddress::Parse( "127.0.0.1" );
 
+		int x;
+		cout << "Premi un pulsante per continuare dopo che almeno un treno si è presentato all'ATS" << endl;
+		cin >> x;
 
 		pacchettoCommandData1 wakeUpPkt;
 
