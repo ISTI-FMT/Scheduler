@@ -7,7 +7,7 @@ pacchettostatolineaatc::pacchettostatolineaatc(void)
 	data.head.NID_MESSAGE = 0;
 	data.head.L_MESSAGE = 0;
 	data.head.T_TRAIN = 0;
-	
+
 	data.pkg.NID_PACKET = 0;
 	data.pkg.L_PACKET = 0;
 	data.pkg.NID_OPERATIONAL = 0;
@@ -15,6 +15,26 @@ pacchettostatolineaatc::pacchettostatolineaatc(void)
 	data.pkg.pstato.Q_STATOCDB = 0;
 	data.pkg.pstato.Q_DEVIATIOIO = 0;
 	data.pkg.pstato1 = NULL;
+}
+
+
+int pacchettostatolineaatc::getSize()
+{
+	// intero che rappresenta la dimensione in bit
+	int size = 0;
+	// 51 bit per l'header
+	size += 51;
+	// 94 per la parte fissa del pacchetto 
+	size += 94;
+	// 36 bit per ogni N_ITER
+	if( data.pkg.N_ITER!=NULL){
+
+		size += 36 * data.pkg.N_ITER;
+	}else{
+		size += 36 *128
+	}
+	// ritorno il numero di byte occupato dalla struttura dati
+	return (size / 8) + 1;
 }
 
 // funzione che sette N_ITER1
@@ -83,7 +103,7 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 	push(buffer, data.pkg.NID_OPERATIONAL, 32, 91);
 	push(buffer, data.pkg.pstato.NID_CDB, 32, 123);
 	push(buffer, data.pkg.pstato.Q_STATOCDB, 2, 155);
-    push(buffer, data.pkg.pstato.Q_DEVIATIOIO, 2, 157);
+	push(buffer, data.pkg.pstato.Q_DEVIATIOIO, 2, 157);
 	push(buffer, data.pkg.N_ITER, 5, 162);
 	int offset = 167;
 	for(unsigned int i = 0; i < data.pkg.N_ITER; ++i)
@@ -95,7 +115,7 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 		push(buffer, data.pkg.pstato1[i].Q_DEVIATIOIO, 2, offset);
 		offset += 2;
 	}
-	
+
 }
 
 void pacchettostatolineaatc::deserialize(byte *buffer)
@@ -121,5 +141,5 @@ void pacchettostatolineaatc::deserialize(byte *buffer)
 		offset += 2;
 	}
 
-	
+
 }
