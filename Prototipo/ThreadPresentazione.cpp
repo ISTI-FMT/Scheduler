@@ -12,6 +12,7 @@ using namespace System::Net::Sockets;
 using namespace System::Text;
 using namespace System::Threading;
 using namespace System::Threading::Tasks;
+using namespace System::Runtime::InteropServices;
 
 
 	 ThreadPresentazione::ThreadPresentazione()
@@ -45,6 +46,7 @@ using namespace System::Threading::Tasks;
 
 			while ( true )
 			{
+				Console::ForegroundColor = ConsoleColor::DarkGreen;
 				Console::Write( "Waiting for a connection... " );
 
 				// Perform a blocking call to accept requests.
@@ -86,7 +88,10 @@ using namespace System::Threading::Tasks;
 				// aggiungo il treno alla lista dei treni fisici
 				listaTreni->aggiungiTreno(treno);
 
-				cout << "Aggiunto il treno " << treno.getEngineNumber() << " operativo su " << treno.getIpAddress().c_str() << ":" << treno.getTcpPort() << endl;
+				
+				String ^stringip = gcnew String(treno.getIpAddress().c_str());
+
+				Console::WriteLine("Aggiunto il treno {0} operativo su {1}: {2} ", treno.getEngineNumber() ,stringip, treno.getTcpPort());
 
 				//data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
 
@@ -94,11 +99,14 @@ using namespace System::Threading::Tasks;
 
 				// Shutdown and end connection
 				client->Close();
+				Console::ResetColor();
 			}
 		}
 		catch ( SocketException^ e ) 
 		{
+			Console::ForegroundColor = ConsoleColor::DarkGreen;
 			Console::WriteLine( "SocketException: {0}", e );
+			Console::ResetColor();
 		}
 
 	}

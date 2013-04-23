@@ -33,6 +33,7 @@ void ThreadListenerATC::TCP_Management_receive(){
 
 		while ( true )
 		{
+			Console::ForegroundColor = ConsoleColor::Red;
 			Console::Write( "Waiting for a connection of ATC... " );
 
 			// Perform a blocking call to accept requests.
@@ -49,12 +50,12 @@ void ThreadListenerATC::TCP_Management_receive(){
 			int numberOfBytesRead = 0;
 
 			array<Byte>^bytes = gcnew array<Byte>(pkt1.getSize());
-			do
-			{
-				numberOfBytesRead =stream->Read( bytes, 0, bytes->Length );
+			//do
+			//{
+				//numberOfBytesRead =stream->Read( bytes, 0, bytes->Length );
 
-			}
-			while ( stream->DataAvailable );
+			//}
+			//while ( stream->DataAvailable );
 
 			stream->Read( bytes, 0, bytes->Length );
 
@@ -67,14 +68,16 @@ void ThreadListenerATC::TCP_Management_receive(){
 
 			copiaArrayInByte(bytes, buffer2, pkt1.getSize());
 
-			stampaBuffer(buffer2, pkt1.getSize()*8);
+			//stampaBuffer(buffer2, pkt1.getSize()*8);
 
 			pkt1.deserialize(buffer2);
-			Console::WriteLine(pkt1.getNID_MESSAGE());
-			//Console::WriteLine(pkt1.getL_MESSAGE());
-			Console::WriteLine(pkt1.getNID_CDB(0));
 
-			Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
+
+			
+			
+			Console::WriteLine("{0} ATC ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
+			Console::WriteLine(pkt1.toPrint());
+			Console::ResetColor();
 
 			// creo l'oggetto di tipo phisicalTrain
 
@@ -94,7 +97,9 @@ void ThreadListenerATC::TCP_Management_receive(){
 	}
 	catch ( SocketException^ e ) 
 	{
+		Console::ForegroundColor = ConsoleColor::DarkGreen;
 		Console::WriteLine( "SocketException: {0}", e );
+		Console::ResetColor();
 	}
 
 }

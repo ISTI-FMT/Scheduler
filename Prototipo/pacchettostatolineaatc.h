@@ -43,7 +43,7 @@ public:
 	void setQ_STATOCDB(int index, int Q);
 	int getQ_STATOCDB(int index);
 
-
+	System::String^ toPrint();
 
 };
 

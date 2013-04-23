@@ -173,7 +173,7 @@ void TCP_Management()
 
 int main()
 {
-	proveSerializzazione serial;
+	/*proveSerializzazione serial;
 
 	pacchettostatolineaatc pkt1;
 	serial.provaSerializePacchettostatolineaatc(pkt1,0);
@@ -185,15 +185,22 @@ int main()
 	
 	pkt1.serialize(buffer2);
 	
+	array<Byte>^bytes_buffer4 = gcnew array<Byte>(pkt1.getSize());
+	copiaByteInArray(buffer2, bytes_buffer4, pkt1.getSize());
+	for each (Byte var in bytes_buffer4)
+	{
+			Console::WriteLine(var);
+	}
 
-	stampaBuffer(buffer2, pkt1.getSize()*8);
 
+	stampaBuffer(buffer2, 145);
+	
 
 	Console::WriteLine("Premi un Tasto x USCIRE");
 
-	Console::Read();
+	Console::Read();*/
 
-	//tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
+	tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 	//cout << tabella;
 
 
@@ -201,12 +208,12 @@ int main()
 
 	
 
-	//ThreadPresentazione ^sd = gcnew ThreadPresentazione(&listaTreni);
+	ThreadPresentazione ^sd = gcnew ThreadPresentazione(&listaTreni);
 	
 	
-	//Thread^ oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
+	Thread^ oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
 
-	//oThread2->Start();
+	oThread2->Start();
 
 
 	//mapTrenoFisicoLogico ^maps = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");

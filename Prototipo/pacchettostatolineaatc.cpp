@@ -37,6 +37,33 @@ int pacchettostatolineaatc::getSize()
 	return (size / 8) + 1;
 }
 
+System::String^ pacchettostatolineaatc::toPrint(){
+	String ^out;
+	out = out+" "+data.head.NID_MESSAGE+";";
+	out = out+" "+	data.head.L_MESSAGE+";";
+	out = out+" "+data.head.T_TRAIN+";";
+	out = out+" "+data.pkg.NID_PACKET+";";
+	out = out+" "+data.pkg.L_PACKET+";";
+	out = out+" "+data.pkg.NID_OPERATIONAL+";";
+
+	out = out+" "+data.pkg.pstato.NID_CDB+";";
+	out = out+" "+data.pkg.pstato.Q_STATOCDB+";";
+	out = out+" "+data.pkg.pstato.Q_DEVIATIOIO+";";
+	out = out+" "+data.pkg.N_ITER+";";
+	if(data.pkg.pstato1){
+		for(unsigned int i = 0; i < data.pkg.N_ITER; ++i)
+		{
+			out = out+" "+data.pkg.pstato1[i].NID_CDB+";";
+
+			out = out+" "+data.pkg.pstato1[i].Q_STATOCDB+";";
+
+			out = out+" "+data.pkg.pstato1[i].Q_STATOCDB+";";
+
+		}
+	}
+	return out;
+}
+
 // funzione che sette N_ITER1
 void pacchettostatolineaatc::setN_ITER(int N)
 {
@@ -100,13 +127,13 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 	push(buffer, data.head.T_TRAIN, 32, 19);
 	push(buffer, data.pkg.NID_PACKET, 8, 51);
 	push(buffer, data.pkg.L_PACKET, 13, 59);
-	push(buffer, data.pkg.NID_OPERATIONAL, 32, 91);
-	push(buffer, data.pkg.pstato.NID_CDB, 32, 123);
-	push(buffer, data.pkg.pstato.Q_STATOCDB, 2, 155);
-	push(buffer, data.pkg.pstato.Q_DEVIATIOIO, 2, 157);
-	push(buffer, data.pkg.N_ITER, 5, 162);
+	push(buffer, data.pkg.NID_OPERATIONAL, 32, 72);
+	push(buffer, data.pkg.pstato.NID_CDB, 32, 104);
+	push(buffer, data.pkg.pstato.Q_STATOCDB, 2, 136);
+	push(buffer, data.pkg.pstato.Q_DEVIATIOIO, 2, 138);
+	push(buffer, data.pkg.N_ITER, 5, 140);
 	data.pkg.pstato1 = new pstatolineastruct[data.pkg.N_ITER];
-	int offset = 167;
+	int offset = 145;
 	for(unsigned int i = 0; i < data.pkg.N_ITER; ++i)
 	{
 		push(buffer, data.pkg.pstato1[i].NID_CDB, 32, offset);
@@ -126,21 +153,22 @@ void pacchettostatolineaatc::deserialize(byte *buffer)
 	data.head.T_TRAIN=pop(buffer, 32, 19);
 	data.pkg.NID_PACKET=pop(buffer,  8, 51);
 	data.pkg.L_PACKET=pop(buffer, 13, 59);
-	data.pkg.NID_OPERATIONAL=pop(buffer, 32, 91);
-	data.pkg.pstato.NID_CDB=pop(buffer, 32, 123);
-	data.pkg.pstato.Q_STATOCDB=pop(buffer, 2, 155);
-	data.pkg.pstato.Q_DEVIATIOIO=pop(buffer, 2, 157);
-	data.pkg.N_ITER=pop(buffer, 5, 162);
-	int offset = 167;
-	for(unsigned int i = 0; i < data.pkg.N_ITER; ++i)
-	{
-		data.pkg.pstato1[i].NID_CDB=pop(buffer, 15, offset);
-		offset += 32;
-		data.pkg.pstato1[i].Q_STATOCDB=pop(buffer, 2, offset);
-		offset += 2;
-		data.pkg.pstato1[i].Q_STATOCDB=pop(buffer, 2, offset);
-		offset += 2;
+	data.pkg.NID_OPERATIONAL=pop(buffer, 32, 72);
+	data.pkg.pstato.NID_CDB=pop(buffer, 32, 104);
+	data.pkg.pstato.Q_STATOCDB=pop(buffer, 2, 136);
+	data.pkg.pstato.Q_DEVIATIOIO=pop(buffer, 2, 138);
+	data.pkg.N_ITER=pop(buffer, 5, 140);
+	int offset = 145;
+	if(data.pkg.pstato1){
+		for(unsigned int i = 0; i < data.pkg.N_ITER; ++i)
+		{
+			data.pkg.pstato1[i].NID_CDB=pop(buffer, 15, offset);
+			offset += 32;
+			data.pkg.pstato1[i].Q_STATOCDB=pop(buffer, 2, offset);
+			offset += 2;
+			data.pkg.pstato1[i].Q_STATOCDB=pop(buffer, 2, offset);
+			offset += 2;
+		}
+
 	}
-
-
 }

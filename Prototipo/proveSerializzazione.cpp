@@ -35,14 +35,14 @@ void proveSerializzazione::provaSerializePacchettostatolineaatc(pacchettostatoli
 	cout << "Insert NID_CDB" << endl;
 	cin >> NID_CDB;
 	pkt.setNID_CDB(index, NID_CDB);
-
+	cout << "Insert Q_STATOCDB" << endl;
+	cin >> Q_STATOCDB;
+	pkt.setQ_STATOCDB(index,Q_STATOCDB);
 	cout << "Insert Q_DEVIATIOIO" << endl;
 	cin >> Q_DEVIATIOIO;
 	pkt.setQ_DEVIATIOIO(index, Q_DEVIATIOIO);
 
-	cout << "Insert Q_STATOCDB" << endl;
-	cin >> Q_STATOCDB;
-	pkt.setQ_STATOCDB(index,Q_STATOCDB);
+	
 
 	
 	
