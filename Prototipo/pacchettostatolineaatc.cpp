@@ -132,7 +132,7 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 	push(buffer, data.pkg.pstato.Q_STATOCDB, 2, 136);
 	push(buffer, data.pkg.pstato.Q_DEVIATIOIO, 2, 138);
 	push(buffer, data.pkg.N_ITER, 5, 140);
-	data.pkg.pstato1 = new pstatolineastruct[data.pkg.N_ITER];
+	//data.pkg.pstato1 = new pstatolineastruct[data.pkg.N_ITER];
 	int offset = 145;
 	for(unsigned int i = 0; i < data.pkg.N_ITER; ++i)
 	{
@@ -157,7 +157,7 @@ void pacchettostatolineaatc::deserialize(byte *buffer)
 	data.pkg.pstato.NID_CDB=pop(buffer, 32, 104);
 	data.pkg.pstato.Q_STATOCDB=pop(buffer, 2, 136);
 	data.pkg.pstato.Q_DEVIATIOIO=pop(buffer, 2, 138);
-	data.pkg.N_ITER=pop(buffer, 5, 140);
+	setN_ITER(pop(buffer, 5, 140));
 	int offset = 145;
 	if(data.pkg.pstato1){
 		for(unsigned int i = 0; i < data.pkg.N_ITER; ++i)
