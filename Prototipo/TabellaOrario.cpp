@@ -2,6 +2,8 @@
 #using <System.Xml.dll>
 #include <iostream>
 #include "String2string.h"
+#include <iostream>
+using namespace std;
 
 TabellaOrario::TabellaOrario(void)
 {
@@ -108,11 +110,11 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			// converto da System::String a std::string
 			string stringLatoAperturaPorte = convertiString2string(SystemStringLatoProgrammato);
 			int latoParturaPorte;
-			if(stringLatoAperturaPorte.c_str() == "dx")
+			if(strcmp(stringLatoAperturaPorte.c_str(), "dx") == 0)
 				latoParturaPorte = aperturaTrenoDx;
-			else if(stringLatoAperturaPorte.c_str() == "sx")
+			else if(strcmp(stringLatoAperturaPorte.c_str(), "sx") == 0)
 				latoParturaPorte = aperturaTrenoSx;
-			else if(stringLatoAperturaPorte.c_str() == "sd")
+			else if(strcmp(stringLatoAperturaPorte.c_str(), "sd") == 0)
 				latoParturaPorte = aperturaTrenoDxSx;
 			else
 				latoParturaPorte = noApertura;
@@ -136,7 +138,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan &pkt)
 {
 	bool error;
 	// ottengo un riferimento alle fermate del treno TRN
-	TrenoFermate treno = getTrenoFermate(TRN, error);
+	TrenoFermate &treno = getTrenoFermate(TRN, error);
 	// se il teno esiste
 	if(!error)
 	{
@@ -163,11 +165,14 @@ TrenoFermate& TabellaOrario::getTrenoFermate(int TRN, bool &error)
 	std::list<TrenoFermate>::iterator it = tabella.begin();
 	while(it != tabella.end() && (*it).getIdTreno() != TRN)
 		++it;
+	// se il treno non esiste
+	if(it == tabella.end())
+		error = true;
 	// se il treno esiste
-	if((*it).getIdTreno() != TRN)
-	{
-		return (*it);
+	else if((*it).getIdTreno() == TRN)
+	{	
 		error = false;
+		return (*it);
 	}
 	else
 		error = true;
