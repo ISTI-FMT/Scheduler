@@ -40,6 +40,7 @@ void ThreadListenerATC::TCP_Management_receive(){
 			// You could also user server.AcceptSocket() here.
 
 			TcpClient^ client = server->AcceptTcpClient();
+			Console::ForegroundColor = ConsoleColor::Red;
 			Console::WriteLine( "ATC Connected!" );
 			//data = nullptr;
 
@@ -74,7 +75,7 @@ void ThreadListenerATC::TCP_Management_receive(){
 
 
 			
-			
+			Console::ForegroundColor = ConsoleColor::Red;
 			Console::WriteLine("{0} ATC ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
 			Console::WriteLine(pkt1.toPrint());
 			Console::ResetColor();
@@ -97,7 +98,7 @@ void ThreadListenerATC::TCP_Management_receive(){
 	}
 	catch ( SocketException^ e ) 
 	{
-		Console::ForegroundColor = ConsoleColor::DarkGreen;
+		Console::ForegroundColor = ConsoleColor::Red;
 		Console::WriteLine( "SocketException: {0}", e );
 		Console::ResetColor();
 	}

@@ -225,7 +225,7 @@ int main()
 
 	oThread1->Start();
 
-	//TCP_Management();
+	TCP_Management();
 
 	
 	//pacchettoAcknowledgement ack;

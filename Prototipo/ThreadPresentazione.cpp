@@ -53,6 +53,7 @@ using namespace System::Runtime::InteropServices;
 				// You could also user server.AcceptSocket() here.
 
 				TcpClient^ client = server->AcceptTcpClient();
+				Console::ForegroundColor = ConsoleColor::DarkGreen;
 				Console::WriteLine( "Connected!" );
 				data = nullptr;
 
@@ -90,7 +91,7 @@ using namespace System::Runtime::InteropServices;
 
 				
 				String ^stringip = gcnew String(treno.getIpAddress().c_str());
-
+				Console::ForegroundColor = ConsoleColor::DarkGreen;
 				Console::WriteLine("Aggiunto il treno {0} operativo su {1}: {2} ", treno.getEngineNumber() ,stringip, treno.getTcpPort());
 
 				//data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
