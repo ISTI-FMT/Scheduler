@@ -41,7 +41,7 @@ using namespace System::Runtime::InteropServices;
 			server->Start();
 
 			// Buffer for reading data
-			array<Byte>^bytes = gcnew array<Byte>(16);
+			array<Byte>^bytes = gcnew array<Byte>(256);
 			String^ data = nullptr;
 
 			while ( true )
@@ -92,7 +92,7 @@ using namespace System::Runtime::InteropServices;
 				
 				String ^stringip = gcnew String(treno.getIpAddress().c_str());
 				Console::ForegroundColor = ConsoleColor::DarkGreen;
-				Console::WriteLine("Aggiunto il treno {0} operativo su {1}: {2} ", treno.getEngineNumber() ,stringip, treno.getTcpPort());
+				Console::WriteLine("Aggiunto il treno {0} operativo su {1}:{2} ", treno.getEngineNumber() ,stringip, treno.getTcpPort());
 
 				//data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
 

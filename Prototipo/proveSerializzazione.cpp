@@ -52,7 +52,7 @@ void proveSerializzazione::provaSerializePacchettostatolineaatc(pacchettostatoli
 
 void  proveSerializzazione::provaSerializePacchettoPresentazione(pacchettopresentazione &pkt)
 {
-	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, N_PORT;
+	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, N_PORT,NID_ENGINE;
 	cout << "Insert NID_MESSAGE" << endl;
 	cin >> NID_MESSAGE;
 	pkt.setNID_MESSAGE(NID_MESSAGE);
@@ -62,6 +62,12 @@ void  proveSerializzazione::provaSerializePacchettoPresentazione(pacchettopresen
 	cout << "Insert T_TRAIN" << endl;
 	cin >> T_TRAIN;
 	pkt.setT_TRAIN(T_TRAIN);
+
+	cout << "Insert NID_ENGINE" << endl;
+	cin >> NID_ENGINE;
+	pkt.setNID_ENGINE(NID_ENGINE);
+
+
 	cout << "Insert NID_PACKET" << endl;
 	cin >> NID_PACKET;
 	pkt.setNID_PACKET(NID_PACKET);

@@ -70,7 +70,7 @@ void TCP_Management()
 		//IPAddress^ localAddr = IPAddress::Parse( "127.0.0.1" );
 
 		int x;
-		cout << "Premi un pulsante per continuare dopo che almeno un treno si è presentato all'ATS" << endl;
+		cout << "Premi un pulsante dopo che almeno un treno si e' presentato all'ATS" << endl;
 		cin >> x;
 
 		pacchettoCommandData1 wakeUpPkt;
@@ -193,12 +193,27 @@ int main()
 	}
 
 
-	stampaBuffer(buffer2, 145);
+	stampaBuffer(buffer2, 145);*/
 	
+	proveSerializzazione serial;
+
+	pacchettopresentazione pkt1;
+
+	serial.provaSerializePacchettoPresentazione(pkt1);
+
+	byte *buffer2 = new byte[pkt1.getSize()];
+	
+	for(int i = 0; i < pkt1.getSize(); ++i)
+		buffer2[i] = 0;
+	
+	pkt1.serialize(buffer2);
+	
+	array<Byte>^bytes_buffer4 = gcnew array<Byte>(pkt1.getSize());
+	copiaByteInArray(buffer2, bytes_buffer4, pkt1.getSize());
 
 	Console::WriteLine("Premi un Tasto x USCIRE");
 
-	Console::Read();*/
+	Console::Read();
 
 	tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 	//cout << tabella;
