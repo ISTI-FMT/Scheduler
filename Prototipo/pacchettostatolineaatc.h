@@ -18,6 +18,7 @@ public:
 	void deserialize(byte *buff);
 	
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
+	
 	void setNID_MESSAGE(int N){data.head.NID_MESSAGE = N;};
 	int getNID_MESSAGE(){return data.head.NID_MESSAGE;};
 	void setL_MESSAGE(int N){data.head.L_MESSAGE = N;};
@@ -41,6 +42,7 @@ public:
 	int getQ_DEVIATIOIO(int index);
 	void setQ_STATOCDB(int index, int Q);
 	int getQ_STATOCDB(int index);
+
 
 
 };

@@ -1,5 +1,5 @@
 #pragma once
-#include "struttureDatiMessaggi.h"
+#include "pacchettostatolineaatc.h"
 public class ThreadListenerATC
 {
 public:
@@ -7,5 +7,6 @@ public:
 
 	static void TCP_Management_receive();
 	static void stampaBuffer(byte *buff, int nBit);
+	
 };
 

@@ -13,6 +13,7 @@
 #include <iostream>
 #include "ThreadPresentazione.h"
 #include "mapTrenoFisicoLogico.h"
+#include "proveSerializzazione.h"
 
 using namespace std;
 using namespace System;
@@ -49,81 +50,6 @@ void stampaBuffer(byte *buff, int nBit)
 		cout << supp;
 	}
 	cout << endl;
-}
-void provaSerializePacchettoPresentazione(pacchettopresentazione &pkt)
-{
-	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, N_PORT;
-	cout << "Insert NID_MESSAGE" << endl;
-	cin >> NID_MESSAGE;
-	pkt.setNID_MESSAGE(NID_MESSAGE);
-	cout << "Insert L_MESSAGE" << endl;
-	cin >> L_MESSAGE;
-	pkt.setL_MESSAGE(L_MESSAGE);
-	cout << "Insert T_TRAIN" << endl;
-	cin >> T_TRAIN;
-	pkt.setT_TRAIN(T_TRAIN);
-	cout << "Insert NID_PACKET" << endl;
-	cin >> NID_PACKET;
-	pkt.setNID_PACKET(NID_PACKET);
-	cout << "Insert L_PACKET" << endl;
-	cin >> L_PACKET;
-	pkt.setL_PACKET(L_PACKET);
-	cout << "Insert M_PORT" << endl;
-	cin >> N_PORT;
-	pkt.setM_PORT(N_PORT);
-	
-}
-
-void provaSerializePacchettoack(pacchettoAcknowledgement &pkt)
-{
-	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, Q_MISSION;
-	cout << "Insert NID_MESSAGE" << endl;
-	cin >> NID_MESSAGE;
-	pkt.setNID_MESSAGE(NID_MESSAGE);
-	cout << "Insert L_MESSAGE" << endl;
-	cin >> L_MESSAGE;
-	pkt.setL_MESSAGE(L_MESSAGE);
-	cout << "Insert T_TRAIN" << endl;
-	cin >> T_TRAIN;
-	pkt.setT_TRAIN(T_TRAIN);
-	cout << "Insert NID_PACKET" << endl;
-	cin >> NID_PACKET;
-	pkt.setNID_PACKET(NID_PACKET);
-	cout << "Insert L_PACKET" << endl;
-	cin >> L_PACKET;
-	pkt.setL_PACKET(L_PACKET);
-	cout << "InsertQMission" << endl;
-	cin >> Q_MISSION;
-	pkt.setQ_MISSION_RESPONSE(Q_MISSION);
-	
-}
-void provaSerializePacchettoCommandData1(pacchettoCommandData1 &pkt)
-{
-	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, Q_COMMAND_TYPE;
-	cout << "Insert NID_MESSAGE" << endl;
-	cin >> NID_MESSAGE;
-	pkt.setNID_MESSAGE(NID_MESSAGE);
-	cout << "Insert L_MESSAGE" << endl;
-	cin >> L_MESSAGE;
-	pkt.setL_MESSAGE(L_MESSAGE);
-	cout << "Insert T_TRAIN" << endl;
-	cin >> T_TRAIN;
-	pkt.setT_TRAIN(T_TRAIN);
-	cout << "Insert NID_PACKET" << endl;
-	cin >> NID_PACKET;
-	pkt.setNID_PACKET(NID_PACKET);
-	cout << "Insert L_PACKET" << endl;
-	cin >> L_PACKET;
-	pkt.setL_PACKET(L_PACKET);
-	cout << "Insert Q_COMMAND_TYPE" << endl;
-	cin >> Q_COMMAND_TYPE;
-	pkt.setQ_COMMAND_TYPE(Q_COMMAND_TYPE);
-	//byte buff[100];
-	//for(int i = 0; i < 100; ++i)
-	//	buff[i] = 0;
-	//int len = 0;
-	//pkt.serializepacchettoCommandData(buff);
-	//stampaBuffer(buff, 80);
 }
 
 
@@ -247,52 +173,52 @@ void TCP_Management()
 
 int main()
 {
-	tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
-	cout << tabella;
+	proveSerializzazione serial;
 
-	//byte buff[100];
-	//for(int i = 0; i < 100; ++i)
-	//	buff[i] = 0;
-
-	/*
-	// Prova di serializzazione di pacchetto missione plan
-	pacchettoMissionPlan p;
-	int x;
-	cin >> x;
-	p.setNID_MESSAGE(x);
-	cin >> x;
-	p.setL_MESSAGE(x);
-	cin >> x;
-	p.setT_TRAIN(x);
-
-	int i = 0;
-	p.serializeStructuredHeader(buff, i);
-
-	stampaBuffer(buff,i);
-	*/
-
-	//pacchettoCommandData1 pkt1;
-	//cout << sizeof(pkt1) << endl;
-	//provaSerializePacchettoCommandData1(pkt1);
-
-	ThreadPresentazione ^sd = gcnew ThreadPresentazione(&listaTreni);
+	pacchettostatolineaatc pkt1;
+	serial.provaSerializePacchettostatolineaatc(pkt1,0);
 	
+	byte *buffer2 = new byte[pkt1.getSize()];
 	
-	Thread^ oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
+	for(int i = 0; i < pkt1.getSize(); ++i)
+		buffer2[i] = 0;
+	
+	pkt1.serialize(buffer2);
+	
 
-	oThread2->Start();
+	stampaBuffer(buffer2, pkt1.getSize()*8);
 
 
-	mapTrenoFisicoLogico ^maps = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
+	Console::WriteLine("Premi un Tasto x USCIRE");
+
+	Console::Read();
+
+	//tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
+	//cout << tabella;
+
 
 	
-	Console::WriteLine(maps->ToString());
+
+	
+
+	//ThreadPresentazione ^sd = gcnew ThreadPresentazione(&listaTreni);
+	
+	
+	//Thread^ oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
+
+	//oThread2->Start();
+
+
+	//mapTrenoFisicoLogico ^maps = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
+
+	
+	//Console::WriteLine(maps->ToString());
 
 	Thread^ oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC::TCP_Management_receive ) );
 
 	oThread1->Start();
 
-	TCP_Management();
+	//TCP_Management();
 
 	
 	//pacchettoAcknowledgement ack;

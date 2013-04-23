@@ -27,7 +27,7 @@ int pacchettostatolineaatc::getSize()
 	// 94 per la parte fissa del pacchetto 
 	size += 94;
 	// 36 bit per ogni N_ITER
-	if( data.pkg.N_ITER!=NULL){
+	if( data.pkg.N_ITER || data.pkg.N_ITER==0   ){
 
 		size += 36 * data.pkg.N_ITER;
 	}else{
