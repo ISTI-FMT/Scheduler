@@ -34,6 +34,22 @@ public:
 	// e nei successivi 8 byte il contenuto del pacchettoCommandData
 	void serializepacchettoCommandData(byte *buffer);
 	void deserializepacchettoCommandData(byte *buff);
+	
+	System::String ^ToString(){
+		System::String ^out = "NID_MESSAGE "+getNID_PACKET()+";\n";
+		out = out+"L_MESSAGE "+getL_PACKET()+";";
+		out = out+"T_TRAIN "+getQ_COMMAND_TYPE()+";";
+
+		if(getM_GOA_LEVEL()!=0 && getQ_COMMAND_TYPE() ==4)
+			out = out+"M_GOA_LEVEL "+getM_GOA_LEVEL()+";";
+		if(getNID_OPERATIONAL()!=0 && getQ_COMMAND_TYPE() ==5)
+		out = out+"NID_OPERATIONAL "+getNID_OPERATIONAL()+";";
+		
+		return out;
+	 
+	}
+
+	
 	~pacchettoCommandData(void);
 };
 

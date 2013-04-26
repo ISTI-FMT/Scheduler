@@ -34,25 +34,25 @@ int pacchettostatolineaatc::getSize()
 	return (size / 8) + 1;
 }
 
-System::String^ pacchettostatolineaatc::toPrint(){
+ystem::String^ pacchettostatolineaatc::toPrint(){
 	String ^out;
 
-	out = out+" "+data.NID_PACKET+";";
-	out = out+" "+data.L_PACKET+";";
-	out = out+" "+data.NID_OPERATIONAL+";";
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+	out = out+"L_PACKET: "+data.L_PACKET+";";
+	out = out+"NID_OPERATIONAL: "+data.NID_OPERATIONAL+";";
 
-	out = out+" "+data.pstato.NID_CDB+";";
-	out = out+" "+data.pstato.Q_STATOCDB+";";
-	out = out+" "+data.pstato.Q_DEVIATIOIO+";";
-	out = out+" "+data.N_ITER+";";
+	out = out+"NID_CDB: "+data.pstato.NID_CDB+";";
+	out = out+"Q_STATOCDB: "+data.pstato.Q_STATOCDB+";";
+	out = out+"Q_DEVIATIOIO: "+data.pstato.Q_DEVIATIOIO+";";
+	out = out+"N_ITER: "+data.N_ITER+";";
 	if(data.pstato1){
 		for(unsigned int i = 0; i < data.N_ITER; ++i)
 		{
-			out = out+" "+data.pstato1[i].NID_CDB+";";
+			out = out+"NID_CDB: "+data.pstato1[i].NID_CDB+";";
 
-			out = out+" "+data.pstato1[i].Q_STATOCDB+";";
+			out = out+"Q_STATOCDB: "+data.pstato1[i].Q_STATOCDB+";";
 
-			out = out+" "+data.pstato1[i].Q_STATOCDB+";";
+			out = out+"Q_DEVIATIOIO: "+data.pstato1[i].Q_DEVIATIOIO+";";
 
 		}
 	}

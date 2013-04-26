@@ -64,5 +64,7 @@ public:
 
 	void serialize(array<System::Byte>^bytez);
 	void deserialize(array<System::Byte>^bytez);
+	
+	virtual System::String ^ToString() override;
 };
 

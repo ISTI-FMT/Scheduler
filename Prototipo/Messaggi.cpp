@@ -114,3 +114,23 @@ void Messaggi::deserialize(array<System::Byte>^bytez){
 	
 	//
 }
+
+
+String ^Messaggi::ToString(){
+
+	String ^out = "NID_MESSAGE "+getNID_MESSAGE()+";\n";
+	out = out+"L_MESSAGE "+getL_MESSAGE()+";";
+	out = out+"T_TRAIN "+getT_TRAIN()+";";
+	if(getNID_ENGINE()){
+		out = out+"NID_ENGINE "+getNID_ENGINE()+";";
+	}
+	if(pkgcd1)
+		out= out+get_pacchettoCommandData()->ToString();
+
+	return out;
+	//if( pkgMP)
+	// if(pgkPres)
+	// if(pkgStatoATC)
+	// if(pkgAck)
+
+}
