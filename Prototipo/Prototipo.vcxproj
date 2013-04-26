@@ -71,6 +71,8 @@
   <ItemGroup>
     <ClInclude Include="Fermata.h" />
     <ClInclude Include="mapTrenoFisicoLogico.h" />
+    <ClInclude Include="Messaggi.h" />
+    <ClInclude Include="pacchettoCommandData.h" />
     <ClInclude Include="pacchettostatolineaatc.h" />
     <ClInclude Include="proveSerializzazione.h" />
     <ClInclude Include="String2string.h" />
@@ -80,13 +82,10 @@
     <ClInclude Include="ThreadListenerATC.h" />
     <ClInclude Include="ThreadPresentazione.h" />
     <ClInclude Include="utility.h" />
-    <ClInclude Include="pacchettoCommandData2.h" />
-    <ClInclude Include="pacchettoCommandData3.h" />
     <ClInclude Include="pacchettoMissionPlan.h" />
     <ClInclude Include="pacchettoAcknowledgement.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="struttureDatiMessaggi.h" />
-    <ClInclude Include="pacchettoCommandData1.h" />
     <ClInclude Include="TabellaOrario.h" />
     <ClInclude Include="TrenoFermate.h" />
   </ItemGroup>
@@ -94,6 +93,8 @@
     <ClCompile Include="Fermata.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />
+    <ClCompile Include="Messaggi.cpp" />
+    <ClCompile Include="pacchettoCommandData.cpp" />
     <ClCompile Include="pacchettostatolineaatc.cpp" />
     <ClCompile Include="proveSerializzazione.cpp" />
     <ClCompile Include="String2string.cpp" />
@@ -103,9 +104,6 @@
     <ClCompile Include="ThreadListenerATC.cpp" />
     <ClCompile Include="ThreadPresentazione.cpp" />
     <ClCompile Include="utility.cpp" />
-    <ClCompile Include="pacchettoCommandData1.cpp" />
-    <ClCompile Include="pacchettoCommandData2.cpp" />
-    <ClCompile Include="pacchettoCommandData3.cpp" />
     <ClCompile Include="pacchettoMissionPlan.cpp" />
     <ClCompile Include="pacchettoAcknowledgement.cpp" />
     <ClCompile Include="TabellaOrario.cpp" />

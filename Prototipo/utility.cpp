@@ -10,17 +10,17 @@ char vet[5]; // il buffer su cui si deve scrivere
 //
 void setbit(char buf[], int offset) {
   //
-  // estrai il byte da modifcare
+  // estrai il Byte da modifcare
   //
-  int byteoffset = offset/8;
+  int Byteoffset = offset/8;
   int bitoffset = offset%8;
-  char workbyte;
-  workbyte= buf[byteoffset];
+  char workByte;
+  workByte= buf[Byteoffset];
   //
   // setta il bit;
   //
-  workbyte = workbyte | masks[bitoffset];
-  buf[byteoffset]=workbyte;
+  workByte = workByte | masks[bitoffset];
+  buf[Byteoffset]=workByte;
 }
 
 //
@@ -56,37 +56,37 @@ unsigned int toint(char C) {
   return res;
 };
 
-// funzione che copia gli N elementi di un byte[] in un array<Byte>
-void copiaByteInArray(byte *source, array<Byte> ^dest, int N)
+/*// funzione che copia gli N elementi di un Byte[] in un array<Byte>
+void copiaByteInArray(Byte *source, array<Byte> ^dest, int N)
 {
 	for(int i = 0; i < N; ++i)
 		dest[i] = source[i];
 }
 
-// funzione che copia gli N elementi di un array<Byte> in un byte[]
-void copiaArrayInByte(array<Byte> ^source, byte *dest, int N)
+// funzione che copia gli N elementi di un array<Byte> in un Byte[]
+void copiaArrayInByte(array<System::Byte> ^source, Byte *dest, int N)
 {
 	for(int i = 0; i < N; ++i)
 		dest[i] = source[i];
 }
-
+*/
 //
 // dato un offset >=0 (0..*) che rappresenta la posizione di un bit all'interno
 // del vettore di caratteri buf, restituisce il valore numerico del bit.
 //
 int getbit(char buf[], int offset) {
   //
-  // estrai il byte da leggere
+  // estrai il Byte da leggere
   //
   int res;
-  int byteoffset = offset/8;
+  int Byteoffset = offset/8;
   int bitoffset = offset%8;
-  char workbyte;
-  workbyte= buf[byteoffset];
+  char workByte;
+  workByte= buf[Byteoffset];
   //
   // leggi il bit;
   //
-  res = (workbyte & masks[bitoffset]) != 0;
+  res = (workByte & masks[bitoffset]) != 0;
   return res;
 }
 

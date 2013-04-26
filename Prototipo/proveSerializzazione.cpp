@@ -7,7 +7,7 @@ proveSerializzazione::proveSerializzazione(void)
 
 void proveSerializzazione::provaSerializePacchettostatolineaatc(pacchettostatolineaatc &pkt, int index)
 {
-	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, NID_OPERATIONAL, NID_CDB,N_ITER,Q_DEVIATIOIO,Q_STATOCDB;
+/*	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, NID_OPERATIONAL, NID_CDB,N_ITER,Q_DEVIATIOIO,Q_STATOCDB;
 	cout << "Insert NID_MESSAGE" << endl;
 	cin >> NID_MESSAGE;
 	pkt.setNID_MESSAGE(NID_MESSAGE);
@@ -45,14 +45,14 @@ void proveSerializzazione::provaSerializePacchettostatolineaatc(pacchettostatoli
 	
 
 	
-	
+	*/
 }
 
 
 
 void  proveSerializzazione::provaSerializePacchettoPresentazione(pacchettopresentazione &pkt)
 {
-	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, N_PORT,NID_ENGINE;
+	/*int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, N_PORT,NID_ENGINE;
 	cout << "Insert NID_MESSAGE" << endl;
 	cin >> NID_MESSAGE;
 	pkt.setNID_MESSAGE(NID_MESSAGE);
@@ -76,13 +76,13 @@ void  proveSerializzazione::provaSerializePacchettoPresentazione(pacchettopresen
 	pkt.setL_PACKET(L_PACKET);
 	cout << "Insert M_PORT" << endl;
 	cin >> N_PORT;
-	pkt.setM_PORT(N_PORT);
+	pkt.setM_PORT(N_PORT);*/
 	
 }
 
 void  proveSerializzazione::provaSerializePacchettoack(pacchettoAcknowledgement &pkt)
 {
-	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, Q_MISSION;
+	/*int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, Q_MISSION;
 	cout << "Insert NID_MESSAGE" << endl;
 	cin >> NID_MESSAGE;
 	pkt.setNID_MESSAGE(NID_MESSAGE);
@@ -100,12 +100,12 @@ void  proveSerializzazione::provaSerializePacchettoack(pacchettoAcknowledgement 
 	pkt.setL_PACKET(L_PACKET);
 	cout << "InsertQMission" << endl;
 	cin >> Q_MISSION;
-	pkt.setQ_MISSION_RESPONSE(Q_MISSION);
+	pkt.setQ_MISSION_RESPONSE(Q_MISSION);*/
 	
 }
-void  proveSerializzazione::provaSerializePacchettoCommandData1(pacchettoCommandData1 &pkt)
+void  proveSerializzazione::provaSerializePacchettoCommandData1(pacchettoCommandData &pkt)
 {
-	int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, Q_COMMAND_TYPE;
+	/*int NID_MESSAGE, L_MESSAGE, T_TRAIN, NID_PACKET, L_PACKET, Q_COMMAND_TYPE;
 	cout << "Insert NID_MESSAGE" << endl;
 	cin >> NID_MESSAGE;
 	pkt.setNID_MESSAGE(NID_MESSAGE);
@@ -123,7 +123,7 @@ void  proveSerializzazione::provaSerializePacchettoCommandData1(pacchettoCommand
 	pkt.setL_PACKET(L_PACKET);
 	cout << "Insert Q_COMMAND_TYPE" << endl;
 	cin >> Q_COMMAND_TYPE;
-	pkt.setQ_COMMAND_TYPE(Q_COMMAND_TYPE);
+	pkt.setQ_COMMAND_TYPE(Q_COMMAND_TYPE);*/
 	//byte buff[100];
 	//for(int i = 0; i < 100; ++i)
 	//	buff[i] = 0;

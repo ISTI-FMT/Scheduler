@@ -1,6 +1,6 @@
 #include "ThreadPresentazione.h"
 #using <System.dll>
-#include "pacchettopresentazione.h"
+#include "Messaggi.h"
 #include "utility.h"
 #include "phisicalTrainList.h"
 #include "String2string.h"
@@ -62,16 +62,10 @@ using namespace System::Runtime::InteropServices;
 				
 				stream->Read( bytes, 0, bytes->Length );
 
-				pacchettopresentazione pkt1;
+				Messaggi ^pkt1 = gcnew Messaggi();
 
-				byte *buffer2 = new byte[pkt1.getSize()];
-				for(int i = 0; i < pkt1.getSize(); ++i)
-					buffer2[i] = 0;
-
-				copiaArrayInByte(bytes, buffer2, pkt1.getSize());
-
-				stampaBuffer(buffer2, 136);
-				pkt1.deserialize(buffer2);
+				
+				pkt1->deserialize(bytes);
 				//Console::WriteLine(pkt1.getNID_MESSAGE());
 				//Console::WriteLine(pkt1.getL_MESSAGE());
 				//Console::WriteLine(pkt1.getM_PORT());
@@ -80,8 +74,8 @@ using namespace System::Runtime::InteropServices;
 
 				// creo l'oggetto di tipo phisicalTrain
 				phisicalTrain treno;
-				treno.setEngineNumber(pkt1.getNID_ENGINE());
-				treno.setTcpPort(pkt1.getM_PORT());
+				treno.setEngineNumber(pkt1->getNID_ENGINE());
+				treno.setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
 				// converto da System::String a std::string
 				string ip = String2string((( (IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
 				

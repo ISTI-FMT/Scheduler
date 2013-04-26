@@ -6,6 +6,7 @@
 using namespace System;
 using namespace std;
 
+
 //
 // dato un valore data, copia gli len bit meno significativi nel
 // vettore buf alle posizioni di bit assolute off..off+len-1
@@ -22,10 +23,10 @@ void setbit( char buf[], int offset);
 unsigned int toint(char C);
 
 // funzione che copia gli N elementi di un byte[] in un array<Byte>
-void copiaByteInArray(byte *source, array<Byte> ^dest, int N);
-
+//void copiaByteInArray(byte *source, array<Byte> ^dest, int N);
+//
 // funzione che copia gli N elementi di un array<Byte> in un byte[]
-void copiaArrayInByte(array<Byte> ^ource, byte *dest, int N);
+//void copiaArrayInByte(array<Byte> ^ource, byte *dest, int N);
 
 //
 // dato un offset >=0 (0..*) che rappresenta la posizione di un bit all'interno
