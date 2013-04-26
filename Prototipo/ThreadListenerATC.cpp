@@ -1,6 +1,7 @@
 #include "ThreadListenerATC.h"
 #using <System.dll>
 #include "utility.h"
+#include "Messaggi.h"
 
 using namespace System;
 using namespace System::IO;
@@ -47,10 +48,13 @@ void ThreadListenerATC::TCP_Management_receive(){
 			// Get a stream Object* for reading and writing
 			NetworkStream^ stream = client->GetStream();
 
-			pacchettostatolineaatc pkt1;
+			Messaggi ^pkt1 = gcnew Messaggi();
+		
+			pkt1->set_pacchettoStatoLineaATC();
+			
 			int numberOfBytesRead = 0;
 
-			array<Byte>^bytes = gcnew array<Byte>(pkt1.getSize());
+			array<Byte>^bytes = gcnew array<Byte>(pkt1->get_pacchettoStatoLineaATC()->getSize());
 			//do
 			//{
 				//numberOfBytesRead =stream->Read( bytes, 0, bytes->Length );
@@ -62,22 +66,17 @@ void ThreadListenerATC::TCP_Management_receive(){
 
 
 
-			byte *buffer2 = new byte[pkt1.getSize()];
-			for(int i = 0; i < pkt1.getSize(); ++i)
-				buffer2[i] = 0;
 
 
-			copiaArrayInByte(bytes, buffer2, pkt1.getSize());
+			
 
-			//stampaBuffer(buffer2, pkt1.getSize()*8);
-
-			pkt1.deserialize(buffer2);
+			pkt1->deserialize(bytes);
 
 
 			
 			Console::ForegroundColor = ConsoleColor::Red;
 			Console::WriteLine("{0} ATC ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
-			Console::WriteLine(pkt1.toPrint());
+			Console::WriteLine(pkt1->get_pacchettoStatoLineaATC()->toPrint());
 			Console::ResetColor();
 
 			// creo l'oggetto di tipo phisicalTrain

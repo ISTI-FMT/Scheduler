@@ -134,7 +134,7 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 
 // funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 // alla missione associata al TRN in questione
-void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan &pkt)
+void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 {
 	bool error;
 	// ottengo un riferimento alle fermate del treno TRN
@@ -144,15 +144,15 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan &pkt)
 	{
 		// ottengo un riferimento alla lista delle feremate del treno
 		std::list<Fermata> stops = treno.getListaFermate();
-		pkt.setN_ITER1(stops.size());
-		pkt.setN_ITER2(stops.size());
+		pkt->setN_ITER1(stops.size());
+		pkt->setN_ITER2(stops.size());
 		int i = 0;
 		for(std::list<Fermata>::iterator it = stops.begin(); it != stops.end(); ++it)
 		{
-			pkt.setQ_DOORS(i, (*it).getLatoAperturaPorte());
+			pkt->setQ_DOORS(i, (*it).getLatoAperturaPorte());
 			time_t orarioPartenza = mktime(&(*it).getOrarioPartenza());
 			time_t orarioArrivo = mktime(&(*it).getOrarioArrivo());
-			pkt.setT_DOORS_TIME(i, (orarioPartenza - orarioArrivo));
+			pkt->setT_DOORS_TIME(i, (orarioPartenza - orarioArrivo));
 			++i;
 		}
 	}

@@ -27,7 +27,7 @@ public:
 	void leggiTabellaOrario(string nomeFile);
 	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 	// alla missione associata al TRN in questione
-	void setMissionPlanMessage(int TRN, pacchettoMissionPlan &pkt);
+	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
 	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
 	TrenoFermate& getTrenoFermate(int TRN, bool &error);
 	~TabellaOrario();

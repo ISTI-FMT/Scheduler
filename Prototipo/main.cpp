@@ -1,12 +1,7 @@
 #include "TabellaOrario.h"
 #using <System.dll>
 #include "utility.h"
-#include "pacchettoMissionPlan.h"
-#include "pacchettoAcknowledgement.h"
-#include "pacchettoCommandData1.h"
-#include "pacchettoCommandData2.h"
-#include "pacchettoCommandData3.h"
-#include "pacchettopresentazione.h"
+
 #include "phisicalTrainList.h"
 #include "String2string.h"
 #include "ThreadListenerATC.h"
@@ -14,6 +9,7 @@
 #include "ThreadPresentazione.h"
 #include "mapTrenoFisicoLogico.h"
 #include "proveSerializzazione.h"
+#include "Messaggi.h"
 
 using namespace std;
 using namespace System;
@@ -72,64 +68,56 @@ void TCP_Management()
 		int x;
 		cout << "Premi un pulsante dopo che almeno un treno si e' presentato all'ATS" << endl;
 		cin >> x;
-
-		pacchettoCommandData1 wakeUpPkt;
-
-		wakeUpPkt.setNID_MESSAGE(0);
-		wakeUpPkt.setNID_PACKET(0);
-		wakeUpPkt.setQ_COMMAND_TYPE(WAKE_UP);
-		wakeUpPkt.setT_TRAIN(tabella.getFirstTRN());
-
-		byte *buffer1 = new byte[wakeUpPkt.getSize()];
-		for(int i = 0; i < wakeUpPkt.getSize(); ++i)
-			buffer1[i] = 0;
 		
-		wakeUpPkt.serializepacchettoCommandData(buffer1);
-		stampaBuffer(buffer1, wakeUpPkt.getSize() * 8);
-
-		// Buffer for reading data
-		array<Byte>^bytes_buffer1 = gcnew array<Byte>(wakeUpPkt.getSize());
-
-		copiaByteInArray(buffer1, bytes_buffer1, wakeUpPkt.getSize());
-
-
-		pacchettoCommandData3 trainRunningNumberPkt;
-
-		trainRunningNumberPkt.setNID_MESSAGE(1);
-		trainRunningNumberPkt.setNID_PACKET(1);
-		trainRunningNumberPkt.setQ_COMMAND_TYPE(TRN);
-		trainRunningNumberPkt.setT_TRAIN(tabella.getFirstTRN());
-		trainRunningNumberPkt.setNID_OPERATIONAL(tabella.getFirstTRN());
-
-		byte *buffer2 = new byte[trainRunningNumberPkt.getSize()];
-		for(int i = 0; i < trainRunningNumberPkt.getSize(); ++i)
-			buffer2[i] = 0;
+		Messaggi ^wakeUpPkt = gcnew Messaggi();
 		
-		trainRunningNumberPkt.serializepacchettoCommandData(buffer2);
-		stampaBuffer(buffer2, trainRunningNumberPkt.getSize() * 8);
+		
+		wakeUpPkt->setNID_MESSAGE(201);
 
+		
+		wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
+		wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
+		wakeUpPkt->setT_TRAIN(tabella.getFirstTRN());
+
+
+
+		
+		
 		// Buffer for reading data
-		array<Byte>^bytes_buffer2 = gcnew array<Byte>(trainRunningNumberPkt.getSize());
+		array<Byte>^bytes_buffer1 = gcnew array<Byte>(wakeUpPkt->get_pacchettoCommandData()->getSize());
 
-		copiaByteInArray(buffer2, bytes_buffer2, trainRunningNumberPkt.getSize());
+		wakeUpPkt->serialize(bytes_buffer1);
 
-		pacchettoMissionPlan missionPlanPkt;
 
+		Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
+		
+
+		trainRunningNumberPkt->setNID_MESSAGE(201);
+		trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
+		trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
+		trainRunningNumberPkt->setT_TRAIN(tabella.getFirstTRN());
+		trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabella.getFirstTRN());
+
+		
+		// Buffer for reading data
+		array<Byte>^bytes_buffer2 = gcnew array<Byte>(trainRunningNumberPkt->get_pacchettoCommandData()->getSize());
+
+		trainRunningNumberPkt->serialize(bytes_buffer2);
+
+		Messaggi ^missionPlanPkt = gcnew Messaggi();
+
+		missionPlanPkt->setNID_MESSAGE(200);
+		missionPlanPkt->get_pacchettoMissionPlan()->setNID_PACKET(160);
 		int TRN = tabella.getFirstTRN();
-		tabella.setMissionPlanMessage(TRN, missionPlanPkt);
+		tabella.setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionPlan());
 
-		byte *buffer3 = new byte[missionPlanPkt.getSize()];
-		for(int i = 0; i < missionPlanPkt.getSize(); ++i)
-			buffer3[i] = 0;
-		
-		missionPlanPkt.serializeMissionPlanPkt(buffer3);
-		stampaBuffer(buffer3, missionPlanPkt.getSize() * 8);
+	
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer3 = gcnew array<Byte>(missionPlanPkt.getSize());
-
-		copiaByteInArray(buffer3, bytes_buffer3, missionPlanPkt.getSize());
-
+		array<Byte>^bytes_buffer3 = gcnew array<Byte>(missionPlanPkt->get_pacchettoMissionPlan()->getSize());
+		
+		missionPlanPkt->serialize(bytes_buffer3);
+		
 		// Creates the Socket to send data over a TCP connection.
 		Socket ^sock = gcnew Socket( AddressFamily::InterNetwork,SocketType::Stream,ProtocolType::Tcp );
 		String ^IP = gcnew String(listaTreni.getFirstTrainIP().c_str());
@@ -137,25 +125,26 @@ void TCP_Management()
 
 		NetworkStream ^myStream = gcnew NetworkStream(sock);
 
-		myStream->Write(bytes_buffer1, 0, wakeUpPkt.getSize());
-		myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt.getSize());
-		myStream->Write(bytes_buffer3, 0, missionPlanPkt.getSize());
+		myStream->Write(bytes_buffer1, 0, wakeUpPkt->get_pacchettoCommandData()->getSize());
+		myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->get_pacchettoCommandData()->getSize());
+		myStream->Write(bytes_buffer3, 0, missionPlanPkt->get_pacchettoMissionPlan()->getSize());
 
-		pacchettoAcknowledgement pktAck;
 
-		byte *buffer4 = new byte[pktAck.getSize()];
-		for(int i = 0; i < pktAck.getSize(); ++i)
-			buffer4[i] = 0;
+		Messaggi ^pktAck = gcnew Messaggi();
+		
+		pktAck->set_pacchettoAcknowledgement();
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck.getSize());
+		array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck->get_pacchettoAcknowledgement()->getSize());
 
-		myStream->Read(bytes_buffer4, 0, pktAck.getSize());
+		myStream->Read(bytes_buffer4, 0, pktAck->get_pacchettoAcknowledgement()->getSize());
 
-		copiaArrayInByte(bytes_buffer4, buffer4, pktAck.getSize());
+		
 
-		pktAck.deserialize(buffer4);
-		stampaBuffer(buffer4, pktAck.getSize());
+		pktAck->deserialize(bytes_buffer4);
+
+		cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
+		
 
 		cout << "DONE\n";
 	}

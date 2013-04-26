@@ -14,45 +14,34 @@ struct structuredHeader
 	unsigned int NID_MESSAGE : 8;
 	unsigned int L_MESSAGE : 11;
 	unsigned int T_TRAIN : 32;
+	unsigned int NID_ENGINE : 24;
+};
+
+struct commandData
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	unsigned int Q_COMMAND_TYPE : 3;
+	unsigned int M_GOA_LEVEL : 2;
+	unsigned int NID_OPERATIONAL : 32;
+	unsigned int PADDING : 5;
 };
 
 // Messaggio command data quando Q_COMMAND_TYPE != "Chane GOA Level" e Q_COMMAND_TYPE != "Train Running Number"
 // L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
 // oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
-struct commandData1
-{
-	structuredHeader head;
-	unsigned int NID_PACKET : 8;
-	unsigned int L_PACKET : 13;
-	unsigned int Q_COMMAND_TYPE : 3;
-	unsigned int PADDING : 5;
-};
+
+
 
 // Messaggio command data quando Q_COMMAND_TYPE == "Chane GOA Level"
 // L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
 // oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
-struct commandData2
-{
-	structuredHeader head;
-	unsigned int NID_PACKET : 8;
-	unsigned int L_PACKET : 13;
-	unsigned int Q_COMMAND_TYPE : 3;
-	unsigned int M_GOA_LEVEL : 2;
-	unsigned int PADDING : 3;
-};
+
 
 // Messaggio command data quando Q_COMMAND_TYPE == "Train Running Number"
 // L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
 // oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
-struct commandData3
-{
-	structuredHeader head;
-	unsigned int NID_PACKET : 8;
-	unsigned int L_PACKET : 13;
-	unsigned int Q_COMMAND_TYPE : 3;
-	unsigned int NID_OPERATIONAL : 32;
-	unsigned int PADDING : 5;
-};
+
 
 // Struttura dati contente la coppia di valori D_MISSION, V_MISSION
 // 22 bit => 3 byte; dell'ultimo byte 2 bit non saranno significativi
@@ -93,7 +82,7 @@ struct missionHeader
 // oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
 struct missionData
 {
-	structuredHeader head;
+	
 	missionHeader missionHead;
 	missionStruct1 mS1;
 	unsigned int N_ITER1 : 5;
@@ -116,19 +105,14 @@ struct missionAck
 	unsigned int L_PACKET : 13;
 	unsigned int T_TRAIN : 32;
 	unsigned int Q_MISSION_RESPONSE : 1;
+	unsigned int padding : 7;
 };
 
 // Struttura dati per la gestione dell'acknowledgement
 // 129 bit => 17 byte (7 bit di padding)
 // L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
 // oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
-struct acknowledgement
-{
-	struct structuredHeader head;
-	unsigned int NID_ENGINE : 24;
-	struct missionAck ack;
-	unsigned int padding : 7;
-};
+
 
 struct pstatolineastruct{
 
@@ -140,19 +124,14 @@ unsigned int NID_CDB : 32;
 
 //struttura dati per gestire il network data
 // 53 bit
-struct networkdata 
-{
-	unsigned int NID_PACKET : 8;
-	unsigned int L_PACKET : 13;
-	unsigned int M_PORT : 32;
-	
-};
+
 
 struct presentation
 {
-	struct structuredHeader head;
-	unsigned int NID_ENGINE : 24;
-	struct networkdata net;
+	
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	unsigned int M_PORT : 32;
 	//unsigned int padding : 8;
 };
 
@@ -166,7 +145,3 @@ struct pkgstatolinea{
 	struct pstatolineastruct *pstato1;
 };
 
-struct messtatolinea{
-	struct structuredHeader head;
-	struct pkgstatolinea pkg;
-};
