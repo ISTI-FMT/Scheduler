@@ -15,84 +15,48 @@ using namespace System::Threading::Tasks;
 ThreadListenerATC::ThreadListenerATC(){
 
 }
-void ThreadListenerATC::TCP_Management_receive(){
+void ThreadListenerATC::UDP_Management_receive(){
 	try
 	{
 		// Set the TcpListener on port 13000.
 		Int32 port = 23002;
-		IPAddress^ localAddr = IPAddress::Any;
+		
+		//Creates a UdpClient for reading incoming data.
+		UdpClient^ receivingUdpClient = gcnew UdpClient( port );
 
-		// TcpListener* server = new TcpListener(port);
-		TcpListener^ server = gcnew TcpListener( localAddr,port );
-
-		// Start listening for client requests.
-		server->Start();
-
-		// Buffer for reading data
-
-		//String^ data = nullptr;
-
+		//Creates an IPEndPoint to record the IP Address and port number of the sender.  
+		// The IPEndPoint will allow you to read datagrams sent from any source.
+		
+		
 		while ( true )
 		{
+			IPEndPoint^ RemoteIpEndPoint = gcnew IPEndPoint( IPAddress::Any,0 );
 			Console::ForegroundColor = ConsoleColor::Red;
 			Console::Write( "Waiting for a connection of ATC... " );
 
-			// Perform a blocking call to accept requests.
-			// You could also user server.AcceptSocket() here.
+			array<Byte>^receiveBytes = receivingUdpClient->Receive(  RemoteIpEndPoint );
 
-			TcpClient^ client = server->AcceptTcpClient();
 			Console::ForegroundColor = ConsoleColor::Red;
 			Console::WriteLine( "ATC Connected!" );
 			//data = nullptr;
 
-			// Get a stream Object* for reading and writing
-			NetworkStream^ stream = client->GetStream();
 
 			Messaggi ^pkt1 = gcnew Messaggi();
 		
-			pkt1->set_pacchettoStatoLineaATC();
+			//pkt1->set_pacchettoStatoLineaATC();
 			
-			int numberOfBytesRead = 0;
+						
 
-			array<Byte>^bytes = gcnew array<Byte>(pkt1->get_pacchettoStatoLineaATC()->getSize());
-			//do
-			//{
-				//numberOfBytesRead =stream->Read( bytes, 0, bytes->Length );
-
-			//}
-			//while ( stream->DataAvailable );
-
-			stream->Read( bytes, 0, bytes->Length );
-
-
-
-
-
-			
-
-			pkt1->deserialize(bytes);
+			pkt1->deserialize(receiveBytes);
 
 
 			
 			Console::ForegroundColor = ConsoleColor::Red;
-			Console::WriteLine("{0} ATC ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
+			Console::WriteLine("{0} ATC ti ha inviato un messaggio",RemoteIpEndPoint->Address->ToString());
 			Console::WriteLine(pkt1->get_pacchettoStatoLineaATC()->toPrint());
 			Console::ResetColor();
 
-			// creo l'oggetto di tipo phisicalTrain
-
-			// converto da System::String a std::string
-			//string ip = String2string((( (IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
-
-
-			// aggiungo il treno alla lista dei treni fisici
-
-			//data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
-
-			//Console::WriteLine( String::Format( "Received: {0} ", data) );
-
-			// Shutdown and end connection
-			client->Close();
+			
 		}
 	}
 	catch ( SocketException^ e ) 

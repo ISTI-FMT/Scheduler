@@ -225,7 +225,7 @@ int main()
 	
 	//Console::WriteLine(maps->ToString());
 
-	Thread^ oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC::TCP_Management_receive ) );
+	Thread^ oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC::UDP_Management_receive ) );
 
 	oThread1->Start();
 
