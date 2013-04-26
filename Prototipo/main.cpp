@@ -195,7 +195,7 @@ int main()
 
 	stampaBuffer(buffer2, 145);*/
 	
-	proveSerializzazione serial;
+	/*proveSerializzazione serial;
 
 	pacchettopresentazione pkt1;
 
@@ -213,7 +213,7 @@ int main()
 
 	Console::WriteLine("Premi un Tasto x USCIRE");
 
-	Console::Read();
+	Console::Read();*/
 
 	tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 	//cout << tabella;

@@ -162,7 +162,7 @@ void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 	push(buffer, data.mS1.D_MISSION, 15, 74);
 	push(buffer, data.mS1.V_MISSION, 7, 89);
 	push(buffer, data.N_ITER1, 5, 96);
-	data.mS1_vect = new missionStruct1[data.N_ITER1];
+	//data.mS1_vect = new missionStruct1[data.N_ITER1];
 	int offset = 101;
 	for(unsigned int i = 0; i < data.N_ITER1; ++i)
 	{
@@ -183,7 +183,7 @@ void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 	offset += 12;
 	push(buffer, data.N_ITER2, 5, offset);
 	offset += 5;
-	data.mS2_vect = new missionStruct2[data.N_ITER2];
+	//data.mS2_vect = new missionStruct2[data.N_ITER2];
 	for(unsigned int i = 0; i < data.N_ITER2; ++i)
 	{
 		push(buffer, data.mS2_vect[i].T_START_TIME, 12, offset);
@@ -209,7 +209,7 @@ void pacchettoMissionPlan::deserializeMissionPlanPkt(byte *buffer)
 	data.missionHead.Q_SCALE=pop(buffer, 2, 72);
 	data.mS1.D_MISSION=pop(buffer, 15, 74);
 	data.mS1.V_MISSION=pop(buffer, 7, 89);
-	data.N_ITER1=pop(buffer, 5, 96);
+	setN_ITER1(pop(buffer, 5, 96));
 	int offset = 101;
 	for(unsigned int i = 0; i < data.N_ITER1; ++i)
 	{
@@ -228,7 +228,7 @@ void pacchettoMissionPlan::deserializeMissionPlanPkt(byte *buffer)
 	offset += 4;
 	data.mS2.T_DOORS_TIME=pop(buffer, 12, offset);
 	offset += 12;
-	data.N_ITER2=pop(buffer, 5, offset);
+	setN_ITER2(pop(buffer, 5, offset));
 	offset += 5;
 	for(unsigned int i = 0; i < data.N_ITER2; ++i)
 	{
