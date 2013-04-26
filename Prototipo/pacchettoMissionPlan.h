@@ -49,5 +49,43 @@ public:
 	int getT_DOORS_TIME(int index);
 	// funzione che serializza il messaggio....il buffer deve contenere tutti 0 prima di invoca il metodo.
 	~pacchettoMissionPlan(void);
+	
+	System::String ^ ToString(){
+
+
+		System::String ^out;
+
+		out = out+"NID_PACKET: "+data.missionHead.NID_PACKET+";";
+		out = out+"L_PACKET: "+data.missionHead.L_PACKET+";";
+		out = out+"Q_SCALE: "+data.missionHead.Q_SCALE+";";
+		out = out+"Q_SCALE: "+data.mS1.D_MISSION+";";
+		out = out+"V_MISSION: "+data.mS1.V_MISSION+";";
+		out = out+"N_ITER1: "+data.N_ITER1+";";
+		if(data.mS1_vect){
+			for(unsigned int i=0;i<data.N_ITER1;i++){
+				out = out+"Q_SCALE: "+data.mS1_vect[i].D_MISSION+";";
+				out = out+"V_MISSION: "+data.mS1_vect[i].V_MISSION+";";
+
+			}
+		}
+		out = out+"T_START_TIME: "+data.mS2.T_START_TIME+";";
+		out = out+"NID_LRGB: "+data.mS2.NID_LRGB+";";
+		out = out+"D_STOP: "+data.mS2.D_STOP+";";
+		out = out+"Q_DOORS: "+data.mS2.Q_DOORS+";";
+		out = out+"T_DOORS_TIME: "+data.mS2.T_DOORS_TIME+";";
+
+		out = out+"N_ITER2: "+data.N_ITER2+";";
+		if(data.mS2_vect){
+			for(unsigned int i=0;i<data.N_ITER2;i++){
+				out = out+"T_START_TIME: "+data.mS2_vect[i].T_START_TIME+";";
+				out = out+"NID_LRGB: "+data.mS2_vect[i].NID_LRGB+";";
+				out = out+"D_STOP: "+data.mS2_vect[i].D_STOP+";";
+				out = out+"Q_DOORS: "+data.mS2_vect[i].Q_DOORS+";";
+
+			}
+		}
+
+		return out;
+	};
 };
 

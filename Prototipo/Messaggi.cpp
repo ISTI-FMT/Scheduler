@@ -127,10 +127,15 @@ String ^Messaggi::ToString(){
 	if(pkgcd1)
 		out= out+get_pacchettoCommandData()->ToString();
 
+	if( pkgMP)
+		out= out+get_pacchettoMissionPlan()->ToString();
+	if(pgkPres)
+		out= out+get_pacchettoPresentazione()->ToString();
+	 if(pkgStatoATC)
+		 out= out+get_pacchettoStatoLineaATC()->toPrint();
+	if(pkgAck)
+		out= out+get_pacchettoAcknowledgement()->ToString();
+
 	return out;
-	//if( pkgMP)
-	// if(pgkPres)
-	// if(pkgStatoATC)
-	// if(pkgAck)
 
 }
