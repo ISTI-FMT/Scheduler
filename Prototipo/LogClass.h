@@ -22,7 +22,7 @@ public:
 	
 void save(){
 	 String^ path = System::IO::Directory::GetCurrentDirectory();
-	 System::IO::StreamWriter ^file = gcnew System::IO::StreamWriter("WriteLines2.txt", true);
+	 System::IO::StreamWriter ^file = gcnew System::IO::StreamWriter("LogMesssageScheduler.txt", true);
 	 for each (LogMessage ^var in logmsg)
 	 {
 			file->WriteLine(var->ToString());

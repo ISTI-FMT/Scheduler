@@ -9,10 +9,11 @@ ref class ThreadPresentazione
 {
 private:
 	 phisicalTrainList ^listaTreni;
+	 LogClass ^logMSG;
 public:
 	
 	ThreadPresentazione();
-	ThreadPresentazione(phisicalTrainList ^lt);
+	ThreadPresentazione(phisicalTrainList ^lt,LogClass ^log );
 	void TCP_Management_receive();
 	static void stampaBuffer(byte *buff, int nBit);
 };

@@ -9,6 +9,7 @@
 #include "ThreadPresentazione.h"
 #include "mapTrenoFisicoLogico.h"
 #include "Messaggi.h"
+#include "LogClass.h"
 
 using namespace std;
 using namespace System;
@@ -178,11 +179,11 @@ int main()
 
 	phisicalTrainList ^listaTreni = gcnew phisicalTrainList();
 
-	
+	 LogClass ^logMSG = gcnew LogClass();
 
 	
 
-	ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni);
+	ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni,logMSG);
 	
 	
 	Thread^ oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
@@ -212,6 +213,8 @@ int main()
 	Console::WriteLine("Premi un Tasto x USCIRE");
 
 	Console::Read();
+
+	logMSG->save();
 
 	//return 0;
 }
