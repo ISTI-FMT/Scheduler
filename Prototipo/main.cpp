@@ -8,7 +8,6 @@
 #include <iostream>
 #include "ThreadPresentazione.h"
 #include "mapTrenoFisicoLogico.h"
-#include "proveSerializzazione.h"
 #include "Messaggi.h"
 
 using namespace std;
@@ -22,34 +21,9 @@ using namespace System::Threading::Tasks;
 
 TabellaOrario tabella;
 
-void stampaBuffer(byte *buff, int nBit)
-{
-	cout << nBit << endl;
-
-	for(int j = 0; j < (nBit / 8); ++j)
-	{
-		for(int k = 7; k >= 0; --k)
-		{
-			byte mask = 1 << k;
-			byte aux = buff[j] & mask;
-			char supp = aux?'1':'0';
-			cout << supp;
-		}
-		cout << endl;
-	}
-	for(int k = (nBit % 8) - 1; k >= 0; --k)
-	{
-		byte mask = 1 << k;
-		byte aux = buff[(nBit / 8) + 1] & mask;
-		char supp = aux?'1':'0';
-		cout << supp;
-	}
-	cout << endl;
-}
 
 
-// porta su cui il treno è in ascolto
-const int listenerPort = 5610;
+
 
 /*------------------------------------------------------------------------------------
 L'ATS gestisce delle connessioni TCP/IP con gli ATO dei treni sotto il suo controllo.
@@ -60,13 +34,7 @@ void TCP_Management(phisicalTrain ^Treno)
 {
 	try
 	{
-		//Int32 port = listenerPort;
-		//IPAddress^ localAddr = IPAddress::Parse( "146.48.84.52" );
-		//IPAddress^ localAddr = IPAddress::Parse( "127.0.0.1" );
-
-		//int x;
-		//cout << "Premi un pulsante dopo che almeno un treno si e' presentato all'ATS" << endl;
-		//cin >> x;
+		
 		
 		Messaggi ^wakeUpPkt = gcnew Messaggi();
 		
@@ -240,12 +208,7 @@ int main()
 	TCP_Management(listaTreni->getPrimo());
 
 	
-	//pacchettoAcknowledgement ack;
-	//byte *buffer3 = new byte[ack.getSize()];
-	//provaSerializePacchettoack(ack);
-	//ack.serialize(buffer3);
-	//stampaBuffer(buffer3,ack.getSize() );
-
+	
 	Console::WriteLine("Premi un Tasto x USCIRE");
 
 	Console::Read();

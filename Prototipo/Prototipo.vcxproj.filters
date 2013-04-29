@@ -48,9 +48,6 @@
     <ClInclude Include="phisicalTrainList.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="String2string.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="pacchettostatolineaatc.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
@@ -63,13 +60,16 @@
     <ClInclude Include="mapTrenoFisicoLogico.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="proveSerializzazione.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="Messaggi.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="pacchettoCommandData.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="String2string.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="LogMessage.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
@@ -119,13 +119,13 @@
     <ClCompile Include="mapTrenoFisicoLogico.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="proveSerializzazione.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="Messaggi.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="pacchettoCommandData.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="LogMessage.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

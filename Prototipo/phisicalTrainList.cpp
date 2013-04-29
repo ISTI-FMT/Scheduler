@@ -5,23 +5,23 @@ using namespace System::Collections::Generic;
 
 phisicalTrainList::phisicalTrainList(void)
 {
-	treni = gcnew System::Collections::Generic::Dictionary<int,phisicalTrain^>();
+	treni = gcnew ConcurrentDictionary<int,phisicalTrain^>();
 
 }
 //metodo momentaneo
 phisicalTrain^ phisicalTrainList::getPrimo(){
-	Monitor::Enter(treni);
-	try{
-		Dictionary<int,phisicalTrain^>::ValueCollection^ valueColl = treni->Values;
-		for each (phisicalTrain ^var in valueColl)
+	
+	for each (phisicalTrain ^var in treni->Values)
 		{
 			return var;
 		}
-	}
-	finally
-	{
-		// Ensure that the lock is released.
-		Monitor::Exit(treni);
-	}
+	
+		
+	/*	for each (KeyValuePair<int,phisicalTrain^> ^var in treni)
+		{
+			return var->Value;
+		}*/
+	
+	
 	return nullptr;
 }
