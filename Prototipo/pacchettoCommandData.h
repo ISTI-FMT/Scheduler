@@ -37,9 +37,9 @@ public:
 	void deserializepacchettoCommandData(byte *buff);
 	
 	System::String ^ToString(){
-		System::String ^out = "NID_MESSAGE "+getNID_PACKET()+";\n";
-		out = out+"L_MESSAGE "+getL_PACKET()+";";
-		out = out+"T_TRAIN "+getQ_COMMAND_TYPE()+";";
+		System::String ^out = "NID_PACKET "+getNID_PACKET()+";\n";
+		out = out+"L_PACKET "+getL_PACKET()+";";
+		out = out+"Q_COMMAND_TYPE "+getQ_COMMAND_TYPE()+";";
 
 		if(getM_GOA_LEVEL()!=0 && getQ_COMMAND_TYPE() ==4)
 			out = out+"M_GOA_LEVEL "+getM_GOA_LEVEL()+";";

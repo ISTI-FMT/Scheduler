@@ -5,14 +5,14 @@
 
 using namespace System;
 
-public ref class ThreadPresentazione
+ref class ThreadPresentazione
 {
 private:
-	 phisicalTrainList *listaTreni;
+	 phisicalTrainList ^listaTreni;
 public:
 	
 	ThreadPresentazione();
-	ThreadPresentazione(phisicalTrainList *lt);
+	ThreadPresentazione(phisicalTrainList ^lt);
 	void TCP_Management_receive();
 	static void stampaBuffer(byte *buff, int nBit);
 };

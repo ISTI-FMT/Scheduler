@@ -20,7 +20,6 @@ using namespace System::Text;
 using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
-phisicalTrainList listaTreni;
 TabellaOrario tabella;
 
 void stampaBuffer(byte *buff, int nBit)
@@ -57,7 +56,7 @@ L'ATS gestisce delle connessioni TCP/IP con gli ATO dei treni sotto il suo contr
 Attraverso queste connessioni l'ATS invia e riceve messaggi da e verso gli ATO.
 ------------------------------------------------------------------------------------*/
 
-void TCP_Management()
+void TCP_Management(phisicalTrain ^Treno)
 {
 	try
 	{
@@ -65,9 +64,9 @@ void TCP_Management()
 		//IPAddress^ localAddr = IPAddress::Parse( "146.48.84.52" );
 		//IPAddress^ localAddr = IPAddress::Parse( "127.0.0.1" );
 
-		int x;
-		cout << "Premi un pulsante dopo che almeno un treno si e' presentato all'ATS" << endl;
-		cin >> x;
+		//int x;
+		//cout << "Premi un pulsante dopo che almeno un treno si e' presentato all'ATS" << endl;
+		//cin >> x;
 		
 		Messaggi ^wakeUpPkt = gcnew Messaggi();
 		
@@ -120,9 +119,11 @@ void TCP_Management()
 		
 		// Creates the Socket to send data over a TCP connection.
 		Socket ^sock = gcnew Socket( AddressFamily::InterNetwork,SocketType::Stream,ProtocolType::Tcp );
-		String ^IP = gcnew String(listaTreni.getFirstTrainIP().c_str());
-		sock->Connect(IP, listaTreni.getFirstTrainPort());
-
+		
+			
+		String ^IP = gcnew String(Treno->getIpAddress());
+		sock->Connect(IP, Treno->getTcpPort());
+		
 		NetworkStream ^myStream = gcnew NetworkStream(sock);
 
 		myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
@@ -207,17 +208,19 @@ int main()
 	tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 	//cout << tabella;
 
+	phisicalTrainList ^listaTreni = gcnew phisicalTrainList();
 
 	
 
 	
 
-	ThreadPresentazione ^sd = gcnew ThreadPresentazione(&listaTreni);
+	ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni);
 	
 	
 	Thread^ oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
 
 	oThread2->Start();
+
 
 
 	//mapTrenoFisicoLogico ^maps = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
@@ -229,7 +232,12 @@ int main()
 
 	oThread1->Start();
 
-	TCP_Management();
+	while(listaTreni->is_Empthy()){
+
+		Console::WriteLine("Nessun Treno Si è presentato");
+	}
+
+	TCP_Management(listaTreni->getPrimo());
 
 	
 	//pacchettoAcknowledgement ack;

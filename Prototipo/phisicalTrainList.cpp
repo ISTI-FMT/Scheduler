@@ -1,22 +1,27 @@
 #include "phisicalTrainList.h"
-
+#using <System.dll>
+using namespace System;
+using namespace System::Collections::Generic;
 
 phisicalTrainList::phisicalTrainList(void)
 {
-}
+	treni = gcnew System::Collections::Generic::Dictionary<int,phisicalTrain^>();
 
-string phisicalTrainList::getFirstTrainIP()
-{
-	std::list<phisicalTrain>::iterator it=treni.begin();
-	return (*it).getIpAddress();
 }
-
-int phisicalTrainList::getFirstTrainPort()
-{
-	std::list<phisicalTrain>::iterator it=treni.begin();
-	return (*it).getTcpPort();
-}
-
-phisicalTrainList::~phisicalTrainList(void)
-{
+//metodo momentaneo
+phisicalTrain^ phisicalTrainList::getPrimo(){
+	Monitor::Enter(treni);
+	try{
+		Dictionary<int,phisicalTrain^>::ValueCollection^ valueColl = treni->Values;
+		for each (phisicalTrain ^var in valueColl)
+		{
+			return var;
+		}
+	}
+	finally
+	{
+		// Ensure that the lock is released.
+		Monitor::Exit(treni);
+	}
+	return nullptr;
 }

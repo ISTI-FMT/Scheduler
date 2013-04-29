@@ -1,18 +1,18 @@
 #pragma once
-#include <iostream>
-using namespace std;
+#using <System.dll>
+using namespace System;
 
-class phisicalTrain
+ref class phisicalTrain
 {
 	int engineNumber;
-	string ipAddress;
+	String ^ipAddress;
 	int tcpPort;
 public:
 	phisicalTrain(void);
 	void setEngineNumber(int N){engineNumber = N;};
 	int getEngineNumber(){return engineNumber;};
-	void setIpAddress(string IP){ipAddress = IP;};
-	string getIpAddress(){return ipAddress;};
+	void setIpAddress(String ^IP){ipAddress = IP;};
+	String^ getIpAddress(){return ipAddress;};
 	void setTcpPort(int port){tcpPort = port;};
 	int getTcpPort(){return tcpPort;};
 	~phisicalTrain(void);

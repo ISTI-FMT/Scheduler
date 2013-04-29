@@ -16,12 +16,11 @@ using namespace System::Runtime::InteropServices;
 
 
 	 ThreadPresentazione::ThreadPresentazione()
-		 :listaTreni(NULL)
 	 {
 		 
 	 }
 
-	 	 ThreadPresentazione::ThreadPresentazione(phisicalTrainList *lt)
+	 	 ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt)
 		 :listaTreni(lt)
 	 {
 		 
@@ -73,20 +72,18 @@ using namespace System::Runtime::InteropServices;
 				//Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
 
 				// creo l'oggetto di tipo phisicalTrain
-				phisicalTrain treno;
-				treno.setEngineNumber(pkt1->getNID_ENGINE());
-				treno.setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
-				// converto da System::String a std::string
-				string ip = String2string((( (IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
+				phisicalTrain ^treno = gcnew phisicalTrain();
+				treno->setEngineNumber(pkt1->getNID_ENGINE());
+				treno->setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
 				
-				treno.setIpAddress(ip);
+				treno->setIpAddress((((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
 				// aggiungo il treno alla lista dei treni fisici
-				listaTreni->aggiungiTreno(treno);
+				listaTreni->setMapTreni(treno);
 
 				
-				String ^stringip = gcnew String(treno.getIpAddress().c_str());
+				String ^stringip = gcnew String(treno->getIpAddress());
 				Console::ForegroundColor = ConsoleColor::DarkGreen;
-				Console::WriteLine("Aggiunto il treno {0} operativo su {1}:{2} ", treno.getEngineNumber() ,stringip, treno.getTcpPort());
+				Console::WriteLine("Aggiunto il treno {0} operativo su {1}:{2} ", treno->getEngineNumber() ,stringip, treno->getTcpPort());
 
 				//data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
 
