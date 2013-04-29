@@ -70,6 +70,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Fermata.h" />
+    <ClInclude Include="LogClass.h" />
     <ClInclude Include="LogMessage.h" />
     <ClInclude Include="mapTrenoFisicoLogico.h" />
     <ClInclude Include="Messaggi.h" />
@@ -91,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Fermata.cpp" />
+    <ClCompile Include="LogClass.cpp" />
     <ClCompile Include="LogMessage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />

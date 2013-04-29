@@ -72,6 +72,9 @@
     <ClInclude Include="LogMessage.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="LogClass.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TabellaOrario.cpp">
@@ -126,6 +129,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="LogMessage.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="LogClass.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

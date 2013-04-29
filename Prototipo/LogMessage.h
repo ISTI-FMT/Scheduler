@@ -12,6 +12,7 @@ ref class LogMessage
 
 public:
 	LogMessage(void);
+	LogMessage(int n, DateTime ^d, String ^ms, String ^mi, String ^de);
 
 	int getNID_MSG(){return NID_MSG;};
 	void setNID_MSG(int N){NID_MSG=N;};
@@ -31,9 +32,9 @@ public:
 	virtual String ^ToString() override{
 		String ^out;
 		out = out+"NID_MSG : "+NID_MSG; 
-		out = out+"TimeStamp: "+getTimeStamp();
-		out = out+" : "+getMSG();
-		out = out+"Mitt : "+getMit()+"--> Dest:"+getDest();
+		out = out+" TimeStamp: "+getTimeStamp();
+		out = out+" Messaggio: "+getMSG();
+		out = out+" Mitt: "+getMit()+"--> Dest: "+getDest()+"\n\r";
 		return out;
 	}
 };

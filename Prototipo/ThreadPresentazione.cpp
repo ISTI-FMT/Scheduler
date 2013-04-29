@@ -4,6 +4,8 @@
 #include "utility.h"
 #include "phisicalTrainList.h"
 #include "String2string.h"
+#include "LogMessage.h"
+#include "LogClass.h"
 
 using namespace System;
 using namespace System::IO;
@@ -29,6 +31,7 @@ using namespace System::Runtime::InteropServices;
 	void  ThreadPresentazione::TCP_Management_receive(){
 		try
 		{
+			LogClass ^prova = gcnew LogClass();
 			// Set the TcpListener on port 13000.
 			Int32 port = 13000;
 			IPAddress^ localAddr = IPAddress::Any;//IPAddress::Parse( "127.0.0.1" );
@@ -40,7 +43,7 @@ using namespace System::Runtime::InteropServices;
 			server->Start();
 
 			// Buffer for reading data
-			array<Byte>^bytes = gcnew array<Byte>(256);
+			array<Byte>^bytes = gcnew array<Byte>(16);
 			String^ data = nullptr;
 
 			while ( true )
@@ -61,6 +64,8 @@ using namespace System::Runtime::InteropServices;
 				
 				stream->Read( bytes, 0, bytes->Length );
 
+				
+
 				Messaggi ^pkt1 = gcnew Messaggi();
 
 				
@@ -72,6 +77,8 @@ using namespace System::Runtime::InteropServices;
 				//Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
 
 				// creo l'oggetto di tipo phisicalTrain
+				prova->setLogMsg(pkt1->getNID_MESSAGE(),System::DateTime::Now, BitConverter::ToString(bytes),(((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString(),"ATS");
+
 				phisicalTrain ^treno = gcnew phisicalTrain();
 				treno->setEngineNumber(pkt1->getNID_ENGINE());
 				treno->setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
@@ -92,6 +99,7 @@ using namespace System::Runtime::InteropServices;
 				// Shutdown and end connection
 				client->Close();
 				Console::ResetColor();
+				prova->save();
 			}
 		}
 		catch ( SocketException^ e ) 
