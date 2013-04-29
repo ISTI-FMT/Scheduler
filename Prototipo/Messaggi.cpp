@@ -41,19 +41,7 @@ void Messaggi::serialize(byte *buffer)
 }
 
 void Messaggi::serialize(array<System::Byte>^bytez){
-	int len=0;
-	switch (head->NID_MESSAGE)
-	{
-	case 200 : {len=pkgMP->getSize();break;}
-	case 201 : {len=pkgcd1->getSize();break;}
-	case 215 : {len=pgkPres->getSize();break;}
-	case 1 : {len=pkgStatoATC->getSize();break;}
-	case 210 :{len=pkgAck->getSize();break;}
-
-
-	default:
-		break;
-	}
+	int len=getSize();
 	byte *buffer = new byte[len];
 	for(int i = 0; i < len; ++i)
 		buffer[i] = 0;
@@ -67,6 +55,7 @@ void Messaggi::serialize(array<System::Byte>^bytez){
 void Messaggi::deserialize(byte *buffer)
 {
 	head->NID_MESSAGE= pop(buffer, 8, 0);
+    setL_MESSAGE(getSize());
 	head->L_MESSAGE=pop(buffer,11, 8);
 	head->T_TRAIN=pop(buffer, 32, 19);
 	switch (head->NID_MESSAGE)

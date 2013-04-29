@@ -8,15 +8,16 @@ class pacchettoCommandData
 	commandData data;
 public:
 	pacchettoCommandData(void);
-	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
-	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
+	// funzione che restituisce la dimensione in bit
 	int getSize(){
-		//header 51 mess +24 fissi=75/8=10
+		//header 51 mess +24 fissi o+2 o +32
 		if(getQ_COMMAND_TYPE()==5){
-			return 14;
+			return 56;
 		}
-		return 10;};
+		if(getQ_COMMAND_TYPE()==4){
+			return 26;
+		}
+		return 24;};
 	// funzioni di interfaccia per l'accesso in scrittura e lettura dei campi dati della struttura commandData
 	
 	void setNID_PACKET(int NID){data.NID_PACKET = NID;};

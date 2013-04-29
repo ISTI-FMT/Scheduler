@@ -15,6 +15,7 @@ void pacchettopresentazione::serialize(byte *buffer)
 {
 	//push(buffer, data.NID_ENGINE, 24, 51);
 	push(buffer, data.NID_PACKET, 8, 75);
+	setL_PACKET(getSize());
 	push(buffer, data.L_PACKET, 13, 83);
 	push(buffer, data.M_PORT, 32, 96);
 	

@@ -84,7 +84,7 @@ void TCP_Management()
 		
 		
 		// Buffer for reading data
-		array<Byte>^bytes_buffer1 = gcnew array<Byte>(wakeUpPkt->get_pacchettoCommandData()->getSize());
+		array<Byte>^bytes_buffer1 = gcnew array<Byte>(wakeUpPkt->getSize());
 
 		wakeUpPkt->serialize(bytes_buffer1);
 
@@ -100,7 +100,7 @@ void TCP_Management()
 
 		
 		// Buffer for reading data
-		array<Byte>^bytes_buffer2 = gcnew array<Byte>(trainRunningNumberPkt->get_pacchettoCommandData()->getSize());
+		array<Byte>^bytes_buffer2 = gcnew array<Byte>(trainRunningNumberPkt->getSize());
 
 		trainRunningNumberPkt->serialize(bytes_buffer2);
 
@@ -114,7 +114,7 @@ void TCP_Management()
 	
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer3 = gcnew array<Byte>(missionPlanPkt->get_pacchettoMissionPlan()->getSize());
+		array<Byte>^bytes_buffer3 = gcnew array<Byte>(missionPlanPkt->getSize());
 		
 		missionPlanPkt->serialize(bytes_buffer3);
 		
@@ -125,9 +125,9 @@ void TCP_Management()
 
 		NetworkStream ^myStream = gcnew NetworkStream(sock);
 
-		myStream->Write(bytes_buffer1, 0, wakeUpPkt->get_pacchettoCommandData()->getSize());
-		myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->get_pacchettoCommandData()->getSize());
-		myStream->Write(bytes_buffer3, 0, missionPlanPkt->get_pacchettoMissionPlan()->getSize());
+		myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
+		myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
+		myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
 
 
 		Messaggi ^pktAck = gcnew Messaggi();
@@ -135,9 +135,9 @@ void TCP_Management()
 		pktAck->set_pacchettoAcknowledgement();
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck->get_pacchettoAcknowledgement()->getSize());
+		array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck->getSize());
 
-		myStream->Read(bytes_buffer4, 0, pktAck->get_pacchettoAcknowledgement()->getSize());
+		myStream->Read(bytes_buffer4, 0, pktAck->getSize());
 
 		
 

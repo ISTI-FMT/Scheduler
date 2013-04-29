@@ -64,6 +64,27 @@ public:
 
 	void serialize(array<System::Byte>^bytez);
 	void deserialize(array<System::Byte>^bytez);
+
+	int getSize(){
+		
+		// 51 bit per l'header 
+		
+		int len =51;
+		switch (head->NID_MESSAGE)
+		{
+		case 200 : {len+=pkgMP->getSize();break;}
+		case 201 : {len+=pkgcd1->getSize();break;}
+		case 215 : {len+=pgkPres->getSize();break;}
+		case 1 : {len+=pkgStatoATC->getSize();break;}
+		case 210 :{len+=pkgAck->getSize();break;}
+
+
+		default:
+			break;
+		}
+		int size = (len/8)+1;
+		return size ;
+	};
 	
 	virtual System::String ^ToString() override;
 };

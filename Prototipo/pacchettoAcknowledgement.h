@@ -10,10 +10,8 @@ class pacchettoAcknowledgement
 	missionAck data;
 public:
 	pacchettoAcknowledgement(void);
-	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
-	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
-	int getSize(){return 17;};
+	// funzione che restituisce la dimensione in bit
+	int getSize(){return 54;};
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 
 	
@@ -23,6 +21,8 @@ public:
 	int getL_PACKET(){return data.L_PACKET;};
 	void setQ_MISSION_RESPONSE(int Q){data.Q_MISSION_RESPONSE = Q;};
 	int getQ_MISSION_RESPONSE(){return data.Q_MISSION_RESPONSE;};
+	void setT_TRAIN(int N){data.T_TRAIN = N;};
+	int getT_TRAIN(){return data.T_TRAIN;};
 	// metodi per la serializzazione e deserializzazione del messaggio
 	// il buffer di byte deve essere stato precedentemente correttamente allocato.
 	void serialize(byte *buff);

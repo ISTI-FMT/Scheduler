@@ -153,6 +153,7 @@ void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 {
 	
 	push(buffer, data.missionHead.NID_PACKET, 8, 51);
+	setL_PACKET(getSize());
 	push(buffer, data.missionHead.L_PACKET, 13, 59);
 	push(buffer, data.missionHead.Q_SCALE, 2, 72);
 	push(buffer, data.mS1.D_MISSION, 15, 74);
@@ -253,12 +254,13 @@ int pacchettoMissionPlan::getSize()
 {
 	// intero che rappresenta la dimensione in bit
 	int size = 0;
-	// 51 bit per l'header
-	size += 51;
+	
 	// 122 per la parte fissa del mission data (considerando 2 volte N_ITER
 	size += 122;
-	// 89 bit per ogni N_ITER
-	size += 89 * data.N_ITER1;
-	// ritorno il numero di Byte occupato dalla struttura dati
-	return (size / 8) + 1;
+	// 22 bit per ogni N_ITER
+	size += 22 * data.N_ITER1;
+	// 22 bit per ogni N_ITER
+	size += 67 * data.N_ITER2;
+	// ritorno il numero di bit occupato dalla struttura dati
+	return size;
 }
