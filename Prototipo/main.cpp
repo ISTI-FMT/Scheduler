@@ -123,8 +123,7 @@ void TCP_Management(phisicalTrain ^Treno)
 		Console::WriteLine( "SocketException: {0}", e );
 	}
 
-	Console::WriteLine( "\nHit enter to continue..." );
-	Console::Read();
+	
 }
 
 
@@ -196,14 +195,14 @@ int main()
 
 	
 	//Console::WriteLine(maps->ToString());
-
+	 
 	Thread^ oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC::UDP_Management_receive ) );
 
 	oThread1->Start();
 
 	while(listaTreni->is_Empthy()){
 
-		Console::WriteLine("Nessun Treno Si è presentato");
+		//Console::WriteLine("Nessun Treno Si è presentato");
 	}
 
 	TCP_Management(listaTreni->getPrimo());
@@ -214,7 +213,10 @@ int main()
 
 	Console::Read();
 
+	//oThread1->Abort();
+	//oThread2->Abort();
+
 	logMSG->savetxt();
 
-	//return 0;
+	return 0;
 }

@@ -18,7 +18,6 @@ public:
 				
 				treni->GetOrAdd(key,treno);
 
-				//treni->Add(newvalue);
 			}else{
 				treni[key]=treno;
 			}

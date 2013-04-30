@@ -1,6 +1,7 @@
 #pragma once
 #include "phisicalTrainList.h"
 #include "struttureDatiMessaggi.h"
+#include "LogClass.h"
 #using <System.dll>
 
 using namespace System;

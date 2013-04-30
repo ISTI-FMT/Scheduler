@@ -37,7 +37,7 @@ public:
 		out = out+getMit()+";"+getDest()+";\n\r";
 		return out;
 	}
-	virtual String ^ToPrint() override{
+	 String ^ToPrint() {
 		String ^out;
 		out = out+"NID_MSG : "+NID_MSG; 
 		out = out+" TimeStamp: "+getTimeStamp();
