@@ -1,7 +1,7 @@
 #pragma once
-#include "phisicalTrainList.h"
-#include "struttureDatiMessaggi.h"
-#include "LogClass.h"
+#include "..\\phisicalTrainList.h"
+#include "..\\messaggi\\struttureDatiMessaggi.h"
+#include "..\\logger\\LogClass.h"
 #using <System.dll>
 
 using namespace System;

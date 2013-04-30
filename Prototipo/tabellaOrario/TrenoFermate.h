@@ -1,24 +1,24 @@
 #pragma once
-#include <list>
+
 #include "Fermata.h"
-#include <iostream>
-using namespace std;
+
+#using <System.dll>
+using namespace System::Collections::Generic;
 
 /*
 Questa classe è utilizzata dalla tabella orario per gestire tutte le fermate di un treno.
 Un oggetto di tipo fermata rappresenta una fermata di un treno.
 */
-class TrenoFermate
-{
-	// id del treno
+ref class TrenoFermate
+{   
 	int idTreno;
-	// lista delle fermate del treno
-	std::list<Fermata> fermate;
+	List<Fermata^> ^fermate;
+	
 	// funzione di utilità che confronta due orari. 
 	// La funzione ritorna 1 se il primo orario è maggiore del secondo; -1 se il primo orario è minore del secondo; 0 se 
 	// i due orari sono uguali.
-	int confrontaTempi(tm &orario1, tm &orario2);
-	friend ostream& operator<<(ostream& out, TrenoFermate &treno);
+	// int confrontaTempi(tm &orario1, tm &orario2);
+	// friend ostream& operator<<(ostream& out, TrenoFermate &treno);
 public:
 	TrenoFermate(int id);
 	void setIdTreno(int id){idTreno = id;};
@@ -27,9 +27,8 @@ public:
 	// le fermate sono mantenute in ordine crescente di orario partenza
 	// alla funzione viene passato per riferimento un oggetto di tipo Fermata, che deve essere stato 
 	// precedentemente correttamente istanziato.
-	void aggiungiFermata(Fermata &stop);
+	void aggiungiFermata(Fermata ^stop);
 	// funzione che restituisce un riferimento alla lista delle fermate del treno
-	std::list<Fermata>& getListaFermate(){return fermate;};
-	~TrenoFermate();
+	List<Fermata^>^ getListaFermate(){return fermate;};
 };
 

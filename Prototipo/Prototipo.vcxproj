@@ -69,50 +69,50 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Fermata.h" />
-    <ClInclude Include="LogClass.h" />
-    <ClInclude Include="LogMessage.h" />
+    <ResourceCompile Include="Prototipo.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="logger\LogClass.h" />
+    <ClInclude Include="logger\LogMessage.h" />
     <ClInclude Include="mapTrenoFisicoLogico.h" />
-    <ClInclude Include="Messaggi.h" />
-    <ClInclude Include="pacchettoCommandData.h" />
-    <ClInclude Include="pacchettostatolineaatc.h" />
-    <ClInclude Include="pacchettopresentazione.h" />
+    <ClInclude Include="messaggi\Messaggi.h" />
+    <ClInclude Include="messaggi\pacchettoAcknowledgement.h" />
+    <ClInclude Include="messaggi\pacchettoCommandData.h" />
+    <ClInclude Include="messaggi\pacchettoMissionPlan.h" />
+    <ClInclude Include="messaggi\pacchettopresentazione.h" />
+    <ClInclude Include="messaggi\pacchettostatolineaatc.h" />
+    <ClInclude Include="messaggi\struttureDatiMessaggi.h" />
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
-    <ClInclude Include="String2string.h" />
-    <ClInclude Include="ThreadListenerATC.h" />
-    <ClInclude Include="ThreadPresentazione.h" />
-    <ClInclude Include="utility.h" />
-    <ClInclude Include="pacchettoMissionPlan.h" />
-    <ClInclude Include="pacchettoAcknowledgement.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="struttureDatiMessaggi.h" />
-    <ClInclude Include="TabellaOrario.h" />
-    <ClInclude Include="TrenoFermate.h" />
+    <ClInclude Include="String2string.h" />
+    <ClInclude Include="tabellaOrario\Fermata.h" />
+    <ClInclude Include="tabellaOrario\TabellaOrario.h" />
+    <ClInclude Include="tabellaOrario\TrenoFermate.h" />
+    <ClInclude Include="threads\ThreadListenerATC.h" />
+    <ClInclude Include="threads\ThreadPresentazione.h" />
+    <ClInclude Include="utility.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Fermata.cpp" />
-    <ClCompile Include="LogClass.cpp" />
-    <ClCompile Include="LogMessage.cpp" />
+    <ClCompile Include="logger\LogClass.cpp" />
+    <ClCompile Include="logger\LogMessage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />
-    <ClCompile Include="Messaggi.cpp" />
-    <ClCompile Include="pacchettoCommandData.cpp" />
-    <ClCompile Include="pacchettostatolineaatc.cpp" />
-    <ClCompile Include="String2string.cpp" />
-    <ClCompile Include="pacchettopresentazione.cpp" />
+    <ClCompile Include="messaggi\Messaggi.cpp" />
+    <ClCompile Include="messaggi\pacchettoAcknowledgement.cpp" />
+    <ClCompile Include="messaggi\pacchettoCommandData.cpp" />
+    <ClCompile Include="messaggi\pacchettoMissionPlan.cpp" />
+    <ClCompile Include="messaggi\pacchettopresentazione.cpp" />
+    <ClCompile Include="messaggi\pacchettostatolineaatc.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
-    <ClCompile Include="ThreadListenerATC.cpp" />
-    <ClCompile Include="ThreadPresentazione.cpp" />
+    <ClCompile Include="String2string.cpp" />
+    <ClCompile Include="tabellaOrario\Fermata.cpp" />
+    <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
+    <ClCompile Include="tabellaOrario\TrenoFermate.cpp" />
+    <ClCompile Include="threads\ThreadListenerATC.cpp" />
+    <ClCompile Include="threads\ThreadPresentazione.cpp" />
     <ClCompile Include="utility.cpp" />
-    <ClCompile Include="pacchettoMissionPlan.cpp" />
-    <ClCompile Include="pacchettoAcknowledgement.cpp" />
-    <ClCompile Include="TabellaOrario.cpp" />
-    <ClCompile Include="TrenoFermate.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Prototipo.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
 #pragma once
 #include "TrenoFermate.h"
-#include "pacchettoMissionPlan.h"
+#include "..\\messaggi\\pacchettoMissionPlan.h"
 #include <iostream>
 using namespace std;
 
@@ -10,15 +10,15 @@ in apposite strutture dati.
 -------------------------------------------------------------------------------------------------*/
 
 // Questa classe è utilizzata per gestire la tabella orario dell'ATS attraverso una lista di oggetti di tipo TrenoFermate
-class TabellaOrario
+ref class TabellaOrario
 {
-	std::list<TrenoFermate> tabella;
-	void aggiungiTreno(TrenoFermate &treno);
+	List<TrenoFermate^> ^tabella;
+	void aggiungiTreno(TrenoFermate ^treno);
 	// funzione che converte una System::String in un intero
 	int convertiString2int(System::String ^StringValue);
 	// funzione che converte una System::String in un std::string
-	string convertiString2string(System::String ^StringValue);
-	friend ostream& operator<<(ostream &out, TabellaOrario &tabella);
+	// string convertiString2string(System::String ^StringValue);
+	//friend ostream& operator<<(ostream &out, TabellaOrario &tabella);
 public:
 	TabellaOrario(void);
 	// funzione che restituisce un qualsiasi TRN nella tabella orario (di fatto il primo)
@@ -29,7 +29,6 @@ public:
 	// alla missione associata al TRN in questione
 	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
 	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
-	TrenoFermate& getTrenoFermate(int TRN, bool &error);
-	~TabellaOrario();
+	TrenoFermate^ getTrenoFermate(int TRN, bool &error);
 };
 

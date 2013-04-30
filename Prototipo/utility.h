@@ -1,6 +1,6 @@
 #pragma once
 
-#include "struttureDatiMessaggi.h"
+#include "messaggi\\struttureDatiMessaggi.h"
 #include <iostream>
 #using <System.dll>
 using namespace System;

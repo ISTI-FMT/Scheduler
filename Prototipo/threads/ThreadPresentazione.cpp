@@ -1,11 +1,11 @@
 #include "ThreadPresentazione.h"
 #using <System.dll>
-#include "Messaggi.h"
-#include "utility.h"
-#include "phisicalTrainList.h"
-#include "String2string.h"
-#include "LogMessage.h"
-#include "LogClass.h"
+#include "..\\messaggi\\Messaggi.h"
+#include "..\\utility.h"
+#include "..\\phisicalTrainList.h"
+#include "..\\String2string.h"
+#include "..\\logger\\LogMessage.h"
+#include "..\\logger\\LogClass.h"
 
 using namespace System;
 using namespace System::IO;

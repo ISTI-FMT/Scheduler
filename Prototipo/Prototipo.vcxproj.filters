@@ -13,33 +13,80 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="File di intestazione\logger">
+      <UniqueIdentifier>{2d4ffbd1-cecd-4e8d-b9ea-02ab5eac6f06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\logger">
+      <UniqueIdentifier>{936a2012-2269-4628-b0cc-922973ec4651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di intestazione\messaggi">
+      <UniqueIdentifier>{63f3ee32-426c-417d-9814-4ac8fc688b98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\messaggi">
+      <UniqueIdentifier>{8a185df8-3376-401c-b22e-aace322bd637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di intestazione\tabellaOrario">
+      <UniqueIdentifier>{aa317d84-487b-43aa-860e-8be2a1e3ab98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\tabellaOrario">
+      <UniqueIdentifier>{80ece2c6-f5e0-4413-8794-d5a81df7e0cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di intestazione\threads">
+      <UniqueIdentifier>{ff1b9462-2487-4efd-bb19-2210e5de3662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\threads">
+      <UniqueIdentifier>{cd924c59-33a9-4e15-bb5e-2f5aab31a8f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TabellaOrario.h">
-      <Filter>File di intestazione</Filter>
+    <ResourceCompile Include="Prototipo.rc">
+      <Filter>File di risorse</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="logger\LogClass.h">
+      <Filter>File di intestazione\logger</Filter>
     </ClInclude>
-    <ClInclude Include="Fermata.h">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="logger\LogMessage.h">
+      <Filter>File di intestazione\logger</Filter>
     </ClInclude>
-    <ClInclude Include="TrenoFermate.h">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="messaggi\Messaggi.h">
+      <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="struttureDatiMessaggi.h">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="messaggi\pacchettoAcknowledgement.h">
+      <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="pacchettoMissionPlan.h">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="messaggi\pacchettoCommandData.h">
+      <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="messaggi\pacchettoMissionPlan.h">
+      <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="utility.h">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="messaggi\pacchettopresentazione.h">
+      <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="pacchettoAcknowledgement.h">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="messaggi\pacchettostatolineaatc.h">
+      <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="pacchettopresentazione.h">
+    <ClInclude Include="messaggi\struttureDatiMessaggi.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="tabellaOrario\Fermata.h">
+      <Filter>File di intestazione\tabellaOrario</Filter>
+    </ClInclude>
+    <ClInclude Include="tabellaOrario\TabellaOrario.h">
+      <Filter>File di intestazione\tabellaOrario</Filter>
+    </ClInclude>
+    <ClInclude Include="tabellaOrario\TrenoFermate.h">
+      <Filter>File di intestazione\tabellaOrario</Filter>
+    </ClInclude>
+    <ClInclude Include="threads\ThreadListenerATC.h">
+      <Filter>File di intestazione\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="threads\ThreadPresentazione.h">
+      <Filter>File di intestazione\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="mapTrenoFisicoLogico.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="phisicalTrain.h">
@@ -48,57 +95,60 @@
     <ClInclude Include="phisicalTrainList.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="pacchettostatolineaatc.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadListenerATC.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadPresentazione.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="mapTrenoFisicoLogico.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Messaggi.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="pacchettoCommandData.h">
+    <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="String2string.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="LogMessage.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="LogClass.h">
+    <ClInclude Include="utility.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TabellaOrario.cpp">
-      <Filter>File di origine</Filter>
+    <ClCompile Include="logger\LogClass.cpp">
+      <Filter>File di origine\logger</Filter>
     </ClCompile>
-    <ClCompile Include="Fermata.cpp">
-      <Filter>File di origine</Filter>
+    <ClCompile Include="logger\LogMessage.cpp">
+      <Filter>File di origine\logger</Filter>
     </ClCompile>
-    <ClCompile Include="TrenoFermate.cpp">
-      <Filter>File di origine</Filter>
+    <ClCompile Include="messaggi\Messaggi.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoAcknowledgement.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoCommandData.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoMissionPlan.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettopresentazione.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettostatolineaatc.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="tabellaOrario\Fermata.cpp">
+      <Filter>File di origine\tabellaOrario</Filter>
+    </ClCompile>
+    <ClCompile Include="tabellaOrario\TabellaOrario.cpp">
+      <Filter>File di origine\tabellaOrario</Filter>
+    </ClCompile>
+    <ClCompile Include="tabellaOrario\TrenoFermate.cpp">
+      <Filter>File di origine\tabellaOrario</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ThreadListenerATC.cpp">
+      <Filter>File di origine\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ThreadPresentazione.cpp">
+      <Filter>File di origine\threads</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="pacchettoMissionPlan.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="utility.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="pacchettoAcknowledgement.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="pacchettopresentazione.cpp">
+    <ClCompile Include="mapTrenoFisicoLogico.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="phisicalTrain.cpp">
@@ -110,34 +160,8 @@
     <ClCompile Include="String2string.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="pacchettostatolineaatc.cpp">
+    <ClCompile Include="utility.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadListenerATC.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadPresentazione.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="mapTrenoFisicoLogico.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="Messaggi.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="pacchettoCommandData.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="LogMessage.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="LogClass.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Prototipo.rc">
-      <Filter>File di risorse</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

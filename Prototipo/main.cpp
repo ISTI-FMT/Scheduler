@@ -1,15 +1,15 @@
-#include "TabellaOrario.h"
+#include "tabellaOrario\\TabellaOrario.h"
 #using <System.dll>
 #include "utility.h"
 
 #include "phisicalTrainList.h"
 #include "String2string.h"
-#include "ThreadListenerATC.h"
+#include "threads\\ThreadListenerATC.h"
 #include <iostream>
-#include "ThreadPresentazione.h"
+#include "threads\\ThreadPresentazione.h"
 #include "mapTrenoFisicoLogico.h"
-#include "Messaggi.h"
-#include "LogClass.h"
+#include "messaggi\\Messaggi.h"
+#include "logger\\LogClass.h"
 
 using namespace std;
 using namespace System;
@@ -20,18 +20,13 @@ using namespace System::Text;
 using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
-TabellaOrario tabella;
-
-
-
-
 
 /*------------------------------------------------------------------------------------
 L'ATS gestisce delle connessioni TCP/IP con gli ATO dei treni sotto il suo controllo.
 Attraverso queste connessioni l'ATS invia e riceve messaggi da e verso gli ATO.
 ------------------------------------------------------------------------------------*/
 
-void TCP_Management(phisicalTrain ^Treno)
+void TCP_Management(phisicalTrain ^Treno, TabellaOrario ^tabella)
 {
 	try
 	{
@@ -45,7 +40,7 @@ void TCP_Management(phisicalTrain ^Treno)
 		
 		wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
-		wakeUpPkt->setT_TRAIN(tabella.getFirstTRN());
+		wakeUpPkt->setT_TRAIN(tabella->getFirstTRN());
 
 
 
@@ -63,8 +58,8 @@ void TCP_Management(phisicalTrain ^Treno)
 		trainRunningNumberPkt->setNID_MESSAGE(201);
 		trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
-		trainRunningNumberPkt->setT_TRAIN(tabella.getFirstTRN());
-		trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabella.getFirstTRN());
+		trainRunningNumberPkt->setT_TRAIN(tabella->getFirstTRN());
+		trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabella->getFirstTRN());
 
 		
 		// Buffer for reading data
@@ -76,8 +71,8 @@ void TCP_Management(phisicalTrain ^Treno)
 
 		missionPlanPkt->setNID_MESSAGE(200);
 		missionPlanPkt->get_pacchettoMissionPlan()->setNID_PACKET(160);
-		int TRN = tabella.getFirstTRN();
-		tabella.setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionPlan());
+		int TRN = tabella->getFirstTRN();
+		tabella->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionPlan());
 
 	
 
@@ -173,7 +168,9 @@ int main()
 
 	Console::Read();*/
 
-	tabella.leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
+	TabellaOrario ^tabella = gcnew TabellaOrario;
+
+	tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 	//cout << tabella;
 
 	phisicalTrainList ^listaTreni = gcnew phisicalTrainList();
@@ -205,7 +202,7 @@ int main()
 		//Console::WriteLine("Nessun Treno Si è presentato");
 	}
 
-	TCP_Management(listaTreni->getPrimo());
+	TCP_Management(listaTreni->getPrimo(), tabella);
 
 	
 	

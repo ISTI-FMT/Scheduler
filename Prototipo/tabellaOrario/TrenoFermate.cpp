@@ -3,9 +3,11 @@
 
 TrenoFermate::TrenoFermate(int id)
 {
+	fermate = gcnew List<Fermata^>;
 	idTreno = id;
 }
 
+/*
 // funzione di utilità che confronta due orari. 
 // La funzione ritorna 1 se il primo orario è maggiore del secondo; -1 se il primo orario è minore del secondo; 0 se 
 // i due orari sono uguali.
@@ -36,26 +38,21 @@ int TrenoFermate::confrontaTempi(tm &orario1, tm &orario2)
 		}
 	}
 }
+*/
 
 // funzione che permette l'inserimento di una nuova fermata della tabella orario del treno in questione.
 // le fermate sono mantenute in ordine crescente di orario partenza
 // alla funzione viene passato per riferimento un oggetto di tipo Fermata, che deve essere stato 
 // precedentemente correttamente istanziato.
-void TrenoFermate::aggiungiFermata(Fermata &stop)
+void TrenoFermate::aggiungiFermata(Fermata ^stop)
 {
-	// scorro tutta la lista finchè non sono arrivato alla fine oppure finchè non ho trovato una fermata che ha 
-	// orario di partenza maggiore rispetto alla fermata che devo inserire.
-	std::list<Fermata>::iterator it=fermate.begin();
-	while(it != fermate.end() && confrontaTempi((*it).getOrarioPartenza(), stop.getOrarioPartenza()) == -1)
-		++it;
-	// se sono uscito dal for perchè sono arrivato alla fine della lista
-	if(it == fermate.end())
-		// inserisco in coda alla lista
-		fermate.push_back(stop);
-	else
-		fermate.insert(it, stop);
+	// le fermate vengono inserite sempre in coda alla lista, pertanto si suppone che vengano lette ordinate dal file di 
+	// configurazione della tabella orario
+	if(!fermate->Contains(stop))
+		fermate->Add(stop);
 }
 
+/*
 ostream& operator<<(ostream& out, TrenoFermate &treno)
 {
 	out << "Id treno : " << treno.idTreno << endl;
@@ -71,3 +68,4 @@ TrenoFermate::~TrenoFermate()
 		// ...e cancelo tutti gli elementi uno alla volta
 		//fermate.erase(it);
 }
+*/

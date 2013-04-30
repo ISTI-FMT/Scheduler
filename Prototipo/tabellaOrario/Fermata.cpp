@@ -5,16 +5,14 @@ using namespace std;
 Fermata::Fermata(void)
 {
 	idStazione = "";
-	orarioArrivo.tm_hour = 0;
-	orarioArrivo.tm_min = 0;
-	orarioArrivo.tm_sec = 0;
-	orarioPartenza.tm_hour = 0;
-	orarioPartenza.tm_min = 0;
-	orarioPartenza.tm_sec = 0;
+	orarioArrivo = 0;
+	orarioPartenza = 0;
+	tempoMinimoAperturaPorte = 0;
 	binarioProgrammato = 0;
 	latoAperturaPorte = noApertura;
 }
 
+/*
 ostream& operator<<(ostream &out, const Fermata &stop)
 {
 	out << "ID stazione : " << stop.idStazione.c_str() << endl;
@@ -34,8 +32,5 @@ ostream& operator<<(ostream &out, const Fermata &stop)
 
 	return out;
 }
-
-Fermata::~Fermata()
-{
-}
+*/
 

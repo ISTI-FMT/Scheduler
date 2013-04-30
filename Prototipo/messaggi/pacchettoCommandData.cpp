@@ -1,5 +1,5 @@
 #include "pacchettoCommandData.h"
-#include "utility.h"
+#include "..\\utility.h"
 
 pacchettoCommandData::pacchettoCommandData(void)
 {

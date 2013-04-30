@@ -1,7 +1,7 @@
 #include "ThreadListenerATC.h"
 #using <System.dll>
-#include "utility.h"
-#include "Messaggi.h"
+#include "..\\utility.h"
+#include "..\\messaggi\\Messaggi.h"
 
 using namespace System;
 using namespace System::IO;

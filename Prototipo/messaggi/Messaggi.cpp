@@ -1,5 +1,5 @@
 #include "Messaggi.h"
-#include "utility.h"
+#include "..\\utility.h"
 
 
 Messaggi::Messaggi(void)
