@@ -20,7 +20,16 @@ public:
 	}
 
 	
-void save(){
+void savetxt(){
+	 String^ path = System::IO::Directory::GetCurrentDirectory();
+	 System::IO::StreamWriter ^file = gcnew System::IO::StreamWriter("LogMesssageScheduler.txt", true);
+	 for each (LogMessage ^var in logmsg)
+	 {
+			file->WriteLine(var->ToPrint());
+	 }
+     file->Close();        
+}
+void savecsv(){
 	 String^ path = System::IO::Directory::GetCurrentDirectory();
 	 System::IO::StreamWriter ^file = gcnew System::IO::StreamWriter("LogMesssageScheduler.txt", true);
 	 for each (LogMessage ^var in logmsg)
@@ -29,6 +38,5 @@ void save(){
 	 }
      file->Close();        
 }
-
 };
 

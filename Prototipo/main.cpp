@@ -214,7 +214,7 @@ int main()
 
 	Console::Read();
 
-	logMSG->save();
+	logMSG->savetxt();
 
 	//return 0;
 }

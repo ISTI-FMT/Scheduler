@@ -31,10 +31,18 @@ public:
 
 	virtual String ^ToString() override{
 		String ^out;
+		out = out+NID_MSG+";"; 
+		out = out+getTimeStamp()+";";
+		out = out+getMSG()+";";
+		out = out+getMit()+";"+getDest()+";\n\r";
+		return out;
+	}
+	virtual String ^ToPrint() override{
+		String ^out;
 		out = out+"NID_MSG : "+NID_MSG; 
 		out = out+" TimeStamp: "+getTimeStamp();
 		out = out+" Messaggio: "+getMSG();
-		out = out+" Mitt: "+getMit()+"--> Dest: "+getDest()+"\n\r";
+		out = out+" Mitt: "+getMit()+" --> Dest: "+getDest()+"\n\r";
 		return out;
 	}
 };

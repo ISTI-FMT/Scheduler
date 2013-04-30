@@ -13,6 +13,7 @@ public:
 	void setMapTreni( phisicalTrain^ treno ){
 		
 			int key = treno->getEngineNumber();
+			//treni->AddOrUpdate(key,treno, gcnew Func<int,phisicalTrain^,phisicalTrain^>(&phisicalTrainList::result ));
 			if(!treni->ContainsKey(key)){
 				
 				treni->GetOrAdd(key,treno);
@@ -23,10 +24,13 @@ public:
 			}
 		
 	}
+	/*static phisicalTrain^ result(int k ,phisicalTrain^ o){
+		return o;
+	}*/
 	ConcurrentDictionary<int,phisicalTrain^> ^ getMapTreni(){
 		return treni;
+		
 	}
-
 	phisicalTrain^ phisicalTrainList::getPrimo();
 
 	bool  phisicalTrainList::is_Empthy(){
