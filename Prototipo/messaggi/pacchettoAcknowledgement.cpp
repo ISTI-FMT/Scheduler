@@ -4,7 +4,7 @@
 pacchettoAcknowledgement::pacchettoAcknowledgement(void)
 {
 	
-	//data.NID_PACKET = 0;
+	data.NID_PACKET = 0;
 	data.L_PACKET = 0;
 	data.T_TRAIN = 0;
 	data.Q_MISSION_RESPONSE = 0;

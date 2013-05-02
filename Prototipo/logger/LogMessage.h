@@ -9,6 +9,7 @@ ref class LogMessage
 	String ^msg;
 	String ^mit;
 	String ^dest;
+	int idProcess;
 
 public:
 	LogMessage(void);
@@ -25,6 +26,9 @@ public:
 
 	String ^getMit(){return mit;};
 	void setMit(String ^str){mit=str;};
+
+	int ^getidP(){return idProcess;};
+	void setidP(int str){idProcess=str;};
 
 	String ^getDest(){return dest;};
 	void setDest(String ^str){dest=str;};

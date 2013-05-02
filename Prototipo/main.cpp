@@ -11,6 +11,7 @@
 #include "messaggi\\Messaggi.h"
 #include "logger\\LogClass.h"
 
+using namespace System::Diagnostics;
 using namespace std;
 using namespace System;
 using namespace System::IO;
@@ -167,7 +168,10 @@ int main()
 	Console::WriteLine("Premi un Tasto x USCIRE");
 
 	Console::Read();*/
-
+	Trace::AutoFlush = true;
+  // Trace::Indent();
+  // Trace::WriteLine( "Entering Main" );
+  // Trace::TraceInformation("Hello world");
 	TabellaOrario ^tabella = gcnew TabellaOrario;
 
 	tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
@@ -195,14 +199,14 @@ int main()
 	 
 	Thread^ oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC::UDP_Management_receive ) );
 
-	oThread1->Start();
+     oThread1->Start();
 
-	while(listaTreni->is_Empthy()){
+	//while(listaTreni->is_Empthy()){
 
 		//Console::WriteLine("Nessun Treno Si è presentato");
-	}
+	//}
 
-	TCP_Management(listaTreni->getPrimo(), tabella);
+	//TCP_Management(listaTreni->getPrimo(), tabella);
 
 	
 	
@@ -210,10 +214,11 @@ int main()
 
 	Console::Read();
 
-	//oThread1->Abort();
-	//oThread2->Abort();
+	oThread1->Abort("Thread ATC UDP Listener Chiuso");
+	oThread2->Abort();
 
-	logMSG->savetxt();
 
-	return 0;
+	//logMSG->savetxt();
+
+	//return 0;
 }

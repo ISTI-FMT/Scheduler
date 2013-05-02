@@ -15,6 +15,7 @@ Messaggi::Messaggi(void)
 void Messaggi::serialize(byte *buffer)
 {
 	push(buffer, head->NID_MESSAGE, 8, 0);
+	setL_MESSAGE(getSize());
 	push(buffer, head->L_MESSAGE, 11, 8);
 	push(buffer, head->T_TRAIN, 32, 19);
 	int N = head->NID_MESSAGE;
@@ -55,7 +56,6 @@ void Messaggi::serialize(array<System::Byte>^bytez){
 void Messaggi::deserialize(byte *buffer)
 {
 	head->NID_MESSAGE= pop(buffer, 8, 0);
-    setL_MESSAGE(getSize());
 	head->L_MESSAGE=pop(buffer,11, 8);
 	head->T_TRAIN=pop(buffer, 32, 19);
 	switch (head->NID_MESSAGE)

@@ -16,5 +16,5 @@ public:
 	ThreadPresentazione();
 	ThreadPresentazione(phisicalTrainList ^lt,LogClass ^log );
 	void TCP_Management_receive();
-	static void stampaBuffer(byte *buff, int nBit);
+	
 };

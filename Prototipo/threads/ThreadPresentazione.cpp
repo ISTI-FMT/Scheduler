@@ -6,6 +6,7 @@
 #include "..\\String2string.h"
 #include "..\\logger\\LogMessage.h"
 #include "..\\logger\\LogClass.h"
+#include "..\\logger\\Logger.h"
 
 using namespace System;
 using namespace System::IO;
@@ -39,16 +40,17 @@ void  ThreadPresentazione::TCP_Management_receive(){
 
 		// TcpListener* server = new TcpListener(port);
 		TcpListener^ server = gcnew TcpListener( localAddr,port );
-
+		
 		// Start listening for client requests.
 		server->Start();
-
+		
 		// Buffer for reading data
 		array<Byte>^bytes = gcnew array<Byte>(16);
 		String^ data = nullptr;
 
 		while ( true )
 		{
+			while (!server->Pending()) Thread::Sleep(500);
 			Console::ForegroundColor = ConsoleColor::DarkGreen;
 			Console::Write( "Waiting for a connection... " );
 
@@ -77,9 +79,11 @@ void  ThreadPresentazione::TCP_Management_receive(){
 
 			//Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
 
-			// creo l'oggetto di tipo phisicalTrain
 			logMSG->setLogMsg(pkt1->getNID_MESSAGE(),System::DateTime::Now, BitConverter::ToString(bytes),(((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString(),"ATS");
-
+			
+			Logger::Info(pkt1->getNID_MESSAGE(),(((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(bytes),"Presentazione");
+			
+			
 			phisicalTrain ^treno = gcnew phisicalTrain();
 			treno->setEngineNumber(pkt1->getNID_ENGINE());
 			treno->setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
@@ -113,27 +117,3 @@ void  ThreadPresentazione::TCP_Management_receive(){
 }
 
 
-void  ThreadPresentazione::stampaBuffer(byte *buff, int nBit)
-{
-	cout << nBit << endl;
-
-	for(int j = 0; j < (nBit / 8); ++j)
-	{
-		for(int k = 7; k >= 0; --k)
-		{
-			byte mask = 1 << k;
-			byte aux = buff[j] & mask;
-			char supp = aux?'1':'0';
-			cout << supp;
-		}
-		cout << endl;
-	}
-	for(int k = (nBit % 8) - 1; k >= 0; --k)
-	{
-		byte mask = 1 << k;
-		byte aux = buff[(nBit / 8) + 1] & mask;
-		char supp = aux?'1':'0';
-		cout << supp;
-	}
-	cout << endl;
-}

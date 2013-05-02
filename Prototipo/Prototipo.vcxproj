@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="logger\LogClass.h" />
+    <ClInclude Include="logger\Logger.h" />
     <ClInclude Include="logger\LogMessage.h" />
     <ClInclude Include="mapTrenoFisicoLogico.h" />
     <ClInclude Include="messaggi\Messaggi.h" />
@@ -95,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logger\LogClass.cpp" />
+    <ClCompile Include="logger\Logger.cpp" />
     <ClCompile Include="logger\LogMessage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />
@@ -113,6 +115,12 @@
     <ClCompile Include="threads\ThreadListenerATC.cpp" />
     <ClCompile Include="threads\ThreadPresentazione.cpp" />
     <ClCompile Include="utility.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
