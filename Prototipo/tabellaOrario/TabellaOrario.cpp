@@ -154,7 +154,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 			pkt->setQ_DOORS(i, stop->getLatoAperturaPorte());
 			double orarioPartenza = stop->getOrarioPartenza();
 			double orarioArrivo = stop->getOrarioArrivo();
-			pkt->setT_DOORS_TIME(i, (orarioPartenza - orarioArrivo));
+			pkt->setT_DOORS_TIME(i, (int) (orarioPartenza - orarioArrivo));
 			++i;
 		}
 	}
