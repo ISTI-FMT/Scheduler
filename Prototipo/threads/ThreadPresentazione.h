@@ -10,11 +10,10 @@ ref class ThreadPresentazione
 {
 private:
 	 phisicalTrainList ^listaTreni;
-	 LogClass ^logMSG;
 public:
 	
 	ThreadPresentazione();
-	ThreadPresentazione(phisicalTrainList ^lt,LogClass ^log );
+	ThreadPresentazione(phisicalTrainList ^lt);
 	void TCP_Management_receive();
 	
 };

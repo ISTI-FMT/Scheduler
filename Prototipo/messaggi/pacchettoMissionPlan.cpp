@@ -28,6 +28,11 @@ void pacchettoMissionPlan::setN_ITER1(int N)
 {
 	data.N_ITER1 = N;
 	data.mS1_vect = new missionStruct1[N];
+	for(int i=0; i<N;i++){
+		data.mS1_vect[i].D_MISSION=0;
+		data.mS1_vect[i].V_MISSION=0;
+		
+	}
 }
 
 // funzione che sette N_ITER2
@@ -35,6 +40,13 @@ void pacchettoMissionPlan::setN_ITER2(int N)
 {
 	data.N_ITER2 = N;
 	data.mS2_vect = new missionStruct2[N];
+	for(int i=0; i<N;i++){
+		data.mS2_vect[i].D_STOP=0;
+		data.mS2_vect[i].NID_LRGB=0;
+		data.mS2_vect[i].Q_DOORS=0;
+		data.mS2_vect[i].T_DOORS_TIME=0;
+		data.mS2_vect[i].T_START_TIME=0;
+	}
 }
 
 void pacchettoMissionPlan::setD_MISSION(int index, int D)

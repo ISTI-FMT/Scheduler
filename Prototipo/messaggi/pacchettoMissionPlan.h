@@ -81,7 +81,7 @@ public:
 				out = out+"NID_LRGB: "+data.mS2_vect[i].NID_LRGB+";";
 				out = out+"D_STOP: "+data.mS2_vect[i].D_STOP+";";
 				out = out+"Q_DOORS: "+data.mS2_vect[i].Q_DOORS+";";
-
+				out = out+"T_DOORS_TIME: "+data.mS2_vect[i].T_DOORS_TIME+";";
 			}
 		}
 

@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 using namespace System;
-
+using namespace System::Globalization;
 TabellaOrario::TabellaOrario(void)
 {
 	tabella = gcnew List<TrenoFermate^>;
@@ -72,12 +72,11 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			inner->ReadToFollowing("arrivo");
 			System::String ^SystemStringOrarioArrivo = inner->ReadString();
 			// aggiungo alla data corrente l'ora, minuto e secondi letti
-			orarioSupporto1.Parse(SystemStringOrarioArrivo);
-			orarioSupporto2.Today.AddHours(orarioSupporto1.Hour);
-			orarioSupporto2.Today.AddMinutes(orarioSupporto1.Minute);
-			orarioSupporto2.Today.AddSeconds(orarioSupporto1.Second);
-			// calcolo la differenza fra la data preparata e la data "di oggi" (alla mezzanotte)
-			sinceMidnight = orarioSupporto2.Today - orarioSupporto3.Today;
+			orarioSupporto1 = DateTime::ParseExact(SystemStringOrarioArrivo, "HH:mm:ss", CultureInfo::InvariantCulture);
+			//orarioSupporto2.Today.AddHours(orarioSupporto1.Hour);
+			orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+			
+			sinceMidnight = orarioSupporto1 - orarioSupporto3;
 			// calcolo quanti secondi sono passati dalla mezzanotte
 			secs = sinceMidnight.TotalSeconds;
 			// configuro l'orario di arrivo della farmata
@@ -87,12 +86,11 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			inner->ReadToFollowing("partenza");
 			System::String ^SystemStringOrarioPartenza = inner->ReadString();
 			// aggiungo alla data corrente l'ora, minuto e secondi letti
-			orarioSupporto1.Parse(SystemStringOrarioPartenza);
-			orarioSupporto2.Today.AddHours(orarioSupporto1.Hour);
-			orarioSupporto2.Today.AddMinutes(orarioSupporto1.Minute);
-			orarioSupporto2.Today.AddSeconds(orarioSupporto1.Second);
+			orarioSupporto2=DateTime::ParseExact(SystemStringOrarioPartenza, "HH:mm:ss", CultureInfo::InvariantCulture);
+			//DateTime t = DateTime::ParseExact(SystemStringOrarioPartenza, "HH:mm:ss", CultureInfo::InvariantCulture);
+			
 			// calcolo la differenza fra la data preparata e la data "di oggi" (alla mezzanotte)
-			sinceMidnight = orarioSupporto2.Today - orarioSupporto3.Today;
+			sinceMidnight = orarioSupporto2- orarioSupporto3;
 			// calcolo quanti secondi sono passati dalla mezzanotte
 			secs = sinceMidnight.TotalSeconds;
 			// configuro l'orario di arrivo della farmata
@@ -138,41 +136,42 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 // alla missione associata al TRN in questione
 void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 {
-	bool error;
+	
 	// ottengo un riferimento alle fermate del treno TRN
-	TrenoFermate ^treno = getTrenoFermate(TRN, error);
+	TrenoFermate ^treno = getTrenoFermate(TRN);
 	// se il teno esiste
-	if(!error)
+	if(treno!=nullptr)
 	{
 		// ottengo un riferimento alla lista delle feremate del treno
 		List<Fermata^> ^stops = treno->getListaFermate();
-		pkt->setN_ITER1(stops->Count);
+		pkt->setN_ITER1(0);
 		pkt->setN_ITER2(stops->Count);
 		int i = 0;
 		for each (Fermata ^stop in stops)
 		{
 			pkt->setQ_DOORS(i, stop->getLatoAperturaPorte());
-			double orarioPartenza = stop->getOrarioPartenza();
-			double orarioArrivo = stop->getOrarioArrivo();
-			pkt->setT_DOORS_TIME(i, (int) (orarioPartenza - orarioArrivo));
+			int Costanteaperturaporte = 30;
+			int orarioPartenza = (int)stop->getOrarioPartenza();
+			int orarioArrivo =  (int)stop->getOrarioArrivo();
+			pkt->setT_START_TIME(i,orarioPartenza);
+			pkt->setT_DOORS_TIME(i, ((orarioPartenza-Costanteaperturaporte) - orarioArrivo));
 			++i;
 		}
 	}
 }
 
 // funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
-TrenoFermate^ TabellaOrario::getTrenoFermate(int TRN, bool &error)
+TrenoFermate^ TabellaOrario::getTrenoFermate(int TRN)
 {
 	for each(TrenoFermate ^treno in tabella)
 	{
 		if(treno->getIdTreno() == TRN)
 		{
 			return treno;
-			error = false;
 		}
 	}
 
-	error = true;
+	
 	return nullptr;
 }
 

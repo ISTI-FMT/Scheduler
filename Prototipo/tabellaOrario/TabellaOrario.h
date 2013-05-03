@@ -29,6 +29,6 @@ public:
 	// alla missione associata al TRN in questione
 	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
 	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
-	TrenoFermate^ getTrenoFermate(int TRN, bool &error);
+	TrenoFermate^ getTrenoFermate(int TRN);
 };
 

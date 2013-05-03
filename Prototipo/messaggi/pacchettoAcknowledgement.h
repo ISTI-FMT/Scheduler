@@ -34,6 +34,7 @@ public:
 
 	out = out+"NID_PACKET: "+data.NID_PACKET+";";
 	out = out+"L_PACKET: "+data.L_PACKET+";";
+	out = out+"T_TRAIN: "+data.T_TRAIN+";";
 	out = out+"Q_MISSION_RESPONSE: "+data.Q_MISSION_RESPONSE+";";
 	 return out;
 	};

@@ -8,6 +8,8 @@
 #include "..\\logger\\LogClass.h"
 #include "..\\logger\\Logger.h"
 
+#define TRACE
+
 using namespace System;
 using namespace System::IO;
 using namespace System::Net;
@@ -23,11 +25,11 @@ ThreadPresentazione::ThreadPresentazione()
 
 }
 
-ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt, LogClass ^log)
+ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt)
 	// :listaTreni(lt)
 {
 	listaTreni=lt;
-	logMSG =log;
+	
 }
 
 void  ThreadPresentazione::TCP_Management_receive(){
@@ -79,10 +81,12 @@ void  ThreadPresentazione::TCP_Management_receive(){
 
 			//Console::WriteLine("{0} ti ha inviato un messaggio",client->Client->RemoteEndPoint->ToString());
 
-			logMSG->setLogMsg(pkt1->getNID_MESSAGE(),System::DateTime::Now, BitConverter::ToString(bytes),(((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString(),"ATS");
-			
+#ifdef TRACE
+
 			Logger::Info(pkt1->getNID_MESSAGE(),(((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(bytes),"Presentazione");
-			
+
+#endif // TRACE
+
 			
 			phisicalTrain ^treno = gcnew phisicalTrain();
 			treno->setEngineNumber(pkt1->getNID_ENGINE());

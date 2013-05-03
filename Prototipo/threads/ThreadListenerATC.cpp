@@ -2,6 +2,9 @@
 #using <System.dll>
 #include "..\\utility.h"
 #include "..\\messaggi\\Messaggi.h"
+#include "..\\logger\\Logger.h"
+
+#define TRACE
 
 using namespace System;
 using namespace System::IO;
@@ -31,7 +34,11 @@ void ThreadListenerATC::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	pkt1->deserialize(receiveBytes);
 
+#ifdef TRACE
 
+			Logger::Info(pkt1->getNID_MESSAGE(),ipEndPoint->Address->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC");
+
+#endif // TRACE
 
 	Console::ForegroundColor = ConsoleColor::Red;
 	Console::WriteLine("{0} ATC ti ha inviato un messaggio",ipEndPoint->Address->ToString());

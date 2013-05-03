@@ -63,6 +63,11 @@ void pacchettostatolineaatc::setN_ITER(int N)
 {
 	data.N_ITER = N;
 	data.pstato1 = new pstatolineastruct[N];
+	for(int i=0;i<N;i++){
+		data.pstato1[i].NID_CDB=0;
+		data.pstato1[i].Q_DEVIATIOIO=0;
+		data.pstato1[i].Q_STATOCDB=0;
+	}
 }
 
 void pacchettostatolineaatc::setNID_CDB(int index, int D)

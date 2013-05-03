@@ -57,6 +57,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies />
     </Link>
+    <PostBuildEvent>
+      <Command>copy app.config "$(TargetPath).config"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -75,6 +78,7 @@
     <ClInclude Include="logger\LogClass.h" />
     <ClInclude Include="logger\Logger.h" />
     <ClInclude Include="logger\LogMessage.h" />
+    <ClInclude Include="logger\TextBoxTraceListener.h" />
     <ClInclude Include="mapTrenoFisicoLogico.h" />
     <ClInclude Include="messaggi\Messaggi.h" />
     <ClInclude Include="messaggi\pacchettoAcknowledgement.h" />
@@ -86,6 +90,9 @@
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
     <ClInclude Include="resource.h" />
+   <!--  <ClInclude Include="form\SchedulerForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>-->
     <ClInclude Include="String2string.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
@@ -98,6 +105,7 @@
     <ClCompile Include="logger\LogClass.cpp" />
     <ClCompile Include="logger\Logger.cpp" />
     <ClCompile Include="logger\LogMessage.cpp" />
+    <ClCompile Include="logger\TextBoxTraceListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />
     <ClCompile Include="messaggi\Messaggi.cpp" />
@@ -108,6 +116,7 @@
     <ClCompile Include="messaggi\pacchettostatolineaatc.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
+   <!-- <ClCompile Include="form\SchedulerForm.cpp" />-->
     <ClCompile Include="String2string.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
@@ -122,6 +131,18 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </None>
   </ItemGroup>
+ <!-- <ItemGroup>
+    <EmbeddedResource Include="form\SchedulerForm.resx">
+      <DependentUpon>form\SchedulerForm.h</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>-->
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

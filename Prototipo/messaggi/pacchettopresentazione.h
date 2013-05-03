@@ -13,7 +13,7 @@ public:
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
-	int getSize(){return 16;};
+	int getSize(){return 53;};
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	
 	
@@ -34,7 +34,7 @@ public:
 
 	out = out+"NID_PACKET: "+data.NID_PACKET+";";
 	out = out+"L_PACKET: "+data.L_PACKET+";";
-	out = out+"NID_OPERATIONAL: "+data.M_PORT+";";
+	out = out+"M_PORT: "+data.M_PORT+";";
 	 return out;
 	};
 };
