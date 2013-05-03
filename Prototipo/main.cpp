@@ -201,12 +201,12 @@ int main()
 
      oThread1->Start();
 
-	//while(listaTreni->is_Empthy()){
+	while(listaTreni->is_Empthy()){
 
 		//Console::WriteLine("Nessun Treno Si è presentato");
-	//}
+	}
 
-	//TCP_Management(listaTreni->getPrimo(), tabella);
+	TCP_Management(listaTreni->getPrimo(), tabella);
 
 	
 	
@@ -220,5 +220,5 @@ int main()
 
 	//logMSG->savetxt();
 
-	//return 0;
+	return 0;
 }

@@ -1,6 +1,6 @@
 #include "utility.h"
 
-char masks[] = {0x80,64,32,16,8,4,2,1}; // le maschere per settare i bit
+ char masks[] = {-128,64,32,16,8,4,2,1}; // le maschere per settare i bit
 
 char vet[5]; // il buffer su cui si deve scrivere
 
