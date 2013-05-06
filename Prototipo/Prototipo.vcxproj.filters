@@ -77,9 +77,6 @@
     <ClInclude Include="tabellaOrario\TabellaOrario.h">
       <Filter>File di intestazione\tabellaOrario</Filter>
     </ClInclude>
-    <ClInclude Include="tabellaOrario\TrenoFermate.h">
-      <Filter>File di intestazione\tabellaOrario</Filter>
-    </ClInclude>
     <ClInclude Include="threads\ThreadListenerATC.h">
       <Filter>File di intestazione\threads</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="logger\Logger.h">
       <Filter>File di intestazione\logger</Filter>
+    </ClInclude>
+    <ClInclude Include="logger\TextBoxTraceListener.h">
+      <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,9 +139,6 @@
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp">
       <Filter>File di origine\tabellaOrario</Filter>
     </ClCompile>
-    <ClCompile Include="tabellaOrario\TrenoFermate.cpp">
-      <Filter>File di origine\tabellaOrario</Filter>
-    </ClCompile>
     <ClCompile Include="threads\ThreadListenerATC.cpp">
       <Filter>File di origine\threads</Filter>
     </ClCompile>
@@ -168,6 +165,9 @@
     </ClCompile>
     <ClCompile Include="logger\Logger.cpp">
       <Filter>File di origine\logger</Filter>
+    </ClCompile>
+    <ClCompile Include="logger\TextBoxTraceListener.cpp">
+      <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 #pragma once
-#include "TrenoFermate.h"
+#include "Fermata.h"
 #include "..\\messaggi\\pacchettoMissionPlan.h"
-#include <iostream>
-using namespace std;
+#using <System.dll>
+using namespace System::Collections::Generic;
 
 /*-----------------------------------------------------------------------------------------------
 L'ATS legge il contenuto della tabella orario da un file di configurazione e memorizza queste informazioni
@@ -12,8 +12,8 @@ in apposite strutture dati.
 // Questa classe è utilizzata per gestire la tabella orario dell'ATS attraverso una lista di oggetti di tipo TrenoFermate
 ref class TabellaOrario
 {
-	List<TrenoFermate^> ^tabella;
-	void aggiungiTreno(TrenoFermate ^treno);
+	Dictionary<int, List<Fermata^>^> ^tabella;
+
 	// funzione che converte una System::String in un intero
 	int convertiString2int(System::String ^StringValue);
 	// funzione che converte una System::String in un std::string
@@ -29,6 +29,7 @@ public:
 	// alla missione associata al TRN in questione
 	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
 	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
-	TrenoFermate^ getTrenoFermate(int TRN);
+	
+	//TrenoFermate^ getTrenoFermate(int TRN);
 };
 

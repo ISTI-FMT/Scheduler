@@ -8,7 +8,7 @@ using namespace System;
 using namespace System::Globalization;
 TabellaOrario::TabellaOrario(void)
 {
-	tabella = gcnew List<TrenoFermate^>;
+	tabella = gcnew Dictionary<int, List<Fermata^>^>;
 }
 
 // funzione che converte una System::String in un intero
@@ -33,8 +33,13 @@ string TabellaOrario::convertiString2string(System::String ^StringValue)
 // funzione che restituisce un qualsiasi TRN nella tabella orario (di fatto il primo)
 int TabellaOrario::getFirstTRN()
 {
-	if(tabella->Count > 0)
-		return tabella[0]->getIdTreno();
+	if(tabella->Count > 0) {
+		Dictionary<int, List<Fermata^> ^>::KeyCollection ^aux = tabella->Keys;
+		for each (int x in aux)
+		{
+			return x;
+		}
+	}
 	else
 		return 0;
 }
@@ -57,7 +62,7 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 		// converto l'id del treno da System::String a int
 		int idTreno = convertiString2int(SystemStringIdTreno);
 		// creo un nuovo treno
-		TrenoFermate ^treno = gcnew TrenoFermate(idTreno);
+		List<Fermata^> ^treno;
 
 		// per ogni stazione in cui il treno in question deve fermarsi
 		while (inner->ReadToFollowing("stazione")){
@@ -122,13 +127,13 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			stop->setLatoAperturaPorte(latoParturaPorte);
 
 			// a questo punto posso aggiungere la fermata alla lista delle fermate del treno in questione
-			treno->aggiungiFermata(stop);
+			treno->Add(stop);
 
 			//System::Console::WriteLine(idTreno+idSTazione+orarioArrivo+orarioPartenza+binarioProgrammato+latoProgrammato);
 			System::Console::WriteLine();
 		}
 		// a questo punto aggiungo il treno alla tabella orario
-		aggiungiTreno(treno);
+		tabella->Add(idTreno, treno);
 	}	
 }
 
@@ -136,14 +141,11 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 // alla missione associata al TRN in questione
 void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 {
-	
 	// ottengo un riferimento alle fermate del treno TRN
-	TrenoFermate ^treno = getTrenoFermate(TRN);
+	List<Fermata^> ^stops = tabella[TRN];
 	// se il teno esiste
-	if(treno!=nullptr)
+	if(stops!=nullptr)
 	{
-		// ottengo un riferimento alla lista delle feremate del treno
-		List<Fermata^> ^stops = treno->getListaFermate();
 		//Todo: V_mission D_mission ancora da trattare
 		pkt->setN_ITER1(0);
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
@@ -160,26 +162,6 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 			++i;
 		}
 	}
-}
-
-// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
-TrenoFermate^ TabellaOrario::getTrenoFermate(int TRN)
-{
-	for each(TrenoFermate ^treno in tabella)
-	{
-		if(treno->getIdTreno() == TRN)
-		{
-			return treno;
-		}
-	}
-
-	
-	return nullptr;
-}
-
-void TabellaOrario::aggiungiTreno(TrenoFermate ^treno)
-{
-	tabella->Add(treno);
 }
 
 /*
