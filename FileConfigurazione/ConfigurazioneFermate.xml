@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configurazionefermate>
 
+<fermata id="Vicolo Stretto" >
+    <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      
+       <cdb>BCA504</cdb>
+	    <nextcdb>11020</nextcdb>
+    </binario>
+    <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+
+      <cdb>BCA504</cdb>
+	   <nextcdb>10010</nextcdb>
+    </binario>
+
+    
+   
+  </fermata>
 
   <fermata id="Via Marco Polo" >
     <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
       
        <cdb>406</cdb>
+	    <nextcdb>408</nextcdb>
     </binario>
     <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
 
       <cdb>406</cdb>
+	   <nextcdb>404</nextcdb>
     </binario>
 
     <binario id="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
 
       <cdb>407</cdb>
+	   <nextcdb>409</nextcdb>
     </binario>
 
     <binario id="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
 
       <cdb>407</cdb>
+	   <nextcdb>405</nextcdb>
     </binario>
    
   </fermata>
@@ -28,20 +47,24 @@
     <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
 
       <cdb>418</cdb>
+	   <nextcdb>420</nextcdb>
     </binario>
 
     <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
 
       <cdb>418</cdb>
+	   <nextcdb>416</nextcdb>
     </binario>
     <binario id="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
 
       <cdb>419</cdb>
+	   <nextcdb>421</nextcdb>
     </binario>
 
     <binario id="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
 
       <cdb>419</cdb>
+	   <nextcdb>417</nextcdb>
     </binario>
     
   </fermata>
