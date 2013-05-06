@@ -1,0 +1,73 @@
+STATO Linea IXL
+MESSAGGIO_ID 03  PackgeID 00 + 03 + 04 + 255
+
+NID_MESSAGE : 8;
+L_MESSAGE : 11;
+T_IXL : 32;
+
+PKG(00) Stato Linea sizebit(73+N_ITER*36)
+NID_PACKET : 8;
+L_PACKET : 13;
+NID_CDB : 32;
+Q_STATOCDB : 2;
+Q_DEVIATIOIO : 2;
+N_ITER : 16;
+NID_CDB : 32;
+Q_STATOCDB : 2;
+Q_DEVIATIOIO : 2;
+
+PKG(03) Stato Itinerari sizebit(71+N_ITER*34)
+NID_PACKET : 8;
+L_PACKET : 13;
+NID_ITIN : 32;
+Q_STATOITIN : 2;
+N_ITER : 16;
+NID_ITIN : 32;
+STATO_ITIN : 2;
+
+PKG(04) Stato Segnali sizebit(71+N_ITER*34)
+NID_PACKET : 8;
+L_PACKET : 13;
+NID_SEGN : 32;
+Q_STATOSTATOSEGN : 2;
+N_ITER : 16;
+NID_SEGN : 32;
+Q_STATOSTATOSEGN : 2;
+
+PKG(255) End sizebit(8)
+NID_PACKET : 8;
+--------------------------------------------------------------------------------------------------
+
+Comando Itinerari da ATS a IXL
+MESSAGGIO_ID 10  PackgeID 10 + 255
+
+NID_MESSAGE : 8;
+L_MESSAGE : 11;
+T_ATS : 32;
+
+PKG(10) Comando Itinerari  sizebit(55)
+NID_PACKET : 8;
+L_PACKET : 13;
+NID_ITIN : 32;
+Q_CMDITIN: 2;
+
+PKG(255) End
+NID_PACKET : 8;
+
+-----------------------------------------------------------------------------------------------------
+
+Comando direzione Blocco da ATS a IXL
+MESSAGGIO_ID 11  PackgeID 11 + 255
+
+NID_MESSAGE : 8;
+L_MESSAGE : 11;
+T_ATS : 32;
+
+PKG(11) Comando Blocco sizebit(55)
+NID_PACKET : 8;
+L_PACKET : 13;
+NID_BLOCCO: 32;
+Q_CMDBLOCCO: 2;
+
+PKG(255) End
+NID_PACKET : 8;
