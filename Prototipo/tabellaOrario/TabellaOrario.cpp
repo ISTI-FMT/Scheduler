@@ -79,8 +79,8 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			sinceMidnight = orarioSupporto1 - orarioSupporto3;
 			// calcolo quanti secondi sono passati dalla mezzanotte
 			secs = sinceMidnight.TotalSeconds;
-			// configuro l'orario di arrivo della farmata
-			stop->setOrarioArrivo(secs);
+			// configuro l'orario di arrivo della farmata in risoluzione di 30s
+			stop->setOrarioArrivo(secs/30);
 
 			// leggo l'orario di partenza
 			inner->ReadToFollowing("partenza");
@@ -93,8 +93,8 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			sinceMidnight = orarioSupporto2- orarioSupporto3;
 			// calcolo quanti secondi sono passati dalla mezzanotte
 			secs = sinceMidnight.TotalSeconds;
-			// configuro l'orario di arrivo della farmata
-			stop->setOrarioPartenza(secs);
+			// configuro l'orario di arrivo della farmata in risoluzione di 30 s
+			stop->setOrarioPartenza(secs/30);
 
 			// leggo il binario programmato
 			inner->ReadToFollowing("binarioprogrammato");
@@ -144,6 +144,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 	{
 		// ottengo un riferimento alla lista delle feremate del treno
 		List<Fermata^> ^stops = treno->getListaFermate();
+		//Todo: V_mission D_mission ancora da trattare
 		pkt->setN_ITER1(0);
 		pkt->setN_ITER2(stops->Count);
 		int i = 0;
