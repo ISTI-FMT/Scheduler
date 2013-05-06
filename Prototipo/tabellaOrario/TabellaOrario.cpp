@@ -146,7 +146,8 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 		List<Fermata^> ^stops = treno->getListaFermate();
 		//Todo: V_mission D_mission ancora da trattare
 		pkt->setN_ITER1(0);
-		pkt->setN_ITER2(stops->Count);
+		// -1 perchè la prima fermata non viene considerata negli N_ITER
+		pkt->setN_ITER2((stops->Count) - 1);
 		int i = 0;
 		for each (Fermata ^stop in stops)
 		{
