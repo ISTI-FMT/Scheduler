@@ -450,7 +450,7 @@
           <cdb>16021</cdb>
           <cdb>16022</cdb>
           <cdb>16023</cdb>
-          <cdb>16024</cdb>
+          <cdb>16027</cdb>
           <cdb>16303</cdb>
         
       </ingresso>
@@ -479,7 +479,7 @@
           <cdb>16026</cdb>
           <cdb>16022</cdb>
           <cdb>16023</cdb>
-          <cdb>16024</cdb>
+          <cdb>16027</cdb>
           <cdb>16303</cdb>
         
       </ingresso>
@@ -588,7 +588,7 @@
       <partenza id="III-02" direzione="sx" portebanchina="true" latobanchina="sx">
         
           <cdb>16303</cdb>
-          <cdb>16024</cdb>
+          <cdb>16027</cdb>
           <cdb>16023</cdb>
           <cdb>16022</cdb>
           <cdb>16021</cdb>
@@ -598,7 +598,7 @@
         <partenza id="III-04" direzione="sx" portebanchina="true" latobanchina="sx">
        
           <cdb>16303</cdb>
-          <cdb>16024</cdb>
+          <cdb>16027</cdb>
           <cdb>16023</cdb>
           <cdb>16022</cdb>
           <cdb>16026</cdb>
