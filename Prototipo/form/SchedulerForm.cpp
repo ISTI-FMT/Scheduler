@@ -1,16 +1,6 @@
 #include "SchedulerForm.h"
-#include "tabellaOrario\\TabellaOrario.h"
 #using <System.dll>
-#include "utility.h"
 
-#include "phisicalTrainList.h"
-#include "String2string.h"
-#include "threads\\ThreadListenerATC.h"
-#include <iostream>
-#include "threads\\ThreadPresentazione.h"
-#include "mapTrenoFisicoLogico.h"
-#include "messaggi\\Messaggi.h"
-#include "logger\\LogClass.h"
 
 using namespace std;
 using namespace System;
@@ -25,7 +15,7 @@ using namespace System::Threading::Tasks;
 
 using namespace System::Diagnostics;
 
-#define TRACE
+//#define TRACE
 /*int main()
 {
 	

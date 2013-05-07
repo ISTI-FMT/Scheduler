@@ -1,16 +1,15 @@
 #pragma once
-#include "tabellaOrario\\TabellaOrario.h"
+#include "..\\tabellaOrario\\TabellaOrario.h"
 #using <System.dll>
-#include "utility.h"
+#include "..\\utility.h"
 
-#include "phisicalTrainList.h"
-#include "String2string.h"
-#include "threads\\ThreadListenerATC.h"
+#include "..\\phisicalTrainList.h"
+#include "..\\threads\\ThreadListenerATC.h"
 #include <iostream>
-#include "threads\\ThreadPresentazione.h"
-#include "mapTrenoFisicoLogico.h"
-#include "messaggi\\Messaggi.h"
-#include "logger\\Logger.h"
+#include "..\\threads\\ThreadPresentazione.h"
+#include "..\\mapTrenoFisicoLogico.h"
+#include "..\\messaggi\\Messaggi.h"
+#include "..\\logger\\Logger.h"
 
 #define TRACE
 namespace Prototipo {
@@ -79,6 +78,7 @@ namespace Prototipo {
 		System::ComponentModel::Container ^components;
 		TabellaOrario ^tabella;
 		phisicalTrainList ^listaTreni;
+		
 		Thread^ oThread1;
 		Thread^ oThread2;
 
@@ -125,8 +125,9 @@ namespace Prototipo {
 			this->ResumeLayout(false);
 
 		}
-		void TCP_Management(phisicalTrain ^Treno, TabellaOrario ^tabella)
+		void TCP_Management()
 		{
+			phisicalTrain ^Treno = listaTreni->getPrimo();
 			try
 			{
 
@@ -231,6 +232,8 @@ namespace Prototipo {
 
 
 				cout << "DONE\n";
+				myStream->Close();
+				sock->Close();
 			}
 			catch ( SocketException^ e ) 
 			{
@@ -243,7 +246,10 @@ namespace Prototipo {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 
 				 if(!listaTreni->is_Empthy()){
-					 TCP_Management(listaTreni->getPrimo(), tabella);
+					 Thread  ^oThread = gcnew Thread( gcnew ThreadStart(this, &Prototipo::SchedulerForm::TCP_Management) );
+
+			oThread->Start();
+					 
 				 }else{
 
 #ifdef TRACE

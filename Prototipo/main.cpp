@@ -9,7 +9,8 @@
 #include "threads\\ThreadPresentazione.h"
 #include "mapTrenoFisicoLogico.h"
 #include "messaggi\\Messaggi.h"
-//#include "SchedulerForm.h"
+#include "form\\SchedulerForm.h"
+
 using namespace System::Diagnostics;
 using namespace std;
 using namespace System;
@@ -27,7 +28,7 @@ L'ATS gestisce delle connessioni TCP/IP con gli ATO dei treni sotto il suo contr
 Attraverso queste connessioni l'ATS invia e riceve messaggi da e verso gli ATO.
 ------------------------------------------------------------------------------------*/
 
-void TCP_Management(phisicalTrain ^Treno, TabellaOrario ^tabella)
+/*void TCP_Management(phisicalTrain ^Treno, TabellaOrario ^tabella)
 {
 	try
 	{
@@ -133,6 +134,8 @@ void TCP_Management(phisicalTrain ^Treno, TabellaOrario ^tabella)
 
 
 		cout << "DONE\n";
+		myStream->Close();
+		sock->Close();
 	}
 	catch ( SocketException^ e ) 
 	{
@@ -141,7 +144,7 @@ void TCP_Management(phisicalTrain ^Treno, TabellaOrario ^tabella)
 
 
 }
-
+*/
 
 
 int main()
@@ -193,7 +196,7 @@ int main()
 	// Trace::TraceInformation("Hello world");
 
 	
-	TabellaOrario ^tabella = gcnew TabellaOrario;
+/*	TabellaOrario ^tabella = gcnew TabellaOrario;
 
 	tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 	
@@ -235,14 +238,14 @@ int main()
 	Console::Read();
 
 	oThread1->Abort("Thread ATC UDP Listener Chiuso");
-	oThread2->Abort();
+	oThread2->Abort();*/
 
 #ifdef TRACE
 			 Trace::WriteLine("New Run Application");  
 #endif // TRACE
-	//Prototipo::SchedulerForm ^form = gcnew Prototipo::SchedulerForm();
+	Prototipo::SchedulerForm ^form = gcnew Prototipo::SchedulerForm();
 
-	//System::Windows::Forms::Application::Run(form);
+	System::Windows::Forms::Application::Run(form);
 
 	return 0;
 }
