@@ -40,7 +40,7 @@ int TabellaOrario::getFirstTRN()
 			return x;
 		}
 	}
-	else
+	
 		return 0;
 }
 
@@ -62,7 +62,7 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 		// converto l'id del treno da System::String a int
 		int idTreno = convertiString2int(SystemStringIdTreno);
 		// creo un nuovo treno
-		List<Fermata^> ^treno;
+		List<Fermata^> ^treno = gcnew List<Fermata^>();
 
 		// per ogni stazione in cui il treno in question deve fermarsi
 		while (inner->ReadToFollowing("stazione")){

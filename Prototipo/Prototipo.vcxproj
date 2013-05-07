@@ -90,9 +90,9 @@
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
     <ClInclude Include="resource.h" />
-    <!--  <ClInclude Include="form\SchedulerForm.h">
+     <ClInclude Include="form\SchedulerForm.h">
       <FileType>CppForm</FileType>
-    </ClInclude>-->
+    </ClInclude>
     <ClInclude Include="String2string.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
@@ -115,7 +115,7 @@
     <ClCompile Include="messaggi\pacchettostatolineaatc.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
-    <!-- <ClCompile Include="form\SchedulerForm.cpp" />-->
+    <ClCompile Include="form\SchedulerForm.cpp" />
     <ClCompile Include="String2string.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
@@ -129,7 +129,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </None>
   </ItemGroup>
-  <!-- <ItemGroup>
+   <ItemGroup>
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <DependentUpon>form\SchedulerForm.h</DependentUpon>
     </EmbeddedResource>
@@ -140,7 +140,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-  </ItemGroup>-->
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
