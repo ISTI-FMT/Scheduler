@@ -2,7 +2,9 @@
 #include "struttureDatiMessaggi.h"
 
 /*-----------------------------------------------------------------------------------------------
-L'ATS manda una missione al treno
+Alessio:
+L'ATS manda una missione al treno la missione da eseguire specificandola all'interno di un messaggio 
+mission plan
 -------------------------------------------------------------------------------------------------*/
 
 class pacchettoMissionPlan

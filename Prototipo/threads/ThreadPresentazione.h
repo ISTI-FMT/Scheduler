@@ -3,8 +3,12 @@
 #include "..\\messaggi\\struttureDatiMessaggi.h"
 #include "..\\logger\\LogClass.h"
 #using <System.dll>
-
 using namespace System;
+
+/*-----------------------------------------------------------------------------------------------
+Alessio:
+L'ATS è in grado di ricevere messaggi di presentazione da parte di sistemi ATO
+-------------------------------------------------------------------------------------------------*/
 
 ref class ThreadPresentazione
 {
