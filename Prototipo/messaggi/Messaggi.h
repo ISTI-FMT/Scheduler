@@ -9,12 +9,31 @@
 
 ref class Messaggi
 {
+	// puntatore all'header per i messaggi ATS/ATO
 	structuredHeader *head;
+	// puntatori alle strutture dati per i pacchetti ATS/ATO
 	pacchettoCommandData *pkgcd1;
 	pacchettoMissionPlan *pkgMP;
 	pacchettopresentazione *pgkPres;
 	pacchettostatolineaatc *pkgStatoATC;
 	pacchettoAcknowledgement *pkgAck;
+
+	// puntatore all'header per i messaggi ATS/IXL
+	headerATSIXL *headATSIXL;
+	// puntatori alle strutture dati per i pacchetti ATS/ATO
+
+	/*
+
+	Queste classi devono essere create simili a pacchettoMissionPlan e tutte le altre...
+
+	pacchettoStatoLinea *pkgStatoLinea;
+	pacchettoStatoItinerario *pkgStatoItinerari;
+	pacchettoStatoSegnale *pkgStatoSegnali;
+	pacchettoFaultData *pkgFaultData;
+	pacchettoComandoItinerario *pkgComandoItinerario;
+	pacchettoComandoBlocco *pkgComandoBlocco;
+	pacchettoEnd *pkgEnd;
+	*/
 public:
 	Messaggi(void);
 

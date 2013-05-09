@@ -94,7 +94,6 @@ unsigned int NID_CDB : 32;
 
 struct presentation
 {
-	
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
 	unsigned int M_PORT : 32;
@@ -111,13 +110,12 @@ struct pkgstatolinea{
 	struct pstatolineastruct *pstato1;
 };
 
-const int statoLinea = 0;
-const int statoLinea = 1;
-const int statoLinea = 3;
-const int statoLinea = 4;
-const int statoLinea = 255;
-const int statoLinea = 10;
-const int statoLinea = 11;
+struct headerATSIXL
+{
+	unsigned int NID_MESSAGE : 8;
+	unsigned int L_MESSAGE : 11;
+	unsigned int T_IXL; // quanto deve essere lungo questo campo?
+};
 
 struct statoCDB
 {
@@ -126,7 +124,7 @@ struct statoCDB
 	unsigned int Q_DEVIATOIO : 2;
 };
 
-struct pacchettoStatoLinea
+struct StatoLinea
 {
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
@@ -141,7 +139,7 @@ struct fault
 	unsigned int M_FAULT : 8;
 };
 
-struct pacchettoFaultData
+struct FaultData
 {
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
@@ -156,7 +154,7 @@ struct itinerario
 	unsigned int Q_STATOITIN : 2;
 };
 
-struct pacchettoStatoItinerario
+struct StatoItinerario
 {
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
@@ -171,7 +169,7 @@ struct segnale
 	unsigned int Q_STATOSEGN : 2;
 };
 
-struct pacchettoStatoSegnale
+struct StatoSegnale
 {
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
@@ -180,12 +178,12 @@ struct pacchettoStatoSegnale
 	segnale *vStatoSegnale;
 };
 
-struct pacchettoEnd
+struct End
 {
 	unsigned int NID_PACKET : 8;
 };
 
-struct pacchettoComandiItinerari
+struct ComandoItinerario
 {
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
@@ -193,7 +191,7 @@ struct pacchettoComandiItinerari
 	unsigned int Q_CMDITIN : 2;
 };
 
-struct pacchettoComandoBlocco
+struct ComandoBlocco
 {
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
