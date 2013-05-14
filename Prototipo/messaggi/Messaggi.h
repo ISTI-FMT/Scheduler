@@ -5,7 +5,9 @@
 #include "pacchettopresentazione.h"
 #include "pacchettostatolineaatc.h"
 #include "pacchettoAcknowledgement.h"
-
+#include "pacchettoStatoItinerario.h"
+#include "pacchettoEnd.h"
+#include "pacchettoFaultData.h"
 
 ref class Messaggi
 {
@@ -20,18 +22,14 @@ ref class Messaggi
 
 	// puntatori alle strutture dati per i pacchetti ATS/ATO
 
-	/*
-
-	Queste classi devono essere create simili a pacchettoMissionPlan e tutte le altre...
-
-	pacchettoStatoLinea *pkgStatoLinea;
+	//pacchettoStatoLinea *pkgStatoLinea;
 	pacchettoStatoItinerario *pkgStatoItinerari;
-	pacchettoStatoSegnale *pkgStatoSegnali;
+	//pacchettoStatoSegnale *pkgStatoSegnali;
 	pacchettoFaultData *pkgFaultData;
-	pacchettoComandoItinerario *pkgComandoItinerario;
-	pacchettoComandoBlocco *pkgComandoBlocco;
+	//pacchettoComandoItinerario *pkgComandoItinerario;
+	//pacchettoComandoBlocco *pkgComandoBlocco;
 	pacchettoEnd *pkgEnd;
-	*/
+
 public:
 	Messaggi(void);
 
