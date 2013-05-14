@@ -140,7 +140,7 @@ namespace Prototipo {
 
 				wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 				wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
-				wakeUpPkt->setT_TRAIN(tabella->getFirstTRN());
+				wakeUpPkt->setT_TIME(tabella->getFirstTRN());
 
 
 
@@ -158,7 +158,7 @@ namespace Prototipo {
 				trainRunningNumberPkt->setNID_MESSAGE(201);
 				trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 				trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
-				trainRunningNumberPkt->setT_TRAIN(tabella->getFirstTRN());
+				trainRunningNumberPkt->setT_TIME(tabella->getFirstTRN());
 				trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabella->getFirstTRN());
 
 

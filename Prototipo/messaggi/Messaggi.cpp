@@ -7,7 +7,7 @@ Messaggi::Messaggi(void)
 	head = new structuredHeader;
 	head->NID_MESSAGE = 0;
 	head->L_MESSAGE = 0;
-	head->T_TRAIN = 0;
+	head->T_TIME = 0;
 	head->NID_ENGINE=0;
 }
 
@@ -17,7 +17,7 @@ void Messaggi::serialize(byte *buffer)
 	push(buffer, head->NID_MESSAGE, 8, 0);
 	setL_MESSAGE(getSize());
 	push(buffer, head->L_MESSAGE, 11, 8);
-	push(buffer, head->T_TRAIN, 32, 19);
+	push(buffer, head->T_TIME, 32, 19);
 	int N = head->NID_MESSAGE;
 	switch (N)
 	{
@@ -57,7 +57,7 @@ void Messaggi::deserialize(byte *buffer)
 {
 	head->NID_MESSAGE= pop(buffer, 8, 0);
 	head->L_MESSAGE=pop(buffer,11, 8);
-	head->T_TRAIN=pop(buffer, 32, 19);
+	head->T_TIME=pop(buffer, 32, 19);
 	switch (head->NID_MESSAGE)
 	{
 	case 200 : {set_pacchettoMissionPlan();
@@ -109,7 +109,7 @@ String ^Messaggi::ToString(){
 
 	String ^out = "NID_MESSAGE "+getNID_MESSAGE()+";\n";
 	out = out+"L_MESSAGE "+getL_MESSAGE()+";";
-	out = out+"T_TRAIN "+getT_TRAIN()+";";
+	out = out+"T_TRAIN "+getT_TIME()+";";
 	if(getNID_ENGINE()){
 		out = out+"NID_ENGINE "+getNID_ENGINE()+";";
 	}

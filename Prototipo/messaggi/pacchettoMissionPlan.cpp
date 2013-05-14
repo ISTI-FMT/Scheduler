@@ -255,8 +255,8 @@ void pacchettoMissionPlan::deserializeMissionPlanPkt(byte *buffer)
 
 pacchettoMissionPlan::~pacchettoMissionPlan(void)
 {
-	delete data.mS1_vect;
-	delete data.mS2_vect;
+	delete[] data.mS1_vect;
+	delete[] data.mS2_vect;
 }
 
 // funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 

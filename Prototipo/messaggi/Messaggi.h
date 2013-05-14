@@ -18,8 +18,6 @@ ref class Messaggi
 	pacchettostatolineaatc *pkgStatoATC;
 	pacchettoAcknowledgement *pkgAck;
 
-	// puntatore all'header per i messaggi ATS/IXL
-	headerATSIXL *headATSIXL;
 	// puntatori alle strutture dati per i pacchetti ATS/ATO
 
 	/*
@@ -57,8 +55,8 @@ public:
 	int getNID_MESSAGE(){return head->NID_MESSAGE;};
 	void setL_MESSAGE(int N){head->L_MESSAGE = N;};
 	int getL_MESSAGE(){return head->L_MESSAGE;};
-	void setT_TRAIN(int N){head->T_TRAIN = N;};
-	int getT_TRAIN(){return head->T_TRAIN;};
+	void setT_TIME(int N){head->T_TIME = N;};
+	int getT_TIME(){return head->T_TIME;};
 
 	void setNID_ENGINE(int N){head->NID_ENGINE = N;};
 	int getNID_ENGINE(){return head->NID_ENGINE;};

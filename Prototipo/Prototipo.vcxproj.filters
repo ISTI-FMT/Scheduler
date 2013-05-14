@@ -107,6 +107,15 @@
     <ClInclude Include="logger\TextBoxTraceListener.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="form\SchedulerForm.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoFaultData.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoStatoItinerario.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logger\LogClass.cpp">
@@ -169,8 +178,22 @@
     <ClCompile Include="logger\TextBoxTraceListener.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="form\SchedulerForm.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoFaultData.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="form\SchedulerForm.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

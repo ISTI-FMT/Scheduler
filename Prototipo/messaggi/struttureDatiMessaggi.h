@@ -13,7 +13,7 @@ struct structuredHeader
 {
 	unsigned int NID_MESSAGE : 8;
 	unsigned int L_MESSAGE : 11;
-	unsigned int T_TRAIN : 32;
+	unsigned int T_TIME : 32;
 	unsigned int NID_ENGINE : 24;
 };
 
@@ -108,13 +108,6 @@ struct pkgstatolinea{
 	unsigned int N_ITER : 5;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	struct pstatolineastruct *pstato1;
-};
-
-struct headerATSIXL
-{
-	unsigned int NID_MESSAGE : 8;
-	unsigned int L_MESSAGE : 11;
-	unsigned int T_IXL; // quanto deve essere lungo questo campo?
 };
 
 struct statoCDB

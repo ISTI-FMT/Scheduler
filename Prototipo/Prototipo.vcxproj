@@ -83,14 +83,16 @@
     <ClInclude Include="messaggi\Messaggi.h" />
     <ClInclude Include="messaggi\pacchettoAcknowledgement.h" />
     <ClInclude Include="messaggi\pacchettoCommandData.h" />
+    <ClInclude Include="messaggi\pacchettoFaultData.h" />
     <ClInclude Include="messaggi\pacchettoMissionPlan.h" />
     <ClInclude Include="messaggi\pacchettopresentazione.h" />
+    <ClInclude Include="messaggi\pacchettoStatoItinerario.h" />
     <ClInclude Include="messaggi\pacchettostatolineaatc.h" />
     <ClInclude Include="messaggi\struttureDatiMessaggi.h" />
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
     <ClInclude Include="resource.h" />
-     <ClInclude Include="form\SchedulerForm.h">
+    <ClInclude Include="form\SchedulerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="String2string.h" />
@@ -110,8 +112,10 @@
     <ClCompile Include="messaggi\Messaggi.cpp" />
     <ClCompile Include="messaggi\pacchettoAcknowledgement.cpp" />
     <ClCompile Include="messaggi\pacchettoCommandData.cpp" />
+    <ClCompile Include="messaggi\pacchettoFaultData.cpp" />
     <ClCompile Include="messaggi\pacchettoMissionPlan.cpp" />
     <ClCompile Include="messaggi\pacchettopresentazione.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp" />
     <ClCompile Include="messaggi\pacchettostatolineaatc.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
@@ -129,7 +133,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </None>
   </ItemGroup>
-   <ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <DependentUpon>form\SchedulerForm.h</DependentUpon>
     </EmbeddedResource>
