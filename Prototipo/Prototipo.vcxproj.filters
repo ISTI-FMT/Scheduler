@@ -125,6 +125,9 @@
     <ClInclude Include="messaggi\pacchettoEnd.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
+    <ClInclude Include="messaggi\pacchettoComandoBlocco.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logger\LogClass.cpp">
@@ -203,6 +206,9 @@
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
     <ClCompile Include="messaggi\pacchettoEnd.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoComandoBlocco.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
   </ItemGroup>
