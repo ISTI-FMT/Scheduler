@@ -82,7 +82,9 @@
     <ClInclude Include="mapTrenoFisicoLogico.h" />
     <ClInclude Include="messaggi\Messaggi.h" />
     <ClInclude Include="messaggi\pacchettoAcknowledgement.h" />
+    <ClInclude Include="messaggi\pacchettoComandoItinerari.h" />
     <ClInclude Include="messaggi\pacchettoCommandData.h" />
+    <ClInclude Include="messaggi\pacchettoEnd.h" />
     <ClInclude Include="messaggi\pacchettoFaultData.h" />
     <ClInclude Include="messaggi\pacchettoMissionPlan.h" />
     <ClInclude Include="messaggi\pacchettopresentazione.h" />
@@ -112,7 +114,9 @@
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />
     <ClCompile Include="messaggi\Messaggi.cpp" />
     <ClCompile Include="messaggi\pacchettoAcknowledgement.cpp" />
+    <ClCompile Include="messaggi\pacchettoComandoItinerari.cpp" />
     <ClCompile Include="messaggi\pacchettoCommandData.cpp" />
+    <ClCompile Include="messaggi\pacchettoEnd.cpp" />
     <ClCompile Include="messaggi\pacchettoFaultData.cpp" />
     <ClCompile Include="messaggi\pacchettoMissionPlan.cpp" />
     <ClCompile Include="messaggi\pacchettopresentazione.cpp" />
