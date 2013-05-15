@@ -42,15 +42,15 @@ int pacchettoStatoItinerario::getNID_ITIN(int index)
 		return data.vStatoItinerario[index - 1].NID_ITIN;
 }
 
-void pacchettoStatoItinerario::setSTATO_ITIN(int index, int S)
+void pacchettoStatoItinerario::setQSTATO_ITIN(int index, int Q)
 {
 	if(index == 0)
-		data.statoItinerario.Q_STATOITIN = S;
+		data.statoItinerario.Q_STATOITIN = Q;
 	else
-		data.vStatoItinerario[index - 1].Q_STATOITIN = S;
+		data.vStatoItinerario[index - 1].Q_STATOITIN = Q;
 }
 
-int pacchettoStatoItinerario::getSTATO_ITIN(int index)
+int pacchettoStatoItinerario::getQSTATO_ITIN(int index)
 {
 	if(index == 0)
 		return data.statoItinerario.Q_STATOITIN;

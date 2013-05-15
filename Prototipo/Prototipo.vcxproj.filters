@@ -116,6 +116,9 @@
     <ClInclude Include="messaggi\pacchettoStatoItinerario.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
+    <ClInclude Include="messaggi\pacchettoStatoSegnali.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logger\LogClass.cpp">
@@ -185,6 +188,9 @@
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
     <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
   </ItemGroup>

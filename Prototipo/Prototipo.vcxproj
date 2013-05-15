@@ -88,6 +88,7 @@
     <ClInclude Include="messaggi\pacchettopresentazione.h" />
     <ClInclude Include="messaggi\pacchettoStatoItinerario.h" />
     <ClInclude Include="messaggi\pacchettostatolineaatc.h" />
+    <ClInclude Include="messaggi\pacchettoStatoSegnali.h" />
     <ClInclude Include="messaggi\struttureDatiMessaggi.h" />
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
@@ -117,6 +118,7 @@
     <ClCompile Include="messaggi\pacchettopresentazione.cpp" />
     <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp" />
     <ClCompile Include="messaggi\pacchettostatolineaatc.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />
