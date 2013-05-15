@@ -112,5 +112,5 @@ void pacchettoStatoSegnali::deserialize(byte *buffer)
 
 pacchettoStatoSegnali::~pacchettoStatoSegnali(void)
 {
-	delete [] data.vStatoSegnale
+	delete [] data.vStatoSegnale;
 }
