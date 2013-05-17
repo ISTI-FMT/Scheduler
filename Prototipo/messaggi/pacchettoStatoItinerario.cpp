@@ -42,7 +42,7 @@ int pacchettoStatoItinerario::getNID_ITIN(int index)
 		return data.vStatoItinerario[index - 1].NID_ITIN;
 }
 
-void pacchettoStatoItinerario::setQSTATO_ITIN(int index, int Q)
+void pacchettoStatoItinerario::setQ_STATOITIN(int index, int Q)
 {
 	if(index == 0)
 		data.statoItinerario.Q_STATOITIN = Q;
@@ -50,7 +50,7 @@ void pacchettoStatoItinerario::setQSTATO_ITIN(int index, int Q)
 		data.vStatoItinerario[index - 1].Q_STATOITIN = Q;
 }
 
-int pacchettoStatoItinerario::getQSTATO_ITIN(int index)
+int pacchettoStatoItinerario::getQ_STATOITIN(int index)
 {
 	if(index == 0)
 		return data.statoItinerario.Q_STATOITIN;

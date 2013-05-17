@@ -206,3 +206,19 @@ struct StatoBlocco
 	unsigned int N_ITER : 16;
 	blocco *vStatoBlocco;
 };
+
+struct CDB
+{
+	unsigned int NID_CDB : 32;
+	unsigned int Q_STATOCDB : 2;
+	unsigned int Q_DEVIATOIO : 2;
+};
+
+struct StatoLineaIXL
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	CDB statoCDB;
+	unsigned int N_ITER : 16;
+	CDB *vStatoCDB;
+};

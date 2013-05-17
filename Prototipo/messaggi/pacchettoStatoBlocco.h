@@ -17,16 +17,16 @@ public:
 	void setL_PACKET(int L){data.L_PACKET = L;};
 	int getL_PACKET(){return data.L_PACKET;};
 
-	// metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
+	// metodo che setta N_ITER
 	void setN_ITER(int N);
 	int getN_ITER(){return data.N_ITER;};
 	// in questi metodi index rappresenta l'indice del blocco di cui si vogliono leggere/scrivere le caratteristiche
 	// se index è 0, il metodo modificherà i dati relativi al primo blocco, altrimenti modificherà i dati 
 	// relativi agli altri blocchi.
-	void setNID_ITIN(int index, int N);
-	int getNID_ITIN(int index);
-	void setQSTATO_ITIN(int index, int Q);
-	int getQSTATO_ITIN(int index);
+	void setNID_BLOCCO(int index, int N);
+	int getNID_BLOCCO(int index);
+	void setQ_STATOBLOCCO(int index, int Q);
+	int getQ_STATOBLOCCO(int index);
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding

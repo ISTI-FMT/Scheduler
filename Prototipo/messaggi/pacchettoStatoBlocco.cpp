@@ -11,7 +11,7 @@ pacchettoStatoBlocco::pacchettoStatoBlocco(void)
 	data.vStatoBlocco = nullptr;
 }
 
-// metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
+// metodo che setta N_ITER
 void pacchettoStatoBlocco::setN_ITER(int N)
 {
 	data.N_ITER = N;
@@ -23,10 +23,10 @@ void pacchettoStatoBlocco::setN_ITER(int N)
 	}
 }
 
-// in questi metodi index rappresenta l'indice dell'itinerario di cui si vogliono leggere/scrivere le caratteristiche
-// se index è 0, il metodo modificherà i dati relativi al primo itinerario, altrimenti modificherà i dati 
-// relativi agli altri itinerari.
-void pacchettoStatoBlocco::setNID_ITIN(int index, int N)
+// in questi metodi index rappresenta l'indice del blocco di cui si vogliono leggere/scrivere le caratteristiche
+// se index è 0, il metodo modificherà i dati relativi al primo blocco, altrimenti modificherà i dati 
+// relativi agli altri blocchi.
+void pacchettoStatoBlocco::setNID_BLOCCO(int index, int N)
 {
 	if(index == 0)
 		data.statoBlocco.NID_BLOCCO = N;
@@ -34,7 +34,7 @@ void pacchettoStatoBlocco::setNID_ITIN(int index, int N)
 		data.vStatoBlocco[index - 1].NID_BLOCCO = N;
 }
 
-int pacchettoStatoBlocco::getNID_ITIN(int index)
+int pacchettoStatoBlocco::getNID_BLOCCO(int index)
 {
 	if(index == 0)
 		return data.statoBlocco.NID_BLOCCO;
@@ -42,7 +42,7 @@ int pacchettoStatoBlocco::getNID_ITIN(int index)
 		return data.vStatoBlocco[index - 1].NID_BLOCCO;
 }
 
-void pacchettoStatoBlocco::setQSTATO_ITIN(int index, int Q)
+void pacchettoStatoBlocco::setQ_STATOBLOCCO(int index, int Q)
 {
 	if(index == 0)
 		data.statoBlocco.Q_STATOBLOCCO = Q;
@@ -50,7 +50,7 @@ void pacchettoStatoBlocco::setQSTATO_ITIN(int index, int Q)
 		data.vStatoBlocco[index - 1].Q_STATOBLOCCO = Q;
 }
 
-int pacchettoStatoBlocco::getQSTATO_ITIN(int index)
+int pacchettoStatoBlocco::getQ_STATOBLOCCO(int index)
 {
 	if(index == 0)
 		return data.statoBlocco.Q_STATOBLOCCO;

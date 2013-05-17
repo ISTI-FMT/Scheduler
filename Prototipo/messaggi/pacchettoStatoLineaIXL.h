@@ -3,14 +3,14 @@
 
 /*-----------------------------------------------------------------------------------------------
 Alessio:
-L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato degli itnerari
+L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato della linea
 -------------------------------------------------------------------------------------------------*/
 
-class pacchettoStatoItinerario
+class pacchettoStatoLineaIXL
 {
-	StatoItinerario data;
+	StatoLineaIXL data;
 public:
-	pacchettoStatoItinerario(void);
+	pacchettoStatoLineaIXL(void);
 
 	void setNID_PACKET(int N){data.NID_PACKET = N;};
 	int getNID_PACKET(){return data.NID_PACKET;};
@@ -20,13 +20,15 @@ public:
 	// metodo che setta N_ITER
 	void setN_ITER(int N);
 	int getN_ITER(){return data.N_ITER;};
-	// in questi metodi index rappresenta l'indice dell'itinerario di cui si vogliono leggere/scrivere le caratteristiche
-	// se index è 0, il metodo modificherà i dati relativi al primo itinerario, altrimenti modificherà i dati 
-	// relativi agli altri itinerari.
-	void setNID_ITIN(int index, int N);
-	int getNID_ITIN(int index);
-	void setQ_STATOITIN(int index, int Q);
-	int getQ_STATOITIN(int index);
+	// in questi metodi index rappresenta l'indice del CDB di cui si vogliono leggere/scrivere le caratteristiche
+	// se index è 0, il metodo modificherà i dati relativi al primo CDB, altrimenti modificherà i dati 
+	// relativi agli altri CDB.
+	void setNID_CDB(int index, int N);
+	int getNID_CDB(int index);
+	void setQ_STATOCDB(int index, int Q);
+	int getQ_STATOCDB(int index);
+	void setQ_DEVIATOIO(int index, int Q);
+	int getQ_DEVIATOIO(int index);
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
@@ -35,6 +37,6 @@ public:
 	void serialize(byte *buffer);
 	void deserialize(byte *buffer);
 
-	~pacchettoStatoItinerario(void);
+	~pacchettoStatoLineaIXL(void);
 };
 

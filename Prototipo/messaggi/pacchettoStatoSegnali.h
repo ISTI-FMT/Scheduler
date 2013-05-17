@@ -17,7 +17,7 @@ public:
 	void setL_PACKET(int L){data.L_PACKET = L;};
 	int getL_PACKET(){return data.L_PACKET;};
 
-	// metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
+	// metodo che setta N_ITER
 	void setN_ITER(int N);
 	int getN_ITER(){return data.N_ITER;};
 
