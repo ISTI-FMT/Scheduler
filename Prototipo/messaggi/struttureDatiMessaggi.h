@@ -191,3 +191,18 @@ struct ComandoBlocco
 	unsigned int NID_BLOCCO : 32;
 	unsigned int Q_CMDBLOCCO : 2;
 };
+
+struct blocco
+{
+	unsigned int NID_BLOCCO : 32;
+	unsigned int Q_STATOBLOCCO : 2;
+};
+
+struct StatoBlocco
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	blocco statoBlocco;
+	unsigned int N_ITER : 16;
+	blocco *vStatoBlocco;
+};
