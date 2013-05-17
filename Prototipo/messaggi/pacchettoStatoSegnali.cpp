@@ -69,7 +69,7 @@ int pacchettoStatoSegnali::getSize()
 	// 38 per la parte fissa
 	size += 71;
 	// 12 bit per ogni N_ITER
-	size += 34 * data.N_ITER;
+	size += 37 * data.N_ITER;
 
 	return size;
 }
@@ -88,8 +88,8 @@ void pacchettoStatoSegnali::serialize(byte *buffer)
 	{
 		push(buffer, data.vStatoSegnale[i].NID_SEGN, 32, offset);
 		offset += 32;
-		push(buffer, data.vStatoSegnale[i].Q_STATOSEGN, 2, offset);
-		offset += 2;
+		push(buffer, data.vStatoSegnale[i].Q_STATOSEGN, 5, offset);
+		offset += 5;
 	}
 }
 
@@ -105,8 +105,8 @@ void pacchettoStatoSegnali::deserialize(byte *buffer)
 	{
 		data.vStatoSegnale[i].NID_SEGN=pop(buffer, 32, offset);
 		offset += 32;
-		data.vStatoSegnale[i].Q_STATOSEGN=pop(buffer, 2, offset);
-		offset += 2;
+		data.vStatoSegnale[i].Q_STATOSEGN=pop(buffer, 5, offset);
+		offset += 5;
 	}
 }
 

@@ -159,7 +159,7 @@ struct StatoItinerario
 struct segnale
 {
 	unsigned int NID_SEGN : 32;
-	unsigned int Q_STATOSEGN : 2;
+	unsigned int Q_STATOSEGN : 5;
 };
 
 struct StatoSegnale
