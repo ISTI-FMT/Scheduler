@@ -7,6 +7,8 @@
 #include "pacchettoAcknowledgement.h"
 #include "pacchettoStatoItinerario.h"
 #include "pacchettoComandoItinerari.h"
+#include "pacchettoStatoLineaIXL.h"
+#include "pacchettoStatoBlocco.h"
 #include "pacchettoComandoBlocco.h"
 #include "pacchettoStatoSegnali.h"
 #include "pacchettoEnd.h"
@@ -25,10 +27,11 @@ ref class Messaggi
 
 	// puntatori alle strutture dati per i pacchetti ATS/ATO
 
-	//pacchettoStatoLinea *pkgStatoLinea;
+	pacchettoStatoLineaIXL *pkgStatoLineaIXL;
 	pacchettoStatoItinerario *pkgStatoItinerari;
 	pacchettoStatoSegnali *pkgStatoSegnali;
 	pacchettoFaultData *pkgFaultData;
+	pacchettoStatoBlocco *pkgStatoBlocco;
 	pacchettoComandoItinerari *pkgComandoItinerario;
 	pacchettoComandoBlocco *pkgComandoBlocco;
 	pacchettoEnd *pkgEnd;
@@ -40,15 +43,21 @@ public:
 	void setNID_MESSAGE(int N){head->NID_MESSAGE = N;
 	switch (N)
 	{
-	case 200 : {set_pacchettoMissionPlan();}
-	case 201 : { set_pacchettoCommandData();}
-	case 215 : { set_pacchettoPresentazione();}
-	case 1 : {set_pacchettoStatoLineaATC();}
-	case 210 :{set_pacchettoAcknowledgement();}
-
-
-	default:
-		break;
+		case 200 : {set_pacchettoMissionPlan();break;}
+		case 201 : { set_pacchettoCommandData();break;}
+		case 215 : { set_pacchettoPresentazione();break;}
+		case 1 : {set_pacchettoStatoLineaATC();break;}
+		case 210 :{set_pacchettoAcknowledgement();break;}
+		case 101: { set_pacchettoStatoLineaIXL(); 
+					set_pacchettoStatoItinerari(); 
+					set_pacchettoStatoSegnali(); 
+					set_pacchettoStatoBlocco(); 
+					set_pacchettoEnd(); break;}
+		case 102: {set_pacchettoFaultReporting(); break;}
+		case 110: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
+		case 111: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}		
+		default:
+			break;
 	}
 	
 	
@@ -61,6 +70,30 @@ public:
 
 	void setNID_ENGINE(int N){head->NID_ENGINE = N;};
 	int getNID_ENGINE(){return head->NID_ENGINE;};
+
+	void set_pacchettoEnd(){pkgEnd = new pacchettoEnd;};
+	pacchettoEnd* get_pacchettoEnd(){return pkgEnd;};
+
+	void set_pacchettoComandoItinerari(){pkgComandoItinerario = new pacchettoComandoItinerari;};
+	pacchettoComandoItinerari* get_pacchettoCOmandoItinerari(){return pkgComandoItinerario;};
+
+	void set_pacchettoComandoBlocco(){pkgComandoBlocco = new pacchettoComandoBlocco;};
+	pacchettoComandoBlocco* get_pacchettoCOmandoBlocco(){return pkgComandoBlocco;};
+
+	void set_pacchettoFaultReporting() {pkgFaultData = new pacchettoFaultData;}
+	pacchettoFaultData* get_pacchettoFaultReporting(){return pkgFaultData;}
+
+	void set_pacchettoStatoLineaIXL() {pkgStatoLineaIXL = new pacchettoStatoLineaIXL;}
+	pacchettoStatoLineaIXL* get_pacchettoStatoLineaIXL(){return pkgStatoLineaIXL;}
+
+	void set_pacchettoStatoItinerari() {pkgStatoItinerari = new pacchettoStatoItinerario;}
+	pacchettoStatoItinerario* get_pacchettoStatoItinerario(){return pkgStatoItinerari;}
+
+	void set_pacchettoStatoSegnali() {pkgStatoSegnali = new pacchettoStatoSegnali;}
+	pacchettoStatoSegnali* get_pacchettoStatoSegnali(){return pkgStatoSegnali;}
+
+	void set_pacchettoStatoBlocco() {pkgStatoBlocco = new pacchettoStatoBlocco;}
+	pacchettoStatoBlocco* get_pacchettoStatoBlocco(){return pkgStatoBlocco;}
 
 	void set_pacchettoCommandData(){ pkgcd1 = new pacchettoCommandData;};
 	pacchettoCommandData* get_pacchettoCommandData(){ return pkgcd1;};
