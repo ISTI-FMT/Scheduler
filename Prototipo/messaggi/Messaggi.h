@@ -6,6 +6,9 @@
 #include "pacchettostatolineaatc.h"
 #include "pacchettoAcknowledgement.h"
 #include "pacchettoStatoItinerario.h"
+#include "pacchettoComandoItinerari.h"
+#include "pacchettoComandoBlocco.h"
+#include "pacchettoStatoSegnali.h"
 #include "pacchettoEnd.h"
 #include "pacchettoFaultData.h"
 
@@ -24,10 +27,10 @@ ref class Messaggi
 
 	//pacchettoStatoLinea *pkgStatoLinea;
 	pacchettoStatoItinerario *pkgStatoItinerari;
-	//pacchettoStatoSegnale *pkgStatoSegnali;
+	pacchettoStatoSegnali *pkgStatoSegnali;
 	pacchettoFaultData *pkgFaultData;
-	//pacchettoComandoItinerario *pkgComandoItinerario;
-	//pacchettoComandoBlocco *pkgComandoBlocco;
+	pacchettoComandoItinerari *pkgComandoItinerario;
+	pacchettoComandoBlocco *pkgComandoBlocco;
 	pacchettoEnd *pkgEnd;
 
 public:
