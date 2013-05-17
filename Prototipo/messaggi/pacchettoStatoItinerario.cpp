@@ -74,40 +74,40 @@ int pacchettoStatoItinerario::getSize()
 	return size;
 }
 
-void pacchettoStatoItinerario::serialize(byte *buffer)
+void pacchettoStatoItinerario::serialize(byte *buffer, int offset)
 {
-	push(buffer, data.NID_PACKET, 8, 51);
+	push(buffer, data.NID_PACKET, 8, offset + 51);
 	setL_PACKET(getSize());
-	push(buffer, data.L_PACKET, 13, 59);
-	push(buffer, data.statoItinerario.NID_ITIN, 32, 72);
-	push(buffer, data.statoItinerario.Q_STATOITIN, 2, 104);
-	push(buffer, data.N_ITER, 16, 106);
+	push(buffer, data.L_PACKET, 13, offset + 59);
+	push(buffer, data.statoItinerario.NID_ITIN, 32, offset + 72);
+	push(buffer, data.statoItinerario.Q_STATOITIN, 2, offset + 104);
+	push(buffer, data.N_ITER, 16, offset + 106);
 	//data.mS1_vect = new missionStruct1[data.N_ITER1];
-	int offset = 122;
+	int shift = 122;
 	for(unsigned int i = 0; i < data.N_ITER; ++i)
 	{
-		push(buffer, data.vStatoItinerario[i].NID_ITIN, 32, offset);
-		offset += 32;
-		push(buffer, data.vStatoItinerario[i].Q_STATOITIN, 2, offset);
-		offset += 2;
+		push(buffer, data.vStatoItinerario[i].NID_ITIN, 32, offset + shift);
+		shift += 32;
+		push(buffer, data.vStatoItinerario[i].Q_STATOITIN, 2, offset + shift);
+		shift += 2;
 	}
 }
 
-void pacchettoStatoItinerario::deserialize(byte *buffer)
+void pacchettoStatoItinerario::deserialize(byte *buffer, int offset)
 {
 	
-	data.NID_PACKET=pop(buffer,  8, 51);
-	data.L_PACKET=pop(buffer, 13, 59);
-	data.statoItinerario.NID_ITIN=pop(buffer, 32, 72);
-	data.statoItinerario.Q_STATOITIN=pop(buffer, 2, 104);
-	setN_ITER(pop(buffer, 16, 106));
-	int offset = 122;
+	data.NID_PACKET=pop(buffer,  8, offset + 51);
+	data.L_PACKET=pop(buffer, 13, offset + 59);
+	data.statoItinerario.NID_ITIN=pop(buffer, 32, offset + 72);
+	data.statoItinerario.Q_STATOITIN=pop(buffer, 2, offset + 104);
+	setN_ITER(pop(buffer, 16, offset + 106));
+	int shift = 122;
 	for(unsigned int i = 0; i < data.N_ITER; ++i)
 	{
-		data.vStatoItinerario[i].NID_ITIN=pop(buffer, 32, offset);
-		offset += 32;
-		data.vStatoItinerario[i].Q_STATOITIN=pop(buffer, 2, offset);
-		offset += 2;
+		data.vStatoItinerario[i].NID_ITIN=pop(buffer, 32, offset + shift);
+		shift += 32;
+		data.vStatoItinerario[i].Q_STATOITIN=pop(buffer, 2, offset + shift);
+		shift += 2;
 	}
 }
 

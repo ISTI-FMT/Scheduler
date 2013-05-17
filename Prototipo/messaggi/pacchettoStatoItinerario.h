@@ -32,8 +32,8 @@ public:
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 	int getSize();
-	void serialize(byte *buffer);
-	void deserialize(byte *buffer);
+	void serialize(byte *buffer, int offset);
+	void deserialize(byte *buffer, int offset);
 
 	~pacchettoStatoItinerario(void);
 };

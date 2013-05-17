@@ -74,39 +74,39 @@ int pacchettoStatoSegnali::getSize()
 	return size;
 }
 
-void pacchettoStatoSegnali::serialize(byte *buffer)
+void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
 {
-	push(buffer, data.NID_PACKET, 8, 51);
+	push(buffer, data.NID_PACKET, 8, offset + 51);
 	setL_PACKET(getSize());
-	push(buffer, data.L_PACKET, 13, 59);
-	push(buffer, data.statoSegnale.NID_SEGN, 32, 72);
-	push(buffer, data.statoSegnale.Q_STATOSEGN, 2, 104);
-	push(buffer, data.N_ITER, 16, 106);
+	push(buffer, data.L_PACKET, 13, offset + 59);
+	push(buffer, data.statoSegnale.NID_SEGN, 32, offset + 72);
+	push(buffer, data.statoSegnale.Q_STATOSEGN, 2, offset + 104);
+	push(buffer, data.N_ITER, 16, offset + 106);
 	//data.mS1_vect = new missionStruct1[data.N_ITER1];
-	int offset = 122;
+	int shift = 122;
 	for(unsigned int i = 0; i < data.N_ITER; ++i)
 	{
-		push(buffer, data.vStatoSegnale[i].NID_SEGN, 32, offset);
-		offset += 32;
-		push(buffer, data.vStatoSegnale[i].Q_STATOSEGN, 5, offset);
-		offset += 5;
+		push(buffer, data.vStatoSegnale[i].NID_SEGN, 32, offset + shift);
+		shift += 32;
+		push(buffer, data.vStatoSegnale[i].Q_STATOSEGN, 5, offset + shift);
+		shift += 5;
 	}
 }
 
-void pacchettoStatoSegnali::deserialize(byte *buffer)
+void pacchettoStatoSegnali::deserialize(byte *buffer, int offset)
 {
-	data.NID_PACKET=pop(buffer,  8, 51);
-	data.L_PACKET=pop(buffer, 13, 59);
-	data.statoSegnale.NID_SEGN=pop(buffer, 32, 72);
-	data.statoSegnale.Q_STATOSEGN=pop(buffer, 2, 104);
-	setN_ITER(pop(buffer, 16, 106));
-	int offset = 122;
+	data.NID_PACKET=pop(buffer,  8, offset + 51);
+	data.L_PACKET=pop(buffer, 13, offset + 59);
+	data.statoSegnale.NID_SEGN=pop(buffer, 32, offset + 72);
+	data.statoSegnale.Q_STATOSEGN=pop(buffer, 2, offset + 104);
+	setN_ITER(pop(buffer, 16, offset + 106));
+	int shift = 122;
 	for(unsigned int i = 0; i < data.N_ITER; ++i)
 	{
-		data.vStatoSegnale[i].NID_SEGN=pop(buffer, 32, offset);
-		offset += 32;
-		data.vStatoSegnale[i].Q_STATOSEGN=pop(buffer, 5, offset);
-		offset += 5;
+		data.vStatoSegnale[i].NID_SEGN=pop(buffer, 32, offset + shift);
+		shift += 32;
+		data.vStatoSegnale[i].Q_STATOSEGN=pop(buffer, 5, offset + shift);
+		shift += 5;
 	}
 }
 
