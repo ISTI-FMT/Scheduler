@@ -75,10 +75,10 @@ public:
 	pacchettoEnd* get_pacchettoEnd(){return pkgEnd;};
 
 	void set_pacchettoComandoItinerari(){pkgComandoItinerario = new pacchettoComandoItinerari;};
-	pacchettoComandoItinerari* get_pacchettoCOmandoItinerari(){return pkgComandoItinerario;};
+	pacchettoComandoItinerari* get_pacchettoComandoItinerari(){return pkgComandoItinerario;};
 
 	void set_pacchettoComandoBlocco(){pkgComandoBlocco = new pacchettoComandoBlocco;};
-	pacchettoComandoBlocco* get_pacchettoCOmandoBlocco(){return pkgComandoBlocco;};
+	pacchettoComandoBlocco* get_pacchettoComandoBlocco(){return pkgComandoBlocco;};
 
 	void set_pacchettoFaultReporting() {pkgFaultData = new pacchettoFaultData;}
 	pacchettoFaultData* get_pacchettoFaultReporting(){return pkgFaultData;}

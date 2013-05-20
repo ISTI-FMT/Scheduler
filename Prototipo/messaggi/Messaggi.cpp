@@ -82,6 +82,7 @@ void Messaggi::deserialize(byte *buffer)
 	head->NID_MESSAGE= pop(buffer, 8, 0);
 	head->L_MESSAGE=pop(buffer,11, 8);
 	head->T_TIME=pop(buffer, 32, 19);
+	int offset = 0;
 	switch (head->NID_MESSAGE)
 	{
 	case 200 : {set_pacchettoMissionPlan();
@@ -112,6 +113,31 @@ void Messaggi::deserialize(byte *buffer)
 		pkgAck->deserialize(buffer);
 		break;
 			   }
+
+	case 101: {offset += 51; 
+		       get_pacchettoStatoLineaIXL()->deserialize(buffer); 
+			   offset += get_pacchettoStatoLineaIXL()->getSize(); 
+			   get_pacchettoStatoItinerario()->deserialize(buffer, offset);
+			   offset += get_pacchettoStatoItinerario()->getSize();
+			   get_pacchettoStatoSegnali()->deserialize(buffer, offset);
+			   offset += get_pacchettoStatoSegnali()->getSize();
+			   get_pacchettoStatoBlocco()->deserialize(buffer, offset);
+			   offset += get_pacchettoStatoBlocco()->getSize();
+			   get_pacchettoEnd()->deserialize(buffer, offset);
+			   break;}
+	case 102: {get_pacchettoFaultReporting()->deserialize(buffer); 
+			   break;}
+	case 110: { offset += 51;
+				get_pacchettoComandoItinerari()->deserialize(buffer); 
+				offset += get_pacchettoComandoItinerari()->getSize();
+				get_pacchettoEnd()->deserialize(buffer, offset);
+			   break;}
+	case 111: { offset += 51;
+				get_pacchettoComandoBlocco()->deserialize(buffer); 
+				offset += get_pacchettoComandoBlocco()->getSize();
+				get_pacchettoEnd()->deserialize(buffer, offset);
+			   break;}
+
 	default:
 		break;
 	}
