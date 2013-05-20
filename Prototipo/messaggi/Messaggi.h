@@ -128,10 +128,11 @@ public:
 		case 215 : {len+=24+pgkPres->getSize();break;}
 		case 1 : {len+=pkgStatoATC->getSize();break;}
 		case 210 :{len+=24+pkgAck->getSize();break;}
-
-
-		default:
-			break;
+		case 101: {len += pkgStatoLineaIXL->getSize() + pkgStatoItinerari->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize(); break;}
+		case 102: {len += pkgFaultData->getSize(); break;}
+		case 110: {pkgComandoItinerario->getSize(); pkgEnd->getSize(); break;}
+		case 111: {pkgComandoBlocco->getSize(); pkgEnd->getSize(); break;}
+		default: break;
 		}
 		int size = (len/8)+1;
 		return size ;
