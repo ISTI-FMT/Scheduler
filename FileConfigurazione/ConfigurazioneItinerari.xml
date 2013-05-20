@@ -2,13 +2,13 @@
 <ConfigurazioneItinerari>
   <stazione id="Via Accademia" offset="13000">
     <itinerari>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA501">
         <cdb>13010</cdb>
         <cdb>13011</cdb>
         <cdb>13012</cdb>
         <cdb>13301</cdb>
       </ingresso>
-      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA501">
         <cdb>13010</cdb>
         <cdb>13011</cdb>
         <cdb>13012</cdb>
@@ -33,13 +33,13 @@
 
   <stazione id="Vicolo Corto" offset="10000">
     <itinerari>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA504">
         <cdb>10010</cdb>
         <cdb>10011</cdb>
         <cdb>10012</cdb>
         <cdb>10301</cdb>
       </ingresso>
-      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA505">
         <cdb>10010</cdb>
         <cdb>10011</cdb>
         <cdb>10012</cdb>
@@ -66,28 +66,28 @@
 
   <stazione id="Piazza Università" offset="14000">
     <itinerari>
-      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA501">
         <cdb>14020</cdb>
         <cdb>14021</cdb>
         <cdb>14022</cdb>
         <cdb>14301</cdb>
 		<nextcdb>14012</nextcdb> 
       </ingresso>
-      <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+      <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA501">
         <cdb>14020</cdb>
         <cdb>14021</cdb>
         <cdb>14022</cdb>
         <cdb>14302</cdb>
 		<nextcdb>14012</nextcdb> 
       </ingresso>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA502">
         <cdb>14010</cdb>
         <cdb>14011</cdb>
         <cdb>14012</cdb>
         <cdb>14301</cdb>
 		<nextcdb>14022</nextcdb> 
       </ingresso>
-      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA502">
         <cdb>14010</cdb>
         <cdb>14011</cdb>
         <cdb>14012</cdb>
@@ -128,7 +128,7 @@
 
   <stazione id="viale Monterosa" offset="1100">
     <itinerari>
-      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA504">
       
           <cdb>11020</cdb>
           <cdb>11021</cdb>
@@ -136,7 +136,7 @@
           <cdb>11301</cdb>
 		  <nextcdb>11012</nextcdb> 
         </ingresso>
-        <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+        <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA504">
         
           <cdb>11020</cdb>
           <cdb>11021</cdb>
@@ -145,7 +145,7 @@
           <cdb>11302</cdb>
           <nextcdb>11013</nextcdb> 
       </ingresso>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA505">
         
           <cdb>11010</cdb>
           <cdb>11011</cdb>
@@ -153,7 +153,7 @@
           <cdb>11301</cdb>
 		    <nextcdb>11022</nextcdb> 
         </ingresso>
-        <ingresso id="01-II" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+        <ingresso id="01-II" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA505">
          
           <cdb>11010</cdb>
           <cdb>11011</cdb>
@@ -208,7 +208,7 @@
 
   <stazione id="via Verdi" offset="15000">
     <itinerari>
-      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA502">
        
           <cdb>15020</cdb>
           <cdb>15021</cdb>
@@ -216,7 +216,7 @@
           <cdb>15301</cdb>
 		  <nextcdb>15012</nextcdb>
       </ingresso>
-        <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+        <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA502">
         
           <cdb>15020</cdb>
           <cdb>15021</cdb>
@@ -225,7 +225,7 @@
 		  <nextcdb>15012</nextcdb>
         
       </ingresso>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA503">
        
           <cdb>15010</cdb>
           <cdb>15011</cdb>
@@ -234,7 +234,7 @@
 		  <nextcdb>15022</nextcdb>
         
       </ingresso>
-      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA503">
        
           <cdb>15010</cdb>
           <cdb>15011</cdb>
@@ -288,7 +288,7 @@
 
   <stazione id="Piazza Dante" offset="12000">
     <itinerari>
-      <ingresso id="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA503">
         
           <cdb>12010</cdb>
           <cdb>12011</cdb>
@@ -296,7 +296,7 @@
           <cdb>12301</cdb>
          <nextcdb>12026</nextcdb>
       </ingresso>
-        <ingresso id="01-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" >
+        <ingresso id="01-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="BCA503">
         
           <cdb>12010</cdb>
           <cdb>12011</cdb>
@@ -306,7 +306,7 @@
           <cdb>12302</cdb>
         <nextcdb>12023</nextcdb>
         </ingresso>
-      <ingresso id="01-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="01-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA503">
         
           <cdb>12010</cdb>
           <cdb>12011</cdb>
@@ -316,7 +316,7 @@
           <cdb>12303</cdb>
         <nextcdb>12023</nextcdb>
       </ingresso>
-      <ingresso id="03-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" >
+      <ingresso id="03-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="BCA505">
          
           <cdb>12013</cdb>
           <cdb>12014</cdb>
@@ -325,7 +325,7 @@
           <cdb>12302</cdb>
         <nextcdb>12023</nextcdb>
       </ingresso>
-        <ingresso id="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+        <ingresso id="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA505">
           <cdb>12013</cdb>
           <cdb>12014</cdb>
           <cdb>12015</cdb>
@@ -334,7 +334,7 @@
                <nextcdb>12023</nextcdb>
 
       </ingresso>
-      <ingresso id="04-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+      <ingresso id="04-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="400">
        
           <cdb>12024</cdb>
           <cdb>12025</cdb>
@@ -343,7 +343,7 @@
                <nextcdb>12012</nextcdb>
 
       </ingresso>
-        <ingresso id="04-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+        <ingresso id="04-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="400">
        
           <cdb>12024</cdb>
           <cdb>12025</cdb>
@@ -354,7 +354,7 @@
                 <nextcdb>12016</nextcdb>
 
         </ingresso>
-          <ingresso id="04-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+          <ingresso id="04-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="400">
         
           <cdb>12024</cdb>
           <cdb>12025</cdb>
@@ -365,7 +365,7 @@
                 <nextcdb>12016</nextcdb>
 
       </ingresso>
-      <ingresso id="02-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" >
+      <ingresso id="02-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="401">
           <cdb>12020</cdb>
           <cdb>12021</cdb>
           <cdb>12022</cdb>
@@ -374,7 +374,7 @@
 		          <nextcdb>12016</nextcdb>
 
       </ingresso>
-        <ingresso id="02-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+        <ingresso id="02-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="401">
           <cdb>12020</cdb>
           <cdb>12021</cdb>
           <cdb>12022</cdb>
@@ -488,7 +488,7 @@
   
   <stazione id="Viale dei Giardini" offset="16000">
     <itinerari>
-      <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+      <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="428" >
         
           <cdb>16020</cdb>
           <cdb>16021</cdb>
@@ -499,7 +499,7 @@
 
         
       </ingresso>
-        <ingresso id="02-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+        <ingresso id="02-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="428" >
         
           <cdb>16020</cdb>
           <cdb>16021</cdb>
@@ -510,7 +510,7 @@
 		  <nextcdb>16017</nextcdb>
         
       </ingresso>
-      <ingresso id="04-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="04-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="429" >
         
           <cdb>16024</cdb>
           <cdb>16025</cdb>
@@ -519,7 +519,7 @@
 		  <nextcdb>16012</nextcdb>
         
       </ingresso>
-        <ingresso id="04-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+        <ingresso id="04-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="429">
         
           <cdb>16024</cdb>
           <cdb>16025</cdb>
@@ -530,7 +530,7 @@
 		  <nextcdb>16016</nextcdb>
         
         </ingresso>
-          <ingresso id="04-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+          <ingresso id="04-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="429">
         
           <cdb>16024</cdb>
           <cdb>16025</cdb>
@@ -542,7 +542,7 @@
 		  <nextcdb>16017</nextcdb>
         
       </ingresso>
-      <ingresso id="03-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+      <ingresso id="03-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="440">
         
           <cdb>16013</cdb>
           <cdb>16014</cdb>
@@ -552,7 +552,7 @@
 		  <nextcdb>16023</nextcdb>
        
       </ingresso>
-        <ingresso id="03-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+        <ingresso id="03-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="440">
         
           <cdb>16013</cdb>
           <cdb>16014</cdb>
@@ -563,7 +563,7 @@
 		  <nextcdb>16027</nextcdb>
         
       </ingresso>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="441">
        
           <cdb>16010</cdb>
           <cdb>16011</cdb>
@@ -572,7 +572,7 @@
 		  <nextcdb>16026</nextcdb>
        
       </ingresso>
-        <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+        <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="441">
         
           <cdb>16010</cdb>
           <cdb>16011</cdb>
@@ -583,7 +583,7 @@
 		  <nextcdb>16023</nextcdb>
         
         </ingresso>
-          <ingresso id="01-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+          <ingresso id="01-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="441">
        
           <cdb>16010</cdb>
           <cdb>16011</cdb>
@@ -701,7 +701,7 @@
 
   <stazione id="Parco della Vittoria" offset="17000">
     <itinerari>
-      <ingresso id="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+      <ingresso id="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="448">
        
           <cdb>17010</cdb>
           <cdb>17011</cdb>
@@ -711,7 +711,7 @@
           <cdb>17301</cdb>
 		  <nextcdb>17015</nextcdb>
       </ingresso>
-        <ingresso id="01-II" direzione="dx" nid_lrgb="5225" d_stop="222"  latobanchina="sx">
+        <ingresso id="01-II" direzione="dx" nid_lrgb="5225" d_stop="222"  latobanchina="sx" prevcdb="448">
           <cdb>17010</cdb>
           <cdb>17011</cdb>
           <cdb>17012</cdb>
@@ -720,7 +720,7 @@
           <cdb>17302</cdb>
 		  <nextcdb>17016</nextcdb>
         </ingresso>
-          <ingresso id="01-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+          <ingresso id="01-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="448">
           <cdb>17010</cdb>
           <cdb>17011</cdb>
           <cdb>17012</cdb>
@@ -730,7 +730,7 @@
           <cdb>17303</cdb>
 		  <nextcdb>17036</nextcdb>
           </ingresso>
-            <ingresso id="01-IV" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+            <ingresso id="01-IV" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="448">
           <cdb>17010</cdb>
           <cdb>17011</cdb>
           <cdb>17012</cdb>
@@ -741,7 +741,7 @@
 		  <nextcdb>17035</nextcdb>
       </ingresso>
 
-      <ingresso id="03-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+      <ingresso id="03-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="449">
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>
@@ -751,7 +751,7 @@
           <cdb>17301</cdb>
 		  <nextcdb>17015</nextcdb>
       </ingresso>
-        <ingresso id="03-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+        <ingresso id="03-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="449">
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>
@@ -761,7 +761,7 @@
           <cdb>17302</cdb>
 		  <nextcdb>17016</nextcdb>
         </ingresso>
-          <ingresso id="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+          <ingresso id="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="449">
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>
@@ -770,7 +770,7 @@
           <cdb>17303</cdb>
 		  <nextcdb>17036</nextcdb>
           </ingresso>
-            <ingresso id="03-IV" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+            <ingresso id="03-IV" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="449">
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>

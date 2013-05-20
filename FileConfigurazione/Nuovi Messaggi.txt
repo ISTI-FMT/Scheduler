@@ -71,3 +71,62 @@ Q_CMDBLOCCO: 2;
 
 PKG(255) End
 NID_PACKET : 8;
+
+
+-----------------------------------------------------------------------------------------------------
+structuredHeader 3+1
+NID_MESSAGE : 8;
+L_MESSAGE : 11;
+T_TRAIN : 32;
+NID_ENGINE : 24;
+	
+201 commandData 3+3+1
+NID_PACKET : 8;
+L_PACKET : 13;
+Q_COMMAND_TYPE : 3;
+M_GOA_LEVEL : 2;
+NID_OPERATIONAL : 32;
+PADDING : 5;
+	
+1 pkgstatolinea 3+7+k
+NID_PACKET : 8;
+L_PACKET : 13;
+NID_OPERATIONAL : 32;
+NID_CDB : 32;
+Q_STATOCDB : 2;
+Q_DEVIATIOIO : 2;
+N_ITER : 5;	
+	
+210 missionAck 4+4
+NID_PACKET : 8;
+L_PACKET : 13;
+T_TRAIN : 32;
+Q_MISSION_RESPONSE : 1;
+padding : 7;
+-------------------------------------
+
+ 215 presentation 4+3
+NID_PACKET : 8;
+L_PACKET : 13;
+M_PORT : 32;
+	
+200 missionData 3+6+k1+6+k2
+NID_PACKET : 8;
+L_PACKET : 13;
+Q_SCALE : 2;
+D_MISSION : 15;
+V_MISSION : 7;
+N_ITER1 : 5;
+D_MISSION : 15;
+V_MISSION : 7;
+T_START_TIME : 12;
+NID_LRGB : 24;
+D_STOP : 15;
+Q_DOORS : 4;
+T_DOORS_TIME : 12;
+N_ITER2 : 5;
+T_START_TIME : 12;
+NID_LRGB : 24;
+D_STOP : 15;
+Q_DOORS : 4;
+T_DOORS_TIME : 12;
