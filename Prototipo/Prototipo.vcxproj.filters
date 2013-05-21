@@ -128,6 +128,12 @@
     <ClInclude Include="messaggi\pacchettoComandoBlocco.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
+    <ClInclude Include="messaggi\pacchettoStatoBlocco.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logger\LogClass.cpp">
@@ -209,6 +215,12 @@
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
     <ClCompile Include="messaggi\pacchettoComandoBlocco.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoStatoBlocco.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
   </ItemGroup>
