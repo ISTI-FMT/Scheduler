@@ -76,14 +76,14 @@ int pacchettoStatoBlocco::getSize()
 
 void pacchettoStatoBlocco::serialize(byte *buffer, int offset)
 {
-	push(buffer, data.NID_PACKET, 8, offset + 51);
+	push(buffer, data.NID_PACKET, 8, offset );
 	setL_PACKET(getSize());
-	push(buffer, data.L_PACKET, 13, offset + 59);
-	push(buffer, data.statoBlocco.NID_BLOCCO, 32, offset + 72);
-	push(buffer, data.statoBlocco.Q_STATOBLOCCO, 2, offset + 104);
-	push(buffer, data.N_ITER, 16, offset + 106);
+	push(buffer, data.L_PACKET, 13, offset +8);
+	push(buffer, data.statoBlocco.NID_BLOCCO, 32, offset + 21);
+	push(buffer, data.statoBlocco.Q_STATOBLOCCO, 2, offset + 53);
+	push(buffer, data.N_ITER, 16, offset + 55);
 	//data.mS1_vect = new missionStruct1[data.N_ITER1];
-	int shift = 122;
+	int shift = 71;
 	for(unsigned int i = 0; i < data.N_ITER; ++i)
 	{
 		push(buffer, data.vStatoBlocco[i].NID_BLOCCO, 32, offset + shift);
@@ -96,12 +96,12 @@ void pacchettoStatoBlocco::serialize(byte *buffer, int offset)
 void pacchettoStatoBlocco::deserialize(byte *buffer, int offset)
 {
 	
-	data.NID_PACKET=pop(buffer,  8, offset + 51);
-	data.L_PACKET=pop(buffer, 13, offset + 59);
-	data.statoBlocco.NID_BLOCCO=pop(buffer, 32, offset + 72);
-	data.statoBlocco.Q_STATOBLOCCO=pop(buffer, 2, offset + 104);
-	setN_ITER(pop(buffer, 16, offset + 106));
-	int shift = 122;
+	data.NID_PACKET=pop(buffer,  8, offset );
+	data.L_PACKET=pop(buffer, 13, offset + 8);
+	data.statoBlocco.NID_BLOCCO=pop(buffer, 32, offset + 21);
+	data.statoBlocco.Q_STATOBLOCCO=pop(buffer, 2, offset + 53);
+	setN_ITER(pop(buffer, 16, offset + 55));
+	int shift = 71;
 	for(unsigned int i = 0; i < data.N_ITER; ++i)
 	{
 		data.vStatoBlocco[i].NID_BLOCCO=pop(buffer, 32, offset + shift);

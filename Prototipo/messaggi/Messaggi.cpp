@@ -23,49 +23,40 @@ void Messaggi::serialize(byte *buffer)
 	switch (N)
 	{
 	case 200 : {get_pacchettoMissionPlan()->serializeMissionPlanPkt(buffer);
-			   break;}
+		break;}
 	case 201 : {get_pacchettoCommandData()->serializepacchettoCommandData(buffer);
-			   break;}
+		break;}
 	case 215 : {push(buffer, head->NID_ENGINE, 24, 51);
 		get_pacchettoPresentazione()->serialize(buffer);
-			   break;}
+		break;}
 	case 1 : {get_pacchettoStatoLineaATC()->serialize(buffer);
-			 break;}
+		break;}
 	case 210 :{push(buffer, head->NID_ENGINE, 24, 51);
 		get_pacchettoAcknowledgement()->serialize(buffer);
-			  break;}
+		break;}
 	case 101: {offset += 51; 
-			   set_pacchettoStatoLineaIXL();
-		       get_pacchettoStatoLineaIXL()->deserialize(buffer); 
-			   offset += get_pacchettoStatoLineaIXL()->getSize(); 
-			   set_pacchettoStatoItinerari();
-			   get_pacchettoStatoItinerario()->deserialize(buffer, offset);
-			   offset += get_pacchettoStatoItinerario()->getSize();
-			   set_pacchettoStatoSegnali();
-			   get_pacchettoStatoSegnali()->deserialize(buffer, offset);
-			   offset += get_pacchettoStatoSegnali()->getSize();
-			   set_pacchettoStatoBlocco();
-			   get_pacchettoStatoBlocco()->deserialize(buffer, offset);
-			   offset += get_pacchettoStatoBlocco()->getSize();
-			   set_pacchettoEnd();
-			   get_pacchettoEnd()->deserialize(buffer, offset);
-			   break;}
-	case 102: {get_pacchettoFaultReporting()->deserialize(buffer); 
-			   break;}
+		get_pacchettoStatoLineaIXL()->serialize(buffer); 
+		offset += get_pacchettoStatoLineaIXL()->getSize(); 
+		get_pacchettoStatoItinerario()->serialize(buffer, offset);
+		offset += get_pacchettoStatoItinerario()->getSize();
+		get_pacchettoStatoSegnali()->serialize(buffer, offset);
+		offset += get_pacchettoStatoSegnali()->getSize();
+		get_pacchettoStatoBlocco()->serialize(buffer, offset);
+		offset += get_pacchettoStatoBlocco()->getSize();
+		get_pacchettoEnd()->serialize(buffer, offset);
+		break;}
+	case 102: {get_pacchettoFaultReporting()->serialize(buffer); 
+		break;}
 	case 110: { offset += 51;
-				set_pacchettoComandoItinerari();
-				get_pacchettoComandoItinerari()->deserialize(buffer); 
-				offset += get_pacchettoComandoItinerari()->getSize();
-				set_pacchettoEnd();
-				get_pacchettoEnd()->deserialize(buffer, offset);
-			   break;}
+		get_pacchettoComandoItinerari()->serialize(buffer); 
+		offset += get_pacchettoComandoItinerari()->getSize();
+		get_pacchettoEnd()->serialize(buffer, offset);
+		break;}
 	case 111: { offset += 51;
-				set_pacchettoComandoBlocco();
-				get_pacchettoComandoBlocco()->deserialize(buffer); 
-				offset += get_pacchettoComandoBlocco()->getSize();
-				set_pacchettoEnd();
-				get_pacchettoEnd()->deserialize(buffer, offset);
-			   break;}
+		get_pacchettoComandoBlocco()->serialize(buffer); 
+		offset += get_pacchettoComandoBlocco()->getSize();
+		get_pacchettoEnd()->serialize(buffer, offset);
+		break;}
 
 	default:
 		break;
@@ -82,7 +73,7 @@ void Messaggi::serialize(array<System::Byte>^bytez){
 
 	for(int i = 0; i < len; ++i)
 		bytez[i] = buffer[i];
-	
+
 }
 
 void Messaggi::deserialize(byte *buffer)
@@ -121,30 +112,38 @@ void Messaggi::deserialize(byte *buffer)
 		pkgAck->deserialize(buffer);
 		break;
 			   }
-
 	case 101: {offset += 51; 
-		       get_pacchettoStatoLineaIXL()->deserialize(buffer); 
-			   offset += get_pacchettoStatoLineaIXL()->getSize(); 
-			   get_pacchettoStatoItinerario()->deserialize(buffer, offset);
-			   offset += get_pacchettoStatoItinerario()->getSize();
-			   get_pacchettoStatoSegnali()->deserialize(buffer, offset);
-			   offset += get_pacchettoStatoSegnali()->getSize();
-			   get_pacchettoStatoBlocco()->deserialize(buffer, offset);
-			   offset += get_pacchettoStatoBlocco()->getSize();
-			   get_pacchettoEnd()->deserialize(buffer, offset);
-			   break;}
+		set_pacchettoStatoLineaIXL();
+		get_pacchettoStatoLineaIXL()->deserialize(buffer); 
+		offset += get_pacchettoStatoLineaIXL()->getSize(); 
+		set_pacchettoStatoItinerari();
+		get_pacchettoStatoItinerario()->deserialize(buffer, offset);
+		offset += get_pacchettoStatoItinerario()->getSize();
+		set_pacchettoStatoSegnali();
+		get_pacchettoStatoSegnali()->deserialize(buffer, offset);
+		offset += get_pacchettoStatoSegnali()->getSize();
+		set_pacchettoStatoBlocco();
+		get_pacchettoStatoBlocco()->deserialize(buffer, offset);
+		offset += get_pacchettoStatoBlocco()->getSize();
+		set_pacchettoEnd();
+		get_pacchettoEnd()->deserialize(buffer, offset);
+		break;}
 	case 102: {get_pacchettoFaultReporting()->deserialize(buffer); 
-			   break;}
+		break;}
 	case 110: { offset += 51;
-				get_pacchettoComandoItinerari()->deserialize(buffer); 
-				offset += get_pacchettoComandoItinerari()->getSize();
-				get_pacchettoEnd()->deserialize(buffer, offset);
-			   break;}
+		set_pacchettoComandoItinerari();
+		get_pacchettoComandoItinerari()->deserialize(buffer); 
+		offset += get_pacchettoComandoItinerari()->getSize();
+		set_pacchettoEnd();
+		get_pacchettoEnd()->deserialize(buffer, offset);
+		break;}
 	case 111: { offset += 51;
-				get_pacchettoComandoBlocco()->deserialize(buffer); 
-				offset += get_pacchettoComandoBlocco()->getSize();
-				get_pacchettoEnd()->deserialize(buffer, offset);
-			   break;}
+		set_pacchettoComandoBlocco();
+		get_pacchettoComandoBlocco()->deserialize(buffer); 
+		offset += get_pacchettoComandoBlocco()->getSize();
+		set_pacchettoEnd();
+		get_pacchettoEnd()->deserialize(buffer, offset);
+		break;}
 
 	default:
 		break;
@@ -152,13 +151,13 @@ void Messaggi::deserialize(byte *buffer)
 
 }
 void Messaggi::deserialize(array<System::Byte>^bytez){
-	
+
 	byte *buffer = new byte[bytez->Length];
 	for(int i = 0; i < bytez->Length; ++i)
 		buffer[i] = bytez[i];
-	
+
 	deserialize(buffer);
-	
+
 	//
 }
 
@@ -178,11 +177,27 @@ String ^Messaggi::ToString(){
 		out= out+get_pacchettoMissionPlan()->ToString();
 	if(pgkPres)
 		out= out+get_pacchettoPresentazione()->ToString();
-	 if(pkgStatoATC)
-		 out= out+get_pacchettoStatoLineaATC()->toPrint();
+	if(pkgStatoATC)
+		out= out+get_pacchettoStatoLineaATC()->toPrint();
 	if(pkgAck)
 		out= out+get_pacchettoAcknowledgement()->ToString();
 
+	if(pkgStatoLineaIXL)
+		out= out+get_pacchettoStatoLineaIXL()->ToString();
+	if(pkgStatoItinerari)
+		out= out+get_pacchettoStatoItinerario()->ToString();
+	if(pkgStatoSegnali)
+		out= out+get_pacchettoStatoSegnali()->ToString();
+	if(pkgFaultData)
+		out= out+get_pacchettoFaultReporting()->ToString();
+	if(pkgStatoBlocco)
+		out= out+get_pacchettoStatoBlocco()->ToString();
+	if(pkgComandoItinerario)
+		out= out+get_pacchettoComandoItinerari()->ToString();
+	if(pkgComandoBlocco)
+		out= out+get_pacchettoComandoBlocco()->ToString();
+	if(pkgEnd)
+		out= out+get_pacchettoEnd()->ToString();
 	return out;
 
 }
