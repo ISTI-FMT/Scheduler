@@ -75,6 +75,10 @@
     <ResourceCompile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Itinerari\itinerarioIngresso.h" />
+    <ClInclude Include="Itinerari\itinerarioUscita.h" />
+    <ClInclude Include="Itinerari\stazione.h" />
+    <ClInclude Include="Itinerari\tabellaItinerari.h" />
     <ClInclude Include="logger\LogClass.h" />
     <ClInclude Include="logger\Logger.h" />
     <ClInclude Include="logger\LogMessage.h" />
@@ -89,8 +93,10 @@
     <ClInclude Include="messaggi\pacchettoFaultData.h" />
     <ClInclude Include="messaggi\pacchettoMissionPlan.h" />
     <ClInclude Include="messaggi\pacchettopresentazione.h" />
+    <ClInclude Include="messaggi\pacchettoStatoBlocco.h" />
     <ClInclude Include="messaggi\pacchettoStatoItinerario.h" />
     <ClInclude Include="messaggi\pacchettostatolineaatc.h" />
+    <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h" />
     <ClInclude Include="messaggi\pacchettoStatoSegnali.h" />
     <ClInclude Include="messaggi\struttureDatiMessaggi.h" />
     <ClInclude Include="phisicalTrain.h" />
@@ -107,6 +113,10 @@
     <ClInclude Include="utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Itinerari\itinerarioIngresso.cpp" />
+    <ClCompile Include="Itinerari\itinerarioUscita.cpp" />
+    <ClCompile Include="Itinerari\stazione.cpp" />
+    <ClCompile Include="Itinerari\tabellaItinerari.cpp" />
     <ClCompile Include="logger\LogClass.cpp" />
     <ClCompile Include="logger\Logger.cpp" />
     <ClCompile Include="logger\LogMessage.cpp" />
@@ -122,8 +132,10 @@
     <ClCompile Include="messaggi\pacchettoFaultData.cpp" />
     <ClCompile Include="messaggi\pacchettoMissionPlan.cpp" />
     <ClCompile Include="messaggi\pacchettopresentazione.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoBlocco.cpp" />
     <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp" />
     <ClCompile Include="messaggi\pacchettostatolineaatc.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp" />
     <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />

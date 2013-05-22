@@ -37,6 +37,12 @@
     <Filter Include="File di origine\threads">
       <UniqueIdentifier>{cd924c59-33a9-4e15-bb5e-2f5aab31a8f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di intestazione\itinerari">
+      <UniqueIdentifier>{18ba1378-0b11-46e0-964b-642f5164265b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\itinerari">
+      <UniqueIdentifier>{7f5436f8-af3b-41da-9aed-817507a66fc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">
@@ -134,6 +140,18 @@
     <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
+    <ClInclude Include="Itinerari\itinerarioIngresso.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\itinerarioUscita.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\stazione.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\tabellaItinerari.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logger\LogClass.cpp">
@@ -222,6 +240,18 @@
     </ClCompile>
     <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp">
       <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\itinerarioIngresso.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\itinerarioUscita.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\stazione.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\tabellaItinerari.cpp">
+      <Filter>File di origine\itinerari</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
