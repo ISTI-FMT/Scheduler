@@ -35,29 +35,37 @@ void Messaggi::serialize(byte *buffer)
 		get_pacchettoAcknowledgement()->serialize(buffer);
 			  break;}
 	case 101: {offset += 51; 
-		       get_pacchettoStatoLineaIXL()->serialize(buffer); 
+			   set_pacchettoStatoLineaIXL();
+		       get_pacchettoStatoLineaIXL()->deserialize(buffer); 
 			   offset += get_pacchettoStatoLineaIXL()->getSize(); 
-			   get_pacchettoStatoItinerario()->serialize(buffer, offset);
+			   set_pacchettoStatoItinerari();
+			   get_pacchettoStatoItinerario()->deserialize(buffer, offset);
 			   offset += get_pacchettoStatoItinerario()->getSize();
-			   get_pacchettoStatoSegnali()->serialize(buffer, offset);
+			   set_pacchettoStatoSegnali();
+			   get_pacchettoStatoSegnali()->deserialize(buffer, offset);
 			   offset += get_pacchettoStatoSegnali()->getSize();
-			   get_pacchettoStatoBlocco()->serialize(buffer, offset);
+			   set_pacchettoStatoBlocco();
+			   get_pacchettoStatoBlocco()->deserialize(buffer, offset);
 			   offset += get_pacchettoStatoBlocco()->getSize();
-			   get_pacchettoEnd()->serialize(buffer, offset);
+			   set_pacchettoEnd();
+			   get_pacchettoEnd()->deserialize(buffer, offset);
 			   break;}
-	case 102: {get_pacchettoFaultReporting()->serialize(buffer); 
+	case 102: {get_pacchettoFaultReporting()->deserialize(buffer); 
 			   break;}
 	case 110: { offset += 51;
-				get_pacchettoComandoItinerari()->serialize(buffer); 
+				set_pacchettoComandoItinerari();
+				get_pacchettoComandoItinerari()->deserialize(buffer); 
 				offset += get_pacchettoComandoItinerari()->getSize();
-				get_pacchettoEnd()->serialize(buffer, offset);
+				set_pacchettoEnd();
+				get_pacchettoEnd()->deserialize(buffer, offset);
 			   break;}
 	case 111: { offset += 51;
-				get_pacchettoComandoBlocco()->serialize(buffer); 
+				set_pacchettoComandoBlocco();
+				get_pacchettoComandoBlocco()->deserialize(buffer); 
 				offset += get_pacchettoComandoBlocco()->getSize();
-				get_pacchettoEnd()->serialize(buffer, offset);
+				set_pacchettoEnd();
+				get_pacchettoEnd()->deserialize(buffer, offset);
 			   break;}
-
 
 	default:
 		break;
