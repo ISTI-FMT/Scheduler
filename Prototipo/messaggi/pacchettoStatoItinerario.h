@@ -36,5 +36,6 @@ public:
 	void deserialize(byte *buffer, int offset);
 
 	~pacchettoStatoItinerario(void);
+	System::String ^ToString();
 };
 

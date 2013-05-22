@@ -37,5 +37,6 @@ public:
 	void deserialize(byte *buffer, int offset);
 
 	~pacchettoStatoSegnali(void);
+	System::String ^ToString();
 };
 

@@ -114,3 +114,22 @@ void pacchettoFaultData::deserialize(byte *buffer)
 		offset += 8;
 	}
 }
+
+
+System::String ^pacchettoFaultData::ToString(){
+		System::String ^out;
+
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+	out = out+"L_PACKET: "+data.L_PACKET+";";
+	out = out+"NID_COMPONENT: "+data.guasto.NID_COMPONENT+";";
+	out = out+"M_FAULT: "+data.guasto.M_FAULT+";";
+	out = out+"N_ITER: "+data.N_ITER+";";
+	if(data.vGuasto){
+			for(unsigned int i=0;i<data.N_ITER;i++){
+				out = out+"NID_COMPONENT: "+data.vGuasto[i].NID_COMPONENT+";";
+				out = out+"M_FAULT: "+data.vGuasto[i].M_FAULT+";";
+
+			}
+		}
+	 return out;
+}

@@ -12,5 +12,6 @@ public:
 	void deserialize(byte *buffer, int offset);
 	int getSize(){return 8;};
 	~pacchettoEnd(void);
+	System::String ^ToString();
 };
 

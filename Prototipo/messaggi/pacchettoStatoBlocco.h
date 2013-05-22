@@ -36,5 +36,6 @@ public:
 	void deserialize(byte *buffer, int offset);
 
 	~pacchettoStatoBlocco(void);
+	System::String ^ToString();
 };
 

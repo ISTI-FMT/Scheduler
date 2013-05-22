@@ -38,5 +38,6 @@ public:
 	void deserialize(byte *buffer);
 
 	~pacchettoStatoLineaIXL(void);
+	System::String ^ToString();
 };
 

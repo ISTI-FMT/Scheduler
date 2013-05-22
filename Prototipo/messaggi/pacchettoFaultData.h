@@ -34,4 +34,5 @@ public:
 	void deserialize(byte *buffer);
 
 	~pacchettoFaultData(void);
+	System::String ^ToString();
 };

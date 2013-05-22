@@ -29,5 +29,7 @@ public:
 	void deserialize(byte *buffer);
 
 	~pacchettoComandoBlocco(void);
+
+	System::String ^ToString();
 };
 

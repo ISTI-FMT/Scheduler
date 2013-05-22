@@ -29,5 +29,6 @@ public:
 	void deserialize(byte *buffer);
 
 	~pacchettoComandoItinerari(void);
+	System::String ^ToString();
 };
 

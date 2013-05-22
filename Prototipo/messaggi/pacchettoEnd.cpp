@@ -19,3 +19,11 @@ void pacchettoEnd::deserialize(byte *buffer, int offset)
 pacchettoEnd::~pacchettoEnd(void)
 {
 }
+
+System::String ^pacchettoEnd::ToString(){
+		System::String ^out;
+
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+
+	 return out;
+}

@@ -115,3 +115,22 @@ pacchettoStatoItinerario::~pacchettoStatoItinerario(void)
 {
 	delete [] data.vStatoItinerario;
 }
+
+
+System::String ^pacchettoStatoItinerario::ToString(){
+		System::String ^out;
+
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+	out = out+"L_PACKET: "+data.L_PACKET+";";
+	out = out+"NID_ITIN: "+data.statoItinerario.NID_ITIN+";";
+	out = out+"Q_STATOITIN: "+data.statoItinerario.Q_STATOITIN+";";
+	out = out+"N_ITER: "+data.N_ITER+";";
+	if(data.vStatoItinerario){
+			for(unsigned int i=0;i<data.N_ITER;i++){
+				out = out+"NID_ITIN: "+data.vStatoItinerario[i].NID_ITIN+";";
+				out = out+"Q_STATOITIN: "+data.vStatoItinerario[i].Q_STATOITIN+";";
+
+			}
+		}
+	 return out;
+}

@@ -36,3 +36,13 @@ void pacchettoComandoItinerari::deserialize(byte *buffer)
 pacchettoComandoItinerari::~pacchettoComandoItinerari(void)
 {
 }
+
+System::String ^pacchettoComandoItinerari::ToString(){
+		System::String ^out;
+
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+	out = out+"L_PACKET: "+data.L_PACKET+";";
+	out = out+"NID_ITIN: "+data.NID_ITIN+";";
+	out = out+"Q_CMDITIN: "+data.Q_CMDITIN+";";
+	 return out;
+}

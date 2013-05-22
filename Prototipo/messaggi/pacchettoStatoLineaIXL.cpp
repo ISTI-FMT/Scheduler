@@ -139,3 +139,28 @@ pacchettoStatoLineaIXL::~pacchettoStatoLineaIXL(void)
 {
 	delete [] data.vStatoCDB;
 }
+
+
+System::String^ pacchettoStatoLineaIXL::ToString(){
+	String ^out;
+
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+	out = out+"L_PACKET: "+data.L_PACKET+";";
+	
+	out = out+"NID_CDB: "+data.statoCDB.NID_CDB+";";
+	out = out+"Q_STATOCDB: "+data.statoCDB.Q_STATOCDB+";";
+	out = out+"Q_DEVIATOIO: "+data.statoCDB.Q_DEVIATOIO+";";
+	out = out+"N_ITER: "+data.N_ITER+";";
+	if(data.vStatoCDB){
+		for(unsigned int i = 0; i < data.N_ITER; ++i)
+		{
+			out = out+"NID_CDB: "+data.vStatoCDB[i].NID_CDB+";";
+
+			out = out+"Q_STATOCDB: "+data.vStatoCDB[i].Q_STATOCDB+";";
+
+			out = out+"Q_DEVIATOIO: "+data.vStatoCDB[i].Q_DEVIATOIO+";";
+
+		}
+	}
+	return out;
+}

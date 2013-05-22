@@ -115,3 +115,21 @@ pacchettoStatoBlocco::~pacchettoStatoBlocco(void)
 {
 	delete [] data.vStatoBlocco;
 }
+
+System::String ^pacchettoStatoBlocco::ToString(){
+		System::String ^out;
+
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+	out = out+"L_PACKET: "+data.L_PACKET+";";
+	out = out+"NID_BLOCCO: "+data.statoBlocco.NID_BLOCCO+";";
+	out = out+"Q_STATOBLOCCO: "+data.statoBlocco.Q_STATOBLOCCO+";";
+	out = out+"N_ITER: "+data.N_ITER+";";
+	if(data.vStatoBlocco){
+			for(unsigned int i=0;i<data.N_ITER;i++){
+				out = out+"NID_BLOCCO: "+data.vStatoBlocco[i].NID_BLOCCO+";";
+				out = out+"Q_STATOBLOCCO: "+data.vStatoBlocco[i].Q_STATOBLOCCO+";";
+
+			}
+		}
+	 return out;
+}

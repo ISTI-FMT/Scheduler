@@ -36,3 +36,13 @@ void pacchettoComandoBlocco::deserialize(byte *buffer)
 pacchettoComandoBlocco::~pacchettoComandoBlocco(void)
 {
 }
+
+System::String ^pacchettoComandoBlocco::ToString(){
+		System::String ^out;
+
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+	out = out+"L_PACKET: "+data.L_PACKET+";";
+	out = out+"NID_BLOCCO: "+data.NID_BLOCCO+";";
+	out = out+"Q_CMDBLOCCO: "+data.Q_CMDBLOCCO+";";
+	 return out;
+}

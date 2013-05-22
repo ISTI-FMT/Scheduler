@@ -114,3 +114,22 @@ pacchettoStatoSegnali::~pacchettoStatoSegnali(void)
 {
 	delete [] data.vStatoSegnale;
 }
+
+
+System::String ^pacchettoStatoSegnali::ToString(){
+		System::String ^out;
+
+	out = out+"NID_PACKET: "+data.NID_PACKET+";";
+	out = out+"L_PACKET: "+data.L_PACKET+";";
+	out = out+"NID_SEGN: "+data.statoSegnale.NID_SEGN+";";
+	out = out+"Q_STATOSEGN: "+data.statoSegnale.Q_STATOSEGN+";";
+	out = out+"N_ITER: "+data.N_ITER+";";
+	if(data.vStatoSegnale){
+			for(unsigned int i=0;i<data.N_ITER;i++){
+				out = out+"NID_SEGN: "+data.vStatoSegnale[i].NID_SEGN+";";
+				out = out+"Q_STATOITIN: "+data.vStatoSegnale[i].Q_STATOSEGN+";";
+
+			}
+		}
+	 return out;
+}
