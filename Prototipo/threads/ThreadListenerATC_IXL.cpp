@@ -1,4 +1,4 @@
-#include "ThreadListenerATC.h"
+#include "ThreadListenerATC_IXL.h"
 #using <System.dll>
 #include "..\\utility.h"
 #include "..\\messaggi\\Messaggi.h"
@@ -15,13 +15,13 @@ using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
 
-ThreadListenerATC::ThreadListenerATC(){
+ThreadListenerATC_IXL::ThreadListenerATC_IXL(){
 
 }
-void ThreadListenerATC::ReceiveCallback(IAsyncResult^ asyncResult){
+void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	Console::ForegroundColor = ConsoleColor::Red;
-	Console::WriteLine( "ATC Connected!" );
+	Console::WriteLine( "ATC/IXL Connected!" );
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
 
 
@@ -36,20 +36,20 @@ void ThreadListenerATC::ReceiveCallback(IAsyncResult^ asyncResult){
 
 #ifdef TRACE
 
-			Logger::Info(pkt1->getNID_MESSAGE(),ipEndPoint->Address->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC");
+			Logger::Info(pkt1->getNID_MESSAGE(),ipEndPoint->Address->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
 
 #endif // TRACE
 
 	Console::ForegroundColor = ConsoleColor::Red;
-	Console::WriteLine("{0} ATC ti ha inviato un messaggio",ipEndPoint->Address->ToString());
-	Console::WriteLine(pkt1->get_pacchettoStatoLineaATC()->toPrint());
+	Console::WriteLine("{0} ATC/IXL ti ha inviato un messaggio",ipEndPoint->Address->ToString());
+	Console::WriteLine(pkt1->ToString());
 	Console::ResetColor();
 
 	isMessageReceived = true;
 }
 
 
-void ThreadListenerATC::UDP_Management_receive(){
+void ThreadListenerATC_IXL::UDP_Management_receive(){
 	try
 	{
 		Console::ForegroundColor = ConsoleColor::Red;
@@ -64,7 +64,7 @@ void ThreadListenerATC::UDP_Management_receive(){
 
 			
 			
-			udpClient->BeginReceive(gcnew AsyncCallback(ThreadListenerATC::ReceiveCallback),udpClient);
+			udpClient->BeginReceive(gcnew AsyncCallback(ThreadListenerATC_IXL::ReceiveCallback),udpClient);
 			
 
 			// Do some work while we wait for a message. For this example,

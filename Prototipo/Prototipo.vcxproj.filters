@@ -83,9 +83,6 @@
     <ClInclude Include="tabellaOrario\TabellaOrario.h">
       <Filter>File di intestazione\tabellaOrario</Filter>
     </ClInclude>
-    <ClInclude Include="threads\ThreadListenerATC.h">
-      <Filter>File di intestazione\threads</Filter>
-    </ClInclude>
     <ClInclude Include="threads\ThreadPresentazione.h">
       <Filter>File di intestazione\threads</Filter>
     </ClInclude>
@@ -152,6 +149,9 @@
     <ClInclude Include="Itinerari\tabellaItinerari.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
+    <ClInclude Include="threads\ThreadListenerATC_IXL.h">
+      <Filter>File di intestazione\threads</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logger\LogClass.cpp">
@@ -183,9 +183,6 @@
     </ClCompile>
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp">
       <Filter>File di origine\tabellaOrario</Filter>
-    </ClCompile>
-    <ClCompile Include="threads\ThreadListenerATC.cpp">
-      <Filter>File di origine\threads</Filter>
     </ClCompile>
     <ClCompile Include="threads\ThreadPresentazione.cpp">
       <Filter>File di origine\threads</Filter>
@@ -252,6 +249,9 @@
     </ClCompile>
     <ClCompile Include="Itinerari\tabellaItinerari.cpp">
       <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ThreadListenerATC_IXL.cpp">
+      <Filter>File di origine\threads</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

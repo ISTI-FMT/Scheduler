@@ -4,7 +4,7 @@
 #include "..\\utility.h"
 
 #include "..\\phisicalTrainList.h"
-#include "..\\threads\\ThreadListenerATC.h"
+#include "..\\threads\\ThreadListenerATC_IXL.h"
 #include <iostream>
 #include "..\\threads\\ThreadPresentazione.h"
 #include "..\\mapTrenoFisicoLogico.h"
@@ -50,7 +50,7 @@ namespace Prototipo {
 
 			oThread2->Start();
 
-			 oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC::UDP_Management_receive ) );
+			 oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC_IXL::UDP_Management_receive ) );
 
 			oThread1->Start();
 
