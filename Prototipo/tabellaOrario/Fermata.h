@@ -47,5 +47,7 @@ public:
 	// Funzioni per la manipolazione del tempo di apertura delle porte
 	void setLatoAperturaPorte(int lato){latoAperturaPorte = lato;};
 	int getLatoAperturaPorte(){return latoAperturaPorte;};
+
+	virtual System::String^ ToString() override;
 };
 

@@ -38,7 +38,7 @@ namespace Prototipo {
 			tabella  = gcnew TabellaOrario;
 			tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 
-
+			Console::WriteLine(tabella->ToString());
 
 			listaTreni = gcnew phisicalTrainList();
 

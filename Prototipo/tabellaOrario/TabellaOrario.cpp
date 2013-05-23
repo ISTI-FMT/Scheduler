@@ -6,6 +6,9 @@
 using namespace std;
 using namespace System;
 using namespace System::Globalization;
+
+
+
 TabellaOrario::TabellaOrario(void)
 {
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
@@ -25,9 +28,9 @@ int TabellaOrario::convertiString2int(System::String ^StringValue)
 // funzione che converte una System::String in un std::string
 string TabellaOrario::convertiString2string(System::String ^StringValue)
 {
-	// converto da System::String a std::string
-	std::string stdString = String2string(StringValue);
-	return stdString;
+// converto da System::String a std::string
+std::string stdString = String2string(StringValue);
+return stdString;
 }
 */
 // funzione che restituisce un qualsiasi TRN nella tabella orario (di fatto il primo)
@@ -40,8 +43,8 @@ int TabellaOrario::getFirstTRN()
 			return x;
 		}
 	}
-	
-		return 0;
+
+	return 0;
 }
 
 // questa funzione legge il file di configurazione contenente la descrizione della tabella orario
@@ -80,7 +83,7 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			orarioSupporto1 = DateTime::ParseExact(SystemStringOrarioArrivo, "HH:mm:ss", CultureInfo::InvariantCulture);
 			//orarioSupporto2.Today.AddHours(orarioSupporto1.Hour);
 			orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-			
+
 			sinceMidnight = orarioSupporto1 - orarioSupporto3;
 			// calcolo quanti secondi sono passati dalla mezzanotte
 			secs = sinceMidnight.TotalSeconds;
@@ -93,7 +96,7 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			// aggiungo alla data corrente l'ora, minuto e secondi letti
 			orarioSupporto2=DateTime::ParseExact(SystemStringOrarioPartenza, "HH:mm:ss", CultureInfo::InvariantCulture);
 			//DateTime t = DateTime::ParseExact(SystemStringOrarioPartenza, "HH:mm:ss", CultureInfo::InvariantCulture);
-			
+
 			// calcolo la differenza fra la data preparata e la data "di oggi" (alla mezzanotte)
 			sinceMidnight = orarioSupporto2- orarioSupporto3;
 			// calcolo quanti secondi sono passati dalla mezzanotte
@@ -167,8 +170,22 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 /*
 ostream& operator<<(ostream &out, TabellaOrario &tabella)
 {
-	for (std::list<TrenoFermate>::iterator it=tabella.tabella.begin(); it != tabella.tabella.end(); ++it)
-		out << (*it) << endl;
-	return out;
+for (std::list<TrenoFermate>::iterator it=tabella.tabella.begin(); it != tabella.tabella.end(); ++it)
+out << (*it) << endl;
+return out;
 }
 */
+System::String^ TabellaOrario::ToString(){
+	String ^out;
+	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella )
+	{
+
+		out+=" "+ kvp.Key+"\n\r";
+
+		for each (Fermata ^dvar in kvp.Value)
+		{
+			out+= dvar->ToString();
+		}
+	}
+	return out;
+}

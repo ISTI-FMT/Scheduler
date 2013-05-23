@@ -32,5 +32,6 @@ public:
 	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
 	
 	//TrenoFermate^ getTrenoFermate(int TRN);
+	virtual System::String^ ToString() override;
 };
 

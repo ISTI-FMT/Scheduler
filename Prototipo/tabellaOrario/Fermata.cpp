@@ -1,7 +1,7 @@
 #include "Fermata.h"
-#include <iostream>
-using namespace std;
 
+using namespace System;
+using namespace System::Globalization;
 Fermata::Fermata(void)
 {
 	idStazione = "";
@@ -11,6 +11,23 @@ Fermata::Fermata(void)
 	binarioProgrammato = 0;
 	latoAperturaPorte = noApertura;
 }
+
+ System::String^ Fermata::ToString() {
+	 String ^out;
+	
+	
+	 TimeSpan Arrivo = TimeSpan::FromSeconds(orarioArrivo*30);
+	 TimeSpan Partenza = TimeSpan::FromSeconds(orarioPartenza*30);
+
+	 out+="ID stazione : "+idStazione+"\n\r";
+	 out+=" orario arrivo : "+ Arrivo.ToString()+"\n\r";
+	 out+=" orario partenza : "+Partenza.ToString()+"\n\r";
+	 out+=" binario programmato : "+binarioProgrammato+"\n\r";
+	  out+=" tempoMinimoAperturaPorte : "+tempoMinimoAperturaPorte+"\n\r";
+	   out+=" latoAperturaPorte : "+latoAperturaPorte+"\n\r";
+
+	 return out;
+ }
 
 /*
 ostream& operator<<(ostream &out, const Fermata &stop)
