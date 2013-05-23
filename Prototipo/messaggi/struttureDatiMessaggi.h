@@ -156,6 +156,20 @@ struct StatoItinerario
 	itinerario *vStatoItinerario;
 };
 
+struct scudetti
+{
+	unsigned int NID_SCUD : 32;
+	unsigned int Q_STATOSCUD : 3;
+};
+struct StatoScudetti
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	scudetti statoscudetti;
+	unsigned int N_ITER : 16;
+	scudetti *vStatoScudetti;
+};
+
 struct segnale
 {
 	unsigned int NID_SEGN : 32;
