@@ -22,6 +22,7 @@ ref class TabellaOrario
 	//friend ostream& operator<<(ostream &out, TabellaOrario &tabella);
 public:
 	TabellaOrario(void);
+	Dictionary<int, List<Fermata^>^> ^ get_TabellaOrario(){return tabella;};
 	// funzione che restituisce un qualsiasi TRN nella tabella orario (di fatto il primo)
 	int getFirstTRN();
 	// questa funzione legge il file di configurazione contenente la descrizione della tabella orario
@@ -30,7 +31,7 @@ public:
 	// alla missione associata al TRN in questione
 	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
 	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
-	
+
 	//TrenoFermate^ getTrenoFermate(int TRN);
 	virtual System::String^ ToString() override;
 };
