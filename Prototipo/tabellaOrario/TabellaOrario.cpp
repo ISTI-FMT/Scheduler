@@ -104,6 +104,10 @@ void TabellaOrario::leggiTabellaOrario(string nomeFile)
 			// configuro l'orario di arrivo della farmata in risoluzione di 30 s
 			stop->setOrarioPartenza(secs/30);
 
+		
+			stop->settempoMinimoAperturaPorte((stop->getOrarioPartenza()*30)- (stop->getOrarioArrivo()*30)-30);
+
+
 			// leggo il binario programmato
 			inner->ReadToFollowing("binarioprogrammato");
 			System::String ^SystemStringBinarioProgrammato = inner->ReadString();
@@ -157,11 +161,11 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 		for each (Fermata ^stop in stops)
 		{
 			pkt->setQ_DOORS(i, stop->getLatoAperturaPorte());
-			int Costanteaperturaporte = 30;
+		
 			int orarioPartenza = (int)stop->getOrarioPartenza();
-			int orarioArrivo =  (int)stop->getOrarioArrivo();
+		
 			pkt->setT_START_TIME(i,orarioPartenza);
-			pkt->setT_DOORS_TIME(i, ((orarioPartenza-Costanteaperturaporte) - orarioArrivo));
+			pkt->setT_DOORS_TIME(i, stop->gettempoMinimoAperturaPorte());
 			++i;
 		}
 	}
