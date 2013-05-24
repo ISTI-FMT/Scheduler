@@ -34,7 +34,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 			newstazione->setNomeStazione(nomestazione);
 			newstazione->set_SetIDStazione(Idstazione);
 			mapidstazioneitinerari->Add(Idstazione,newstazione );
-			inner->ReadToFollowing("itinerari");
+			inner->ReadToFollowing("itinerariIngresso");
 			System::Xml::XmlReader ^inner2 = inner->ReadSubtree();
 		
 			while (inner2->ReadToFollowing("ingresso")){
@@ -95,7 +95,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 			}
 
-			inner->ReadToFollowing("itinerari");
+			inner->ReadToFollowing("itinerariUscita");
 			//if(sdsa)
 			inner2 = inner->ReadSubtree();
 			while (inner2->ReadToFollowing("partenza")){

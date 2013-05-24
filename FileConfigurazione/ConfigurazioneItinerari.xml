@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ConfigurazioneItinerari>
   <stazione  name="Via Accademia" id_offset="13000">
-    <itinerari>
+     <itinerariIngresso>
       <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA501"  nextcdb="0" >
         <cdb>13010</cdb>
         <cdb>13011</cdb>
@@ -16,8 +16,9 @@
         <cdb>13302</cdb>
 		
       </ingresso>
-	  </itinerari>
-	  <itinerari>
+ </itinerariIngresso>
+
+ <itinerariUscita>
       <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="13301" nextcdb="BCA501" >
       
         <cdb>13012</cdb>
@@ -32,11 +33,11 @@
         <cdb>13010</cdb>
 	
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
   <stazione  name="Vicolo Corto" id_offset="10000">
-    <itinerari>
+     <itinerariIngresso>
       <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA504" nextcdb="0" >
         <cdb>10010</cdb>
         <cdb>10011</cdb>
@@ -50,8 +51,9 @@
         <cdb>10013</cdb>
         <cdb>10302</cdb>
       </ingresso>
-	  </itinerari>	 
-	  <itinerari>
+ </itinerariIngresso>
+
+ <itinerariUscita>
 	  <partenza id="101" name="I-01"  direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="10301" nextcdb="BCA504" >
       
         <cdb>10012</cdb>
@@ -67,11 +69,11 @@
         <cdb>10010</cdb>
 	
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
   <stazione name="Piazza Università" id_offset="14000">
-    <itinerari>
+     <itinerariIngresso>
       <ingresso id="021" name="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA501" nextcdb="14012" >
         <cdb>14020</cdb>
         <cdb>14021</cdb>
@@ -100,8 +102,9 @@
         <cdb>14302</cdb>
 		
       </ingresso>
-	  </itinerari>	 
-	  <itinerari>
+ </itinerariIngresso>
+
+ <itinerariUscita>
 	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="14301" nextcdb="BCA502" >
         <cdb>14012</cdb>
         <cdb>14011</cdb>
@@ -124,12 +127,12 @@
         <cdb>14021</cdb>
         <cdb>14020</cdb>
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
 
   <stazione name="viale Monterosa" id_offset="11000">
-    <itinerari>
+     <itinerariIngresso>
       <ingresso id="021" name="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA504" nextcdb="11012" >
       
           <cdb>11020</cdb>
@@ -161,8 +164,9 @@
           <cdb>11302</cdb>
        
       </ingresso>
-	  </itinerari>
-	  <itinerari>
+ </itinerariIngresso>
+
+ <itinerariUscita>
 	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="11301" nextcdb="BCA505" >
         
          
@@ -199,11 +203,11 @@
           <cdb>11020</cdb>
 
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
   <stazione name="via Verdi" id_offset="15000">
-    <itinerari>
+     <itinerariIngresso>
       <ingresso id="021" name="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA502" nextcdb="15012" >
        
           <cdb>15020</cdb>
@@ -235,8 +239,9 @@
           <cdb>15302</cdb>
   
       </ingresso>
-	  </itinerari>	
-	  <itinerari>
+	   </itinerariIngresso>
+
+ <itinerariUscita>
 	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="15301" nextcdb="BCA503" >
        
          
@@ -269,7 +274,7 @@
           <cdb>15020</cdb>
         
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
 
@@ -278,7 +283,7 @@
 
 
   <stazione name="Piazza Dante" id_offset="12000">
-    <itinerari>
+     <itinerariIngresso>
       <ingresso id="011" name="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA503" nextcdb="12026" >
         
           <cdb>12010</cdb>
@@ -364,8 +369,9 @@
           <cdb>12303</cdb>
 
       </ingresso>
-	  </itinerari>
-	  <itinerari>
+ </itinerariIngresso>
+
+ <itinerariUscita>
 	  <partenza id="101" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="12301" nextcdb="BCA503" >
         
           
@@ -455,12 +461,12 @@
           <cdb>12020</cdb>
 
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
   
   <stazione  name="Viale dei Giardini" id_offset="16000">
-    <itinerari>
+     <itinerariIngresso>
       <ingresso id="022" name="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="428"  nextcdb="16016" >
         
           <cdb>16020</cdb>
@@ -558,8 +564,9 @@
           <cdb>16303</cdb>
         
       </ingresso>
-	  </itinerari>	
-	  <itinerari>
+	   </itinerariIngresso>
+
+ <itinerariUscita>
 	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="441" >
        
        
@@ -651,11 +658,11 @@
           <cdb>16011</cdb>
           <cdb>16010</cdb>
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
   <stazione  name="Parco della Vittoria" id_offset="17000">
-    <itinerari>
+     <itinerariIngresso>
       <ingresso id="011" name="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="448" nextcdb="17015" >
        
           <cdb>17010</cdb>
@@ -726,8 +733,9 @@
           <cdb>17034</cdb>
           <cdb>17304</cdb>
       </ingresso>
- </itinerari>	
-	  <itinerari>
+  </itinerariIngresso>
+
+ <itinerariUscita>
       <partenza id="101" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="448" >
        
           <cdb>17014</cdb>
@@ -796,7 +804,7 @@
           <cdb>17011</cdb>
           <cdb>17010</cdb>
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
 

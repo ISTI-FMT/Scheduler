@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configurazionefermate>
 
-<fermata id="Vicolo Stretto" >
-    <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+<fermata name="Vicolo Stretto" id="504">
+    <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" nextCDB="11020" prevCDB="10010">
       
        <cdb>BCA504</cdb>
-	    <nextcdb>11020</nextcdb>
+	    
     </binario>
-    <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+    <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextCDB="10010" prevCDB="11020">
 
       <cdb>BCA504</cdb>
-	   <nextcdb>10010</nextcdb>
+	  
     </binario>
 
     
    
   </fermata>
 
-  <fermata id="Via Marco Polo" >
-    <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+  <fermata name="Via Marco Polo" id="406">
+    <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" nextCDB="408" prevCDB="404">
       
        <cdb>406</cdb>
-	    <nextcdb>408</nextcdb>
+	    
     </binario>
-    <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+    <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextCDB="404" prevCDB="408">
 
       <cdb>406</cdb>
-	   <nextcdb>404</nextcdb>
+	  
     </binario>
 
-    <binario id="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+    <binario id="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  nextCDB="409" prevCDB="405">
 
       <cdb>407</cdb>
-	   <nextcdb>409</nextcdb>
+	   
     </binario>
 
-    <binario id="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+    <binario id="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx"  nextCDB="405" prevCDB="409">
 
       <cdb>407</cdb>
-	   <nextcdb>405</nextcdb>
+	  
     </binario>
    
   </fermata>
 
-  <fermata id="Via Roma">
-    <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+  <fermata name="Via Roma" id="418">
+    <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextCDB="420" prevCDB="416">
 
       <cdb>418</cdb>
-	   <nextcdb>420</nextcdb>
+	  
     </binario>
 
-    <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+    <binario id="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  nextCDB="416" prevCDB="420">
 
       <cdb>418</cdb>
-	   <nextcdb>416</nextcdb>
+	   
     </binario>
-    <binario id="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+    <binario id="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx"  nextCDB="421" prevCDB="417">
 
       <cdb>419</cdb>
-	   <nextcdb>421</nextcdb>
+	   
     </binario>
 
-    <binario id="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+    <binario id="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  nextCDB="417" prevCDB="421">
 
       <cdb>419</cdb>
-	   <nextcdb>417</nextcdb>
+	 
     </binario>
     
   </fermata>
