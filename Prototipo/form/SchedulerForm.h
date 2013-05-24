@@ -39,7 +39,7 @@ namespace Prototipo {
 			tabella  = gcnew TabellaOrario;
 			tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 
-			tabellaItinerari ^tb = gcnew tabellaItinerari();
+			tb = gcnew tabellaItinerari();
 			tb->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
 
 			Console::WriteLine(tb->ToString());
@@ -82,9 +82,11 @@ namespace Prototipo {
 		System::ComponentModel::Container ^components;
 		TabellaOrario ^tabella;
 		phisicalTrainList ^listaTreni;
+		tabellaItinerari ^tb;
 
 		Thread^ oThread1;
 	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  button3;
 			 Thread^ oThread2;
 
 #pragma region Windows Form Designer generated code
@@ -97,6 +99,7 @@ namespace Prototipo {
 				 this->ExitButton = (gcnew System::Windows::Forms::Button());
 				 this->button1 = (gcnew System::Windows::Forms::Button());
 				 this->button2 = (gcnew System::Windows::Forms::Button());
+				 this->button3 = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
 				 // 
 				 // ExitButton
@@ -129,11 +132,22 @@ namespace Prototipo {
 				 this->button2->UseVisualStyleBackColor = true;
 				 this->button2->Click += gcnew System::EventHandler(this, &SchedulerForm::button2_Click);
 				 // 
+				 // button3
+				 // 
+				 this->button3->Location = System::Drawing::Point(21, 146);
+				 this->button3->Name = L"button3";
+				 this->button3->Size = System::Drawing::Size(146, 23);
+				 this->button3->TabIndex = 3;
+				 this->button3->Text = L"Visualize Conf. Itinerari";
+				 this->button3->UseVisualStyleBackColor = true;
+				 this->button3->Click += gcnew System::EventHandler(this, &SchedulerForm::button3_Click);
+				 // 
 				 // SchedulerForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(408, 332);
+				 this->Controls->Add(this->button3);
 				 this->Controls->Add(this->button2);
 				 this->Controls->Add(this->button1);
 				 this->Controls->Add(this->ExitButton);
@@ -346,6 +360,96 @@ namespace Prototipo {
 
 
 				 form->Visible=true;
+
+			 }
+	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+				 System::Windows::Forms::Form ^  form;
+				 System::Windows::Forms::DataGridView^  dataGridView1;
+				 dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(dataGridView1))->BeginInit();
+				 dataGridView1->AccessibleName = L"datagridit";
+				 dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::AllCells;
+				 dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
+				 dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+				 dataGridView1->Location = System::Drawing::Point(12, 12);
+				 dataGridView1->Name = L"dataGridViewit";
+				 dataGridView1->Size = System::Drawing::Size(771, 344);
+				 dataGridView1->TabIndex = 18;
+
+				 form = gcnew Form();
+				 form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+				 form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+				 form->ClientSize = System::Drawing::Size(830, 415);
+				 form->Controls->Add(dataGridView1);
+				 form->Name = L"Tabella Configurazione Itinerari";
+				 form->Text = L"Tabella Configurazione Itinerari";
+				 form->ResumeLayout(false);
+				 form->PerformLayout();
+				 form->SuspendLayout();
+
+				 dataGridView1->ColumnCount = 11;
+				 dataGridView1->RowCount = 410;
+				 int colonna=0;
+				 int riga=0;
+				 dataGridView1->Columns[ 0 ]->Name = "offset";
+				// dataGridView1->Columns[ 1 ]->Name = "offset";
+				 dataGridView1->Columns[ 1 ]->Name = "Nome Stazione";
+				 dataGridView1->Columns[ 2 ]->Name = "prevCDB";
+				 dataGridView1->Columns[ 3 ]->Name = "Id It";
+				 dataGridView1->Columns[ 4 ]->Name = "Nome It";
+				  dataGridView1->Columns[ 5 ]->Name = "LRGB";
+				  dataGridView1->Columns[ 6 ]->Name = "DSTOP";
+				  dataGridView1->Columns[ 7 ]->Name = "Dir";
+				  dataGridView1->Columns[ 8 ]->Name = "nextCDB";
+				//  dataGridView1->Columns[ 10 ]->Name = "prevCDB";
+				  dataGridView1->Columns[ 9]->Name = "PB";
+				  dataGridView1->Columns[ 10 ]->Name = "L_CDB";
+
+				 for each( KeyValuePair<int , stazione^> kvp in tb->getMap() )
+				 {
+
+					 String ^po=kvp.Key+"\n\r";
+					 dataGridView1->Rows[riga]->Cells[0]->Value=po;
+
+					 stazione ^station =kvp.Value;
+					// dataGridView1->Rows[riga]->Cells[1]->Value= station->get_idStazione();
+					 dataGridView1->Rows[riga]->Cells[1]->Value= station->get_NomeStazione();
+
+					 for each (KeyValuePair<String^,List<Itinerario^>^> ^ikvp in station->getItinerari())
+					 {
+
+						 dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->Key;
+						 List<Itinerario^>^listitn = ikvp->Value;
+						 for each (Itinerario ^itvar in listitn)
+						 {
+							 dataGridView1->Rows[riga]->Cells[3]->Value=itvar->getId();
+							 dataGridView1->Rows[riga]->Cells[4]->Value=itvar->getName();
+							 dataGridView1->Rows[riga]->Cells[5]->Value=itvar->getLrgb();
+							 dataGridView1->Rows[riga]->Cells[6]->Value=itvar->getDStop();
+							 dataGridView1->Rows[riga]->Cells[7]->Value=itvar->getLatoBanchina();
+							 dataGridView1->Rows[riga]->Cells[8]->Value=itvar->getNextCDB();
+						//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
+							 dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
+							 List<int> ^cdb = itvar->getLCDB();
+							 for each (int cdbvar in cdb)
+							 {
+								 if(cdbvar){
+								 dataGridView1->Rows[riga]->Cells[10]->Value=cdbvar;
+								 }
+								 riga++;
+							 }
+
+
+						 }
+
+
+					 }
+
+				 }
+
+
+				 form->Visible=true;
+
 
 			 }
 	};

@@ -15,7 +15,9 @@ ref class stazione
 public:
 	stazione(void);
 	void setNomeStazione(String ^n){nomeStazione = n;}
+	void set_SetIDStazione(int n){idStazione = n;}
 	Dictionary<String^,List<Itinerario^>^ > ^ getItinerari(){return itinerari;};
-
+	String ^get_NomeStazione(){return nomeStazione;};
+	int get_idStazione(){return idStazione;};
 	virtual System::String^ ToString() override;
 };

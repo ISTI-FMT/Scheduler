@@ -31,49 +31,46 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 		if(!mapidstazioneitinerari->ContainsKey(Idstazione)){
 
 			stazione ^newstazione = gcnew stazione();
+			newstazione->setNomeStazione(nomestazione);
+			newstazione->set_SetIDStazione(Idstazione);
 			mapidstazioneitinerari->Add(Idstazione,newstazione );
 			inner->ReadToFollowing("itinerari");
 			System::Xml::XmlReader ^inner2 = inner->ReadSubtree();
-			System::Xml::XmlReader ^inner4 = inner->ReadSubtree();
-			bool k = inner4->ReadToFollowing("ingresso");
-			//bool kh = 	inner4->ReadToNextSibling("ingresso");
-			//bool kh1 = 	inner4->ReadToNextSibling("ingresso");
-
-			//bool kk = reader->ReadToFollowing("partenza");
-			do{
+		
+			while (inner2->ReadToFollowing("ingresso")){
 
 
 
 				Itinerario ^newitinerario = gcnew Itinerario();
 
-				int Iditinerario = convertiString2int(inner->GetAttribute("id"));
+				int Iditinerario = convertiString2int(inner2->GetAttribute("id"));
 				newitinerario->setId(Iditinerario);
 
 
 
-				newitinerario->setName( inner->GetAttribute("name"));
+				newitinerario->setName( inner2->GetAttribute("name"));
 
-				inner->GetAttribute("direzione");
+				inner2->GetAttribute("direzione");
 
-				System::String ^porte = inner->GetAttribute("portebanchina");
+				System::String ^porte = inner2->GetAttribute("portebanchina");
 				if(porte->Equals("true")){
 					newitinerario->setPorteBanchina(true);
 				}else{
 					newitinerario->setPorteBanchina(false);
 				}
 
-				int nidlrgb = convertiString2int(inner->GetAttribute("nid_lrgb"));
+				int nidlrgb = convertiString2int(inner2->GetAttribute("nid_lrgb"));
 				newitinerario->setLrgb(nidlrgb);
-				int dstop = convertiString2int(inner->GetAttribute("d_stop"));
+				int dstop = convertiString2int(inner2->GetAttribute("d_stop"));
 				newitinerario->setDStop(dstop);
-				newitinerario->setLatoBanchina( inner->GetAttribute("latobanchina"));
+				newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
-				newitinerario->setNextCDB( inner->GetAttribute("nextcdb"));
+				newitinerario->setNextCDB( inner2->GetAttribute("nextcdb"));
 
-				String ^prevcdb = 	inner->GetAttribute("prevcdb");
+				String ^prevcdb = 	inner2->GetAttribute("prevcdb");
 				newitinerario->setPrevCDB( prevcdb);	
 
-				System::Xml::XmlReader ^inner3 = inner->ReadSubtree();
+				System::Xml::XmlReader ^inner3 = inner2->ReadSubtree();
 				while (inner3->ReadToFollowing("cdb")){
 
 
@@ -96,22 +93,24 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 				}
 
-			}while (inner->ReadToNextSibling("ingresso"));
+			}
 
-			reader->ReadToFollowing("partenza");
-			do{
+			inner->ReadToFollowing("itinerari");
+			//if(sdsa)
+			inner2 = inner->ReadSubtree();
+			while (inner2->ReadToFollowing("partenza")){
 
 				Itinerario ^newitinerario = gcnew Itinerario();
-				int Iditinerario = convertiString2int(reader->GetAttribute("id"));
+				int Iditinerario = convertiString2int(inner2->GetAttribute("id"));
 				newitinerario->setId(Iditinerario);
 
 
 
-				newitinerario->setName( reader->GetAttribute("name"));
+				newitinerario->setName( inner2->GetAttribute("name"));
 
-				reader->GetAttribute("direzione");
+				inner2->GetAttribute("direzione");
 
-				System::String ^porte = reader->GetAttribute("portebanchina");
+				System::String ^porte = inner2->GetAttribute("portebanchina");
 				if(porte->Equals("true")){
 					newitinerario->setPorteBanchina(true);
 				}else{
@@ -119,11 +118,11 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 				}
 
 
-				newitinerario->setLatoBanchina( reader->GetAttribute("latobanchina"));
+				newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
-				newitinerario->setNextCDB( reader->GetAttribute("nextcdb"));
+				newitinerario->setNextCDB( inner2->GetAttribute("nextcdb"));
 
-				String ^prevcdb = 	reader->GetAttribute("prevcdb");
+				String ^prevcdb = 	inner2->GetAttribute("prevcdb");
 				newitinerario->setPrevCDB( prevcdb);	
 
 
@@ -149,14 +148,13 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 				}
 
-			}while (reader->ReadToNextSibling("partenza"));
+			}
 
 
 
 
 		}
-		// a questo punto aggiungo il treno alla tabella orario
-		//tabella->Add(idTreno, treno);
+		
 	}	
 }
 

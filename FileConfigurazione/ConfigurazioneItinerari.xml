@@ -16,6 +16,8 @@
         <cdb>13302</cdb>
 		
       </ingresso>
+	  </itinerari>
+	  <itinerari>
       <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="13301" nextcdb="BCA501" >
       
         <cdb>13012</cdb>
@@ -48,7 +50,9 @@
         <cdb>10013</cdb>
         <cdb>10302</cdb>
       </ingresso>
-      <partenza id="101" name="I-01"  direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="10301" nextcdb="BCA504" >
+	  </itinerari>	 
+	  <itinerari>
+	  <partenza id="101" name="I-01"  direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="10301" nextcdb="BCA504" >
       
         <cdb>10012</cdb>
         <cdb>10011</cdb>
@@ -60,7 +64,7 @@
         <cdb>10013</cdb>
         <cdb>10012</cdb>
         <cdb>10011</cdb>
-        <cdb>1010</cdb>
+        <cdb>10010</cdb>
 	
       </partenza>
     </itinerari>
@@ -96,7 +100,9 @@
         <cdb>14302</cdb>
 		
       </ingresso>
-      <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="14301" nextcdb="BCA502" >
+	  </itinerari>	 
+	  <itinerari>
+	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="14301" nextcdb="BCA502" >
         <cdb>14012</cdb>
         <cdb>14011</cdb>
         <cdb>14010</cdb>
@@ -122,7 +128,7 @@
   </stazione>
 
 
-  <stazione name="viale Monterosa" id_offset="1100">
+  <stazione name="viale Monterosa" id_offset="11000">
     <itinerari>
       <ingresso id="021" name="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA504" nextcdb="11012" >
       
@@ -155,7 +161,9 @@
           <cdb>11302</cdb>
        
       </ingresso>
-      <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="11301" nextcdb="BCA505" >
+	  </itinerari>
+	  <itinerari>
+	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="11301" nextcdb="BCA505" >
         
          
           <cdb>11012</cdb>
@@ -227,7 +235,9 @@
           <cdb>15302</cdb>
   
       </ingresso>
-      <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="15301" nextcdb="BCA503" >
+	  </itinerari>	
+	  <itinerari>
+	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="15301" nextcdb="BCA503" >
        
          
           <cdb>15012</cdb>
@@ -354,7 +364,9 @@
           <cdb>12303</cdb>
 
       </ingresso>
-      <partenza id="101" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="12301" nextcdb="BCA503" >
+	  </itinerari>
+	  <itinerari>
+	  <partenza id="101" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="12301" nextcdb="BCA503" >
         
           
           <cdb>12012</cdb>
@@ -546,7 +558,9 @@
           <cdb>16303</cdb>
         
       </ingresso>
-      <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="441" >
+	  </itinerari>	
+	  <itinerari>
+	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="441" >
        
        
           <cdb>16012</cdb>
@@ -712,7 +726,8 @@
           <cdb>17034</cdb>
           <cdb>17304</cdb>
       </ingresso>
-
+ </itinerari>	
+	  <itinerari>
       <partenza id="101" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="448" >
        
           <cdb>17014</cdb>
