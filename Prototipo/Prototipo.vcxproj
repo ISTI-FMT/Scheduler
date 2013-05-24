@@ -80,9 +80,7 @@
     <ClInclude Include="Itinerari\itinerarioUscita.h" />
     <ClInclude Include="Itinerari\stazione.h" />
     <ClInclude Include="Itinerari\tabellaItinerari.h" />
-    <ClInclude Include="logger\LogClass.h" />
     <ClInclude Include="logger\Logger.h" />
-    <ClInclude Include="logger\LogMessage.h" />
     <ClInclude Include="logger\TextBoxTraceListener.h" />
     <ClInclude Include="mapTrenoFisicoLogico.h" />
     <ClInclude Include="messaggi\Messaggi.h" />
@@ -120,9 +118,7 @@
     <ClCompile Include="Itinerari\itinerarioUscita.cpp" />
     <ClCompile Include="Itinerari\stazione.cpp" />
     <ClCompile Include="Itinerari\tabellaItinerari.cpp" />
-    <ClCompile Include="logger\LogClass.cpp" />
     <ClCompile Include="logger\Logger.cpp" />
-    <ClCompile Include="logger\LogMessage.cpp" />
     <ClCompile Include="logger\TextBoxTraceListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />

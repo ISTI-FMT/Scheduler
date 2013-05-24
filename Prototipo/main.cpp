@@ -241,7 +241,7 @@ int main()
 	oThread2->Abort();*/
 
 #ifdef TRACE
-			 Trace::WriteLine("New Run Application");  
+			 Trace::WriteLine( DateTime::Now+" New Run Application");  
 #endif // TRACE
 	Prototipo::SchedulerForm ^form = gcnew Prototipo::SchedulerForm();
 

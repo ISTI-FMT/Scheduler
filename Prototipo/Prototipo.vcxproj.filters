@@ -50,12 +50,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="logger\LogClass.h">
-      <Filter>File di intestazione\logger</Filter>
-    </ClInclude>
-    <ClInclude Include="logger\LogMessage.h">
-      <Filter>File di intestazione\logger</Filter>
-    </ClInclude>
     <ClInclude Include="messaggi\Messaggi.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
@@ -160,12 +154,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="logger\LogClass.cpp">
-      <Filter>File di origine\logger</Filter>
-    </ClCompile>
-    <ClCompile Include="logger\LogMessage.cpp">
-      <Filter>File di origine\logger</Filter>
-    </ClCompile>
     <ClCompile Include="messaggi\Messaggi.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>

@@ -4,8 +4,7 @@
 #include "..\\utility.h"
 #include "..\\phisicalTrainList.h"
 #include "..\\String2string.h"
-#include "..\\logger\\LogMessage.h"
-#include "..\\logger\\LogClass.h"
+
 #include "..\\logger\\Logger.h"
 
 #define TRACE
