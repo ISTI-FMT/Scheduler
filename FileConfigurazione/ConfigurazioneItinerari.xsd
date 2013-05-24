@@ -13,14 +13,16 @@
                                                                              <xs:complexType>
                                                                                     <xs:sequence>
                                                                                            <xs:element name="cdb" maxOccurs="unbounded" type="xs:int" />
-																						    <xs:element name="nextcdb" type="xs:string" maxOccurs="1"/>
+																							<xs:element name="nextcdb" type="xs:string" maxOccurs="1"/>
                                                                                        </xs:sequence>
-                                                                                    <xs:attribute name="id" type="xs:string" />
-                                                                                    <xs:attribute name="direzione" type="xs:string" />
-                                                                                    <xs:attribute name="nid_lrgb" type="xs:int" />
-                                                                                    <xs:attribute name="d_stop" type="xs:int" />
-                                                                                    <xs:attribute name="portebanchina" type="xs:string" />
-                                                                                    <xs:attribute name="latobanchina" type="xs:string" />
+                                                                                    <xs:attribute name="id" type="xs:int"/>
+                                                                                    <xs:attribute name="name" type="xs:string"/>
+                                                                                    <xs:attribute name="direzione" type="xs:string"/>
+                                                                                    <xs:attribute name="nid_lrgb" type="xs:int"/>
+                                                                                    <xs:attribute name="d_stop" type="xs:int"/>
+                                                                                    <xs:attribute name="portebanchina" type="xs:string"/>
+                                                                                    <xs:attribute name="latobanchina" type="xs:string"/>
+                                                                                    <xs:attribute name="prevcdb" type="xs:string"/>
                                                                                 </xs:complexType>
                                                                          </xs:element>
                                                                       <xs:element name="partenza" maxOccurs="unbounded" >
@@ -29,18 +31,20 @@
                                                                                            <xs:element name="cdb" maxOccurs="unbounded" type="xs:int" />
                                                                                            <xs:element name="nextcdb" type="xs:string" maxOccurs="1"/>
                                                                                        </xs:sequence>
-                                                                                    <xs:attribute name="id" type="xs:string" />
-                                                                                    <xs:attribute name="direzione" type="xs:string" />
-                                                                                    <xs:attribute name="portebanchina" type="xs:string" />
-                                                                                    <xs:attribute name="latobanchina" type="xs:string" />
+                                                                                    <xs:attribute name="id" type="xs:int"/>
+                                                                                    <xs:attribute name="name" type="xs:string"/>
+                                                                                    <xs:attribute name="direzione" type="xs:string"/>
+                                                                                    <xs:attribute name="portebanchina" type="xs:string"/>
+                                                                                    <xs:attribute name="latobanchina" type="xs:string"/>
+                                                                                    <xs:attribute name="prevcdb" type="xs:int"/>
                                                                                 </xs:complexType>
                                                                          </xs:element>
                                                                   </xs:sequence>
                                                            </xs:complexType>
                                                     </xs:element>
                                              </xs:sequence>
-                                          <xs:attribute name="id" type="xs:string" />
-                                          <xs:attribute name="offset" type="xs:int" />
+                                          <xs:attribute name="name" type="xs:string"/>
+                                          <xs:attribute name="id_offset" type="xs:int"/>
                                       </xs:complexType>
                                </xs:element>
                         </xs:sequence>
