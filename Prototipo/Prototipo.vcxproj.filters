@@ -155,6 +155,9 @@
     <ClInclude Include="messaggi\pachettoStatoScudetti.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
+    <ClInclude Include="Itinerari\Itinerario.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logger\LogClass.cpp">
@@ -258,6 +261,9 @@
     </ClCompile>
     <ClCompile Include="messaggi\pachettoStatoScudetti.cpp">
       <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\Itinerario.cpp">
+      <Filter>File di origine\itinerari</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,8 @@
 
 itinerarioIngresso::itinerarioIngresso(void)
 {
-	id = gcnew String ("");
+	id = 0;
+	name=gcnew String("");
 	direzione = gcnew String("");
 	lrgb = 0;
 	dStop = 0;

@@ -2,7 +2,6 @@
 #using <System.Xml.dll>
 #include <iostream>
 #include "..\\String2string.h"
-#include <iostream>
 using namespace std;
 using namespace System;
 using namespace System::Globalization;
@@ -48,15 +47,15 @@ int TabellaOrario::getFirstTRN()
 }
 
 // questa funzione legge il file di configurazione contenente la descrizione della tabella orario
-void TabellaOrario::leggiTabellaOrario(string nomeFile)
+void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 {
 	// oggetti DateTime di supporto
 	DateTime orarioSupporto1, orarioSupporto2, orarioSupporto3;
 	double secs;
 	TimeSpan sinceMidnight;
 
-	System::String^ nome = gcnew System::String(nomeFile.c_str());
-	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nome);
+	//System::String^ nome = gcnew System::String(nomeFile.c_str());
+	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
 	// per ogni treno presente nel file di configurazione della tabella orario...
 	while (reader->ReadToFollowing("treno")){
 		System::Xml::XmlReader ^inner = reader->ReadSubtree();
@@ -165,7 +164,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 			int orarioPartenza = (int)stop->getOrarioPartenza();
 		
 			pkt->setT_START_TIME(i,orarioPartenza);
-			pkt->setT_DOORS_TIME(i, stop->gettempoMinimoAperturaPorte());
+			pkt->setT_DOORS_TIME(i, (int )stop->gettempoMinimoAperturaPorte());
 			++i;
 		}
 	}

@@ -5,15 +5,19 @@ using namespace System::Collections::Generic;
 
 ref class itinerarioUscita
 {
-	String ^id;
+	int ^id;
+	String ^name;
 	String ^direzione;
 	bool porteBanchina;
 	String ^latoBanchina;
 	String ^nextCDB;
+	String ^prevCDB;
 public:
 	itinerarioUscita(void);
-	void setId(String ^i){id = i;}
-	String^ getId(){return id;}
+	void setId(int ^i){id = i;}
+	int^ getId(){return id;}
+	void setName(String ^i){name = i;}
+	String^ getName(){return name;}
 	void setDirezione(String ^d){direzione = d;}
 	String^ getDirezione(){return direzione;}
 	void setPorteBanchina(bool p){porteBanchina = p;}
@@ -22,5 +26,7 @@ public:
 	String^ getLatoBanchina(){return latoBanchina;}
 	void setNextCDB(String ^p){nextCDB = p;}
 	String^ getNextCDB(){return nextCDB;}
+	void setPrevCDB(String ^p){prevCDB = p;}
+	String^ getPrevCDB(){return prevCDB;}
 };
 

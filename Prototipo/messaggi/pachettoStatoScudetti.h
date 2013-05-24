@@ -2,18 +2,18 @@
 #include "struttureDatiMessaggi.h"
  ref class pachettoStatoScudetti
 {
-	StatoScudetti &data;
+	StatoScudetti *data;
 public:
-	pachettoStatoScudetti();
+	pachettoStatoScudetti(void);
 
-	void setNID_PACKET(int N){data.NID_PACKET = N;};
-	int getNID_PACKET(){return data.NID_PACKET;};
-	void setL_PACKET(int L){data.L_PACKET = L;};
-	int getL_PACKET(){return data.L_PACKET;};
+	void setNID_PACKET(int N){data->NID_PACKET = N;};
+	int getNID_PACKET(){return data->NID_PACKET;};
+	void setL_PACKET(int L){data->L_PACKET = L;};
+	int getL_PACKET(){return data->L_PACKET;};
 
 	// metodo che setta N_ITER
 	void setN_ITER(int N);
-	int getN_ITER(){return data.N_ITER;};
+	int getN_ITER(){return data->N_ITER;};
 	
 	void setNID_SCUD(int index, int N);
 	int getNID_SCUD(int index);

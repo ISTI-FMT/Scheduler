@@ -2,9 +2,11 @@
 
 itinerarioUscita::itinerarioUscita(void)
 {
-	id = gcnew String ("");
+	id = 0;
+	name=gcnew String("");
 	direzione = gcnew String("");
 	porteBanchina = false;
 	latoBanchina = gcnew String ("");
 	nextCDB = gcnew String ("");
+	prevCDB = gcnew String ("");
 }

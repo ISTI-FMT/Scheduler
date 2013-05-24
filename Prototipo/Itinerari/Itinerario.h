@@ -2,10 +2,8 @@
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
-
-ref class itinerarioIngresso
+ref class Itinerario
 {
-
 	int ^id;
 	String ^name;
 	String ^direzione;
@@ -14,8 +12,10 @@ ref class itinerarioIngresso
 	bool porteBanchina;
 	String ^latoBanchina;
 	String ^prevCDB;
+	String ^nextCDB;
+	List<int> ^cdb;
 public:
-	itinerarioIngresso(void);
+	Itinerario(void);
 	void setId(int ^i){id = i;}
 	int^ getId(){return id;}
 	void setName(String ^i){name = i;}
@@ -32,5 +32,11 @@ public:
 	String^ getLatoBanchina(){return latoBanchina;}
 	void setPrevCDB(String ^p){prevCDB = p;}
 	String^ getPrevCDB(){return prevCDB;}
+	void setNextCDB(String ^p){nextCDB = p;}
+	String^ getNextCDB(){return nextCDB;}
+	
+	List<int>^ getLCDB(){return cdb;}
+
+		virtual System::String^ ToString() override;
 };
 

@@ -10,6 +10,7 @@
 #include "..\\mapTrenoFisicoLogico.h"
 #include "..\\messaggi\\Messaggi.h"
 #include "..\\logger\\Logger.h"
+#include "..\\Itinerari\\tabellaItinerari.h"
 
 #define TRACE
 namespace Prototipo {
@@ -38,7 +39,10 @@ namespace Prototipo {
 			tabella  = gcnew TabellaOrario;
 			tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 
-			Console::WriteLine(tabella->ToString());
+			tabellaItinerari ^tb = gcnew tabellaItinerari();
+			tb->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
+
+			Console::WriteLine(tb->ToString());
 
 			listaTreni = gcnew phisicalTrainList();
 

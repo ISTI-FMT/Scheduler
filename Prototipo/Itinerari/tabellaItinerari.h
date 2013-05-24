@@ -6,8 +6,19 @@ using namespace System::Collections::Generic;
 
 ref class tabellaItinerari
 {
-	List<stazione^> ^tabella;
+
+	Dictionary<int,stazione^ > ^mapidstazioneitinerari;
 public:
 	tabellaItinerari(void);
+
+	void leggifileconfigurazioneItinerari(String ^nomefile);
+	
+	
+	virtual System::String^ ToString() override;
+	
+	
+	int convertiString2int(System::String ^StringValue);
+
+	
 };
 
