@@ -82,14 +82,14 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 
 
 		//System::String^ nome = gcnew System::String(nomeFile.c_str());
-		System::Xml::XmlReader ^readers = System::Xml::XmlReader::Create(nomeFile, settings);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
 
-		XmlDocument ^document = gcnew XmlDocument();
-		document->Load(readers);
+	//	XmlDocument ^document = gcnew XmlDocument();
+		//document->Load(readers);
 		//document->Validate(ed);  
 #endif // VALIDATEXML
 
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
+		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
 
 		// per ogni treno presente nel file di configurazione della tabella orario...
 		while (reader->ReadToFollowing("treno")){

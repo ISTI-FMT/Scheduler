@@ -35,14 +35,14 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 		settings->Schemas = sc;
 
 
-		System::Xml::XmlReader ^readers = System::Xml::XmlReader::Create(nomeFile, settings);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
 
-		XmlDocument ^document = gcnew XmlDocument();
-		document->Load(readers);  
+	/*	XmlDocument ^document = gcnew XmlDocument();
+		document->Load(readers);  */
 #endif // VALIDATEXML
 
 
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
+		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
 
 		// per ogni stazione presente nel file di configurazione degli itinerari...
 		while (reader->ReadToFollowing("stazione")){
