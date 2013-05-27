@@ -73,7 +73,7 @@ void TextBoxTraceListener::SetText(String ^text)
 
 	//04/05/2013 13:05:08;Info;Presentazione;19652;215;ATS;146.48.84.52;D7-20-00-00-00-20-40-00-8C-A3-20-F0-00-00-0E-1A;9
 	//TimeStamp;typeTrace;module;pid;nid_msg;dest;mitt;message;size =9
-	if(text->Contains(";")){
+	if(text->Contains(";") & text->Length>70){
 		array<String^> ^arraystr=text->Split(';');
 		String ^result = String::Format("{0} Module:{1} NID_MSG:{2} Message:{3} Mitt:{4}->Dest:{5} Size:{6}",arraystr[0],arraystr[2],
 			arraystr[4],arraystr[7],arraystr[6],arraystr[5],arraystr[8]);
