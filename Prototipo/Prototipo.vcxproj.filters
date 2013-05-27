@@ -101,9 +101,6 @@
     <ClInclude Include="logger\Logger.h">
       <Filter>File di intestazione\logger</Filter>
     </ClInclude>
-    <ClInclude Include="logger\TextBoxTraceListener.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="form\SchedulerForm.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
@@ -131,12 +128,6 @@
     <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="Itinerari\itinerarioIngresso.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
-    <ClInclude Include="Itinerari\itinerarioUscita.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
     <ClInclude Include="Itinerari\stazione.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
@@ -151,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="Itinerari\Itinerario.h">
       <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="logger\TextBoxTraceListener.h">
+      <Filter>File di intestazione\logger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,9 +196,6 @@
     <ClCompile Include="logger\Logger.cpp">
       <Filter>File di origine\logger</Filter>
     </ClCompile>
-    <ClCompile Include="logger\TextBoxTraceListener.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="form\SchedulerForm.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
@@ -232,12 +223,6 @@
     <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
-    <ClCompile Include="Itinerari\itinerarioIngresso.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="Itinerari\itinerarioUscita.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
     <ClCompile Include="Itinerari\stazione.cpp">
       <Filter>File di origine\itinerari</Filter>
     </ClCompile>
@@ -252,6 +237,9 @@
     </ClCompile>
     <ClCompile Include="Itinerari\Itinerario.cpp">
       <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="logger\TextBoxTraceListener.cpp">
+      <Filter>File di origine\logger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

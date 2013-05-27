@@ -10,6 +10,7 @@ using namespace System::Xml;
 using namespace System::Xml::Schema;
 
 #define TRACE
+#define VALIDATEXML
 
 TabellaOrario::TabellaOrario(void)
 {
@@ -66,6 +67,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 		double secs;
 		TimeSpan sinceMidnight;
 
+#ifdef VALIDATEXML
 		// Create the XmlSchemaSet class.
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
 
@@ -74,18 +76,20 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
 		settings->ValidationType = System::Xml::ValidationType::Schema;
 		settings->Schemas = sc;
-		//ValidationEventHandler ^ed = gcnew ValidationEventHandler( ValidationCallBack );
-		//settings->ValidationEventHandler +=ed;
+		/*ValidationEventHandler ^ed = gcnew ValidationEventHandler( ValidationCallBack );
+		settings->ValidationEventHandler +=ed;*/
 
 
 
 		//System::String^ nome = gcnew System::String(nomeFile.c_str());
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
+		System::Xml::XmlReader ^readers = System::Xml::XmlReader::Create(nomeFile, settings);
 
 		XmlDocument ^document = gcnew XmlDocument();
-		document->Load(reader);
-		//document->Validate(ed);
+		document->Load(readers);
+		//document->Validate(ed);  
+#endif // VALIDATEXML
 
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
 
 		// per ogni treno presente nel file di configurazione della tabella orario...
 		while (reader->ReadToFollowing("treno")){
@@ -172,7 +176,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 			// a questo punto aggiungo il treno alla tabella orario
 			tabella->Add(idTreno, treno);
 		}
-	}catch(System::Xml::Schema::XmlSchemaValidationException ^e){
+	}catch(Exception ^e){
 
 #ifdef TRACE
 		Logger::Exception(e,"Tabella Orario");  

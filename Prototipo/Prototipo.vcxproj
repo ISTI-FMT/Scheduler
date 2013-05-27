@@ -76,8 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Itinerari\Itinerario.h" />
-    <ClInclude Include="Itinerari\itinerarioIngresso.h" />
-    <ClInclude Include="Itinerari\itinerarioUscita.h" />
     <ClInclude Include="Itinerari\stazione.h" />
     <ClInclude Include="Itinerari\tabellaItinerari.h" />
     <ClInclude Include="logger\Logger.h" />
@@ -114,8 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Itinerari\Itinerario.cpp" />
-    <ClCompile Include="Itinerari\itinerarioIngresso.cpp" />
-    <ClCompile Include="Itinerari\itinerarioUscita.cpp" />
     <ClCompile Include="Itinerari\stazione.cpp" />
     <ClCompile Include="Itinerari\tabellaItinerari.cpp" />
     <ClCompile Include="logger\Logger.cpp" />

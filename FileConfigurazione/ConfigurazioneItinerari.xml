@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ConfigurazioneItinerari>
+<ConfigurazioneItinerari xmlns="urn:configurazioneitinerari-schema">
   <stazione  name="Via Accademia" id_offset="13000">
      <itinerariIngresso>
       <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA501"  nextcdb="0" >

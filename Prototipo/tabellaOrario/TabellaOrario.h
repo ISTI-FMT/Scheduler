@@ -30,8 +30,8 @@ public:
 	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 	// alla missione associata al TRN in questione
 	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
-	
-	/*static void ValidationCallBack( Object^ /*sender*/, System::Xml::Schema::ValidationEventArgs^ e );*/
+	/*sender*/
+	/*static void ValidationCallBack( Object^ , System::Xml::Schema::ValidationEventArgs^ e );*/
 
 	//TrenoFermate^ getTrenoFermate(int TRN);
 	virtual System::String^ ToString() override;

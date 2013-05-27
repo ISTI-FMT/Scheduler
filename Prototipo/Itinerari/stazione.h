@@ -1,7 +1,5 @@
 #pragma once
 #using <System.dll>
-#include "itinerarioIngresso.h"
-#include "itinerarioUscita.h"
 #include "Itinerario.h"
 using namespace System;
 using namespace System::Collections::Generic;
