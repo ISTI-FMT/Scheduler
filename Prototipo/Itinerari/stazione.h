@@ -24,6 +24,8 @@ public:
 	String ^get_NomeStazione(){return nomeStazione;};
 	int get_idStazione(){return idStazione;};
 	virtual System::String^ ToString() override;
+	//fornendo id dell'itinerario restiuisce una lista di 2 valori interi che rappresentano rispettivamente
+	//nid_lrgb e D_stop per quell'itinerario 
 	List<int> ^get_infobalise(int id){
 		List<int> ^ret = gcnew List<int>();
 		if(itinerariid->ContainsKey(id)){

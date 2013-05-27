@@ -28,7 +28,7 @@ ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt)
 	// :listaTreni(lt)
 {
 	listaTreni=lt;
-	
+
 }
 
 void  ThreadPresentazione::TCP_Management_receive(){
@@ -41,10 +41,10 @@ void  ThreadPresentazione::TCP_Management_receive(){
 
 		// TcpListener* server = new TcpListener(port);
 		TcpListener^ server = gcnew TcpListener( localAddr,port );
-		
+
 		// Start listening for client requests.
 		server->Start();
-		
+
 		// Buffer for reading data
 		array<Byte>^bytes = gcnew array<Byte>(16);
 		String^ data = nullptr;
@@ -86,7 +86,7 @@ void  ThreadPresentazione::TCP_Management_receive(){
 
 #endif // TRACE
 
-			
+
 			phisicalTrain ^treno = gcnew phisicalTrain();
 			treno->setEngineNumber(pkt1->getNID_ENGINE());
 			treno->setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
@@ -112,6 +112,9 @@ void  ThreadPresentazione::TCP_Management_receive(){
 	}
 	catch ( SocketException^ e ) 
 	{
+#ifdef TRACE
+		Logger::Exception(e,"ThreadPresentazione");  
+#endif // TRACE
 		Console::ForegroundColor = ConsoleColor::DarkGreen;
 		Console::WriteLine( "SocketException: {0}", e );
 		Console::ResetColor();

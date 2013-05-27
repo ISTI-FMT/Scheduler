@@ -36,7 +36,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 #ifdef TRACE
 
-			Logger::Info(pkt1->getNID_MESSAGE(),ipEndPoint->Address->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
+	Logger::Info(pkt1->getNID_MESSAGE(),ipEndPoint->Address->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
 
 #endif // TRACE
 
@@ -62,10 +62,10 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 			// Receive a message and write it to the console.
 
 
-			
-			
+
+
 			udpClient->BeginReceive(gcnew AsyncCallback(ThreadListenerATC_IXL::ReceiveCallback),udpClient);
-			
+
 
 			// Do some work while we wait for a message. For this example,
 			// we'll just sleep
@@ -91,7 +91,9 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 	}
 	catch ( SocketException^ e ) 
 	{
-
+#ifdef TRACE
+		Logger::Exception(e,"ThreadListenerATC_IXL");  
+#endif // TRACE
 		Console::ForegroundColor = ConsoleColor::Red;
 		Console::WriteLine( "SocketException: {0}", e );
 		Console::ResetColor();

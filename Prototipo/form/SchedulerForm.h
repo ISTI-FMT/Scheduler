@@ -269,6 +269,9 @@ namespace Prototipo {
 				 catch ( SocketException^ e ) 
 				 {
 					 Console::WriteLine( "SocketException: {0}", e );
+#ifdef TRACE
+					 Logger::Exception(e,"SchedulerForm");  
+#endif // TRACE
 				 }
 
 
@@ -284,7 +287,7 @@ namespace Prototipo {
 				 }else{
 
 #ifdef TRACE
-					 Trace::WriteLine("Lista treni Vuota");  
+					 Logger::Info("SchedulerForm"," Lista treni Vuota");  
 #endif // TRACE
 
 					 MessageBox::Show("Lista treni Vuota");
@@ -293,7 +296,9 @@ namespace Prototipo {
 
 			 }
 	private: System::Void ExitButton_Click(System::Object^  sender, System::EventArgs^  e) {
-
+#ifdef TRACE
+				 Logger::Info("SchedulerForm"," ExitButton_Click");  
+#endif // TRACE
 				 oThread1->Abort();
 				 oThread2->Abort();
 				 Application::Exit();
@@ -392,18 +397,18 @@ namespace Prototipo {
 				 int colonna=0;
 				 int riga=0;
 				 dataGridView1->Columns[ 0 ]->Name = "offset";
-				// dataGridView1->Columns[ 1 ]->Name = "offset";
+				 // dataGridView1->Columns[ 1 ]->Name = "offset";
 				 dataGridView1->Columns[ 1 ]->Name = "Nome Stazione";
 				 dataGridView1->Columns[ 2 ]->Name = "prevCDB";
 				 dataGridView1->Columns[ 3 ]->Name = "Id It";
 				 dataGridView1->Columns[ 4 ]->Name = "Nome It";
-				  dataGridView1->Columns[ 5 ]->Name = "LRGB";
-				  dataGridView1->Columns[ 6 ]->Name = "DSTOP";
-				  dataGridView1->Columns[ 7 ]->Name = "Dir";
-				  dataGridView1->Columns[ 8 ]->Name = "nextCDB";
-				//  dataGridView1->Columns[ 10 ]->Name = "prevCDB";
-				  dataGridView1->Columns[ 9]->Name = "PB";
-				  dataGridView1->Columns[ 10 ]->Name = "L_CDB";
+				 dataGridView1->Columns[ 5 ]->Name = "LRGB";
+				 dataGridView1->Columns[ 6 ]->Name = "DSTOP";
+				 dataGridView1->Columns[ 7 ]->Name = "Dir";
+				 dataGridView1->Columns[ 8 ]->Name = "nextCDB";
+				 //  dataGridView1->Columns[ 10 ]->Name = "prevCDB";
+				 dataGridView1->Columns[ 9]->Name = "PB";
+				 dataGridView1->Columns[ 10 ]->Name = "L_CDB";
 
 				 for each( KeyValuePair<int , stazione^> kvp in tb->getMap() )
 				 {
@@ -412,7 +417,7 @@ namespace Prototipo {
 					 dataGridView1->Rows[riga]->Cells[0]->Value=po;
 
 					 stazione ^station =kvp.Value;
-					// dataGridView1->Rows[riga]->Cells[1]->Value= station->get_idStazione();
+					 // dataGridView1->Rows[riga]->Cells[1]->Value= station->get_idStazione();
 					 dataGridView1->Rows[riga]->Cells[1]->Value= station->get_NomeStazione();
 
 					 for each (KeyValuePair<String^,List<Itinerario^>^> ^ikvp in station->getItinerari())
@@ -428,13 +433,13 @@ namespace Prototipo {
 							 dataGridView1->Rows[riga]->Cells[6]->Value=itvar->getDStop();
 							 dataGridView1->Rows[riga]->Cells[7]->Value=itvar->getLatoBanchina();
 							 dataGridView1->Rows[riga]->Cells[8]->Value=itvar->getNextCDB();
-						//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
+							 //	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
 							 dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
 							 List<int> ^cdb = itvar->getLCDB();
 							 for each (int cdbvar in cdb)
 							 {
 								 if(cdbvar){
-								 dataGridView1->Rows[riga]->Cells[10]->Value=cdbvar;
+									 dataGridView1->Rows[riga]->Cells[10]->Value=cdbvar;
 								 }
 								 riga++;
 							 }
