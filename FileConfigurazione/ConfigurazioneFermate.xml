@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<configurazionefermate>
-
+<configurazionefermate xmlns="urn:configurazionefermate-schema">
 <fermata name="Vicolo Stretto" id="504">
     <binario id="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" nextCDB="11020" prevCDB="10010">
       

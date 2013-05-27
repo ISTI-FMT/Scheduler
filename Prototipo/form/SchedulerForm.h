@@ -385,7 +385,7 @@ namespace Prototipo {
 					 dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 					 dataGridView1->Location = System::Drawing::Point(12, 12);
 					 dataGridView1->Name = L"dataGridViewit";
-					 dataGridView1->Size = System::Drawing::Size(771, 344);
+					 dataGridView1->Size = System::Drawing::Size(810, 360);
 					 dataGridView1->TabIndex = 18;
 
 					 form = gcnew Form();
@@ -399,7 +399,7 @@ namespace Prototipo {
 					 form->PerformLayout();
 					 form->SuspendLayout();
 
-					 dataGridView1->ColumnCount = 11;
+					 dataGridView1->ColumnCount = 12;
 					 dataGridView1->RowCount = 410;
 					 int colonna=0;
 					 int riga=0;
@@ -415,7 +415,8 @@ namespace Prototipo {
 					 dataGridView1->Columns[ 8 ]->Name = "nextCDB";
 					 //  dataGridView1->Columns[ 10 ]->Name = "prevCDB";
 					 dataGridView1->Columns[ 9]->Name = "PB";
-					 dataGridView1->Columns[ 10 ]->Name = "L_CDB";
+					 dataGridView1->Columns[ 10]->Name = "NS";
+					 dataGridView1->Columns[ 11 ]->Name = "L_CDB";
 
 					 for each( KeyValuePair<int , stazione^> kvp in tb->getMap() )
 					 {
@@ -442,11 +443,12 @@ namespace Prototipo {
 								 dataGridView1->Rows[riga]->Cells[8]->Value=itvar->getNextCDB();
 								 //	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
 								 dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
+								  dataGridView1->Rows[riga]->Cells[10]->Value=itvar->get_nextstation();
 								 List<int> ^cdb = itvar->getLCDB();
 								 for each (int cdbvar in cdb)
 								 {
 									 if(cdbvar){
-										 dataGridView1->Rows[riga]->Cells[10]->Value=cdbvar;
+										 dataGridView1->Rows[riga]->Cells[11]->Value=cdbvar;
 									 }
 									 riga++;
 								 }

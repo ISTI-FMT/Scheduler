@@ -43,6 +43,7 @@
                                                                                     <xs:attribute name="latobanchina" type="xs:string"/>
                                                                                     <xs:attribute name="prevcdb" type="xs:int"/>
                                                                                     <xs:attribute name="nextcdb" type="xs:string"/>
+																					<xs:attribute name="nextstation" type="xs:int"/>
                                                                                 </xs:complexType>
                                                                          </xs:element>
                                                                   </xs:sequence>

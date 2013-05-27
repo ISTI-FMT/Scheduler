@@ -14,6 +14,7 @@ Itinerario::Itinerario(void)
 	prevCDB = gcnew String ("");
 	nextCDB = gcnew String ("");
 	cdb=gcnew List<int>();
+	nextstation=0;
 }
 
 System::String^ Itinerario::ToString(){
@@ -26,6 +27,7 @@ System::String^ Itinerario::ToString(){
 	out+=" Lato Banchina: "+latoBanchina;
 	out+=" prevCDB: "+prevCDB;
 	out+=" nextCDB: "+nextCDB;
+	out+=" nextstation: "+nextstation;
 	out+=" CDB: ";
 	for each (int var in cdb)
 	{
