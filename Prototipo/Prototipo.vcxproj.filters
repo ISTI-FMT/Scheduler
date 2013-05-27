@@ -146,6 +146,9 @@
     <ClInclude Include="logger\TextBoxTraceListener.h">
       <Filter>File di intestazione\logger</Filter>
     </ClInclude>
+    <ClInclude Include="Itinerari\binario.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -240,6 +243,9 @@
     </ClCompile>
     <ClCompile Include="logger\TextBoxTraceListener.cpp">
       <Filter>File di origine\logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\binario.cpp">
+      <Filter>File di origine\itinerari</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
