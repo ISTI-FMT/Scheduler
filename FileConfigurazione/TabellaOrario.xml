@@ -1,4 +1,5 @@
-﻿<orario>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<orario xmlns="urn:tabellaorario-schema">
 <treno id="1152">
   <stazione id="Via Accademia">
     <arrivo>08:00:00</arrivo>

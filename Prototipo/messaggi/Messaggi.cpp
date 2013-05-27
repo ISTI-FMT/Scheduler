@@ -128,7 +128,8 @@ void Messaggi::deserialize(byte *buffer)
 		set_pacchettoEnd();
 		get_pacchettoEnd()->deserialize(buffer, offset);
 		break;}
-	case 102: {get_pacchettoFaultReporting()->deserialize(buffer); 
+	case 102: {set_pacchettoFaultReporting();
+		get_pacchettoFaultReporting()->deserialize(buffer); 
 		break;}
 	case 110: { offset += 51;
 		set_pacchettoComandoItinerari();

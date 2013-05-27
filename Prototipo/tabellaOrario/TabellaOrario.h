@@ -14,7 +14,7 @@ in apposite strutture dati.
 ref class TabellaOrario
 {
 	Dictionary<int, List<Fermata^>^> ^tabella;
-
+	String ^schemaxsd;
 	// funzione che converte una System::String in un intero
 	int convertiString2int(System::String ^StringValue);
 	// funzione che converte una System::String in un std::string
@@ -30,7 +30,8 @@ public:
 	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 	// alla missione associata al TRN in questione
 	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
-	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
+	
+	/*static void ValidationCallBack( Object^ /*sender*/, System::Xml::Schema::ValidationEventArgs^ e );*/
 
 	//TrenoFermate^ getTrenoFermate(int TRN);
 	virtual System::String^ ToString() override;
