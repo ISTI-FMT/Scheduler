@@ -2,7 +2,7 @@
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
-
+//da eliminare
 ref class itinerarioUscita
 {
 	int ^id;
