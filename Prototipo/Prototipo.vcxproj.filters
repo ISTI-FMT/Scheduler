@@ -149,6 +149,9 @@
     <ClInclude Include="Itinerari\binario.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
+    <ClInclude Include="Itinerari\tabellaFermate.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -245,6 +248,9 @@
       <Filter>File di origine\logger</Filter>
     </ClCompile>
     <ClCompile Include="Itinerari\binario.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\tabellaFermate.cpp">
       <Filter>File di origine\itinerari</Filter>
     </ClCompile>
   </ItemGroup>
