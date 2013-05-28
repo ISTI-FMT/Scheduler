@@ -92,9 +92,6 @@
     <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="String2string.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="utility.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
@@ -191,9 +188,6 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="phisicalTrainList.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="String2string.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="utility.cpp">

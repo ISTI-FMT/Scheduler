@@ -1,6 +1,5 @@
 #include "tabellaItinerari.h"
 #using <System.Xml.dll>
-#include "..\\String2string.h"
 #include "..\\logger\\Logger.h"
 
 using namespace System;
@@ -51,7 +50,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 			System::String ^StrIdstazione = reader->GetAttribute("id_offset");
 			System::String ^nomestazione= reader->GetAttribute("name");
 			// converto l'id della stazione da System::String a int
-			int Idstazione = convertiString2int(StrIdstazione);
+			int Idstazione = int::Parse(StrIdstazione);
 
 			if(!mapidstazioneitinerari->ContainsKey(Idstazione)){
 
@@ -68,7 +67,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 					Itinerario ^newitinerario = gcnew Itinerario();
 
-					int Iditinerario = convertiString2int(inner2->GetAttribute("id"));
+					int Iditinerario = int::Parse(inner2->GetAttribute("id"));
 					newitinerario->setId(Iditinerario);
 
 
@@ -84,9 +83,9 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 						newitinerario->setPorteBanchina(false);
 					}
 
-					int nidlrgb = convertiString2int(inner2->GetAttribute("nid_lrgb"));
+					int nidlrgb = int::Parse(inner2->GetAttribute("nid_lrgb"));
 					newitinerario->setLrgb(nidlrgb);
-					int dstop = convertiString2int(inner2->GetAttribute("d_stop"));
+					int dstop = int::Parse(inner2->GetAttribute("d_stop"));
 					newitinerario->setDStop(dstop);
 					newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
@@ -100,7 +99,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 
 
-						int cdb = convertiString2int( inner3->ReadString());
+						int cdb = int::Parse( inner3->ReadString());
 						newitinerario->getLCDB()->Add(cdb);
 
 					}
@@ -126,7 +125,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 				while (inner2->ReadToFollowing("partenza")){
 
 					Itinerario ^newitinerario = gcnew Itinerario();
-					int Iditinerario = convertiString2int(inner2->GetAttribute("id"));
+					int Iditinerario = int::Parse(inner2->GetAttribute("id"));
 					newitinerario->setId(Iditinerario);
 
 
@@ -152,7 +151,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 					String ^nextstation = 	inner2->GetAttribute("nextstation");
 
-					newitinerario->set_nextstation( convertiString2int(nextstation));	
+					newitinerario->set_nextstation( int::Parse(nextstation));	
 
 
 					System::Xml::XmlReader ^inner3 = reader->ReadSubtree();
@@ -160,7 +159,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 
 
-						int cdb = convertiString2int( inner3->ReadString());
+						int cdb = int::Parse( inner3->ReadString());
 						newitinerario->getLCDB()->Add(cdb);
 
 					}
@@ -195,14 +194,6 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 }
 
 
-int tabellaItinerari::convertiString2int(System::String ^StringValue)
-{
-	// converto da System::String a std::string
-	std::string stdString = String2string(StringValue);
-	// converto da std::string a int
-	int intValue = atoi(stdString.c_str());
-	return intValue;
-}
 
 System::String^ tabellaItinerari::ToString() {
 	String ^out="";

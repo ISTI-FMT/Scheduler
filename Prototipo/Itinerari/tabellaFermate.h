@@ -17,6 +17,6 @@ public:
 	
 	virtual System::String^ ToString() override;
 	
-	int convertiString2int(System::String ^StringValue);
+	
 };
 

@@ -15,8 +15,7 @@ ref class TabellaOrario
 {
 	Dictionary<int, List<Fermata^>^> ^tabella;
 	String ^schemaxsd;
-	// funzione che converte una System::String in un intero
-	int convertiString2int(System::String ^StringValue);
+	
 	// funzione che converte una System::String in un std::string
 	// string convertiString2string(System::String ^StringValue);
 	//friend ostream& operator<<(ostream &out, TabellaOrario &tabella);

@@ -19,7 +19,7 @@ public:
 	
 
 	
-	int convertiString2int(System::String ^StringValue);
+	
 
 	Dictionary<int,stazione^ > ^getMap(){return mapidstazioneitinerari;};
 };

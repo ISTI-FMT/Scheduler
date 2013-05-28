@@ -3,7 +3,7 @@
 #include "..\\messaggi\\Messaggi.h"
 #include "..\\utility.h"
 #include "..\\phisicalTrainList.h"
-#include "..\\String2string.h"
+
 
 #include "..\\logger\\Logger.h"
 

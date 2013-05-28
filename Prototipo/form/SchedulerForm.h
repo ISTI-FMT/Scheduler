@@ -11,6 +11,7 @@
 #include "..\\messaggi\\Messaggi.h"
 #include "..\\logger\\Logger.h"
 #include "..\\Itinerari\\tabellaItinerari.h"
+#include "..\\Itinerari\\tabellaFermate.h"
 
 #define TRACE
 namespace Prototipo {
@@ -42,7 +43,11 @@ namespace Prototipo {
 			tb = gcnew tabellaItinerari();
 			tb->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
 
-			//Console::WriteLine(tb->ToString());
+			/*tabellaFermate ^tf=gcnew tabellaFermate();
+			tf->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");*/
+
+
+			Console::WriteLine(tf->ToString());
 
 			listaTreni = gcnew phisicalTrainList();
 
@@ -318,13 +323,13 @@ namespace Prototipo {
 					 dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 					 dataGridView1->Location = System::Drawing::Point(12, 12);
 					 dataGridView1->Name = L"dataGridView1";
-					 dataGridView1->Size = System::Drawing::Size(671, 344);
+					 dataGridView1->Size = System::Drawing::Size(890, 344);
 					 dataGridView1->TabIndex = 8;
 
 					 form = gcnew Form();
 					 form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 					 form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-					 form->ClientSize = System::Drawing::Size(730, 415);
+					 form->ClientSize = System::Drawing::Size(915, 415);
 					 form->Controls->Add(dataGridView1);
 					 form->Name = L"Tabella Orario";
 					 form->Text = L"Tabella Orario";

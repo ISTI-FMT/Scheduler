@@ -1,7 +1,7 @@
 #include "TabellaOrario.h"
 #using <System.Xml.dll>
 #include <iostream>
-#include "..\\String2string.h"
+
 #include "..\\logger\\Logger.h"
 using namespace std;
 using namespace System;
@@ -18,15 +18,7 @@ TabellaOrario::TabellaOrario(void)
 	schemaxsd="..\\FileConfigurazione\\TabellaOrario.xsd";
 }
 
-// funzione che converte una System::String in un intero
-int TabellaOrario::convertiString2int(System::String ^StringValue)
-{
-	// converto da System::String a std::string
-	std::string stdString = String2string(StringValue);
-	// converto da std::string a int
-	int intValue = atoi(stdString.c_str());
-	return intValue;
-}
+
 
 /*
 // funzione che converte una System::String in un std::string
@@ -97,7 +89,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 			// ...leggo l'id del treno
 			System::String ^SystemStringIdTreno = reader->GetAttribute("id");
 			// converto l'id del treno da System::String a int
-			int idTreno = convertiString2int(SystemStringIdTreno);
+			int idTreno = int::Parse(SystemStringIdTreno);
 			// creo un nuovo treno
 			List<Fermata^> ^treno = gcnew List<Fermata^>();
 
@@ -108,7 +100,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 				// leggo l'id della stazione
 				System::String ^SystemStringIdStazione = inner->GetAttribute("id");
 				// configuro l'id della stazione
-				stop->setIdStazione(convertiString2int(SystemStringIdStazione));
+				stop->setIdStazione( int::Parse(SystemStringIdStazione));
 
 				System::String ^SystemStringnameStazione = inner->GetAttribute("name");
 				stop->setnameStazione(SystemStringnameStazione);
@@ -151,7 +143,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 				inner2->ReadToFollowing("binarioprogrammato");
 				System::String ^SystemStringBinarioProgrammato = inner2->ReadString();
 				// converto il binario programmato da System::String a int
-				int binarioProgrammato = convertiString2int(SystemStringBinarioProgrammato);
+				int binarioProgrammato =  int::Parse(SystemStringBinarioProgrammato);
 				// configuro il binario programmato
 				stop->setBinarioProgrammato(binarioProgrammato);
 
@@ -180,32 +172,20 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 								inner2->Read();
 							System::String ^nameEntrata = inner2->Value;
 
-							stop->setIditinerarioEntrata(convertiString2int(idItEntrata));
+							stop->setIditinerarioEntrata( int::Parse(idItEntrata));
 							stop->setnameitinerarioEntrata(nameEntrata);
 						}
 						if(inner2->Name->Equals("itinerarioUscita")){
 								System::String ^idITUscita = inner2->GetAttribute("id");	
 							inner2->Read();
 							System::String ^nameUscita  = inner2->Value;
-							stop->setIditinerarioUscita(convertiString2int(idITUscita));
+							stop->setIditinerarioUscita( int::Parse(idITUscita));
 							stop->setnameitinerarioUscita(nameUscita);
 						}
 						break;
 					}
 				}
 
-				/*if(	inner2->ReadToFollowing("itinerarioEntrata")){
-					System::String ^idItEntrata = inner2->GetAttribute("id");
-					System::String ^nameEntrata = inner2->ReadString();
-					stop->setIditinerarioEntrata(convertiString2int(idItEntrata));
-					stop->setnameitinerarioEntrata(nameEntrata);
-				}
-				if(	inner2->ReadToFollowing("itinerarioUscita")){
-					System::String ^idITUscita = inner2->GetAttribute("id");	
-					System::String ^nameUscita  = inner2->ReadString();
-					stop->setIditinerarioUscita(convertiString2int(idITUscita));
-					stop->setnameitinerarioUscita(nameUscita);
-				}*/
 
 				// a questo punto posso aggiungere la fermata alla lista delle fermate del treno in questione
 				treno->Add(stop);
