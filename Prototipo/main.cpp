@@ -11,6 +11,8 @@
 #include "messaggi\\Messaggi.h"
 #include "form\\SchedulerForm.h"
 #include "logger\\Logger.h"
+#include "Itinerari\\tabellaItinerari.h"
+#include "Itinerari\\tabellaFermate.h"
 
 using namespace System::Diagnostics;
 using namespace std;
