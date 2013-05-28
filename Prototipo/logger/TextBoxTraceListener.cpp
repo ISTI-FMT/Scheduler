@@ -48,11 +48,18 @@ void TextBoxTraceListener::WriteLine(Object ^h){
 	WriteLine(h->ToString()+"\r\n");
 };
 void TextBoxTraceListener::Write(String ^h){
-
-	if (textBox==nullptr){
+	try{
+		if (textBox==nullptr){
+			init();
+		}
+		form->Invoke( myDelegate, h );//try
+	}catch(Exception ^e){
 		init();
+		form->Invoke( myDelegate, h );
+#ifdef TRACE
+		Logger::Exception(e,"TextBoxTraceListener");  
+#endif // TRACE
 	}
-	form->Invoke( myDelegate, h );
 };
 void TextBoxTraceListener::Write(Object ^h){
 	Write(h->ToString());

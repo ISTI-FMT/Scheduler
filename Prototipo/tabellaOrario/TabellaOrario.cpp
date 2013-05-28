@@ -53,10 +53,10 @@ int TabellaOrario::getFirstTRN()
 
 // Display any validation errors.
 /*sender*//*
-void TabellaOrario::ValidationCallBack( Object^ , ValidationEventArgs^ e )
-{
-	Console::WriteLine( L"Validation Error: {0}", e->Message );
-}*/
+		  void TabellaOrario::ValidationCallBack( Object^ , ValidationEventArgs^ e )
+		  {
+		  Console::WriteLine( L"Validation Error: {0}", e->Message );
+		  }*/
 
 // questa funzione legge il file di configurazione contenente la descrizione della tabella orario
 void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
@@ -84,7 +84,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 		//System::String^ nome = gcnew System::String(nomeFile.c_str());
 		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
 
-	//	XmlDocument ^document = gcnew XmlDocument();
+		//	XmlDocument ^document = gcnew XmlDocument();
 		//document->Load(readers);
 		//document->Validate(ed);  
 #endif // VALIDATEXML
@@ -108,11 +108,16 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 				// leggo l'id della stazione
 				System::String ^SystemStringIdStazione = inner->GetAttribute("id");
 				// configuro l'id della stazione
-				stop->setIdStazione(SystemStringIdStazione);
+				stop->setIdStazione(convertiString2int(SystemStringIdStazione));
+
+				System::String ^SystemStringnameStazione = inner->GetAttribute("name");
+				stop->setnameStazione(SystemStringnameStazione);
+
+				System::Xml::XmlReader ^inner2 = inner->ReadSubtree();
 
 				// leggo l'orario di arrivo
-				inner->ReadToFollowing("arrivo");
-				System::String ^SystemStringOrarioArrivo = inner->ReadString();
+				inner2->ReadToFollowing("arrivo");
+				System::String ^SystemStringOrarioArrivo = inner2->ReadString();
 				// aggiungo alla data corrente l'ora, minuto e secondi letti
 				orarioSupporto1 = DateTime::ParseExact(SystemStringOrarioArrivo, "HH:mm:ss", CultureInfo::InvariantCulture);
 				//orarioSupporto2.Today.AddHours(orarioSupporto1.Hour);
@@ -125,8 +130,8 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 				stop->setOrarioArrivo(secs/30);
 
 				// leggo l'orario di partenza
-				inner->ReadToFollowing("partenza");
-				System::String ^SystemStringOrarioPartenza = inner->ReadString();
+				inner2->ReadToFollowing("partenza");
+				System::String ^SystemStringOrarioPartenza = inner2->ReadString();
 				// aggiungo alla data corrente l'ora, minuto e secondi letti
 				orarioSupporto2=DateTime::ParseExact(SystemStringOrarioPartenza, "HH:mm:ss", CultureInfo::InvariantCulture);
 				//DateTime t = DateTime::ParseExact(SystemStringOrarioPartenza, "HH:mm:ss", CultureInfo::InvariantCulture);
@@ -143,16 +148,16 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 
 
 				// leggo il binario programmato
-				inner->ReadToFollowing("binarioprogrammato");
-				System::String ^SystemStringBinarioProgrammato = inner->ReadString();
+				inner2->ReadToFollowing("binarioprogrammato");
+				System::String ^SystemStringBinarioProgrammato = inner2->ReadString();
 				// converto il binario programmato da System::String a int
 				int binarioProgrammato = convertiString2int(SystemStringBinarioProgrammato);
 				// configuro il binario programmato
 				stop->setBinarioProgrammato(binarioProgrammato);
 
 				// leggo il lato di apertura porte programmato
-				inner->ReadToFollowing("latoaperturaporteprogrammato");
-				System::String ^SystemStringLatoProgrammato = inner->ReadString();	
+				inner2->ReadToFollowing("latoaperturaporteprogrammato");
+				System::String ^SystemStringLatoProgrammato = inner2->ReadString();	
 				// converto da System::String a std::string
 				//string stringLatoAperturaPorte = convertiString2string(SystemStringLatoProgrammato);
 				int latoParturaPorte;
@@ -166,6 +171,41 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 					latoParturaPorte = noApertura;
 				// configuro il lato apertura porte programmato programmato
 				stop->setLatoAperturaPorte(latoParturaPorte);
+
+				while (inner2->Read()) {
+					switch (inner2->NodeType) {
+					case System::Xml::XmlNodeType::Element:
+						if(inner2->Name->Equals("itinerarioEntrata")){
+								System::String ^idItEntrata = inner2->GetAttribute("id");
+								inner2->Read();
+							System::String ^nameEntrata = inner2->Value;
+
+							stop->setIditinerarioEntrata(convertiString2int(idItEntrata));
+							stop->setnameitinerarioEntrata(nameEntrata);
+						}
+						if(inner2->Name->Equals("itinerarioUscita")){
+								System::String ^idITUscita = inner2->GetAttribute("id");	
+							inner2->Read();
+							System::String ^nameUscita  = inner2->Value;
+							stop->setIditinerarioUscita(convertiString2int(idITUscita));
+							stop->setnameitinerarioUscita(nameUscita);
+						}
+						break;
+					}
+				}
+
+				/*if(	inner2->ReadToFollowing("itinerarioEntrata")){
+					System::String ^idItEntrata = inner2->GetAttribute("id");
+					System::String ^nameEntrata = inner2->ReadString();
+					stop->setIditinerarioEntrata(convertiString2int(idItEntrata));
+					stop->setnameitinerarioEntrata(nameEntrata);
+				}
+				if(	inner2->ReadToFollowing("itinerarioUscita")){
+					System::String ^idITUscita = inner2->GetAttribute("id");	
+					System::String ^nameUscita  = inner2->ReadString();
+					stop->setIditinerarioUscita(convertiString2int(idITUscita));
+					stop->setnameitinerarioUscita(nameUscita);
+				}*/
 
 				// a questo punto posso aggiungere la fermata alla lista delle fermate del treno in questione
 				treno->Add(stop);
