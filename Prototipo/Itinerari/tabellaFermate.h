@@ -13,7 +13,7 @@ public:
 
 	void addFermata(int idFermata, List<binario^> ^binari){tabella->Add(idFermata, binari);};
 
-	void leggifileconfigurazioneItinerari(String ^nomeFile);
+	void leggifileconfigurazioneFermate(String ^nomeFile);
 	
 	virtual System::String^ ToString() override;
 	

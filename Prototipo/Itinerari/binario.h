@@ -5,7 +5,7 @@ using namespace System::Collections::Generic;
 
 ref class binario
 {
-	int id;
+	String ^id;
 	String ^direzione;
 	int nid_lrgb;
 	int d_stop;
@@ -16,8 +16,8 @@ ref class binario
 	int CDB;
 public:
 	binario(void);
-	void setId(int i){id = i;};
-	int getId(){return id;};
+	void setId(String ^i){id = i;};
+	String^ getId(){return id;};
 	void setDirezione(String ^d){direzione = d;};
 	String^ getDirezione(){return direzione;};
 	void setNid_lrgb(int n){nid_lrgb = n;};
