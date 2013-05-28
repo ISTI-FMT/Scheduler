@@ -150,6 +150,10 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 					String ^prevcdb = 	inner2->GetAttribute("prevcdb");
 					newitinerario->setPrevCDB( prevcdb);	
 
+					String ^nextstation = 	inner2->GetAttribute("nextstation");
+
+					newitinerario->set_nextstation( convertiString2int(nextstation));	
+
 
 					System::Xml::XmlReader ^inner3 = reader->ReadSubtree();
 					while (inner3->ReadToFollowing("cdb")){
