@@ -13,8 +13,27 @@
                     <xs:element name="partenza" type="xs:time" />
                     <xs:element name="binarioprogrammato" type="xs:nonNegativeInteger" />
 					<xs:element name="latoaperturaporteprogrammato" type="xs:string" />
+					<xs:element name="itinerarioEntrata" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:nonNegativeInteger" name="id" use="required"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="itinerarioUscita" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:nonNegativeInteger" name="id" use="required"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
                   </xs:sequence>
-                  <xs:attribute name="id" type="xs:string" use="required" />
+                  <xs:attribute name="name" type="xs:string" use="required" />
+				  <xs:attribute name="id" type="xs:nonNegativeInteger" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
