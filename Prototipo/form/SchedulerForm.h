@@ -43,11 +43,11 @@ namespace Prototipo {
 			tb = gcnew tabellaItinerari();
 			tb->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
 
-			tabellaFermate ^tf=gcnew tabellaFermate();
-			tf->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
+			tabfermate=gcnew tabellaFermate();
+			tabfermate->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
 
 
-			Console::WriteLine(tf->ToString());
+			//Console::WriteLine(tf->ToString());
 
 			listaTreni = gcnew phisicalTrainList();
 
@@ -88,10 +88,12 @@ namespace Prototipo {
 		TabellaOrario ^tabella;
 		phisicalTrainList ^listaTreni;
 		tabellaItinerari ^tb;
+		tabellaFermate ^tabfermate;
 
 		Thread^ oThread1;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::Button^  button4;
 			 Thread^ oThread2;
 
 #pragma region Windows Form Designer generated code
@@ -105,6 +107,7 @@ namespace Prototipo {
 				 this->button1 = (gcnew System::Windows::Forms::Button());
 				 this->button2 = (gcnew System::Windows::Forms::Button());
 				 this->button3 = (gcnew System::Windows::Forms::Button());
+				 this->button4 = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
 				 // 
 				 // ExitButton
@@ -147,11 +150,22 @@ namespace Prototipo {
 				 this->button3->UseVisualStyleBackColor = true;
 				 this->button3->Click += gcnew System::EventHandler(this, &SchedulerForm::button3_Click);
 				 // 
+				 // button4
+				 // 
+				 this->button4->Location = System::Drawing::Point(21, 201);
+				 this->button4->Name = L"button4";
+				 this->button4->Size = System::Drawing::Size(146, 23);
+				 this->button4->TabIndex = 4;
+				 this->button4->Text = L"Visualize Conf. Fermate";
+				 this->button4->UseVisualStyleBackColor = true;
+				 this->button4->Click += gcnew System::EventHandler(this, &SchedulerForm::button4_Click);
+				 // 
 				 // SchedulerForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(408, 332);
+				 this->Controls->Add(this->button4);
 				 this->Controls->Add(this->button3);
 				 this->Controls->Add(this->button2);
 				 this->Controls->Add(this->button1);
@@ -454,7 +468,7 @@ namespace Prototipo {
 								 dataGridView1->Rows[riga]->Cells[8]->Value=itvar->getNextCDB();
 								 //	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
 								 dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
-								  dataGridView1->Rows[riga]->Cells[10]->Value=itvar->get_nextstation();
+								 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->get_nextstation();
 								 List<int> ^cdb = itvar->getLCDB();
 								 for each (int cdbvar in cdb)
 								 {
@@ -467,6 +481,88 @@ namespace Prototipo {
 
 							 }
 
+
+						 }
+
+					 }
+
+
+					 form->Visible=true;
+				 }
+
+			 }
+	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 if(tabfermate->getTabFermate()->Count<1){
+					 MessageBox::Show("Tabella Conf Fermate Vuota");
+				 }else{
+					 System::Windows::Forms::Form ^  form;
+					 System::Windows::Forms::DataGridView^  dataGridView1;
+					 dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+					 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(dataGridView1))->BeginInit();
+					 dataGridView1->AccessibleName = L"datagridit";
+					 dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::AllCells;
+					 dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
+					 dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+					 dataGridView1->Location = System::Drawing::Point(12, 12);
+					 dataGridView1->Name = L"dataGridViewit";
+					 dataGridView1->Size = System::Drawing::Size(810, 360);
+					 dataGridView1->TabIndex = 18;
+
+					 form = gcnew Form();
+					 form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+					 form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+					 form->ClientSize = System::Drawing::Size(830, 415);
+					 form->Controls->Add(dataGridView1);
+					 form->Name = L"Tabella Configurazione Fermata";
+					 form->Text = L"Tabella Configurazione Fermata";
+					 form->ResumeLayout(false);
+					 form->PerformLayout();
+					 form->SuspendLayout();
+
+					 dataGridView1->ColumnCount = 11;
+					 dataGridView1->RowCount = 15;
+					 int colonna=0;
+					 int riga=0;
+
+					 dataGridView1->Columns[ 0 ]->Name = "Nome Fermata";				
+					 dataGridView1->Columns[ 1 ]->Name = "Nome Binario";
+					 dataGridView1->Columns[ 2 ]->Name = "Binario";
+					 dataGridView1->Columns[ 3 ]->Name = "Direzione";
+					 dataGridView1->Columns[ 4 ]->Name = "NID_LRGB";
+					 dataGridView1->Columns[ 5 ]->Name = "DSTOP";
+					 dataGridView1->Columns[ 6 ]->Name = "PB";
+					 dataGridView1->Columns[ 7 ]->Name = "LB";
+					 dataGridView1->Columns[ 8 ]->Name = "nextCDB";
+
+					 dataGridView1->Columns[ 9]->Name = "prevCDB";
+					 dataGridView1->Columns[ 10]->Name = "CDB";
+
+
+					 for each( KeyValuePair<String^ ,  List<binario^> ^> ^kvp in tabfermate->getTabFermate() )
+					 {
+
+						 String ^po=kvp->Key+"\n\r";
+						 dataGridView1->Rows[riga]->Cells[0]->Value=po;
+
+						 List<binario^> ^binari =kvp->Value;
+
+						 for each (binario^ ikvp in binari)
+						 {	
+							 dataGridView1->Rows[riga]->Cells[1]->Value= ikvp->getNameBin();
+							 dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->getBin();
+							 dataGridView1->Rows[riga]->Cells[3]->Value=ikvp->getDirezione();
+							 dataGridView1->Rows[riga]->Cells[4]->Value=ikvp->getNid_lrgb();
+							 dataGridView1->Rows[riga]->Cells[5]->Value=ikvp->getD_stop();
+							 dataGridView1->Rows[riga]->Cells[6]->Value=ikvp->getPorteBanchina();
+							 dataGridView1->Rows[riga]->Cells[7]->Value=ikvp->getLatoBanchina();
+							 dataGridView1->Rows[riga]->Cells[8]->Value=ikvp->getNextCDB();
+							 //	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
+							 dataGridView1->Rows[riga]->Cells[9]->Value=ikvp->getPrevCDB();
+							 dataGridView1->Rows[riga]->Cells[10]->Value=ikvp->getCDB ();
+
+
+							 riga++;
 
 						 }
 

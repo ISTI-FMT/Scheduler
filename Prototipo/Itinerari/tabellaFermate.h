@@ -14,6 +14,8 @@ public:
 
 	void addFermata(String ^nomeFermata, List<binario^> ^binari){tabella->Add(nomeFermata, binari);};
 
+	Dictionary<String ^, List<binario^> ^> ^getTabFermate(){return tabella;};
+
 	void leggifileconfigurazioneFermate(String ^nomeFile);
 
 	virtual System::String^ ToString() override;
