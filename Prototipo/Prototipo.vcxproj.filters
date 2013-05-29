@@ -43,6 +43,12 @@
     <Filter Include="File di origine\itinerari">
       <UniqueIdentifier>{7f5436f8-af3b-41da-9aed-817507a66fc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di intestazione\scheduler">
+      <UniqueIdentifier>{8b2e86a2-551e-41f5-b94b-80276180e467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\scheduler">
+      <UniqueIdentifier>{8f5f4c83-6aef-443c-b29b-d3772a38a281}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">
@@ -149,6 +155,9 @@
     <ClInclude Include="Itinerari\tabellaFermate.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
+    <ClInclude Include="scheduler\LineaIXL.h">
+      <Filter>File di intestazione\scheduler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -246,6 +255,9 @@
     </ClCompile>
     <ClCompile Include="Itinerari\tabellaFermate.cpp">
       <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\LineaIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
