@@ -11,7 +11,7 @@ ref class binario
 	int nid_lrgb;
 	int d_stop;
 	bool porteBanchina;
-	String ^latoBanchina;
+	int latoBanchina;
 	int nextCDB;
 	int prevCDB;
 	String  ^CDB;
@@ -29,8 +29,8 @@ public:
 	int getD_stop(){return d_stop;};
 	void setPorteBanchina(bool p){porteBanchina = p;};
 	bool getPorteBanchina(){return porteBanchina;};
-	void setLatoBanchina(String ^l){latoBanchina = l;};
-	String^ getLatoBanchina(){return latoBanchina;};
+	void setLatoBanchina(int l){latoBanchina = l;};
+	int getLatoBanchina(){return latoBanchina;};
 	void setNextCDB(int n){nextCDB = n;};
 	int getNextCDB(){return nextCDB;};
 	void setPrevCDB(int p){prevCDB = p;};

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  targetNamespace="urn:conffermate-schema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+       <xs:element name="configurazionefermate">
+              <xs:complexType>
+                     <xs:sequence>
+                            <xs:element name="fermata" maxOccurs="unbounded">
+                                   <xs:complexType>
+                                          <xs:sequence>
+                                                 <xs:element name="binario" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                               <xs:sequence>
+                                                                      <xs:element name="cdb" type="xs:string"/>
+                                                                  </xs:sequence>
+                                                               <xs:attribute name="bin" type="xs:nonNegativeInteger"/>
+                                                               <xs:attribute name="namebin" type="xs:string"/>
+                                                               <xs:attribute name="direzione" type="xs:string"/>
+                                                               <xs:attribute name="nid_lrgb" type="xs:nonNegativeInteger"/>
+                                                               <xs:attribute name="d_stop" type="xs:nonNegativeInteger"/>
+                                                               <xs:attribute name="portebanchina" type="xs:string"/>
+                                                               <xs:attribute name="latobanchina" type="xs:string"/>
+                                                               <xs:attribute name="nextCDB" type="xs:nonNegativeInteger"/>
+                                                               <xs:attribute name="prevCDB" type="xs:nonNegativeInteger"/>
+                                                           </xs:complexType>
+                                                    </xs:element>
+                                             </xs:sequence>
+                                          <xs:attribute name="id" type="xs:string"/>
+                                      </xs:complexType>
+                               </xs:element>
+                        </xs:sequence>
+                 </xs:complexType>
+          </xs:element>
+   </xs:schema>

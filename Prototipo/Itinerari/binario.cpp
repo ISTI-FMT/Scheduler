@@ -8,7 +8,7 @@ binario::binario(void)
 	nid_lrgb = 0;
 	d_stop = 0;
 	porteBanchina = false;
-	latoBanchina = gcnew String("");
+	latoBanchina = 0;
 	nextCDB = 0;
 	prevCDB = 0;
 	CDB = gcnew String("");
@@ -22,7 +22,15 @@ System::String^ binario::ToString(){
 	out+=" Id lrgb: "+nid_lrgb+"\n";
 	out+=" D_stop: "+d_stop+"\n";
 	out+=" Porte Banchina: "+porteBanchina+"\n";
-	out+=" Lato Banchina: "+latoBanchina+"\n";
+	String^ strlatobanchina ="";
+	if(latoBanchina == 1)
+		strlatobanchina ="dx";
+	else if(latoBanchina ==2)
+		strlatobanchina =  "sx";
+	else if(latoBanchina == 3)
+		strlatobanchina =  "sd";
+
+	out+=" Lato Banchina: "+strlatobanchina+"\n";
 	out+=" prevCDB: "+prevCDB+"\n";
 	out+=" nextCDB: "+nextCDB+"\n";
 	out+=" CDB: "+CDB+"\n";
