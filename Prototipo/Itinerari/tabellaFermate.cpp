@@ -10,16 +10,16 @@ using namespace System::Xml::Schema;
 
 tabellaFermate::tabellaFermate(void)
 {
-	tabella = gcnew Dictionary<int, List<binario^> ^>;
+	tabella = gcnew Dictionary<String ^, List<binario^> ^>;
 }
 
 
 
 System::String^ tabellaFermate::ToString() {
 	String ^out="";
-	for each( KeyValuePair<int  , List<binario^>^> kvp in tabella )
+	for each( KeyValuePair<String^  , List<binario^>^> kvp in tabella )
 	{
-		out+=" Id stazione " + kvp.Key+"\n\r";
+		out+=" Nome Fermata " + kvp.Key+"\n\r";
 
 		for each(binario ^bin in kvp.Value)
 		{
@@ -40,13 +40,12 @@ void tabellaFermate::leggifileconfigurazioneFermate(String ^nomeFile)
 		System::Xml::XmlReader ^inner = reader->ReadSubtree();
 		// ...leggo l'id della stazione
 		System::String ^StrIdFermata = reader->GetAttribute("id");
-		// converto l'id della stazione da System::String a int
-		int idFermata = int::Parse(StrIdFermata);
-
-		Console::Write(StrIdFermata);
+		
 
 		// creo la lista vuota che poi inserirò nella tabella
 		List<binario^> ^listaBinari = gcnew List<binario^>;
+		// inserisco la coppia idFermata e listaBinari nella tabella delle fermate
+		addFermata(StrIdFermata, listaBinari);
 
 		while (inner->ReadToFollowing("binario"))
 		{
@@ -55,10 +54,15 @@ void tabellaFermate::leggifileconfigurazioneFermate(String ^nomeFile)
 
 			//System::Xml::XmlReader ^inner = reader->ReadSubtree();
 
-			// ...leggo id del binario
-			System::String ^StrIdBinario = inner->GetAttribute("id");
-			// setto id del binario
-			bin->setId(StrIdBinario);
+			// ...leggo name del binario
+			System::String ^StrnameBinario = inner->GetAttribute("namebin");
+			// setto name del binario
+			bin->setNameBin(StrnameBinario);
+
+			// ...leggo il bin del binario
+			System::String ^StrBinario = inner->GetAttribute("bin");
+			// setto il bin del binario
+			bin->setBin(int::Parse(StrBinario));
 
 			// ...leggo direzione del binario
 			System::String ^direzione = inner->GetAttribute("direzione");
@@ -108,14 +112,13 @@ void tabellaFermate::leggifileconfigurazioneFermate(String ^nomeFile)
 			reader->ReadToFollowing("cdb");
 			System::String ^StrCDB = inner->ReadString();
 			// converto CDB dellbinario da System::String a int
-			int CDB = int::Parse(StrCDB);
-			bin->setCDB(CDB);
+			//int CDB = int::Parse(StrCDB);
+			bin->setCDB(StrCDB);
 
 			// inserisco il binario nella lista
 			listaBinari->Add(bin);
 		}
-		// inserisco la coppia idFermata e listaBinari nella tabella delle fermate
-		addFermata(idFermata, listaBinari);
+		
 	}
 }
 

@@ -43,8 +43,8 @@ namespace Prototipo {
 			tb = gcnew tabellaItinerari();
 			tb->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
 
-			/*tabellaFermate ^tf=gcnew tabellaFermate();
-			tf->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");*/
+			tabellaFermate ^tf=gcnew tabellaFermate();
+			tf->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
 
 
 			Console::WriteLine(tf->ToString());

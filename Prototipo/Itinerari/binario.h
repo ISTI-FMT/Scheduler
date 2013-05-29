@@ -5,7 +5,8 @@ using namespace System::Collections::Generic;
 
 ref class binario
 {
-	String ^id;
+	String ^namebin;
+	int bin;
 	String ^direzione;
 	int nid_lrgb;
 	int d_stop;
@@ -13,11 +14,13 @@ ref class binario
 	String ^latoBanchina;
 	int nextCDB;
 	int prevCDB;
-	int CDB;
+	String  ^CDB;
 public:
 	binario(void);
-	void setId(String ^i){id = i;};
-	String^ getId(){return id;};
+	void setNameBin(String ^i){namebin = i;};
+	String^ getNameBin(){return namebin;};
+	void setBin(int i){bin = i;};
+	int getBin(){return bin;};
 	void setDirezione(String ^d){direzione = d;};
 	String^ getDirezione(){return direzione;};
 	void setNid_lrgb(int n){nid_lrgb = n;};
@@ -32,8 +35,8 @@ public:
 	int getNextCDB(){return nextCDB;};
 	void setPrevCDB(int p){prevCDB = p;};
 	int getPrevCDB(){return prevCDB;};
-	void setCDB(int c){CDB = c;};
-	int getCDB(){return CDB;};
+	void setCDB(String ^c){CDB = c;};
+	String ^getCDB(){return CDB;};
 	
 	virtual System::String^ ToString() override;
 

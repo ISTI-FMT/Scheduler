@@ -2,7 +2,8 @@
 
 binario::binario(void)
 {
-	id= gcnew String("");
+	namebin= gcnew String("");
+	bin=0;
 	direzione = gcnew String("");
 	nid_lrgb = 0;
 	d_stop = 0;
@@ -10,12 +11,13 @@ binario::binario(void)
 	latoBanchina = gcnew String("");
 	nextCDB = 0;
 	prevCDB = 0;
-	CDB = 0;
+	CDB = gcnew String("");
 }
 
 System::String^ binario::ToString(){
 	String ^out="";
-	out+=" Id Binario: "+id+"\n";
+	out+=" Nome Binario: "+namebin+"\n";
+	out+=" Binario: "+bin+"\n";
 	out+=" Direzione: "+direzione+"\n";
 	out+=" Id lrgb: "+nid_lrgb+"\n";
 	out+=" D_stop: "+d_stop+"\n";

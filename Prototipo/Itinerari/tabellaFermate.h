@@ -7,11 +7,11 @@ using namespace System::Collections::Generic;
 ref class tabellaFermate
 {
 	// tabella delle fermate. L'indice è l'id della fermata
-	Dictionary<int, List<binario^> ^> ^tabella;
+	Dictionary<String ^, List<binario^> ^> ^tabella;
 public:
 	tabellaFermate(void);
 
-	void addFermata(int idFermata, List<binario^> ^binari){tabella->Add(idFermata, binari);};
+	void addFermata(String ^nomeFermata, List<binario^> ^binari){tabella->Add(nomeFermata, binari);};
 
 	void leggifileconfigurazioneFermate(String ^nomeFile);
 	
