@@ -3,7 +3,6 @@
 
 pacchettoCommandData::pacchettoCommandData(void)
 {
-	
 	data.NID_PACKET = 0;
 	data.L_PACKET = 0;
 	data.Q_COMMAND_TYPE = 0;

@@ -13,7 +13,7 @@ struct structuredHeader
 {
 	unsigned int NID_MESSAGE : 8;
 	unsigned int L_MESSAGE : 11;
-	unsigned int T_TRAIN : 32;
+	unsigned int T_TIME : 32;
 	unsigned int NID_ENGINE : 24;
 };
 
@@ -27,26 +27,8 @@ struct commandData
 	unsigned int PADDING : 5;
 };
 
-// Messaggio command data quando Q_COMMAND_TYPE != "Chane GOA Level" e Q_COMMAND_TYPE != "Train Running Number"
-// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
-// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
-
-
-
-// Messaggio command data quando Q_COMMAND_TYPE == "Chane GOA Level"
-// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
-// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
-
-
-// Messaggio command data quando Q_COMMAND_TYPE == "Train Running Number"
-// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
-// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
-
-
 // Struttura dati contente la coppia di valori D_MISSION, V_MISSION
 // 22 bit => 3 byte; dell'ultimo byte 2 bit non saranno significativi
-// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
-// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
 struct missionStruct1
 {
 	unsigned int D_MISSION : 15;
@@ -55,8 +37,6 @@ struct missionStruct1
 
 // Struttura dati contente i valori T_START_TIME, NID_LRGB, D_STOP, Q_DOORS e T_DOORS_TIME
 // 67 bit => 9 byte; dell'ultimo byte 5 bit non saranno significativi
-// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
-// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
 struct missionStruct2
 {
 	unsigned int T_START_TIME : 12;
@@ -68,8 +48,6 @@ struct missionStruct2
 
 // Struttura dati il "sotto-header" del messaggio Mission Plan
 // 23 bit => 3 byte; dell'ultimo byte 1 bit non saranno significativi
-// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
-// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
 struct missionHeader
 {
 	unsigned int NID_PACKET : 8;
@@ -78,8 +56,6 @@ struct missionHeader
 };
 
 // Messaggio Mission Data
-// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
-// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
 struct missionData
 {
 	
@@ -108,12 +84,6 @@ struct missionAck
 	unsigned int padding : 7;
 };
 
-// Struttura dati per la gestione dell'acknowledgement
-// 129 bit => 17 byte (7 bit di padding)
-// L'uso della union permette di accedere ai campi dati in maniera strutturata (per esempio quando si vuole fare una ricezione)
-// oppure in maniera flat (per esempio quando si vuole fare una trasmissione)
-
-
 struct pstatolineastruct{
 
 unsigned int NID_CDB : 32;
@@ -122,13 +92,8 @@ unsigned int NID_CDB : 32;
 
 };
 
-//struttura dati per gestire il network data
-// 53 bit
-
-
 struct presentation
 {
-	
 	unsigned int NID_PACKET : 8;
 	unsigned int L_PACKET : 13;
 	unsigned int M_PORT : 32;
@@ -145,3 +110,129 @@ struct pkgstatolinea{
 	struct pstatolineastruct *pstato1;
 };
 
+struct statoCDB
+{
+	unsigned int NID_CDB : 32;
+	unsigned int Q_STATOCDB : 2;
+	unsigned int Q_DEVIATOIO : 2;
+};
+
+struct StatoLinea
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	statoCDB stato;
+	unsigned int N_ITER : 16;
+	statoCDB *vStato;
+};
+
+struct fault
+{
+	unsigned int NID_COMPONENT : 4;
+	unsigned int M_FAULT : 8;
+};
+
+struct FaultData
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	fault guasto;
+	unsigned int N_ITER : 16;
+	fault *vGuasto;
+};
+
+struct itinerario
+{
+	unsigned int NID_ITIN : 32;
+	unsigned int Q_STATOITIN : 2;
+};
+
+struct StatoItinerario
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	itinerario statoItinerario;
+	unsigned int N_ITER : 16;
+	itinerario *vStatoItinerario;
+};
+
+struct scudetti
+{
+	unsigned int NID_SCUD : 32;
+	unsigned int Q_STATOSCUD : 3;
+};
+struct StatoScudetti
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	scudetti statoscudetti;
+	unsigned int N_ITER : 16;
+	scudetti *vStatoScudetti;
+};
+
+struct segnale
+{
+	unsigned int NID_SEGN : 32;
+	unsigned int Q_STATOSEGN : 5;
+};
+
+struct StatoSegnale
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	segnale statoSegnale;
+	unsigned int N_ITER : 16;
+	segnale *vStatoSegnale;
+};
+
+struct End
+{
+	unsigned int NID_PACKET : 8;
+};
+
+struct ComandoItinerario
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	unsigned int NID_ITIN : 32;
+	unsigned int Q_CMDITIN : 2;
+};
+
+struct ComandoBlocco
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	unsigned int NID_BLOCCO : 32;
+	unsigned int Q_CMDBLOCCO : 2;
+};
+
+struct blocco
+{
+	unsigned int NID_BLOCCO : 32;
+	unsigned int Q_STATOBLOCCO : 2;
+};
+
+struct StatoBlocco
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	blocco statoBlocco;
+	unsigned int N_ITER : 16;
+	blocco *vStatoBlocco;
+};
+
+struct CDB
+{
+	unsigned int NID_CDB : 32;
+	unsigned int Q_STATOCDB : 2;
+	unsigned int Q_DEVIATOIO : 2;
+};
+
+struct StatoLineaIXL
+{
+	unsigned int NID_PACKET : 8;
+	unsigned int L_PACKET : 13;
+	CDB statoCDB;
+	unsigned int N_ITER : 16;
+	CDB *vStatoCDB;
+};

@@ -14,23 +14,25 @@ in apposite strutture dati.
 ref class TabellaOrario
 {
 	Dictionary<int, List<Fermata^>^> ^tabella;
-
-	// funzione che converte una System::String in un intero
-	int convertiString2int(System::String ^StringValue);
+	String ^schemaxsd;
+	
 	// funzione che converte una System::String in un std::string
 	// string convertiString2string(System::String ^StringValue);
 	//friend ostream& operator<<(ostream &out, TabellaOrario &tabella);
 public:
 	TabellaOrario(void);
+	Dictionary<int, List<Fermata^>^> ^ get_TabellaOrario(){return tabella;};
 	// funzione che restituisce un qualsiasi TRN nella tabella orario (di fatto il primo)
 	int getFirstTRN();
 	// questa funzione legge il file di configurazione contenente la descrizione della tabella orario
-	void leggiTabellaOrario(string nomeFile);
+	void leggiTabellaOrario(String ^nomeFile);
 	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 	// alla missione associata al TRN in questione
 	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
-	// funzione che restituisce un riferimento alla lista delle fermate relative al treno identificato dal TRN passato come parametro
-	
+	/*sender*/
+	/*static void ValidationCallBack( Object^ , System::Xml::Schema::ValidationEventArgs^ e );*/
+
 	//TrenoFermate^ getTrenoFermate(int TRN);
+	virtual System::String^ ToString() override;
 };
 

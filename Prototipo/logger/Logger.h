@@ -22,10 +22,17 @@ public:
         WriteEntry(result, "Info", module);
     }
 
-     static void Exception(Exception ex, String ^ module)
+	  static void Info(String ^ message, String ^ module)
     {
 		int id = Process::GetCurrentProcess()->Id;
-		 String ^result =  String::Format("{0};{1}",id,ex.Message);
+		String ^result =  String::Format("{0};{1};",id,message);
+        WriteEntry(result, "Info", module);
+    }
+
+     static void Exception(Exception ^ex, String ^ module)
+    {
+		int id = Process::GetCurrentProcess()->Id;
+		 String ^result =  String::Format("{0};{1}",id,ex->Message);
         WriteEntry(result, "Exception", module);
         
     }

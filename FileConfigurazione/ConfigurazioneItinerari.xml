@@ -1,284 +1,280 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ConfigurazioneItinerari>
-  <stazione id="Via Accademia" offset="13000">
-    <itinerari>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConfigurazioneItinerari xmlns="urn:configurazioneitinerari-schema">
+  <stazione  name="Via Accademia" id_offset="13000">
+     <itinerariIngresso>
+      <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA501"  nextcdb="0" >
         <cdb>13010</cdb>
         <cdb>13011</cdb>
         <cdb>13012</cdb>
         <cdb>13301</cdb>
+		
       </ingresso>
-      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="012" name="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA501" nextcdb="0" >
         <cdb>13010</cdb>
         <cdb>13011</cdb>
         <cdb>13012</cdb>
         <cdb>13302</cdb>
+		
       </ingresso>
-      <partenza id="I-01" direzione="dx" portebanchina="true" latobanchina="sx">
-        <cdb>13301</cdb>
+ </itinerariIngresso>
+
+ <itinerariUscita>
+      <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="13301" nextcdb="BCA501" nextstation="14000" >
+      
         <cdb>13012</cdb>
         <cdb>13011</cdb>
         <cdb>13010</cdb>
-		<nextcdb>BCA501</nextcdb> 
+	
       </partenza>
-      <partenza id="II-01" direzione="dx" portebanchina="true" latobanchina="dx">
-        <cdb>13302</cdb>
+      <partenza id="201" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="13302" nextcdb="BCA501" nextstation="14000">
+       
         <cdb>13012</cdb>
         <cdb>13011</cdb>
         <cdb>13010</cdb>
-		<nextcdb>BCA501</nextcdb> 
+	
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
-  <stazione id="Vicolo Corto" offset="10000">
-    <itinerari>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+  <stazione  name="Vicolo Corto" id_offset="10000">
+     <itinerariIngresso>
+      <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA504" nextcdb="0" >
         <cdb>10010</cdb>
         <cdb>10011</cdb>
         <cdb>10012</cdb>
         <cdb>10301</cdb>
       </ingresso>
-      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="012" name="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA504" nextcdb="0" >
         <cdb>10010</cdb>
         <cdb>10011</cdb>
         <cdb>10012</cdb>
         <cdb>10013</cdb>
         <cdb>10302</cdb>
       </ingresso>
-      <partenza id="I-01"  direzione="dx" portebanchina="true" latobanchina="sx">
-        <cdb>10301</cdb>
+ </itinerariIngresso>
+
+ <itinerariUscita>
+	  <partenza id="101" name="I-01"  direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="10301" nextcdb="BCA504"  nextstation="504" >
+      
         <cdb>10012</cdb>
         <cdb>10011</cdb>
         <cdb>10010</cdb>
-		<nextcdb>BCA504</nextcdb> 
+		
       </partenza>
-      <partenza id="II-01" direzione="dx" portebanchina="true" latobanchina="dx">
-        <cdb>10302</cdb>
+      <partenza id="201" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="10302" nextcdb="BCA504"  nextstation="504" >
+   
         <cdb>10013</cdb>
         <cdb>10012</cdb>
         <cdb>10011</cdb>
-        <cdb>1010</cdb>
-		<nextcdb>BCA504</nextcdb> 
+        <cdb>10010</cdb>
+	
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
-  <stazione id="Piazza Università" offset="14000">
-    <itinerari>
-      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+  <stazione name="Piazza Università" id_offset="14000">
+     <itinerariIngresso>
+      <ingresso id="021" name="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA501" nextcdb="14012" >
         <cdb>14020</cdb>
         <cdb>14021</cdb>
         <cdb>14022</cdb>
         <cdb>14301</cdb>
-		<nextcdb>14012</nextcdb> 
+	
       </ingresso>
-      <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+      <ingresso id="022" name="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA501" nextcdb="14012" >
         <cdb>14020</cdb>
         <cdb>14021</cdb>
         <cdb>14022</cdb>
         <cdb>14302</cdb>
-		<nextcdb>14012</nextcdb> 
+	
       </ingresso>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA502" nextcdb="14022" >
         <cdb>14010</cdb>
         <cdb>14011</cdb>
         <cdb>14012</cdb>
         <cdb>14301</cdb>
-		<nextcdb>14022</nextcdb> 
+		
       </ingresso>
-      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="012" name="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA502" nextcdb="14022" >
         <cdb>14010</cdb>
         <cdb>14011</cdb>
         <cdb>14012</cdb>
         <cdb>14302</cdb>
-		<nextcdb>14022</nextcdb> 
+		
       </ingresso>
-      <partenza id="I-01" direzione="dx" portebanchina="true" latobanchina="dx">
-        <cdb>14301</cdb>
+ </itinerariIngresso>
+
+ <itinerariUscita>
+	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="14301" nextcdb="BCA502" nextstation="15000" >
         <cdb>14012</cdb>
         <cdb>14011</cdb>
         <cdb>14010</cdb>
-		<nextcdb>BCA502</nextcdb> 
       </partenza>
-      <partenza id="I-02" direzione="sx" portebanchina="true" latobanchina="sx" >
-        <cdb>14301</cdb>
+      <partenza id="102" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="14301" nextcdb="BCA501"  nextstation="13000" >
         <cdb>14022</cdb>
         <cdb>14021</cdb>
         <cdb>14020</cdb>
-		<nextcdb>BCA501</nextcdb> 
       </partenza>
-      <partenza id="II-01" direzione="dx" portebanchina="true" latobanchina="sx">
-        <cdb>14302</cdb>
+      <partenza id="201" name="II-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="14302" nextcdb="BCA502"  nextstation="15000" >
+       
         <cdb>14012</cdb>
         <cdb>14011</cdb>
         <cdb>14010</cdb>
-		<nextcdb>BCA502</nextcdb> 
       </partenza>
-      <partenza id="II-02" direzione="sx" portebanchina="true" latobanchina="dx">
-        <cdb>14302</cdb>
+      <partenza id="202" name="II-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="14302" nextcdb="BCA501"  nextstation="13000" >
+        
         <cdb>14022</cdb>
         <cdb>14021</cdb>
         <cdb>14020</cdb>
-		<nextcdb>BCA501</nextcdb> 
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
 
-  <stazione id="viale Monterosa" offset="1100">
-    <itinerari>
-      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+  <stazione name="viale Monterosa" id_offset="11000">
+     <itinerariIngresso>
+      <ingresso id="021" name="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA504" nextcdb="11012" >
       
           <cdb>11020</cdb>
           <cdb>11021</cdb>
           <cdb>11022</cdb>
           <cdb>11301</cdb>
-		  <nextcdb>11012</nextcdb> 
         </ingresso>
-        <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+        <ingresso id="022" name="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA504" nextcdb="11013" >
         
           <cdb>11020</cdb>
           <cdb>11021</cdb>
           <cdb>11022</cdb>
           <cdb>11023</cdb>
           <cdb>11302</cdb>
-          <nextcdb>11013</nextcdb> 
       </ingresso>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA505" nextcdb="11022" >
         
           <cdb>11010</cdb>
           <cdb>11011</cdb>
           <cdb>11012</cdb>
           <cdb>11301</cdb>
-		    <nextcdb>11022</nextcdb> 
         </ingresso>
-        <ingresso id="01-II" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+        <ingresso id="012" name="01-II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA505" nextcdb="11023" >
          
           <cdb>11010</cdb>
           <cdb>11011</cdb>
           <cdb>11012</cdb>
           <cdb>11013</cdb>
           <cdb>11302</cdb>
-		    <nextcdb>11023</nextcdb> 
        
       </ingresso>
-      <partenza id="I-01" direzione="dx" portebanchina="true" latobanchina="sx">
+ </itinerariIngresso>
+
+ <itinerariUscita>
+	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="11301" nextcdb="BCA505"  nextstation="12000" >
         
-          <cdb>11301</cdb>
+         
           <cdb>11012</cdb>
           <cdb>11011</cdb>
           <cdb>11010</cdb>
-		    <nextcdb>BCA505</nextcdb> 
        
       </partenza>
-        <partenza id="I-02" direzione="sx" portebanchina="true" latobanchina="dx">
+        <partenza id="102" name="I-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="11301" nextcdb="BCA504"  nextstation="504" >
         
-          <cdb>11301</cdb>
+          
           <cdb>11022</cdb>
           <cdb>11021</cdb>
           <cdb>11020</cdb>
-        		    <nextcdb>BCA504</nextcdb> 
 
       </partenza>
       
-      <partenza id="II-01" direzione="dx" portebanchina="true" latobanchina="dx">
+      <partenza id="201" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="11302" nextcdb="BCA505"  nextstation="12000" >
         
-          <cdb>11302</cdb>
+         
           <cdb>11013</cdb>
           <cdb>11012</cdb>
           <cdb>11011</cdb>
           <cdb>11010</cdb>
-       		    <nextcdb>BCA505</nextcdb> 
 
       </partenza>
 
-      <partenza id="II-02" direzione="sx" portebanchina="true" latobanchina="sx">
+      <partenza id="202" name="II-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="11302" nextcdb="BCA504"  nextstation="504" >
        
-          <cdb>11302</cdb>
+         
           <cdb>11023</cdb>
           <cdb>11022</cdb>
           <cdb>11021</cdb>
           <cdb>11020</cdb>
-        		    <nextcdb>BCA504</nextcdb> 
 
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
-  <stazione id="via Verdi" offset="15000">
-    <itinerari>
-      <ingresso id="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+  <stazione name="via Verdi" id_offset="15000">
+     <itinerariIngresso>
+      <ingresso id="021" name="02-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA502" nextcdb="15012" >
        
           <cdb>15020</cdb>
           <cdb>15021</cdb>
           <cdb>15022</cdb>
           <cdb>15301</cdb>
-		  <nextcdb>15012</nextcdb>
       </ingresso>
-        <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+        <ingresso id="022" name="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA502" nextcdb="15012" >
         
           <cdb>15020</cdb>
           <cdb>15021</cdb>
           <cdb>15022</cdb>
           <cdb>15302</cdb>
-		  <nextcdb>15012</nextcdb>
         
       </ingresso>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA503" nextcdb="15022" >
        
           <cdb>15010</cdb>
           <cdb>15011</cdb>
           <cdb>15012</cdb>
           <cdb>15301</cdb>
-		  <nextcdb>15022</nextcdb>
         
       </ingresso>
-      <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+      <ingresso id="012" name="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA503" nextcdb="15022" >
        
           <cdb>15010</cdb>
           <cdb>15011</cdb>
           <cdb>15012</cdb>
           <cdb>15302</cdb>
-        <nextcdb>15022</nextcdb>
+  
       </ingresso>
-      <partenza id="I-01" direzione="dx" portebanchina="true" latobanchina="dx">
+	   </itinerariIngresso>
+
+ <itinerariUscita>
+	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="15301" nextcdb="BCA503"  nextstation="12000" >
        
-          <cdb>15301</cdb>
+         
           <cdb>15012</cdb>
           <cdb>15011</cdb>
           <cdb>15010</cdb>
-        <nextcdb>BCA503</nextcdb>
       </partenza>
 
-        <partenza id="I-02" direzione="sx" portebanchina="true" latobanchina="sx">
+        <partenza id="102" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="15301" nextcdb="BCA502"  nextstation="14000" >
         
-          <cdb>15301</cdb>
+        
           <cdb>15022</cdb>
           <cdb>15021</cdb>
           <cdb>15020</cdb>
-		  <nextcdb>BCA502</nextcdb>
        
       </partenza>
-      <partenza id="II-01" direzione="dx" portebanchina="true" latobanchina="sx">
+      <partenza id="201" name="II-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="15302" nextcdb="BCA503"  nextstation="12000" >
         
-          <cdb>15302</cdb>
+          
           <cdb>15012</cdb>
           <cdb>15011</cdb>
           <cdb>15010</cdb>
-		  <nextcdb>BCA503</nextcdb>
         
       </partenza>
-      <partenza id="II-02" direzione="sx" portebanchina="true" latobanchina="dx">
+      <partenza id="202" name="II-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="15302" nextcdb="BCA502"  nextstation="14000" >
         
-          <cdb>15302</cdb>
+         
           <cdb>15022</cdb>
           <cdb>15021</cdb>
           <cdb>15020</cdb>
-		  <nextcdb>BCA502</nextcdb>
         
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
 
@@ -286,17 +282,16 @@
 
 
 
-  <stazione id="Piazza Dante" offset="12000">
-    <itinerari>
-      <ingresso id="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+  <stazione name="Piazza Dante" id_offset="12000">
+     <itinerariIngresso>
+      <ingresso id="011" name="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="BCA503" nextcdb="12026" >
         
           <cdb>12010</cdb>
           <cdb>12011</cdb>
           <cdb>12012</cdb>
           <cdb>12301</cdb>
-         <nextcdb>12026</nextcdb>
       </ingresso>
-        <ingresso id="01-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" >
+        <ingresso id="012" name="01-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="BCA503" nextcdb="12023" >
         
           <cdb>12010</cdb>
           <cdb>12011</cdb>
@@ -304,9 +299,8 @@
           <cdb>12015</cdb>
           <cdb>12016</cdb>
           <cdb>12302</cdb>
-        <nextcdb>12023</nextcdb>
         </ingresso>
-      <ingresso id="01-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="013" name="01-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA503" nextcdb="12023" >
         
           <cdb>12010</cdb>
           <cdb>12011</cdb>
@@ -314,36 +308,32 @@
           <cdb>12015</cdb>
           <cdb>12016</cdb>
           <cdb>12303</cdb>
-        <nextcdb>12023</nextcdb>
       </ingresso>
-      <ingresso id="03-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" >
+      <ingresso id="032" name="03-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="BCA505" nextcdb="12023" >
          
           <cdb>12013</cdb>
           <cdb>12014</cdb>
           <cdb>12015</cdb>
           <cdb>12016</cdb>
           <cdb>12302</cdb>
-        <nextcdb>12023</nextcdb>
       </ingresso>
-        <ingresso id="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+        <ingresso id="033" name="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="BCA505" nextcdb="12023" >
           <cdb>12013</cdb>
           <cdb>12014</cdb>
           <cdb>12015</cdb>
           <cdb>12016</cdb>
           <cdb>12303</cdb>
-               <nextcdb>12023</nextcdb>
 
       </ingresso>
-      <ingresso id="04-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+      <ingresso id="041" name="04-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="400" nextcdb="12012" >
        
           <cdb>12024</cdb>
           <cdb>12025</cdb>
           <cdb>12026</cdb>
           <cdb>12301</cdb>
-               <nextcdb>12012</nextcdb>
 
       </ingresso>
-        <ingresso id="04-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+        <ingresso id="042" name="04-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="400" nextcdb="12016" >
        
           <cdb>12024</cdb>
           <cdb>12025</cdb>
@@ -351,10 +341,9 @@
           <cdb>12022</cdb>
           <cdb>12023</cdb>
           <cdb>12302</cdb>
-                <nextcdb>12016</nextcdb>
 
         </ingresso>
-          <ingresso id="04-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+          <ingresso id="043" name="04-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="400" nextcdb="12016" >
         
           <cdb>12024</cdb>
           <cdb>12025</cdb>
@@ -362,144 +351,133 @@
           <cdb>12022</cdb>
           <cdb>12023</cdb>
           <cdb>12303</cdb>
-                <nextcdb>12016</nextcdb>
 
       </ingresso>
-      <ingresso id="02-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" >
+      <ingresso id="022" name="02-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="401" nextcdb="12016" >
           <cdb>12020</cdb>
           <cdb>12021</cdb>
           <cdb>12022</cdb>
           <cdb>12023</cdb>
           <cdb>12302</cdb>
-		          <nextcdb>12016</nextcdb>
 
       </ingresso>
-        <ingresso id="02-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+        <ingresso id="023" name="02-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="401" nextcdb="12016" >
           <cdb>12020</cdb>
           <cdb>12021</cdb>
           <cdb>12022</cdb>
           <cdb>12023</cdb>
           <cdb>12303</cdb>
-		          <nextcdb>12016</nextcdb>
 
       </ingresso>
-      <partenza id="I-01" direzione="sx" portebanchina="true" latobanchina="sx">
+ </itinerariIngresso>
+
+ <itinerariUscita>
+	  <partenza id="101" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="12301" nextcdb="BCA503"  nextstation="15000" >
         
-          <cdb>12301</cdb>
+          
           <cdb>12012</cdb>
           <cdb>12011</cdb>
           <cdb>12010</cdb>
-		          <nextcdb>BCA503</nextcdb>
 
         
       </partenza>
-        <partenza id="I-04" direzione="dx" portebanchina="true" latobanchina="dx">
+        <partenza id="104" name="I-04" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="12301" nextcdb="400"  nextstation="4051" >
        
-          <cdb>12301</cdb>
+         
           <cdb>12026</cdb>
           <cdb>12025</cdb>
           <cdb>12024</cdb>
-		          <nextcdb>400</nextcdb>
 
         
       </partenza>
-      <partenza id="II-01" direzione="sx" portebanchina="true" latobanchina="ds" >
-        <uscita id="01">
-          <cdb>12302</cdb>
+      <partenza id="201" name="II-01" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="12302" nextcdb="BCA503"  nextstation="15000" >
+        
+         
           <cdb>12016</cdb>
           <cdb>12012</cdb>
           <cdb>12011</cdb>
           <cdb>12010</cdb>
-		          <nextcdb>BCA503</nextcdb>
 
-        </uscita>
+        
       </partenza>
-        <partenza id="II-03" direzione="sx" portebanchina="true" latobanchina="ds">
-          <cdb>12302</cdb>
+        <partenza id="203" name="II-03" direzione="sx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="BCA505"  nextstation="11000" >
+          
           <cdb>12016</cdb>
           <cdb>12015</cdb>
           <cdb>12014</cdb>
           <cdb>12013</cdb>
-		          <nextcdb>BCA505</nextcdb>
+		          
 
         </partenza>
-          <partenza id="II-04" direzione="dx" portebanchina="true" latobanchina="ds">
-          <cdb>12302</cdb>
+          <partenza id="204" name="II-04" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="400"  nextstation="406" >
+         
           <cdb>12023</cdb>
           <cdb>12022</cdb>
           <cdb>12026</cdb>
           <cdb>12025</cdb>
           <cdb>12024</cdb>
-		          <nextcdb>400</nextcdb>
 
           </partenza>
-            <partenza id="II-02" direzione="dx" portebanchina="true" latobanchina="ds">
-          <cdb>12302</cdb>
+            <partenza id="202" name="II-02" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="401"  nextstation="407" >
+         
           <cdb>12023</cdb>
           <cdb>12022</cdb>
           <cdb>12021</cdb>
           <cdb>12020</cdb>
-		          <nextcdb>401</nextcdb>
 
       </partenza>
-      <partenza id="III-01" direzione="sx" portebanchina="true" latobanchina="dx" >
-        <uscita id="01">
+      <partenza id="301" name="III-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="12303" nextcdb="BCA503"  nextstation="15000" >     
           <cdb>12303</cdb>
           <cdb>12016</cdb>
           <cdb>12015</cdb>
           <cdb>12012</cdb>
           <cdb>12011</cdb>
           <cdb>12010</cdb>
-		          <nextcdb>BCA503</nextcdb>
 
-        </uscita>
+      
       </partenza>
-        <partenza id="III-03" direzione="sx" portebanchina="true" latobanchina="dx">
-          <cdb>12303</cdb>
+        <partenza id="303" name="III-03" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="12303" nextcdb="BCA505"  nextstation="11000" >
+         
           <cdb>12016</cdb>
           <cdb>12015</cdb>
           <cdb>12014</cdb>
           <cdb>12013</cdb>
-		          <nextcdb>BCA505</nextcdb>
 
         </partenza>
-          <partenza id="III-04" direzione="dx" portebanchina="true" latobanchina="sx">
-          <cdb>12303</cdb>
+          <partenza id="304" name="III-04" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="12303" nextcdb="400"  nextstation="406" >
+         
           <cdb>12023</cdb>
           <cdb>12022</cdb>
           <cdb>12026</cdb>
           <cdb>12025</cdb>
           <cdb>12024</cdb>
-		          <nextcdb>400</nextcdb>
 
           </partenza>
-            <partenza id="III-02" direzione="dx" portebanchina="true" latobanchina="sx">
-          <cdb>12303</cdb>
+            <partenza id="302" name="III-02" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="12303" nextcdb="401"  nextstation="407" >
+        
           <cdb>12023</cdb>
           <cdb>12022</cdb>
           <cdb>12021</cdb>
           <cdb>12020</cdb>
-		          <nextcdb>401</nextcdb>
 
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
   
-  <stazione id="Viale dei Giardini" offset="16000">
-    <itinerari>
-      <ingresso id="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+  <stazione  name="Viale dei Giardini" id_offset="16000">
+     <itinerariIngresso>
+      <ingresso id="022" name="02-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="428"  nextcdb="16016" >
         
           <cdb>16020</cdb>
           <cdb>16021</cdb>
           <cdb>16022</cdb>
           <cdb>16023</cdb>
           <cdb>16302</cdb>
-		          <nextcdb>16016</nextcdb>
 
         
       </ingresso>
-        <ingresso id="02-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+        <ingresso id="023" name="02-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="428" nextcdb="16017" >
         
           <cdb>16020</cdb>
           <cdb>16021</cdb>
@@ -507,19 +485,17 @@
           <cdb>16023</cdb>
           <cdb>16027</cdb>
           <cdb>16303</cdb>
-		  <nextcdb>16017</nextcdb>
         
       </ingresso>
-      <ingresso id="04-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+      <ingresso id="041" name="04-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="429"  nextcdb="16012" >
         
           <cdb>16024</cdb>
           <cdb>16025</cdb>
           <cdb>16026</cdb>
           <cdb>16301</cdb>
-		  <nextcdb>16012</nextcdb>
         
       </ingresso>
-        <ingresso id="04-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+        <ingresso id="042" name="04-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="429" nextcdb="16016" >
         
           <cdb>16024</cdb>
           <cdb>16025</cdb>
@@ -527,10 +503,9 @@
           <cdb>16022</cdb>
           <cdb>16023</cdb>
           <cdb>16302</cdb>
-		  <nextcdb>16016</nextcdb>
         
         </ingresso>
-          <ingresso id="04-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+          <ingresso id="043" name="04-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="429" nextcdb="16017" >
         
           <cdb>16024</cdb>
           <cdb>16025</cdb>
@@ -539,20 +514,18 @@
           <cdb>16023</cdb>
           <cdb>16027</cdb>
           <cdb>16303</cdb>
-		  <nextcdb>16017</nextcdb>
         
       </ingresso>
-      <ingresso id="03-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+      <ingresso id="032" name="03-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="440" nextcdb="16023" >
         
           <cdb>16013</cdb>
           <cdb>16014</cdb>
           <cdb>16015</cdb>
           <cdb>16016</cdb>
           <cdb>16302</cdb>
-		  <nextcdb>16023</nextcdb>
        
       </ingresso>
-        <ingresso id="03-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+        <ingresso id="033" name="03-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="440" nextcdb="16027" >
         
           <cdb>16013</cdb>
           <cdb>16014</cdb>
@@ -560,19 +533,17 @@
           <cdb>16016</cdb>
           <cdb>16017</cdb>
           <cdb>16303</cdb>
-		  <nextcdb>16027</nextcdb>
         
       </ingresso>
-      <ingresso id="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+      <ingresso id="011" name="01-I" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="441" nextcdb="16026" >
        
           <cdb>16010</cdb>
           <cdb>16011</cdb>
           <cdb>16012</cdb>
           <cdb>16301</cdb>
-		  <nextcdb>16026</nextcdb>
        
       </ingresso>
-        <ingresso id="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds">
+        <ingresso id="012" name="01-II" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="ds" prevcdb="441" nextcdb="16023" >
         
           <cdb>16010</cdb>
           <cdb>16011</cdb>
@@ -580,10 +551,9 @@
           <cdb>16015</cdb>
           <cdb>16016</cdb>
           <cdb>16302</cdb>
-		  <nextcdb>16023</nextcdb>
         
         </ingresso>
-          <ingresso id="01-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+          <ingresso id="013" name="01-III" direzione="sx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="441" nextcdb="16027" >
        
           <cdb>16010</cdb>
           <cdb>16011</cdb>
@@ -592,116 +562,108 @@
           <cdb>16016</cdb>
           <cdb>16017</cdb>
           <cdb>16303</cdb>
-		  <nextcdb>16027</nextcdb>
         
       </ingresso>
-      <partenza id="I-01" direzione="dx" portebanchina="true" latobanchina="sx">
+	   </itinerariIngresso>
+
+ <itinerariUscita>
+	  <partenza id="101" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="441"   nextstation="17000" >
        
-          <cdb>16301</cdb>
+       
           <cdb>16012</cdb>
           <cdb>16011</cdb>
           <cdb>16010</cdb>
-		  <nextcdb>441</nextcdb>
       
       </partenza>
-        <partenza id="I-04" direzione="sx" portebanchina="true" latobanchina="sx">
+        <partenza id="104" name="I-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="429"   nextstation="419" >
         
-          <cdb>16301</cdb>
+        
           <cdb>16026</cdb>
           <cdb>16025</cdb>
           <cdb>16024</cdb>
-		   <nextcdb>429</nextcdb>
        
       </partenza>
-      <partenza id="II-02" direzione="sx" portebanchina="true" latobanchina="ds">
+      <partenza id="202" name="II-02" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="16302" nextcdb="428"   nextstation="418" >
      
-          <cdb>16302</cdb>
+      
           <cdb>16023</cdb>
           <cdb>16022</cdb>
           <cdb>16021</cdb>
           <cdb>16020</cdb>
-         <nextcdb>428</nextcdb>
       </partenza>
-        <partenza id="II-04" direzione="sx" portebanchina="true" latobanchina="ds">
+        <partenza id="204" name="II-04" direzione="sx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="429"   nextstation="419" >
         
-          <cdb>16302</cdb>
+     
           <cdb>16023</cdb>
           <cdb>16022</cdb>
           <cdb>16026</cdb>
           <cdb>16025</cdb>
           <cdb>16024</cdb>
-         <nextcdb>429</nextcdb>
+         
         </partenza>
-          <partenza id="II-03" direzione="dx" portebanchina="true" latobanchina="ds">
+          <partenza id="203" name="II-03" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="440"   nextstation="17000" >
         
-          <cdb>16302</cdb>
           <cdb>16016</cdb>
           <cdb>16015</cdb>
           <cdb>16014</cdb>
           <cdb>16013</cdb>
-		   <nextcdb>440</nextcdb>
         
           </partenza>
-            <partenza id="II-01" direzione="dx" portebanchina="true" latobanchina="ds">
+            <partenza id="201" name="II-01" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="441"   nextstation="17000" >
         
-          <cdb>16302</cdb>
+        
           <cdb>16016</cdb>
           <cdb>16015</cdb>
           <cdb>16012</cdb>
           <cdb>16011</cdb>
           <cdb>16010</cdb>
-		   <nextcdb>441</nextcdb>
         
       </partenza>
-      <partenza id="III-02" direzione="sx" portebanchina="true" latobanchina="sx">
+      <partenza id="302" name="III-02" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="428"   nextstation="418" >
         
-          <cdb>16303</cdb>
+      
           <cdb>16027</cdb>
           <cdb>16023</cdb>
           <cdb>16022</cdb>
           <cdb>16021</cdb>
           <cdb>16020</cdb>
-		  <nextcdb>428</nextcdb>
         
       </partenza>
-        <partenza id="III-04" direzione="sx" portebanchina="true" latobanchina="sx">
+        <partenza id="304" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="429"   nextstation="419" >
        
-          <cdb>16303</cdb>
+       
           <cdb>16027</cdb>
           <cdb>16023</cdb>
           <cdb>16022</cdb>
           <cdb>16026</cdb>
           <cdb>16025</cdb>
           <cdb>16024</cdb>
-         <nextcdb>429</nextcdb>
         </partenza>
-        <partenza id="III-03" direzione="dx" portebanchina="true" latobanchina="dx">
+        <partenza id="303" name="III-03" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="440"   nextstation="17000" >
       
-          <cdb>16303</cdb>
+        
           <cdb>16017</cdb>
           <cdb>16016</cdb>
           <cdb>16015</cdb>
           <cdb>16014</cdb>
           <cdb>16013</cdb>
-		   <nextcdb>440</nextcdb>
      
         </partenza>
-          <partenza id="III-01" direzione="dx" portebanchina="true" latobanchina="dx">
-          <cdb>16303</cdb>
+          <partenza id="301" name="III-01" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="441"   nextstation="17000" >
+        
           <cdb>16017</cdb>
           <cdb>16016</cdb>
           <cdb>16015</cdb>
           <cdb>16012</cdb>
           <cdb>16011</cdb>
           <cdb>16010</cdb>
-		   <nextcdb>441</nextcdb>
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
-  <stazione id="Parco della Vittoria" offset="17000">
-    <itinerari>
-      <ingresso id="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+  <stazione  name="Parco della Vittoria" id_offset="17000">
+     <itinerariIngresso>
+      <ingresso id="011" name="01-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="448" nextcdb="17015" >
        
           <cdb>17010</cdb>
           <cdb>17011</cdb>
@@ -709,18 +671,16 @@
           <cdb>17013</cdb>
           <cdb>17014</cdb>
           <cdb>17301</cdb>
-		  <nextcdb>17015</nextcdb>
       </ingresso>
-        <ingresso id="01-II" direzione="dx" nid_lrgb="5225" d_stop="222"  latobanchina="sx">
+        <ingresso id="012" name="01-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="448" nextcdb="17016" >
           <cdb>17010</cdb>
           <cdb>17011</cdb>
           <cdb>17012</cdb>
           <cdb>17013</cdb>
           <cdb>17014</cdb>
           <cdb>17302</cdb>
-		  <nextcdb>17016</nextcdb>
         </ingresso>
-          <ingresso id="01-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+          <ingresso id="013" name="01-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="448" nextcdb="17036" >
           <cdb>17010</cdb>
           <cdb>17011</cdb>
           <cdb>17012</cdb>
@@ -728,9 +688,8 @@
           <cdb>17033</cdb>
           <cdb>17034</cdb>
           <cdb>17303</cdb>
-		  <nextcdb>17036</nextcdb>
           </ingresso>
-            <ingresso id="01-IV" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+            <ingresso id="014" name="01-IV" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="448" nextcdb="17035" >
           <cdb>17010</cdb>
           <cdb>17011</cdb>
           <cdb>17012</cdb>
@@ -738,10 +697,9 @@
           <cdb>17033</cdb>
           <cdb>17034</cdb>
           <cdb>17304</cdb>
-		  <nextcdb>17035</nextcdb>
       </ingresso>
 
-      <ingresso id="03-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" >
+      <ingresso id="031" name="03-I" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="449" nextcdb="17015" >
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>
@@ -749,9 +707,8 @@
           <cdb>17013</cdb>
           <cdb>17014</cdb>
           <cdb>17301</cdb>
-		  <nextcdb>17015</nextcdb>
       </ingresso>
-        <ingresso id="03-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx">
+        <ingresso id="032" name="03-II" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="449" nextcdb="17016" >
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>
@@ -759,104 +716,95 @@
           <cdb>17013</cdb>
           <cdb>17014</cdb>
           <cdb>17302</cdb>
-		  <nextcdb>17016</nextcdb>
         </ingresso>
-          <ingresso id="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx">
+          <ingresso id="033" name="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="449" nextcdb="0" >
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>
           <cdb>17033</cdb>
           <cdb>17034</cdb>
           <cdb>17303</cdb>
-		  <nextcdb>17036</nextcdb>
           </ingresso>
-            <ingresso id="03-IV" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" >
+            <ingresso id="034" name="03-IV" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" prevcdb="449" nextcdb="17035" >
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>
           <cdb>17033</cdb>
           <cdb>17034</cdb>
           <cdb>17304</cdb>
-		  <nextcdb>17035</nextcdb>
       </ingresso>
+  </itinerariIngresso>
 
-      <partenza id="I-01" direzione="sx" portebanchina="true" latobanchina="sx">
-          <cdb>17301</cdb>
+ <itinerariUscita>
+      <partenza id="101" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="448"  nextstation="16000" >
+       
           <cdb>17014</cdb>
           <cdb>17013</cdb>
           <cdb>17012</cdb>
           <cdb>17011</cdb>
           <cdb>17010</cdb>
-		  <nextcdb>448</nextcdb>
       </partenza>
-        <partenza id="I-03" direzione="sx" portebanchina="true" latobanchina="sx">
-          <cdb>17301</cdb>
-          <cdb>17014</cdb>
-          <cdb>17013</cdb>
-          <cdb>17012</cdb>
-          <cdb>17032</cdb>
-          <cdb>17031</cdb>
-          <cdb>17030</cdb>
-		  <nextcdb>449</nextcdb>
-      </partenza>
-      <partenza id="II-01" direzione="sx" portebanchina="true" latobanchina="dx">
-          <cdb>17302</cdb>
-          <cdb>17014</cdb>
-          <cdb>17013</cdb>
-          <cdb>17012</cdb>
-          <cdb>17011</cdb>
-          <cdb>17010</cdb>
-		  <nextcdb>448</nextcdb>
-      </partenza>
-        <partenza id="II-03" direzione="sx" portebanchina="true" latobanchina="dx">
-          <cdb>17302</cdb>
+        <partenza id="103" name="I-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="449" nextstation="16000" >
+       
           <cdb>17014</cdb>
           <cdb>17013</cdb>
           <cdb>17012</cdb>
           <cdb>17032</cdb>
           <cdb>17031</cdb>
           <cdb>17030</cdb>
-		  <nextcdb>449</nextcdb>
       </partenza>
-      <partenza id="III-03" direzione="sx" portebanchina="true" latobanchina="sx">
-          <cdb>17303</cdb>
+      <partenza id="201" name="II-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="448" nextstation="16000" >
+       
+          <cdb>17014</cdb>
+          <cdb>17013</cdb>
+          <cdb>17012</cdb>
+          <cdb>17011</cdb>
+          <cdb>17010</cdb>
+      </partenza>
+        <partenza id="203" name="II-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="449" nextstation="16000" >
+     
+          <cdb>17014</cdb>
+          <cdb>17013</cdb>
+          <cdb>17012</cdb>
+          <cdb>17032</cdb>
+          <cdb>17031</cdb>
+          <cdb>17030</cdb>
+      </partenza>
+      <partenza id="303" name="III-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="449" nextstation="16000" >
+      
           <cdb>17034</cdb>
           <cdb>17033</cdb>
           <cdb>17032</cdb>
           <cdb>17031</cdb>
           <cdb>17030</cdb>
-		  <nextcdb>449</nextcdb>
       </partenza>
-        <partenza id="III-01" direzione="sx" portebanchina="true" latobanchina="sx">
-          <cdb>17303</cdb>
+        <partenza id="301" name="III-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="448" nextstation="16000" >
+        
           <cdb>17034</cdb>
           <cdb>17033</cdb>
           <cdb>17013</cdb>
           <cdb>17012</cdb>
           <cdb>17011</cdb>
           <cdb>17010</cdb>
-		  <nextcdb>448</nextcdb>
       </partenza>
-      <partenza id="IV-03" direzione="sx" portebanchina="true" latobanchina="dx">
-          <cdb>17304</cdb>
+      <partenza id="403" name="IV-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="449" nextstation="16000" >
+        
           <cdb>17034</cdb>
           <cdb>17033</cdb>
           <cdb>17032</cdb>
           <cdb>17031</cdb>
           <cdb>17030</cdb>
-		  <nextcdb>449</nextcdb>
       </partenza>
-        <partenza id="IV-01" direzione="sx" portebanchina="true" latobanchina="dx">
-          <cdb>17304</cdb>
+        <partenza id="401" name="IV-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="448" nextstation="16000" > 
+          
           <cdb>17034</cdb>
           <cdb>17033</cdb>
           <cdb>17013</cdb>
           <cdb>17012</cdb>
           <cdb>17011</cdb>
           <cdb>17010</cdb>
-		  <nextcdb>448</nextcdb>
       </partenza>
-    </itinerari>
+     </itinerariUscita>
   </stazione>
 
 

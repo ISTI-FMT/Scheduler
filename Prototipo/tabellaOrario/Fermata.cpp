@@ -1,16 +1,44 @@
 #include "Fermata.h"
-#include <iostream>
-using namespace std;
 
+using namespace System;
+using namespace System::Globalization;
 Fermata::Fermata(void)
 {
-	idStazione = "";
+	idStazione = 0;
+	nameStazione = "";
 	orarioArrivo = 0;
 	orarioPartenza = 0;
 	tempoMinimoAperturaPorte = 0;
 	binarioProgrammato = 0;
 	latoAperturaPorte = noApertura;
+	iditinerarioentrata=0;
+	nameitinerarioentrata="";
+
+	iditinerariouscita=0;
+	nameitinerariouscita="";
 }
+
+ System::String^ Fermata::ToString() {
+	 String ^out;
+	
+	
+	 TimeSpan Arrivo = TimeSpan::FromSeconds(orarioArrivo*30);
+	 TimeSpan Partenza = TimeSpan::FromSeconds(orarioPartenza*30);
+
+	 out+="ID stazione : "+idStazione+"\n\r";
+	  out+=" Nome stazione : "+nameStazione+"\n\r";
+	 out+=" orario arrivo : "+ Arrivo.ToString()+"\n\r";
+	 out+=" orario partenza : "+Partenza.ToString()+"\n\r";
+	 out+=" binario programmato : "+binarioProgrammato+"\n\r";
+	  out+=" tempoMinimoAperturaPorte : "+tempoMinimoAperturaPorte+"\n\r";
+	   out+=" latoAperturaPorte : "+latoAperturaPorte+"\n\r";
+	    out+=" iditinerarioentrata : "+iditinerarioentrata+"\n\r";
+	   out+=" nameitinerarioentrata : "+nameitinerarioentrata+"\n\r";
+	    out+=" iditinerariouscita : "+iditinerariouscita+"\n\r";
+	   out+=" nameitinerariouscita : "+nameitinerariouscita+"\n\r";
+
+	 return out;
+ }
 
 /*
 ostream& operator<<(ostream &out, const Fermata &stop)

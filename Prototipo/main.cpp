@@ -1,15 +1,17 @@
-#include "tabellaOrario\\TabellaOrario.h"
-#using <System.dll>
-#include "utility.h"
 
+#using <System.dll>
+/*#include "utility.h"
+#include "tabellaOrario\\TabellaOrario.h"
 #include "phisicalTrainList.h"
-#include "String2string.h"
-#include "threads\\ThreadListenerATC.h"
+#include "threads\\ThreadListenerATC_IXL.h"
 #include <iostream>
 #include "threads\\ThreadPresentazione.h"
 #include "mapTrenoFisicoLogico.h"
-#include "messaggi\\Messaggi.h"
+#include "messaggi\\Messaggi.h"*/
 #include "form\\SchedulerForm.h"
+#include "logger\\Logger.h"
+
+
 
 using namespace System::Diagnostics;
 using namespace std;
@@ -241,7 +243,7 @@ int main()
 	oThread2->Abort();*/
 
 #ifdef TRACE
-			 Trace::WriteLine("New Run Application");  
+			 Logger::Info("main"," New Run Application");  
 #endif // TRACE
 	Prototipo::SchedulerForm ^form = gcnew Prototipo::SchedulerForm();
 

@@ -37,6 +37,18 @@
     <Filter Include="File di origine\threads">
       <UniqueIdentifier>{cd924c59-33a9-4e15-bb5e-2f5aab31a8f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di intestazione\itinerari">
+      <UniqueIdentifier>{18ba1378-0b11-46e0-964b-642f5164265b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\itinerari">
+      <UniqueIdentifier>{7f5436f8-af3b-41da-9aed-817507a66fc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di intestazione\scheduler">
+      <UniqueIdentifier>{8b2e86a2-551e-41f5-b94b-80276180e467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\scheduler">
+      <UniqueIdentifier>{8f5f4c83-6aef-443c-b29b-d3772a38a281}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">
@@ -44,12 +56,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="logger\LogClass.h">
-      <Filter>File di intestazione\logger</Filter>
-    </ClInclude>
-    <ClInclude Include="logger\LogMessage.h">
-      <Filter>File di intestazione\logger</Filter>
-    </ClInclude>
     <ClInclude Include="messaggi\Messaggi.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
@@ -77,9 +83,6 @@
     <ClInclude Include="tabellaOrario\TabellaOrario.h">
       <Filter>File di intestazione\tabellaOrario</Filter>
     </ClInclude>
-    <ClInclude Include="threads\ThreadListenerATC.h">
-      <Filter>File di intestazione\threads</Filter>
-    </ClInclude>
     <ClInclude Include="threads\ThreadPresentazione.h">
       <Filter>File di intestazione\threads</Filter>
     </ClInclude>
@@ -95,26 +98,77 @@
     <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="String2string.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="utility.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="logger\Logger.h">
       <Filter>File di intestazione\logger</Filter>
     </ClInclude>
-    <ClInclude Include="logger\TextBoxTraceListener.h">
+    <ClInclude Include="form\SchedulerForm.h">
       <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoFaultData.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoStatoItinerario.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoStatoSegnali.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoComandoItinerari.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoEnd.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoComandoBlocco.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoStatoBlocco.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\stazione.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\tabellaItinerari.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="threads\ThreadListenerATC_IXL.h">
+      <Filter>File di intestazione\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pachettoStatoScudetti.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\Itinerario.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="logger\TextBoxTraceListener.h">
+      <Filter>File di intestazione\logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\binario.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\tabellaFermate.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler\ItinerarioIXL.h">
+      <Filter>File di intestazione\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler\ManagerItinerarioIXL.h">
+      <Filter>File di intestazione\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler\CDBIXL.h">
+      <Filter>File di intestazione\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler\ManagerCDBIXL.h">
+      <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="logger\LogClass.cpp">
-      <Filter>File di origine\logger</Filter>
-    </ClCompile>
-    <ClCompile Include="logger\LogMessage.cpp">
-      <Filter>File di origine\logger</Filter>
-    </ClCompile>
     <ClCompile Include="messaggi\Messaggi.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
@@ -139,9 +193,6 @@
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp">
       <Filter>File di origine\tabellaOrario</Filter>
     </ClCompile>
-    <ClCompile Include="threads\ThreadListenerATC.cpp">
-      <Filter>File di origine\threads</Filter>
-    </ClCompile>
     <ClCompile Include="threads\ThreadPresentazione.cpp">
       <Filter>File di origine\threads</Filter>
     </ClCompile>
@@ -157,20 +208,82 @@
     <ClCompile Include="phisicalTrainList.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="String2string.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="utility.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="logger\Logger.cpp">
       <Filter>File di origine\logger</Filter>
     </ClCompile>
-    <ClCompile Include="logger\TextBoxTraceListener.cpp">
+    <ClCompile Include="form\SchedulerForm.cpp">
       <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoFaultData.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoComandoItinerari.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoEnd.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoComandoBlocco.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoStatoBlocco.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\stazione.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\tabellaItinerari.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ThreadListenerATC_IXL.cpp">
+      <Filter>File di origine\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pachettoStatoScudetti.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\Itinerario.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="logger\TextBoxTraceListener.cpp">
+      <Filter>File di origine\logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\binario.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\tabellaFermate.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\ItinerarioIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\ManagerItinerarioIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\CDBIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\ManagerCDBIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="form\SchedulerForm.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

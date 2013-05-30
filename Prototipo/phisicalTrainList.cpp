@@ -6,8 +6,8 @@ using namespace System::Collections::Generic;
 phisicalTrainList::phisicalTrainList(void)
 {
 	treni = gcnew ConcurrentDictionary<int,phisicalTrain^>();
-
 }
+
 //metodo momentaneo
 phisicalTrain^ phisicalTrainList::getPrimo(){
 	

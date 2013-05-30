@@ -20,18 +20,28 @@ Un oggetto di tipo fermata rappresenta una fermata di un treno
 // Commento inutile
 ref class Fermata
 {
-	String ^idStazione;
+	int idStazione;
+	String ^nameStazione;
 	double orarioArrivo;
 	double orarioPartenza;
 	double tempoMinimoAperturaPorte;
 	int binarioProgrammato;
 	int latoAperturaPorte;
+
+	int iditinerarioentrata;
+	String ^nameitinerarioentrata;
+
+	int iditinerariouscita;
+	String ^nameitinerariouscita;
+
 	//ostream& operator<<(ostream &out, const Fermata &stop);
 public:
 	Fermata(void);
 	// Funzioni per la manipolazione (set e get) dell'id della stazione
-	void setIdStazione(String ^id){idStazione = id;};
-	String^ getIdStazione(){return idStazione;};
+	void setIdStazione(int id){idStazione = id;};
+	int getIdStazione(){return idStazione;};
+	void setnameStazione(String ^name){nameStazione = name;};
+	String^ getnameStazione(){return nameStazione;};
 	// Funzioni per la manipolazione (set e get) dell'orario di arrivo
 	void setOrarioArrivo(double orario){orarioArrivo = orario;};
 	double getOrarioArrivo(){return orarioArrivo;};
@@ -47,5 +57,18 @@ public:
 	// Funzioni per la manipolazione del tempo di apertura delle porte
 	void setLatoAperturaPorte(int lato){latoAperturaPorte = lato;};
 	int getLatoAperturaPorte(){return latoAperturaPorte;};
+
+	void setIditinerarioEntrata(int id){iditinerarioentrata = id;};
+	int getIditinerarioEntrata(){return iditinerarioentrata;};
+	void setnameitinerarioEntrata(String ^name){nameitinerarioentrata = name;};
+	String^ getnameitinerarioEntrata(){return nameitinerarioentrata;};
+
+	void setIditinerarioUscita(int id){iditinerariouscita = id;};
+	int getIditinerarioUscita(){return iditinerariouscita;};
+	void setnameitinerarioUscita(String ^name){nameitinerariouscita = name;};
+	String^ getnameitinerarioUscita(){return nameitinerariouscita;};
+
+
+	virtual System::String^ ToString() override;
 };
 

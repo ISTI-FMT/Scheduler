@@ -75,51 +75,81 @@
     <ResourceCompile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="logger\LogClass.h" />
+    <ClInclude Include="Itinerari\binario.h" />
+    <ClInclude Include="Itinerari\Itinerario.h" />
+    <ClInclude Include="Itinerari\stazione.h" />
+    <ClInclude Include="Itinerari\tabellaFermate.h" />
+    <ClInclude Include="Itinerari\tabellaItinerari.h" />
     <ClInclude Include="logger\Logger.h" />
-    <ClInclude Include="logger\LogMessage.h" />
     <ClInclude Include="logger\TextBoxTraceListener.h" />
     <ClInclude Include="mapTrenoFisicoLogico.h" />
     <ClInclude Include="messaggi\Messaggi.h" />
     <ClInclude Include="messaggi\pacchettoAcknowledgement.h" />
+    <ClInclude Include="messaggi\pacchettoComandoBlocco.h" />
+    <ClInclude Include="messaggi\pacchettoComandoItinerari.h" />
     <ClInclude Include="messaggi\pacchettoCommandData.h" />
+    <ClInclude Include="messaggi\pacchettoEnd.h" />
+    <ClInclude Include="messaggi\pacchettoFaultData.h" />
     <ClInclude Include="messaggi\pacchettoMissionPlan.h" />
     <ClInclude Include="messaggi\pacchettopresentazione.h" />
+    <ClInclude Include="messaggi\pacchettoStatoBlocco.h" />
+    <ClInclude Include="messaggi\pacchettoStatoItinerario.h" />
     <ClInclude Include="messaggi\pacchettostatolineaatc.h" />
+    <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h" />
+    <ClInclude Include="messaggi\pacchettoStatoSegnali.h" />
+    <ClInclude Include="messaggi\pachettoStatoScudetti.h" />
     <ClInclude Include="messaggi\struttureDatiMessaggi.h" />
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
     <ClInclude Include="resource.h" />
-     <ClInclude Include="form\SchedulerForm.h">
+    <ClInclude Include="form\SchedulerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="String2string.h" />
+    <ClInclude Include="scheduler\ItinerarioIXL.h" />
+    <ClInclude Include="scheduler\CDBIXL.h" />
+    <ClInclude Include="scheduler\ManagerItinerarioIXL.h" />
+    <ClInclude Include="scheduler\ManagerCDBIXL.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
-    <ClInclude Include="threads\ThreadListenerATC.h" />
+    <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
     <ClInclude Include="threads\ThreadPresentazione.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="logger\LogClass.cpp" />
+    <ClCompile Include="Itinerari\binario.cpp" />
+    <ClCompile Include="Itinerari\Itinerario.cpp" />
+    <ClCompile Include="Itinerari\stazione.cpp" />
+    <ClCompile Include="Itinerari\tabellaFermate.cpp" />
+    <ClCompile Include="Itinerari\tabellaItinerari.cpp" />
     <ClCompile Include="logger\Logger.cpp" />
-    <ClCompile Include="logger\LogMessage.cpp" />
     <ClCompile Include="logger\TextBoxTraceListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />
     <ClCompile Include="messaggi\Messaggi.cpp" />
     <ClCompile Include="messaggi\pacchettoAcknowledgement.cpp" />
+    <ClCompile Include="messaggi\pacchettoComandoBlocco.cpp" />
+    <ClCompile Include="messaggi\pacchettoComandoItinerari.cpp" />
     <ClCompile Include="messaggi\pacchettoCommandData.cpp" />
+    <ClCompile Include="messaggi\pacchettoEnd.cpp" />
+    <ClCompile Include="messaggi\pacchettoFaultData.cpp" />
     <ClCompile Include="messaggi\pacchettoMissionPlan.cpp" />
     <ClCompile Include="messaggi\pacchettopresentazione.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoBlocco.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp" />
     <ClCompile Include="messaggi\pacchettostatolineaatc.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp" />
+    <ClCompile Include="messaggi\pachettoStatoScudetti.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />
-    <ClCompile Include="String2string.cpp" />
+    <ClCompile Include="scheduler\ItinerarioIXL.cpp" />
+    <ClCompile Include="scheduler\CDBIXL.cpp" />
+    <ClCompile Include="scheduler\ManagerItinerarioIXL.cpp" />
+    <ClCompile Include="scheduler\ManagerCDBIXL.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
-    <ClCompile Include="threads\ThreadListenerATC.cpp" />
+    <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />
     <ClCompile Include="threads\ThreadPresentazione.cpp" />
     <ClCompile Include="utility.cpp" />
   </ItemGroup>
@@ -129,7 +159,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </None>
   </ItemGroup>
-   <ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <DependentUpon>form\SchedulerForm.h</DependentUpon>
     </EmbeddedResource>
