@@ -11,15 +11,15 @@ const int deviatoioNonPresente = 0;
 const int deviatoioNormale = 1;
 const int deviatoioRovescio = 2;
 
-ref class LineaIXL
+ref class CDBIXL
 {
 	int id;
 	int statoCDB;
 	int statoDeviatoio;
 public:
-	LineaIXL(void);
-	LineaIXL(int idCdb);
-	LineaIXL(int idCdb, int statoCdb, int statoDeviatoio);
+	CDBIXL(void);
+	CDBIXL(int idCdb);
+	CDBIXL(int idCdb, int statoCdb, int statoDeviatoio);
 	void setCDBOccupato(){statoCDB = cdbOccupato;};
 	void setCDBImpegnato(){statoCDB = cdbImpegnato;};
 	void setCDBLibero(){statoCDB = cdbLibero;};
@@ -31,4 +31,5 @@ public:
 	void setStatoCdb(int stato){statoCDB = stato;};
 	int getStatoDeviatoio(){return statoDeviatoio;};
 	void setStatoDeviatoio(int stato){statoDeviatoio = stato;};
+	int getId(){return id;};
 };

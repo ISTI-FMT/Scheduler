@@ -155,13 +155,16 @@
     <ClInclude Include="Itinerari\tabellaFermate.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
-    <ClInclude Include="scheduler\LineaIXL.h">
-      <Filter>File di intestazione\scheduler</Filter>
-    </ClInclude>
     <ClInclude Include="scheduler\ItinerarioIXL.h">
       <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
-    <ClInclude Include="scheduler\ManagerLineaIXL.h">
+    <ClInclude Include="scheduler\ManagerItinerarioIXL.h">
+      <Filter>File di intestazione\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler\CDBIXL.h">
+      <Filter>File di intestazione\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler\ManagerCDBIXL.h">
       <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
   </ItemGroup>
@@ -262,13 +265,16 @@
     <ClCompile Include="Itinerari\tabellaFermate.cpp">
       <Filter>File di origine\itinerari</Filter>
     </ClCompile>
-    <ClCompile Include="scheduler\LineaIXL.cpp">
-      <Filter>File di origine\scheduler</Filter>
-    </ClCompile>
     <ClCompile Include="scheduler\ItinerarioIXL.cpp">
       <Filter>File di origine\scheduler</Filter>
     </ClCompile>
-    <ClCompile Include="scheduler\ManagerLineaIXL.cpp">
+    <ClCompile Include="scheduler\ManagerItinerarioIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\CDBIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\ManagerCDBIXL.cpp">
       <Filter>File di origine\scheduler</Filter>
     </ClCompile>
   </ItemGroup>

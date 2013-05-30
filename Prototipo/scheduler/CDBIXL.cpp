@@ -1,20 +1,20 @@
-#include "LineaIXL.h"
+#include "CDBIXL.h"
 
-LineaIXL::LineaIXL(int idCdb)
+CDBIXL::CDBIXL(int idCdb)
 {
 	id = idCdb;
 	statoCDB = cdbStatoIgnoto;
 	statoDeviatoio = deviatoioStatoIgnoto;
 }
 
-LineaIXL::LineaIXL(void)
+CDBIXL::CDBIXL(void)
 {
 	id = 0;
 	statoCDB = cdbStatoIgnoto;
 	statoDeviatoio = deviatoioStatoIgnoto;
 }
 
-LineaIXL::LineaIXL(int idCdb, int statoCdb, int statoDeviatoio)
+CDBIXL::CDBIXL(int idCdb, int statoCdb, int statoDeviatoio)
 {
 	id = idCdb;
 	statoCDB = statoCdb;

@@ -106,8 +106,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="scheduler\ItinerarioIXL.h" />
-    <ClInclude Include="scheduler\LineaIXL.h" />
-    <ClInclude Include="scheduler\ManagerLineaIXL.h" />
+    <ClInclude Include="scheduler\CDBIXL.h" />
+    <ClInclude Include="scheduler\ManagerItinerarioIXL.h" />
+    <ClInclude Include="scheduler\ManagerCDBIXL.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
     <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
@@ -143,8 +144,9 @@
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />
     <ClCompile Include="scheduler\ItinerarioIXL.cpp" />
-    <ClCompile Include="scheduler\LineaIXL.cpp" />
-    <ClCompile Include="scheduler\ManagerLineaIXL.cpp" />
+    <ClCompile Include="scheduler\CDBIXL.cpp" />
+    <ClCompile Include="scheduler\ManagerItinerarioIXL.cpp" />
+    <ClCompile Include="scheduler\ManagerCDBIXL.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
     <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />
