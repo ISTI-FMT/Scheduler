@@ -1,6 +1,5 @@
 #include "ManagerLineaIXL.h"
 
-
 ManagerLineaIXL::ManagerLineaIXL(void)
 {
 	tabella = gcnew Dictionary<int, LineaIXL^>;
