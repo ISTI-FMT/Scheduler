@@ -105,6 +105,7 @@
     <ClInclude Include="form\SchedulerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="scheduler\ItinerarioIXL.h" />
     <ClInclude Include="scheduler\LineaIXL.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />
+    <ClCompile Include="scheduler\ItinerarioIXL.cpp" />
     <ClCompile Include="scheduler\LineaIXL.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />

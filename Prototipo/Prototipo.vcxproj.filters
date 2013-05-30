@@ -158,6 +158,9 @@
     <ClInclude Include="scheduler\LineaIXL.h">
       <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
+    <ClInclude Include="scheduler\ItinerarioIXL.h">
+      <Filter>File di intestazione\scheduler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -257,6 +260,9 @@
       <Filter>File di origine\itinerari</Filter>
     </ClCompile>
     <ClCompile Include="scheduler\LineaIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\ItinerarioIXL.cpp">
       <Filter>File di origine\scheduler</Filter>
     </ClCompile>
   </ItemGroup>
