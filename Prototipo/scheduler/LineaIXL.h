@@ -28,6 +28,7 @@ public:
 	void setDeviatoioNormale(){statoDeviatoio = deviatoioNormale;};
 	void setDeviatoioRovescio(){statoDeviatoio = deviatoioRovescio;};
 	int getStatoCdb(){return statoCDB;};
+	void setStatoCdb(int stato){statoCDB = stato;};
 	int getStatoDeviatoio(){return statoDeviatoio;};
+	void setStatoDeviatoio(int stato){statoDeviatoio = stato;};
 };
-

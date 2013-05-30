@@ -107,6 +107,7 @@
     </ClInclude>
     <ClInclude Include="scheduler\ItinerarioIXL.h" />
     <ClInclude Include="scheduler\LineaIXL.h" />
+    <ClInclude Include="scheduler\ManagerLineaIXL.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
     <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
@@ -143,6 +144,7 @@
     <ClCompile Include="form\SchedulerForm.cpp" />
     <ClCompile Include="scheduler\ItinerarioIXL.cpp" />
     <ClCompile Include="scheduler\LineaIXL.cpp" />
+    <ClCompile Include="scheduler\ManagerLineaIXL.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
     <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />
