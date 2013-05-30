@@ -15,5 +15,6 @@ public:
 	void setItinerarioNonInAtto(){statoItinerario = itinerarioStatoInAtto;};
 	void setItinerarioInAtto(){statoItinerario = itinerarioStatoInAtto;};
 	int getStatoItinerario(){return statoItinerario;};
+	void setStatoItinerario(int stato){statoItinerario = stato;};
 };
 
