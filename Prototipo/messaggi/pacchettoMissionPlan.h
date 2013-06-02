@@ -1,5 +1,10 @@
 #pragma once
-#include "struttureDatiMessaggi.h"
+#include "utility.h"
+#include "ProfiloVelocita.h"
+#include "Mission.h"
+using namespace System;
+using namespace System::Collections::Generic;
+using namespace System::Collections;
 
 /*-----------------------------------------------------------------------------------------------
 Alessio:
@@ -7,9 +12,19 @@ L'ATS manda una missione al treno la missione da eseguire specificandola all'int
 mission plan
 -------------------------------------------------------------------------------------------------*/
 
-class pacchettoMissionPlan
+ref class pacchettoMissionPlan
 {
-	missionData data;
+	unsigned int NID_PACKET ;
+	unsigned int L_PACKET;
+	unsigned int Q_SCALE ;
+	ProfiloVelocita ^mS1;
+	unsigned int N_ITER1;
+	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
+	List<ProfiloVelocita^>^mS1_vect;
+	Mission ^mS2;
+	unsigned int N_ITER2;
+	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
+	List<Mission^>^mS2_vect;
 public:
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
@@ -20,74 +35,35 @@ public:
 	pacchettoMissionPlan();
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	
-	void setNID_PACKET(int NID){data.missionHead.NID_PACKET = NID;};
-	int getNID_PACKET(){return data.missionHead.NID_PACKET;};
-	void setL_PACKET(int L){data.missionHead.L_PACKET = L;};
-	int getL_PACKET(){return data.missionHead.L_PACKET;};
-	void setQ_SCALE(int Q){data.missionHead.Q_SCALE = Q;};
-	int getQ_SCALE(){return data.missionHead.Q_SCALE;};
+	void setNID_PACKET(int NID){NID_PACKET = NID;};
+	int getNID_PACKET(){return NID_PACKET;};
+	void setL_PACKET(int L){L_PACKET = L;};
+	int getL_PACKET(){return L_PACKET;};
+	void setQ_SCALE(int Q){Q_SCALE = Q;};
+	int getQ_SCALE(){return Q_SCALE;};
 	// metodo che setta N_ITER1 ed alloca conseguentemente il vettore mS1_vect
 	void setN_ITER1(int N);
-	int getN_ITER1(){return data.N_ITER1;};
+	int getN_ITER1(){return N_ITER1;};
 	// metodo che setta N_ITER2 ed alloca conseguentemente il vettore mS2_vect
 	void setN_ITER2(int N);
-	int getN_ITER2(){return data.N_ITER2;};
-	// in questi metodi index rappresenta l'indice della fermata di cui si vogliono leggere/scrivere le caratteristiche
-	// se index è 0, il metodo modificherà i dati relativi alla stazioen di partenza, altrimenti modificherà i dati 
-	// relativi alle altre fermate.
-	void setD_MISSION(int index, int D);
-	int getD_MISSION(int index);
-	void setV_MISSION(int index, int V);
-	int getV_MISSION(int index);
-	void setT_START_TIME(int index, int T);
-	int getT_START_TIME(int index);
-	void setNID_LRGB(int index, int NID);
-	int getNID_LRGB(int index);
-	void setD_STOP(int index, int D);
-	int getD_STOP(int index);
-	void setQ_DOORS(int index, int Q);
-	int getQ_DOORS(int index);
-	void setT_DOORS_TIME(int index, int T);
-	int getT_DOORS_TIME(int index);
-	// funzione che serializza il messaggio....il buffer deve contenere tutti 0 prima di invoca il metodo.
-	~pacchettoMissionPlan(void);
+	int getN_ITER2(){return N_ITER2;};
 	
-	System::String ^ ToString(){
+	void setfirstPV(ProfiloVelocita ^PV){mS1=PV;};
+	ProfiloVelocita ^getfirstPV(){return mS1;};
 
+	void setlistPV(List< ProfiloVelocita^> ^all){mS1_vect=all;};
+	List< ProfiloVelocita^> ^getlistPV(){return mS1_vect;};
 
-		System::String ^out;
+	void setlistPV( ProfiloVelocita^ one){mS1_vect->Add(one);};
+	
+	void setfirstMission(Mission ^M){mS2=M;};
+	Mission ^getfirstMission(){return mS2;};
 
-		out = out+"NID_PACKET: "+data.missionHead.NID_PACKET+";";
-		out = out+"L_PACKET: "+data.missionHead.L_PACKET+";";
-		out = out+"Q_SCALE: "+data.missionHead.Q_SCALE+";";
-		out = out+"Q_SCALE: "+data.mS1.D_MISSION+";";
-		out = out+"V_MISSION: "+data.mS1.V_MISSION+";";
-		out = out+"N_ITER1: "+data.N_ITER1+";";
-		if(data.mS1_vect){
-			for(unsigned int i=0;i<data.N_ITER1;i++){
-				out = out+"Q_SCALE: "+data.mS1_vect[i].D_MISSION+";";
-				out = out+"V_MISSION: "+data.mS1_vect[i].V_MISSION+";";
+	void setlistPV(List< Mission^> ^all){mS2_vect=all;};
+	List< Mission^> ^getlistMission(){return mS2_vect;};
 
-			}
-		}
-		out = out+"T_START_TIME: "+data.mS2.T_START_TIME+";";
-		out = out+"NID_LRGB: "+data.mS2.NID_LRGB+";";
-		out = out+"D_STOP: "+data.mS2.D_STOP+";";
-		out = out+"Q_DOORS: "+data.mS2.Q_DOORS+";";
-		out = out+"T_DOORS_TIME: "+data.mS2.T_DOORS_TIME+";";
-
-		out = out+"N_ITER2: "+data.N_ITER2+";";
-		if(data.mS2_vect){
-			for(unsigned int i=0;i<data.N_ITER2;i++){
-				out = out+"T_START_TIME: "+data.mS2_vect[i].T_START_TIME+";";
-				out = out+"NID_LRGB: "+data.mS2_vect[i].NID_LRGB+";";
-				out = out+"D_STOP: "+data.mS2_vect[i].D_STOP+";";
-				out = out+"Q_DOORS: "+data.mS2_vect[i].Q_DOORS+";";
-				out = out+"T_DOORS_TIME: "+data.mS2_vect[i].T_DOORS_TIME+";";
-			}
-		}
-
-		return out;
-	};
+	void setlistMission( Mission^ one){mS2_vect->Add(one);};
+	
+		virtual System::String ^ToString() override;
 };
 

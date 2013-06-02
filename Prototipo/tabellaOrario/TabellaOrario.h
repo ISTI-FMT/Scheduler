@@ -28,7 +28,7 @@ public:
 	void leggiTabellaOrario(String ^nomeFile);
 	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 	// alla missione associata al TRN in questione
-	void setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt);
+	void setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt);
 	/*sender*/
 	/*static void ValidationCallBack( Object^ , System::Xml::Schema::ValidationEventArgs^ e );*/
 

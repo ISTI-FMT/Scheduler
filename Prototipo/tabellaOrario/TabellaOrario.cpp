@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "..\\logger\\Logger.h"
+#include "..\\messaggi\\Mission.h"
 using namespace std;
 using namespace System;
 using namespace System::Globalization;
@@ -207,7 +208,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 
 // funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 // alla missione associata al TRN in questione
-void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
+void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
 {
 	// ottengo un riferimento alle fermate del treno TRN
 	List<Fermata^> ^stops = tabella[TRN];
@@ -221,12 +222,20 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan *pkt)
 		int i = 0;
 		for each (Fermata ^stop in stops)
 		{
-			pkt->setQ_DOORS(i, stop->getLatoAperturaPorte());
+			Mission ^mission= gcnew Mission();
+			mission->setQ_DOORS(stop->getLatoAperturaPorte());
 
 			int orarioPartenza = (int)stop->getOrarioPartenza();
 
-			pkt->setT_START_TIME(i,orarioPartenza);
-			pkt->setT_DOORS_TIME(i, (int )stop->gettempoMinimoAperturaPorte());
+			mission->setT_START_TIME(orarioPartenza);
+			mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
+			
+			if(i==0){
+				pkt->setfirstMission(mission);
+			}else{
+				pkt->setlistMission(mission);
+			}
+
 			++i;
 		}
 	}

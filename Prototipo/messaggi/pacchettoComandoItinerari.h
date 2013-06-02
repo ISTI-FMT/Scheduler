@@ -1,25 +1,28 @@
 #pragma once
-#include "struttureDatiMessaggi.h"
+#include "utility.h"
 
 /*-----------------------------------------------------------------------------------------------
 Alessio:
 L'ATS invia all'IXl messaggi contenenti comandi sugli itinerari
 -------------------------------------------------------------------------------------------------*/
 
-class pacchettoComandoItinerari
+ref class pacchettoComandoItinerari
 {
-	ComandoItinerario data;
+	unsigned int NID_PACKET;
+	unsigned int L_PACKET ;
+	unsigned int NID_ITIN ;
+	unsigned int Q_CMDITIN ;
 public:
 	pacchettoComandoItinerari(void);
 
-	void setNID_PACKET(int N){data.NID_PACKET = N;};
-	int getNID_PACKET(){return data.NID_PACKET;};
-	void setL_PACKET(int L){data.L_PACKET = L;};
-	int getL_PACKET(){return data.L_PACKET;};
-	void setNID_ITIN(int N){data.NID_ITIN = N;};
-	int getNID_ITIN(){return data.NID_ITIN;};
-	void setQ_CMDITIN(int Q){data.Q_CMDITIN = Q;};
-	int getQ_CMDITIN(){return data.Q_CMDITIN;};
+	void setNID_PACKET(int N){NID_PACKET = N;};
+	int getNID_PACKET(){return NID_PACKET;};
+	void setL_PACKET(int L){L_PACKET = L;};
+	int getL_PACKET(){return L_PACKET;};
+	void setNID_ITIN(int N){NID_ITIN = N;};
+	int getNID_ITIN(){return NID_ITIN;};
+	void setQ_CMDITIN(int Q){Q_CMDITIN = Q;};
+	int getQ_CMDITIN(){return Q_CMDITIN;};
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
@@ -29,6 +32,7 @@ public:
 	void deserialize(byte *buffer);
 
 	~pacchettoComandoItinerari(void);
-	System::String ^ToString();
+	virtual System::String ^ToString() override;
+
 };
 

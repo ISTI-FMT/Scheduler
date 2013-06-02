@@ -1,17 +1,17 @@
 #pragma once
-#include "struttureDatiMessaggi.h"
+#include "utility.h"
 
-class pacchettoEnd
+ref class pacchettoEnd
 {
-	End data;
+	unsigned int NID_PACKET ;
 public:
 	pacchettoEnd(void);
-	void setNID_PACKET(int N){data.NID_PACKET = N;};
-	int get_NID_PACKET(){return data.NID_PACKET;};
+	void setNID_PACKET(int N){NID_PACKET = N;};
+	int get_NID_PACKET(){return NID_PACKET;};
 	void serialize(byte *buffer, int offset);
 	void deserialize(byte *buffer, int offset);
 	int getSize(){return 8;};
 	~pacchettoEnd(void);
-	System::String ^ToString();
+	virtual System::String ^ToString() override;
 };
 

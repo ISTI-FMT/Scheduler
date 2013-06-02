@@ -1,6 +1,5 @@
 #include "ThreadListenerATC_IXL.h"
 #using <System.dll>
-#include "..\\utility.h"
 #include "..\\messaggi\\Messaggi.h"
 #include "..\\logger\\Logger.h"
 

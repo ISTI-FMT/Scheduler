@@ -1,7 +1,6 @@
 #include "ThreadPresentazione.h"
 #using <System.dll>
 #include "..\\messaggi\\Messaggi.h"
-#include "..\\utility.h"
 #include "..\\phisicalTrainList.h"
 
 

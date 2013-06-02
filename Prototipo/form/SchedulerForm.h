@@ -1,7 +1,7 @@
 #pragma once
 #include "..\\tabellaOrario\\TabellaOrario.h"
 #using <System.dll>
-#include "..\\utility.h"
+#include "..\\messaggi\pacchettoCommandData.h"
 
 #include "..\\phisicalTrainList.h"
 #include "..\\threads\\ThreadListenerATC_IXL.h"
@@ -178,6 +178,10 @@ namespace Prototipo {
 			 void TCP_Management()
 			 {
 				 phisicalTrain ^Treno = listaTreni->getPrimo();
+				 const int WAKE_UP = 0;
+				 const int CHANGE_GOA_LEVEL = 3;
+				 const int TRN = 4;
+				 const int SLEEP = 7;
 				 try
 				 {
 
@@ -488,6 +492,7 @@ namespace Prototipo {
 
 
 					 form->Visible=true;
+
 				 }
 
 			 }
@@ -570,6 +575,7 @@ namespace Prototipo {
 
 
 					 form->Visible=true;
+
 				 }
 
 			 }
