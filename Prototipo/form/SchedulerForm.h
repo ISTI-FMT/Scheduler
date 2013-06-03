@@ -37,11 +37,12 @@ namespace Prototipo {
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
-			tabella  = gcnew TabellaOrario;
-			tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 
 			tb = gcnew tabellaItinerari();
 			tb->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
+
+			tabella  = gcnew TabellaOrario(tb);
+			tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 
 			tabfermate=gcnew tabellaFermate();
 			tabfermate->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");

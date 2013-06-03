@@ -1,6 +1,7 @@
 #pragma once
 #include "Fermata.h"
 #include "..\\messaggi\\pacchettoMissionPlan.h"
+#include "..\\Itinerari\\tabellaItinerari.h"
 #using <System.dll>
 using namespace System::Collections::Generic;
 
@@ -15,12 +16,14 @@ ref class TabellaOrario
 {
 	Dictionary<int, List<Fermata^>^> ^tabella;
 	String ^schemaxsd;
+	tabellaItinerari ^tabItinerari;
 	
 	// funzione che converte una System::String in un std::string
 	// string convertiString2string(System::String ^StringValue);
 	//friend ostream& operator<<(ostream &out, TabellaOrario &tabella);
 public:
 	TabellaOrario(void);
+	TabellaOrario(tabellaItinerari ^T);
 	Dictionary<int, List<Fermata^>^> ^ get_TabellaOrario(){return tabella;};
 	// funzione che restituisce un qualsiasi TRN nella tabella orario (di fatto il primo)
 	int getFirstTRN();

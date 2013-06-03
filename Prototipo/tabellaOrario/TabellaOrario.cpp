@@ -19,6 +19,12 @@ TabellaOrario::TabellaOrario(void)
 	schemaxsd="..\\FileConfigurazione\\TabellaOrario.xsd";
 }
 
+TabellaOrario::TabellaOrario(tabellaItinerari ^T)
+{
+	tabella = gcnew Dictionary<int, List<Fermata^>^>;
+	schemaxsd="..\\FileConfigurazione\\TabellaOrario.xsd";
+	tabItinerari=T;
+}
 
 
 /*
@@ -169,15 +175,15 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 					switch (inner2->NodeType) {
 					case System::Xml::XmlNodeType::Element:
 						if(inner2->Name->Equals("itinerarioEntrata")){
-								System::String ^idItEntrata = inner2->GetAttribute("id");
-								inner2->Read();
+							System::String ^idItEntrata = inner2->GetAttribute("id");
+							inner2->Read();
 							System::String ^nameEntrata = inner2->Value;
 
 							stop->setIditinerarioEntrata( int::Parse(idItEntrata));
 							stop->setnameitinerarioEntrata(nameEntrata);
 						}
 						if(inner2->Name->Equals("itinerarioUscita")){
-								System::String ^idITUscita = inner2->GetAttribute("id");	
+							System::String ^idITUscita = inner2->GetAttribute("id");	
 							inner2->Read();
 							System::String ^nameUscita  = inner2->Value;
 							stop->setIditinerarioUscita( int::Parse(idITUscita));
@@ -229,7 +235,18 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
 
 			mission->setT_START_TIME(orarioPartenza);
 			mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
-			
+
+			if(tabItinerari!=nullptr ){
+				if(stop->getIditinerarioEntrata()!=0){
+					List<int> ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
+					if(infobalise!=nullptr){
+						
+						mission->setNID_LRGB(infobalise[0]);
+						mission->setD_STOP(infobalise[1]);
+					}
+				}
+
+			}
 			if(i==0){
 				pkt->setfirstMission(mission);
 			}else{
