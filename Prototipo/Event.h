@@ -15,7 +15,7 @@ public:
 	stateCDB ^getEvent(stateCDB ^vv){return sCDB;};
 	
 
-	
+	virtual System::String ^ToString() override;
 
 };
 

@@ -16,7 +16,7 @@ void ManagerCDBIXL::addCheckAndSetCDB(List<stateCDB^> ^listaCDB)
 			// segnala l'evento!!!
 			for each (IObserver<Event^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(cdb));
+				observer->OnNext(gcnew Event(cdb->Clone()));
 			}
 
 
@@ -30,7 +30,7 @@ void ManagerCDBIXL::addCheckAndSetCDB(List<stateCDB^> ^listaCDB)
 				// segnala evento!!!
 				for each (IObserver<Event^>^ observer in observers)
 				{
-					observer->OnNext(gcnew Event(cdb));
+					observer->OnNext(gcnew Event(cdb->Clone()));
 				}
 			}
 
@@ -47,7 +47,7 @@ void ManagerCDBIXL::addCheckAndSetCDB(stateCDB ^oneCDB)
 			// segnala l'evento!!!
 			for each (IObserver<Event^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(oneCDB));
+				observer->OnNext(gcnew Event(oneCDB->Clone()));
 			}
 
 
@@ -61,7 +61,7 @@ void ManagerCDBIXL::addCheckAndSetCDB(stateCDB ^oneCDB)
 				// segnala evento!!!
 				for each (IObserver<Event^>^ observer in observers)
 				{
-					observer->OnNext(gcnew Event(oneCDB));
+					observer->OnNext(gcnew Event(oneCDB->Clone()));
 				}
 			}
 

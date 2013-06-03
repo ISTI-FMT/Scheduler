@@ -26,6 +26,7 @@ EventQueue::EventQueue(void)
 
     void EventQueue::OnNext(Event^ value)
    {
+	   Console::WriteLine("Evento: {0}",value->ToString());
       queueEvent->Enqueue(value);
    }
 

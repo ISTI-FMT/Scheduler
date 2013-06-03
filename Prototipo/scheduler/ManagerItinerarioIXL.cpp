@@ -16,7 +16,7 @@ void ManagerItinerarioIXL::addCheckAndSetItinerario(List<stateItinerario^> ^list
 			// segnala l'evento!!!
 			for each (IObserver<Event^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(itin));
+				observer->OnNext(gcnew Event(itin->Clone()));
 			}
 		}
 		else 
@@ -28,7 +28,7 @@ void ManagerItinerarioIXL::addCheckAndSetItinerario(List<stateItinerario^> ^list
 				// segnala evento!!!
 				for each (IObserver<Event^>^ observer in observers)
 				{
-					observer->OnNext(gcnew Event(itin));
+					observer->OnNext(gcnew Event(itin->Clone()));
 				}
 			}
 
@@ -43,12 +43,20 @@ void ManagerItinerarioIXL::addCheckAndSetItinerario(stateItinerario ^oneItinerar
 	{
 		tabella->Add(oneItinerario->getNID_ITIN(), oneItinerario);
 		// segnala l'evento!!!
+		for each (IObserver<Event^>^ observer in observers)
+				{
+					observer->OnNext(gcnew Event(oneItinerario->Clone()));
+				}
 	}
 	else 
 	{
 		bool mod = tabella[oneItinerario->getNID_ITIN()]->Update(oneItinerario);
 		if(mod)
 		{
+			for each (IObserver<Event^>^ observer in observers)
+				{
+					observer->OnNext(gcnew Event(oneItinerario->Clone()));
+				}
 
 			// segnala evento!!!
 		}

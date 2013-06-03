@@ -15,6 +15,7 @@
 
 #include "..\\scheduler\\ManagerCDBIXL.h"
 #include "..\\scheduler\\ManagerItinerarioIXL.h"
+#include "..\\EventQueue.h"
 
 #define TRACE
 namespace Prototipo {
@@ -72,7 +73,9 @@ namespace Prototipo {
 			oThread1 = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
 
 			oThread1->Start();
-
+			EventQueue ^EventQ = gcnew EventQueue();
+			manaCDBIXL->Subscribe(EventQ);
+			manaINTIXL->Subscribe(EventQ);
 
 		}
 	protected:

@@ -8,4 +8,14 @@ Event::Event(void)
 }
 
 
-	
+
+System::String ^Event::ToString() {
+	if(sCDB){
+		return sCDB->ToString();
+	}
+	if(sITI){
+		return sITI->ToString();
+	}
+
+	return "";
+}
