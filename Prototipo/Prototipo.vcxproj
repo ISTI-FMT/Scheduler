@@ -75,6 +75,8 @@
     <ResourceCompile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Itinerari\binario.h" />
     <ClInclude Include="Itinerari\Itinerario.h" />
     <ClInclude Include="Itinerari\stazione.h" />
@@ -122,6 +124,8 @@
     <ClInclude Include="threads\ThreadPresentazione.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="Itinerari\binario.cpp" />
     <ClCompile Include="Itinerari\Itinerario.cpp" />
     <ClCompile Include="Itinerari\stazione.cpp" />

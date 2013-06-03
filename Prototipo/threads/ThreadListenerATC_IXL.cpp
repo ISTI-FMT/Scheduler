@@ -14,9 +14,16 @@ using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
 
-ThreadListenerATC_IXL::ThreadListenerATC_IXL(){
+/*ThreadListenerATC_IXL::ThreadListenerATC_IXL(){
 
+}*/
+
+ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerCDBIXL ^MC, ManagerItinerarioIXL ^MI){
+	ManCDB=MC;
+	ManIT=MI;
+	isMessageReceived=false;
 }
+
 void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	Console::ForegroundColor = ConsoleColor::Red;
@@ -39,12 +46,32 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 #endif // TRACE
 
+
 	Console::ForegroundColor = ConsoleColor::Red;
 	Console::WriteLine("{0} ATC/IXL ti ha inviato un messaggio",ipEndPoint->Address->ToString());
 	Console::WriteLine(pkt1->ToString());
 	Console::ResetColor();
 
 	isMessageReceived = true;
+
+	//aggiorniamo il manager  1 è stato linea ATC mentre 101 è stato linea IXL
+
+
+	switch (pkt1->getNID_MESSAGE())
+	{
+	case 1: {break;}
+	case 101: {
+
+		ManCDB->addCheckAndSetCDB(pkt1->get_pacchettoStatoLineaATC()->getfirstCDB());
+		ManCDB->addCheckAndSetCDB(pkt1->get_pacchettoStatoLineaATC()->getlastCDB());
+		break;
+			  }
+	default:
+		break;
+	}
+
+
+
 }
 
 
@@ -63,7 +90,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 
 
 
-			udpClient->BeginReceive(gcnew AsyncCallback(ThreadListenerATC_IXL::ReceiveCallback),udpClient);
+			IAsyncResult ^result = udpClient->BeginReceive(gcnew AsyncCallback(ThreadListenerATC_IXL::ReceiveCallback),udpClient);
 
 
 			// Do some work while we wait for a message. For this example,
@@ -104,5 +131,6 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 	}
 
 }
+
 
 

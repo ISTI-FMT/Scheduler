@@ -1,6 +1,8 @@
 #pragma once
 #include "..\\phisicalTrainList.h"
 #include "..\\messaggi\\struttureDatiMessaggi.h"
+
+
 #using <System.dll>
 using namespace System;
 

@@ -3,6 +3,7 @@
 ManagerCDBIXL::ManagerCDBIXL(void)
 {
 	tabella = gcnew Dictionary<int, stateCDB^>;
+	observers = gcnew List<IObserver<Event^>^>();
 }
 
 void ManagerCDBIXL::addCheckAndSetCDB(List<stateCDB^> ^listaCDB)
@@ -13,6 +14,12 @@ void ManagerCDBIXL::addCheckAndSetCDB(List<stateCDB^> ^listaCDB)
 		{
 			tabella->Add(cdb->getNID_CDB(), cdb);
 			// segnala l'evento!!!
+			for each (IObserver<Event^>^ observer in observers)
+			{
+				observer->OnNext(gcnew Event(cdb));
+			}
+
+
 		}
 		else 
 		{
@@ -21,8 +28,50 @@ void ManagerCDBIXL::addCheckAndSetCDB(List<stateCDB^> ^listaCDB)
 			{
 
 				// segnala evento!!!
+				for each (IObserver<Event^>^ observer in observers)
+				{
+					observer->OnNext(gcnew Event(cdb));
+				}
 			}
 
 		}
 	}
+}
+
+void ManagerCDBIXL::addCheckAndSetCDB(stateCDB ^oneCDB)
+{
+	
+		if(!tabella->ContainsKey(oneCDB->getNID_CDB()))
+		{
+			tabella->Add(oneCDB->getNID_CDB(), oneCDB);
+			// segnala l'evento!!!
+			for each (IObserver<Event^>^ observer in observers)
+			{
+				observer->OnNext(gcnew Event(oneCDB));
+			}
+
+
+		}
+		else 
+		{
+			bool mod = tabella[oneCDB->getNID_CDB()]->Update(oneCDB);
+			if(mod)
+			{
+
+				// segnala evento!!!
+				for each (IObserver<Event^>^ observer in observers)
+				{
+					observer->OnNext(gcnew Event(oneCDB));
+				}
+			}
+
+		}
+	
+}
+
+IDisposable ^ManagerCDBIXL::Subscribe(IObserver<Event^> ^observer){
+	if (! observers->Contains(observer)) 
+		observers->Add(observer);
+	return gcnew Unsubscriber(observers, observer);
+
 }

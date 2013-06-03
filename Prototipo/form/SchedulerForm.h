@@ -13,6 +13,9 @@
 #include "..\\Itinerari\\tabellaItinerari.h"
 #include "..\\Itinerari\\tabellaFermate.h"
 
+#include "..\\scheduler\\ManagerCDBIXL.h"
+#include "..\\scheduler\\ManagerItinerarioIXL.h"
+
 #define TRACE
 namespace Prototipo {
 	using namespace System::Diagnostics;
@@ -56,11 +59,17 @@ namespace Prototipo {
 			ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni);
 
 
+
 			oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
 
 			oThread2->Start();
 
-			oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC_IXL::UDP_Management_receive ) );
+			ManagerCDBIXL ^manaCDBIXL = gcnew ManagerCDBIXL();
+			ManagerItinerarioIXL ^manaINTIXL = gcnew ManagerItinerarioIXL();
+
+			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaCDBIXL,manaINTIXL);
+
+			oThread1 = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
 
 			oThread1->Start();
 

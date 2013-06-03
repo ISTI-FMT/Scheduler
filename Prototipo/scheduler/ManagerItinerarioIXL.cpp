@@ -3,9 +3,10 @@
 ManagerItinerarioIXL::ManagerItinerarioIXL(void)
 {
 	tabella = gcnew Dictionary<int, stateItinerario^>;
+	observers = gcnew List<IObserver<Event^>^>();
 }
 
-void ManagerItinerarioIXL::addItinerario(List<stateItinerario^> ^listaItin)
+void ManagerItinerarioIXL::addCheckAndSetItinerario(List<stateItinerario^> ^listaItin)
 {
 	for each (stateItinerario ^itin in listaItin)
 	{
@@ -13,6 +14,10 @@ void ManagerItinerarioIXL::addItinerario(List<stateItinerario^> ^listaItin)
 		{
 			tabella->Add(itin->getNID_ITIN(), itin);
 			// segnala l'evento!!!
+			for each (IObserver<Event^>^ observer in observers)
+			{
+				observer->OnNext(gcnew Event(itin));
+			}
 		}
 		else 
 		{
@@ -21,8 +26,40 @@ void ManagerItinerarioIXL::addItinerario(List<stateItinerario^> ^listaItin)
 			{
 
 				// segnala evento!!!
+				for each (IObserver<Event^>^ observer in observers)
+				{
+					observer->OnNext(gcnew Event(itin));
+				}
 			}
-			
+
 		}
 	}
+}
+
+void ManagerItinerarioIXL::addCheckAndSetItinerario(stateItinerario ^oneItinerario)
+{
+
+	if(!tabella->ContainsKey(oneItinerario->getNID_ITIN()))
+	{
+		tabella->Add(oneItinerario->getNID_ITIN(), oneItinerario);
+		// segnala l'evento!!!
+	}
+	else 
+	{
+		bool mod = tabella[oneItinerario->getNID_ITIN()]->Update(oneItinerario);
+		if(mod)
+		{
+
+			// segnala evento!!!
+		}
+
+	}
+
+}
+
+IDisposable ^ManagerItinerarioIXL::Subscribe(IObserver<Event^> ^observer){
+	if (! observers->Contains(observer)) 
+		observers->Add(observer);
+	return gcnew Unsub(observers, observer);
+
 }
