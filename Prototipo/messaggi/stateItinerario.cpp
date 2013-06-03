@@ -4,7 +4,7 @@
 stateItinerario::stateItinerario(void)
 {
 	NID_ITIN = 0;
-	Q_STATOITIN = 0;
+	Q_STATOITIN = typeStateItineraio::itinerarioStatoIgnoto;
 }
 
 System::String ^ stateItinerario::ToString(){

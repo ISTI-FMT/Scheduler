@@ -2,25 +2,27 @@
 
 ManagerItinerarioIXL::ManagerItinerarioIXL(void)
 {
-	tabella = gcnew Dictionary<int, ItinerarioIXL^>;
+	tabella = gcnew Dictionary<int, stateItinerario^>;
 }
 
-void ManagerItinerarioIXL::addItinerario(List<ItinerarioIXL^> ^listaItin)
+void ManagerItinerarioIXL::addItinerario(List<stateItinerario^> ^listaItin)
 {
-	for each (ItinerarioIXL ^itin in listaItin)
+	for each (stateItinerario ^itin in listaItin)
 	{
-		if(!tabella->ContainsKey(itin->getId()))
+		if(!tabella->ContainsKey(itin->getNID_ITIN()))
 		{
-			tabella->Add(itin->getId(), itin);
+			tabella->Add(itin->getNID_ITIN(), itin);
 			// segnala l'evento!!!
 		}
 		else 
 		{
-			if(tabella[itin->getId()]->getStatoItinerario() != itin->getStatoItinerario())
+			bool mod = tabella[itin->getNID_ITIN()]->Update(itin);
+			if(mod)
 			{
-				tabella[itin->getId()]->setStatoItinerario(itin->getStatoItinerario());
+
 				// segnala evento!!!
 			}
+			
 		}
 	}
 }

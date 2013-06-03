@@ -1,13 +1,13 @@
 #pragma once
-#include "ItinerarioIXL.h"
+#include "..\\messaggi\\stateItinerario.h"
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
 
 ref class ManagerItinerarioIXL
 {
-	Dictionary<int, ItinerarioIXL^> ^tabella;
+	Dictionary<int, stateItinerario^> ^tabella;
 public:
 	ManagerItinerarioIXL(void);
-	void addItinerario(List<ItinerarioIXL^> ^listaItin);
+	void addItinerario(List<stateItinerario^> ^listaItin);
 };

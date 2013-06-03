@@ -2,30 +2,27 @@
 
 ManagerCDBIXL::ManagerCDBIXL(void)
 {
-	tabella = gcnew Dictionary<int, CDBIXL^>;
+	tabella = gcnew Dictionary<int, stateCDB^>;
 }
 
-void ManagerCDBIXL::addCheckAndSetCDB(List<CDBIXL^> ^listaCDB)
+void ManagerCDBIXL::addCheckAndSetCDB(List<stateCDB^> ^listaCDB)
 {
-	for each (CDBIXL ^cdb in listaCDB)
+	for each (stateCDB ^cdb in listaCDB)
 	{
-		if(!tabella->ContainsKey(cdb->getId()))
+		if(!tabella->ContainsKey(cdb->getNID_CDB()))
 		{
-			tabella->Add(cdb->getId(), cdb);
+			tabella->Add(cdb->getNID_CDB(), cdb);
 			// segnala l'evento!!!
 		}
 		else 
 		{
-			if(tabella[cdb->getId()]->getStatoCdb() != cdb->getStatoCdb())
+			bool mod = tabella[cdb->getNID_CDB()]->Update(cdb);
+			if(mod)
 			{
-				tabella[cdb->getId()]->setStatoCdb(cdb->getStatoCdb());
+
 				// segnala evento!!!
 			}
-			if(tabella[cdb->getId()]->getStatoDeviatoio() != cdb->getStatoDeviatoio())
-			{
-				tabella[cdb->getId()]->setStatoDeviatoio(cdb->getStatoDeviatoio());
-				// segnala evento!!!
-			}
+
 		}
 	}
 }

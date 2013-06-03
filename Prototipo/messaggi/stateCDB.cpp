@@ -4,14 +4,14 @@
 stateCDB::stateCDB(void)
 {
 	NID_CDB = 0;
-	Q_STATOCDB = 0;
-	Q_DEVIATOIO = 0;
+	Q_STATOCDB = typeStateCDB::cdbStatoIgnoto;
+	Q_DEVIATOIO = typeStateDeviatoio::deviatoioStatoIgnoto;
 }
 stateCDB::stateCDB(int nid, int state, int dev)
 {
 	NID_CDB = nid;
-	Q_STATOCDB = state;
-	Q_DEVIATOIO = dev;
+	setQ_STATOCDB(state);
+	setQ_DEVIATOIO( dev);
 }
 
 System::String ^stateCDB::ToString() {
