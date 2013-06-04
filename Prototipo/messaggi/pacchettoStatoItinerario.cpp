@@ -5,9 +5,9 @@ pacchettoStatoItinerario::pacchettoStatoItinerario(void)
 {
 	NID_PACKET = 0;
 	L_PACKET = 0;
-	statoItinerario = gcnew stateItinerario();
+	statoItinerario = gcnew StateItinerario();
 	N_ITER = 0;
-	vStatoItinerario = gcnew List<stateItinerario^>();
+	vStatoItinerario = gcnew List<StateItinerario^>();
 }
 
 // metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
@@ -46,7 +46,7 @@ void pacchettoStatoItinerario::serialize(byte *buffer, int offset)
 	push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
-	for each (stateItinerario^ var in vStatoItinerario)
+	for each (StateItinerario^ var in vStatoItinerario)
 	{
 		push(buffer, var->getNID_ITIN(), 32, offset + shift);
 		shift += 32;
@@ -70,7 +70,7 @@ void pacchettoStatoItinerario::deserialize(byte *buffer, int offset)
 		shift += 32;
 		int Q_STATOITIN=pop(buffer, 2, offset + shift);
 		shift += 2;
-		vStatoItinerario->Add(gcnew stateItinerario(NID_ITIN,Q_STATOITIN));
+		vStatoItinerario->Add(gcnew StateItinerario(NID_ITIN,Q_STATOITIN));
 	}
 }
 
@@ -85,7 +85,7 @@ System::String ^pacchettoStatoItinerario::ToString(){
 	out = out+statoItinerario->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 	if(vStatoItinerario){
-		for each (stateItinerario ^var in vStatoItinerario)
+		for each (StateItinerario ^var in vStatoItinerario)
 		{
 			out = out+var->ToString();
 		}

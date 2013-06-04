@@ -1,6 +1,6 @@
 #pragma once
 #include "utility.h"
-#include "stateCDB.h"
+#include "StateCDB.h"
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -13,9 +13,9 @@ ref class pacchettoStatoLineaIXL
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET ;
-	stateCDB ^sCDB;
+	StateCDB ^sCDB;
 	unsigned int N_ITER;
-	List<stateCDB^> ^vStatoCDB;
+	List<StateCDB^> ^vStatoCDB;
 public:
 	pacchettoStatoLineaIXL(void);
 
@@ -28,13 +28,13 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 	
-	void setfirstCDB(stateCDB ^scdb){sCDB=scdb;};
-	stateCDB ^getfirstCDB(){return sCDB;};
+	void setfirstCDB(StateCDB ^scdb){sCDB=scdb;};
+	StateCDB ^getfirstCDB(){return sCDB;};
 
-	void setlastCDB(List< stateCDB^> ^all){vStatoCDB=all;};
-	List< stateCDB^> ^getlastCDB(){return vStatoCDB;};
+	void setlastCDB(List< StateCDB^> ^all){vStatoCDB=all;};
+	List< StateCDB^> ^getlastCDB(){return vStatoCDB;};
 
-	void setlastCDB( stateCDB^ one){vStatoCDB->Add(one);};
+	void setlastCDB( StateCDB^ one){vStatoCDB->Add(one);};
 	
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 

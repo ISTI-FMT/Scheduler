@@ -1,6 +1,6 @@
 #pragma once
 #include "utility.h"
-#include "stateSegnale.h"
+#include "StateSegnale.h"
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -13,9 +13,9 @@ ref class pacchettoStatoSegnali
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET ;
-	stateSegnale ^statoSegnale;
+	StateSegnale ^statoSegnale;
 	unsigned int N_ITER ;
-	List<stateSegnale^> ^vStatoSegnale;
+	List<StateSegnale^> ^vStatoSegnale;
 public:
 	pacchettoStatoSegnali(void);
 
@@ -28,13 +28,13 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 
-	void setfirststatoSegnale(stateSegnale ^scdb){statoSegnale=scdb;};
-	stateSegnale ^getfirststatoSegnale(){return statoSegnale;};
+	void setfirststatoSegnale(StateSegnale ^scdb){statoSegnale=scdb;};
+	StateSegnale ^getfirststatoSegnale(){return statoSegnale;};
 
-	void setlaststatoSegnale(List< stateSegnale^> ^all){vStatoSegnale=all;};
-	List< stateSegnale^> ^getlaststatoSegnale(){return vStatoSegnale;};
+	void setlaststatoSegnale(List< StateSegnale^> ^all){vStatoSegnale=all;};
+	List< StateSegnale^> ^getlaststatoSegnale(){return vStatoSegnale;};
 
-	void setlaststatoSegnale( stateSegnale^ one){vStatoSegnale->Add(one);};
+	void setlaststatoSegnale( StateSegnale^ one){vStatoSegnale->Add(one);};
 	
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 

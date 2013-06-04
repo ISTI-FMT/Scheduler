@@ -1,15 +1,15 @@
 #pragma once
 enum  typeStateCDB { cdbStatoIgnoto = -1, cdbOccupato = 0, cdbImpegnato = 1, cdbLibero = 2,  cdbFuoriControllo = 3};
 enum  typeStateDeviatoio{deviatoioStatoIgnoto = -1, deviatoioNonPresente = 0, deviatoioNormale = 1, deviatoioRovescio = 2};
-ref class stateCDB
+ref class StateCDB
 {
 	unsigned int NID_CDB ;
 	int Q_STATOCDB ;
 	int Q_DEVIATOIO ;
-
+	int NID_OPERATIONAL ;
 public:
-	stateCDB(void);
-	stateCDB(int nid, int state, int dev);
+	StateCDB(void);
+	StateCDB(int nid, int state, int dev);
 	void setNID_CDB(int NID){NID_CDB=NID;};
 	int getNID_CDB(){return NID_CDB;};
 	void setQ_DEVIATOIO(int Q){
@@ -29,25 +29,15 @@ public:
 		}
 	};
 	int getQ_STATOCDB(){return Q_STATOCDB;};
-	bool Update(stateCDB ^newcdb){
-		bool ret=false;
-		if(newcdb->getNID_CDB()==NID_CDB){
-			if(newcdb->getQ_STATOCDB()!=Q_STATOCDB){
-				Q_STATOCDB=newcdb->getQ_STATOCDB();
-				ret=true;
-			}
-			if(newcdb->getQ_DEVIATOIO()!=Q_DEVIATOIO){
-				Q_DEVIATOIO=newcdb->getQ_DEVIATOIO();
-				ret=true;
-			}
+	bool Update(StateCDB ^newcdb);
+
+	void setNID_OPERATIONAL(int NID){NID_OPERATIONAL=NID;};
+	int getNID_OPERATIONAL(){return NID_OPERATIONAL;};
 
 
-		}
-		return ret;
-	};
 	int Size(){return 32+2+2;}
 
-	stateCDB ^Clone(){return gcnew stateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO);}
+	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO);}
 
 	virtual System::String ^ToString() override;
 };

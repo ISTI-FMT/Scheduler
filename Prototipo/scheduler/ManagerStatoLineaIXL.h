@@ -1,21 +1,28 @@
 #pragma once
 #using <System.dll>
-#include "..\\messaggi\\stateCDB.h"
+#include "..\\messaggi\\StateCDB.h"
+#include "..\\messaggi\\StateItinerario.h"
+
 #include "..\\Event.h"
 using namespace System;
 using namespace System::Collections::Generic;
 
-ref class ManagerCDBIXL : public IObservable<Event^>
+ref class ManagerStatoLineaIXL : public IObservable<Event^>
 {
-	Dictionary<int, stateCDB^> ^tabella;
+	Dictionary<int, StateCDB^> ^tabellaCDB;
+	Dictionary<int, StateItinerario^> ^tabellaItin;
 	 List<IObserver<Event^>^> ^observers;
 public:
-	ManagerCDBIXL(void);
-	void addCheckAndSetCDB(List<stateCDB^> ^listaCDB);
-	void addCheckAndSetCDB(stateCDB ^oneCDB);
+	ManagerStatoLineaIXL(void);
+	void addCheckAndSet(List<StateCDB^> ^listaCDB);
+	void addCheckAndSet(StateCDB ^oneCDB);
+
+	void addCheckAndSet(List<StateItinerario^> ^listaItin);
+	void addCheckAndSet(StateItinerario ^oneItinerario);
 
 	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
    
+
 
 };
 

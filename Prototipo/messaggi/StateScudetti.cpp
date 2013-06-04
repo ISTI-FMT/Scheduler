@@ -1,11 +1,11 @@
-#include "stateScudetti.h"
+#include "StateScudetti.h"
 
 
-stateScudetti::stateScudetti(void)
+StateScudetti::StateScudetti(void)
 {
 }
 
-System::String ^stateScudetti::ToString(){
+System::String ^StateScudetti::ToString(){
 	System::String ^out;
 
 

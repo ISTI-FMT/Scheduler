@@ -1,6 +1,6 @@
 #pragma once
 #include "utility.h"
-#include "stateBlocco.h"
+#include "StateBlocco.h"
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -13,9 +13,9 @@ ref class pacchettoStatoBlocco
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET ;
-	stateBlocco ^statoBlocco;
+	StateBlocco ^statoBlocco;
 	unsigned int N_ITER ;
-	List<stateBlocco^> ^vStatoBlocco;
+	List<StateBlocco^> ^vStatoBlocco;
 public:
 	pacchettoStatoBlocco(void);
 
@@ -28,13 +28,13 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 
-	void setfirstStatoBlocco(stateBlocco ^StatoBlocco){statoBlocco=StatoBlocco;};
-	stateBlocco ^getfirstStatoBlocco(){return statoBlocco;};
+	void setfirstStatoBlocco(StateBlocco ^StatoBlocco){statoBlocco=StatoBlocco;};
+	StateBlocco ^getfirstStatoBlocco(){return statoBlocco;};
 
-	void setlastStatoBlocco(List< stateBlocco^> ^all){vStatoBlocco=all;};
-	List< stateBlocco^> ^getlastStatoBlocco(){return vStatoBlocco;};
+	void setlastStatoBlocco(List< StateBlocco^> ^all){vStatoBlocco=all;};
+	List< StateBlocco^> ^getlastStatoBlocco(){return vStatoBlocco;};
 
-	void setlastStatoBlocco( stateBlocco^ one){vStatoBlocco->Add(one);};
+	void setlastStatoBlocco( StateBlocco^ one){vStatoBlocco->Add(one);};
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding

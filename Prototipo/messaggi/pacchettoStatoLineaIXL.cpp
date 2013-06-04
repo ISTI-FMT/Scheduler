@@ -5,9 +5,9 @@ pacchettoStatoLineaIXL::pacchettoStatoLineaIXL(void)
 {
 	NID_PACKET = 0;
 	L_PACKET = 0;
-	sCDB = gcnew stateCDB();
+	sCDB = gcnew StateCDB();
 	N_ITER = 0;
-	vStatoCDB = gcnew List<stateCDB^>();
+	vStatoCDB = gcnew List<StateCDB^>();
 }
 
 // metodo che setta N_ITER
@@ -45,7 +45,7 @@ void pacchettoStatoLineaIXL::serialize(byte *buffer)
 	push(buffer, N_ITER, 16, 108);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int offset = 124;
-	for each (stateCDB^ var in vStatoCDB )
+	for each (StateCDB^ var in vStatoCDB )
 	{
 
 		push(buffer, var->getNID_CDB(), 32, offset);
@@ -76,7 +76,7 @@ void pacchettoStatoLineaIXL::deserialize(byte *buffer)
 		int Q_DEVIATOIO=pop(buffer, 2, offset);
 		offset += 2;
 
-		vStatoCDB->Add(gcnew stateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO));
+		vStatoCDB->Add(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO));
 	}
 }
 
@@ -91,7 +91,7 @@ System::String^ pacchettoStatoLineaIXL::ToString(){
 	out = out+sCDB->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 	if(vStatoCDB){
-		for each (stateCDB^ var in vStatoCDB)
+		for each (StateCDB^ var in vStatoCDB)
 		{
 			out = out+var->ToString();
 		}

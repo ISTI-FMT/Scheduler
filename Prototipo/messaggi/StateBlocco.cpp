@@ -1,14 +1,14 @@
-#include "stateBlocco.h"
+#include "StateBlocco.h"
 
 
-stateBlocco::stateBlocco(void)
+StateBlocco::StateBlocco(void)
 {
 	NID_BLOCCO=0;
 	Q_STATOBLOCCO=0;
 }
 
 
-System::String ^stateBlocco::ToString(){
+System::String ^StateBlocco::ToString(){
 		System::String ^out;
 
 	

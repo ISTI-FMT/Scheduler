@@ -5,9 +5,9 @@ pacchettoStatoSegnali::pacchettoStatoSegnali(void)
 {
 	NID_PACKET = 0;
 	L_PACKET = 0;
-	statoSegnale = gcnew stateSegnale();
+	statoSegnale = gcnew StateSegnale();
 	N_ITER = 0;
-	vStatoSegnale = gcnew List<stateSegnale^>();
+	vStatoSegnale = gcnew List<StateSegnale^>();
 }
 
 // metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
@@ -44,7 +44,7 @@ void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
 	push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
-	for each (stateSegnale ^var in vStatoSegnale)
+	for each (StateSegnale ^var in vStatoSegnale)
 	{
 		push(buffer, var->getNID_SEGN(), 32, offset + shift);
 		shift += 32;
@@ -68,7 +68,7 @@ void pacchettoStatoSegnali::deserialize(byte *buffer, int offset)
 		shift += 32;
 		int Q_STATOSEGN=pop(buffer, 5, offset + shift);
 		shift += 5;
-		vStatoSegnale->Add(gcnew stateSegnale(NID_SEGN,Q_STATOSEGN));
+		vStatoSegnale->Add(gcnew StateSegnale(NID_SEGN,Q_STATOSEGN));
 	}
 }
 
@@ -84,7 +84,7 @@ System::String ^pacchettoStatoSegnali::ToString(){
 	out = out+statoSegnale->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 	if(vStatoSegnale){
-		for each (stateSegnale^ var in vStatoSegnale)
+		for each (StateSegnale^ var in vStatoSegnale)
 		{
 
 

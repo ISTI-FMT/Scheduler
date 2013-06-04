@@ -1,6 +1,6 @@
 #pragma once
 #include "utility.h"
-#include "stateScudetti.h"
+#include "StateScudetti.h"
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -8,9 +8,9 @@ using namespace System::Collections;
 {
 	unsigned int NID_PACKET;
 	unsigned int L_PACKET ;
-	stateScudetti ^statoscudetti;
+	StateScudetti ^statoscudetti;
 	unsigned int N_ITER ;
-	List<stateScudetti^> ^vStatoScudetti;
+	List<StateScudetti^> ^vStatoScudetti;
 public:
 	pachettoStatoScudetti(void);
 
@@ -23,13 +23,13 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 	
-	void setfirstStatoScud(stateScudetti ^sStatoScud){statoscudetti=sStatoScud;};
-	stateScudetti ^getfirstStatoScud(){return statoscudetti;};
+	void setfirstStatoScud(StateScudetti ^sStatoScud){statoscudetti=sStatoScud;};
+	StateScudetti ^getfirstStatoScud(){return statoscudetti;};
 
-	void setlastStatoScud(List< stateScudetti^> ^all){vStatoScudetti=all;};
-	List< stateScudetti^> ^getlastStatoScud(){return vStatoScudetti;};
+	void setlastStatoScud(List< StateScudetti^> ^all){vStatoScudetti=all;};
+	List< StateScudetti^> ^getlastStatoScud(){return vStatoScudetti;};
 
-	void setlastStatoScud( stateScudetti^ one){vStatoScudetti->Add(one);};
+	void setlastStatoScud( StateScudetti^ one){vStatoScudetti->Add(one);};
 
 	
 	int getSize();

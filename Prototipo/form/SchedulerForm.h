@@ -13,8 +13,7 @@
 #include "..\\Itinerari\\tabellaItinerari.h"
 #include "..\\Itinerari\\tabellaFermate.h"
 
-#include "..\\scheduler\\ManagerCDBIXL.h"
-#include "..\\scheduler\\ManagerItinerarioIXL.h"
+#include "..\\scheduler\\ManagerStatoLineaIXL.h"
 #include "..\\EventQueue.h"
 
 #define TRACE
@@ -65,18 +64,16 @@ namespace Prototipo {
 
 			oThread2->Start();
 
-			ManagerCDBIXL ^manaCDBIXL = gcnew ManagerCDBIXL();
-			ManagerItinerarioIXL ^manaINTIXL = gcnew ManagerItinerarioIXL();
-
-			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaCDBIXL,manaINTIXL);
+			ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
+		
+			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL);
 
 			oThread1 = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
 
 			oThread1->Start();
 			EventQueue ^EventQ = gcnew EventQueue();
-			manaCDBIXL->Subscribe(EventQ);
-			manaINTIXL->Subscribe(EventQ);
-			//EventQ->Subscribe(manaINTIXL);
+			
+			EventQ->Subscribe(manaStateIXL);
 			//EventQ->Subscribe(manaCDBIXL);
 		}
 	protected:

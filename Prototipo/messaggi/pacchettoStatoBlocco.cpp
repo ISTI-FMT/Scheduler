@@ -5,9 +5,9 @@ pacchettoStatoBlocco::pacchettoStatoBlocco(void)
 {
 	NID_PACKET = 0;
 	L_PACKET = 0;
-	statoBlocco = gcnew stateBlocco();
+	statoBlocco = gcnew StateBlocco();
 	N_ITER = 0;
-	vStatoBlocco =gcnew List<stateBlocco^>();
+	vStatoBlocco =gcnew List<StateBlocco^>();
 }
 
 // metodo che setta N_ITER
@@ -42,7 +42,7 @@ void pacchettoStatoBlocco::serialize(byte *buffer, int offset)
 	push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
-	for each (stateBlocco^ var in vStatoBlocco)
+	for each (StateBlocco^ var in vStatoBlocco)
 	{
 		push(buffer, var->getNID_BLOCCO(), 32, offset + shift);
 		shift += 32;
@@ -67,7 +67,7 @@ void pacchettoStatoBlocco::deserialize(byte *buffer, int offset)
 		shift += 32;
 		int Q_STATOBLOCCO=pop(buffer, 2, offset + shift);
 		shift += 2;
-		vStatoBlocco->Add(gcnew stateBlocco(NID_BLOCCO,Q_STATOBLOCCO));
+		vStatoBlocco->Add(gcnew StateBlocco(NID_BLOCCO,Q_STATOBLOCCO));
 	}
 }
 
@@ -81,7 +81,7 @@ System::String ^pacchettoStatoBlocco::ToString(){
 	out = out+statoBlocco->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 	if(vStatoBlocco){
-		for each (stateBlocco^ var in vStatoBlocco)
+		for each (StateBlocco^ var in vStatoBlocco)
 		{
 			out = out+var->ToString();
 

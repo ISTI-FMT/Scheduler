@@ -103,11 +103,11 @@
     <ClInclude Include="messaggi\pacchettoStatoSegnali.h" />
     <ClInclude Include="messaggi\pachettoStatoScudetti.h" />
     <ClInclude Include="messaggi\ProfiloVelocita.h" />
-    <ClInclude Include="messaggi\stateBlocco.h" />
-    <ClInclude Include="messaggi\stateCDB.h" />
-    <ClInclude Include="messaggi\stateItinerario.h" />
-    <ClInclude Include="messaggi\stateScudetti.h" />
-    <ClInclude Include="messaggi\stateSegnale.h" />
+    <ClInclude Include="messaggi\StateBlocco.h" />
+    <ClInclude Include="messaggi\StateCDB.h" />
+    <ClInclude Include="messaggi\StateItinerario.h" />
+    <ClInclude Include="messaggi\StateScudetti.h" />
+    <ClInclude Include="messaggi\StateSegnale.h" />
     <ClInclude Include="messaggi\struttureDatiMessaggi.h" />
     <ClInclude Include="messaggi\utility.h" />
     <ClInclude Include="phisicalTrain.h" />
@@ -116,8 +116,7 @@
     <ClInclude Include="form\SchedulerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="scheduler\ManagerItinerarioIXL.h" />
-    <ClInclude Include="scheduler\ManagerCDBIXL.h" />
+    <ClInclude Include="scheduler\ManagerStatoLineaIXL.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
     <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
@@ -153,17 +152,16 @@
     <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp" />
     <ClCompile Include="messaggi\pachettoStatoScudetti.cpp" />
     <ClCompile Include="messaggi\ProfiloVelocita.cpp" />
-    <ClCompile Include="messaggi\stateBlocco.cpp" />
-    <ClCompile Include="messaggi\stateCDB.cpp" />
-    <ClCompile Include="messaggi\stateItinerario.cpp" />
-    <ClCompile Include="messaggi\stateScudetti.cpp" />
-    <ClCompile Include="messaggi\stateSegnale.cpp" />
+    <ClCompile Include="messaggi\StateBlocco.cpp" />
+    <ClCompile Include="messaggi\StateCDB.cpp" />
+    <ClCompile Include="messaggi\StateItinerario.cpp" />
+    <ClCompile Include="messaggi\StateScudetti.cpp" />
+    <ClCompile Include="messaggi\StateSegnale.cpp" />
     <ClCompile Include="messaggi\utility.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />
-    <ClCompile Include="scheduler\ManagerItinerarioIXL.cpp" />
-    <ClCompile Include="scheduler\ManagerCDBIXL.cpp" />
+    <ClCompile Include="scheduler\ManagerStatoLineaIXL.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
     <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />

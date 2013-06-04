@@ -8,8 +8,8 @@ pacchettostatolineaatc::pacchettostatolineaatc(void)
 	NID_PACKET = 0;
 	L_PACKET = 0;
 	NID_OPERATIONAL = 0;
-	pstato = gcnew stateCDB();
-	pstato1 = gcnew List<stateCDB^>();
+	pstato = gcnew StateCDB();
+	pstato1 = gcnew List<StateCDB^>();
 }
 
 
@@ -41,7 +41,7 @@ System::String^ pacchettostatolineaatc::toPrint(){
 	out = out+pstato->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 	if(pstato1){
-		for each (stateCDB ^var in pstato1)
+		for each (StateCDB ^var in pstato1)
 		{
 			out = out+var->ToString();
 
@@ -119,7 +119,7 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 	push(buffer, N_ITER, 5, 140);
 	//pstato1 = new pstatolineastruct[N_ITER];
 	int offset = 145;
-	for each (stateCDB ^var in pstato1)
+	for each (StateCDB ^var in pstato1)
 	{
 
 		push(buffer, var->getNID_CDB(), 32, offset);
@@ -153,7 +153,7 @@ void pacchettostatolineaatc::deserialize(byte *buffer)
 			int Q_DEVIATOIO=pop(buffer, 2, offset);
 			offset += 2;
 			
-			pstato1->Add(gcnew stateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO));
+			pstato1->Add(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO));
 		}
 
 	}

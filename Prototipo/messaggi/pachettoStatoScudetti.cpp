@@ -7,9 +7,9 @@ pachettoStatoScudetti::pachettoStatoScudetti(void)
 
 	NID_PACKET = 0;
 	L_PACKET = 0;
-	statoscudetti = gcnew stateScudetti();
+	statoscudetti = gcnew StateScudetti();
 	N_ITER = 0;
-	vStatoScudetti = gcnew List<stateScudetti^>();
+	vStatoScudetti = gcnew List<StateScudetti^>();
 }
 
 // metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
@@ -46,7 +46,7 @@ void pachettoStatoScudetti::serialize(byte *buffer, int offset)
 	push(buffer, N_ITER, 16, offset + 56);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 72;
-	for each (stateScudetti^ var in vStatoScudetti)
+	for each (StateScudetti^ var in vStatoScudetti)
 	{
 		push(buffer, var->getNID_SCUD(), 32, offset + shift);
 		shift += 32;
@@ -70,7 +70,7 @@ void pachettoStatoScudetti::deserialize(byte *buffer, int offset)
 		shift += 32;
 		int Q_STATOSCUD=pop(buffer, 3, offset + shift);
 		shift += 2;
-		vStatoScudetti->Add(gcnew stateScudetti(NID_SCUD,Q_STATOSCUD));
+		vStatoScudetti->Add(gcnew StateScudetti(NID_SCUD,Q_STATOSCUD));
 	}
 }
 
@@ -85,7 +85,7 @@ System::String ^pachettoStatoScudetti::ToString(){
 	out = out+statoscudetti->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 	if(vStatoScudetti){
-		for each (stateScudetti^ var in vStatoScudetti)
+		for each (StateScudetti^ var in vStatoScudetti)
 		{
 			out = out+var->ToString();
 		}

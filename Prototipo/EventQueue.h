@@ -1,7 +1,7 @@
 #pragma once
 #include "Event.h"
-#include "messaggi\\stateItinerario.h"
-#include "messaggi\\stateCDB.h"
+#include "messaggi\\StateItinerario.h"
+#include "messaggi\\StateCDB.h"
 #include "Event.h"
 
 using namespace System;

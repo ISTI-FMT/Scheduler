@@ -18,9 +18,9 @@ using namespace System::Threading::Tasks;
 
 }*/
 
-ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerCDBIXL ^MC, ManagerItinerarioIXL ^MI){
-	ManCDB=MC;
-	ManIT=MI;
+ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC){
+	ManStatoLineaIXL=MC;
+	
 	isMessageReceived=false;
 }
 
@@ -62,10 +62,10 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	case 1: {break;}
 	case 101: {
 
-		ManCDB->addCheckAndSetCDB(pkt1->get_pacchettoStatoLineaIXL()->getfirstCDB());
-		ManCDB->addCheckAndSetCDB(pkt1->get_pacchettoStatoLineaIXL()->getlastCDB());
-		ManIT->addCheckAndSetItinerario(pkt1->get_pacchettoStatoItinerario()->getfirstItinerario());
-		ManIT->addCheckAndSetItinerario(pkt1->get_pacchettoStatoItinerario()->getlastItinerario());
+		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getfirstCDB());
+		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getlastCDB());
+		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getfirstItinerario());
+		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getlastItinerario());
 		break;
 	 }
 			  

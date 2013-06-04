@@ -1,11 +1,11 @@
 #pragma once
-ref class stateScudetti
+ref class StateScudetti
 {
 	unsigned int NID_SCUD ;
 	unsigned int Q_STATOSCUD ;
 public:
-	stateScudetti(void);
-	stateScudetti(int N, int Q){NID_SCUD=N;Q_STATOSCUD=Q;};
+	StateScudetti(void);
+	StateScudetti(int N, int Q){NID_SCUD=N;Q_STATOSCUD=Q;};
 	void setNID_SCUD( int N){NID_SCUD=N;};
 	int getNID_SCUD(){return NID_SCUD;};
 	void setQ_STATOSCUD( int Q){Q_STATOSCUD=Q;};

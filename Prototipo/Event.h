@@ -1,18 +1,18 @@
 #pragma once
-#include "messaggi\\stateCDB.h"
-#include "messaggi\\stateItinerario.h"
+#include "messaggi\\StateCDB.h"
+#include "messaggi\\StateItinerario.h"
 ref class Event
 {	 
-	stateCDB ^sCDB;
-	stateItinerario ^sITI;
+	StateCDB ^sCDB;
+	StateItinerario ^sITI;
 public:
 	Event(void);
-	Event(stateCDB ^v){sCDB=v;sITI=nullptr;}
-	Event(stateItinerario ^vv){sITI=vv;sCDB=nullptr;};
-	void setEvent(stateCDB ^v){sCDB=v;}
-	void setEvent(stateItinerario ^vv){sITI=vv;};
-	stateItinerario ^getEvent(stateItinerario ^vv){return sITI;};
-	stateCDB ^getEvent(stateCDB ^vv){return sCDB;};
+	Event(StateCDB ^v){sCDB=v;sITI=nullptr;}
+	Event(StateItinerario ^vv){sITI=vv;sCDB=nullptr;};
+	void setEvent(StateCDB ^v){sCDB=v;}
+	void setEvent(StateItinerario ^vv){sITI=vv;};
+	StateItinerario ^getEvent(StateItinerario ^vv){return sITI;};
+	StateCDB ^getEvent(StateCDB ^vv){return sCDB;};
 	
 
 	virtual System::String ^ToString() override;

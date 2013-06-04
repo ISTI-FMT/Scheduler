@@ -1,11 +1,11 @@
 #pragma once
-ref class stateBlocco
+ref class StateBlocco
 {
 	unsigned int NID_BLOCCO ;
 	unsigned int Q_STATOBLOCCO;
 public:
-	stateBlocco(void);
-	stateBlocco(int N, int Q){NID_BLOCCO=N;Q_STATOBLOCCO=Q;};
+	StateBlocco(void);
+	StateBlocco(int N, int Q){NID_BLOCCO=N;Q_STATOBLOCCO=Q;};
 	int Size(){return 34;}
 	void setNID_BLOCCO(int N){NID_BLOCCO=N;};
 	int getNID_BLOCCO(){return NID_BLOCCO;};

@@ -1,13 +1,13 @@
-#include "stateSegnale.h"
+#include "StateSegnale.h"
 
 
-stateSegnale::stateSegnale(void)
+StateSegnale::StateSegnale(void)
 {
 	NID_SEGN  =0;
 	 Q_STATOSEGN =0 ;
 }
 
-System::String ^stateSegnale::ToString(){
+System::String ^StateSegnale::ToString(){
 	System::String ^out;
 
 

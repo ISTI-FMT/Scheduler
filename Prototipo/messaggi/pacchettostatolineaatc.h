@@ -1,6 +1,6 @@
 #pragma once
 #include "utility.h"
-#include "stateCDB.h"
+#include "StateCDB.h"
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -11,10 +11,10 @@ ref class pacchettostatolineaatc
 	unsigned int NID_PACKET;
 	unsigned int L_PACKET ;
 	unsigned int NID_OPERATIONAL ;
-	 stateCDB ^pstato;
+	 StateCDB ^pstato;
 	unsigned int N_ITER ;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
-	List< stateCDB^> ^pstato1;
+	List< StateCDB^> ^pstato1;
 public:
 	pacchettostatolineaatc();
 	
@@ -42,13 +42,13 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 
-	void setfirstCDB(stateCDB ^scdb){pstato=scdb;};
-	stateCDB ^getfirstCDB(){return pstato;};
+	void setfirstCDB(StateCDB ^scdb){pstato=scdb;};
+	StateCDB ^getfirstCDB(){return pstato;};
 
-	void setlastCDB(List< stateCDB^> ^all){pstato1=all;};
-	List< stateCDB^> ^getlastCDB(){return pstato1;};
+	void setlastCDB(List< StateCDB^> ^all){pstato1=all;};
+	List< StateCDB^> ^getlastCDB(){return pstato1;};
 
-	void setlastCDB( stateCDB^ one){pstato1->Add(one);};
+	void setlastCDB( StateCDB^ one){pstato1->Add(one);};
 	
 
 

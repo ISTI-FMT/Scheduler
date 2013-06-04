@@ -1,8 +1,8 @@
 #pragma once
 #using <System.dll>
 #include "..\\messaggi\\pacchettostatolineaatc.h"
-#include "..\\scheduler\\ManagerCDBIXL.h"
-#include "..\\scheduler\\ManagerItinerarioIXL.h"
+#include "..\\scheduler\\ManagerStatoLineaIXL.h"
+
 
 using namespace System;
 
@@ -13,12 +13,12 @@ L'ATS è in grado di ricevere messaggi riguardanti lo stato della linea da parte 
 
 ref class ThreadListenerATC_IXL
 {
-	static ManagerCDBIXL ^ManCDB;
-	static ManagerItinerarioIXL ^ManIT;
+	static ManagerStatoLineaIXL ^ManStatoLineaIXL;
+	
 	static bool isMessageReceived;
 public:
 	/*ThreadListenerATC_IXL();*/
-	ThreadListenerATC_IXL(ManagerCDBIXL ^MC, ManagerItinerarioIXL ^MI);
+	ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC);
 
 	void UDP_Management_receive();
 	
