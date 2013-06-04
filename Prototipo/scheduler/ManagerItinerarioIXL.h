@@ -14,7 +14,11 @@ public:
 	void addCheckAndSetItinerario(List<stateItinerario^> ^listaItin);
 	void addCheckAndSetItinerario(stateItinerario ^oneItinerario);
 	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
-   
+    void UnSubscribe(IObserver<Event^> ^observer){
+      if ((observer != nullptr)){
+		  observers->Remove(observer);
+	  }
+   };
 
 };
 

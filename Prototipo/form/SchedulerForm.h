@@ -76,7 +76,8 @@ namespace Prototipo {
 			EventQueue ^EventQ = gcnew EventQueue();
 			manaCDBIXL->Subscribe(EventQ);
 			manaINTIXL->Subscribe(EventQ);
-
+			//EventQ->Subscribe(manaINTIXL);
+			//EventQ->Subscribe(manaCDBIXL);
 		}
 	protected:
 		/// <summary>
