@@ -116,6 +116,7 @@
     <ClInclude Include="form\SchedulerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="scheduler\ManagerMsgATO.h" />
     <ClInclude Include="scheduler\ManagerStatoLineaATC.h" />
     <ClInclude Include="scheduler\ManagerStatoLineaIXL.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />
+    <ClCompile Include="scheduler\ManagerMsgATO.cpp" />
     <ClCompile Include="scheduler\ManagerStatoLineaATC.cpp" />
     <ClCompile Include="scheduler\ManagerStatoLineaIXL.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />

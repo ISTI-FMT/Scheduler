@@ -5,6 +5,7 @@ Event::Event(void)
 {
 	sCDB=nullptr;
 	sITI=nullptr;
+	lTrain=nullptr;
 	source="";
 }
 
@@ -19,6 +20,8 @@ System::String ^Event::ToString() {
 	if(sITI){
 		out+= sITI->ToString();
 	}
-
+	if(lTrain){
+		out+= lTrain->ToString();
+	}
 	return out;
 }

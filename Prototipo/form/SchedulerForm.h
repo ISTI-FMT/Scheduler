@@ -14,6 +14,7 @@
 #include "..\\Itinerari\\tabellaFermate.h"
 #include "..\\scheduler\\ManagerStatoLineaATC.h"
 #include "..\\scheduler\\ManagerStatoLineaIXL.h"
+#include "..\\scheduler\\ManagerMsgATO.h"
 #include "..\\EventQueue.h"
 
 #define TRACE
@@ -55,8 +56,9 @@ namespace Prototipo {
 
 			listaTreni = gcnew phisicalTrainList();
 
+			ManagerMsgATO ^manaStateATO = gcnew ManagerMsgATO();
 
-			ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni);
+			ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni,manaStateATO);
 
 
 
@@ -66,6 +68,7 @@ namespace Prototipo {
 
 			ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
 			ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
+
 		
 			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
 
@@ -77,6 +80,7 @@ namespace Prototipo {
 
 			EventQ->Subscribe(manaStateIXL);
 			EventQ->Subscribe(manaStateATC);
+			EventQ->Subscribe(manaStateATO);
 		}
 	protected:
 		/// <summary>
