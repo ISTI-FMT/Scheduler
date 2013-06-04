@@ -14,11 +14,11 @@ ref class ManagerStatoLineaIXL : public IObservable<Event^>
 	 List<IObserver<Event^>^> ^observers;
 public:
 	ManagerStatoLineaIXL(void);
-	void addCheckAndSet(List<StateCDB^> ^listaCDB);
-	void addCheckAndSet(StateCDB ^oneCDB);
+	void addCheckAndSet(List<StateCDB^> ^listaCDB, String ^source);
+	void addCheckAndSet(StateCDB ^oneCDB, String ^source);
 
-	void addCheckAndSet(List<StateItinerario^> ^listaItin);
-	void addCheckAndSet(StateItinerario ^oneItinerario);
+	void addCheckAndSet(List<StateItinerario^> ^listaItin, String ^source);
+	void addCheckAndSet(StateItinerario ^oneItinerario, String ^source);
 
 	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
    

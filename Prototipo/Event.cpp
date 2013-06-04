@@ -5,17 +5,20 @@ Event::Event(void)
 {
 	sCDB=nullptr;
 	sITI=nullptr;
+	source="";
 }
 
 
 
 System::String ^Event::ToString() {
+	System::String ^out="";
+	out += " Source: "+source+" ";
 	if(sCDB){
-		return sCDB->ToString();
+		out += sCDB->ToString();
 	}
 	if(sITI){
-		return sITI->ToString();
+		out+= sITI->ToString();
 	}
 
-	return "";
+	return out;
 }
