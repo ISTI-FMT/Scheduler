@@ -29,8 +29,9 @@ public:
 		if(itinerariid->ContainsKey(id)){
 			ret->Add(itinerariid[id]->getLrgb());
 			ret->Add(itinerariid[id]->getDStop());
+			return ret;
 		}
-		return ret;
+		return nullptr;
 
 	}
 };

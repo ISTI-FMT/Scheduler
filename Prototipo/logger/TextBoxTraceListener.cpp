@@ -13,10 +13,10 @@ using namespace  System;
 
 void TextBoxTraceListener::init(void){
 	textBox=  (gcnew System::Windows::Forms::TextBox());
-	textBox->Location =  System::Drawing::Point(15, 53);
+	textBox->Location =  System::Drawing::Point(5, 5);
 	textBox->Multiline = true;
 	textBox->Name = L"textBox";
-	textBox->Size = System::Drawing::Size(687, 338);
+	textBox->Size = System::Drawing::Size(725, 410);
 	textBox->TabIndex = 4;
 	//textBox->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox2_TextChanged);
 	textBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
@@ -32,7 +32,7 @@ void TextBoxTraceListener::init(void){
 	form->SuspendLayout();
 
 	myDelegate = gcnew SetTextCallback( this, &TextBoxTraceListener::SetText );
-
+	form->Resize += gcnew System::EventHandler(this, &TextBoxTraceListener::Form_Resize);
 	//form->ShowDialog();
 	//Application::Run(form);
 	form->Visible=true;
@@ -95,4 +95,9 @@ void TextBoxTraceListener::SetText(String ^text)
 	}
 	textBox->SelectionStart = textBox->Text->Length;
 	textBox->ScrollToCaret();
+}
+
+void TextBoxTraceListener::Form_Resize(System::Object^  sender, System::EventArgs^  e) {
+
+	textBox->Size= System::Drawing::Size(form->Width-30,form->Height-50);
 }

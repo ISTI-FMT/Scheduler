@@ -8,9 +8,9 @@ using namespace  System;
 
 ref class TextBoxTraceListener :TextWriterTraceListener
 {
-    System::Windows::Forms::TextBox^  textBox;
+	System::Windows::Forms::TextBox^  textBox;
 	System::Windows::Forms::Form ^  form;
-
+	void Form_Resize(System::Object^  sender, System::EventArgs^  e);
 public:
 	TextBoxTraceListener(void): TextWriterTraceListener(){init();};
 
@@ -24,5 +24,6 @@ public:
 	delegate void SetTextCallback(String ^text);
 	SetTextCallback^ myDelegate;
 	void SetText(String ^text);
+
 };
 

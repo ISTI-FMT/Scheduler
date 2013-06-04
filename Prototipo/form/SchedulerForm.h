@@ -1,7 +1,7 @@
 #pragma once
 #include "..\\tabellaOrario\\TabellaOrario.h"
 #using <System.dll>
-#include "..\\utility.h"
+#include "..\\messaggi\pacchettoCommandData.h"
 
 #include "..\\phisicalTrainList.h"
 #include "..\\threads\\ThreadListenerATC_IXL.h"
@@ -12,6 +12,10 @@
 #include "..\\logger\\Logger.h"
 #include "..\\Itinerari\\tabellaItinerari.h"
 #include "..\\Itinerari\\tabellaFermate.h"
+#include "..\\scheduler\\ManagerStatoLineaATC.h"
+#include "..\\scheduler\\ManagerStatoLineaIXL.h"
+#include "..\\scheduler\\ManagerMsgATO.h"
+#include "..\\EventQueue.h"
 
 #define TRACE
 namespace Prototipo {
@@ -37,11 +41,12 @@ namespace Prototipo {
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
-			tabella  = gcnew TabellaOrario;
-			tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 
 			tb = gcnew tabellaItinerari();
 			tb->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
+
+			tabella  = gcnew TabellaOrario(tb);
+			tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
 
 			tabfermate=gcnew tabellaFermate();
 			tabfermate->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
@@ -51,19 +56,31 @@ namespace Prototipo {
 
 			listaTreni = gcnew phisicalTrainList();
 
+			ManagerMsgATO ^manaStateATO = gcnew ManagerMsgATO();
 
-			ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni);
+			ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni,manaStateATO);
+
 
 
 			oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
 
 			oThread2->Start();
 
-			oThread1 = gcnew Thread( gcnew ThreadStart( &ThreadListenerATC_IXL::UDP_Management_receive ) );
+			ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
+			ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
+
+		
+			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
+
+			oThread1 = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
 
 			oThread1->Start();
+			EventQueue ^EventQ = gcnew EventQueue();
+			
 
-
+			EventQ->Subscribe(manaStateIXL);
+			EventQ->Subscribe(manaStateATC);
+			EventQ->Subscribe(manaStateATO);
 		}
 	protected:
 		/// <summary>
@@ -178,6 +195,10 @@ namespace Prototipo {
 			 void TCP_Management()
 			 {
 				 phisicalTrain ^Treno = listaTreni->getPrimo();
+				 const int WAKE_UP = 0;
+				 const int CHANGE_GOA_LEVEL = 3;
+				 const int TRN = 4;
+				 const int SLEEP = 7;
 				 try
 				 {
 
@@ -488,6 +509,7 @@ namespace Prototipo {
 
 
 					 form->Visible=true;
+
 				 }
 
 			 }
@@ -570,6 +592,7 @@ namespace Prototipo {
 
 
 					 form->Visible=true;
+
 				 }
 
 			 }

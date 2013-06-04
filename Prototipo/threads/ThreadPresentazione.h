@@ -1,6 +1,8 @@
 #pragma once
 #include "..\\phisicalTrainList.h"
 #include "..\\messaggi\\struttureDatiMessaggi.h"
+#include "..\\scheduler\\ManagerMsgATO.h"
+
 #using <System.dll>
 using namespace System;
 
@@ -13,10 +15,11 @@ ref class ThreadPresentazione
 {
 private:
 	 phisicalTrainList ^listaTreni;
+	 ManagerMsgATO ^ManaMsgATO;
 public:
 	
 	ThreadPresentazione();
-	ThreadPresentazione(phisicalTrainList ^lt);
+	ThreadPresentazione(phisicalTrainList ^lt, ManagerMsgATO ^MA);
 	void TCP_Management_receive();
 	
 };

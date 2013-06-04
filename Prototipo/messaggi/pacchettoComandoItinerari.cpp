@@ -1,12 +1,12 @@
 #include "pacchettoComandoItinerari.h"
-#include "..\\utility.h"
+#include "utility.h"
 
 pacchettoComandoItinerari::pacchettoComandoItinerari(void)
 {
-	data.NID_PACKET = 0;
-	data.L_PACKET = 0;
-	data.NID_ITIN = 0;
-	data.Q_CMDITIN = 0;
+	NID_PACKET = 0;
+	L_PACKET = 0;
+	NID_ITIN = 0;
+	Q_CMDITIN = 0;
 }
 
 // funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
@@ -19,18 +19,18 @@ int pacchettoComandoItinerari::getSize()
 
 void pacchettoComandoItinerari::serialize(byte *buffer)
 {
-	push(buffer, data.NID_PACKET, 8, 51);
+	push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
-	push(buffer, data.L_PACKET, 13, 59);
-	push(buffer, data.NID_ITIN, 32, 72);
-	push(buffer, data.Q_CMDITIN, 2, 104);}
+	push(buffer, L_PACKET, 13, 59);
+	push(buffer, NID_ITIN, 32, 72);
+	push(buffer, Q_CMDITIN, 2, 104);}
 
 void pacchettoComandoItinerari::deserialize(byte *buffer)
 {
-	data.NID_PACKET=pop(buffer,  8, 51);
-	data.L_PACKET=pop(buffer, 13, 59);
-	data.NID_ITIN=pop(buffer, 32, 72);
-	data.Q_CMDITIN=pop(buffer, 2, 104);
+	NID_PACKET=pop(buffer,  8, 51);
+	L_PACKET=pop(buffer, 13, 59);
+	NID_ITIN=pop(buffer, 32, 72);
+	Q_CMDITIN=pop(buffer, 2, 104);
 }
 
 pacchettoComandoItinerari::~pacchettoComandoItinerari(void)
@@ -38,11 +38,11 @@ pacchettoComandoItinerari::~pacchettoComandoItinerari(void)
 }
 
 System::String ^pacchettoComandoItinerari::ToString(){
-		System::String ^out;
+	System::String ^out;
 
-	out = out+"NID_PACKET: "+data.NID_PACKET+";";
-	out = out+"L_PACKET: "+data.L_PACKET+";";
-	out = out+"NID_ITIN: "+data.NID_ITIN+";";
-	out = out+"Q_CMDITIN: "+data.Q_CMDITIN+";";
-	 return out;
+	out = out+"NID_PACKET: "+NID_PACKET+";";
+	out = out+"L_PACKET: "+L_PACKET+";";
+	out = out+"NID_ITIN: "+NID_ITIN+";";
+	out = out+"Q_CMDITIN: "+Q_CMDITIN+";";
+	return out;
 }

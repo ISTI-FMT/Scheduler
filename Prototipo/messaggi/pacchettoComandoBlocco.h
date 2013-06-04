@@ -1,25 +1,28 @@
 #pragma once
-#include "struttureDatiMessaggi.h"
+#include "utility.h"
 
 /*-----------------------------------------------------------------------------------------------
 Alessio:
 L'ATS invia all'IXl messaggi contenenti comandi sui blocchi
 -------------------------------------------------------------------------------------------------*/
 
-class pacchettoComandoBlocco
+ref class pacchettoComandoBlocco
 {
-	ComandoBlocco data;
+	unsigned int NID_PACKET ;
+	unsigned int L_PACKET ;
+	unsigned int NID_BLOCCO ;
+	unsigned int Q_CMDBLOCCO ;
 public:
 	pacchettoComandoBlocco(void);
 
-	void setNID_PACKET(int N){data.NID_PACKET = N;};
-	int getNID_PACKET(){return data.NID_PACKET;};
-	void setL_PACKET(int L){data.L_PACKET = L;};
-	int getL_PACKET(){return data.L_PACKET;};
-	void setNID_BLOCCO(int N){data.NID_BLOCCO = N;};
-	int getNID_BLOCCO(){return data.NID_BLOCCO;};
-	void setQ_CMDBLOCCO(int Q){data.Q_CMDBLOCCO = Q;};
-	int getQ_CMDBLOCCO(){return data.Q_CMDBLOCCO;};
+	void setNID_PACKET(int N){NID_PACKET = N;};
+	int getNID_PACKET(){return NID_PACKET;};
+	void setL_PACKET(int L){L_PACKET = L;};
+	int getL_PACKET(){return L_PACKET;};
+	void setNID_BLOCCO(int N){NID_BLOCCO = N;};
+	int getNID_BLOCCO(){return NID_BLOCCO;};
+	void setQ_CMDBLOCCO(int Q){Q_CMDBLOCCO = Q;};
+	int getQ_CMDBLOCCO(){return Q_CMDBLOCCO;};
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
@@ -30,6 +33,6 @@ public:
 
 	~pacchettoComandoBlocco(void);
 
-	System::String ^ToString();
+	virtual System::String ^ToString() override;
 };
 

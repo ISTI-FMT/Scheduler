@@ -1,62 +1,23 @@
 #include "pacchettoStatoItinerario.h"
-#include "..\\utility.h"
+#include "utility.h"
 
 pacchettoStatoItinerario::pacchettoStatoItinerario(void)
 {
-	data.NID_PACKET = 0;
-	data.L_PACKET = 0;
-	data.statoItinerario.NID_ITIN = 0;
-	data.statoItinerario.Q_STATOITIN = 0;
-	data.N_ITER = 0;
-	data.vStatoItinerario = nullptr;
+	NID_PACKET = 0;
+	L_PACKET = 0;
+	statoItinerario = gcnew StateItinerario();
+	N_ITER = 0;
+	vStatoItinerario = gcnew List<StateItinerario^>();
 }
 
 // metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
 void pacchettoStatoItinerario::setN_ITER(int N)
 {
-	data.N_ITER = N;
-	data.vStatoItinerario = new itinerario[N];
-	for(int i = 0; i < N; ++i)
-	{
-		data.vStatoItinerario[i].NID_ITIN = 0;
-		data.vStatoItinerario[i].Q_STATOITIN = 0;
-	}
+	N_ITER = N;
+
 }
 
-// in questi metodi index rappresenta l'indice dell'itinerario di cui si vogliono leggere/scrivere le caratteristiche
-// se index è 0, il metodo modificherà i dati relativi al primo itinerario, altrimenti modificherà i dati 
-// relativi agli altri itinerari.
-void pacchettoStatoItinerario::setNID_ITIN(int index, int N)
-{
-	if(index == 0)
-		data.statoItinerario.NID_ITIN = N;
-	else
-		data.vStatoItinerario[index - 1].NID_ITIN = N;
-}
 
-int pacchettoStatoItinerario::getNID_ITIN(int index)
-{
-	if(index == 0)
-		return data.statoItinerario.NID_ITIN;
-	else
-		return data.vStatoItinerario[index - 1].NID_ITIN;
-}
-
-void pacchettoStatoItinerario::setQ_STATOITIN(int index, int Q)
-{
-	if(index == 0)
-		data.statoItinerario.Q_STATOITIN = Q;
-	else
-		data.vStatoItinerario[index - 1].Q_STATOITIN = Q;
-}
-
-int pacchettoStatoItinerario::getQ_STATOITIN(int index)
-{
-	if(index == 0)
-		return data.statoItinerario.Q_STATOITIN;
-	else
-		return data.vStatoItinerario[index - 1].Q_STATOITIN;
-}
 
 // funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 // fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
@@ -65,72 +26,69 @@ int pacchettoStatoItinerario::getSize()
 {
 	// intero che rappresenta la dimensione in bit
 	int size = 0;
-	
+
 	// 38 per la parte fissa
 	size += 71;
 	// 12 bit per ogni N_ITER
-	size += 34 * data.N_ITER;
+	size += 34 * N_ITER;
 
 	return size;
 }
 
+
 void pacchettoStatoItinerario::serialize(byte *buffer, int offset)
 {
-	push(buffer, data.NID_PACKET, 8, offset);
+	push(buffer, NID_PACKET, 8, offset);
 	setL_PACKET(getSize());
-	push(buffer, data.L_PACKET, 13, offset + 8);
-	push(buffer, data.statoItinerario.NID_ITIN, 32, offset + 21);
-	push(buffer, data.statoItinerario.Q_STATOITIN, 2, offset + 53);
-	push(buffer, data.N_ITER, 16, offset + 55);
-	//data.mS1_vect = new missionStruct1[data.N_ITER1];
+	push(buffer, L_PACKET, 13, offset + 8);
+	push(buffer, statoItinerario->getNID_ITIN(), 32, offset + 21);
+	push(buffer, statoItinerario->getQ_STATOITIN(), 2, offset + 53);
+	push(buffer, N_ITER, 16, offset + 55);
+	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
-	for(unsigned int i = 0; i < data.N_ITER; ++i)
+	for each (StateItinerario^ var in vStatoItinerario)
 	{
-		push(buffer, data.vStatoItinerario[i].NID_ITIN, 32, offset + shift);
+		push(buffer, var->getNID_ITIN(), 32, offset + shift);
 		shift += 32;
-		push(buffer, data.vStatoItinerario[i].Q_STATOITIN, 2, offset + shift);
+		push(buffer, var->getQ_STATOITIN(), 2, offset + shift);
 		shift += 2;
 	}
 }
 
 void pacchettoStatoItinerario::deserialize(byte *buffer, int offset)
 {
-	
-	data.NID_PACKET=pop(buffer,  8, offset);
-	data.L_PACKET=pop(buffer, 13, offset + 8);
-	data.statoItinerario.NID_ITIN=pop(buffer, 32, offset + 21);
-	data.statoItinerario.Q_STATOITIN=pop(buffer, 2, offset + 53);
+
+	NID_PACKET=pop(buffer,  8, offset);
+	L_PACKET=pop(buffer, 13, offset + 8);
+	statoItinerario->setNID_ITIN(pop(buffer, 32, offset + 21));
+	statoItinerario->setQ_STATOITIN(pop(buffer, 2, offset + 53));
 	setN_ITER(pop(buffer, 16, offset + 55));
 	int shift = 71;
-	for(unsigned int i = 0; i < data.N_ITER; ++i)
+	for(unsigned int i = 0; i < N_ITER; ++i)
 	{
-		data.vStatoItinerario[i].NID_ITIN=pop(buffer, 32, offset + shift);
+		int NID_ITIN=pop(buffer, 32, offset + shift);
 		shift += 32;
-		data.vStatoItinerario[i].Q_STATOITIN=pop(buffer, 2, offset + shift);
+		int Q_STATOITIN=pop(buffer, 2, offset + shift);
 		shift += 2;
+		vStatoItinerario->Add(gcnew StateItinerario(NID_ITIN,Q_STATOITIN));
 	}
 }
 
-pacchettoStatoItinerario::~pacchettoStatoItinerario(void)
-{
-	delete [] data.vStatoItinerario;
-}
+
 
 
 System::String ^pacchettoStatoItinerario::ToString(){
-		System::String ^out;
+	System::String ^out;
 
-	out = out+"NID_PACKET: "+data.NID_PACKET+";";
-	out = out+"L_PACKET: "+data.L_PACKET+";";
-	out = out+"NID_ITIN: "+data.statoItinerario.NID_ITIN+";";
-	out = out+"Q_STATOITIN: "+data.statoItinerario.Q_STATOITIN+";";
-	out = out+"N_ITER: "+data.N_ITER+";";
-	if(data.vStatoItinerario){
-			for(unsigned int i=0;i<data.N_ITER;i++){
-				out = out+"NID_ITIN: "+data.vStatoItinerario[i].NID_ITIN+";";
-				out = out+"Q_STATOITIN: "+data.vStatoItinerario[i].Q_STATOITIN+";";
-
-			}
+	out = out+"NID_PACKET: "+NID_PACKET+";";
+	out = out+"L_PACKET: "+L_PACKET+";";
+	out = out+statoItinerario->ToString();
+	out = out+"N_ITER: "+N_ITER+";";
+	if(vStatoItinerario){
+		for each (StateItinerario ^var in vStatoItinerario)
+		{
+			out = out+var->ToString();
 		}
-	 return out;
+	}
+	return out;
 }

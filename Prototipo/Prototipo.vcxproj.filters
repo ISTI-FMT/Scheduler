@@ -98,9 +98,6 @@
     <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="utility.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="logger\Logger.h">
       <Filter>File di intestazione\logger</Filter>
     </ClInclude>
@@ -155,16 +152,46 @@
     <ClInclude Include="Itinerari\tabellaFermate.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
-    <ClInclude Include="scheduler\ItinerarioIXL.h">
+    <ClInclude Include="messaggi\utility.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\ProfiloVelocita.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\Mission.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\Fault.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="EventQueue.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\StateBlocco.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\StateCDB.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\StateItinerario.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\StateScudetti.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\StateSegnale.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler\ManagerStatoLineaIXL.h">
       <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
-    <ClInclude Include="scheduler\ManagerItinerarioIXL.h">
+    <ClInclude Include="scheduler\ManagerStatoLineaATC.h">
       <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
-    <ClInclude Include="scheduler\CDBIXL.h">
-      <Filter>File di intestazione\scheduler</Filter>
-    </ClInclude>
-    <ClInclude Include="scheduler\ManagerCDBIXL.h">
+    <ClInclude Include="scheduler\ManagerMsgATO.h">
       <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
   </ItemGroup>
@@ -206,9 +233,6 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="phisicalTrainList.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="utility.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="logger\Logger.cpp">
@@ -265,16 +289,46 @@
     <ClCompile Include="Itinerari\tabellaFermate.cpp">
       <Filter>File di origine\itinerari</Filter>
     </ClCompile>
-    <ClCompile Include="scheduler\ItinerarioIXL.cpp">
+    <ClCompile Include="messaggi\utility.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\ProfiloVelocita.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\Mission.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\Fault.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="EventQueue.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\StateSegnale.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\StateScudetti.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\StateItinerario.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\StateCDB.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\StateBlocco.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\ManagerStatoLineaIXL.cpp">
       <Filter>File di origine\scheduler</Filter>
     </ClCompile>
-    <ClCompile Include="scheduler\ManagerItinerarioIXL.cpp">
+    <ClCompile Include="scheduler\ManagerStatoLineaATC.cpp">
       <Filter>File di origine\scheduler</Filter>
     </ClCompile>
-    <ClCompile Include="scheduler\CDBIXL.cpp">
-      <Filter>File di origine\scheduler</Filter>
-    </ClCompile>
-    <ClCompile Include="scheduler\ManagerCDBIXL.cpp">
+    <ClCompile Include="scheduler\ManagerMsgATO.cpp">
       <Filter>File di origine\scheduler</Filter>
     </ClCompile>
   </ItemGroup>

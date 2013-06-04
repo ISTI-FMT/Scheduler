@@ -1,7 +1,6 @@
 #include "ThreadPresentazione.h"
 #using <System.dll>
 #include "..\\messaggi\\Messaggi.h"
-#include "..\\utility.h"
 #include "..\\phisicalTrainList.h"
 
 
@@ -24,11 +23,11 @@ ThreadPresentazione::ThreadPresentazione()
 
 }
 
-ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt)
+ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt,  ManagerMsgATO ^MA)
 	// :listaTreni(lt)
 {
 	listaTreni=lt;
-
+	 ManaMsgATO=MA;
 }
 
 void  ThreadPresentazione::TCP_Management_receive(){
@@ -94,6 +93,8 @@ void  ThreadPresentazione::TCP_Management_receive(){
 			treno->setIpAddress((((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
 			// aggiungo il treno alla lista dei treni fisici
 			listaTreni->setMapTreni(treno);
+
+			 ManaMsgATO->addCheckAndSet(treno, "ATO");
 
 
 			String ^stringip = gcnew String(treno->getIpAddress());
