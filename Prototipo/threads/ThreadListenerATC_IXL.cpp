@@ -18,9 +18,9 @@ using namespace System::Threading::Tasks;
 
 }*/
 
-ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC){
+ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerStatoLineaATC ^MA ){
 	ManStatoLineaIXL=MC;
-	
+	ManStatoLineaATC=MA;
 	isMessageReceived=false;
 }
 
@@ -59,7 +59,12 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	switch (pkt1->getNID_MESSAGE())
 	{
-	case 1: {break;}
+	case 1: {
+		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoStatoLineaATC()->getfirstCDB(),"ATC");
+		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoStatoLineaATC()->getlastCDB(),"ATC");
+		break;
+
+			}
 	case 101: {
 
 		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getfirstCDB(),"IXL");
@@ -67,8 +72,8 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getfirstItinerario(),"IXL");
 		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getlastItinerario(),"IXL");
 		break;
-	 }
-			  
+			  }
+
 	default:
 		break;
 	}

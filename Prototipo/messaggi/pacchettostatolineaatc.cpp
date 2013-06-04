@@ -141,6 +141,7 @@ void pacchettostatolineaatc::deserialize(byte *buffer)
 	pstato->setNID_CDB(pop(buffer, 32, 104));
 	pstato->setQ_STATOCDB(pop(buffer, 2, 136));
 	pstato->setQ_DEVIATOIO(pop(buffer, 2, 138));
+	pstato->setNID_OPERATIONAL(NID_OPERATIONAL);
 	setN_ITER(pop(buffer, 5, 140));
 	int offset = 145;
 	if(pstato1){
@@ -153,7 +154,7 @@ void pacchettostatolineaatc::deserialize(byte *buffer)
 			int Q_DEVIATOIO=pop(buffer, 2, offset);
 			offset += 2;
 			
-			pstato1->Add(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO));
+			pstato1->Add(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO,NID_OPERATIONAL));
 		}
 
 	}

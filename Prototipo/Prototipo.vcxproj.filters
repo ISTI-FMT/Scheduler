@@ -188,6 +188,9 @@
     <ClInclude Include="scheduler\ManagerStatoLineaIXL.h">
       <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
+    <ClInclude Include="scheduler\ManagerStatoLineaATC.h">
+      <Filter>File di intestazione\scheduler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -317,6 +320,9 @@
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
     <ClCompile Include="scheduler\ManagerStatoLineaIXL.cpp">
+      <Filter>File di origine\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler\ManagerStatoLineaATC.cpp">
       <Filter>File di origine\scheduler</Filter>
     </ClCompile>
   </ItemGroup>

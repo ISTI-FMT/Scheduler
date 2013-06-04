@@ -10,6 +10,7 @@ ref class StateCDB
 public:
 	StateCDB(void);
 	StateCDB(int nid, int state, int dev);
+	StateCDB(int nid, int state,  int dev, int idtrain);
 	void setNID_CDB(int NID){NID_CDB=NID;};
 	int getNID_CDB(){return NID_CDB;};
 	void setQ_DEVIATOIO(int Q){
@@ -37,7 +38,7 @@ public:
 
 	int Size(){return 32+2+2;}
 
-	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO);}
+	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO,NID_OPERATIONAL);}
 
 	virtual System::String ^ToString() override;
 };

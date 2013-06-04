@@ -12,7 +12,7 @@
 #include "..\\logger\\Logger.h"
 #include "..\\Itinerari\\tabellaItinerari.h"
 #include "..\\Itinerari\\tabellaFermate.h"
-
+#include "..\\scheduler\\ManagerStatoLineaATC.h"
 #include "..\\scheduler\\ManagerStatoLineaIXL.h"
 #include "..\\EventQueue.h"
 
@@ -65,16 +65,18 @@ namespace Prototipo {
 			oThread2->Start();
 
 			ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
+			ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
 		
-			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL);
+			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
 
 			oThread1 = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
 
 			oThread1->Start();
 			EventQueue ^EventQ = gcnew EventQueue();
 			
+
 			EventQ->Subscribe(manaStateIXL);
-			//EventQ->Subscribe(manaCDBIXL);
+			EventQ->Subscribe(manaStateATC);
 		}
 	protected:
 		/// <summary>
