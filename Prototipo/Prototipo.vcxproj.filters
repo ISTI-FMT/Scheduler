@@ -194,6 +194,15 @@
     <ClInclude Include="scheduler\ManagerMsgATO.h">
       <Filter>File di intestazione\scheduler</Filter>
     </ClInclude>
+    <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h">
+      <Filter>File di intestazione\tabellaOrario</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\FormVisualizzeConfFermate.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="Itinerari\FormVisualizzeConfItine.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -330,6 +339,15 @@
     </ClCompile>
     <ClCompile Include="scheduler\ManagerMsgATO.cpp">
       <Filter>File di origine\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="tabellaOrario\FormVisualizzeTabOrario.cpp">
+      <Filter>File di origine\tabellaOrario</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\FormVisualizzeConfFermate.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="Itinerari\FormVisualizzeConfItine.cpp">
+      <Filter>File di origine\itinerari</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

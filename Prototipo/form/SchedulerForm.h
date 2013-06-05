@@ -2,7 +2,9 @@
 #include "..\\tabellaOrario\\TabellaOrario.h"
 #using <System.dll>
 #include "..\\messaggi\pacchettoCommandData.h"
-
+#include "..\\tabellaOrario\\FormVisualizzeTabOrario.h"
+#include "..\\Itinerari\\FormVisualizzeConfItine.h"
+#include "..\\Itinerari\\FormVisualizzeConfFermate.h"
 #include "..\\phisicalTrainList.h"
 #include "..\\threads\\ThreadListenerATC_IXL.h"
 #include <iostream>
@@ -69,14 +71,14 @@ namespace Prototipo {
 			ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
 			ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
 
-		
+
 			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
 
 			oThread1 = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
 
 			oThread1->Start();
 			EventQueue ^EventQ = gcnew EventQueue();
-			
+
 
 			EventQ->Subscribe(manaStateIXL);
 			EventQ->Subscribe(manaStateATC);
@@ -347,73 +349,8 @@ namespace Prototipo {
 				 if(tabella->get_TabellaOrario()->Count<1){
 					 MessageBox::Show("Tabella Orario Vuota");
 				 }else{
-
-					 System::Windows::Forms::Form ^  form;
-					 System::Windows::Forms::DataGridView^  dataGridView1;
-					 dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-					 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(dataGridView1))->BeginInit();
-					 dataGridView1->AccessibleName = L"datagrid";
-					 dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::AllCells;
-					 dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
-					 dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-					 dataGridView1->Location = System::Drawing::Point(12, 12);
-					 dataGridView1->Name = L"dataGridView1";
-					 dataGridView1->Size = System::Drawing::Size(890, 344);
-					 dataGridView1->TabIndex = 8;
-
-					 form = gcnew Form();
-					 form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-					 form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-					 form->ClientSize = System::Drawing::Size(915, 415);
-					 form->Controls->Add(dataGridView1);
-					 form->Name = L"Tabella Orario";
-					 form->Text = L"Tabella Orario";
-					 form->ResumeLayout(false);
-					 form->PerformLayout();
-					 form->SuspendLayout();
-
-					 dataGridView1->ColumnCount = 10;
-					 dataGridView1->RowCount = tabella->get_TabellaOrario()->Count*8;
-					 int colonna=0;
-					 int riga=0;
-					 dataGridView1->Columns[ 0 ]->Name = "Id_Treno";
-					 dataGridView1->Columns[ 1 ]->Name = "Nome Stazione";
-					 dataGridView1->Columns[ 2 ]->Name = "id Stazione";
-					 dataGridView1->Columns[ 3 ]->Name = "Orario Arrivo";
-					 dataGridView1->Columns[ 4 ]->Name = "Orario Partenza";
-					 dataGridView1->Columns[ 5 ]->Name = "BinProg";
-					 dataGridView1->Columns[ 6 ]->Name = "TempoMAPorte";
-					 dataGridView1->Columns[ 7 ]->Name = "LatoAPorte";
-					 dataGridView1->Columns[ 8 ]->Name = "It Entrata";
-					 dataGridView1->Columns[ 9 ]->Name = "It Uscita";
-
-					 for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella->get_TabellaOrario() )
-					 {
-
-						 String ^po=kvp.Key+"\n\r";
-						 dataGridView1->Rows[riga]->Cells[0]->Value=po;
-
-
-						 for each (Fermata ^dvar in kvp.Value)
-						 { 
-							 dataGridView1->Rows[riga]->Cells[1]->Value=dvar->getnameStazione();
-							 dataGridView1->Rows[riga]->Cells[2]->Value=dvar->getIdStazione();
-							 TimeSpan Arrivo = TimeSpan::FromSeconds(dvar->getOrarioArrivo()*30);
-							 dataGridView1->Rows[riga]->Cells[3]->Value= Arrivo.ToString();
-							 TimeSpan Partenza = TimeSpan::FromSeconds(dvar->getOrarioPartenza()*30);
-							 dataGridView1->Rows[riga]->Cells[4]->Value=Partenza.ToString();
-							 dataGridView1->Rows[riga]->Cells[5]->Value=dvar->getBinarioProgrammato();
-							 dataGridView1->Rows[riga]->Cells[6]->Value=dvar->gettempoMinimoAperturaPorte();
-							 dataGridView1->Rows[riga]->Cells[7]->Value=dvar->getLatoAperturaPorte();
-							 dataGridView1->Rows[riga]->Cells[8]->Value=dvar->getnameitinerarioEntrata();
-							 dataGridView1->Rows[riga]->Cells[9]->Value=dvar->getnameitinerarioUscita();
-							 riga++;
-						 }
-
-					 }
-
-
-					 form->Visible=true;
+					 FormVisualizzeTabOrario ^formtb= gcnew FormVisualizzeTabOrario(tabella);
+					 formtb->Visible=true;
 				 }
 
 			 }
@@ -421,94 +358,9 @@ namespace Prototipo {
 				 if(tb->getMap()->Count<1){
 					 MessageBox::Show("Tabella Conf Itinirari Vuota");
 				 }else{
-					 System::Windows::Forms::Form ^  form;
-					 System::Windows::Forms::DataGridView^  dataGridView1;
-					 dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-					 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(dataGridView1))->BeginInit();
-					 dataGridView1->AccessibleName = L"datagridit";
-					 dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::AllCells;
-					 dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
-					 dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-					 dataGridView1->Location = System::Drawing::Point(12, 12);
-					 dataGridView1->Name = L"dataGridViewit";
-					 dataGridView1->Size = System::Drawing::Size(810, 360);
-					 dataGridView1->TabIndex = 18;
-
-					 form = gcnew Form();
-					 form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-					 form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-					 form->ClientSize = System::Drawing::Size(830, 415);
-					 form->Controls->Add(dataGridView1);
-					 form->Name = L"Tabella Configurazione Itinerari";
-					 form->Text = L"Tabella Configurazione Itinerari";
-					 form->ResumeLayout(false);
-					 form->PerformLayout();
-					 form->SuspendLayout();
-
-					 dataGridView1->ColumnCount = 12;
-					 dataGridView1->RowCount = 410;
-					 int colonna=0;
-					 int riga=0;
-					 dataGridView1->Columns[ 0 ]->Name = "offset";
-					 // dataGridView1->Columns[ 1 ]->Name = "offset";
-					 dataGridView1->Columns[ 1 ]->Name = "Nome Stazione";
-					 dataGridView1->Columns[ 2 ]->Name = "prevCDB";
-					 dataGridView1->Columns[ 3 ]->Name = "Id It";
-					 dataGridView1->Columns[ 4 ]->Name = "Nome It";
-					 dataGridView1->Columns[ 5 ]->Name = "LRGB";
-					 dataGridView1->Columns[ 6 ]->Name = "DSTOP";
-					 dataGridView1->Columns[ 7 ]->Name = "Dir";
-					 dataGridView1->Columns[ 8 ]->Name = "nextCDB";
-					 //  dataGridView1->Columns[ 10 ]->Name = "prevCDB";
-					 dataGridView1->Columns[ 9]->Name = "PB";
-					 dataGridView1->Columns[ 10]->Name = "NS";
-					 dataGridView1->Columns[ 11 ]->Name = "L_CDB";
-
-					 for each( KeyValuePair<int , stazione^> kvp in tb->getMap() )
-					 {
-
-						 String ^po=kvp.Key+"\n\r";
-						 dataGridView1->Rows[riga]->Cells[0]->Value=po;
-
-						 stazione ^station =kvp.Value;
-						 // dataGridView1->Rows[riga]->Cells[1]->Value= station->get_idStazione();
-						 dataGridView1->Rows[riga]->Cells[1]->Value= station->get_NomeStazione();
-
-						 for each (KeyValuePair<String^,List<Itinerario^>^> ^ikvp in station->getItinerari())
-						 {
-
-							 dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->Key;
-							 List<Itinerario^>^listitn = ikvp->Value;
-							 for each (Itinerario ^itvar in listitn)
-							 {
-								 dataGridView1->Rows[riga]->Cells[3]->Value=itvar->getId();
-								 dataGridView1->Rows[riga]->Cells[4]->Value=itvar->getName();
-								 dataGridView1->Rows[riga]->Cells[5]->Value=itvar->getLrgb();
-								 dataGridView1->Rows[riga]->Cells[6]->Value=itvar->getDStop();
-								 dataGridView1->Rows[riga]->Cells[7]->Value=itvar->getLatoBanchina();
-								 dataGridView1->Rows[riga]->Cells[8]->Value=itvar->getNextCDB();
-								 //	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
-								 dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
-								 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->get_nextstation();
-								 List<int> ^cdb = itvar->getLCDB();
-								 for each (int cdbvar in cdb)
-								 {
-									 if(cdbvar){
-										 dataGridView1->Rows[riga]->Cells[11]->Value=cdbvar;
-									 }
-									 riga++;
-								 }
-
-
-							 }
-
-
-						 }
-
-					 }
-
-
-					 form->Visible=true;
+					
+					 FormVisualizzeConfItine ^formCI = gcnew FormVisualizzeConfItine(tb);
+					 formCI->Visible=true;
 
 				 }
 
@@ -518,80 +370,9 @@ namespace Prototipo {
 				 if(tabfermate->getTabFermate()->Count<1){
 					 MessageBox::Show("Tabella Conf Fermate Vuota");
 				 }else{
-					 System::Windows::Forms::Form ^  form;
-					 System::Windows::Forms::DataGridView^  dataGridView1;
-					 dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-					 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(dataGridView1))->BeginInit();
-					 dataGridView1->AccessibleName = L"datagridit";
-					 dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::AllCells;
-					 dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
-					 dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-					 dataGridView1->Location = System::Drawing::Point(12, 12);
-					 dataGridView1->Name = L"dataGridViewit";
-					 dataGridView1->Size = System::Drawing::Size(810, 360);
-					 dataGridView1->TabIndex = 18;
+					 FormVisualizzeConfFermate ^formCF = gcnew FormVisualizzeConfFermate(tabfermate);
 
-					 form = gcnew Form();
-					 form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-					 form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-					 form->ClientSize = System::Drawing::Size(830, 415);
-					 form->Controls->Add(dataGridView1);
-					 form->Name = L"Tabella Configurazione Fermata";
-					 form->Text = L"Tabella Configurazione Fermata";
-					 form->ResumeLayout(false);
-					 form->PerformLayout();
-					 form->SuspendLayout();
-
-					 dataGridView1->ColumnCount = 11;
-					 dataGridView1->RowCount = 15;
-					 int colonna=0;
-					 int riga=0;
-
-					 dataGridView1->Columns[ 0 ]->Name = "Nome Fermata";				
-					 dataGridView1->Columns[ 1 ]->Name = "Nome Binario";
-					 dataGridView1->Columns[ 2 ]->Name = "Binario";
-					 dataGridView1->Columns[ 3 ]->Name = "Direzione";
-					 dataGridView1->Columns[ 4 ]->Name = "NID_LRGB";
-					 dataGridView1->Columns[ 5 ]->Name = "DSTOP";
-					 dataGridView1->Columns[ 6 ]->Name = "PB";
-					 dataGridView1->Columns[ 7 ]->Name = "LB";
-					 dataGridView1->Columns[ 8 ]->Name = "nextCDB";
-
-					 dataGridView1->Columns[ 9]->Name = "prevCDB";
-					 dataGridView1->Columns[ 10]->Name = "CDB";
-
-
-					 for each( KeyValuePair<String^ ,  List<binario^> ^> ^kvp in tabfermate->getTabFermate() )
-					 {
-
-						 String ^po=kvp->Key+"\n\r";
-						 dataGridView1->Rows[riga]->Cells[0]->Value=po;
-
-						 List<binario^> ^binari =kvp->Value;
-
-						 for each (binario^ ikvp in binari)
-						 {	
-							 dataGridView1->Rows[riga]->Cells[1]->Value= ikvp->getNameBin();
-							 dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->getBin();
-							 dataGridView1->Rows[riga]->Cells[3]->Value=ikvp->getDirezione();
-							 dataGridView1->Rows[riga]->Cells[4]->Value=ikvp->getNid_lrgb();
-							 dataGridView1->Rows[riga]->Cells[5]->Value=ikvp->getD_stop();
-							 dataGridView1->Rows[riga]->Cells[6]->Value=ikvp->getPorteBanchina();
-							 dataGridView1->Rows[riga]->Cells[7]->Value=ikvp->getLatoBanchina();
-							 dataGridView1->Rows[riga]->Cells[8]->Value=ikvp->getNextCDB();
-							 //	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
-							 dataGridView1->Rows[riga]->Cells[9]->Value=ikvp->getPrevCDB();
-							 dataGridView1->Rows[riga]->Cells[10]->Value=ikvp->getCDB ();
-
-
-							 riga++;
-
-						 }
-
-					 }
-
-
-					 form->Visible=true;
+					 formCF->Visible=true;
 
 				 }
 

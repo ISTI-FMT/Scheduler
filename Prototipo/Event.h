@@ -20,9 +20,9 @@ public:
 	void setEvent(StateItinerario ^vv){sITI=vv;};
 	void setEvent(phisicalTrain ^vv){lTrain=vv;};
 	
-	StateItinerario ^getEvent(StateItinerario^){return sITI;};
-	StateCDB ^getEvent(StateCDB ^vv){return sCDB;};
-	phisicalTrain ^getEvent(phisicalTrain ^vv){return lTrain;};
+	StateItinerario ^getEventStateItinerario(){return sITI;};
+	StateCDB ^getEventStateCDB(){return sCDB;};
+	phisicalTrain ^getEventPresentTrain(){return lTrain;};
 
 	void setSource(String ^v){source=v;}
 	String ^getSource(){return source;}
