@@ -5,20 +5,27 @@
 #include "tabellaOrario\\TabellaOrario.h"
 #include "Itinerari\\tabellaItinerari.h"
 #include "logger\\Logger.h"
+#include "mapTrenoFisicoLogico.h"
+#include "messaggi\\Messaggi.h"
 
 
 using namespace System;
 
+using namespace System::Collections::Concurrent;
 
 ref class ThreadSchedule
 {
-	EventQueue ^EQueue;
+	EventQueue ^EQueueIXL;
+	EventQueue ^EQueueATO;
+	EventQueue ^EQueueATC;
 	TabellaOrario ^tabOrario;
 	tabellaItinerari ^tabItinerari;
+	mapTrenoFisicoLogico ^mapTrenoLogFisico;
 public:
-	ThreadSchedule(EventQueue ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi);
+	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno );
 
 	void SimpleSchedule();
 	void Init();
+	bool SendTCPMsg(int trn,phisicalTrain ^Treno);
 };
 

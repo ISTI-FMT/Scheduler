@@ -31,6 +31,9 @@ namespace Prototipo {
 	using namespace System::Drawing;
 	using namespace System::Net;
 	using namespace System::Net::Sockets;
+	using namespace System::Runtime::InteropServices;
+	using namespace System::Globalization;
+	using namespace System::Xml;
 
 	/// <summary>
 	/// Riepilogo per SchedulerForm
@@ -177,7 +180,9 @@ namespace Prototipo {
 
 					 wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 					 wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
-					 wakeUpPkt->setT_TIME(tabellaOrario->getFirstTRN());
+					 DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+					 TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
+					 wakeUpPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
 
 
 
@@ -195,7 +200,8 @@ namespace Prototipo {
 					 trainRunningNumberPkt->setNID_MESSAGE(201);
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
-					 trainRunningNumberPkt->setT_TIME(tabellaOrario->getFirstTRN());
+					 trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
+
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabellaOrario->getFirstTRN());
 
 
@@ -307,6 +313,7 @@ namespace Prototipo {
 #endif // TRACE
 				 oThreadTCP_ATO->Abort();
 				 oThreadUDP_ATC_IXL->Abort();
+				 oThreadSchedule->Abort();
 				 Application::Exit();
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -364,7 +371,7 @@ namespace Prototipo {
 				 tabfermate=gcnew tabellaFermate();
 				 tabfermate->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
 
-				 //mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
+				 mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
 
 				 //Console::WriteLine(tf->ToString());
 
@@ -390,12 +397,22 @@ namespace Prototipo {
 
 				 oThreadUDP_ATC_IXL->Start();
 
-				 EventQueue ^EventQ = gcnew EventQueue();
-				 EventQ->Subscribe(manaStateIXL);
-				 EventQ->Subscribe(manaStateATC);
-				 EventQ->Subscribe(manaStateATO);
+				 EventQueue ^EventQIXL = gcnew EventQueue();
+				 EventQIXL->Subscribe(manaStateIXL);
 
-				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(EventQ,tabellaOrario,tabItinerari );
+				 EventQueue ^EventQATC = gcnew EventQueue();
+				 EventQATC->Subscribe(manaStateATC);
+
+				 EventQueue ^EventQATO = gcnew EventQueue();
+
+				 EventQATO->Subscribe(manaStateATO);
+				 List<EventQueue^>^listqueue = gcnew List<EventQueue^>();
+				 listqueue->Add(EventQIXL);
+				 listqueue->Add(EventQATC);
+				 listqueue->Add(EventQATO);
+
+
+				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico );
 
 				 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
 				 oThreadSchedule->Start();

@@ -35,7 +35,7 @@ void mapTrenoFisicoLogico::inizializza(System::String^ s){
 
 
 				if (!map->ContainsKey(logico)){
-					map->Add(logico,fisico);
+					map->Add(fisico,logico);
 				}
 
 				System::Console::WriteLine("Letti idlogico: {0} idfisico: {1}",logico, fisico);

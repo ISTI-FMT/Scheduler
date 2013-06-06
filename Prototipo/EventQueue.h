@@ -14,6 +14,11 @@ ref class EventQueue  : public IObserver<Event^>
 public:
 	EventQueue(void);
 	virtual void Subscribe(IObservable<Event^> ^provider);
+	Event ^getEvent(){
+		Event ^result;
+		queueEvent->TryDequeue(result);
+		return result;
+	};
 	virtual void OnCompleted();
 	virtual void OnError(Exception ^e);
 	virtual void OnNext(Event ^value);

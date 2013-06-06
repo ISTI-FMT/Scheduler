@@ -49,6 +49,12 @@
     <Filter Include="File di intestazione\manager">
       <UniqueIdentifier>{8b2e86a2-551e-41f5-b94b-80276180e467}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di intestazione\Event">
+      <UniqueIdentifier>{32775fc5-cd5f-43c4-bbe5-8de964f6bdd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\Event">
+      <UniqueIdentifier>{ada9a739-5343-4866-aa58-ae4fc45068a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">
@@ -164,12 +170,6 @@
     <ClInclude Include="messaggi\Fault.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="EventQueue.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="messaggi\StateBlocco.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
@@ -205,6 +205,12 @@
     </ClInclude>
     <ClInclude Include="ThreadSchedule.h">
       <Filter>File di intestazione\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>File di intestazione\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventQueue.h">
+      <Filter>File di intestazione\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -313,12 +319,6 @@
     <ClCompile Include="messaggi\Fault.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
-    <ClCompile Include="Event.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="EventQueue.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="messaggi\StateSegnale.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
@@ -354,6 +354,12 @@
     </ClCompile>
     <ClCompile Include="ThreadSchedule.cpp">
       <Filter>File di origine\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>File di origine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventQueue.cpp">
+      <Filter>File di origine\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
