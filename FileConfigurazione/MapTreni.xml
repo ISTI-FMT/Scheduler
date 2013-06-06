@@ -1,4 +1,5 @@
-﻿<bind>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bind xmlns="urn:confMapTreni-schema" >
 <map>
 <idtrenologico>1151</idtrenologico>
 <idtrenofisico>113322</idtrenofisico>

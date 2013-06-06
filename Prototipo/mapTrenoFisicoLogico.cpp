@@ -30,6 +30,9 @@ void mapTrenoFisicoLogico::inizializza(System::String^ s){
 				int logico  = System::Int32::Parse( inner->ReadString());
 				inner->ReadToFollowing("idtrenofisico");
 				int fisico  = System::Int32::Parse( inner->ReadString());
+				inner->ReadToFollowing("cdbpos");
+				int cdbpos  = System::Int32::Parse( inner->ReadString());
+
 
 				if (!map->ContainsKey(logico)){
 					map->Add(logico,fisico);

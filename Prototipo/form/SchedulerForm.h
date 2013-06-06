@@ -14,9 +14,10 @@
 #include "..\\logger\\Logger.h"
 #include "..\\Itinerari\\tabellaItinerari.h"
 #include "..\\Itinerari\\tabellaFermate.h"
-#include "..\\scheduler\\ManagerStatoLineaATC.h"
-#include "..\\scheduler\\ManagerStatoLineaIXL.h"
-#include "..\\scheduler\\ManagerMsgATO.h"
+#include "..\\manager\\ManagerStatoLineaATC.h"
+#include "..\\manager\\ManagerStatoLineaIXL.h"
+#include "..\\manager\\ManagerMsgATO.h"
+#include "..\\ThreadSchedule.h"
 #include "..\\EventQueue.h"
 
 #define TRACE
@@ -43,46 +44,8 @@ namespace Prototipo {
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
+			FasediConfigurazione();
 
-			tb = gcnew tabellaItinerari();
-			tb->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
-
-			tabella  = gcnew TabellaOrario(tb);
-			tabella->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
-
-			tabfermate=gcnew tabellaFermate();
-			tabfermate->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
-
-
-			//Console::WriteLine(tf->ToString());
-
-			listaTreni = gcnew phisicalTrainList();
-
-			ManagerMsgATO ^manaStateATO = gcnew ManagerMsgATO();
-
-			ThreadPresentazione ^sd = gcnew ThreadPresentazione(listaTreni,manaStateATO);
-
-
-
-			oThread2 = gcnew Thread( gcnew ThreadStart(sd, &ThreadPresentazione::TCP_Management_receive ) );
-
-			oThread2->Start();
-
-			ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
-			ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
-
-
-			ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
-
-			oThread1 = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
-
-			oThread1->Start();
-			EventQueue ^EventQ = gcnew EventQueue();
-
-
-			EventQ->Subscribe(manaStateIXL);
-			EventQ->Subscribe(manaStateATC);
-			EventQ->Subscribe(manaStateATO);
 		}
 	protected:
 		/// <summary>
@@ -104,16 +67,17 @@ namespace Prototipo {
 		/// Variabile di progettazione necessaria.
 		/// </summary>
 		System::ComponentModel::Container ^components;
-		TabellaOrario ^tabella;
+		TabellaOrario ^tabellaOrario;
 		phisicalTrainList ^listaTreni;
-		tabellaItinerari ^tb;
+		tabellaItinerari ^tabItinerari;
 		tabellaFermate ^tabfermate;
-
-		Thread^ oThread1;
+		Thread^ oThreadTCP_ATO;
+		Thread^ oThreadUDP_ATC_IXL;
+		Thread^ oThreadSchedule;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
-			 Thread^ oThread2;
+
 
 #pragma region Windows Form Designer generated code
 			 /// <summary>
@@ -213,7 +177,7 @@ namespace Prototipo {
 
 					 wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 					 wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
-					 wakeUpPkt->setT_TIME(tabella->getFirstTRN());
+					 wakeUpPkt->setT_TIME(tabellaOrario->getFirstTRN());
 
 
 
@@ -231,8 +195,8 @@ namespace Prototipo {
 					 trainRunningNumberPkt->setNID_MESSAGE(201);
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
-					 trainRunningNumberPkt->setT_TIME(tabella->getFirstTRN());
-					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabella->getFirstTRN());
+					 trainRunningNumberPkt->setT_TIME(tabellaOrario->getFirstTRN());
+					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabellaOrario->getFirstTRN());
 
 
 					 // Buffer for reading data
@@ -244,8 +208,8 @@ namespace Prototipo {
 
 					 missionPlanPkt->setNID_MESSAGE(200);
 					 missionPlanPkt->get_pacchettoMissionPlan()->setNID_PACKET(160);
-					 int TRN = tabella->getFirstTRN();
-					 tabella->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionPlan());
+					 int TRN = tabellaOrario->getFirstTRN();
+					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionPlan());
 
 
 
@@ -341,25 +305,31 @@ namespace Prototipo {
 #ifdef TRACE
 				 Logger::Info("SchedulerForm"," ExitButton_Click");  
 #endif // TRACE
-				 oThread1->Abort();
-				 oThread2->Abort();
+				 oThreadTCP_ATO->Abort();
+				 oThreadUDP_ATC_IXL->Abort();
 				 Application::Exit();
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-				 if(tabella->get_TabellaOrario()->Count<1){
+				 if(tabellaOrario->get_TabellaOrario()->Count<1){
 					 MessageBox::Show("Tabella Orario Vuota");
+#ifdef TRACE
+					 Logger::Info("SchedulerForm"," Tabella Orario Vuota");  
+#endif // TRACE
 				 }else{
-					 FormVisualizzeTabOrario ^formtb= gcnew FormVisualizzeTabOrario(tabella);
+					 FormVisualizzeTabOrario ^formtb= gcnew FormVisualizzeTabOrario(tabellaOrario);
 					 formtb->Visible=true;
 				 }
 
 			 }
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-				 if(tb->getMap()->Count<1){
+				 if(tabItinerari->getMap()->Count<1){
 					 MessageBox::Show("Tabella Conf Itinirari Vuota");
+#ifdef TRACE
+					 Logger::Info("SchedulerForm"," Tabella Conf Itinirari Vuota");  
+#endif // TRACE
 				 }else{
-					
-					 FormVisualizzeConfItine ^formCI = gcnew FormVisualizzeConfItine(tb);
+
+					 FormVisualizzeConfItine ^formCI = gcnew FormVisualizzeConfItine(tabItinerari);
 					 formCI->Visible=true;
 
 				 }
@@ -369,12 +339,66 @@ namespace Prototipo {
 
 				 if(tabfermate->getTabFermate()->Count<1){
 					 MessageBox::Show("Tabella Conf Fermate Vuota");
+#ifdef TRACE
+					 Logger::Info("SchedulerForm"," Tabella Conf Fermate Vuota");  
+#endif // TRACE
 				 }else{
 					 FormVisualizzeConfFermate ^formCF = gcnew FormVisualizzeConfFermate(tabfermate);
 
 					 formCF->Visible=true;
 
 				 }
+
+			 }
+
+	private: void FasediConfigurazione(){
+				 //
+				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
+				 //
+				 tabItinerari = gcnew tabellaItinerari();
+				 tabItinerari->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
+
+				 tabellaOrario  = gcnew TabellaOrario(tabItinerari);
+				 tabellaOrario->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
+
+				 tabfermate=gcnew tabellaFermate();
+				 tabfermate->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
+
+				 //mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
+
+				 //Console::WriteLine(tf->ToString());
+
+				 listaTreni = gcnew phisicalTrainList();
+
+				 //filtro osservabile dei messaggi dell'ATO
+				 ManagerMsgATO ^manaStateATO = gcnew ManagerMsgATO();
+
+				 ThreadPresentazione ^ThreadP = gcnew ThreadPresentazione(listaTreni,manaStateATO);
+				 //Thread TCP che ascolta i messaggi provenienti dall'ATO
+				 oThreadTCP_ATO = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadPresentazione::TCP_Management_receive ) );
+
+				 oThreadTCP_ATO->Start();
+
+				 //filtri osservabili per i messaggi provenienti rispettivamente da IXL e ATC
+				 ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
+				 ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
+
+
+				 ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
+
+				 oThreadUDP_ATC_IXL = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
+
+				 oThreadUDP_ATC_IXL->Start();
+
+				 EventQueue ^EventQ = gcnew EventQueue();
+				 EventQ->Subscribe(manaStateIXL);
+				 EventQ->Subscribe(manaStateATC);
+				 EventQ->Subscribe(manaStateATO);
+
+				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(EventQ,tabellaOrario,tabItinerari );
+
+				 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
+				 oThreadSchedule->Start();
 
 			 }
 	};

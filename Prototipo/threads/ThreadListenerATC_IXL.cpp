@@ -135,6 +135,9 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 	catch ( ThreadAbortException^ abortException ) 
 	{
 
+#ifdef TRACE
+		Logger::Exception(abortException,"ThreadListenerATC_IXL");  
+#endif // TRACE
 		Console::WriteLine( dynamic_cast<String^>(abortException->ExceptionState) );
 	}
 

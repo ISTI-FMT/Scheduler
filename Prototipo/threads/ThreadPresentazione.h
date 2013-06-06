@@ -1,7 +1,7 @@
 #pragma once
 #include "..\\phisicalTrainList.h"
 #include "..\\messaggi\\struttureDatiMessaggi.h"
-#include "..\\scheduler\\ManagerMsgATO.h"
+#include "..\\manager\\ManagerMsgATO.h"
 
 #using <System.dll>
 using namespace System;

@@ -43,11 +43,11 @@
     <Filter Include="File di origine\itinerari">
       <UniqueIdentifier>{7f5436f8-af3b-41da-9aed-817507a66fc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File di intestazione\scheduler">
-      <UniqueIdentifier>{8b2e86a2-551e-41f5-b94b-80276180e467}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\scheduler">
+    <Filter Include="File di origine\manager">
       <UniqueIdentifier>{8f5f4c83-6aef-443c-b29b-d3772a38a281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di intestazione\manager">
+      <UniqueIdentifier>{8b2e86a2-551e-41f5-b94b-80276180e467}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -185,14 +185,14 @@
     <ClInclude Include="messaggi\StateSegnale.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="scheduler\ManagerStatoLineaIXL.h">
-      <Filter>File di intestazione\scheduler</Filter>
+    <ClInclude Include="manager\ManagerStatoLineaIXL.h">
+      <Filter>File di intestazione\manager</Filter>
     </ClInclude>
-    <ClInclude Include="scheduler\ManagerStatoLineaATC.h">
-      <Filter>File di intestazione\scheduler</Filter>
+    <ClInclude Include="manager\ManagerStatoLineaATC.h">
+      <Filter>File di intestazione\manager</Filter>
     </ClInclude>
-    <ClInclude Include="scheduler\ManagerMsgATO.h">
-      <Filter>File di intestazione\scheduler</Filter>
+    <ClInclude Include="manager\ManagerMsgATO.h">
+      <Filter>File di intestazione\manager</Filter>
     </ClInclude>
     <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h">
       <Filter>File di intestazione\tabellaOrario</Filter>
@@ -202,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="Itinerari\FormVisualizzeConfItine.h">
       <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadSchedule.h">
+      <Filter>File di intestazione\threads</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -331,14 +334,14 @@
     <ClCompile Include="messaggi\StateBlocco.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
-    <ClCompile Include="scheduler\ManagerStatoLineaIXL.cpp">
-      <Filter>File di origine\scheduler</Filter>
+    <ClCompile Include="manager\ManagerStatoLineaIXL.cpp">
+      <Filter>File di origine\manager</Filter>
     </ClCompile>
-    <ClCompile Include="scheduler\ManagerStatoLineaATC.cpp">
-      <Filter>File di origine\scheduler</Filter>
+    <ClCompile Include="manager\ManagerStatoLineaATC.cpp">
+      <Filter>File di origine\manager</Filter>
     </ClCompile>
-    <ClCompile Include="scheduler\ManagerMsgATO.cpp">
-      <Filter>File di origine\scheduler</Filter>
+    <ClCompile Include="manager\ManagerMsgATO.cpp">
+      <Filter>File di origine\manager</Filter>
     </ClCompile>
     <ClCompile Include="tabellaOrario\FormVisualizzeTabOrario.cpp">
       <Filter>File di origine\tabellaOrario</Filter>
@@ -348,6 +351,9 @@
     </ClCompile>
     <ClCompile Include="Itinerari\FormVisualizzeConfItine.cpp">
       <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadSchedule.cpp">
+      <Filter>File di origine\threads</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

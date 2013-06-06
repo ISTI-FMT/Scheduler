@@ -1,8 +1,8 @@
 #pragma once
 #using <System.dll>
 #include "..\\messaggi\\pacchettostatolineaatc.h"
-#include "..\\scheduler\\ManagerStatoLineaIXL.h"
-#include "..\\scheduler\\ManagerStatoLineaATC.h"
+#include "..\\manager\\ManagerStatoLineaIXL.h"
+#include "..\\manager\\ManagerStatoLineaATC.h"
 
 
 using namespace System;

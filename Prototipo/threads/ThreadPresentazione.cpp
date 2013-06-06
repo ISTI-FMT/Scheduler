@@ -120,6 +120,14 @@ void  ThreadPresentazione::TCP_Management_receive(){
 		Console::WriteLine( "SocketException: {0}", e );
 		Console::ResetColor();
 	}
+	catch ( ThreadAbortException^ abortException ) 
+	{
+
+#ifdef TRACE
+		Logger::Exception(abortException,"ThreadPresentazione");  
+#endif // TRACE
+		Console::WriteLine( dynamic_cast<String^>(abortException->ExceptionState) );
+	}
 
 }
 
