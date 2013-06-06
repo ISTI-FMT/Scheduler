@@ -212,6 +212,9 @@
     <ClInclude Include="EventQueue.h">
       <Filter>File di intestazione\Event</Filter>
     </ClInclude>
+    <ClInclude Include="wdogcontrol.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -360,6 +363,9 @@
     </ClCompile>
     <ClCompile Include="EventQueue.cpp">
       <Filter>File di origine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="wdogcontrol.cpp">
+      <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

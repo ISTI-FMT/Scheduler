@@ -127,6 +127,7 @@
     <ClInclude Include="ThreadSchedule.h" />
     <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
     <ClInclude Include="threads\ThreadPresentazione.h" />
+    <ClInclude Include="wdogcontrol.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="ThreadSchedule.cpp" />
     <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />
     <ClCompile Include="threads\ThreadPresentazione.cpp" />
+    <ClCompile Include="wdogcontrol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

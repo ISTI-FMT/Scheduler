@@ -16,7 +16,7 @@ using namespace System::Xml;
 #define TRACE
 
 
-ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno )
+ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w)
 {
 	if(E->Count>2){
 		EQueueIXL=E[0];
@@ -26,6 +26,7 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 	mapTrenoLogFisico=mapTreno;
 	tabOrario=tabo;
 	tabItinerari=tabi;
+	wdogs=w;
 }
 
 
@@ -36,6 +37,8 @@ void ThreadSchedule::SimpleSchedule(){
 		//inizializzazione ATS
 		Init();
 		while(true){
+			Thread::Sleep(500);
+			wdogs->onNext();
 			// aspetta che si presenti un treno
 			Event ^eventoATO = EQueueATO->getEvent();
 			if(eventoATO!=nullptr){
@@ -50,7 +53,11 @@ void ThreadSchedule::SimpleSchedule(){
 						bool inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain()); 
 						if(inviato){
 							Console::WriteLine(" MSG INVIATO ");
+							// aspetti che l'orario e se si trova nel posto giusto chiedi a IXL itinerario uscita-
 
+							// se in posizione giusta richiedi itinerario entrata
+
+							// ripeti passo prec prec
 
 
 
@@ -65,11 +72,7 @@ void ThreadSchedule::SimpleSchedule(){
 
 			}
 
-			// aspetti che l'orario e se si trova nel posto giusto chiedi a IXL itinerario uscita-
 
-			// se in posizione giusta richiedi itinerario entrata
-
-			// ripeti passo prec prec
 
 		}
 	}
@@ -167,19 +170,19 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
 #ifdef TRACE
 
-		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"Init");
+		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedule");
 
 #endif // TRACE
 		myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
 #ifdef TRACE
 
-		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"Init");
+		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedule");
 
 #endif // TRACE
 		myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
 #ifdef TRACE
 
-		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"Init");
+		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedule");
 
 #endif // TRACE
 
@@ -195,7 +198,7 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 #ifdef TRACE
 
-		Logger::Info(pktAck->getNID_MESSAGE(),IP->ToString(),"ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"Init");
+		Logger::Info(pktAck->getNID_MESSAGE(),IP->ToString(),"ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"ThreadSchedule");
 
 #endif // TRACE
 
@@ -214,7 +217,7 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 	{
 		Console::WriteLine( "SocketException: {0}", e );
 #ifdef TRACE
-		Logger::Exception(e,"SchedulerForm");  
+		Logger::Exception(e,"ThreadSchedule");  
 #endif // TRACE
 		return false;
 	}

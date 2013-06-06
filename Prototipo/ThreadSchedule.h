@@ -7,6 +7,7 @@
 #include "logger\\Logger.h"
 #include "mapTrenoFisicoLogico.h"
 #include "messaggi\\Messaggi.h"
+#include "wdogcontrol.h"
 
 
 using namespace System;
@@ -21,8 +22,9 @@ ref class ThreadSchedule
 	TabellaOrario ^tabOrario;
 	tabellaItinerari ^tabItinerari;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
+	wdogcontrol ^wdogs;
 public:
-	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno );
+	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w);
 
 	void SimpleSchedule();
 	void Init();

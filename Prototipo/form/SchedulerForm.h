@@ -19,6 +19,7 @@
 #include "..\\manager\\ManagerMsgATO.h"
 #include "..\\ThreadSchedule.h"
 #include "..\\EventQueue.h"
+#include "..\\wdogcontrol.h"
 
 #define TRACE
 namespace Prototipo {
@@ -43,7 +44,16 @@ namespace Prototipo {
 	public:
 		SchedulerForm(void)
 		{
+			
 			InitializeComponent();
+			this->wdogs =( gcnew wdogcontrol());
+			//this->wdogs->BackColor = System::Drawing::Color::Blue;
+			this->wdogs->Location =  System::Drawing::Point(0, 300);
+			this->wdogs->Name = "firstControl1";
+			this->wdogs->Size =  System::Drawing::Size(75, 16);
+			this->wdogs->TabIndex = 5;
+			this->wdogs->Text = "Wacth DOG";
+			this->Controls->Add(this->wdogs);
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
@@ -77,6 +87,7 @@ namespace Prototipo {
 		Thread^ oThreadTCP_ATO;
 		Thread^ oThreadUDP_ATC_IXL;
 		Thread^ oThreadSchedule;
+		wdogcontrol ^wdogs;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
@@ -412,7 +423,7 @@ namespace Prototipo {
 				 listqueue->Add(EventQATO);
 
 
-				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico );
+				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs);
 
 				 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
 				 oThreadSchedule->Start();
