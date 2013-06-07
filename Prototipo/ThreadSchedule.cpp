@@ -86,6 +86,44 @@ void ThreadSchedule::SimpleSchedule(){
 }
 
 
+
+bool ThreadSchedule::SendBloccItinIXL(){
+	try{
+			Messaggi ^cmdItini = gcnew Messaggi();
+
+
+		cmdItini->setNID_MESSAGE(110);
+		cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(101);
+
+
+		 Socket ^s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
+            System::Net::Sockets::ProtocolType::Udp);
+
+        IPAddress ^broadcast = IPAddress::Parse("146.48.84.52");
+		 IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 23002);
+
+		array<Byte>^sendBytes=	cmdItini->serialize();
+        
+       
+
+        s->SendTo( sendBytes, ep);
+
+		return true;
+
+	}catch ( Exception^ eException ) 
+	{
+#ifdef TRACE
+		Logger::Exception(eException,"ThreadSchedule");  
+#endif // TRACE
+		Console::WriteLine( "Errore "+eException->Message);
+		return false;
+	}
+}
+
+
+
+
+
 void ThreadSchedule::Init(){
 	Console::WriteLine("Init Schedule session");
 
@@ -121,9 +159,7 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer1 = gcnew array<Byte>(wakeUpPkt->getSize());
-
-		wakeUpPkt->serialize(bytes_buffer1);
+		array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
 
 
 		Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
@@ -139,9 +175,7 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer2 = gcnew array<Byte>(trainRunningNumberPkt->getSize());
-
-		trainRunningNumberPkt->serialize(bytes_buffer2);
+		array<Byte>^bytes_buffer2 = trainRunningNumberPkt->serialize();
 
 		Messaggi ^missionPlanPkt = gcnew Messaggi();
 
@@ -154,9 +188,7 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 
 		// Buffer for reading data
-		array<Byte>^bytes_buffer3 = gcnew array<Byte>(missionPlanPkt->getSize());
-
-		missionPlanPkt->serialize(bytes_buffer3);
+		array<Byte>^bytes_buffer3 = missionPlanPkt->serialize();
 
 		// Creates the Socket to send data over a TCP connection.
 		Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );

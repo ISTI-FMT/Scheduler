@@ -118,7 +118,7 @@ public:
 	void serialize(byte *buffer);
 	void deserialize(byte *buff);
 
-	void serialize(array<System::Byte>^bytez);
+	array<System::Byte>^ serialize();
 	void deserialize(array<System::Byte>^bytez);
 
 	int getSize(){

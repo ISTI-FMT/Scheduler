@@ -200,9 +200,7 @@ namespace Prototipo {
 
 
 					 // Buffer for reading data
-					 array<Byte>^bytes_buffer1 = gcnew array<Byte>(wakeUpPkt->getSize());
-
-					 wakeUpPkt->serialize(bytes_buffer1);
+					 array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
 
 
 					 Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
@@ -217,9 +215,7 @@ namespace Prototipo {
 
 
 					 // Buffer for reading data
-					 array<Byte>^bytes_buffer2 = gcnew array<Byte>(trainRunningNumberPkt->getSize());
-
-					 trainRunningNumberPkt->serialize(bytes_buffer2);
+					 array<Byte>^bytes_buffer2 = trainRunningNumberPkt->serialize();
 
 					 Messaggi ^missionPlanPkt = gcnew Messaggi();
 
@@ -231,9 +227,7 @@ namespace Prototipo {
 
 
 					 // Buffer for reading data
-					 array<Byte>^bytes_buffer3 = gcnew array<Byte>(missionPlanPkt->getSize());
-
-					 missionPlanPkt->serialize(bytes_buffer3);
+					 array<Byte>^bytes_buffer3 =  missionPlanPkt->serialize();
 
 					 // Creates the Socket to send data over a TCP connection.
 					 Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );

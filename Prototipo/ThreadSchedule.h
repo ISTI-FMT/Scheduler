@@ -29,5 +29,6 @@ public:
 	void SimpleSchedule();
 	void Init();
 	bool SendTCPMsg(int trn,phisicalTrain ^Treno);
+	bool SendBloccItinIXL();
 };
 

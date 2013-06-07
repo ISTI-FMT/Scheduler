@@ -7,6 +7,7 @@ ref class phisicalTrain
 	int engineNumber;
 	String ^ipAddress;
 	int tcpPort;
+	int cdblastpos;
 public:
 	
 	phisicalTrain(void);

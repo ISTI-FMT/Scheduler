@@ -64,7 +64,8 @@ void Messaggi::serialize(byte *buffer)
 
 }
 
-void Messaggi::serialize(array<System::Byte>^bytez){
+array<System::Byte>^ Messaggi::serialize(){
+	array<Byte>^bytez = gcnew array<Byte>(getSize());
 	int len=getSize();
 	byte *buffer = new byte[len];
 	for(int i = 0; i < len; ++i)
@@ -74,6 +75,7 @@ void Messaggi::serialize(array<System::Byte>^bytez){
 	for(int i = 0; i < len; ++i)
 		bytez[i] = buffer[i];
 	
+	return bytez;
 }
 
 void Messaggi::deserialize(byte *buffer)
