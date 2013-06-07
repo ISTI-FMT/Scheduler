@@ -1,4 +1,6 @@
 #pragma once
+enum  typeStatoBlocco {  illegale = 0, legale = 1};
+
 ref class StateBlocco
 {
 	unsigned int NID_BLOCCO ;

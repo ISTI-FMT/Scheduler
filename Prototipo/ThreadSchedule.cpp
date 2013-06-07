@@ -53,7 +53,10 @@ void ThreadSchedule::SimpleSchedule(){
 						bool inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain()); 
 						if(inviato){
 							Console::WriteLine(" MSG INVIATO ");
-							// aspetti che l'orario e se si trova nel posto giusto chiedi a IXL itinerario uscita-
+							// aspetti che l'orario giusto e se il treno  si trova nel posto giusto
+							
+							
+							//chiedi a IXL l'itinerario
 
 							// se in posizione giusta richiedi itinerario entrata
 
@@ -87,26 +90,32 @@ void ThreadSchedule::SimpleSchedule(){
 
 
 
-bool ThreadSchedule::SendBloccItinIXL(){
+bool ThreadSchedule::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 	try{
-			Messaggi ^cmdItini = gcnew Messaggi();
+		Messaggi ^cmdItini = gcnew Messaggi();
 
 
 		cmdItini->setNID_MESSAGE(110);
-		cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(101);
+		cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(110);
+		cmdItini->get_pacchettoComandoItinerari()->setNID_ITIN(NID_ITIN);
+		cmdItini->get_pacchettoComandoItinerari()->setQ_CMDITIN(Q_CMDITIN);
 
+		Socket ^s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
+			System::Net::Sockets::ProtocolType::Udp);
 
-		 Socket ^s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
-            System::Net::Sockets::ProtocolType::Udp);
-
-        IPAddress ^broadcast = IPAddress::Parse("146.48.84.52");
-		 IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 23002);
+		IPAddress ^broadcast = IPAddress::Parse("146.48.84.52");
+		IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 23001);
 
 		array<Byte>^sendBytes=	cmdItini->serialize();
-        
-       
 
-        s->SendTo( sendBytes, ep);
+
+
+		s->SendTo( sendBytes, ep);
+#ifdef TRACE
+
+		Logger::Info(cmdItini->getNID_MESSAGE(),"ATS",broadcast->ToString(),cmdItini->getSize(),BitConverter::ToString(sendBytes),"ThreadSchedule");
+
+#endif // TRACE
 
 		return true;
 

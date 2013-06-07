@@ -5,6 +5,7 @@
 Alessio:
 L'ATS invia all'IXl messaggi contenenti comandi sui blocchi
 -------------------------------------------------------------------------------------------------*/
+enum  typeCmdBlocco { direzionelegale = 1, direzioneillegale = 0};
 
 ref class pacchettoComandoBlocco
 {

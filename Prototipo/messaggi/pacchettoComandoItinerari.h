@@ -5,6 +5,7 @@
 Alessio:
 L'ATS invia all'IXl messaggi contenenti comandi sugli itinerari
 -------------------------------------------------------------------------------------------------*/
+enum  typeCmdItinerari { distruzione = 0,  creazione = 2, };
 
 ref class pacchettoComandoItinerari
 {
