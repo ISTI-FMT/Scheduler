@@ -71,7 +71,7 @@ void ThreadSchedule::SimpleSchedule(){
 										Event ^eventATC = EQueueATC->getEvent();
 										if(eventATC!=nullptr){
 											if(eventATC->getEventStateCDB()->getNID_CDB()==resultprecE){
-												SendBloccItinIXL(fermvar->getIditinerarioEntrata(),typeCmdItinerari::creazione);
+												SendBloccItinIXL(fermvar->getIditinerarioEntrata()+fermvar->getIdStazione(),typeCmdItinerari::creazione);
 												bandiera=false;
 											}else{
 												Thread::Sleep(500);
@@ -89,13 +89,13 @@ void ThreadSchedule::SimpleSchedule(){
 									TimeSpan ^sinceMidnight =  (DateTime::Now - orarioSupporto3);
 									int tempo = (int)sinceMidnight->TotalSeconds/30;
 									int  costante= 20;
-									int resutl = ((int)fermvar->getOrarioPartenza())-tempo;
+									int resutl = ((int)fermvar->getOrarioPartenza())-costante;
 
-									while(resutl>costante){
+									while(resutl>=tempo){
 										Thread::Sleep(500);
 										wdogs->onNext();
 									}
-									SendBloccItinIXL(fermvar->getIditinerarioUscita(),typeCmdItinerari::creazione);
+									SendBloccItinIXL(fermvar->getIditinerarioUscita()+fermvar->getIdStazione(),typeCmdItinerari::creazione);
 
 								}
 							
