@@ -28,7 +28,7 @@ public:
 
 	}
 
-
+	int get_CdbPrecItinerario(int stazione, int iditin);
 
 	Dictionary<int,stazione^ > ^getMap(){return mapidstazioneitinerari;};
 };

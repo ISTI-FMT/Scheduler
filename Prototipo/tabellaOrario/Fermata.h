@@ -30,7 +30,6 @@ ref class Fermata
 
 	int iditinerarioentrata;
 	String ^nameitinerarioentrata;
-
 	int iditinerariouscita;
 	String ^nameitinerariouscita;
 
@@ -57,6 +56,8 @@ public:
 	// Funzioni per la manipolazione del tempo di apertura delle porte
 	void setLatoAperturaPorte(int lato){latoAperturaPorte = lato;};
 	int getLatoAperturaPorte(){return latoAperturaPorte;};
+
+	bool isPassante();
 
 	void setIditinerarioEntrata(int id){iditinerarioentrata = id;};
 	int getIditinerarioEntrata(){return iditinerarioentrata;};

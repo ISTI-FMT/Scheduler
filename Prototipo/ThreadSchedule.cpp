@@ -43,7 +43,7 @@ void ThreadSchedule::SimpleSchedule(){
 			Event ^eventoATO = EQueueATO->getEvent();
 			if(eventoATO!=nullptr){
 				int enginenumber = eventoATO->getEventPresentTrain()->getEngineNumber();
-				// se trovi che un numero logico nella mappa
+				// se trovi che ha numero logico nella mappa mapTrenoLogFisico
 
 				if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
 					int trn = mapTrenoLogFisico->get_Map()[enginenumber];
@@ -54,14 +54,65 @@ void ThreadSchedule::SimpleSchedule(){
 						if(inviato){
 							Console::WriteLine(" MSG INVIATO ");
 							// aspetti che l'orario giusto e se il treno  si trova nel posto giusto
+
+							//trova gli itinerari  del treno
+							List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(trn);
+							for each (Fermata ^fermvar in listaitinerari)
+							{
+
+								int resultprecE = tabItinerari->get_CdbPrecItinerario(fermvar->getIdStazione(),fermvar->getIditinerarioEntrata());
+								int resultprecU = tabItinerari->get_CdbPrecItinerario(fermvar->getIdStazione(),fermvar->getIditinerarioUscita());
+								
+								if(fermvar->getIditinerarioEntrata()>0){
+									//finche nn sono nella posizione giusta
+									bool bandiera=true;
+									while(bandiera){
+										wdogs->onNext();
+										Event ^eventATC = EQueueATC->getEvent();
+										if(eventATC!=nullptr){
+											if(eventATC->getEventStateCDB()->getNID_CDB()==resultprecE){
+												SendBloccItinIXL(fermvar->getIditinerarioEntrata(),typeCmdItinerari::creazione);
+												bandiera=false;
+											}else{
+												Thread::Sleep(500);
+											}
+
+										}else{
+											Thread::Sleep(500);
+										}
+
+									}
+								}
+								
+								if(fermvar->getIditinerarioUscita()>0){
+									DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+									TimeSpan ^sinceMidnight =  (DateTime::Now - orarioSupporto3);
+									int tempo = (int)sinceMidnight->TotalSeconds/30;
+									int  costante= 20;
+									int resutl = ((int)fermvar->getOrarioPartenza())-tempo;
+
+									while(resutl>costante){
+										Thread::Sleep(500);
+										wdogs->onNext();
+									}
+									SendBloccItinIXL(fermvar->getIditinerarioUscita(),typeCmdItinerari::creazione);
+
+								}
 							
-							
-							//chiedi a IXL l'itinerario
 
-							// se in posizione giusta richiedi itinerario entrata
 
-							// ripeti passo prec prec
+								//trova il cdb precende all'intinerario in oggetto per la stazione specificata
 
+								//se ce un prevcdb precedente lo aspetto
+
+								//se nn ce un prevcdb precedente aspetto solo il tempo
+
+								//sendo il messaggio di blocco dell'itinerario
+								//SendBloccItinIXL(101,typeCmdItinerari::creazione);
+
+
+								// ripeti passo prec prec
+							}
 
 
 

@@ -11,7 +11,7 @@ Itinerario::Itinerario(void)
 	dStop = 0;
 	porteBanchina = false;
 	latoBanchina = gcnew String ("");
-	prevCDB = gcnew String ("");
+	prevCDB = 0;
 	nextCDB = gcnew String ("");
 	cdb=gcnew List<int>();
 	nextstation=0;

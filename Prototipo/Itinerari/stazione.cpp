@@ -4,14 +4,14 @@ stazione::stazione(void)
 {
 	nomeStazione = gcnew String("");
 	idStazione = 0;
-	itinerari= gcnew Dictionary<String^,List<Itinerario^>^ >;
+	itinerari= gcnew Dictionary<int,List<Itinerario^>^ >;
 	itinerariid= gcnew Dictionary<int,Itinerario^ >;
 
 }
 
 System::String^ stazione::ToString() {
 	String ^out="";
-	for each( KeyValuePair<String ^ , List<Itinerario^>^> kvp in itinerari )
+	for each( KeyValuePair<int , List<Itinerario^>^> kvp in itinerari )
 	{
 
 		out+=" "+ kvp.Key+"\n\r";

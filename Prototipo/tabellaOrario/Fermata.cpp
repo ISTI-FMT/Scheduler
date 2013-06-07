@@ -13,10 +13,17 @@ Fermata::Fermata(void)
 	latoAperturaPorte = noApertura;
 	iditinerarioentrata=0;
 	nameitinerarioentrata="";
-
 	iditinerariouscita=0;
 	nameitinerariouscita="";
 }
+bool Fermata::isPassante(){
+	bool result=false;
+	if(orarioArrivo-orarioPartenza==0){
+		return true;
+	}
+	return result;
+}
+
 
  System::String^ Fermata::ToString() {
 	 String ^out;

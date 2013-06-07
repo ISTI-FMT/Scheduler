@@ -63,7 +63,7 @@ void FormVisualizzeConfItine::Inizialize(){
 		// dataGridView1->Rows[riga]->Cells[1]->Value= station->get_idStazione();
 		dataGridView1->Rows[riga]->Cells[1]->Value= station->get_NomeStazione();
 
-		for each (KeyValuePair<String^,List<Itinerario^>^> ^ikvp in station->getItinerari())
+		for each (KeyValuePair<int,List<Itinerario^>^> ^ikvp in station->getItinerari())
 		{
 
 			dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->Key;

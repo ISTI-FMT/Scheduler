@@ -240,7 +240,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
 				if(stop->getIditinerarioEntrata()!=0){
 					List<int> ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
 					if(infobalise!=nullptr){
-						
+
 						mission->setNID_LRGB(infobalise[0]);
 						mission->setD_STOP(infobalise[1]);
 					}
@@ -258,14 +258,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
 	}
 }
 
-/*
-ostream& operator<<(ostream &out, TabellaOrario &tabella)
-{
-for (std::list<TrenoFermate>::iterator it=tabella.tabella.begin(); it != tabella.tabella.end(); ++it)
-out << (*it) << endl;
-return out;
-}
-*/
+
 System::String^ TabellaOrario::ToString(){
 	String ^out;
 	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella )
@@ -279,4 +272,14 @@ System::String^ TabellaOrario::ToString(){
 		}
 	}
 	return out;
+}
+
+List<Fermata^> ^TabellaOrario::getItinerariFor(int TRN){
+	
+	if(tabella->ContainsKey(TRN)){
+		return tabella[TRN];
+		
+
+	}
+	return nullptr;
 }

@@ -91,7 +91,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 					newitinerario->setNextCDB( inner2->GetAttribute("nextcdb"));
 
-					String ^prevcdb = 	inner2->GetAttribute("prevcdb");
+					int prevcdb = int::Parse(	inner2->GetAttribute("prevcdb"));
 					newitinerario->setPrevCDB( prevcdb);	
 
 					System::Xml::XmlReader ^inner3 = inner2->ReadSubtree();
@@ -146,7 +146,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 					newitinerario->setNextCDB( inner2->GetAttribute("nextcdb"));
 
-					String ^prevcdb = 	inner2->GetAttribute("prevcdb");
+					int prevcdb = int::Parse(	inner2->GetAttribute("prevcdb"));
 					newitinerario->setPrevCDB( prevcdb);	
 
 					String ^nextstation = 	inner2->GetAttribute("nextstation");
@@ -207,6 +207,17 @@ System::String^ tabellaItinerari::ToString() {
 
 	}
 	return out;
+}
+
+int tabellaItinerari::get_CdbPrecItinerario(int stazione, int iditin){
+	int result=0;
+	if(mapidstazioneitinerari->ContainsKey(stazione)){
+		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
+			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->getPrevCDB();
+		}
+
+	}
+	return result;
 }
 
 
