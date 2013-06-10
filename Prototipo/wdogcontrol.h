@@ -21,5 +21,9 @@ public:
 	delegate void GoCallback();
 	GoCallback^ myDelegate;
 	void GoNext();
+	void OverNext();
+	delegate void GoCallbackOver();
+	GoCallbackOver^ myDelegateOver;
+	void OverMethodNext();
 };
 

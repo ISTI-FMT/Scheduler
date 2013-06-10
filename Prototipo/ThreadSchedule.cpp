@@ -62,12 +62,12 @@ void ThreadSchedule::SimpleSchedule(){
 
 								int resultprecE = tabItinerari->get_CdbPrecItinerario(fermvar->getIdStazione(),fermvar->getIditinerarioEntrata());
 								int resultprecU = tabItinerari->get_CdbPrecItinerario(fermvar->getIdStazione(),fermvar->getIditinerarioUscita());
-								
+
 								if(fermvar->getIditinerarioEntrata()>0){
 									//finche nn sono nella posizione giusta
 									bool bandiera=true;
 									while(bandiera){
-										wdogs->onNext();
+										wdogs->OverNext();
 										Event ^eventATC = EQueueATC->getEvent();
 										if(eventATC!=nullptr){
 											if(eventATC->getEventStateCDB()->getNID_CDB()==resultprecE){
@@ -83,22 +83,26 @@ void ThreadSchedule::SimpleSchedule(){
 
 									}
 								}
-								
+
 								if(fermvar->getIditinerarioUscita()>0){
-									DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-									TimeSpan ^sinceMidnight =  (DateTime::Now - orarioSupporto3);
-									int tempo = (int)sinceMidnight->TotalSeconds/30;
-									int  costante= 20;
+
+									DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+									TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
+									int tempo = (int)oraattuale->TotalSeconds/30;
+									int  costante= 2;
 									int resutl = ((int)fermvar->getOrarioPartenza())-costante;
 
 									while(resutl>=tempo){
 										Thread::Sleep(500);
-										wdogs->onNext();
+										mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+										oraattuale =  (DateTime::Now - mezzanotte);
+										tempo = (int)oraattuale->TotalSeconds/30;
+										wdogs->OverNext();
 									}
 									SendBloccItinIXL(fermvar->getIditinerarioUscita()+fermvar->getIdStazione(),typeCmdItinerari::creazione);
 
 								}
-							
+
 
 
 								//trova il cdb precende all'intinerario in oggetto per la stazione specificata
@@ -280,12 +284,12 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 		Messaggi ^pktAck = gcnew Messaggi();
 
-		pktAck->set_pacchettoAcknowledgement();
-
+		
+		
 		// Buffer for reading data
-		array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck->getSize());
+		array<Byte>^bytes_buffer4 = gcnew array<Byte>(17);
 
-		myStream->Read(bytes_buffer4, 0, pktAck->getSize());
+		myStream->Read(bytes_buffer4, 0, 17);
 		pktAck->deserialize(bytes_buffer4);
 
 #ifdef TRACE

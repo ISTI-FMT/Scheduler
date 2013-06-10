@@ -4,6 +4,7 @@
 wdogcontrol::wdogcontrol(void)
 {
 	myDelegate = gcnew GoCallback( this, &wdogcontrol::GoNext );
+	myDelegateOver = gcnew GoCallbackOver( this, &wdogcontrol::OverMethodNext );
 	InitializeComponent();
 	
 }
@@ -81,6 +82,9 @@ void wdogcontrol::onNext(){
 	this->Invoke(myDelegate);
 	
 }
+void wdogcontrol::OverNext(){
+	this->Invoke(myDelegateOver);
+}
 
 void wdogcontrol::GoNext(){
 	if(label0->ForeColor== System::Drawing::Color::Blue){
@@ -108,6 +112,38 @@ void wdogcontrol::GoNext(){
 					label3->ForeColor = System::Drawing::Color::Red;
 					label0->ForeColor = System::Drawing::Color::Green;
 					label1->ForeColor = System::Drawing::Color::Gold;
+				}
+			}
+		}
+	}
+}
+
+void wdogcontrol::OverMethodNext(){
+	if(label0->ForeColor== System::Drawing::Color::Blue){
+		label3->ForeColor = System::Drawing::Color::Blue;
+		label0->ForeColor = System::Drawing::Color::Red;
+		label1->ForeColor = System::Drawing::Color::Green;
+		label2->ForeColor = System::Drawing::Color::Gold;
+
+	}else{
+		if(label0->ForeColor== System::Drawing::Color::Red){
+			label2->ForeColor = System::Drawing::Color::Blue;
+			label3->ForeColor = System::Drawing::Color::Red;
+			label0->ForeColor = System::Drawing::Color::Green;
+			label1->ForeColor = System::Drawing::Color::Gold;
+		}else{
+
+			if(label0->ForeColor== System::Drawing::Color::Green){
+				label1->ForeColor = System::Drawing::Color::Blue;
+				label2->ForeColor = System::Drawing::Color::Red;
+				label3->ForeColor = System::Drawing::Color::Green;
+				label0->ForeColor = System::Drawing::Color::Gold;
+			}else{
+				if(label0->ForeColor== System::Drawing::Color::Gold){
+					label0->ForeColor = System::Drawing::Color::Blue;
+					label1->ForeColor = System::Drawing::Color::Red;
+					label2->ForeColor = System::Drawing::Color::Green;
+					label3->ForeColor = System::Drawing::Color::Gold;
 				}
 			}
 		}
