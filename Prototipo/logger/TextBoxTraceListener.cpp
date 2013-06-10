@@ -56,6 +56,7 @@ void TextBoxTraceListener::Write(String ^h){
 	}catch(Exception ^e){
 		init();
 		form->Invoke( myDelegate, h );
+		Console::WriteLine("Avevi chiuso la finetra del log!!! ",e->Message);
 #ifdef TRACE
 		Logger::Exception(e,"TextBoxTraceListener");  
 #endif // TRACE

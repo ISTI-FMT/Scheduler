@@ -215,6 +215,9 @@
     <ClInclude Include="wdogcontrol.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="TrenoFisicoLogico.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -365,6 +368,9 @@
       <Filter>File di origine\Event</Filter>
     </ClCompile>
     <ClCompile Include="wdogcontrol.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="TrenoFisicoLogico.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

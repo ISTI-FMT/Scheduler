@@ -1,4 +1,5 @@
 #pragma once
+#include "TrenoFisicoLogico.h"
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
@@ -10,20 +11,21 @@ L'ATS associa ad ogni treno fisico un TRN
 
 ref class mapTrenoFisicoLogico
 {
-Dictionary<int, int>^ map;
+Dictionary<int, TrenoFisicoLogico^>^ map;
 public:
 
 	mapTrenoFisicoLogico(void);
 	mapTrenoFisicoLogico(System::String^ s);
-	void set_Map(Dictionary<int, int>^ m){map=m;};
-	Dictionary<int, int>^ get_Map(){return map;};
+	void set_Map(Dictionary<int, TrenoFisicoLogico^>^ m){map=m;};
+	Dictionary<int, TrenoFisicoLogico^>^ get_Map(){return map;};
 
 	void inizializza(System::String^ s);
 	virtual  System::String^ ToString() override{
 		System::String ^out ="";
-		for each( KeyValuePair<int, int> kvp in map )
+		for each( KeyValuePair<int, TrenoFisicoLogico^> kvp in map )
         {
-           out=kvp.Key+"_"+kvp.Value+";";
+           out+= " Key id treno fisico: "+ kvp.Key+";";
+		   out+= kvp.Value->ToString();
         }
 	   return out;
 	};

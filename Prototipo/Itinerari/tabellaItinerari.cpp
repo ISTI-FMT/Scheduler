@@ -164,7 +164,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 					}
 
-
+					newstazione->getItinerariid()->Add(Iditinerario,newitinerario);
 
 					if(!newstazione->getItinerari()->ContainsKey(prevcdb)){
 						List<Itinerario^>^listit = gcnew List<Itinerario^>();
