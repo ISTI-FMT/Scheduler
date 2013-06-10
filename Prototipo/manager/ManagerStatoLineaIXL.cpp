@@ -41,33 +41,33 @@ void ManagerStatoLineaIXL::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 
 void ManagerStatoLineaIXL::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 {
-	
-		if(!tabellaCDB->ContainsKey(oneCDB->getNID_CDB()))
+
+	if(!tabellaCDB->ContainsKey(oneCDB->getNID_CDB()))
+	{
+		tabellaCDB->Add(oneCDB->getNID_CDB(), oneCDB);
+		// segnala l'evento!!!
+		for each (IObserver<Event^>^ observer in observers)
 		{
-			tabellaCDB->Add(oneCDB->getNID_CDB(), oneCDB);
-			// segnala l'evento!!!
+			observer->OnNext(gcnew Event(oneCDB->Clone(),source));
+		}
+
+
+	}
+	else 
+	{
+		bool mod = tabellaCDB[oneCDB->getNID_CDB()]->Update(oneCDB);
+		if(mod)
+		{
+
+			// segnala evento!!!
 			for each (IObserver<Event^>^ observer in observers)
 			{
 				observer->OnNext(gcnew Event(oneCDB->Clone(),source));
 			}
-
-
 		}
-		else 
-		{
-			bool mod = tabellaCDB[oneCDB->getNID_CDB()]->Update(oneCDB);
-			if(mod)
-			{
 
-				// segnala evento!!!
-				for each (IObserver<Event^>^ observer in observers)
-				{
-					observer->OnNext(gcnew Event(oneCDB->Clone(),source));
-				}
-			}
+	}
 
-		}
-	
 }
 
 IDisposable ^ManagerStatoLineaIXL::Subscribe(IObserver<Event^> ^observer){
@@ -115,9 +115,9 @@ void ManagerStatoLineaIXL::addCheckAndSet(StateItinerario ^oneItinerario, String
 		tabellaItin->Add(oneItinerario->getNID_ITIN(), oneItinerario);
 		// segnala l'evento!!!
 		for each (IObserver<Event^>^ observer in observers)
-				{
-					observer->OnNext(gcnew Event(oneItinerario->Clone(),source));
-				}
+		{
+			observer->OnNext(gcnew Event(oneItinerario->Clone(),source));
+		}
 	}
 	else 
 	{
@@ -125,13 +125,23 @@ void ManagerStatoLineaIXL::addCheckAndSet(StateItinerario ^oneItinerario, String
 		if(mod)
 		{
 			for each (IObserver<Event^>^ observer in observers)
-				{
-					observer->OnNext(gcnew Event(oneItinerario->Clone(),source));
-				}
+			{
+				observer->OnNext(gcnew Event(oneItinerario->Clone(),source));
+			}
 
 			// segnala evento!!!
 		}
 
 	}
 
+}
+
+StateItinerario ^ManagerStatoLineaIXL::getItinerario(int iditin){
+	if(tabellaItin->ContainsKey(iditin)){
+		return tabellaItin[iditin];
+
+	}
+
+
+	return gcnew StateItinerario();
 }

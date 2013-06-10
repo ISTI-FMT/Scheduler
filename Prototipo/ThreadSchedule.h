@@ -9,6 +9,7 @@
 #include "messaggi\\Messaggi.h"
 #include "wdogcontrol.h"
 #include "manager\\ManagerStatoLineaATC.h"
+#include "manager\\ManagerStatoLineaIXL.h"
 
 
 using namespace System;
@@ -24,13 +25,15 @@ ref class ThreadSchedule
 	tabellaItinerari ^tabItinerari;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
 	ManagerStatoLineaATC ^managerATC;
+	ManagerStatoLineaIXL ^managerIXL;
 	wdogcontrol ^wdogs;
 public:
-	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC);
+	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL);
 
 	void SimpleSchedule();
 	void Init();
 	bool SendTCPMsg(int trn,phisicalTrain ^Treno);
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
+	bool richestaItinerarioIXL(int iditinerario);
 };
 

@@ -20,6 +20,8 @@ public:
 	void addCheckAndSet(List<StateItinerario^> ^listaItin, String ^source);
 	void addCheckAndSet(StateItinerario ^oneItinerario, String ^source);
 
+	StateItinerario ^getItinerario(int iditin);
+
 	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
    
 

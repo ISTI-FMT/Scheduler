@@ -16,7 +16,7 @@ using namespace System::Xml;
 #define TRACE
 
 
-ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC)
+ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL)
 {
 	if(E->Count>2){
 		EQueueIXL=E[0];
@@ -28,6 +28,7 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 	tabItinerari=tabi;
 	wdogs=w;
 	managerATC=manATC;
+	managerIXL=manIXL;
 }
 
 
@@ -74,7 +75,12 @@ void ThreadSchedule::SimpleSchedule(){
 										Event ^eventATC = EQueueATC->getEvent();
 										if(eventATC!=nullptr){
 											if(eventATC->getEventStateCDB()->getNID_CDB()==resultprecE){
-												SendBloccItinIXL(fermvar->getIditinerarioEntrata()+fermvar->getIdStazione(),typeCmdItinerari::creazione);
+												//se l'itinerario è libero
+												//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL che
+												//che riporti il cambiamento dello stato dell'itinerario
+												richestaItinerarioIXL(fermvar->getIditinerarioEntrata()+fermvar->getIdStazione());
+
+
 												bandiera=false;
 											}else{
 												Thread::Sleep(500);
@@ -92,7 +98,7 @@ void ThreadSchedule::SimpleSchedule(){
 									DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
 									TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
 									int tempo = (int)oraattuale->TotalSeconds/30;
-									int  costante= 2;
+									int  costante= 3;
 									int resutl = ((int)fermvar->getOrarioPartenza())-costante;
 
 									while(resutl>=tempo){
@@ -105,7 +111,10 @@ void ThreadSchedule::SimpleSchedule(){
 									//controllo posizione 
 									if(managerATC->getCDB(resultprecU)->getNID_OPERATIONAL()==trn){
 									}
-									SendBloccItinIXL(fermvar->getIditinerarioUscita()+fermvar->getIdStazione(),typeCmdItinerari::creazione);
+									//se l'itinerario è libero
+									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL che
+									//che riporti il cambiamento dello stato dell'itinerario
+									richestaItinerarioIXL(fermvar->getIditinerarioUscita()+fermvar->getIdStazione());
 
 								}
 
@@ -313,5 +322,32 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		return false;
 	}
 
+
+}
+
+
+//se l'itinerario è libero
+//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL che 
+//che riporti il cambiamento dello stato dell'itinerario
+bool ThreadSchedule::richestaItinerarioIXL(int iditinerario){
+	bool loop=false;
+	if(managerIXL->getItinerario(iditinerario)->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoNonInAtto | true){
+		do{
+			SendBloccItinIXL(iditinerario,typeCmdItinerari::creazione);
+			Thread::Sleep(500);
+			if(EQueueIXL->getEvent()!=nullptr){
+				if(iditinerario=EQueueIXL->getEvent()->getEventStateItinerario()->getNID_ITIN() ){
+					if( EQueueIXL->getEvent()->getEventStateItinerario()->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto){
+						loop=false;
+					}
+				}
+			}
+		}while(loop);
+	}else{
+		Console::WriteLine("itinerario nn libero");
+		return false;
+
+	}
+	return true;
 
 }
