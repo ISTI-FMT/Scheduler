@@ -16,7 +16,7 @@ public:
 	void addCheckAndSet(List<StateCDB^> ^listaCDB, String ^source);
 	void addCheckAndSet(StateCDB ^oneCDB, String ^source);
 
-	
+	StateCDB^ getCDB(int idcdb);
 
 	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
    

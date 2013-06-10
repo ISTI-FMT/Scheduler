@@ -16,7 +16,7 @@ using namespace System::Xml;
 #define TRACE
 
 
-ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w)
+ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC)
 {
 	if(E->Count>2){
 		EQueueIXL=E[0];
@@ -27,6 +27,7 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 	tabOrario=tabo;
 	tabItinerari=tabi;
 	wdogs=w;
+	managerATC=manATC;
 }
 
 
@@ -47,13 +48,15 @@ void ThreadSchedule::SimpleSchedule(){
 
 				if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
 					int trn = mapTrenoLogFisico->get_Map()[enginenumber];
+					//	int pos = mapTrenoLogFisico->get_Map()[enginenumber];
 					// cerchi se c'è una missione per lui nella tabella orario
 					if(tabOrario->get_TabellaOrario()->ContainsKey(trn)){
+
 						// gli assegni TRN e MISSION
 						bool inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain()); 
 						if(inviato){
 							Console::WriteLine(" MSG INVIATO ");
-							// aspetti che l'orario giusto e se il treno  si trova nel posto giusto
+
 
 							//trova gli itinerari  del treno
 							List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(trn);
@@ -99,23 +102,15 @@ void ThreadSchedule::SimpleSchedule(){
 										tempo = (int)oraattuale->TotalSeconds/30;
 										wdogs->OverNext();
 									}
+									//controllo posizione 
+									if(managerATC->getCDB(resultprecU)->getNID_OPERATIONAL()==trn){
+									}
 									SendBloccItinIXL(fermvar->getIditinerarioUscita()+fermvar->getIdStazione(),typeCmdItinerari::creazione);
 
 								}
 
 
 
-								//trova il cdb precende all'intinerario in oggetto per la stazione specificata
-
-								//se ce un prevcdb precedente lo aspetto
-
-								//se nn ce un prevcdb precedente aspetto solo il tempo
-
-								//sendo il messaggio di blocco dell'itinerario
-								//SendBloccItinIXL(101,typeCmdItinerari::creazione);
-
-
-								// ripeti passo prec prec
 							}
 
 
@@ -284,8 +279,8 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 		Messaggi ^pktAck = gcnew Messaggi();
 
-		
-		
+
+
 		// Buffer for reading data
 		array<Byte>^bytes_buffer4 = gcnew array<Byte>(17);
 

@@ -75,3 +75,15 @@ IDisposable ^ManagerStatoLineaATC::Subscribe(IObserver<Event^> ^observer){
 	return gcnew Unsub(observers, observer);
 
 }
+
+
+StateCDB ^ManagerStatoLineaATC::getCDB(int idcdb){
+
+	if(tabellaCDB->ContainsKey(idcdb)){
+
+		return tabellaCDB[idcdb];
+	}
+
+	return gcnew StateCDB();
+	
+};

@@ -417,7 +417,7 @@ namespace Prototipo {
 				 listqueue->Add(EventQATO);
 
 
-				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs);
+				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC);
 
 				 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
 				 oThreadSchedule->Start();
