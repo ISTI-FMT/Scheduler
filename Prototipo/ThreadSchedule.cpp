@@ -73,6 +73,7 @@ void ThreadSchedule::SimpleSchedule(){
 									int resultprecE = tabItinerari->get_CdbPrecItinerario(fermvar->getIdStazione(),fermvar->getIditinerarioEntrata());
 									int resultprecU = tabItinerari->get_CdbPrecItinerario(fermvar->getIdStazione(),fermvar->getIditinerarioUscita());
 
+									//itinerario entrata
 									if(fermvar->getIditinerarioEntrata()>0){
 										//finche nn sono nella posizione giusta
 										bool bandiera=true;
@@ -98,7 +99,8 @@ void ThreadSchedule::SimpleSchedule(){
 
 										}
 									}
-
+										
+									//itinerario uscita
 									if(fermvar->getIditinerarioUscita()>0){
 
 										DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
@@ -117,6 +119,10 @@ void ThreadSchedule::SimpleSchedule(){
 										//controllo posizione 
 										if(managerATC->getCDB(resultprecU)->getNID_OPERATIONAL()==trn){
 										}
+										
+										//todo : se ti trovi nel posto giusto
+
+
 										//se l'itinerario è libero
 										//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 										//che riporti il cambiamento dello stato dell'itinerario
@@ -130,6 +136,7 @@ void ThreadSchedule::SimpleSchedule(){
 
 
 							}else{
+								//dovresti riprovare ad inviarlo
 							Console::WriteLine(" MSG NON INVIATO ");
 						}
 
@@ -324,7 +331,7 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 	}
 	catch ( Exception^ e ) 
 	{
-		Console::WriteLine( "SocketException: {0}", e );
+		Console::WriteLine( "SocketException: {0}", e->Message );
 #ifdef TRACE
 		Logger::Exception(e,"ThreadSchedule");  
 #endif // TRACE

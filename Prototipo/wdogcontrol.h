@@ -12,6 +12,12 @@ private: System::Windows::Forms::Label^  label0;
 		 System::Windows::Forms::Label^  label1;
 		 System::Windows::Forms::Label^  label2;
 		 System::Windows::Forms::Label^  label3;
+		 System::Windows::Forms::Label^  label4;
+		 System::Windows::Forms::Label^  label5;
+		 System::Windows::Forms::Label^  label6;
+		 System::Windows::Forms::Label^  label7;
+
+
 		 System::ComponentModel::IContainer^ components;
 		 System::Windows::Forms::ErrorProvider^ errorProvider;
 public:
