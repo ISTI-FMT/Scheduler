@@ -19,14 +19,14 @@ public:
 	void setEvent(StateCDB ^v){sCDB=v;}
 	void setEvent(StateItinerario ^vv){sITI=vv;};
 	void setEvent(phisicalTrain ^vv){lTrain=vv;};
-	
-	StateItinerario ^getEventStateItinerario(){return sITI;};
-	StateCDB ^getEventStateCDB(){return sCDB;};
-	phisicalTrain ^getEventPresentTrain(){return lTrain;};
+
+	StateItinerario ^getEventStateItinerario();
+	StateCDB ^getEventStateCDB();
+	phisicalTrain ^getEventPresentTrain();
 
 	void setSource(String ^v){source=v;}
 	String ^getSource(){return source;}
-	
+
 
 	virtual System::String ^ToString() override;
 

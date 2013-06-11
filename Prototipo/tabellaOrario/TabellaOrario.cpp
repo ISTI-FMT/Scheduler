@@ -203,6 +203,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 			// a questo punto aggiungo il treno alla tabella orario
 			tabella->Add(idTreno, treno);
 		}
+		reader->Close();
 	}catch(Exception ^e){
 
 #ifdef TRACE

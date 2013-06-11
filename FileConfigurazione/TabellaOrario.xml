@@ -10,8 +10,8 @@
   </stazione>
 
   <stazione id="14000"  name="Piazza Università">
-    <arrivo>17:05:00</arrivo>
-    <partenza>17:07:00</partenza>
+    <arrivo>17:04:00</arrivo>
+    <partenza>17:05:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
 	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
  <itinerarioEntrata id="22">02-II</itinerarioEntrata>
