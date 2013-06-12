@@ -48,7 +48,7 @@ void ThreadSchedule::SimpleSchedule(){
 			int enginenumber;
 			Event ^eventoATO;
 
-
+			//dormi un po 500  millisecondi 
 			Thread::Sleep(500);
 			wdogs->onNext();
 			switch (statoInterno)
@@ -137,7 +137,8 @@ void ThreadSchedule::SimpleSchedule(){
 				//itinerario uscita
 				int itinUscita = listaitinerari[indicelistaitinerari]->getIditinerarioUscita();
 				int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
-				int resultprecU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
+				int resultprecCdbU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
+				int resultsuccCdbU = tabItinerari->get_CdbSuccItinerario(idstazione,itinUscita);
 				//se esiste un itinerario di uscita
 				if(itinUscita>0){
 
@@ -146,9 +147,9 @@ void ThreadSchedule::SimpleSchedule(){
 					int tempo = (int)oraattuale->TotalSeconds/30;
 					int  costante= 3;
 					int resutl = ((int)listaitinerari[indicelistaitinerari]->getOrarioPartenza())-costante;
-
-					//controllo posizione  e tempo
-					if((managerATC->getCDB(resultprecU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo)){
+					int statocdbuscitaitinerario = managerIXL->StatoCDB(resultsuccCdbU)->getQ_STATOCDB();
+					//stato cdb uscita, controllo posizione e tempo 
+					if(( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)&(managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo)){
 
 
 						//todo : se ti trovi nel posto giusto

@@ -12,7 +12,7 @@ ref class Itinerario
 	bool porteBanchina;
 	String ^latoBanchina;
 	int prevCDB;
-	String ^nextCDB;
+	int nextCDB;
 	List<int> ^cdb;
 	int nextstation;
 public:
@@ -35,8 +35,8 @@ public:
 	String^ getLatoBanchina(){return latoBanchina;}
 	void setPrevCDB(int p){prevCDB = p;}
 	int getPrevCDB(){return prevCDB;}
-	void setNextCDB(String ^p){nextCDB = p;}
-	String^ getNextCDB(){return nextCDB;}
+	void setNextCDB(int p){nextCDB = p;}
+	int getNextCDB(){return nextCDB;}
 	
 	List<int>^ getLCDB(){return cdb;}
 

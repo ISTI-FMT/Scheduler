@@ -12,7 +12,7 @@ Itinerario::Itinerario(void)
 	porteBanchina = false;
 	latoBanchina = gcnew String ("");
 	prevCDB = 0;
-	nextCDB = gcnew String ("");
+	nextCDB = 0;
 	cdb=gcnew List<int>();
 	nextstation=0;
 }

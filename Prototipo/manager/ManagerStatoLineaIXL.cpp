@@ -145,3 +145,14 @@ StateItinerario ^ManagerStatoLineaIXL::getItinerario(int iditin){
 
 	return gcnew StateItinerario();
 }
+
+StateCDB^ ManagerStatoLineaIXL::StatoCDB(int idcdb){
+	if(tabellaCDB->ContainsKey(idcdb)){
+		 
+		return	tabellaCDB[idcdb];
+
+	}
+	return gcnew StateCDB();
+	 
+
+}

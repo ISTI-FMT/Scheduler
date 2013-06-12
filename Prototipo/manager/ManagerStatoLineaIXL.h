@@ -22,6 +22,8 @@ public:
 
 	StateItinerario ^getItinerario(int iditin);
 
+	StateCDB^  StatoCDB(int idcdb);
+
 	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
    
 

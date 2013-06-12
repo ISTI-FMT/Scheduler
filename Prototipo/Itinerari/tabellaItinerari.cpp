@@ -89,7 +89,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 					newitinerario->setDStop(dstop);
 					newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
-					newitinerario->setNextCDB( inner2->GetAttribute("nextcdb"));
+					newitinerario->setNextCDB( int::Parse( inner2->GetAttribute("nextcdb")));
 
 					int prevcdb = int::Parse(	inner2->GetAttribute("prevcdb"));
 					newitinerario->setPrevCDB( prevcdb);	
@@ -144,7 +144,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 					newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
-					newitinerario->setNextCDB( inner2->GetAttribute("nextcdb"));
+					newitinerario->setNextCDB(  int::Parse(inner2->GetAttribute("nextcdb")));
 
 					int prevcdb = int::Parse(	inner2->GetAttribute("prevcdb"));
 					newitinerario->setPrevCDB( prevcdb);	
@@ -221,3 +221,14 @@ int tabellaItinerari::get_CdbPrecItinerario(int stazione, int iditin){
 }
 
 
+
+int tabellaItinerari::get_CdbSuccItinerario(int stazione, int iditin){
+	int result=0;
+	if(mapidstazioneitinerari->ContainsKey(stazione)){
+		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
+			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->getNextCDB();
+		}
+
+	}
+	return result;
+}
