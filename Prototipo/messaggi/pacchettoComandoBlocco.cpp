@@ -19,18 +19,18 @@ int pacchettoComandoBlocco::getSize()
 
 void pacchettoComandoBlocco::serialize(byte *buffer)
 {
-	push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, 59);
-	push(buffer, NID_BLOCCO, 32, 72);
-	push(buffer, Q_CMDBLOCCO, 2, 104);}
+	utility::push(buffer, L_PACKET, 13, 59);
+	utility::push(buffer, NID_BLOCCO, 32, 72);
+	utility::push(buffer, Q_CMDBLOCCO, 2, 104);}
 
 void pacchettoComandoBlocco::deserialize(byte *buffer)
 {
-	NID_PACKET=pop(buffer,  8, 51);
-	L_PACKET=pop(buffer, 13, 59);
-	NID_BLOCCO=pop(buffer, 32, 72);
-	Q_CMDBLOCCO=pop(buffer, 2, 104);
+	NID_PACKET=utility::pop(buffer,  8, 51);
+	L_PACKET=utility::pop(buffer, 13, 59);
+	NID_BLOCCO=utility::pop(buffer, 32, 72);
+	Q_CMDBLOCCO=utility::pop(buffer, 2, 104);
 }
 
 pacchettoComandoBlocco::~pacchettoComandoBlocco(void)

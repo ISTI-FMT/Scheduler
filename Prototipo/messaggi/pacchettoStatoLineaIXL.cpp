@@ -36,23 +36,23 @@ int pacchettoStatoLineaIXL::getSize()
 
 void pacchettoStatoLineaIXL::serialize(byte *buffer)
 {
-	push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, 59);
-	push(buffer, sCDB->getNID_CDB(), 32, 72);
-	push(buffer, sCDB->getQ_STATOCDB(), 2, 104);
-	push(buffer, sCDB->getQ_DEVIATOIO(), 2, 106);
-	push(buffer, N_ITER, 16, 108);
+	utility::push(buffer, L_PACKET, 13, 59);
+	utility::push(buffer, sCDB->getNID_CDB(), 32, 72);
+	utility::push(buffer, sCDB->getQ_STATOCDB(), 2, 104);
+	utility::push(buffer, sCDB->getQ_DEVIATOIO(), 2, 106);
+	utility::push(buffer, N_ITER, 16, 108);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int offset = 124;
 	for each (StateCDB^ var in vStatoCDB )
 	{
 
-		push(buffer, var->getNID_CDB(), 32, offset);
+		utility::push(buffer, var->getNID_CDB(), 32, offset);
 		offset += 32;
-		push(buffer, var->getQ_STATOCDB(), 2, offset);
+		utility::push(buffer, var->getQ_STATOCDB(), 2, offset);
 		offset += 2;
-		push(buffer, var->getQ_DEVIATOIO(), 2, offset);
+		utility::push(buffer, var->getQ_DEVIATOIO(), 2, offset);
 		offset += 2;
 	}
 }
@@ -60,20 +60,20 @@ void pacchettoStatoLineaIXL::serialize(byte *buffer)
 void pacchettoStatoLineaIXL::deserialize(byte *buffer)
 {
 
-	NID_PACKET=pop(buffer,  8, 51);
-	L_PACKET=pop(buffer, 13, 59);
-	sCDB->setNID_CDB(pop(buffer, 32, 72));
-	sCDB->setQ_STATOCDB(pop(buffer, 2, 104));
-	sCDB->setQ_DEVIATOIO(pop(buffer, 2, 106));
-	setN_ITER(pop(buffer, 16, 108));
+	NID_PACKET=utility::pop(buffer,  8, 51);
+	L_PACKET=utility::pop(buffer, 13, 59);
+	sCDB->setNID_CDB(utility::pop(buffer, 32, 72));
+	sCDB->setQ_STATOCDB(utility::pop(buffer, 2, 104));
+	sCDB->setQ_DEVIATOIO(utility::pop(buffer, 2, 106));
+	setN_ITER(utility::pop(buffer, 16, 108));
 	int offset = 124;
 	for(unsigned int i = 0; i < N_ITER; ++i)
 	{
-		int NID_CDB=pop(buffer, 32, offset);
+		int NID_CDB=utility::pop(buffer, 32, offset);
 		offset += 32;
-		int Q_STATOCDB=pop(buffer, 2, offset);
+		int Q_STATOCDB=utility::pop(buffer, 2, offset);
 		offset += 2;
-		int Q_DEVIATOIO=pop(buffer, 2, offset);
+		int Q_DEVIATOIO=utility::pop(buffer, 2, offset);
 		offset += 2;
 
 		vStatoCDB->Add(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO));

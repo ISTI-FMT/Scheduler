@@ -36,19 +36,19 @@ int pacchettoStatoSegnali::getSize()
 
 void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
 {
-	push(buffer, NID_PACKET, 8, offset);
+	utility::push(buffer, NID_PACKET, 8, offset);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, offset +8);
-	push(buffer, statoSegnale->getNID_SEGN(), 32, offset + 21);
-	push(buffer, statoSegnale->getQSTATO_SEGN(), 2, offset + 53);
-	push(buffer, N_ITER, 16, offset + 55);
+	utility::push(buffer, L_PACKET, 13, offset +8);
+	utility::push(buffer, statoSegnale->getNID_SEGN(), 32, offset + 21);
+	utility::push(buffer, statoSegnale->getQSTATO_SEGN(), 2, offset + 53);
+	utility::push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
 	for each (StateSegnale ^var in vStatoSegnale)
 	{
-		push(buffer, var->getNID_SEGN(), 32, offset + shift);
+		utility::push(buffer, var->getNID_SEGN(), 32, offset + shift);
 		shift += 32;
-		push(buffer, var->getQSTATO_SEGN(), 5, offset + shift);
+		utility::push(buffer, var->getQSTATO_SEGN(), 5, offset + shift);
 		shift += 5;
 	}
 
@@ -56,17 +56,17 @@ void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
 
 void pacchettoStatoSegnali::deserialize(byte *buffer, int offset)
 {
-	NID_PACKET=pop(buffer,  8, offset );
-	L_PACKET=pop(buffer, 13, offset + 8);
-	statoSegnale->setNID_SEGN(pop(buffer, 32, offset + 21));
-	statoSegnale->setQSTATO_SEGN(pop(buffer, 2, offset + 53));
-	setN_ITER(pop(buffer, 16, offset + 55));
+	NID_PACKET=utility::pop(buffer,  8, offset );
+	L_PACKET=utility::pop(buffer, 13, offset + 8);
+	statoSegnale->setNID_SEGN(utility::pop(buffer, 32, offset + 21));
+	statoSegnale->setQSTATO_SEGN(utility::pop(buffer, 2, offset + 53));
+	setN_ITER(utility::pop(buffer, 16, offset + 55));
 	int shift = 71;
 	for(unsigned int i = 0; i < N_ITER; ++i)
 	{
-		int NID_SEGN=pop(buffer, 32, offset + shift);
+		int NID_SEGN=utility::pop(buffer, 32, offset + shift);
 		shift += 32;
-		int Q_STATOSEGN=pop(buffer, 5, offset + shift);
+		int Q_STATOSEGN=utility::pop(buffer, 5, offset + shift);
 		shift += 5;
 		vStatoSegnale->Add(gcnew StateSegnale(NID_SEGN,Q_STATOSEGN));
 	}

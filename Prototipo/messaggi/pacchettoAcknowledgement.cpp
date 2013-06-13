@@ -15,12 +15,12 @@ pacchettoAcknowledgement::pacchettoAcknowledgement(void)
 void pacchettoAcknowledgement::serialize(byte *buffer)
 {
 	
-	//push(buffer, NID_ENGINE, 24, 51);
-	push(buffer, NID_PACKET, 8, 75);
+	//utility::push(buffer, NID_ENGINE, 24, 51);
+	utility::push(buffer, NID_PACKET, 8, 75);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, 83);
-	push(buffer, T_TRAIN, 32, 96);
-	push(buffer, Q_MISSION_RESPONSE, 1, 128);
+	utility::push(buffer, L_PACKET, 13, 83);
+	utility::push(buffer, T_TRAIN, 32, 96);
+	utility::push(buffer, Q_MISSION_RESPONSE, 1, 128);
 }
 
 // metodo per la deserializzazion del messaggio
@@ -28,11 +28,11 @@ void pacchettoAcknowledgement::serialize(byte *buffer)
 void pacchettoAcknowledgement::deserialize(byte *buff)
 {
 	
-	//NID_ENGINE = pop(buff, 24, 51);
-	NID_PACKET = pop(buff, 8, 75);
-	L_PACKET = pop(buff, 13, 83);
-	T_TRAIN = pop(buff, 32, 96);
-	Q_MISSION_RESPONSE = pop(buff, 1, 128);
+	//NID_ENGINE = utility::pop(buff, 24, 51);
+	NID_PACKET = utility::pop(buff, 8, 75);
+	L_PACKET = utility::pop(buff, 13, 83);
+	T_TRAIN = utility::pop(buff, 32, 96);
+	Q_MISSION_RESPONSE = utility::pop(buff, 1, 128);
 }
 
 System::String ^ pacchettoAcknowledgement::ToString(){

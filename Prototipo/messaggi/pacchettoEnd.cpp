@@ -8,12 +8,12 @@ pacchettoEnd::pacchettoEnd(void)
 
 void pacchettoEnd::serialize(byte *buffer, int offset)
 {
-	push(buffer, NID_PACKET, 8, offset);
+	utility::push(buffer, NID_PACKET, 8, offset);
 }
 
 void pacchettoEnd::deserialize(byte *buffer, int offset)
 {
-	NID_PACKET = pop(buffer, 8, offset);
+	NID_PACKET = utility::pop(buffer, 8, offset);
 }
 
 pacchettoEnd::~pacchettoEnd(void)
