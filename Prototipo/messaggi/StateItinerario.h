@@ -1,5 +1,5 @@
 #pragma once
-enum typeStateItineraio  {itinerarioStatoIgnoto = 2, itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
+enum typeStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
 ref class StateItinerario
 {
 	unsigned int NID_ITIN;
@@ -14,7 +14,7 @@ public:
 		if((Q>=0) & (Q<2)){
 			Q_STATOITIN=Q;
 		}else{
-			Q_STATOITIN=typeStateItineraio::itinerarioStatoIgnoto;
+			Q_STATOITIN=typeStateItineraio::itinerarioStatoInAtto;
 		}
 	};
 	int getQ_STATOITIN(){return Q_STATOITIN;};

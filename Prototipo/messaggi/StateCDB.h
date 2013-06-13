@@ -1,5 +1,5 @@
 #pragma once
-enum  typeStateCDB { cdbOccupato = 0, cdbImpegnato = 1, cdbLibero = 2,  cdbFuoriControllo = 3};
+enum  typeStateCDB { cdbOccupato = 1, cdbImpegnato = 2, cdbLibero = 0,  cdbFuoriControllo = 3};
 enum  typeStateDeviatoio{deviatoioStatoIgnoto = 4, deviatoioNonPresente = 0, deviatoioNormale = 1, deviatoioRovescio = 2};
 ref class StateCDB
 {
