@@ -10,7 +10,7 @@
 #include "wdogcontrol.h"
 #include "manager\\ManagerStatoLineaATC.h"
 #include "manager\\ManagerStatoLineaIXL.h"
-
+#include "StateObject.h"
 
 using namespace System;
 
@@ -32,8 +32,9 @@ public:
 
 	void SimpleSchedule();
 	void Init();
-	bool SendTCPMsg(int trn,phisicalTrain ^Treno);
+	StateObject ^SendTCPMsg(int trn,phisicalTrain ^Treno);
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
 	bool richestaItinerarioIXL(int iditinerario);
+	static void ReceiveCallback(IAsyncResult^ asyncResult);
 };
 

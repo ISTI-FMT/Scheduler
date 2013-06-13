@@ -1,4 +1,4 @@
-  #include "ThreadSchedule.h"
+#include "ThreadSchedule.h"
 #include "TrenoFisicoLogico.h"
 
 
@@ -43,6 +43,8 @@ void ThreadSchedule::SimpleSchedule(){
 		int statoInterno = StateSimpleSchedule::PresentazioneTreno;
 		int indicelistaitinerari=0;
 		List<Fermata^> ^listaitinerari;
+		DateTime time;
+		StateObject ^inviato;
 		int trn =0;
 		while(true){
 			int enginenumber;
@@ -78,11 +80,27 @@ void ThreadSchedule::SimpleSchedule(){
 						if(lastpos==prevfirstcdbu){
 							Console::WriteLine("Si trova al posto giusto per partire e gli assegno la missione");
 							// gli assegni TRN e MISSION
-							bool inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain()); 
-							if(inviato){
-								//itinerario entrata
+							if(inviato==nullptr){
+								inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
+								time=DateTime::Now;
+							}
+							
+								if(inviato->fine==1){
+									//itinerario entrata
 
-								statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
+									statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
+								}
+							else{
+								//aspetta un po
+								TimeSpan sec = DateTime::Now - time;
+								if(sec.TotalSeconds>20){
+									//riinvia
+									inviato->fine=0;
+									inviato->workSocket->Close();
+									inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
+									time=DateTime::Now;
+								}
+
 							}
 						}
 					}
@@ -362,7 +380,7 @@ void ThreadSchedule::Init(){
 }
 
 
-bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
+StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 {
 
 	const int WAKE_UP = 0;
@@ -429,40 +447,108 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		String ^IP = gcnew String(Treno->getIpAddress());
 		sock->Connect(IP, Treno->getTcpPort());
 
-		NetworkStream ^myStream = gcnew NetworkStream(sock);
-
-		myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
+		//NetworkStream ^myStream = gcnew NetworkStream(sock);
+		sock->Send(bytes_buffer1);
+		//myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
 #ifdef TRACE
 
 		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedule");
 
 #endif // TRACE
-		myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
+		sock->Send(bytes_buffer2);
+		//myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
 #ifdef TRACE
 
 		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedule");
 
 #endif // TRACE
-		myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
+		sock->Send(bytes_buffer3);
+		//myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
 #ifdef TRACE
 
 		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedule");
 
 #endif // TRACE
 
+		StateObject^ so2 = gcnew StateObject;
+		so2->workSocket = sock;
+		sock->BeginReceive( so2->buffer, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedule::ReceiveCallback ), so2 );
+		so2->fine=-1;
+		/*
+		// Buffer for reading data
+		array<Byte>^bytes_buffer4 = gcnew array<Byte>(17);
+
+
+		sock->Receive(bytes_buffer4);	
+		//sock->BeginReceive( bytes_buffer4, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedule::ReceiveCallback ), sock );
+		//allDone->WaitOne();
+
+		//	Console::WriteLine( "Sorry.  You cannot read from this NetworkStream." );
+		//	return false;
+		//	myStream->Close();
+		//sock->Close();
+
+
 		Messaggi ^pktAck = gcnew Messaggi();
 
 
 
-		// Buffer for reading data
-		array<Byte>^bytes_buffer4 = gcnew array<Byte>(17);
 
 		myStream->Read(bytes_buffer4, 0, 17);
 		pktAck->deserialize(bytes_buffer4);
 
-#ifdef TRACE
+		#ifdef TRACE
 
 		Logger::Info(pktAck->getNID_MESSAGE(),IP->ToString(),"ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"ThreadSchedule");
+
+		#endif // TRACE
+
+
+
+
+		cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
+
+
+		cout << "DONE\n";
+		//myStream->Close();
+		sock->Close();*/
+		return so2;
+	}
+	catch ( Exception^ e ) 
+	{
+		Console::WriteLine( "SocketException: {0}", e->Message );
+#ifdef TRACE
+		Logger::Exception(e,"ThreadSchedule");  
+#endif // TRACE
+		StateObject^ so2 = gcnew StateObject;
+
+		return so2;
+	}
+
+
+}
+void ThreadSchedule::ReceiveCallback(IAsyncResult^ asyncResult){
+
+	StateObject^ so = safe_cast<StateObject^>(asyncResult->AsyncState);
+	Socket^ s = so->workSocket;
+	try{
+	int read = s->EndReceive( asyncResult );
+	
+	if ( read < 0 )
+	{
+
+		s->BeginReceive( so->buffer, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedule::ReceiveCallback ), so );
+	}
+	else
+	{
+		Messaggi ^pktAck = gcnew Messaggi();
+
+
+		pktAck->deserialize(so->buffer);
+
+#ifdef TRACE
+
+		Logger::Info(pktAck->getNID_MESSAGE(),"IP","ATS",pktAck->getSize(),BitConverter::ToString(so->buffer),"ThreadSchedule");
 
 #endif // TRACE
 
@@ -473,22 +559,45 @@ bool ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 
 		cout << "DONE\n";
-		myStream->Close();
-		sock->Close();
-		return true;
-	}
-	catch ( Exception^ e ) 
-	{
-		Console::WriteLine( "SocketException: {0}", e->Message );
-#ifdef TRACE
-		Logger::Exception(e,"ThreadSchedule");  
-#endif // TRACE
-		return false;
+
+		//All of the data has been read
+
+		s->Close();
+		so->fine=1;
+		}
+	}catch(Exception ^e){
+	
+		Console::WriteLine("avevi chiuso il sock");
 	}
 
+	
+
+	/*Socket^ sock = safe_cast<Socket^>(asyncResult->AsyncState);
+
+
+	Messaggi ^pktAck = gcnew Messaggi();
+	// Buffer for reading data
+	array<Byte>^bytes_buffer4 = gcnew array<Byte>(17);
+
+	int read = sock->EndReceive(asyncResult);
+	pktAck->deserialize(bytes_buffer4);
+
+	#ifdef TRACE
+
+	Logger::Info(pktAck->getNID_MESSAGE(),"IP","ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"ThreadSchedule");
+
+	#endif // TRACE
+
+
+
+
+	cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
+
+
+	cout << "DONE\n";
+	myStream->Close();*/
 
 }
-
 
 //se l'itinerario è libero
 //continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL che 

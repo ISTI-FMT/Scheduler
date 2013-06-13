@@ -121,6 +121,7 @@
     <ClInclude Include="manager\ManagerMsgATO.h" />
     <ClInclude Include="manager\ManagerStatoLineaATC.h" />
     <ClInclude Include="manager\ManagerStatoLineaIXL.h" />
+    <ClInclude Include="StateObject.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
