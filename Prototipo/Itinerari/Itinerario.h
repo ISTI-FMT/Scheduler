@@ -1,10 +1,11 @@
 #pragma once
 #using <System.dll>
+#include "..\\messaggi\\StateCDB.h"
 using namespace System;
 using namespace System::Collections::Generic;
 ref class Itinerario
 {
-	int ^id;
+	int id;
 	String ^name;
 	String ^direzione;
 	int lrgb;
@@ -13,12 +14,12 @@ ref class Itinerario
 	String ^latoBanchina;
 	int prevCDB;
 	int nextCDB;
-	List<int> ^cdb;
+	List<StateCDB^> ^cdb;
 	int nextstation;
 public:
 	Itinerario(void);
-	void setId(int ^i){id = i;}
-	int^ getId(){return id;}
+	void setId(int i){id = i;}
+	int getId(){return id;}
 	void set_nextstation(int i){nextstation = i;}
 	int^ get_nextstation(){return nextstation;}
 	void setName(String ^i){name = i;}
@@ -38,7 +39,7 @@ public:
 	void setNextCDB(int p){nextCDB = p;}
 	int getNextCDB(){return nextCDB;}
 	
-	List<int>^ getLCDB(){return cdb;}
+	List<StateCDB^>^ getLCDB(){return cdb;}
 
 		virtual System::String^ ToString() override;
 };
