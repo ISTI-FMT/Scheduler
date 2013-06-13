@@ -38,19 +38,19 @@ int pacchettoStatoItinerario::getSize()
 
 void pacchettoStatoItinerario::serialize(byte *buffer, int offset)
 {
-	push(buffer, NID_PACKET, 8, offset);
+	utility::push(buffer, NID_PACKET, 8, offset);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, offset + 8);
-	push(buffer, statoItinerario->getNID_ITIN(), 32, offset + 21);
-	push(buffer, statoItinerario->getQ_STATOITIN(), 2, offset + 53);
-	push(buffer, N_ITER, 16, offset + 55);
+	utility::push(buffer, L_PACKET, 13, offset + 8);
+	utility::push(buffer, statoItinerario->getNID_ITIN(), 32, offset + 21);
+	utility::push(buffer, statoItinerario->getQ_STATOITIN(), 2, offset + 53);
+	utility::push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
 	for each (StateItinerario^ var in vStatoItinerario)
 	{
-		push(buffer, var->getNID_ITIN(), 32, offset + shift);
+		utility::push(buffer, var->getNID_ITIN(), 32, offset + shift);
 		shift += 32;
-		push(buffer, var->getQ_STATOITIN(), 2, offset + shift);
+		utility::push(buffer, var->getQ_STATOITIN(), 2, offset + shift);
 		shift += 2;
 	}
 }
@@ -58,17 +58,17 @@ void pacchettoStatoItinerario::serialize(byte *buffer, int offset)
 void pacchettoStatoItinerario::deserialize(byte *buffer, int offset)
 {
 
-	NID_PACKET=pop(buffer,  8, offset);
-	L_PACKET=pop(buffer, 13, offset + 8);
-	statoItinerario->setNID_ITIN(pop(buffer, 32, offset + 21));
-	statoItinerario->setQ_STATOITIN(pop(buffer, 2, offset + 53));
-	setN_ITER(pop(buffer, 16, offset + 55));
+	NID_PACKET=utility::pop(buffer,  8, offset);
+	L_PACKET=utility::pop(buffer, 13, offset + 8);
+	statoItinerario->setNID_ITIN(utility::pop(buffer, 32, offset + 21));
+	statoItinerario->setQ_STATOITIN(utility::pop(buffer, 2, offset + 53));
+	setN_ITER(utility::pop(buffer, 16, offset + 55));
 	int shift = 71;
 	for(unsigned int i = 0; i < N_ITER; ++i)
 	{
-		int NID_ITIN=pop(buffer, 32, offset + shift);
+		int NID_ITIN=utility::pop(buffer, 32, offset + shift);
 		shift += 32;
-		int Q_STATOITIN=pop(buffer, 2, offset + shift);
+		int Q_STATOITIN=utility::pop(buffer, 2, offset + shift);
 		shift += 2;
 		vStatoItinerario->Add(gcnew StateItinerario(NID_ITIN,Q_STATOITIN));
 	}

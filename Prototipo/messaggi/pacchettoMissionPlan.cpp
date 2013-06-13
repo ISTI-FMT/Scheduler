@@ -37,47 +37,47 @@ void pacchettoMissionPlan::setN_ITER2(int N)
 void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 {
 
-	push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, 59);
-	push(buffer, Q_SCALE, 2, 72);
-	push(buffer, mS1->getD_MISSION(), 15, 74);
-	push(buffer, mS1->getV_MISSION(), 7, 89);
-	push(buffer, N_ITER1, 5, 96);
+	utility::push(buffer, L_PACKET, 13, 59);
+	utility::push(buffer, Q_SCALE, 2, 72);
+	utility::push(buffer, mS1->getD_MISSION(), 15, 74);
+	utility::push(buffer, mS1->getV_MISSION(), 7, 89);
+	utility::push(buffer, N_ITER1, 5, 96);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int offset = 101;
 	for each (ProfiloVelocita ^var in mS1_vect)
 	{
-		push(buffer, var->getD_MISSION(), 15, offset);
+		utility::push(buffer, var->getD_MISSION(), 15, offset);
 		offset += 15;
-		push(buffer, var->getV_MISSION(), 7, offset);
+		utility::push(buffer, var->getV_MISSION(), 7, offset);
 		offset += 7;
 
 	}
-	push(buffer, mS2->getT_START_TIME(), 12, offset);
+	utility::push(buffer, mS2->getT_START_TIME(), 12, offset);
 	offset += 12;
-	push(buffer, mS2->getNID_LRGB(), 24, offset);
+	utility::push(buffer, mS2->getNID_LRGB(), 24, offset);
 	offset += 24;
-	push(buffer, mS2->getD_STOP(), 15, offset);
+	utility::push(buffer, mS2->getD_STOP(), 15, offset);
 	offset += 15;
-	push(buffer, mS2->getQ_DOORS(), 4, offset);
+	utility::push(buffer, mS2->getQ_DOORS(), 4, offset);
 	offset += 4;
-	push(buffer, mS2->getT_DOORS_TIME(), 12, offset);
+	utility::push(buffer, mS2->getT_DOORS_TIME(), 12, offset);
 	offset += 12;
-	push(buffer, N_ITER2, 5, offset);
+	utility::push(buffer, N_ITER2, 5, offset);
 	offset += 5;
 	//mS2_vect = new missionStruct2[N_ITER2];
 	for each (Mission ^var in mS2_vect)
 	{
-		push(buffer, var->getT_START_TIME(), 12, offset);
+		utility::push(buffer, var->getT_START_TIME(), 12, offset);
 		offset += 12;
-		push(buffer, var->getNID_LRGB(), 24, offset);
+		utility::push(buffer, var->getNID_LRGB(), 24, offset);
 		offset += 24;
-		push(buffer, var->getD_STOP(), 15, offset);
+		utility::push(buffer, var->getD_STOP(), 15, offset);
 		offset += 15;
-		push(buffer, var->getQ_DOORS(), 4, offset);
+		utility::push(buffer, var->getQ_DOORS(), 4, offset);
 		offset += 4;
-		push(buffer, var->getT_DOORS_TIME(), 12, offset);
+		utility::push(buffer, var->getT_DOORS_TIME(), 12, offset);
 		offset += 12;
 	}
 
@@ -86,44 +86,44 @@ void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 void pacchettoMissionPlan::deserializeMissionPlanPkt(byte *buffer)
 {
 
-	NID_PACKET=pop(buffer,  8, 51);
-	L_PACKET=pop(buffer, 13, 59);
-	Q_SCALE=pop(buffer, 2, 72);
-	mS1->setD_MISSION(pop(buffer, 15, 74));
-	mS1->setV_MISSION(pop(buffer, 7, 89));
-	setN_ITER1(pop(buffer, 5, 96));
+	NID_PACKET=utility::pop(buffer,  8, 51);
+	L_PACKET=utility::pop(buffer, 13, 59);
+	Q_SCALE=utility::pop(buffer, 2, 72);
+	mS1->setD_MISSION(utility::pop(buffer, 15, 74));
+	mS1->setV_MISSION(utility::pop(buffer, 7, 89));
+	setN_ITER1(utility::pop(buffer, 5, 96));
 	int offset = 101;
 	for(unsigned int i = 0; i < N_ITER1; ++i)
 	{
-		int D_MISSION=pop(buffer, 15, offset);
+		int D_MISSION=utility::pop(buffer, 15, offset);
 		offset += 15;
-		int V_MISSION=pop(buffer, 7, offset);
+		int V_MISSION=utility::pop(buffer, 7, offset);
 		offset += 7;
 		mS1_vect->Add(gcnew ProfiloVelocita(D_MISSION,V_MISSION));
 	}
-	mS2->setT_START_TIME(pop(buffer, 12, offset));
+	mS2->setT_START_TIME(utility::pop(buffer, 12, offset));
 	offset += 12;
-	mS2->setNID_LRGB(pop(buffer, 24, offset));
+	mS2->setNID_LRGB(utility::pop(buffer, 24, offset));
 	offset += 24;
-	mS2->setD_STOP(pop(buffer, 15, offset));
+	mS2->setD_STOP(utility::pop(buffer, 15, offset));
 	offset += 15;
-	mS2->setQ_DOORS(pop(buffer, 4, offset));
+	mS2->setQ_DOORS(utility::pop(buffer, 4, offset));
 	offset += 4;
-	mS2->setT_DOORS_TIME(pop(buffer, 12, offset));
+	mS2->setT_DOORS_TIME(utility::pop(buffer, 12, offset));
 	offset += 12;
-	setN_ITER2(pop(buffer, 5, offset));
+	setN_ITER2(utility::pop(buffer, 5, offset));
 	offset += 5;
 	for(unsigned int i = 0; i < N_ITER2; ++i)
 	{
-		int T_START_TIME=pop(buffer, 12, offset);
+		int T_START_TIME=utility::pop(buffer, 12, offset);
 		offset += 12;
-		int NID_LRGB=pop(buffer, 24, offset);
+		int NID_LRGB=utility::pop(buffer, 24, offset);
 		offset += 24;
-		int D_STOP=pop(buffer, 15, offset);
+		int D_STOP=utility::pop(buffer, 15, offset);
 		offset += 15;
-		int Q_DOORS=pop(buffer, 4, offset);
+		int Q_DOORS=utility::pop(buffer, 4, offset);
 		offset += 4;
-		int T_DOORS_TIME=pop(buffer, 12, offset);
+		int T_DOORS_TIME=utility::pop(buffer, 12, offset);
 		offset += 12;
 		mS2_vect->Add(gcnew Mission(T_START_TIME,NID_LRGB,D_STOP,Q_DOORS,T_DOORS_TIME));
 	}

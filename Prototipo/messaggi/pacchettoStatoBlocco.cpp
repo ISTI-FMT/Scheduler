@@ -34,19 +34,19 @@ int pacchettoStatoBlocco::getSize()
 
 void pacchettoStatoBlocco::serialize(byte *buffer, int offset)
 {
-	push(buffer, NID_PACKET, 8, offset );
+	utility::push(buffer, NID_PACKET, 8, offset );
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, offset +8);
-	push(buffer, statoBlocco->getNID_BLOCCO(), 32, offset + 21);
-	push(buffer, statoBlocco->getQ_STATOBLOCCO(), 2, offset + 53);
-	push(buffer, N_ITER, 16, offset + 55);
+	utility::push(buffer, L_PACKET, 13, offset +8);
+	utility::push(buffer, statoBlocco->getNID_BLOCCO(), 32, offset + 21);
+	utility::push(buffer, statoBlocco->getQ_STATOBLOCCO(), 2, offset + 53);
+	utility::push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
 	for each (StateBlocco^ var in vStatoBlocco)
 	{
-		push(buffer, var->getNID_BLOCCO(), 32, offset + shift);
+		utility::push(buffer, var->getNID_BLOCCO(), 32, offset + shift);
 		shift += 32;
-		push(buffer, var->getQ_STATOBLOCCO(), 2, offset + shift);
+		utility::push(buffer, var->getQ_STATOBLOCCO(), 2, offset + shift);
 		shift += 2;
 	}
 
@@ -55,17 +55,17 @@ void pacchettoStatoBlocco::serialize(byte *buffer, int offset)
 void pacchettoStatoBlocco::deserialize(byte *buffer, int offset)
 {
 
-	NID_PACKET=pop(buffer,  8, offset );
-	L_PACKET=pop(buffer, 13, offset + 8);
-	statoBlocco->setNID_BLOCCO(pop(buffer, 32, offset + 21));
-	statoBlocco->setQ_STATOBLOCCO(pop(buffer, 2, offset + 53));
-	setN_ITER(pop(buffer, 16, offset + 55));
+	NID_PACKET=utility::pop(buffer,  8, offset );
+	L_PACKET=utility::pop(buffer, 13, offset + 8);
+	statoBlocco->setNID_BLOCCO(utility::pop(buffer, 32, offset + 21));
+	statoBlocco->setQ_STATOBLOCCO(utility::pop(buffer, 2, offset + 53));
+	setN_ITER(utility::pop(buffer, 16, offset + 55));
 	int shift = 71;
 	for(unsigned int i = 0; i < N_ITER; ++i)
 	{
-		int NID_BLOCCO=pop(buffer, 32, offset + shift);
+		int NID_BLOCCO=utility::pop(buffer, 32, offset + shift);
 		shift += 32;
-		int Q_STATOBLOCCO=pop(buffer, 2, offset + shift);
+		int Q_STATOBLOCCO=utility::pop(buffer, 2, offset + shift);
 		shift += 2;
 		vStatoBlocco->Add(gcnew StateBlocco(NID_BLOCCO,Q_STATOBLOCCO));
 	}

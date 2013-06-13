@@ -36,10 +36,10 @@ void Messaggi::setNID_MESSAGE(int N){
 
 void Messaggi::serialize(byte *buffer)
 {
-	push(buffer, NID_MESSAGE, 8, 0);
+	utility::push(buffer, NID_MESSAGE, 8, 0);
 	setL_MESSAGE(getSize());
-	push(buffer, L_MESSAGE, 11, 8);
-	push(buffer, T_TIME, 32, 19);
+	utility::push(buffer, L_MESSAGE, 11, 8);
+	utility::push(buffer, T_TIME, 32, 19);
 	int N = NID_MESSAGE;
 	int offset = 0;
 	switch (N)
@@ -48,12 +48,12 @@ void Messaggi::serialize(byte *buffer)
 		break;}
 	case 201 : {get_pacchettoCommandData()->serializepacchettoCommandData(buffer);
 		break;}
-	case 215 : {push(buffer, NID_ENGINE, 24, 51);
+	case 215 : {utility::push(buffer, NID_ENGINE, 24, 51);
 		get_pacchettoPresentazione()->serialize(buffer);
 		break;}
 	case 1 : {get_pacchettoStatoLineaATC()->serialize(buffer);
 		break;}
-	case 210 :{push(buffer, NID_ENGINE, 24, 51);
+	case 210 :{utility::push(buffer, NID_ENGINE, 24, 51);
 		get_pacchettoAcknowledgement()->serialize(buffer);
 		break;}
 	case 101: {offset += 51; 
@@ -103,9 +103,9 @@ array<System::Byte>^ Messaggi::serialize(){
 
 void Messaggi::deserialize(byte *buffer)
 {
-	NID_MESSAGE= pop(buffer, 8, 0);
-	L_MESSAGE=pop(buffer,11, 8);
-	T_TIME=pop(buffer, 32, 19);
+	NID_MESSAGE= utility::pop(buffer, 8, 0);
+	L_MESSAGE=utility::pop(buffer,11, 8);
+	T_TIME=utility::pop(buffer, 32, 19);
 	int offset = 0;
 	switch (NID_MESSAGE)
 	{
@@ -120,7 +120,7 @@ void Messaggi::deserialize(byte *buffer)
 
 			   }
 
-	case 215 : {NID_ENGINE = pop(buffer, 24, 51);
+	case 215 : {NID_ENGINE = utility::pop(buffer, 24, 51);
 		set_pacchettoPresentazione();
 		pgkPres->deserialize(buffer);
 		break;
@@ -132,7 +132,7 @@ void Messaggi::deserialize(byte *buffer)
 		break;
 			 }
 
-	case 210 : {NID_ENGINE = pop(buffer, 24, 51);
+	case 210 : {NID_ENGINE = utility::pop(buffer, 24, 51);
 		set_pacchettoAcknowledgement();
 		pkgAck->deserialize(buffer);
 		break;
