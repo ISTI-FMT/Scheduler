@@ -7,7 +7,7 @@
 using namespace System;
 using namespace System::Collections::Concurrent;
 
-ref class EventQueue  : public IObserver<Event^>
+ ref class EventQueue  : public IObserver<Event^>
 {
 	IDisposable ^unsubscriber;
 	ConcurrentQueue<Event^> ^queueEvent;
@@ -15,9 +15,14 @@ public:
 	EventQueue(void);
 	virtual void Subscribe(IObservable<Event^> ^provider);
 	Event ^getEvent(){
-		Event ^result;
+		Event ^result ;
+		if(!queueEvent->IsEmpty){
+		
 		queueEvent->TryDequeue(result);
+		  Console::WriteLine("PReLEVATO: {0}",result->ToString());
+		}
 		return result;
+		
 	};
 	virtual void OnCompleted();
 	virtual void OnError(Exception ^e);

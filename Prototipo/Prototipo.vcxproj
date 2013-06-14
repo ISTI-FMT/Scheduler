@@ -77,6 +77,10 @@
   <ItemGroup>
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
+    <ClInclude Include="FormStatoItinerari.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
     <ClInclude Include="Itinerari\binario.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfFermate.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfItine.h" />
@@ -134,6 +138,8 @@
   <ItemGroup>
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
+    <ClCompile Include="FormStatoItinerari.cpp" />
+    <ClCompile Include="form\tableLayoutPanelSingleItin.cpp" />
     <ClCompile Include="Itinerari\binario.cpp" />
     <ClCompile Include="Itinerari\FormVisualizzeConfFermate.cpp" />
     <ClCompile Include="Itinerari\FormVisualizzeConfItine.cpp" />
@@ -191,6 +197,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormStatoItinerari.resx">
+      <DependentUpon>FormStatoItinerari.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <DependentUpon>form\SchedulerForm.h</DependentUpon>
     </EmbeddedResource>

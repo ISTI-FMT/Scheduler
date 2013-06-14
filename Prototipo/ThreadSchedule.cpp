@@ -55,268 +55,146 @@ void ThreadSchedule::SimpleSchedule(){
 			wdogs->onNext();
 			switch (statoInterno)
 			{
-			case StateSimpleSchedule::PresentazioneTreno: {
-				// aspetta che si presenti un treno
-				eventoATO = EQueueATO->getEvent();
-				if(eventoATO!=nullptr){
-					enginenumber = eventoATO->getEventPresentTrain()->getEngineNumber();
-					statoInterno=StateSimpleSchedule::ControlloTreno;
+			case StateSimpleSchedule::PresentazioneTreno:
+				{
+					// aspetta che si presenti un treno
+					eventoATO = EQueueATO->getEvent();
+					if(eventoATO!=nullptr){
+						enginenumber = eventoATO->getEventPresentTrain()->getEngineNumber();
+						statoInterno=StateSimpleSchedule::ControlloTreno;
+					}
+					break;
 				}
-				break;
-														  }
-			case StateSimpleSchedule::ControlloTreno: {
-				// se trovi che ha numero logico nella mappa mapTrenoLogFisico 
-				if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
-					TrenoFisicoLogico ^infotrenofisico = mapTrenoLogFisico->get_Map()[enginenumber];
-					trn = infotrenofisico->getIdTrenoLogico(0);
-					int lastpos =infotrenofisico->getCDBLastPosition();
+			case StateSimpleSchedule::ControlloTreno: 
+				{
+					// se trovi che ha numero logico nella mappa mapTrenoLogFisico 
+					if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
+						TrenoFisicoLogico ^infotrenofisico = mapTrenoLogFisico->get_Map()[enginenumber];
+						trn = infotrenofisico->getIdTrenoLogico(0);
+						int lastpos =infotrenofisico->getCDBLastPosition();
 
-					// cerchi se c'è una missione per lui nella tabella orario
-					if((tabOrario->get_TabellaOrario()->ContainsKey(trn)) & (trn>0)){
-						//trova gli itinerari  del treno
-						listaitinerari = tabOrario->getItinerariFor(trn);
-						int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
-						// cerca se si trova nella stazione in cui deve partire
-						if(lastpos==prevfirstcdbu){
-							Console::WriteLine("Si trova al posto giusto per partire e gli assegno la missione");
-							// gli assegni TRN e MISSION
-							if(inviato==nullptr){
-								inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
-								time=DateTime::Now;
-							}
-							
+						// cerchi se c'è una missione per lui nella tabella orario
+						if((tabOrario->get_TabellaOrario()->ContainsKey(trn)) & (trn>0)){
+							//trova gli itinerari  del treno
+							listaitinerari = tabOrario->getItinerariFor(trn);
+							int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
+							// cerca se si trova nella stazione in cui deve partire
+							if(lastpos==prevfirstcdbu){
+								
+								// gli assegni TRN e MISSION
+								if(inviato==nullptr){
+									Console::WriteLine("Si trova al posto giusto per partire e gli assegno la missione");
+									inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
+									time=DateTime::Now;
+								}
+
 								if(inviato->fine==1){
 									//itinerario entrata
 
 									statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
 								}
-							else{
-								//aspetta un po
-								TimeSpan sec = DateTime::Now - time;
-								if(sec.TotalSeconds>20){
-									//riinvia
-									inviato->fine=0;
-									inviato->workSocket->Close();
-									inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
-									time=DateTime::Now;
-								}
+								else{
+									//aspetta un po
+									TimeSpan sec = DateTime::Now - time;
+									if(sec.TotalSeconds>20){
+										//riinvia
+										inviato->fine=0;
+										inviato->workSocket->Close();
+										inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
+										time=DateTime::Now;
+										Console::WriteLine(time);
+									}
 
+								}
 							}
 						}
 					}
+					break;
 				}
-				break;
-													  }
-			case StateSimpleSchedule::RicItinerarioEntrata: {
-				int initEntrata = listaitinerari[indicelistaitinerari]->getIditinerarioEntrata();
-				int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
-				//se esiste un itinerario di entrata
-				if(initEntrata>0){
-					int resultprecE = tabItinerari->get_CdbPrecItinerario(idstazione,initEntrata);
-					Event ^eventATC = EQueueATC->getEvent();
+			case StateSimpleSchedule::RicItinerarioEntrata: 
+				{
+					int initEntrata = listaitinerari[indicelistaitinerari]->getIditinerarioEntrata();
+					int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
+					//se esiste un itinerario di entrata
+					if(initEntrata>0){
+						int resultprecE = tabItinerari->get_CdbPrecItinerario(idstazione,initEntrata);
+						Event ^eventATC = EQueueATC->getEvent();
 
-					if(eventATC!=nullptr){
-						//se il treno si trova sul cdb giusto
-						if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==trn)) |(
-							managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn)){
+						if(eventATC!=nullptr){
+							//se il treno si trova sul cdb giusto
+							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==trn)) |(
+								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn)){
+									//se l'itinerario è libero
+									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
+									//che riporti il cambiamento dello stato dell'itinerario
+									if(richestaItinerarioIXL(idstazione+initEntrata)){
+
+
+										statoInterno=StateSimpleSchedule::RicItinerarioUscita;
+										indicelistaitinerari++;
+									}
+							}
+						}else{
+							//se il treno si trova sul cdb giusto
+							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn){
 								//se l'itinerario è libero
 								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 								//che riporti il cambiamento dello stato dell'itinerario
 								if(richestaItinerarioIXL(idstazione+initEntrata)){
 
-
 									statoInterno=StateSimpleSchedule::RicItinerarioUscita;
 									indicelistaitinerari++;
+
 								}
+							}
 						}
 					}else{
-						//se il treno si trova sul cdb giusto
-						if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn){
+						statoInterno=StateSimpleSchedule::RicItinerarioUscita;
+					}
+					break;}
+			case StateSimpleSchedule::RicItinerarioUscita: 
+				{
+					//itinerario uscita
+					int itinUscita = listaitinerari[indicelistaitinerari]->getIditinerarioUscita();
+					int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
+					int resultprecCdbU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
+					int resultsuccCdbU = tabItinerari->get_CdbSuccItinerario(idstazione,itinUscita);
+					//se esiste un itinerario di uscita
+					if(itinUscita>0){
+
+						DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+						TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
+						int tempo = (int)oraattuale->TotalSeconds/30;
+						int  costante= 3;
+						int resutl = ((int)listaitinerari[indicelistaitinerari]->getOrarioPartenza())-costante;
+						int statocdbuscitaitinerario = managerIXL->StatoCDB(resultsuccCdbU)->getQ_STATOCDB();
+						//stato cdb uscita, controllo posizione e tempo 
+						if(( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)&(managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo)){
+
+
+							//todo : se ti trovi nel posto giusto
+
+
 							//se l'itinerario è libero
 							//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 							//che riporti il cambiamento dello stato dell'itinerario
-							if(richestaItinerarioIXL(idstazione+initEntrata)){
-
-
-								statoInterno=StateSimpleSchedule::RicItinerarioUscita;
+							if(richestaItinerarioIXL(itinUscita+idstazione)){
+								statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
 								indicelistaitinerari++;
-
 							}
-
-
-
 						}
-					}
-				}else{
-					statoInterno=StateSimpleSchedule::RicItinerarioUscita;
-				}
-				break;}
-			case StateSimpleSchedule::RicItinerarioUscita: {
-				//itinerario uscita
-				int itinUscita = listaitinerari[indicelistaitinerari]->getIditinerarioUscita();
-				int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
-				int resultprecCdbU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
-				int resultsuccCdbU = tabItinerari->get_CdbSuccItinerario(idstazione,itinUscita);
-				//se esiste un itinerario di uscita
-				if(itinUscita>0){
-
-					DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-					TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
-					int tempo = (int)oraattuale->TotalSeconds/30;
-					int  costante= 3;
-					int resutl = ((int)listaitinerari[indicelistaitinerari]->getOrarioPartenza())-costante;
-					int statocdbuscitaitinerario = managerIXL->StatoCDB(resultsuccCdbU)->getQ_STATOCDB();
-					//stato cdb uscita, controllo posizione e tempo 
-					if(( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)&(managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo)){
 
 
-						//todo : se ti trovi nel posto giusto
-
-
-						//se l'itinerario è libero
-						//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
-						//che riporti il cambiamento dello stato dell'itinerario
-						if(richestaItinerarioIXL(itinUscita+idstazione)){
-							statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
-							indicelistaitinerari++;
-						}
+					}else{
+						statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
 					}
 
 
-				}else{
-					statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
+					break;
 				}
-
-
-				break;
-														   }
 			default:
 				break;
 			}
-
-
-
-
-
-
-
-
-
-			/*Thread::Sleep(500);
-			wdogs->onNext();
-			// aspetta che si presenti un treno
-			Event ^eventoATO = EQueueATO->getEvent();
-			if(eventoATO!=nullptr){
-			int enginenumber = eventoATO->getEventPresentTrain()->getEngineNumber();
-			// se trovi che ha numero logico nella mappa mapTrenoLogFisico e si trova nella stazione in cui deve partire
-
-			if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
-			TrenoFisicoLogico ^infotrenofisico = mapTrenoLogFisico->get_Map()[enginenumber];
-			int trn = infotrenofisico->getIdTrenoLogico(0);
-			int lastpos =infotrenofisico->getCDBLastPosition();
-
-			// cerchi se c'è una missione per lui nella tabella orario
-			if((tabOrario->get_TabellaOrario()->ContainsKey(trn)) & (trn>0)){
-			//trova gli itinerari  del treno
-			List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(trn);
-			int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
-
-			if(lastpos==prevfirstcdbu){
-			Console::WriteLine("Si trova al posto giusto per partire e gli assegno la missione");
-			// gli assegni TRN e MISSION
-			bool inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain()); 
-			if(inviato){
-			Console::WriteLine(" MSG INVIATO ");
-
-			//List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(trn);
-			for each (Fermata ^fermvar in listaitinerari)
-			{
-
-			int resultprecE = tabItinerari->get_CdbPrecItinerario(fermvar->getIdStazione(),fermvar->getIditinerarioEntrata());
-			int resultprecU = tabItinerari->get_CdbPrecItinerario(fermvar->getIdStazione(),fermvar->getIditinerarioUscita());
-
-			//itinerario entrata
-			if(fermvar->getIditinerarioEntrata()>0){
-			//finche nn sono nella posizione giusta
-			bool bandiera=true;
-			while(bandiera){
-			wdogs->OverNext();
-			Event ^eventATC = EQueueATC->getEvent();
-			if(eventATC!=nullptr){
-			if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==trn)) |(
-			managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn)){
-			//se l'itinerario è libero
-			//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
-			//che riporti il cambiamento dello stato dell'itinerario
-			richestaItinerarioIXL(fermvar->getIditinerarioEntrata()+fermvar->getIdStazione());
-
-
-			bandiera=false;
-			}else{
-			//l'evento non mi riguarda 
-			Thread::Sleep(500);
-			//vedere lo stato dei cdb di manager ATC
-			}
-
-			}else{
-			//se la coda è vuota dovresti vedere lo stato dei cdb di manager ATC
-			Thread::Sleep(500);
-			}
-
-			}
-			}
-
-			//itinerario uscita
-			if(fermvar->getIditinerarioUscita()>0){
-
-			DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-			TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
-			int tempo = (int)oraattuale->TotalSeconds/30;
-			int  costante= 3;
-			int resutl = ((int)fermvar->getOrarioPartenza())-costante;
-
-			while(resutl>=tempo){
-			Thread::Sleep(500);
-			mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-			oraattuale =  (DateTime::Now - mezzanotte);
-			tempo = (int)oraattuale->TotalSeconds/30;
-			wdogs->OverNext();
-			}
-			//controllo posizione 
-			if(managerATC->getCDB(resultprecU)->getNID_OPERATIONAL()==trn){
-			}
-
-			//todo : se ti trovi nel posto giusto
-
-
-			//se l'itinerario è libero
-			//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
-			//che riporti il cambiamento dello stato dell'itinerario
-			richestaItinerarioIXL(fermvar->getIditinerarioUscita()+fermvar->getIdStazione());
-
-			}
-
-
-
-			}
-
-
-			}else{
-			//dovresti riprovare ad inviarlo
-			Console::WriteLine(" MSG NON INVIATO ");
-			}
-
-			}else{
-			Console::WriteLine(" MSG NON INVIATO ");
-			}
-
-			}
-			}
-
-
-			}*/
-
-
 
 		}
 	}
@@ -390,12 +268,9 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 	try
 	{
 
-
 		Messaggi ^wakeUpPkt = gcnew Messaggi();
 
-
 		wakeUpPkt->setNID_MESSAGE(201);
-
 
 		wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
@@ -403,10 +278,6 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
 		TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
 		wakeUpPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
-
-
-
-
 
 		// Buffer for reading data
 		array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
@@ -449,6 +320,7 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 		//NetworkStream ^myStream = gcnew NetworkStream(sock);
 		sock->Send(bytes_buffer1);
+		//sock->BeginSend(bytes_buffer1, 0, wakeUpPkt->getSize(),System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedule::SendCallback ), sock);
 		//myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
 #ifdef TRACE
 
@@ -456,6 +328,7 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 #endif // TRACE
 		sock->Send(bytes_buffer2);
+		//sock->BeginSend(bytes_buffer2, 0, trainRunningNumberPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedule::SendCallback ), sock);
 		//myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
 #ifdef TRACE
 
@@ -463,6 +336,7 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 #endif // TRACE
 		sock->Send(bytes_buffer3);
+		//sock->BeginSend(bytes_buffer3, 0, missionPlanPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedule::SendCallback ), sock);
 		//myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
 #ifdef TRACE
 
@@ -474,44 +348,7 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		so2->workSocket = sock;
 		sock->BeginReceive( so2->buffer, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedule::ReceiveCallback ), so2 );
 		so2->fine=-1;
-		/*
-		// Buffer for reading data
-		array<Byte>^bytes_buffer4 = gcnew array<Byte>(17);
 
-
-		sock->Receive(bytes_buffer4);	
-		//sock->BeginReceive( bytes_buffer4, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedule::ReceiveCallback ), sock );
-		//allDone->WaitOne();
-
-		//	Console::WriteLine( "Sorry.  You cannot read from this NetworkStream." );
-		//	return false;
-		//	myStream->Close();
-		//sock->Close();
-
-
-		Messaggi ^pktAck = gcnew Messaggi();
-
-
-
-
-		myStream->Read(bytes_buffer4, 0, 17);
-		pktAck->deserialize(bytes_buffer4);
-
-		#ifdef TRACE
-
-		Logger::Info(pktAck->getNID_MESSAGE(),IP->ToString(),"ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"ThreadSchedule");
-
-		#endif // TRACE
-
-
-
-
-		cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
-
-
-		cout << "DONE\n";
-		//myStream->Close();
-		sock->Close();*/
 		return so2;
 	}
 	catch ( Exception^ e ) 
@@ -532,70 +369,53 @@ void ThreadSchedule::ReceiveCallback(IAsyncResult^ asyncResult){
 	StateObject^ so = safe_cast<StateObject^>(asyncResult->AsyncState);
 	Socket^ s = so->workSocket;
 	try{
-	int read = s->EndReceive( asyncResult );
-	
-	if ( read < 0 )
-	{
+		int read = s->EndReceive( asyncResult );
 
-		s->BeginReceive( so->buffer, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedule::ReceiveCallback ), so );
-	}
-	else
-	{
-		Messaggi ^pktAck = gcnew Messaggi();
+		if ( read < 0 )
+		{
+
+			s->BeginReceive( so->buffer, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedule::ReceiveCallback ), so );
+		}
+		else
+		{
+			Messaggi ^pktAck = gcnew Messaggi();
 
 
-		pktAck->deserialize(so->buffer);
+			pktAck->deserialize(so->buffer);
 
 #ifdef TRACE
 
-		Logger::Info(pktAck->getNID_MESSAGE(),"IP","ATS",pktAck->getSize(),BitConverter::ToString(so->buffer),"ThreadSchedule");
+			Logger::Info(pktAck->getNID_MESSAGE(),"IP","ATS",pktAck->getSize(),BitConverter::ToString(so->buffer),"ThreadSchedule");
 
 #endif // TRACE
 
 
 
 
-		cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
+			cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
 
 
-		cout << "DONE\n";
+			cout << "DONE\n";
 
-		//All of the data has been read
+			//All of the data has been read
 
-		s->Close();
-		so->fine=1;
+			s->Close();
+			so->fine=1;
 		}
 	}catch(Exception ^e){
-	
+
 		Console::WriteLine("avevi chiuso il sock");
 	}
 
-	
 
-	/*Socket^ sock = safe_cast<Socket^>(asyncResult->AsyncState);
+}
 
+void ThreadSchedule::SendCallback(IAsyncResult^ asyncResult){
 
-	Messaggi ^pktAck = gcnew Messaggi();
-	// Buffer for reading data
-	array<Byte>^bytes_buffer4 = gcnew array<Byte>(17);
+	Socket^ so = safe_cast<Socket^>(asyncResult->AsyncState);
 
-	int read = sock->EndReceive(asyncResult);
-	pktAck->deserialize(bytes_buffer4);
+	int send = so->EndSend( asyncResult );
 
-	#ifdef TRACE
-
-	Logger::Info(pktAck->getNID_MESSAGE(),"IP","ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"ThreadSchedule");
-
-	#endif // TRACE
-
-
-
-
-	cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
-
-
-	cout << "DONE\n";
-	myStream->Close();*/
 
 }
 
@@ -607,9 +427,11 @@ bool ThreadSchedule::richestaItinerarioIXL(int iditinerario){
 
 		SendBloccItinIXL(iditinerario,typeCmdItinerari::creazione);
 		//Thread::Sleep(500);
-		if(EQueueIXL->getEvent()!=nullptr){
-			if(iditinerario==EQueueIXL->getEvent()->getEventStateItinerario()->getNID_ITIN() ){
-				if( EQueueIXL->getEvent()->getEventStateItinerario()->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto  ){
+		Event ^even = EQueueIXL->getEvent();
+		if(even!=nullptr){
+			StateItinerario ^statoi =even->getEventStateItinerario();
+			if(iditinerario==statoi->getNID_ITIN() ){
+				if( statoi->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto  ){
 					return true;
 				}
 			}

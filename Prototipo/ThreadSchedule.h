@@ -36,5 +36,6 @@ public:
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
 	bool richestaItinerarioIXL(int iditinerario);
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
+	static void SendCallback(IAsyncResult^ asyncResult);
 };
 

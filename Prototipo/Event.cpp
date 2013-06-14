@@ -3,9 +3,9 @@
 
 Event::Event(void)
 {
-	sCDB=nullptr;
-	sITI=nullptr;
-	lTrain=nullptr;
+	sCDB=gcnew StateCDB();
+	sITI=gcnew StateItinerario();
+	lTrain= gcnew phisicalTrain();
 	source="";
 }
 
@@ -27,17 +27,17 @@ System::String ^Event::ToString() {
 }
 
 StateItinerario ^Event::getEventStateItinerario(){
-	if(sITI!=nullptr)
-		return sITI;
-	else 
-		return gcnew StateItinerario();};
+	//if(sITI!=nullptr){
+		return sITI;}
+	//else {
+	//	return gcnew StateItinerario();}};
 StateCDB ^Event::getEventStateCDB(){
-	if(sCDB!=nullptr)
-		return sCDB;
-	else 
-		return gcnew StateCDB();};
+	//if(sCDB!=nullptr){
+		return sCDB;}
+	//else {
+	//	return gcnew StateCDB();}};
 phisicalTrain ^Event::getEventPresentTrain(){
-	if(lTrain!=nullptr)
-		return lTrain;
-	else
-		return gcnew phisicalTrain();};
+	//if(lTrain!=nullptr){
+		return lTrain;}
+	//else{
+	//	return gcnew phisicalTrain();}};

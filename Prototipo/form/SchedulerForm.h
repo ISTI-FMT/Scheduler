@@ -20,6 +20,7 @@
 #include "..\\ThreadSchedule.h"
 #include "..\\EventQueue.h"
 #include "..\\wdogcontrol.h"
+#include "..\\FormStatoItinerari.h"
 
 #define TRACE
 namespace Prototipo {
@@ -87,6 +88,7 @@ namespace Prototipo {
 		Thread^ oThreadTCP_ATO;
 		Thread^ oThreadUDP_ATC_IXL;
 		Thread^ oThreadSchedule;
+		 Thread^ oThreadformStatoI;
 		wdogcontrol ^wdogs;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
@@ -319,6 +321,7 @@ namespace Prototipo {
 				 oThreadTCP_ATO->Abort();
 				 oThreadUDP_ATC_IXL->Abort();
 				 oThreadSchedule->Abort();
+				 oThreadformStatoI->Abort();
 				 Application::Exit();
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -403,8 +406,15 @@ namespace Prototipo {
 				 oThreadUDP_ATC_IXL->Start();
 
 				 EventQueue ^EventQIXL = gcnew EventQueue();
-				 EventQIXL->Subscribe(manaStateIXL);
-
+				// EventQIXL->Subscribe(manaStateIXL);
+////
+				 EventQueue ^visualQIXL = gcnew EventQueue();
+				 visualQIXL->Subscribe(manaStateIXL);
+				 FormStatoItinerari ^stif = gcnew FormStatoItinerari(visualQIXL);
+				 stif->Visible=true;
+				 oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoItinerari::aggiorna));
+				 oThreadformStatoI->Start();
+/////
 				 EventQueue ^EventQATC = gcnew EventQueue();
 				 EventQATC->Subscribe(manaStateATC);
 

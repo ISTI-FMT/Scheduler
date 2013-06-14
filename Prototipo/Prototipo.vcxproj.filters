@@ -221,6 +221,12 @@
     <ClInclude Include="StateObject.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="form\tableLayoutPanelSingleItin.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
+    <ClInclude Include="FormStatoItinerari.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -374,6 +380,15 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="TrenoFisicoLogico.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="form\FormStatoItinerari.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="form\tableLayoutPanelSingleItin.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
+    <ClCompile Include="FormStatoItinerari.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
