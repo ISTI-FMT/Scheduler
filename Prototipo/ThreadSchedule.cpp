@@ -80,7 +80,7 @@ void ThreadSchedule::SimpleSchedule(){
 							int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 							// cerca se si trova nella stazione in cui deve partire
 							if(lastpos==prevfirstcdbu){
-								
+
 								// gli assegni TRN e MISSION
 								if(inviato==nullptr){
 									Console::WriteLine("Si trova al posto giusto per partire e gli assegno la missione");
@@ -430,14 +430,16 @@ bool ThreadSchedule::richestaItinerarioIXL(int iditinerario){
 		Event ^even = EQueueIXL->getEvent();
 		if(even!=nullptr){
 			StateItinerario ^statoi =even->getEventStateItinerario();
-			if(iditinerario==statoi->getNID_ITIN() ){
-				if( statoi->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto  ){
-					return true;
+			if(statoi!=nullptr){
+				if(iditinerario==statoi->getNID_ITIN() ){
+					if( statoi->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto  ){
+						return true;
+					}
 				}
 			}
 		}else{
 			//todo: levare se solo per fare test senza produrre i msg di stato IXL
-			return true;
+			//return true;
 		}
 
 	}else{

@@ -3,9 +3,9 @@
 
 Event::Event(void)
 {
-	sCDB=gcnew StateCDB();
-	sITI=gcnew StateItinerario();
-	lTrain= gcnew phisicalTrain();
+	sCDB=nullptr;
+	sITI=nullptr;
+	lTrain=nullptr;
 	source="";
 }
 

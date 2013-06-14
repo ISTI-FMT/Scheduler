@@ -406,7 +406,7 @@ namespace Prototipo {
 				 oThreadUDP_ATC_IXL->Start();
 
 				 EventQueue ^EventQIXL = gcnew EventQueue();
-				// EventQIXL->Subscribe(manaStateIXL);
+				 EventQIXL->Subscribe(manaStateIXL);
 ////
 				 EventQueue ^visualQIXL = gcnew EventQueue();
 				 visualQIXL->Subscribe(manaStateIXL);
