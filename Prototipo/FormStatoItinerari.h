@@ -1,5 +1,6 @@
 #pragma once
 #include "form\\tableLayoutPanelSingleItin.h"
+#include "form\\tableLayoutPanelAllCDB.h"
 #include "itinerari\\tabellaItinerari.h"
 #include "messaggi\\StateItinerario.h"
 #include "messaggi\\Messaggi.h"
@@ -27,12 +28,14 @@ using namespace System::Threading::Tasks;
 		tabellaItinerari ^tabItinerari;
 		EventQueue ^eventiItinerario;
 		Dictionary<int,Button^> ^listbutton;
+		Dictionary<int,Button^> ^listbuttonCDB;
 	public:
 
 		FormStatoItinerari(EventQueue ^ev)
 		{
 			eventiItinerario=ev;
 			listbutton= gcnew Dictionary<int,Button^> ();
+			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			InitializeComponent();
 
 			tabItinerari = gcnew tabellaItinerari();
@@ -46,6 +49,7 @@ using namespace System::Threading::Tasks;
 		void genera();
 		void aggiorna();
 		void findandset(int id, int stato);
+		void findandsetCDB(int id, int stato);
 	private: bool SendMessStatoIXL(List< StateItinerario^> ^listI, List<StateCDB^> ^listCItin);
 			 List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
 			 void setCdBItin(List<StateCDB^> ^listCdB, int stato);
@@ -83,24 +87,25 @@ using namespace System::Threading::Tasks;
 			// 
 			// tableLayoutPanel1
 			// 
-			this->tableLayoutPanel1->ColumnCount = 3;
+			this->tableLayoutPanel1->ColumnCount = 4;
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
+			this->tableLayoutPanel1->GrowStyle = System::Windows::Forms::TableLayoutPanelGrowStyle::AddColumns;
 			this->tableLayoutPanel1->Location = System::Drawing::Point(12, 12);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
-			this->tableLayoutPanel1->RowCount = 3;
+			this->tableLayoutPanel1->RowCount = 2;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(808, 830);
+			this->tableLayoutPanel1->Size = System::Drawing::Size(1168, 444);
 			this->tableLayoutPanel1->TabIndex = 0;
 			// 
 			// FormStatoItinerari
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(837, 898);
+			this->ClientSize = System::Drawing::Size(1192, 898);
 			this->Controls->Add(this->tableLayoutPanel1);
 			this->Name = L"FormStatoItinerari";
 			this->Text = L"FormStatoItinerari";

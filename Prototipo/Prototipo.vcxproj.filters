@@ -55,6 +55,12 @@
     <Filter Include="File di origine\Event">
       <UniqueIdentifier>{ada9a739-5343-4866-aa58-ae4fc45068a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di origine\form">
+      <UniqueIdentifier>{4aab709b-8aa4-4185-8a0c-0881d8d6e6c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di intestazione\form">
+      <UniqueIdentifier>{a59cbf2c-042c-4c9c-95a1-0747c85b997b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">
@@ -221,11 +227,14 @@
     <ClInclude Include="StateObject.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="form\tableLayoutPanelSingleItin.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
     <ClInclude Include="FormStatoItinerari.h">
       <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="form\tableLayoutPanelAllCDB.h">
+      <Filter>File di intestazione\form</Filter>
+    </ClInclude>
+    <ClInclude Include="form\tableLayoutPanelSingleItin.h">
+      <Filter>File di intestazione\form</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -382,14 +391,14 @@
     <ClCompile Include="TrenoFisicoLogico.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="form\FormStatoItinerari.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="form\tableLayoutPanelSingleItin.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
     <ClCompile Include="FormStatoItinerari.cpp">
       <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="form\tableLayoutPanelAllCDB.cpp">
+      <Filter>File di origine\form</Filter>
+    </ClCompile>
+    <ClCompile Include="form\tableLayoutPanelSingleItin.cpp">
+      <Filter>File di origine\form</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +406,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="form\SchedulerForm.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatoItinerari.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
   </ItemGroup>

@@ -80,6 +80,7 @@
     <ClInclude Include="FormStatoItinerari.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="form\tableLayoutPanelAllCDB.h" />
     <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
     <ClInclude Include="Itinerari\binario.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfFermate.h" />
@@ -139,6 +140,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FormStatoItinerari.cpp" />
+    <ClCompile Include="form\tableLayoutPanelAllCDB.cpp" />
     <ClCompile Include="form\tableLayoutPanelSingleItin.cpp" />
     <ClCompile Include="Itinerari\binario.cpp" />
     <ClCompile Include="Itinerari\FormVisualizzeConfFermate.cpp" />
