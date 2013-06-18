@@ -84,7 +84,9 @@ Button^ tableLayoutPanelSingleItin::getButton(String ^textbutton, int id){
 
 	//button->Location = System::Drawing::Point(91, 3);
 	button->Name = id.ToString();
-	button->Size = System::Drawing::Size(75, 23);
+	button->Font = (gcnew System::Drawing::Font(L"Times New Roman", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+	button->Size = System::Drawing::Size(70, 18);
 	button->TabIndex = 0;
 	button->Text = textbutton;
 	button->UseVisualStyleBackColor = true;

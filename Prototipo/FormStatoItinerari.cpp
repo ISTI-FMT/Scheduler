@@ -8,45 +8,45 @@ void Prototipo::FormStatoItinerari::genera(){
 	{
 		tableLayoutPanelSingleItin ^tablel = gcnew tableLayoutPanelSingleItin(station,listbutton);
 		tablel->Location =  System::Drawing::Point(1, 1);
-		tablel->Name = "firstControl1";
+		tablel->Name = "statoItinerari";
 		//tablel->Size =  System::Drawing::Size(75, 16);
 		tablel->TabIndex = 1;
-		tablel->Text = "Hello World";
+		tablel->Text = "Stato Itinerari IXL";
 
 		tableLayoutPanel1->Controls->Add(tablel);
 		//return;
 	}
 	tableLayoutPanelAllCDB ^tableCDB = gcnew tableLayoutPanelAllCDB(listbuttonCDB);
-		tableCDB->Location =  System::Drawing::Point(1, 500);
-		tableCDB->Name = "firstControl1";
-		//tablel->Size =  System::Drawing::Size(75, 16);
-		tableCDB->TabIndex = 1;
-		tableCDB->Text = "Hello World";
+	tableCDB->Location =  System::Drawing::Point(1, 475);
+	tableCDB->Name = "statoCDB";
+	//tablel->Size =  System::Drawing::Size(75, 16);
+	tableCDB->TabIndex = 1;
+	tableCDB->Text = "Stato CDB IXL";
 
-		Controls->Add(tableCDB);
+	Controls->Add(tableCDB);
 
 }
 
 void Prototipo::FormStatoItinerari::aggiorna(){
 
 	while(true){
-		Thread::Sleep(50);
+		//Thread::Sleep(50);
 		if(eventiItinerario!=nullptr){
 			Event ^even = eventiItinerario->getEvent();
 			if(even!=nullptr){
-			StateItinerario ^st =	even->getEventStateItinerario();
+				StateItinerario ^st =	even->getEventStateItinerario();
 				if(st!=nullptr){
-			 int id =	st->getNID_ITIN();
-			 int stato =	st->getQ_STATOITIN();
-			 
-				 findandset(id,stato);
+					int id =	st->getNID_ITIN();
+					int stato =	st->getQ_STATOITIN();
+
+					findandset(id,stato);
 				}else{
 					StateCDB ^stCDB =	even->getEventStateCDB();
 					if(stCDB!=nullptr){
-						 int id =	stCDB->getNID_CDB();
-			 int stato =	stCDB->getQ_STATOCDB();
-			 
-				 findandsetCDB(id,stato);
+						int id =	stCDB->getNID_CDB();
+						int stato =	stCDB->getQ_STATOCDB();
+
+						findandsetCDB(id,stato);
 
 					}
 				}
@@ -54,7 +54,7 @@ void Prototipo::FormStatoItinerari::aggiorna(){
 			}
 
 		}
-		
+
 
 	}
 
@@ -111,12 +111,12 @@ bool Prototipo::FormStatoItinerari::SendMessStatoIXL(List< StateItinerario^> ^li
 		MessStatoIXL->get_pacchettoStatoItinerario()->setN_ITER(listI->Count);
 		MessStatoIXL->get_pacchettoStatoItinerario()->setlastItinerario(listI);
 		if(listCItin->Count>1){
-		StateCDB ^CItin = listCItin[0];
-		listCItin->RemoveAt(0);
-		MessStatoIXL->get_pacchettoStatoLineaIXL()->setfirstCDB(CItin);
-		
-		MessStatoIXL->get_pacchettoStatoLineaIXL()->setN_ITER(listCItin->Count);
-		MessStatoIXL->get_pacchettoStatoLineaIXL()->setlastCDB(listCItin);
+			StateCDB ^CItin = listCItin[0];
+			listCItin->RemoveAt(0);
+			MessStatoIXL->get_pacchettoStatoLineaIXL()->setfirstCDB(CItin);
+
+			MessStatoIXL->get_pacchettoStatoLineaIXL()->setN_ITER(listCItin->Count);
+			MessStatoIXL->get_pacchettoStatoLineaIXL()->setlastCDB(listCItin);
 		}else{
 			MessStatoIXL->get_pacchettoStatoLineaIXL()->setN_ITER(0);
 
