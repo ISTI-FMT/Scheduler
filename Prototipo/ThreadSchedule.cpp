@@ -404,7 +404,7 @@ void ThreadSchedule::ReceiveCallback(IAsyncResult^ asyncResult){
 		}
 	}catch(Exception ^e){
 
-		Console::WriteLine("avevi chiuso il sock");
+		Console::WriteLine("avevi chiuso il sock l'ATO non ha mandato L'ack");
 	}
 
 
