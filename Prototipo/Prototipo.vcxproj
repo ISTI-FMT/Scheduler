@@ -80,6 +80,9 @@
     <ClInclude Include="FormStatoItinerari.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="form\FormStatoLineaATC.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="form\tableLayoutPanelAllCDB.h" />
     <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
     <ClInclude Include="Itinerari\binario.h" />
@@ -140,6 +143,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FormStatoItinerari.cpp" />
+    <ClCompile Include="form\FormStatoLineaATC.cpp" />
     <ClCompile Include="form\tableLayoutPanelAllCDB.cpp" />
     <ClCompile Include="form\tableLayoutPanelSingleItin.cpp" />
     <ClCompile Include="Itinerari\binario.cpp" />
@@ -201,6 +205,12 @@
   <ItemGroup>
     <EmbeddedResource Include="FormStatoItinerari.resx">
       <DependentUpon>FormStatoItinerari.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatoLineaATC.resx">
+      <DependentUpon>form\FormStatoLineaATC.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormStatoLineaATC.resx">
+      <DependentUpon>form\FormStatoLineaATC.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <DependentUpon>form\SchedulerForm.h</DependentUpon>

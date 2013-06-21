@@ -236,6 +236,9 @@
     <ClInclude Include="form\tableLayoutPanelSingleItin.h">
       <Filter>File di intestazione\form</Filter>
     </ClInclude>
+    <ClInclude Include="form\FormStatoLineaATC.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -399,6 +402,9 @@
     </ClCompile>
     <ClCompile Include="form\tableLayoutPanelSingleItin.cpp">
       <Filter>File di origine\form</Filter>
+    </ClCompile>
+    <ClCompile Include="form\FormStatoLineaATC.cpp">
+      <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
