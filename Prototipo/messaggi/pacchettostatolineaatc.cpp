@@ -147,7 +147,7 @@ void pacchettostatolineaatc::deserialize(byte *buffer)
 	if(pstato1){
 		for(unsigned int i = 0; i < N_ITER; ++i)
 		{
-			int NID_CDB=utility::pop(buffer, 15, offset);
+			int NID_CDB=utility::pop(buffer, 32, offset);
 			offset += 32;
 			int Q_STATOCDB=utility::pop(buffer, 2, offset);
 			offset += 2;
