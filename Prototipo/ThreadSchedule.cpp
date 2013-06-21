@@ -103,6 +103,7 @@ void ThreadSchedule::SimpleSchedule(){
 										inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
 										time=DateTime::Now;
 										Console::WriteLine(time);
+										Console::WriteLine("il treno nn ha risposto con l'ack all'assegnazione della missione");
 									}
 
 								}
