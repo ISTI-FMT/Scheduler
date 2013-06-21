@@ -10,6 +10,7 @@ using namespace System::Collections::Generic;
 ref class ManagerStatoLineaATC : public IObservable<Event^>
 {
 	Dictionary<int, StateCDB^> ^tabellaCDB;
+	Dictionary<int,List<StateCDB^>^> ^tabellaTRenoListCDB;
 	 List<IObserver<Event^>^> ^observers;
 public:
 	ManagerStatoLineaATC(void);

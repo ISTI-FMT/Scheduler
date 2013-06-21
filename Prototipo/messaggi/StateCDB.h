@@ -56,5 +56,7 @@ public:
 	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO,NID_OPERATIONAL);}
 
 	virtual System::String ^ToString() override;
+
+	virtual bool Equals( Object^ obj ) override;
 };
 

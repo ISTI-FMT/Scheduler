@@ -36,3 +36,16 @@ System::String ^StateCDB::ToString() {
 	return out;
 }
 
+bool StateCDB::Equals( Object^ obj ) {
+	StateCDB ^o2 = safe_cast<StateCDB^>(obj);
+	if(o2->getNID_CDB()==NID_CDB){
+		//if(o->getQ_STATOCDB()==Q_STATOCDB){
+		//	if(o->getQ_DEVIATOIO()==Q_DEVIATOIO){
+		//		if(o->getNID_OPERATIONAL()==NID_OPERATIONAL){
+					return true;
+				}
+		//	}
+		//}
+	//}
+	return false;
+}
