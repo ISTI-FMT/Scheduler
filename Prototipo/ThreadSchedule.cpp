@@ -49,7 +49,7 @@ void ThreadSchedule::SimpleSchedule(){
 		while(true){
 			int enginenumber;
 			Event ^eventoATO;
-
+			
 			//dormi un po 500  millisecondi 
 			Thread::Sleep(500);
 			wdogs->onNext();
@@ -57,6 +57,7 @@ void ThreadSchedule::SimpleSchedule(){
 			{
 			case StateSimpleSchedule::PresentazioneTreno:
 				{
+					Console::WriteLine("lo stato interno dello scheduler è PresentazioneTreno");
 					// aspetta che si presenti un treno
 					eventoATO = EQueueATO->getEvent();
 					if(eventoATO!=nullptr){
@@ -67,6 +68,8 @@ void ThreadSchedule::SimpleSchedule(){
 				}
 			case StateSimpleSchedule::ControlloTreno: 
 				{
+					Console::WriteLine("lo stato interno dello scheduler è ControlloTreno");
+
 					// se trovi che ha numero logico nella mappa mapTrenoLogFisico 
 					if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
 						TrenoFisicoLogico ^infotrenofisico = mapTrenoLogFisico->get_Map()[enginenumber];
@@ -103,6 +106,7 @@ void ThreadSchedule::SimpleSchedule(){
 										inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
 										time=DateTime::Now;
 										Console::WriteLine(time);
+										Console::WriteLine("il treno nn ha risposto con l'ack all'assegnazione della missione");
 									}
 
 								}
@@ -113,6 +117,7 @@ void ThreadSchedule::SimpleSchedule(){
 				}
 			case StateSimpleSchedule::RicItinerarioEntrata: 
 				{
+						Console::WriteLine("lo stato interno dello scheduler è RicItinerarioEntrata");
 					int initEntrata = listaitinerari[indicelistaitinerari]->getIditinerarioEntrata();
 					int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
 					//se esiste un itinerario di entrata
@@ -154,6 +159,7 @@ void ThreadSchedule::SimpleSchedule(){
 					break;}
 			case StateSimpleSchedule::RicItinerarioUscita: 
 				{
+						Console::WriteLine("lo stato interno dello scheduler è RicItinerarioUscita");
 					//itinerario uscita
 					int itinUscita = listaitinerari[indicelistaitinerari]->getIditinerarioUscita();
 					int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
@@ -404,7 +410,7 @@ void ThreadSchedule::ReceiveCallback(IAsyncResult^ asyncResult){
 		}
 	}catch(Exception ^e){
 
-		Console::WriteLine("avevi chiuso il sock");
+		Console::WriteLine("avevi chiuso il sock l'ATO non ha mandato L'ack");
 	}
 
 
