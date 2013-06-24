@@ -5,7 +5,7 @@ pacchettoStatoSegnali::pacchettoStatoSegnali(void)
 {
 	NID_PACKET = 0;
 	L_PACKET = 0;
-	statoSegnale = gcnew StateSegnale();
+
 	N_ITER = 0;
 	vStatoSegnale = gcnew List<StateSegnale^>();
 }
@@ -39,16 +39,16 @@ void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
 	utility::push(buffer, NID_PACKET, 8, offset);
 	setL_PACKET(getSize());
 	utility::push(buffer, L_PACKET, 13, offset +8);
-	utility::push(buffer, statoSegnale->getNID_SEGN(), 32, offset + 21);
-	utility::push(buffer, statoSegnale->getQSTATO_SEGN(), 2, offset + 53);
+	utility::push(buffer, vStatoSegnale[0]->getNID_SEGN(), 32, offset + 21);
+	utility::push(buffer, vStatoSegnale[0]->getQSTATO_SEGN(), 2, offset + 53);
 	utility::push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
-	for each (StateSegnale ^var in vStatoSegnale)
+	for(unsigned int i =1; i <= N_ITER;i++)
 	{
-		utility::push(buffer, var->getNID_SEGN(), 32, offset + shift);
+		utility::push(buffer, vStatoSegnale[i]->getNID_SEGN(), 32, offset + shift);
 		shift += 32;
-		utility::push(buffer, var->getQSTATO_SEGN(), 5, offset + shift);
+		utility::push(buffer, vStatoSegnale[i]->getQSTATO_SEGN(), 5, offset + shift);
 		shift += 5;
 	}
 
@@ -58,8 +58,9 @@ void pacchettoStatoSegnali::deserialize(byte *buffer, int offset)
 {
 	NID_PACKET=utility::pop(buffer,  8, offset );
 	L_PACKET=utility::pop(buffer, 13, offset + 8);
-	statoSegnale->setNID_SEGN(utility::pop(buffer, 32, offset + 21));
-	statoSegnale->setQSTATO_SEGN(utility::pop(buffer, 2, offset + 53));
+	int tNID_SEGN = utility::pop(buffer, 32, offset + 21);
+	int tQSTATO_SEGN = utility::pop(buffer, 2, offset + 53);
+	vStatoSegnale->Add(gcnew StateSegnale(tNID_SEGN,tQSTATO_SEGN));
 	setN_ITER(utility::pop(buffer, 16, offset + 55));
 	int shift = 71;
 	for(unsigned int i = 0; i < N_ITER; ++i)
@@ -81,16 +82,16 @@ System::String ^pacchettoStatoSegnali::ToString(){
 
 	out = out+"NID_PACKET: "+NID_PACKET+";";
 	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+statoSegnale->ToString();
+	out = out+vStatoSegnale[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
-	if(vStatoSegnale){
-		for each (StateSegnale^ var in vStatoSegnale)
-		{
+
+	for(unsigned int i =1; i <= N_ITER;i++)
+	{
 
 
-			out = out+var->ToString();
+		out = out+vStatoSegnale[i]->ToString();
 
-		}
 	}
+
 	return out;
 }

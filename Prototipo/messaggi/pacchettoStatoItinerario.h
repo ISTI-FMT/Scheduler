@@ -13,7 +13,7 @@ ref class pacchettoStatoItinerario
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET ;
-	StateItinerario ^statoItinerario;
+	
 	unsigned int N_ITER ;
 	List<StateItinerario^> ^vStatoItinerario;
 public:
@@ -27,13 +27,13 @@ public:
 	// metodo che setta N_ITER
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
-	void setfirstItinerario(StateItinerario ^sItinerario){statoItinerario=sItinerario;};
-	StateItinerario ^getfirstItinerario(){return statoItinerario;};
+	void setOneItinerario(StateItinerario ^sItinerario){vStatoItinerario->Add(sItinerario);};
 
-	void setlastItinerario(List< StateItinerario^> ^all){vStatoItinerario=all;};
-	List< StateItinerario^> ^getlastItinerario(){return vStatoItinerario;};
 
-	void setlastItinerario( StateItinerario^ one){vStatoItinerario->Add(one);};
+	void setItinerario(List< StateItinerario^> ^all){vStatoItinerario=all;};
+	List< StateItinerario^> ^getItinerario(){return vStatoItinerario;};
+
+	
 	
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 

@@ -71,7 +71,7 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 	utility::push(buffer, N_ITER, 5, 140);
 	//pstato1 = new pstatolineastruct[N_ITER];
 	int offset = 145;
-	for(unsigned int i=1;i<N_ITER;i++)
+	for(unsigned int i=1;i<=N_ITER;i++)
 	{
 
 		utility::push(buffer, pstato[i]->getNID_CDB(), 32, offset);

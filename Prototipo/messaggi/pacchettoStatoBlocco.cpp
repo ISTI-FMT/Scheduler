@@ -5,7 +5,6 @@ pacchettoStatoBlocco::pacchettoStatoBlocco(void)
 {
 	NID_PACKET = 0;
 	L_PACKET = 0;
-	statoBlocco = gcnew StateBlocco();
 	N_ITER = 0;
 	vStatoBlocco =gcnew List<StateBlocco^>();
 }
@@ -37,16 +36,16 @@ void pacchettoStatoBlocco::serialize(byte *buffer, int offset)
 	utility::push(buffer, NID_PACKET, 8, offset );
 	setL_PACKET(getSize());
 	utility::push(buffer, L_PACKET, 13, offset +8);
-	utility::push(buffer, statoBlocco->getNID_BLOCCO(), 32, offset + 21);
-	utility::push(buffer, statoBlocco->getQ_STATOBLOCCO(), 2, offset + 53);
+	utility::push(buffer, vStatoBlocco[0]->getNID_BLOCCO(), 32, offset + 21);
+	utility::push(buffer, vStatoBlocco[0]->getQ_STATOBLOCCO(), 2, offset + 53);
 	utility::push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
-	for each (StateBlocco^ var in vStatoBlocco)
+	for(unsigned int i =1; i <= N_ITER;i++)
 	{
-		utility::push(buffer, var->getNID_BLOCCO(), 32, offset + shift);
+		utility::push(buffer, vStatoBlocco[i]->getNID_BLOCCO(), 32, offset + shift);
 		shift += 32;
-		utility::push(buffer, var->getQ_STATOBLOCCO(), 2, offset + shift);
+		utility::push(buffer, vStatoBlocco[i]->getQ_STATOBLOCCO(), 2, offset + shift);
 		shift += 2;
 	}
 
@@ -57,8 +56,10 @@ void pacchettoStatoBlocco::deserialize(byte *buffer, int offset)
 
 	NID_PACKET=utility::pop(buffer,  8, offset );
 	L_PACKET=utility::pop(buffer, 13, offset + 8);
-	statoBlocco->setNID_BLOCCO(utility::pop(buffer, 32, offset + 21));
-	statoBlocco->setQ_STATOBLOCCO(utility::pop(buffer, 2, offset + 53));
+	int tNID_BLOCCO= utility::pop(buffer, 32, offset + 21);
+	int tQ_STATOBLOCCO =utility::pop(buffer, 2, offset + 53);
+
+	vStatoBlocco->Add(gcnew StateBlocco(tNID_BLOCCO,tQ_STATOBLOCCO));
 	setN_ITER(utility::pop(buffer, 16, offset + 55));
 	int shift = 71;
 	for(unsigned int i = 0; i < N_ITER; ++i)
@@ -78,14 +79,14 @@ System::String ^pacchettoStatoBlocco::ToString(){
 
 	out = out+"NID_PACKET: "+NID_PACKET+";";
 	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+statoBlocco->ToString();
+	out = out+vStatoBlocco[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
-	if(vStatoBlocco){
-		for each (StateBlocco^ var in vStatoBlocco)
+	
+		for(unsigned int i = 1; i <= N_ITER; i++)
 		{
-			out = out+var->ToString();
+			out = out+vStatoBlocco[i]->ToString();
 
 		}
-	}
+	
 	return out;
 }

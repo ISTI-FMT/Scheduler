@@ -50,7 +50,7 @@ using namespace System::Threading::Tasks;
 		void aggiorna();
 		void findandset(int id, int stato);
 		void findandsetCDB(int id, int stato);
-	private: bool SendMessStatoIXL(List< StateItinerario^> ^listI, List<StateCDB^> ^listCItin);
+	private: 
 			 List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
 			 void setCdBItin(List<StateCDB^> ^listCdB, int stato);
 

@@ -66,10 +66,9 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 			}
 	case 101: {
 
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getfirstCDB(),"IXL");
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getlastCDB(),"IXL");
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getfirstItinerario(),"IXL");
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getlastItinerario(),"IXL");
+		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
+		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
+	
 		break;
 			  }
 

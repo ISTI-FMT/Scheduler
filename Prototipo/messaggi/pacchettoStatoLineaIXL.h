@@ -13,7 +13,7 @@ ref class pacchettoStatoLineaIXL
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET ;
-	StateCDB ^sCDB;
+	
 	unsigned int N_ITER;
 	List<StateCDB^> ^vStatoCDB;
 public:
@@ -28,13 +28,12 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 	
-	void setfirstCDB(StateCDB ^scdb){sCDB=scdb;};
-	StateCDB ^getfirstCDB(){return sCDB;};
+	
 
-	void setlastCDB(List< StateCDB^> ^all){vStatoCDB=all;};
-	List< StateCDB^> ^getlastCDB(){return vStatoCDB;};
+	void setCDB(List< StateCDB^> ^all){vStatoCDB=all;};
+	List< StateCDB^> ^getCDB(){return vStatoCDB;};
 
-	void setlastCDB( StateCDB^ one){vStatoCDB->Add(one);};
+	
 	
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 

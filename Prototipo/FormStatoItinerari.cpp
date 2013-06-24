@@ -91,58 +91,7 @@ void  Prototipo::FormStatoItinerari::findandsetCDB(int id, int stato){
 
 }
 
-bool Prototipo::FormStatoItinerari::SendMessStatoIXL(List< StateItinerario^> ^listI, List<StateCDB^> ^listCItin){
-	try{
-		Messaggi ^MessStatoIXL = gcnew Messaggi();
 
-
-		MessStatoIXL->setNID_MESSAGE(101);
-		MessStatoIXL->get_pacchettoStatoItinerario()->setNID_PACKET(101);
-		MessStatoIXL->get_pacchettoStatoSegnali()->setNID_PACKET(101);
-
-		MessStatoIXL->get_pacchettoStatoSegnali()->setL_PACKET(101);
-		MessStatoIXL->get_pacchettoStatoSegnali()->setfirststatoSegnale(gcnew StateSegnale(12,2));
-
-		MessStatoIXL->get_pacchettoStatoLineaIXL()->setNID_PACKET(101);
-		MessStatoIXL->get_pacchettoStatoBlocco()->setNID_PACKET(101);
-		StateItinerario ^primoit = listI[0];
-		MessStatoIXL->get_pacchettoStatoItinerario()->setfirstItinerario(primoit);
-		listI->RemoveAt(0);
-		MessStatoIXL->get_pacchettoStatoItinerario()->setN_ITER(listI->Count);
-		MessStatoIXL->get_pacchettoStatoItinerario()->setlastItinerario(listI);
-		if(listCItin->Count>1){
-			StateCDB ^CItin = listCItin[0];
-			listCItin->RemoveAt(0);
-			MessStatoIXL->get_pacchettoStatoLineaIXL()->setfirstCDB(CItin);
-
-			MessStatoIXL->get_pacchettoStatoLineaIXL()->setN_ITER(listCItin->Count);
-			MessStatoIXL->get_pacchettoStatoLineaIXL()->setlastCDB(listCItin);
-		}else{
-			MessStatoIXL->get_pacchettoStatoLineaIXL()->setN_ITER(0);
-
-		}
-		Socket ^s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
-			System::Net::Sockets::ProtocolType::Udp);
-
-		IPAddress ^broadcast = IPAddress::Parse("146.48.84.52");
-		IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 23002);
-
-		array<Byte>^sendBytes=	MessStatoIXL->serialize();
-
-
-
-		s->SendTo( sendBytes, ep);
-
-
-		return true;
-
-	}catch ( Exception^ eException ) 
-	{
-
-		Console::WriteLine( "Errore "+eException->Message);
-		return false;
-	}
-}
 
 List<StateCDB^> ^Prototipo::FormStatoItinerari::listCdBItin(int idstazione,int iditineraio){
 	if(tabItinerari->getMap()->ContainsKey(idstazione)){

@@ -13,7 +13,6 @@ ref class pacchettoStatoSegnali
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET ;
-	StateSegnale ^statoSegnale;
 	unsigned int N_ITER ;
 	List<StateSegnale^> ^vStatoSegnale;
 public:
@@ -28,13 +27,12 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 
-	void setfirststatoSegnale(StateSegnale ^scdb){statoSegnale=scdb;};
-	StateSegnale ^getfirststatoSegnale(){return statoSegnale;};
 
-	void setlaststatoSegnale(List< StateSegnale^> ^all){vStatoSegnale=all;};
-	List< StateSegnale^> ^getlaststatoSegnale(){return vStatoSegnale;};
 
-	void setlaststatoSegnale( StateSegnale^ one){vStatoSegnale->Add(one);};
+	void setstatoSegnale(List< StateSegnale^> ^all){vStatoSegnale=all;};
+	List< StateSegnale^> ^getstatoSegnale(){return vStatoSegnale;};
+
+	void setstatoSegnale( StateSegnale^ one){vStatoSegnale->Add(one);};
 	
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
