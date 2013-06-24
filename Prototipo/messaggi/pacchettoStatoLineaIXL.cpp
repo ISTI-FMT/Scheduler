@@ -45,7 +45,7 @@ void pacchettoStatoLineaIXL::serialize(byte *buffer)
 	utility::push(buffer, N_ITER, 16, 108);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int offset = 124;
-	for (unsigned int i=1;i<=N_ITER;i++)
+	for ( int i=1;i<vStatoCDB->Count;i++)
 	{
 
 		utility::push(buffer, vStatoCDB[i]->getNID_CDB(), 32, offset);
@@ -92,7 +92,7 @@ System::String^ pacchettoStatoLineaIXL::ToString(){
 	out = out+vStatoCDB[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 
-	for  (unsigned int i = 1; i<=N_ITER; i++)
+	for  ( int i = 1; i<vStatoCDB->Count; i++)
 	{
 		out = out+vStatoCDB[i]->ToString();
 	}

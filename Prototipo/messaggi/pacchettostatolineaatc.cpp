@@ -40,7 +40,7 @@ System::String^ pacchettostatolineaatc::toPrint(){
 	out = out+pstato[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 
-	for(unsigned int i=1;i<=N_ITER;i++)
+	for( int i=1;i<pstato->Count;i++)
 	{
 		out = out+pstato[i]->ToString();
 
@@ -71,7 +71,7 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 	utility::push(buffer, N_ITER, 5, 140);
 	//pstato1 = new pstatolineastruct[N_ITER];
 	int offset = 145;
-	for(unsigned int i=1;i<=N_ITER;i++)
+	for( int i=1;i<pstato->Count;i++)
 	{
 
 		utility::push(buffer, pstato[i]->getNID_CDB(), 32, offset);

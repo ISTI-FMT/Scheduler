@@ -45,7 +45,7 @@ void pachettoStatoScudetti::serialize(byte *buffer, int offset)
 	utility::push(buffer, N_ITER, 16, offset + 56);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 72;
-	for(unsigned int i =1; i <= N_ITER;i++)
+	for( int i =1; i <vStatoScudetti->Count;i++)
 	{
 		utility::push(buffer, vStatoScudetti[i]->getNID_SCUD(), 32, offset + shift);
 		shift += 32;
@@ -87,7 +87,7 @@ System::String ^pachettoStatoScudetti::ToString(){
 	out = out+vStatoScudetti[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 
-	for(unsigned int i =1; i <= N_ITER;i++)
+	for( int i =1; i <vStatoScudetti->Count;i++)
 	{
 		out = out+vStatoScudetti[i]->ToString();
 	}

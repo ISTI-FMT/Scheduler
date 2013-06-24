@@ -46,7 +46,7 @@ void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 	utility::push(buffer, N_ITER1, 5, 96);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int offset = 101;
-	for(unsigned int i=1;i<=N_ITER1;i++)
+	for( int i=1;i<mS1_vect->Count;i++)
 	{
 		utility::push(buffer, mS1_vect[i]->getD_MISSION(), 15, offset);
 		offset += 15;
@@ -67,7 +67,7 @@ void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 	utility::push(buffer, N_ITER2, 5, offset);
 	offset += 5;
 	//mS2_vect = new missionStruct2[N_ITER2];
-	for(unsigned int i=1;i<=N_ITER2;i++)
+	for( int i=1;i<mS2_vect->Count;i++)
 	{
 		utility::push(buffer,  mS2_vect[i]->getT_START_TIME(), 12, offset);
 		offset += 12;
@@ -164,7 +164,7 @@ System::String ^ pacchettoMissionPlan::ToString(){
 	out = out+mS1_vect[0]->ToString();
 	out = out+"N_ITER1: "+N_ITER1+";";
 	
-		for(unsigned int i=1;i<=N_ITER1;i++)
+		for( int i=1;i<mS1_vect->Count;i++)
 		{
 			out = out+mS1_vect[i]->ToString();
 
@@ -175,7 +175,7 @@ System::String ^ pacchettoMissionPlan::ToString(){
 
 	out = out+"N_ITER2: "+N_ITER2+";";
 	
-		for(unsigned int i=1;i<=N_ITER2;i++)
+		for( int i=1;i<mS2_vect->Count;i++)
 		{
 			out = out+ mS2_vect[i]->ToString();
 		}

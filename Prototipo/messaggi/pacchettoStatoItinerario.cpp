@@ -47,7 +47,7 @@ void pacchettoStatoItinerario::serialize(byte *buffer, int offset)
 	utility::push(buffer, N_ITER, 16, offset + 55);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 71;
-		for (unsigned int i=1;i<=N_ITER;i++)
+		for ( int i=1;i<vStatoItinerario->Count;i++)
 	{
 		utility::push(buffer, vStatoItinerario[i]->getNID_ITIN(), 32, offset + shift);
 		shift += 32;
@@ -87,7 +87,7 @@ System::String ^pacchettoStatoItinerario::ToString(){
 	out = out+vStatoItinerario[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 	
-			for (unsigned int i=1;i<=N_ITER;i++)
+			for ( int i=1;i<vStatoItinerario->Count;i++)
 		{
 			out = out+vStatoItinerario[i]->ToString();
 		}
