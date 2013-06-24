@@ -17,11 +17,11 @@ ref class pacchettoMissionPlan
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET;
 	unsigned int Q_SCALE ;
-	ProfiloVelocita ^mS1;
+	
 	unsigned int N_ITER1;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List<ProfiloVelocita^>^mS1_vect;
-	Mission ^mS2;
+
 	unsigned int N_ITER2;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List<Mission^>^mS2_vect;
@@ -48,21 +48,19 @@ public:
 	void setN_ITER2(int N);
 	int getN_ITER2(){return N_ITER2;};
 	
-	void setfirstPV(ProfiloVelocita ^PV){mS1=PV;};
-	ProfiloVelocita ^getfirstPV(){return mS1;};
-
-	void setlistPV(List< ProfiloVelocita^> ^all){mS1_vect=all;};
-	List< ProfiloVelocita^> ^getlistPV(){return mS1_vect;};
-
-	void setlistPV( ProfiloVelocita^ one){mS1_vect->Add(one);};
 	
-	void setfirstMission(Mission ^M){mS2=M;};
-	Mission ^getfirstMission(){return mS2;};
 
-	void setlistPV(List< Mission^> ^all){mS2_vect=all;};
+	void setPV(List< ProfiloVelocita^> ^all){mS1_vect=all;};
+	List< ProfiloVelocita^> ^getPV(){return mS1_vect;};
+
+	void setPV( ProfiloVelocita^ one){mS1_vect->Add(one);};
+	
+	
+
+	void setMission(List< Mission^> ^all){mS2_vect=all;};
 	List< Mission^> ^getlistMission(){return mS2_vect;};
 
-	void setlistMission( Mission^ one){mS2_vect->Add(one);};
+	void setMission( Mission^ one){mS2_vect->Add(one);};
 	
 		virtual System::String ^ToString() override;
 };

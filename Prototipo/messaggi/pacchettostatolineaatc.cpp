@@ -40,7 +40,7 @@ System::String^ pacchettostatolineaatc::toPrint(){
 	out = out+pstato[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 
-	for(unsigned int i=1;i<N_ITER;i++)
+	for(unsigned int i=1;i<=N_ITER;i++)
 	{
 		out = out+pstato[i]->ToString();
 

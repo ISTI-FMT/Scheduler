@@ -92,7 +92,7 @@ System::String^ pacchettoStatoLineaIXL::ToString(){
 	out = out+vStatoCDB[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
 
-	for  (unsigned int i = 1; i < N_ITER; i++)
+	for  (unsigned int i = 1; i<=N_ITER; i++)
 	{
 		out = out+vStatoCDB[i]->ToString();
 	}
