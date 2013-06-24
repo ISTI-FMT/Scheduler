@@ -36,6 +36,8 @@ using namespace System::Threading::Tasks;
 			eventiItinerario=ev;
 			listbutton= gcnew Dictionary<int,Button^> ();
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
+			
+			this->ControlBox=false;
 			InitializeComponent();
 
 			tabItinerari = gcnew tabellaItinerari();
@@ -103,6 +105,7 @@ using namespace System::Threading::Tasks;
 			// 
 			// FormStatoItinerari
 			// 
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1192, 836);
