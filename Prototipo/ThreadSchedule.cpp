@@ -45,7 +45,7 @@ void ThreadSchedule::StampaStato(int stato) {
 	default:
 		break;
 	}
-	
+
 }
 
 void ThreadSchedule::SimpleSchedule(){
@@ -57,7 +57,7 @@ void ThreadSchedule::SimpleSchedule(){
 		int statoInterno = StateSimpleSchedule::PresentazioneTreno;
 		int indicelistaitinerari=0;
 		List<Fermata^> ^listaitinerari;
-		DateTime time;
+		DateTime time=DateTime::Now;
 		StateObject ^inviato;
 		int trn =0;
 		while(true){
@@ -67,6 +67,17 @@ void ThreadSchedule::SimpleSchedule(){
 			//dormi un po 500  millisecondi 
 			Thread::Sleep(500);
 			wdogs->onNext();
+
+			TimeSpan sec = DateTime::Now - time;
+			if(sec.TotalSeconds>20){
+				StampaStato(statoInterno);
+
+
+				time=DateTime::Now;
+			}
+
+
+
 			switch (statoInterno)
 			{
 			case StateSimpleSchedule::PresentazioneTreno:
