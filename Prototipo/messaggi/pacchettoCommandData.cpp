@@ -1,6 +1,8 @@
 #include "pacchettoCommandData.h"
 #include "utility.h"
 
+
+
 pacchettoCommandData::pacchettoCommandData(void)
 {
 	NID_PACKET = 0;
@@ -8,10 +10,7 @@ pacchettoCommandData::pacchettoCommandData(void)
 	Q_COMMAND_TYPE = 0;
 	M_GOA_LEVEL = 0;
 	NID_OPERATIONAL = 0;
-	const int WAKE_UP = 0;
-	const int CHANGE_GOA_LEVEL = 3;
-	const int TRN = 4;
-	const int SLEEP = 7;
+
 }
 
 // questa funzione prende in ingresso un buffer di byte (la cui dimensione deve essere almeno 10, ma il controllo sulla 

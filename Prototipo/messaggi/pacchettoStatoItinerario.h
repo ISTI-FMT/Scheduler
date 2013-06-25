@@ -27,14 +27,13 @@ public:
 	// metodo che setta N_ITER
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
-	void setOneItinerario(StateItinerario ^sItinerario){vStatoItinerario->Add(sItinerario);};
-
+	
 
 	void setItinerario(List< StateItinerario^> ^all){vStatoItinerario=all;};
 	List< StateItinerario^> ^getItinerario(){return vStatoItinerario;};
 
 	
-	
+	void setItinerario( StateItinerario ^one){vStatoItinerario->Add(one);};
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding

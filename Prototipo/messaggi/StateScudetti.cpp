@@ -3,6 +3,8 @@
 
 StateScudetti::StateScudetti(void)
 {
+	 NID_SCUD =0;
+	 Q_STATOSCUD = 0;
 }
 
 System::String ^StateScudetti::ToString(){

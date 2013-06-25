@@ -1,6 +1,6 @@
 #include "ThreadSchedule.h"
 #include "TrenoFisicoLogico.h"
-
+#include "messaggi\\pacchettoCommandData.h"
 
 using namespace System;
 using namespace System::IO;
@@ -267,10 +267,7 @@ void ThreadSchedule::Init(){
 StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 {
 
-	const int WAKE_UP = 0;
-	const int CHANGE_GOA_LEVEL = 3;
-	const int TRN = 4;
-	const int SLEEP = 7;
+
 	try
 	{
 
@@ -279,7 +276,7 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		wakeUpPkt->setNID_MESSAGE(201);
 
 		wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
-		wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
+		wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(typeCmdData::WAKE_UP);
 		//set time
 		DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
 		TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
@@ -294,7 +291,7 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 		trainRunningNumberPkt->setNID_MESSAGE(201);
 		trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
-		trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
+		trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(typeCmdData::TRN);
 
 		trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
 

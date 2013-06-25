@@ -33,7 +33,7 @@ public:
 	void setCDB(List< StateCDB^> ^all){vStatoCDB=all;};
 	List< StateCDB^> ^getCDB(){return vStatoCDB;};
 
-	
+	void setCDB( StateCDB ^one){vStatoCDB->Add(one);};
 	
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
