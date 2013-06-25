@@ -27,6 +27,7 @@ ref class ThreadSchedule
 	ManagerStatoLineaATC ^managerATC;
 	ManagerStatoLineaIXL ^managerIXL;
 	wdogcontrol ^wdogs;
+	String ^ipixl;
 public:
 	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL);
 
@@ -34,6 +35,7 @@ public:
 	void Init();
 	StateObject ^SendTCPMsg(int trn,phisicalTrain ^Treno);
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
+	void StampaStato(int stato);
 	bool richestaItinerarioIXL(int iditinerario);
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 	static void SendCallback(IAsyncResult^ asyncResult);

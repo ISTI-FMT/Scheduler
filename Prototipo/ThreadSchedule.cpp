@@ -31,8 +31,22 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 	wdogs=w;
 	managerATC=manATC;
 	managerIXL=manIXL;
+	ipixl="146.48.84.52";
 }
 
+void ThreadSchedule::StampaStato(int stato) {
+	switch (stato)
+	{
+	case StateSimpleSchedule::PresentazioneTreno:{Console::WriteLine("lo stato interno dello scheduler è PresentazioneTreno");break;}
+	case StateSimpleSchedule::ControlloTreno:{Console::WriteLine("lo stato interno dello scheduler è ControlloTreno");break;}
+	case StateSimpleSchedule::RicItinerarioEntrata:{Console::WriteLine("lo stato interno dello scheduler è RicItinerarioEntrata");break;}
+	case StateSimpleSchedule::RicItinerarioUscita:{Console::WriteLine("lo stato interno dello scheduler è RicItinerarioUscita");break;}
+
+	default:
+		break;
+	}
+	
+}
 
 void ThreadSchedule::SimpleSchedule(){
 	try
@@ -49,7 +63,7 @@ void ThreadSchedule::SimpleSchedule(){
 		while(true){
 			int enginenumber;
 			Event ^eventoATO;
-			
+
 			//dormi un po 500  millisecondi 
 			Thread::Sleep(500);
 			wdogs->onNext();
@@ -57,7 +71,7 @@ void ThreadSchedule::SimpleSchedule(){
 			{
 			case StateSimpleSchedule::PresentazioneTreno:
 				{
-					Console::WriteLine("lo stato interno dello scheduler è PresentazioneTreno");
+
 					// aspetta che si presenti un treno
 					eventoATO = EQueueATO->getEvent();
 					if(eventoATO!=nullptr){
@@ -68,7 +82,7 @@ void ThreadSchedule::SimpleSchedule(){
 				}
 			case StateSimpleSchedule::ControlloTreno: 
 				{
-					Console::WriteLine("lo stato interno dello scheduler è ControlloTreno");
+
 
 					// se trovi che ha numero logico nella mappa mapTrenoLogFisico 
 					if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
@@ -117,7 +131,7 @@ void ThreadSchedule::SimpleSchedule(){
 				}
 			case StateSimpleSchedule::RicItinerarioEntrata: 
 				{
-						Console::WriteLine("lo stato interno dello scheduler è RicItinerarioEntrata");
+
 					int initEntrata = listaitinerari[indicelistaitinerari]->getIditinerarioEntrata();
 					int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
 					//se esiste un itinerario di entrata
@@ -159,7 +173,7 @@ void ThreadSchedule::SimpleSchedule(){
 					break;}
 			case StateSimpleSchedule::RicItinerarioUscita: 
 				{
-						Console::WriteLine("lo stato interno dello scheduler è RicItinerarioUscita");
+
 					//itinerario uscita
 					int itinUscita = listaitinerari[indicelistaitinerari]->getIditinerarioUscita();
 					int idstazione = listaitinerari[indicelistaitinerari]->getIdStazione();
@@ -228,7 +242,7 @@ bool ThreadSchedule::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 		Socket ^s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
 			System::Net::Sockets::ProtocolType::Udp);
 
-		IPAddress ^broadcast = IPAddress::Parse("146.48.84.52");
+		IPAddress ^broadcast = IPAddress::Parse(ipixl);
 		IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 23001);
 
 		array<Byte>^sendBytes=	cmdItini->serialize();
