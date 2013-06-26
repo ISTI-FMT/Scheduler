@@ -13,7 +13,8 @@
 #include "pacchettoStatoSegnali.h"
 #include "pacchettoEnd.h"
 #include "pacchettoFaultData.h"
-
+//questa classe rappresenta un messaggio cosi come definito nei documenti di specifica
+//e contiene i metodi per serializzare e desirializzare un messaggio
 ref class Messaggi
 {
 	// puntatore all'header per i messaggi ATS/ATO

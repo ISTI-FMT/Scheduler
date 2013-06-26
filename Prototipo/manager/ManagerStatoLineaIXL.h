@@ -6,7 +6,7 @@
 #include "..\\Event.h"
 using namespace System;
 using namespace System::Collections::Generic;
-
+//rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni sullo stato della linea fornite da IXL
 ref class ManagerStatoLineaIXL : public IObservable<Event^>
 {
 	Dictionary<int, StateCDB^> ^tabellaCDB;

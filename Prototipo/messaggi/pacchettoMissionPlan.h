@@ -7,7 +7,7 @@ using namespace System::Collections::Generic;
 using namespace System::Collections;
 
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+questa classe rappresenta un Pacchetto di Mission Plan
 L'ATS manda una missione al treno la missione da eseguire specificandola all'interno di un messaggio 
 mission plan
 -------------------------------------------------------------------------------------------------*/

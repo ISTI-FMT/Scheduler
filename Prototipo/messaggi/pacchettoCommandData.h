@@ -2,7 +2,7 @@
 #include "utility.h"
 
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+questa classe rappresenta un Pacchetto per eseguire dei unconditional command verso ATO
 L'ATS manda messaggi di wake-up e TRN al treno con messaggi di tipo unconditional command
 mission plan
 -------------------------------------------------------------------------------------------------*/

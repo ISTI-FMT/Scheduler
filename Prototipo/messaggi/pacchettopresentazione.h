@@ -3,7 +3,7 @@
 
 
 /*-----------------------------------------------------------------------------------------------
-L'ATS riceve dal treno dei messaggi di 
+L'ATS riceve dal treno dei messaggi di presentazione dagli ATO
 -------------------------------------------------------------------------------------------------*/
 
 ref class pacchettopresentazione

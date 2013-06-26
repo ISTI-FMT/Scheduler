@@ -2,7 +2,7 @@
 #include "utility.h"
 
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+questa classe rappresenta un Pacchetto per eseguire dei comandi sugli itinerari
 L'ATS invia all'IXl messaggi contenenti comandi sugli itinerari
 -------------------------------------------------------------------------------------------------*/
 enum  typeCmdItinerari { distruzione = 0,  creazione = 2 };
@@ -25,9 +25,7 @@ public:
 	void setQ_CMDITIN(int Q){Q_CMDITIN = Q;};
 	int getQ_CMDITIN(){return Q_CMDITIN;};
 
-	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
+	// funzione che restituisce la dimensione
 	int getSize();
 	void serialize(byte *buffer);
 	void deserialize(byte *buffer);

@@ -2,8 +2,8 @@
 #include "utility.h"
 
 /*-----------------------------------------------------------------------------------------------
-Alessio:
-L'ATS riceve dal treno dei messaggi di acnowledgement
+questa classe rappresenta un Pacchetto di Acnowledgement
+L'ATS riceve dal ATO dei messaggi di acnowledgement
 -----------------------------------------------------------------------------------------------*/
 
 ref class pacchettoAcknowledgement
