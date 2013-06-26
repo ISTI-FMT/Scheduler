@@ -5,16 +5,17 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 
+//questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei CDB dall'ATC
 
 ref class pacchettostatolineaatc
 {
 	unsigned int NID_PACKET;
 	unsigned int L_PACKET ;
 	unsigned int NID_OPERATIONAL ;
-	 StateCDB ^pstato;
+	
 	unsigned int N_ITER ;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
-	List< StateCDB^> ^pstato1;
+	List< StateCDB^> ^pstato;
 public:
 	pacchettostatolineaatc();
 	
@@ -42,14 +43,12 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 
-	void setfirstCDB(StateCDB ^scdb){pstato=scdb;};
-	StateCDB ^getfirstCDB(){return pstato;};
-
-	void setlastCDB(List< StateCDB^> ^all){pstato1=all;};
-	List< StateCDB^> ^getlastCDB(){return pstato1;};
-
-	void setlastCDB( StateCDB^ one){pstato1->Add(one);};
 	
+
+	void setCDB(List< StateCDB^> ^all){pstato=all;};
+	List< StateCDB^> ^getCDB(){return pstato;};
+
+	void setCDB(StateCDB ^one){pstato->Add(one);};
 
 
 

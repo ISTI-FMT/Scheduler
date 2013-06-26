@@ -3,10 +3,10 @@
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
-
+//questa classe contiene una mappa tra id delle fermata ed una lista di "binari"
 ref class tabellaFermate
 {
-	// tabella delle fermate. L'indice è l'id della fermata
+	// dizionario delle fermate. L'indice è l'id della fermata
 	Dictionary<String ^, List<binario^> ^> ^tabella;
 	String ^schemaxsd;
 public:

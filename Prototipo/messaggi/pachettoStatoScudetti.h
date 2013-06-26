@@ -4,11 +4,13 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
+//questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei scudetti
+
  ref class pachettoStatoScudetti
 {
 	unsigned int NID_PACKET;
 	unsigned int L_PACKET ;
-	StateScudetti ^statoscudetti;
+	
 	unsigned int N_ITER ;
 	List<StateScudetti^> ^vStatoScudetti;
 public:
@@ -23,13 +25,12 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 	
-	void setfirstStatoScud(StateScudetti ^sStatoScud){statoscudetti=sStatoScud;};
-	StateScudetti ^getfirstStatoScud(){return statoscudetti;};
+	
 
-	void setlastStatoScud(List< StateScudetti^> ^all){vStatoScudetti=all;};
-	List< StateScudetti^> ^getlastStatoScud(){return vStatoScudetti;};
+	void setStatoScud(List< StateScudetti^> ^all){vStatoScudetti=all;};
+	List< StateScudetti^> ^getStatoScud(){return vStatoScudetti;};
 
-	void setlastStatoScud( StateScudetti^ one){vStatoScudetti->Add(one);};
+	void setStatoScud( StateScudetti^ one){vStatoScudetti->Add(one);};
 
 	
 	int getSize();

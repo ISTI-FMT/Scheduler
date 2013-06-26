@@ -89,9 +89,9 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 					newitinerario->setDStop(dstop);
 					newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
-					newitinerario->setNextCDB( inner2->GetAttribute("nextcdb"));
+					newitinerario->setNextCDB( int::Parse( inner2->GetAttribute("nextcdb")));
 
-					String ^prevcdb = 	inner2->GetAttribute("prevcdb");
+					int prevcdb = int::Parse(	inner2->GetAttribute("prevcdb"));
 					newitinerario->setPrevCDB( prevcdb);	
 
 					System::Xml::XmlReader ^inner3 = inner2->ReadSubtree();
@@ -100,7 +100,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 
 						int cdb = int::Parse( inner3->ReadString());
-						newitinerario->getLCDB()->Add(cdb);
+						newitinerario->getLCDB()->Add(gcnew StateCDB(cdb,0,0));
 
 					}
 
@@ -144,9 +144,9 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 					newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
-					newitinerario->setNextCDB( inner2->GetAttribute("nextcdb"));
+					newitinerario->setNextCDB(  int::Parse(inner2->GetAttribute("nextcdb")));
 
-					String ^prevcdb = 	inner2->GetAttribute("prevcdb");
+					int prevcdb = int::Parse(	inner2->GetAttribute("prevcdb"));
 					newitinerario->setPrevCDB( prevcdb);	
 
 					String ^nextstation = 	inner2->GetAttribute("nextstation");
@@ -160,11 +160,11 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 
 						int cdb = int::Parse( inner3->ReadString());
-						newitinerario->getLCDB()->Add(cdb);
+						newitinerario->getLCDB()->Add(gcnew StateCDB(cdb,0,0));
 
 					}
 
-
+					newstazione->getItinerariid()->Add(Iditinerario,newitinerario);
 
 					if(!newstazione->getItinerari()->ContainsKey(prevcdb)){
 						List<Itinerario^>^listit = gcnew List<Itinerario^>();
@@ -209,4 +209,26 @@ System::String^ tabellaItinerari::ToString() {
 	return out;
 }
 
+int tabellaItinerari::get_CdbPrecItinerario(int stazione, int iditin){
+	int result=0;
+	if(mapidstazioneitinerari->ContainsKey(stazione)){
+		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
+			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->getPrevCDB();
+		}
 
+	}
+	return result;
+}
+
+
+
+int tabellaItinerari::get_CdbSuccItinerario(int stazione, int iditin){
+	int result=0;
+	if(mapidstazioneitinerari->ContainsKey(stazione)){
+		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
+			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->getNextCDB();
+		}
+
+	}
+	return result;
+}

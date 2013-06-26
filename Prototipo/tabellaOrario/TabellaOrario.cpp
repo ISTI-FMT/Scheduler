@@ -203,6 +203,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 			// a questo punto aggiungo il treno alla tabella orario
 			tabella->Add(idTreno, treno);
 		}
+		reader->Close();
 	}catch(Exception ^e){
 
 #ifdef TRACE
@@ -222,10 +223,11 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
 	if(stops!=nullptr)
 	{
 		//Todo: V_mission D_mission ancora da trattare
+		pkt->setPV(gcnew ProfiloVelocita());
 		pkt->setN_ITER1(0);
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
 		pkt->setN_ITER2((stops->Count) - 1);
-		int i = 0;
+		
 		for each (Fermata ^stop in stops)
 		{
 			Mission ^mission= gcnew Mission();
@@ -240,32 +242,23 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
 				if(stop->getIditinerarioEntrata()!=0){
 					List<int> ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
 					if(infobalise!=nullptr){
-						
+
 						mission->setNID_LRGB(infobalise[0]);
 						mission->setD_STOP(infobalise[1]);
 					}
 				}
 
 			}
-			if(i==0){
-				pkt->setfirstMission(mission);
-			}else{
-				pkt->setlistMission(mission);
-			}
+			
+			pkt->setMission(mission);
+			
 
-			++i;
+			
 		}
 	}
 }
 
-/*
-ostream& operator<<(ostream &out, TabellaOrario &tabella)
-{
-for (std::list<TrenoFermate>::iterator it=tabella.tabella.begin(); it != tabella.tabella.end(); ++it)
-out << (*it) << endl;
-return out;
-}
-*/
+
 System::String^ TabellaOrario::ToString(){
 	String ^out;
 	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella )
@@ -279,4 +272,14 @@ System::String^ TabellaOrario::ToString(){
 		}
 	}
 	return out;
+}
+
+List<Fermata^> ^TabellaOrario::getItinerariFor(int TRN){
+	
+	if(tabella->ContainsKey(TRN)){
+		return tabella[TRN];
+		
+
+	}
+	return nullptr;
 }

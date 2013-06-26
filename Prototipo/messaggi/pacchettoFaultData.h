@@ -5,7 +5,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+questa classe rappresenta un Pacchetto Fault Data
 L'ATS riceve dall'IXl messaggi di fault reporting con cui l'IXL comunica l'occorrenza di guasti
 -------------------------------------------------------------------------------------------------*/
 

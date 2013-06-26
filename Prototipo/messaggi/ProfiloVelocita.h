@@ -1,4 +1,5 @@
 #pragma once
+//questa classe rapprenta un profilo di velocità
 ref class ProfiloVelocita
 {
 	unsigned int D_MISSION ;

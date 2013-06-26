@@ -1,5 +1,4 @@
 #pragma once
-#include "struttureDatiMessaggi.h"
 #include "pacchettoCommandData.h"
 #include "pacchettoMissionPlan.h"
 #include "pacchettopresentazione.h"
@@ -13,7 +12,8 @@
 #include "pacchettoStatoSegnali.h"
 #include "pacchettoEnd.h"
 #include "pacchettoFaultData.h"
-
+//questa classe rappresenta un messaggio cosi come definito nei documenti di specifica
+//e contiene i metodi per serializzare e desirializzare un messaggio
 ref class Messaggi
 {
 	// puntatore all'header per i messaggi ATS/ATO
@@ -45,28 +45,7 @@ public:
 	Messaggi(void);
 
 
-	void setNID_MESSAGE(int N){NID_MESSAGE = N;
-	switch (N)
-	{
-	case 200 : {set_pacchettoMissionPlan();break;}
-	case 201 : { set_pacchettoCommandData();break;}
-	case 215 : { set_pacchettoPresentazione();break;}
-	case 1 : {set_pacchettoStatoLineaATC();break;}
-	case 210 :{set_pacchettoAcknowledgement();break;}
-	case 101: { set_pacchettoStatoLineaIXL(); 
-		set_pacchettoStatoItinerari(); 
-		set_pacchettoStatoSegnali(); 
-		set_pacchettoStatoBlocco(); 
-		set_pacchettoEnd(); break;}
-	case 102: {set_pacchettoFaultReporting(); break;}
-	case 110: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
-	case 111: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}		
-	default:
-		break;
-	}
-
-
-	};
+	void setNID_MESSAGE(int N);
 	int getNID_MESSAGE(){return NID_MESSAGE;};
 	void setL_MESSAGE(int N){L_MESSAGE = N;};
 	int getL_MESSAGE(){return L_MESSAGE;};
@@ -118,30 +97,10 @@ public:
 	void serialize(byte *buffer);
 	void deserialize(byte *buff);
 
-	void serialize(array<System::Byte>^bytez);
+	array<System::Byte>^ serialize();
 	void deserialize(array<System::Byte>^bytez);
 
-	int getSize(){
-
-		// 51 bit per l'header 
-		//24 di engine dove serve
-		int len =51;
-		switch (NID_MESSAGE)
-		{
-		case 200 : {len+=pkgMP->getSize();break;}
-		case 201 : {len+=pkgcd1->getSize();break;}
-		case 215 : {len+=24+pgkPres->getSize();break;}
-		case 1 : {len+=pkgStatoATC->getSize();break;}
-		case 210 :{len+=24+pkgAck->getSize();break;}
-		case 101: {len += pkgStatoLineaIXL->getSize() + pkgStatoItinerari->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize(); break;}
-		case 102: {len += pkgFaultData->getSize(); break;}
-		case 110: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
-		case 111: {len +=pkgComandoBlocco->getSize()+ pkgEnd->getSize(); break;}
-		default: break;
-		}
-		int size = (len/8)+1;
-		return size ;
-	};
+	int getSize();
 
 	virtual System::String ^ToString() override;
 };

@@ -4,16 +4,16 @@ using namespace System::Collections::Generic;
 
 Itinerario::Itinerario(void)
 {
-	id = nullptr;
+	id = 0;
 	name=gcnew String("");
 	direzione = gcnew String("");
 	lrgb = 0;
 	dStop = 0;
 	porteBanchina = false;
 	latoBanchina = gcnew String ("");
-	prevCDB = gcnew String ("");
-	nextCDB = gcnew String ("");
-	cdb=gcnew List<int>();
+	prevCDB = 0;
+	nextCDB = 0;
+	cdb=gcnew List<StateCDB^>();
 	nextstation=0;
 }
 
@@ -29,7 +29,7 @@ System::String^ Itinerario::ToString(){
 	out+=" nextCDB: "+nextCDB;
 	out+=" nextstation: "+nextstation;
 	out+=" CDB: ";
-	for each (int var in cdb)
+	for each (StateCDB ^var in cdb)
 	{
 		out+=var+"; ";
 	}

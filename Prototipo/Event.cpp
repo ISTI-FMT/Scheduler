@@ -25,3 +25,19 @@ System::String ^Event::ToString() {
 	}
 	return out;
 }
+
+StateItinerario ^Event::getEventStateItinerario(){
+	//if(sITI!=nullptr){
+		return sITI;}
+	//else {
+	//	return gcnew StateItinerario();}};
+StateCDB ^Event::getEventStateCDB(){
+	//if(sCDB!=nullptr){
+		return sCDB;}
+	//else {
+	//	return gcnew StateCDB();}};
+phisicalTrain ^Event::getEventPresentTrain(){
+	//if(lTrain!=nullptr){
+		return lTrain;}
+	//else{
+	//	return gcnew phisicalTrain();}};

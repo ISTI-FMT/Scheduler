@@ -10,6 +10,8 @@
 	using namespace System::Drawing;
 	using namespace System::Net;
 	using namespace System::Net::Sockets;
+	
+//form per visualizzare sotto forma di tabella le informazioni contenute nel file della tabella orario
 
 ref class FormVisualizzeTabOrario : public Form
 {

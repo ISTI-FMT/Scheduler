@@ -3,13 +3,16 @@
 #include "Itinerario.h"
 using namespace System;
 using namespace System::Collections::Generic;
-
+//questa classe rappresenta una stazione
+//contiene oltre id numerico e il nome della stazione
+//due dizionari per trovare gli itinerari uno la cui chieave è prevcdb
+//l'altro la cui chiave è id dell'itinerario
 ref class stazione
 {
 	String ^nomeStazione;
 	int idStazione;
 	//la chiave è prevcdb
-	Dictionary<String^,List<Itinerario^>^ > ^itinerari;
+	Dictionary<int,List<Itinerario^>^ > ^itinerari;
 	//lachiave è id dell'itinerario
 	Dictionary<int,Itinerario^ > ^itinerariid;
 
@@ -17,7 +20,7 @@ public:
 	stazione(void);
 	void setNomeStazione(String ^n){nomeStazione = n;}
 	void set_SetIDStazione(int n){idStazione = n;}
-	Dictionary<String^,List<Itinerario^>^ > ^ getItinerari(){return itinerari;};
+	Dictionary<int,List<Itinerario^>^ > ^ getItinerari(){return itinerari;};
 	Dictionary<int,Itinerario^ > ^ getItinerariid(){return itinerariid;};
 	String ^get_NomeStazione(){return nomeStazione;};
 	int get_idStazione(){return idStazione;};

@@ -21,8 +21,8 @@
                                                                                     <xs:attribute name="d_stop" type="xs:nonNegativeInteger"/>
                                                                                     <xs:attribute name="portebanchina" type="xs:string"/>
                                                                                     <xs:attribute name="latobanchina" type="xs:string"/>
-                                                                                    <xs:attribute name="prevcdb" type="xs:string"/>
-                                                                                    <xs:attribute name="nextcdb" type="xs:int"/>
+                                                                                    <xs:attribute name="prevcdb" type="xs:nonNegativeInteger"/>
+                                                                                    <xs:attribute name="nextcdb" type="xs:nonNegativeInteger"/>
                                                                                 </xs:complexType>
                                                                          </xs:element>
                                                                   </xs:sequence>
@@ -41,9 +41,9 @@
                                                                                     <xs:attribute name="direzione" type="xs:string"/>
                                                                                     <xs:attribute name="portebanchina" type="xs:string"/>
                                                                                     <xs:attribute name="latobanchina" type="xs:string"/>
-                                                                                    <xs:attribute name="prevcdb" type="xs:int"/>
-                                                                                    <xs:attribute name="nextcdb" type="xs:string"/>
-																					<xs:attribute name="nextstation" type="xs:int"/>
+                                                                                    <xs:attribute name="prevcdb" type="xs:nonNegativeInteger"/>
+                                                                                    <xs:attribute name="nextcdb" type="xs:nonNegativeInteger"/>
+																					<xs:attribute name="nextstation" type="xs:nonNegativeInteger"/>
                                                                                 </xs:complexType>
                                                                          </xs:element>
                                                                   </xs:sequence>

@@ -1,24 +1,25 @@
 #pragma once
 #using <System.dll>
 #include "..\\messaggi\\StateCDB.h"
-#include "..\\messaggi\\StateItinerario.h"
+
 
 #include "..\\Event.h"
 using namespace System;
 using namespace System::Collections::Generic;
-
-ref class ManagerStatoLineaIXL : public IObservable<Event^>
+//rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni sullo stato della linea fornite da ATC
+ref class ManagerStatoLineaATC : public IObservable<Event^>
 {
+	//id della mappa è id del CDB
 	Dictionary<int, StateCDB^> ^tabellaCDB;
-	Dictionary<int, StateItinerario^> ^tabellaItin;
+	//id della mappa è il numero del treno
+	Dictionary<int,List<StateCDB^>^> ^tabellaTRenoListCDB;
 	 List<IObserver<Event^>^> ^observers;
 public:
-	ManagerStatoLineaIXL(void);
+	ManagerStatoLineaATC(void);
 	void addCheckAndSet(List<StateCDB^> ^listaCDB, String ^source);
 	void addCheckAndSet(StateCDB ^oneCDB, String ^source);
 
-	void addCheckAndSet(List<StateItinerario^> ^listaItin, String ^source);
-	void addCheckAndSet(StateItinerario ^oneItinerario, String ^source);
+	StateCDB^ getCDB(int idcdb);
 
 	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
    
@@ -26,19 +27,19 @@ public:
 
 };
 
-ref class Unsubscriber : public  IDisposable
+ref class Unsub : public  IDisposable
 {
     List<IObserver<Event^>^> ^_observers;
     IObserver<Event^> ^_observer;
 
 public:
-	Unsubscriber(List<IObserver<Event^>^> ^observers, IObserver<Event^> ^observer)
+	Unsub(List<IObserver<Event^>^> ^observers, IObserver<Event^> ^observer)
    {
       _observers = observers;
       _observer = observer;
    };
 private:
-	 ~Unsubscriber(){
+	 ~Unsub(){
       if ((_observer != nullptr)){
 		  _observers->Remove(_observer);
 	  }

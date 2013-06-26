@@ -1,24 +1,26 @@
 #pragma once
 #using <System.dll>
+#include "..\\messaggi\\StateCDB.h"
 using namespace System;
 using namespace System::Collections::Generic;
+//questa classe rappresenta un itinerario
 ref class Itinerario
 {
-	int ^id;
+	int id;
 	String ^name;
 	String ^direzione;
 	int lrgb;
 	int dStop;
 	bool porteBanchina;
 	String ^latoBanchina;
-	String ^prevCDB;
-	String ^nextCDB;
-	List<int> ^cdb;
+	int prevCDB;
+	int nextCDB;
+	List<StateCDB^> ^cdb;
 	int nextstation;
 public:
 	Itinerario(void);
-	void setId(int ^i){id = i;}
-	int^ getId(){return id;}
+	void setId(int i){id = i;}
+	int getId(){return id;}
 	void set_nextstation(int i){nextstation = i;}
 	int^ get_nextstation(){return nextstation;}
 	void setName(String ^i){name = i;}
@@ -33,12 +35,12 @@ public:
 	bool getPorteBanchina(){return porteBanchina;}
 	void setLatoBanchina(String ^l){latoBanchina = l;}
 	String^ getLatoBanchina(){return latoBanchina;}
-	void setPrevCDB(String ^p){prevCDB = p;}
-	String^ getPrevCDB(){return prevCDB;}
-	void setNextCDB(String ^p){nextCDB = p;}
-	String^ getNextCDB(){return nextCDB;}
+	void setPrevCDB(int p){prevCDB = p;}
+	int getPrevCDB(){return prevCDB;}
+	void setNextCDB(int p){nextCDB = p;}
+	int getNextCDB(){return nextCDB;}
 	
-	List<int>^ getLCDB(){return cdb;}
+	List<StateCDB^>^ getLCDB(){return cdb;}
 
 		virtual System::String^ ToString() override;
 };

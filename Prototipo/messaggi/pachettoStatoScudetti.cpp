@@ -7,7 +7,6 @@ pachettoStatoScudetti::pachettoStatoScudetti(void)
 
 	NID_PACKET = 0;
 	L_PACKET = 0;
-	statoscudetti = gcnew StateScudetti();
 	N_ITER = 0;
 	vStatoScudetti = gcnew List<StateScudetti^>();
 }
@@ -38,19 +37,19 @@ int pachettoStatoScudetti::getSize()
 
 void pachettoStatoScudetti::serialize(byte *buffer, int offset)
 {
-	push(buffer, NID_PACKET, 8, offset);
+	utility::push(buffer, NID_PACKET, 8, offset);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, offset + 8);
-	push(buffer, statoscudetti->getNID_SCUD(), 32, offset + 21);
-	push(buffer, statoscudetti->getQ_STATOSCUD(), 3, offset + 53);
-	push(buffer, N_ITER, 16, offset + 56);
+	utility::push(buffer, L_PACKET, 13, offset + 8);
+	utility::push(buffer, vStatoScudetti[0]->getNID_SCUD(), 32, offset + 21);
+	utility::push(buffer, vStatoScudetti[0]->getQ_STATOSCUD(), 3, offset + 53);
+	utility::push(buffer, N_ITER, 16, offset + 56);
 	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 72;
-	for each (StateScudetti^ var in vStatoScudetti)
+	for( int i =1; i <vStatoScudetti->Count;i++)
 	{
-		push(buffer, var->getNID_SCUD(), 32, offset + shift);
+		utility::push(buffer, vStatoScudetti[i]->getNID_SCUD(), 32, offset + shift);
 		shift += 32;
-		push(buffer, var->getQ_STATOSCUD(),3, offset + shift);
+		utility::push(buffer, vStatoScudetti[i]->getQ_STATOSCUD(),3, offset + shift);
 		shift += 3;
 	}
 }
@@ -58,17 +57,20 @@ void pachettoStatoScudetti::serialize(byte *buffer, int offset)
 void pachettoStatoScudetti::deserialize(byte *buffer, int offset)
 {
 
-	NID_PACKET=pop(buffer,  8, offset);
-	L_PACKET=pop(buffer, 13, offset + 8);
-	statoscudetti->setNID_SCUD(pop(buffer, 32, offset + 21));
-	statoscudetti->setQ_STATOSCUD(pop(buffer, 3, offset + 53));
-	setN_ITER(pop(buffer, 16, offset + 56));
+	NID_PACKET=utility::pop(buffer,  8, offset);
+	L_PACKET=utility::pop(buffer, 13, offset + 8);
+	int tNID_SCUD=utility::pop(buffer, 32, offset + 21);
+	int tQ_STATOSCUD=utility::pop(buffer, 3, offset + 53);
+
+
+
+	setN_ITER(utility::pop(buffer, 16, offset + 56));
 	int shift = 72;
 	for(unsigned int i = 0; i < N_ITER; ++i)
 	{
-		int NID_SCUD=pop(buffer, 32, offset + shift);
+		int NID_SCUD=utility::pop(buffer, 32, offset + shift);
 		shift += 32;
-		int Q_STATOSCUD=pop(buffer, 3, offset + shift);
+		int Q_STATOSCUD=utility::pop(buffer, 3, offset + shift);
 		shift += 2;
 		vStatoScudetti->Add(gcnew StateScudetti(NID_SCUD,Q_STATOSCUD));
 	}
@@ -82,15 +84,15 @@ System::String ^pachettoStatoScudetti::ToString(){
 
 	out = out+"NID_PACKET: "+NID_PACKET+";";
 	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+statoscudetti->ToString();
+	out = out+vStatoScudetti[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
-	if(vStatoScudetti){
-		for each (StateScudetti^ var in vStatoScudetti)
-		{
-			out = out+var->ToString();
-		}
 
+	for( int i =1; i <vStatoScudetti->Count;i++)
+	{
+		out = out+vStatoScudetti[i]->ToString();
 	}
+
+
 	return out;
 }
 

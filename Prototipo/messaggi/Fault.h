@@ -1,4 +1,5 @@
 #pragma once
+//rappresenta le informazioni contenute nel messaggio di fault
 ref class Fault
 {
 	unsigned int NID_COMPONENT ;

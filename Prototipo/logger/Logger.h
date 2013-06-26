@@ -4,11 +4,10 @@ using namespace System;
 using namespace System::Diagnostics;
 
 /*********************************************************************************************************
-Alessio:
 L'ATS mantiene aggiornato un file di log in cui vengono memorizzate tutte le azioni effettuate dal
 sistema, ad esempio ricezione/invio di messaggi da ATO o ATC.
 **********************************************************************************************************/
-
+//questa classe permette di uniformare la formattione dei log nel nostro prototipo
 ref class Logger
 {
 public:

@@ -5,7 +5,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato degli itinerari
 L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato degli itnerari
 -------------------------------------------------------------------------------------------------*/
 
@@ -13,7 +13,7 @@ ref class pacchettoStatoItinerario
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET ;
-	StateItinerario ^statoItinerario;
+	
 	unsigned int N_ITER ;
 	List<StateItinerario^> ^vStatoItinerario;
 public:
@@ -27,14 +27,13 @@ public:
 	// metodo che setta N_ITER
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
-	void setfirstItinerario(StateItinerario ^sItinerario){statoItinerario=sItinerario;};
-	StateItinerario ^getfirstItinerario(){return statoItinerario;};
-
-	void setlastItinerario(List< StateItinerario^> ^all){vStatoItinerario=all;};
-	List< StateItinerario^> ^getlastItinerario(){return vStatoItinerario;};
-
-	void setlastItinerario( StateItinerario^ one){vStatoItinerario->Add(one);};
 	
+
+	void setItinerario(List< StateItinerario^> ^all){vStatoItinerario=all;};
+	List< StateItinerario^> ^getItinerario(){return vStatoItinerario;};
+
+	
+	void setItinerario( StateItinerario ^one){vStatoItinerario->Add(one);};
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding

@@ -1,6 +1,8 @@
 #include "pacchettoCommandData.h"
 #include "utility.h"
 
+
+
 pacchettoCommandData::pacchettoCommandData(void)
 {
 	NID_PACKET = 0;
@@ -8,10 +10,7 @@ pacchettoCommandData::pacchettoCommandData(void)
 	Q_COMMAND_TYPE = 0;
 	M_GOA_LEVEL = 0;
 	NID_OPERATIONAL = 0;
-	const int WAKE_UP = 0;
-	const int CHANGE_GOA_LEVEL = 3;
-	const int TRN = 4;
-	const int SLEEP = 7;
+
 }
 
 // questa funzione prende in ingresso un buffer di byte (la cui dimensione deve essere almeno 10, ma il controllo sulla 
@@ -19,15 +18,15 @@ pacchettoCommandData::pacchettoCommandData(void)
 void pacchettoCommandData::serializepacchettoCommandData(byte *buffer)
 {
 
-	push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, 59);
-	push(buffer, Q_COMMAND_TYPE, 3, 72);
+	utility::push(buffer, L_PACKET, 13, 59);
+	utility::push(buffer, Q_COMMAND_TYPE, 3, 72);
 	if(Q_COMMAND_TYPE==4){
-		push(buffer, M_GOA_LEVEL, 2, 75);
+		utility::push(buffer, M_GOA_LEVEL, 2, 75);
 	}
 	if(Q_COMMAND_TYPE==5){
-		push(buffer, NID_OPERATIONAL, 32, 75);
+		utility::push(buffer, NID_OPERATIONAL, 32, 75);
 
 	}
 
@@ -36,14 +35,14 @@ void pacchettoCommandData::serializepacchettoCommandData(byte *buffer)
 void pacchettoCommandData::deserializepacchettoCommandData(byte *buffer)
 {
 
-	NID_PACKET=pop(buffer,  8, 51);
-	L_PACKET=pop(buffer, 13, 59);
-	Q_COMMAND_TYPE=pop(buffer,3, 72);
+	NID_PACKET=utility::pop(buffer,  8, 51);
+	L_PACKET=utility::pop(buffer, 13, 59);
+	Q_COMMAND_TYPE=utility::pop(buffer,3, 72);
 	if(Q_COMMAND_TYPE==4){
-		M_GOA_LEVEL=pop(buffer, 2, 75);
+		M_GOA_LEVEL=utility::pop(buffer, 2, 75);
 	}
 	if(Q_COMMAND_TYPE==5){
-		NID_OPERATIONAL=pop(buffer, 32, 75);
+		NID_OPERATIONAL=utility::pop(buffer, 32, 75);
 
 	}
 }

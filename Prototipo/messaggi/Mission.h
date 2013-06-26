@@ -1,4 +1,5 @@
 #pragma once
+//questa classe rappresenta le informazioni sulla missione da affidare ad un treno
 ref class Mission
 {
 	unsigned int T_START_TIME;

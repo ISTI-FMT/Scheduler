@@ -8,12 +8,12 @@ using namespace System::Collections::Generic;
 
 mapTrenoFisicoLogico::mapTrenoFisicoLogico(void)
 {
-	map = gcnew Dictionary<int, int>();
+	map = gcnew Dictionary<int, TrenoFisicoLogico^>();
 }
 
 mapTrenoFisicoLogico::mapTrenoFisicoLogico(System::String^ s)
 {
-	map = gcnew Dictionary<int, int>();
+	map = gcnew Dictionary<int, TrenoFisicoLogico^>();
 	inizializza(s);
 }
 
@@ -30,18 +30,24 @@ void mapTrenoFisicoLogico::inizializza(System::String^ s){
 				int logico  = System::Int32::Parse( inner->ReadString());
 				inner->ReadToFollowing("idtrenofisico");
 				int fisico  = System::Int32::Parse( inner->ReadString());
+				inner->ReadToFollowing("cdbpos");
+				int cdbpos  = System::Int32::Parse( inner->ReadString());
 
-				if (!map->ContainsKey(logico)){
-					map->Add(logico,fisico);
+
+				if (!map->ContainsKey(fisico)){
+					map->Add(fisico,gcnew TrenoFisicoLogico(fisico,logico,cdbpos));
 				}
 
-				System::Console::WriteLine("Letti idlogico: {0} idfisico: {1}",logico, fisico);
+				System::Console::WriteLine("Letti idlogico: {0} idfisico: {1} in Pos: {2}",logico, fisico, cdbpos);
 
 				//std::string stdString = msclr::interop::marshal_as< std::string >( trn);
 				//std::cout<<stdString;
 			}
 		}
 	}catch(Exception ^e){
+#ifdef TRACE
+		Logger::Exception(e,"mapTrenoFisicoLogico");  
+#endif // TRACE
 		Console::WriteLine(e->Message);
 	}
 }

@@ -5,7 +5,7 @@ StateCDB::StateCDB(void)
 {
 	NID_CDB = 0;
 	NID_OPERATIONAL=0;
-	Q_STATOCDB = typeStateCDB::cdbStatoIgnoto;
+	Q_STATOCDB = typeStateCDB::cdbOccupato;
 	Q_DEVIATOIO = typeStateDeviatoio::deviatoioStatoIgnoto;
 }
 StateCDB::StateCDB(int nid, int state, int dev)
@@ -36,19 +36,16 @@ System::String ^StateCDB::ToString() {
 	return out;
 }
 
-bool StateCDB::Update(StateCDB ^newcdb){
-	bool ret=false;
-	if(newcdb->getNID_CDB()==NID_CDB){
-		if(newcdb->getQ_STATOCDB()!=Q_STATOCDB){
-			Q_STATOCDB=newcdb->getQ_STATOCDB();
-			ret=true;
-		}
-		if(newcdb->getQ_DEVIATOIO()!=Q_DEVIATOIO){
-			Q_DEVIATOIO=newcdb->getQ_DEVIATOIO();
-			ret=true;
-		}
-
-
-	}
-	return ret;
+bool StateCDB::Equals( Object^ obj ) {
+	StateCDB ^o2 = safe_cast<StateCDB^>(obj);
+	if(o2->getNID_CDB()==NID_CDB){
+		//if(o->getQ_STATOCDB()==Q_STATOCDB){
+		//	if(o->getQ_DEVIATOIO()==Q_DEVIATOIO){
+		//		if(o->getNID_OPERATIONAL()==NID_OPERATIONAL){
+					return true;
+				}
+		//	}
+		//}
+	//}
+	return false;
 }

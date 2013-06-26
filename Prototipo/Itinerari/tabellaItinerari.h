@@ -3,7 +3,7 @@
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
-
+//questa classe rappresenta una mappa tra id della stazione e la stazione 
 ref class tabellaItinerari
 {
 
@@ -28,7 +28,9 @@ public:
 
 	}
 
-
+	int get_CdbPrecItinerario(int stazione, int iditin);
+	
+	int get_CdbSuccItinerario(int stazione, int iditin);
 
 	Dictionary<int,stazione^ > ^getMap(){return mapidstazioneitinerari;};
 };

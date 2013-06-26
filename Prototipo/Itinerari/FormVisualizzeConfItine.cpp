@@ -63,7 +63,7 @@ void FormVisualizzeConfItine::Inizialize(){
 		// dataGridView1->Rows[riga]->Cells[1]->Value= station->get_idStazione();
 		dataGridView1->Rows[riga]->Cells[1]->Value= station->get_NomeStazione();
 
-		for each (KeyValuePair<String^,List<Itinerario^>^> ^ikvp in station->getItinerari())
+		for each (KeyValuePair<int,List<Itinerario^>^> ^ikvp in station->getItinerari())
 		{
 
 			dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->Key;
@@ -79,11 +79,11 @@ void FormVisualizzeConfItine::Inizialize(){
 				//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
 				dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
 				dataGridView1->Rows[riga]->Cells[10]->Value=itvar->get_nextstation();
-				List<int> ^cdb = itvar->getLCDB();
-				for each (int cdbvar in cdb)
+				List<StateCDB^> ^cdb = itvar->getLCDB();
+				for each (StateCDB^ cdbvar in cdb)
 				{
-					if(cdbvar){
-						dataGridView1->Rows[riga]->Cells[11]->Value=cdbvar;
+					if(cdbvar->getNID_CDB()>0){
+						dataGridView1->Rows[riga]->Cells[11]->Value=cdbvar->getNID_CDB();
 					}
 					riga++;
 				}

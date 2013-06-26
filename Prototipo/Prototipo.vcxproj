@@ -77,6 +77,14 @@
   <ItemGroup>
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
+    <ClInclude Include="FormStatoItinerari.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="form\FormStatoLineaATC.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="form\tableLayoutPanelAllCDB.h" />
+    <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
     <ClInclude Include="Itinerari\binario.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfFermate.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfItine.h" />
@@ -110,7 +118,6 @@
     <ClInclude Include="messaggi\StateItinerario.h" />
     <ClInclude Include="messaggi\StateScudetti.h" />
     <ClInclude Include="messaggi\StateSegnale.h" />
-    <ClInclude Include="messaggi\struttureDatiMessaggi.h" />
     <ClInclude Include="messaggi\utility.h" />
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
@@ -118,18 +125,26 @@
     <ClInclude Include="form\SchedulerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="scheduler\ManagerMsgATO.h" />
-    <ClInclude Include="scheduler\ManagerStatoLineaATC.h" />
-    <ClInclude Include="scheduler\ManagerStatoLineaIXL.h" />
+    <ClInclude Include="manager\ManagerMsgATO.h" />
+    <ClInclude Include="manager\ManagerStatoLineaATC.h" />
+    <ClInclude Include="manager\ManagerStatoLineaIXL.h" />
+    <ClInclude Include="StateObject.h" />
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
+    <ClInclude Include="ThreadSchedule.h" />
     <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
     <ClInclude Include="threads\ThreadPresentazione.h" />
+    <ClInclude Include="TrenoFisicoLogico.h" />
+    <ClInclude Include="wdogcontrol.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
+    <ClCompile Include="FormStatoItinerari.cpp" />
+    <ClCompile Include="form\FormStatoLineaATC.cpp" />
+    <ClCompile Include="form\tableLayoutPanelAllCDB.cpp" />
+    <ClCompile Include="form\tableLayoutPanelSingleItin.cpp" />
     <ClCompile Include="Itinerari\binario.cpp" />
     <ClCompile Include="Itinerari\FormVisualizzeConfFermate.cpp" />
     <ClCompile Include="Itinerari\FormVisualizzeConfItine.cpp" />
@@ -168,14 +183,17 @@
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />
-    <ClCompile Include="scheduler\ManagerMsgATO.cpp" />
-    <ClCompile Include="scheduler\ManagerStatoLineaATC.cpp" />
-    <ClCompile Include="scheduler\ManagerStatoLineaIXL.cpp" />
+    <ClCompile Include="manager\ManagerMsgATO.cpp" />
+    <ClCompile Include="manager\ManagerStatoLineaATC.cpp" />
+    <ClCompile Include="manager\ManagerStatoLineaIXL.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\FormVisualizzeTabOrario.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
+    <ClCompile Include="ThreadSchedule.cpp" />
     <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />
     <ClCompile Include="threads\ThreadPresentazione.cpp" />
+    <ClCompile Include="TrenoFisicoLogico.cpp" />
+    <ClCompile Include="wdogcontrol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -184,6 +202,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormStatoItinerari.resx">
+      <DependentUpon>FormStatoItinerari.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatoLineaATC.resx">
+      <DependentUpon>form\FormStatoLineaATC.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormStatoLineaATC.resx">
+      <DependentUpon>form\FormStatoLineaATC.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <DependentUpon>form\SchedulerForm.h</DependentUpon>
     </EmbeddedResource>

@@ -1,14 +1,13 @@
 #pragma once
 #using <System.dll>
 #include "..\\messaggi\\pacchettostatolineaatc.h"
-#include "..\\scheduler\\ManagerStatoLineaIXL.h"
-#include "..\\scheduler\\ManagerStatoLineaATC.h"
+#include "..\\manager\\ManagerStatoLineaIXL.h"
+#include "..\\manager\\ManagerStatoLineaATC.h"
 
 
 using namespace System;
 
 /*-----------------------------------------------------------------------------------------------
-Alessio:
 L'ATS è in grado di ricevere messaggi riguardanti lo stato della linea da parte del sistema ATC
 -------------------------------------------------------------------------------------------------*/
 

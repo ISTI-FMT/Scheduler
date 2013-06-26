@@ -1,4 +1,5 @@
 #pragma once
+//questa classe rappresenta lo stato di uno scudetto
 ref class StateScudetti
 {
 	unsigned int NID_SCUD ;

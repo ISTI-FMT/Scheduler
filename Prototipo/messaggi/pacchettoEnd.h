@@ -1,5 +1,6 @@
 #pragma once
 #include "utility.h"
+//questa classe rappresenta un Pacchetto END
 
 ref class pacchettoEnd
 {

@@ -2,7 +2,7 @@
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
-
+//questa classe rappresenta le informazioni delle stazioni che sono solo fermate || forse andrebbe chiamata stazionifermate!!
 ref class binario
 {
 	String ^namebin;

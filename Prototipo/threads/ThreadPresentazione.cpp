@@ -27,7 +27,7 @@ ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt,  ManagerMsgATO ^
 	// :listaTreni(lt)
 {
 	listaTreni=lt;
-	 ManaMsgATO=MA;
+	ManaMsgATO=MA;
 }
 
 void  ThreadPresentazione::TCP_Management_receive(){
@@ -85,22 +85,30 @@ void  ThreadPresentazione::TCP_Management_receive(){
 
 #endif // TRACE
 
+			if(pkt1->get_pacchettoPresentazione()!=nullptr){
+				phisicalTrain ^treno = gcnew phisicalTrain();
+				treno->setEngineNumber(pkt1->getNID_ENGINE());
+				treno->setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
 
-			phisicalTrain ^treno = gcnew phisicalTrain();
-			treno->setEngineNumber(pkt1->getNID_ENGINE());
-			treno->setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
+				treno->setIpAddress((((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
+				// aggiungo il treno alla lista dei treni fisici
+				listaTreni->setMapTreni(treno);
 
-			treno->setIpAddress((((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
-			// aggiungo il treno alla lista dei treni fisici
-			listaTreni->setMapTreni(treno);
-
-			 ManaMsgATO->addCheckAndSet(treno, "ATO");
+				ManaMsgATO->addCheckAndSet(treno, "ATO");
 
 
-			String ^stringip = gcnew String(treno->getIpAddress());
-			Console::ForegroundColor = ConsoleColor::DarkGreen;
-			Console::WriteLine("Aggiunto il treno {0} operativo su {1}:{2} ", treno->getEngineNumber() ,stringip, treno->getTcpPort());
+				String ^stringip = gcnew String(treno->getIpAddress());
+				Console::ForegroundColor = ConsoleColor::DarkGreen;
+				Console::WriteLine("Aggiunto il treno {0} operativo su {1}:{2} ", treno->getEngineNumber() ,stringip, treno->getTcpPort());
+			}else{
+				Console::WriteLine(  "Pacchetto presentazione con errori " );
+#ifdef TRACE
 
+				Logger::Info("Pacchetto presentazione con errori ","Presentazione");
+
+#endif // TRACE
+
+			}
 			//data = System::Text::Encoding::ASCII->GetString( bytes, 0, 256 );
 
 			//Console::WriteLine( String::Format( "Received: {0} ", data) );
@@ -119,6 +127,14 @@ void  ThreadPresentazione::TCP_Management_receive(){
 		Console::ForegroundColor = ConsoleColor::DarkGreen;
 		Console::WriteLine( "SocketException: {0}", e );
 		Console::ResetColor();
+	}
+	catch ( ThreadAbortException^ abortException ) 
+	{
+
+#ifdef TRACE
+		Logger::Exception(abortException,"ThreadPresentazione");  
+#endif // TRACE
+		Console::WriteLine( dynamic_cast<String^>(abortException->ExceptionState) );
 	}
 
 }

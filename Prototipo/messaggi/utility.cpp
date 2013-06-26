@@ -1,14 +1,12 @@
 #include "utility.h"
 
- char masks[] = {-128,64,32,16,8,4,2,1}; // le maschere per settare i bit
 
-char vet[5]; // il buffer su cui si deve scrivere
 
 //
 // dato un offset >=0 (0..*) che rappresenta la posizione di un bit all'interno
 // del vettore di caratteri buf, setta a 1 tale bit.
 //
-void setbit(char buf[], int offset) {
+void utility::setbit(char buf[], int offset) {
   //
   // estrai il Byte da modifcare
   //
@@ -16,6 +14,7 @@ void setbit(char buf[], int offset) {
   int bitoffset = offset%8;
   char workByte;
   workByte= buf[Byteoffset];
+   char masks[] = {-128,64,32,16,8,4,2,1}; // le maschere per settare i bit
   //
   // setta il bit;
   //
@@ -27,7 +26,7 @@ void setbit(char buf[], int offset) {
 // dato un valore data, copia gli len bit meno significativi nel
 // vettore buf alle posizioni di bit assolute off..off+len-1
 //
-void push (char buf[], unsigned int data, int len, int off) {
+void utility::push (char buf[], unsigned int data, int len, int off) {
    //
    // partendo da bit meno significativi di data
    // per n volte, se il bit e'=1 lo propaghi a buf allineandolo a destra
@@ -43,7 +42,7 @@ void push (char buf[], unsigned int data, int len, int off) {
 }
 
 // converte un char in un intero senza segno 0x80 = 128 non -128!!
-unsigned int toint(char C) {
+/*unsigned int toint(char C) {
  int res =0;
   if ((C & (1<<7)) != 0) res = res+128;
   if ((C & (1<<6)) != 0) res = res+64;
@@ -54,7 +53,7 @@ unsigned int toint(char C) {
   if ((C & (1<<1)) != 0) res = res+2;
   if ((C & (1<<0)) != 0) res = res+1;
   return res;
-};
+};*/
 
 /*// funzione che copia gli N elementi di un Byte[] in un array<Byte>
 void copiaByteInArray(Byte *source, array<Byte> ^dest, int N)
@@ -74,7 +73,7 @@ void copiaArrayInByte(array<System::Byte> ^source, Byte *dest, int N)
 // dato un offset >=0 (0..*) che rappresenta la posizione di un bit all'interno
 // del vettore di caratteri buf, restituisce il valore numerico del bit.
 //
-int getbit(char buf[], int offset) {
+int utility::getbit(char buf[], int offset) {
   //
   // estrai il Byte da leggere
   //
@@ -83,6 +82,7 @@ int getbit(char buf[], int offset) {
   int bitoffset = offset%8;
   char workByte;
   workByte= buf[Byteoffset];
+   char masks[] = {-128,64,32,16,8,4,2,1}; // le maschere per settare i bit
   //
   // leggi il bit;
   //
@@ -95,7 +95,7 @@ int getbit(char buf[], int offset) {
 // ed una lunghezza len, restituisce il valore numerico corrispondente
 // ai bits off..off+len-1 del vettore.
 //
-unsigned int pop (char buf[], int len, int off) {
+unsigned int utility::pop (char buf[], int len, int off) {
    //
    // partendo dal bit piu' significativi ricostruisco il valore numerico
    //

@@ -2,9 +2,10 @@
 #include "utility.h"
 
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+questa classe rappresenta un Pacchetto per eseguire dei comandi sui blocchi
 L'ATS invia all'IXl messaggi contenenti comandi sui blocchi
 -------------------------------------------------------------------------------------------------*/
+enum  typeCmdBlocco { direzionelegale = 1, direzioneillegale = 0};
 
 ref class pacchettoComandoBlocco
 {
@@ -24,9 +25,7 @@ public:
 	void setQ_CMDBLOCCO(int Q){Q_CMDBLOCCO = Q;};
 	int getQ_CMDBLOCCO(){return Q_CMDBLOCCO;};
 
-	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
+	// funzione che restituisce la dimensione 
 	int getSize();
 	void serialize(byte *buffer);
 	void deserialize(byte *buffer);

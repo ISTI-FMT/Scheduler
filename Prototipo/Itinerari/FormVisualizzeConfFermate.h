@@ -11,6 +11,7 @@
 	using namespace System::Net;
 	using namespace System::Net::Sockets;
 
+	//questa form visualizza sotto forma di tabella le informazioni contenute nel file di configurazione della fermate
 ref class FormVisualizzeConfFermate : public Form
 {
 	// System::Windows::Forms::Form ^  form;

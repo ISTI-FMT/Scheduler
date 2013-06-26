@@ -1,12 +1,13 @@
 #pragma once
 #using <System.dll>
 using namespace System;
-
+//questa classe contiene le informazioni di presentazione del treno
 ref class phisicalTrain
 {
 	int engineNumber;
 	String ^ipAddress;
 	int tcpPort;
+	int cdblastpos;
 public:
 	
 	phisicalTrain(void);

@@ -60,17 +60,15 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	switch (pkt1->getNID_MESSAGE())
 	{
 	case 1: {
-		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoStatoLineaATC()->getfirstCDB(),"ATC");
-		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoStatoLineaATC()->getlastCDB(),"ATC");
+		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoStatoLineaATC()->getCDB(),"ATC");
 		break;
 
 			}
 	case 101: {
 
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getfirstCDB(),"IXL");
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getlastCDB(),"IXL");
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getfirstItinerario(),"IXL");
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getlastItinerario(),"IXL");
+		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
+		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
+	
 		break;
 			  }
 
@@ -135,6 +133,9 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 	catch ( ThreadAbortException^ abortException ) 
 	{
 
+#ifdef TRACE
+		Logger::Exception(abortException,"ThreadListenerATC_IXL");  
+#endif // TRACE
 		Console::WriteLine( dynamic_cast<String^>(abortException->ExceptionState) );
 	}
 

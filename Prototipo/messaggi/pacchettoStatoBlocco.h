@@ -5,7 +5,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato del blocco
 L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato dei blocchi
 -------------------------------------------------------------------------------------------------*/
 
@@ -13,7 +13,6 @@ ref class pacchettoStatoBlocco
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET ;
-	StateBlocco ^statoBlocco;
 	unsigned int N_ITER ;
 	List<StateBlocco^> ^vStatoBlocco;
 public:
@@ -28,13 +27,12 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 
-	void setfirstStatoBlocco(StateBlocco ^StatoBlocco){statoBlocco=StatoBlocco;};
-	StateBlocco ^getfirstStatoBlocco(){return statoBlocco;};
+	
 
-	void setlastStatoBlocco(List< StateBlocco^> ^all){vStatoBlocco=all;};
-	List< StateBlocco^> ^getlastStatoBlocco(){return vStatoBlocco;};
+	void setStatoBlocco(List< StateBlocco^> ^all){vStatoBlocco=all;};
+	List< StateBlocco^> ^getStatoBlocco(){return vStatoBlocco;};
 
-	void setlastStatoBlocco( StateBlocco^ one){vStatoBlocco->Add(one);};
+	void setStatoBlocco( StateBlocco^ one){vStatoBlocco->Add(one);};
 
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding

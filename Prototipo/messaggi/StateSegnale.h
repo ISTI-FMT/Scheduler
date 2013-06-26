@@ -1,4 +1,7 @@
 #pragma once
+//questa classe rappresenta lo stato di un segnale
+
+
 ref class StateSegnale
 {
 	unsigned int NID_SEGN ;

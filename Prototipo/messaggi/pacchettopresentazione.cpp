@@ -14,11 +14,11 @@ pacchettopresentazione::pacchettopresentazione(void)
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
 void pacchettopresentazione::serialize(byte *buffer)
 {
-	//push(buffer, data.NID_ENGINE, 24, 51);
-	push(buffer, NID_PACKET, 8, 75);
+	//utility::push(buffer, data.NID_ENGINE, 24, 51);
+	utility::push(buffer, NID_PACKET, 8, 75);
 	setL_PACKET(getSize());
-	push(buffer, L_PACKET, 13, 83);
-	push(buffer, M_PORT, 32, 96);
+	utility::push(buffer, L_PACKET, 13, 83);
+	utility::push(buffer, M_PORT, 32, 96);
 
 }
 
@@ -28,10 +28,10 @@ void pacchettopresentazione::deserialize(byte *buff)
 {
 
 
-	//data.NID_ENGINE = pop(buff, 24, 51);
-	NID_PACKET = pop(buff, 8, 75);
-	L_PACKET = pop(buff, 13, 83);
-	M_PORT = pop(buff, 32, 96);
+	//data.NID_ENGINE = utility::pop(buff, 24, 51);
+	NID_PACKET = utility::pop(buff, 8, 75);
+	L_PACKET = utility::pop(buff, 13, 83);
+	M_PORT = utility::pop(buff, 32, 96);
 
 }
 
