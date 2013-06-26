@@ -7,7 +7,7 @@
 using namespace System::Collections::Generic;
 
 /*---------------------------------------------------------------------------------------------
-Alessio:
+
 L'ATS legge il contenuto della tabella orario da un file di configurazione e memorizza queste informazioni
 in apposite strutture dati.
 -------------------------------------------------------------------------------------------------*/

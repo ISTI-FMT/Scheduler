@@ -15,7 +15,7 @@
 using namespace System;
 
 using namespace System::Collections::Concurrent;
-
+//questo thread rappresenta lo scheduler dell'ATS
 ref class ThreadSchedule
 {
 	EventQueue ^EQueueIXL;

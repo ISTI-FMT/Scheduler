@@ -5,7 +5,7 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
-
+//questo oggetto rappresenta un controllo che implementa un watch dog
 ref class wdogcontrol : public System::Windows::Forms::UserControl
 {
 private: System::Windows::Forms::Label^  label0;

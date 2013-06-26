@@ -1,7 +1,7 @@
 #pragma once
 using namespace System;
 using namespace System::Collections::Generic;
-
+//rappresenta le informazioni che mappano ad ogni treno fisico una lista di trenilogici e la loro ultima posizione
 ref class TrenoFisicoLogico
 {
 	unsigned int idtrenofisico;

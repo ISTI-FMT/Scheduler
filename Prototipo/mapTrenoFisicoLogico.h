@@ -5,7 +5,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+
 L'ATS associa ad ogni treno fisico un TRN
 -------------------------------------------------------------------------------------------------*/
 

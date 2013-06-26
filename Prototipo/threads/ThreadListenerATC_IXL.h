@@ -8,7 +8,6 @@
 using namespace System;
 
 /*-----------------------------------------------------------------------------------------------
-Alessio:
 L'ATS è in grado di ricevere messaggi riguardanti lo stato della linea da parte del sistema ATC
 -------------------------------------------------------------------------------------------------*/
 
