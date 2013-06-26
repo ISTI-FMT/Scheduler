@@ -3,7 +3,10 @@
 #include "Itinerario.h"
 using namespace System;
 using namespace System::Collections::Generic;
-
+//questa classe rappresenta una stazione
+//contiene oltre id numerico e il nome della stazione
+//due dizionari per trovare gli itinerari uno la cui chieave è prevcdb
+//l'altro la cui chiave è id dell'itinerario
 ref class stazione
 {
 	String ^nomeStazione;

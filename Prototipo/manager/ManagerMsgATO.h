@@ -7,7 +7,7 @@
 #include "..\\Event.h"
 using namespace System;
 using namespace System::Collections::Generic;
-
+//rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni di presentazione dei ATO
 ref class ManagerMsgATO : public IObservable<Event^>
 {
 	Dictionary<int, phisicalTrain^> ^tabellaTrain;

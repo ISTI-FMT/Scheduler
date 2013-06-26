@@ -3,6 +3,7 @@
 #include "..\\messaggi\\StateCDB.h"
 using namespace System;
 using namespace System::Collections::Generic;
+//questa classe rappresenta un itinerario
 ref class Itinerario
 {
 	int id;

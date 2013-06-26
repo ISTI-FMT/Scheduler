@@ -5,6 +5,7 @@ using namespace System::Collections;
 using namespace System::Collections::Generic;
 using namespace System::Windows::Forms;
 using namespace System::IO;
+//rapressenta un controllo usato per visualizzare lo stato di tutti di i cdb della linea
 ref class tableLayoutPanelAllCDB : public System::Windows::Forms::UserControl
 {
 	System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel1;

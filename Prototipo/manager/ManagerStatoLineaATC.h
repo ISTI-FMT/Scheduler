@@ -6,10 +6,12 @@
 #include "..\\Event.h"
 using namespace System;
 using namespace System::Collections::Generic;
-
+//rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni sullo stato della linea fornite da ATC
 ref class ManagerStatoLineaATC : public IObservable<Event^>
 {
+	//id della mappa è id del CDB
 	Dictionary<int, StateCDB^> ^tabellaCDB;
+	//id della mappa è il numero del treno
 	Dictionary<int,List<StateCDB^>^> ^tabellaTRenoListCDB;
 	 List<IObserver<Event^>^> ^observers;
 public:

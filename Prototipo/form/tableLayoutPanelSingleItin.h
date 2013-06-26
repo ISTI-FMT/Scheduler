@@ -4,7 +4,7 @@ using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
-
+//rappresenta un controllo per la visualizzazione di un singolo itinerario
 ref class tableLayoutPanelSingleItin : public System::Windows::Forms::UserControl
 {
 	System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel1;

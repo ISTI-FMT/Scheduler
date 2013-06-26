@@ -3,7 +3,7 @@
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
-
+//questa classe rappresenta una mappa tra id della stazione e la stazione 
 ref class tabellaItinerari
 {
 

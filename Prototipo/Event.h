@@ -4,7 +4,7 @@
 #include "phisicalTrain.h"
 
 using namespace System;
-
+//rappresenta l'evento scambiato nell'implementazione del pattern observer
 ref class Event
 {	 
 	StateCDB ^sCDB;

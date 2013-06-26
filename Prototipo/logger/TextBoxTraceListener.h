@@ -5,7 +5,7 @@
 using namespace  System::Diagnostics;
 using namespace  System::Windows::Forms;
 using namespace  System;
-
+//questa classe listener estende TextWriterTraceListener e  permette di visualizzare le informazioni di logging in una text box.
 ref class TextBoxTraceListener :TextWriterTraceListener
 {
 	System::Windows::Forms::TextBox^  textBox;

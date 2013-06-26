@@ -11,7 +11,7 @@
 	using namespace System::Drawing;
 	using namespace System::Net;
 	using namespace System::Net::Sockets;
-
+	//questa form visualizza sotto forma di tabella le informazioni contenute nel file di configurazione degli itinerari
 ref class FormVisualizzeConfItine : public Form
 {
 	// System::Windows::Forms::Form ^  form;

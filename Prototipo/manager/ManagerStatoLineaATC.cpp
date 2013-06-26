@@ -55,41 +55,6 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 void ManagerStatoLineaATC::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 {
 
-
-	/*
-	if(oneCDB->getNID_OPERATIONAL()>0 & oneCDB->getQ_STATOCDB()!=typeStateCDB::cdbLibero){
-	if(tabellaTRenoListCDB->ContainsKey(oneCDB->getNID_OPERATIONAL())){
-
-	List<StateCDB^> ^listcdb = tabellaTRenoListCDB[oneCDB->getNID_OPERATIONAL()];
-	if(listcdb->Contains(oneCDB)){
-	int g = listcdb->IndexOf(oneCDB);
-	listcdb[g]->Update(oneCDB);
-
-	}else{
-	listcdb->Add(oneCDB);
-	}
-
-	if(listcdb->Count>=4){
-	if(listcdb[0]->getQ_STATOCDB()==typeStateCDB::cdbOccupato &
-	listcdb[1]->getQ_STATOCDB()==typeStateCDB::cdbOccupato &
-	listcdb[2]->getQ_STATOCDB()==typeStateCDB::cdbOccupato 
-	){
-	StateCDB ^cdbdel = listcdb[0];
-	listcdb->Remove(cdbdel);
-	cdbdel->setQ_STATOCDB(typeStateCDB::cdbLibero);
-	addCheckAndSet(cdbdel,"me");
-	}
-
-	}
-
-	}else{
-	List<StateCDB^> ^listcdb = gcnew List<StateCDB^>();
-	listcdb->Add(oneCDB);
-	tabellaTRenoListCDB->Add(oneCDB->getNID_OPERATIONAL(), listcdb);
-	}
-	}
-	*/
-
 	if(!tabellaCDB->ContainsKey(oneCDB->getNID_CDB()))
 	{
 		tabellaCDB->Add(oneCDB->getNID_CDB(), oneCDB);
