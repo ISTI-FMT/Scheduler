@@ -4,6 +4,8 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
+//questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei scudetti
+
  ref class pachettoStatoScudetti
 {
 	unsigned int NID_PACKET;

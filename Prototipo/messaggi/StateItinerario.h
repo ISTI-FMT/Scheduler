@@ -1,5 +1,6 @@
 #pragma once
 enum typeStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
+//questa classe rappresenta lo stato di un itinerario
 ref class StateItinerario
 {
 	unsigned int NID_ITIN;

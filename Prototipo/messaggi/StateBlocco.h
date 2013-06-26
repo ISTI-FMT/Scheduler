@@ -1,6 +1,6 @@
 #pragma once
 enum  typeStatoBlocco {  illegale = 0, legale = 1};
-
+//questa classe rappresenta lo stato del blocco
 ref class StateBlocco
 {
 	unsigned int NID_BLOCCO ;

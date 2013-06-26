@@ -1,6 +1,8 @@
 #pragma once
 enum  typeStateCDB { cdbOccupato = 1, cdbImpegnato = 2, cdbLibero = 0,  cdbFuoriControllo = 3};
 enum  typeStateDeviatoio{deviatoioStatoIgnoto = 4, deviatoioNonPresente = 0, deviatoioNormale = 1, deviatoioRovescio = 2};
+//questa classe rappresenta lo stato di un CDB
+
 ref class StateCDB
 {
 	unsigned int NID_CDB ;

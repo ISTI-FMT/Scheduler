@@ -6,6 +6,10 @@ using namespace std;
 
 
 typedef __int8 byte;
+
+//questa classe contiene dei metodi usati per la serializazzione e deserializzazione
+//dei messaggi
+
 ref class utility{
 
 public:

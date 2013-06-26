@@ -5,7 +5,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 /*-----------------------------------------------------------------------------------------------
-Alessio:
+questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei CDB dall'IXL
 L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato della linea
 -------------------------------------------------------------------------------------------------*/
 
