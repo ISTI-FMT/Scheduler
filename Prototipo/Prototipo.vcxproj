@@ -118,7 +118,6 @@
     <ClInclude Include="messaggi\StateItinerario.h" />
     <ClInclude Include="messaggi\StateScudetti.h" />
     <ClInclude Include="messaggi\StateSegnale.h" />
-    <ClInclude Include="messaggi\struttureDatiMessaggi.h" />
     <ClInclude Include="messaggi\utility.h" />
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />

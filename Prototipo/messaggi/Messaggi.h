@@ -1,5 +1,4 @@
 #pragma once
-#include "struttureDatiMessaggi.h"
 #include "pacchettoCommandData.h"
 #include "pacchettoMissionPlan.h"
 #include "pacchettopresentazione.h"

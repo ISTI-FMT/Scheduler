@@ -86,9 +86,6 @@
     <ClInclude Include="messaggi\pacchettostatolineaatc.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
-    <ClInclude Include="messaggi\struttureDatiMessaggi.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
     <ClInclude Include="tabellaOrario\Fermata.h">
       <Filter>File di intestazione\tabellaOrario</Filter>
     </ClInclude>
@@ -415,6 +412,12 @@
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStatoItinerari.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatoLineaATC.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormStatoLineaATC.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
   </ItemGroup>
