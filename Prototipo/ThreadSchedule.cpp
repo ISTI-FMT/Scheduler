@@ -161,7 +161,7 @@ void ThreadSchedule::SimpleSchedule(){
 
 
 										statoInterno=StateSimpleSchedule::RicItinerarioUscita;
-										indicelistaitinerari++;
+										//indicelistaitinerari++;
 									}
 							}
 						}else{
@@ -173,7 +173,7 @@ void ThreadSchedule::SimpleSchedule(){
 								if(richestaItinerarioIXL(idstazione+initEntrata)){
 
 									statoInterno=StateSimpleSchedule::RicItinerarioUscita;
-									indicelistaitinerari++;
+									//indicelistaitinerari++;
 
 								}
 							}
