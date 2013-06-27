@@ -34,7 +34,7 @@ int pacchettoStatoSegnali::getSize()
 	return size;
 }
 
-void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
+void pacchettoStatoSegnali::serialize(array<Byte>^buffer, int offset)
 {
 	utility::push(buffer, NID_PACKET, 8, offset);
 	setL_PACKET(getSize());
@@ -54,7 +54,7 @@ void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
 
 }
 
-void pacchettoStatoSegnali::deserialize(byte *buffer, int offset)
+void pacchettoStatoSegnali::deserialize(array<Byte>^buffer, int offset)
 {
 	NID_PACKET=utility::pop(buffer,  8, offset );
 	L_PACKET=utility::pop(buffer, 13, offset + 8);

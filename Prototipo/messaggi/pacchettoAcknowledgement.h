@@ -30,8 +30,8 @@ public:
 	int getT_TRAIN(){return T_TRAIN;};
 	// metodi per la serializzazione e deserializzazione del messaggio
 	// il buffer di byte deve essere stato precedentemente correttamente allocato.
-	void serialize(byte *buff);
-	void deserialize(byte *buff);
+	void serialize(array<Byte>^buff);
+	void deserialize(array<Byte>^buff);
 	~pacchettoAcknowledgement(void);
 	virtual System::String ^ToString() override;
 	

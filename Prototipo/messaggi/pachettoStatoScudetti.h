@@ -34,8 +34,8 @@ public:
 
 	
 	int getSize();
-	void serialize(byte *buffer, int offset);
-	void deserialize(byte *buffer, int offset);
+	void serialize(array<Byte>^buffer, int offset);
+	void deserialize(array<Byte>^buffer, int offset);
 
 	
 	virtual System::String ^ToString() override;

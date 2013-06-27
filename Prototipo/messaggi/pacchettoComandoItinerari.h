@@ -27,8 +27,8 @@ public:
 
 	// funzione che restituisce la dimensione
 	int getSize();
-	void serialize(byte *buffer);
-	void deserialize(byte *buffer);
+	void serialize(array<Byte>^buffer);
+	void deserialize(array<Byte>^buffer);
 
 	~pacchettoComandoItinerari(void);
 	virtual System::String ^ToString() override;

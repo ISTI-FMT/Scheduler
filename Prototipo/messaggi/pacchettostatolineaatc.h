@@ -26,8 +26,8 @@ public:
 	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 	int getSize();
-	void serialize(byte *buff);
-	void deserialize(byte *buff);
+	void serialize(array<Byte>^buff);
+	void deserialize(array<Byte>^buff);
 	
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	

@@ -156,7 +156,7 @@ int main()
 	pacchettostatolineaatc pkt1;
 	serial.provaSerializePacchettostatolineaatc(pkt1,0);
 
-	byte *buffer2 = new byte[pkt1.getSize()];
+	array<Byte>^buffer2 = new byte[pkt1.getSize()];
 
 	for(int i = 0; i < pkt1.getSize(); ++i)
 	buffer2[i] = 0;
@@ -179,7 +179,7 @@ int main()
 
 	serial.provaSerializePacchettoPresentazione(pkt1);
 
-	byte *buffer2 = new byte[pkt1.getSize()];
+	array<Byte>^buffer2 = new byte[pkt1.getSize()];
 
 	for(int i = 0; i < pkt1.getSize(); ++i)
 	buffer2[i] = 0;

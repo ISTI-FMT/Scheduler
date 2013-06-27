@@ -31,7 +31,7 @@ int pacchettoStatoBlocco::getSize()
 	return size;
 }
 
-void pacchettoStatoBlocco::serialize(byte *buffer, int offset)
+void pacchettoStatoBlocco::serialize(array<Byte>^buffer, int offset)
 {
 	utility::push(buffer, NID_PACKET, 8, offset );
 	setL_PACKET(getSize());
@@ -51,7 +51,7 @@ void pacchettoStatoBlocco::serialize(byte *buffer, int offset)
 
 }
 
-void pacchettoStatoBlocco::deserialize(byte *buffer, int offset)
+void pacchettoStatoBlocco::deserialize(array<Byte>^buffer, int offset)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, offset );

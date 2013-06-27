@@ -58,7 +58,7 @@ void pacchettostatolineaatc::setN_ITER(int N)
 
 
 
-void pacchettostatolineaatc::serialize(byte *buffer)
+void pacchettostatolineaatc::serialize(array<Byte>^buffer)
 {
 
 	utility::push(buffer, NID_PACKET, 8, 51);
@@ -84,7 +84,7 @@ void pacchettostatolineaatc::serialize(byte *buffer)
 
 }
 
-void pacchettostatolineaatc::deserialize(byte *buffer)
+void pacchettostatolineaatc::deserialize(array<Byte>^buffer)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, 51);

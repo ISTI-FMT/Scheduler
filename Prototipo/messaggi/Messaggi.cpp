@@ -34,7 +34,7 @@ void Messaggi::setNID_MESSAGE(int N){
 
 };
 
-void Messaggi::serialize(byte *buffer)
+void Messaggi::serialize(array<Byte>^buffer)
 {
 	utility::push(buffer, NID_MESSAGE, 8, 0);
 	setL_MESSAGE(getSize());
@@ -89,19 +89,15 @@ void Messaggi::serialize(byte *buffer)
 
 array<System::Byte>^ Messaggi::serialize(){
 	array<Byte>^bytez = gcnew array<Byte>(getSize());
-	int len=getSize();
-	byte *buffer = new byte[len];
-	for(int i = 0; i < len; ++i)
-		buffer[i] = 0;
-	serialize(buffer);
+	
+	serialize(bytez);
 
-	for(int i = 0; i < len; ++i)
-		bytez[i] = buffer[i];
+	
 
 	return bytez;
 }
 
-void Messaggi::deserialize(byte *buffer)
+void Messaggi::deserialize(array<Byte>^buffer)
 {
 	NID_MESSAGE= utility::pop(buffer, 8, 0);
 	L_MESSAGE=utility::pop(buffer,11, 8);
@@ -176,16 +172,7 @@ void Messaggi::deserialize(byte *buffer)
 	}
 
 }
-void Messaggi::deserialize(array<System::Byte>^bytez){
 
-	byte *buffer = new byte[bytez->Length];
-	for(int i = 0; i < bytez->Length; ++i)
-		buffer[i] = bytez[i];
-
-	deserialize(buffer);
-
-	//
-}
 
 
 String ^Messaggi::ToString(){

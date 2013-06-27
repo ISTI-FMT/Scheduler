@@ -31,8 +31,8 @@ public:
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 	int getSize();
-	void serialize(byte *buffer);
-	void deserialize(byte *buffer);
+	void serialize(array<Byte>^buffer);
+	void deserialize(array<Byte>^buffer);
 
 	virtual System::String ^ToString() override;
 };

@@ -6,12 +6,12 @@ pacchettoEnd::pacchettoEnd(void)
 	NID_PACKET = 0;
 }
 
-void pacchettoEnd::serialize(byte *buffer, int offset)
+void pacchettoEnd::serialize(array<Byte>^buffer, int offset)
 {
 	utility::push(buffer, NID_PACKET, 8, offset);
 }
 
-void pacchettoEnd::deserialize(byte *buffer, int offset)
+void pacchettoEnd::deserialize(array<Byte>^buffer, int offset)
 {
 	NID_PACKET = utility::pop(buffer, 8, offset);
 }

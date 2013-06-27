@@ -15,7 +15,7 @@ pacchettoCommandData::pacchettoCommandData(void)
 
 // questa funzione prende in ingresso un buffer di byte (la cui dimensione deve essere almeno 10, ma il controllo sulla 
 // dimensione deve essere fatto all'esterno della funzione) e copia in buffer il contenuto del pacchettoCommandData
-void pacchettoCommandData::serializepacchettoCommandData(byte *buffer)
+void pacchettoCommandData::serializepacchettoCommandData(array<Byte>^buffer)
 {
 
 	utility::push(buffer, NID_PACKET, 8, 51);
@@ -32,7 +32,7 @@ void pacchettoCommandData::serializepacchettoCommandData(byte *buffer)
 
 }
 
-void pacchettoCommandData::deserializepacchettoCommandData(byte *buffer)
+void pacchettoCommandData::deserializepacchettoCommandData(array<Byte>^buffer)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, 51);

@@ -94,11 +94,11 @@ public:
 	void set_pacchettoAcknowledgement(){ pkgAck = gcnew pacchettoAcknowledgement;};
 	pacchettoAcknowledgement^ get_pacchettoAcknowledgement(){ return pkgAck;};
 
-	void serialize(byte *buffer);
-	void deserialize(byte *buff);
+	void serialize(array<Byte>^buffer);
+	
 
 	array<System::Byte>^ serialize();
-	void deserialize(array<System::Byte>^bytez);
+	void deserialize(array<Byte>^buffer);
 
 	int getSize();
 

@@ -34,7 +34,7 @@ void pacchettoMissionPlan::setN_ITER2(int N)
 
 }
 
-void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
+void pacchettoMissionPlan::serializeMissionPlanPkt(array<Byte>^buffer)
 {
 
 	utility::push(buffer, NID_PACKET, 8, 51);
@@ -83,7 +83,7 @@ void pacchettoMissionPlan::serializeMissionPlanPkt(byte *buffer)
 
 }
 
-void pacchettoMissionPlan::deserializeMissionPlanPkt(byte *buffer)
+void pacchettoMissionPlan::deserializeMissionPlanPkt(array<Byte>^buffer)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, 51);
