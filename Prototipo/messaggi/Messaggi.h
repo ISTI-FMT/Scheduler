@@ -12,6 +12,7 @@
 #include "pacchettoStatoSegnali.h"
 #include "pacchettoEnd.h"
 #include "pacchettoFaultData.h"
+#include "pachettoStatoScudetti.h"
 //questa classe rappresenta un messaggio cosi come definito nei documenti di specifica
 //e contiene i metodi per serializzare e desirializzare un messaggio
 ref class Messaggi
@@ -36,6 +37,8 @@ ref class Messaggi
 	pacchettoStatoSegnali ^pkgStatoSegnali;
 	pacchettoFaultData ^pkgFaultData;
 	pacchettoStatoBlocco ^pkgStatoBlocco;
+	pachettoStatoScudetti ^pkgStatoScudetti;
+
 
 	pacchettoComandoItinerari ^pkgComandoItinerario;
 	pacchettoComandoBlocco ^pkgComandoBlocco;
@@ -57,6 +60,9 @@ public:
 
 	void set_pacchettoEnd(){pkgEnd = gcnew pacchettoEnd;};
 	pacchettoEnd ^ get_pacchettoEnd(){return pkgEnd;};
+
+	void set_pacchettoStatoScudetti(){pkgStatoScudetti = gcnew pachettoStatoScudetti;};
+	pachettoStatoScudetti^ get_pacchettoStatoScudetti(){return pkgStatoScudetti;};
 
 	void set_pacchettoComandoItinerari(){pkgComandoItinerario = gcnew pacchettoComandoItinerari;};
 	pacchettoComandoItinerari^ get_pacchettoComandoItinerari(){return pkgComandoItinerario;};

@@ -118,7 +118,7 @@ Button^ tableLayoutPanelAllCDB::getButton(String ^textbutton){
 	button->AccessibleRole = System::Windows::Forms::AccessibleRole::Grip;
 	button->Anchor = System::Windows::Forms::AnchorStyles::Top;
 
-	button->BackColor = System::Drawing::Color::Silver;
+	button->BackColor = System::Drawing::Color::Fuchsia;
 	button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 	button->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.25F));
 	//button->Location = System::Drawing::Point(91, 3);
@@ -136,7 +136,7 @@ Button^ tableLayoutPanelAllCDB::getButton(String ^textbutton){
 }
 
 
-System::Void tableLayoutPanelAllCDB::button_Click(System::Object^  sender, System::EventArgs^  e) {
+/*System::Void tableLayoutPanelAllCDB::button_Click(System::Object^  sender, System::EventArgs^  e) {
 
 	Button ^button =(Button^) sender ;
 	if(button->BackColor==System::Drawing::Color::Yellow){
@@ -152,7 +152,7 @@ System::Void tableLayoutPanelAllCDB::button_Click(System::Object^  sender, Syste
 		return;
 	}
 
-}
+}*/
 
 void tableLayoutPanelAllCDB::addbutton(String ^namebutton, int riga, int colonna){
 

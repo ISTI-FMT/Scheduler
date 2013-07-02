@@ -46,10 +46,10 @@ void  Prototipo::FormStatoLineaATC::findandsetCDB(int id, int stato){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::Red;
 		}
 		if(stato==typeStateCDB::cdbLibero){
-			listbuttonCDB[id]->BackColor= System::Drawing::Color::Green;
+			listbuttonCDB[id]->BackColor= System::Drawing::Color::Gray;
 		}
 		if(stato==typeStateCDB::cdbImpegnato){
-			listbuttonCDB[id]->BackColor= System::Drawing::Color::Yellow;
+			listbuttonCDB[id]->BackColor= System::Drawing::Color::White;
 		}
 
 	}

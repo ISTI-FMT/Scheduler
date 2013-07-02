@@ -22,7 +22,7 @@ public:
 	Button^ getButton(String ^textbutton, int id);
 	void addbuttonEntrata(String ^namebutton, int id);
 	void addbuttonUscita(String ^namebutton, int id);
-	Void button_Click(System::Object^  sender, System::EventArgs^  e);
+	/*Void button_Click(System::Object^  sender, System::EventArgs^  e);*/
 	void paint(stazione ^station);
 };
 

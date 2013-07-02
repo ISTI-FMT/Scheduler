@@ -209,6 +209,8 @@ String ^Messaggi::ToString(){
 		out= out+get_pacchettoComandoItinerari()->ToString();
 	if(pkgComandoBlocco)
 		out= out+get_pacchettoComandoBlocco()->ToString();
+	if(pkgStatoScudetti)
+		out= out+get_pacchettoStatoScudetti()->ToString();
 	if(pkgEnd)
 		out= out+get_pacchettoEnd()->ToString();
 
