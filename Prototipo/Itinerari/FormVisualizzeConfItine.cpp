@@ -35,7 +35,7 @@ void FormVisualizzeConfItine::Inizialize(){
 	this->SuspendLayout();
 
 	dataGridView1->ColumnCount = 12;
-	dataGridView1->RowCount = 410;
+	dataGridView1->RowCount = 480;
 	int colonna=0;
 	int riga=0;
 	dataGridView1->Columns[ 0 ]->Name = "offset";
