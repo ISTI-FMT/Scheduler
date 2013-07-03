@@ -16,9 +16,7 @@ void pacchettoEnd::deserialize(array<Byte>^buffer, int offset)
 	NID_PACKET = utility::pop(buffer, 8, offset);
 }
 
-pacchettoEnd::~pacchettoEnd(void)
-{
-}
+
 
 System::String ^pacchettoEnd::ToString(){
 	System::String ^out;

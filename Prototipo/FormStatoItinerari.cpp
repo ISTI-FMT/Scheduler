@@ -93,17 +93,6 @@ void  Prototipo::FormStatoItinerari::findandsetCDB(int id, int stato){
 
 
 
-List<StateCDB^> ^Prototipo::FormStatoItinerari::listCdBItin(int idstazione,int iditineraio){
-	if(tabItinerari->getMap()->ContainsKey(idstazione)){
-		if(tabItinerari->getMap()[idstazione]->getItinerariid()->ContainsKey(iditineraio)){
-			Itinerario ^itin = tabItinerari->getMap()[idstazione]->getItinerariid()[iditineraio];
-			return itin->getLCDB();
-		}
-
-	}
-
-	return nullptr;
-}
 
 void Prototipo::FormStatoItinerari::setCdBItin(List<StateCDB^> ^listCdB, int stato){
 	for each (StateCDB ^cdb in listCdB)

@@ -36,7 +36,8 @@ public:
 	StateObject ^SendTCPMsg(int trn,phisicalTrain ^Treno);
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
 	void StampaStato(int stato);
-	bool richestaItinerarioIXL(int iditinerario);
+	bool richestaItinerarioIXL(int idstazione ,int iditinerario);
+	bool controllacdb(List<int>^lcdb);
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 	static void SendCallback(IAsyncResult^ asyncResult);
 };

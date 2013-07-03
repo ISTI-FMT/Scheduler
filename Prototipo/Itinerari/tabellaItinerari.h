@@ -32,6 +32,8 @@ public:
 	
 	int get_CdbSuccItinerario(int stazione, int iditin);
 
+	List<int> ^get_Cdb_Itinerario(int stazione, int iditin);
+
 	Dictionary<int,stazione^ > ^getMap(){return mapidstazioneitinerari;};
 };
 

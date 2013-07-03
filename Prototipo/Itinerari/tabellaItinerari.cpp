@@ -100,7 +100,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 
 						int cdb = int::Parse( inner3->ReadString());
-						newitinerario->getLCDB()->Add(gcnew StateCDB(cdb,0,0));
+						newitinerario->getLCDB()->Add(cdb);
 
 					}
 
@@ -160,7 +160,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 
 						int cdb = int::Parse( inner3->ReadString());
-						newitinerario->getLCDB()->Add(gcnew StateCDB(cdb,0,0));
+						newitinerario->getLCDB()->Add(cdb);
 
 					}
 
@@ -232,3 +232,16 @@ int tabellaItinerari::get_CdbSuccItinerario(int stazione, int iditin){
 	}
 	return result;
 }
+
+List<int> ^tabellaItinerari::get_Cdb_Itinerario(int stazione, int iditin){
+	
+	if(mapidstazioneitinerari->ContainsKey(stazione)){
+		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
+			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->getLCDB();
+		}
+
+	}
+	return nullptr;
+
+}
+

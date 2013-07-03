@@ -53,7 +53,7 @@ using namespace System::Threading::Tasks;
 		void findandset(int id, int stato);
 		void findandsetCDB(int id, int stato);
 	private: 
-			 List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
+			 //List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
 			 void setCdBItin(List<StateCDB^> ^listCdB, int stato);
 
 	protected:

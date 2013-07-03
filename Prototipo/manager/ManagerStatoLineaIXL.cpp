@@ -152,7 +152,7 @@ StateCDB^ ManagerStatoLineaIXL::StatoCDB(int idcdb){
 		return	tabellaCDB[idcdb];
 
 	}
-	return gcnew StateCDB();
+	return nullptr;
 	 
 
 }

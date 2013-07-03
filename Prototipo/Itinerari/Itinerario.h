@@ -15,7 +15,7 @@ ref class Itinerario
 	String ^latoBanchina;
 	int prevCDB;
 	int nextCDB;
-	List<StateCDB^> ^cdb;
+	List<int> ^cdb;
 	int nextstation;
 public:
 	Itinerario(void);
@@ -40,7 +40,7 @@ public:
 	void setNextCDB(int p){nextCDB = p;}
 	int getNextCDB(){return nextCDB;}
 	
-	List<StateCDB^>^ getLCDB(){return cdb;}
+	List<int>^ getLCDB(){return cdb;}
 
 		virtual System::String^ ToString() override;
 };

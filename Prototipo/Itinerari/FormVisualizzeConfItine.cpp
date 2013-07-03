@@ -79,11 +79,11 @@ void FormVisualizzeConfItine::Inizialize(){
 				//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
 				dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
 				dataGridView1->Rows[riga]->Cells[10]->Value=itvar->get_nextstation();
-				List<StateCDB^> ^cdb = itvar->getLCDB();
-				for each (StateCDB^ cdbvar in cdb)
+				List<int> ^lcdb = itvar->getLCDB();
+				for each (int cdbvar in lcdb)
 				{
-					if(cdbvar->getNID_CDB()>0){
-						dataGridView1->Rows[riga]->Cells[11]->Value=cdbvar->getNID_CDB();
+					if(cdbvar>0){
+						dataGridView1->Rows[riga]->Cells[11]->Value=cdbvar;
 					}
 					riga++;
 				}
