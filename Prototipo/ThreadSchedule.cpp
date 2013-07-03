@@ -200,7 +200,7 @@ void ThreadSchedule::SimpleSchedule(){
 						int resutl = ((int)listaitinerari[indicelistaitinerari]->getOrarioPartenza())-costante;
 						//int statocdbuscitaitinerario = managerIXL->StatoCDB(resultsuccCdbU)->getQ_STATOCDB();
 						//stato cdb uscita, controllo posizione e tempo 
-						if((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo)){
+						if((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo | true)){
 							//( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)&
 
 							//todo : se ti trovi nel posto giusto
@@ -245,8 +245,8 @@ bool ThreadSchedule::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 		Messaggi ^cmdItini = gcnew Messaggi();
 
 
-		cmdItini->setNID_MESSAGE(110);
-		cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(110);
+		cmdItini->setNID_MESSAGE(10);
+		cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(10);
 		cmdItini->get_pacchettoComandoItinerari()->setNID_ITIN(NID_ITIN);
 		cmdItini->get_pacchettoComandoItinerari()->setQ_CMDITIN(Q_CMDITIN);
 
@@ -254,7 +254,7 @@ bool ThreadSchedule::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 			System::Net::Sockets::ProtocolType::Udp);
 
 		IPAddress ^broadcast = IPAddress::Parse(ipixl);
-		IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 23001);
+		IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 4011);
 
 		array<Byte>^sendBytes=	cmdItini->serialize();
 
@@ -454,7 +454,7 @@ bool ThreadSchedule::richestaItinerarioIXL(int idstazione , int iditinerario){
 	if((managerIXL->getItinerario(idstazione+iditinerario)->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoNonInAtto) | (true)){
 		//controllo dei cdb che fanno parte dell'itinerario che devono essere liberi
 		List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
-		if(controllacdb(listaNIDcdb)){
+		if(controllacdb(listaNIDcdb)|true){
 
 			SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione);
 			//Thread::Sleep(500);

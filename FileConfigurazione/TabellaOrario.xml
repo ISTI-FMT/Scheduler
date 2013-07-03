@@ -6,7 +6,7 @@
     <partenza>17:02:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
 	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
-<itinerarioUscita id="201">II-01</itinerarioUscita>
+<itinerarioUscita id="901">II-01</itinerarioUscita>
   </stazione>
 
   <stazione id="14000"  name="Piazza Università">
@@ -14,8 +14,8 @@
     <partenza>17:05:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
 	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="22">02-II</itinerarioEntrata>
-<itinerarioUscita id="201">II-01</itinerarioUscita>
+ <itinerarioEntrata id="905">02-II</itinerarioEntrata>
+<itinerarioUscita id="901">II-01</itinerarioUscita>
   </stazione>
 
   <stazione id="15000"  name="Via Verdi">
@@ -23,8 +23,8 @@
     <partenza>17:11:00</partenza>
     <binarioprogrammato>2</binarioprogrammato>
 	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="22">02-II</itinerarioEntrata>
-<itinerarioUscita id="201">II-01</itinerarioUscita>
+ <itinerarioEntrata id="905">02-II</itinerarioEntrata>
+<itinerarioUscita id="901">II-01</itinerarioUscita>
   </stazione>
 
 

@@ -25,7 +25,7 @@ void Messaggi::setNID_MESSAGE(int N){
 		set_pacchettoStatoBlocco(); 
 		set_pacchettoEnd(); break;}
 	case 102: {set_pacchettoFaultReporting(); break;}
-	case 110: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
+	case 10: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
 	case 111: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}		
 	default:
 		break;
@@ -69,7 +69,7 @@ void Messaggi::serialize(array<Byte>^buffer)
 		break;}
 	case 102: {get_pacchettoFaultReporting()->serialize(buffer); 
 		break;}
-	case 110: { offset += 51;
+	case 10: { offset += 51;
 		get_pacchettoComandoItinerari()->serialize(buffer); 
 		offset += get_pacchettoComandoItinerari()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
@@ -152,7 +152,7 @@ void Messaggi::deserialize(array<Byte>^buffer)
 		break;}
 	case 102: {get_pacchettoFaultReporting()->deserialize(buffer); 
 		break;}
-	case 110: { offset += 51;
+	case 10: { offset += 51;
 		set_pacchettoComandoItinerari();
 		get_pacchettoComandoItinerari()->deserialize(buffer); 
 		offset += get_pacchettoComandoItinerari()->getSize();
@@ -236,7 +236,7 @@ int Messaggi::getSize(){
 		case 210 :{len+=24+pkgAck->getSize();break;}
 		case 101: {len += pkgStatoLineaIXL->getSize() + pkgStatoItinerari->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize(); break;}
 		case 102: {len += pkgFaultData->getSize(); break;}
-		case 110: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
+		case 10: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
 		case 111: {len +=pkgComandoBlocco->getSize()+ pkgEnd->getSize(); break;}
 		default: break;
 		}
