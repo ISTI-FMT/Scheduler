@@ -277,9 +277,16 @@ System::String^ TabellaOrario::ToString(){
 List<Fermata^> ^TabellaOrario::getItinerariFor(int TRN){
 	
 	if(tabella->ContainsKey(TRN)){
-		return tabella[TRN];
-		
 
+		//return tabella[TRN];
+		List<Fermata^> ^result = gcnew List<Fermata^>();
+		for each (Fermata ^ferm in tabella[TRN])
+		{
+			if(ferm->getIdStazione()>1000){
+				result->Add(ferm);
+			}
+		}
+		return result;
 	}
 	return nullptr;
 }

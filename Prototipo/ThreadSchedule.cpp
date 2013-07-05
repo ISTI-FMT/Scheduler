@@ -31,7 +31,7 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 	wdogs=w;
 	managerATC=manATC;
 	managerIXL=manIXL;
-	ipixl="146.48.84.52";
+	ipixl="127.0.0.1";
 }
 
 void ThreadSchedule::StampaStato(int stato) {
@@ -166,7 +166,8 @@ void ThreadSchedule::SimpleSchedule(){
 							}
 						}else{
 							//se il treno si trova sul cdb giusto
-							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn){
+							// messo a true per fare test
+							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn | true){
 								//se l'itinerario è libero
 								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 								//che riporti il cambiamento dello stato dell'itinerario
@@ -459,7 +460,9 @@ bool ThreadSchedule::richestaItinerarioIXL(int idstazione , int iditinerario){
 			SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione);
 			//Thread::Sleep(500);
 			Event ^even = EQueueIXL->getEvent();
-			if(even!=nullptr){
+			//non controllo se è stato creato l'itinerario
+			return true;
+			/*if(even!=nullptr){
 				StateItinerario ^statoi =even->getEventStateItinerario();
 				if(statoi!=nullptr){
 					if(idstazione+iditinerario==statoi->getNID_ITIN() ){
@@ -468,7 +471,7 @@ bool ThreadSchedule::richestaItinerarioIXL(int idstazione , int iditinerario){
 						}
 					}
 				}
-			}
+			}*/
 		}
 
 	}else{
