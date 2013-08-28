@@ -1,5 +1,10 @@
 #pragma once
 enum typeStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
+
+/*Utilizzo questa classe per serializzare le informazioni dello stato dell'itinerario del pacchetto stato itinerario
+rivevuto dall'IXL*/
+
+
 //questa classe rappresenta lo stato di un itinerario
 ref class StateItinerario
 {

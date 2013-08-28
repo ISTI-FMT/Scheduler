@@ -7,8 +7,13 @@
 
 using namespace System;
 
+
+/*Utilizzo questa classe per ascoltare in modo asincrono i messaggi UDP ricevuti sulla porta 23002
+a secondo del tipo di messaggio ricevuto sarà trattato da ManagerStatoLineaATC o ManagerStatoLineaIXL*/
+
+
 /*-----------------------------------------------------------------------------------------------
-L'ATS è in grado di ricevere messaggi riguardanti lo stato della linea da parte del sistema ATC
+L'ATS è in grado di ricevere messaggi riguardanti lo stato della linea da parte del sistema ATC e IXL
 -------------------------------------------------------------------------------------------------*/
 
 ref class ThreadListenerATC_IXL

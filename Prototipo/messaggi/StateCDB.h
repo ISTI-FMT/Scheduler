@@ -1,6 +1,10 @@
 #pragma once
 enum  typeStateCDB { cdbOccupato = 1, cdbImpegnato = 2, cdbLibero = 0,  cdbFuoriControllo = 3};
 enum  typeStateDeviatoio{deviatoioStatoIgnoto = 4, deviatoioNonPresente = 0, deviatoioNormale = 1, deviatoioRovescio = 2};
+
+/*Utilizzo questa classe per serializzare le informazioni dello stato del CDB del pacchetto stato linea da ricevere all'ATC o IXL*/
+
+
 //questa classe rappresenta lo stato di un CDB
 
 ref class StateCDB

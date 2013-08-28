@@ -2,7 +2,8 @@
 #using <System.dll>
 using namespace System;
 
-
+/*Utilizzo i metodi statici di questa classe per eseguire la serializazzione e la deserializzazione
+dei messaggi*/
 
 //typedef __int8 byte;
 

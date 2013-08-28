@@ -1,6 +1,6 @@
 #pragma once
 
-/*Utilizzo questa classe per serializzare le informazioni della missione del messaggio MissionPlan da inviare all'ATO*/
+/*Utilizzo questa classe per serializzare le informazioni della missione del pacchetto MissionData da inviare all'ATO*/
 
 
 //questa classe rappresenta le informazioni sulla missione da affidare ad un treno

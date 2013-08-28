@@ -1,4 +1,8 @@
 #pragma once
+
+/*Utilizzo questa classe per serializzare le informazioni sul profilo velocità del pacchetto MissionData da inviare all'ATO*/
+
+
 //questa classe rapprenta un profilo di velocità
 ref class ProfiloVelocita
 {

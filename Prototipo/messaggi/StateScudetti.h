@@ -1,4 +1,9 @@
 #pragma once
+
+/*Utilizzo questa classe per serializzare le informazioni sullo stato degli scudetti del pacchetto stato scudetti
+rivevuto dall'IXL*/
+
+
 //questa classe rappresenta lo stato di uno scudetto
 ref class StateScudetti
 {

@@ -6,6 +6,10 @@
 #using <System.dll>
 using namespace System::Collections::Generic;
 
+/*Utilizzo questa classe per serializzare le informazioni della tabella orario, 
+la liste delle fermate viene inserita in una mappa la cui chiave è l'id della fermata*/
+
+
 /*---------------------------------------------------------------------------------------------
 
 L'ATS legge il contenuto della tabella orario da un file di configurazione e memorizza queste informazioni

@@ -5,6 +5,11 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Stato linea che l'ATS riceve dal ATC
+nel messaggio di stato della linea, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
 //questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei CDB dall'ATC
 
 ref class pacchettostatolineaatc

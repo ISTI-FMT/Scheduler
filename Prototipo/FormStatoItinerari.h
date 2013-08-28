@@ -6,6 +6,8 @@
 #include "messaggi\\Messaggi.h"
 #include "EventQueue.h"
 
+/*Utilizzo questa classe per rappresentare graficamente una form che contiene le informazioni sullo stato degli itininerari
+e sullo stato dei cdb dei messaggi stato della linea dell'IXL*/
 
 namespace Prototipo {
 

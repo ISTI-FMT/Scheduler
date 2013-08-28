@@ -2,6 +2,10 @@
 #include "tableLayoutPanelAllCDB.h"
 #include "..\\EventQueue.h"
 
+/*Utilizzo questa classe per rappresentare graficamente una form che contiene le informazioni sullo stato  dei cdb 
+dei messaggi stato della linea dell'ATC*/
+
+
 namespace Prototipo {
 
 	using namespace System;

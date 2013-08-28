@@ -4,6 +4,11 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Stato della Linea che l'ATS riceve dal IXL
+nel messaggio di stato della linea, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
 /*-----------------------------------------------------------------------------------------------
 questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei CDB dall'IXL
 L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato della linea

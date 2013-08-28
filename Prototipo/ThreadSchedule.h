@@ -12,6 +12,8 @@
 #include "manager\\ManagerStatoLineaIXL.h"
 #include "StateObject.h"
 
+/*Utilizzo questa classe per definire il comportamento dello schedulatore*/
+
 using namespace System;
 
 using namespace System::Collections::Concurrent;
