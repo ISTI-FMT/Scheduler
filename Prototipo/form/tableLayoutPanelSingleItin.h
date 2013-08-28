@@ -4,6 +4,8 @@ using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
+/*utilizzo questa classe per rappresentare graficamente una tabella contenete in ogni casella un bottone
+che rappresenta graficamente lo stato degli itinerari*/
 //rappresenta un controllo per la visualizzazione di un singolo itinerario
 ref class tableLayoutPanelSingleItin : public System::Windows::Forms::UserControl
 {

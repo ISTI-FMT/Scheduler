@@ -5,6 +5,8 @@ using namespace System::Collections;
 using namespace System::Collections::Generic;
 using namespace System::Windows::Forms;
 using namespace System::IO;
+/*utilizzo questa classe per rappresentare graficamente una tabella contenete in ogni casella un bottone
+che rappresenta graficamente lo stato dei cdb della linea*/
 //rapressenta un controllo usato per visualizzare lo stato di tutti di i cdb della linea
 ref class tableLayoutPanelAllCDB : public System::Windows::Forms::UserControl
 {

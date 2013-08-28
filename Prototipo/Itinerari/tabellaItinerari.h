@@ -3,6 +3,12 @@
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
+
+
+/*utilizzo questa classe per rappresentare le informazioni delle stazioni parsate dal file xml ConfigurazioneItinerari.xml
+queste vengono inserite in una mappa tra id della stazione e le informazioni della stazione serializzate nella classe stazione.h
+*/
+
 //questa classe rappresenta una mappa tra id della stazione e la stazione 
 ref class tabellaItinerari
 {

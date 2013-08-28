@@ -2,7 +2,8 @@
 #include "messaggi\\StateCDB.h"
 #include "messaggi\\StateItinerario.h"
 #include "phisicalTrain.h"
-
+/*utilizzo questa classe per implementare l'evento da scambiare tra lo schedulatore e gli observer che generano i messaggi:
+manager ATO, ATC e IXL*/
 using namespace System;
 //rappresenta l'evento scambiato nell'implementazione del pattern observer
 ref class Event

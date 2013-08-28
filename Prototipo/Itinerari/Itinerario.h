@@ -3,6 +3,8 @@
 #include "..\\messaggi\\StateCDB.h"
 using namespace System;
 using namespace System::Collections::Generic;
+/*utilizzo questa classe per rappresentare le informazioni degli itinerari parsate dal file xml ConfigurazioneItinerari.xml*/
+
 //questa classe rappresenta un itinerario
 ref class Itinerario
 {

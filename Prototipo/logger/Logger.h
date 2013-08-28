@@ -3,6 +3,9 @@
 using namespace System;
 using namespace System::Diagnostics;
 
+/*utilizzo questa classe per uniformare la formattione dei log utilizzando i seguenti metodi statici
+per produrre i diversi tipi di messaggi di log. 
+*/
 /*********************************************************************************************************
 L'ATS mantiene aggiornato un file di log in cui vengono memorizzate tutte le azioni effettuate dal
 sistema, ad esempio ricezione/invio di messaggi da ATO o ATC.

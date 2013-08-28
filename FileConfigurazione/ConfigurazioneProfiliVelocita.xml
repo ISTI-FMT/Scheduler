@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<configurazioneprofilivelocita>
+<configurazioneprofilivelocita  xmlns="urn:configurazioneprofilivelocita-schema">
 
+  
+<progressivakm km="0">
+   <velocitamedia limite ="80"/>
+  </progressivakm>
+  
+    
+  <progressivakm km="8822">
+    <velocitamedia limite ="80"/>
+  </progressivakm>
 
-
-
+<progressivakm km="8827">
+    <velocitamedia limite ="80"/>
+  </progressivakm>
+  
+  <progressivakm km="9842">
+    <velocitamedia limite ="80"/>
+  </progressivakm>
 
 
 </configurazioneprofilivelocita>
