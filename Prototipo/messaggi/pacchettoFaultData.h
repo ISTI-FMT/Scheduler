@@ -4,6 +4,11 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Fault Data che l'ATS riceve dal IXL o ATO
+nel messaggio di Fault Reporting, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
 /*-----------------------------------------------------------------------------------------------
 questa classe rappresenta un Pacchetto Fault Data
 L'ATS riceve dall'IXl messaggi di fault reporting con cui l'IXL comunica l'occorrenza di guasti

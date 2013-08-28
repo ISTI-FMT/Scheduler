@@ -1,11 +1,13 @@
 #pragma once
 #using <System.dll>
 #include "..\\messaggi\\StateCDB.h"
-
-
 #include "..\\Event.h"
 using namespace System;
 using namespace System::Collections::Generic;
+
+/*utilizzo questa classe per generare l'evento scaturito da un nuovo messaggio di stato della linea proveniente dall'ATC
+filtra i messaggi inviando allo scheduler solo quelli che hanno subito una modifica*/
+
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni sullo stato della linea fornite da ATC
 ref class ManagerStatoLineaATC : public IObservable<Event^>
 {

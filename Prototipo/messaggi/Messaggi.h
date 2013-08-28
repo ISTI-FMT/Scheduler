@@ -1,6 +1,6 @@
 #pragma once
 #include "pacchettoCommandData.h"
-#include "pacchettoMissionPlan.h"
+#include "pacchettoMissionData.h"
 #include "pacchettopresentazione.h"
 #include "pacchettostatolineaatc.h"
 #include "pacchettoAcknowledgement.h"
@@ -13,6 +13,10 @@
 #include "pacchettoEnd.h"
 #include "pacchettoFaultData.h"
 #include "pachettoStatoScudetti.h"
+
+/*Utilizzo questa classe per creare serializzare deserializzare i messaggi specificando
+i pacchetti da inserire nel messaggio*/
+
 //questa classe rappresenta un messaggio cosi come definito nei documenti di specifica
 //e contiene i metodi per serializzare e desirializzare un messaggio
 ref class Messaggi
@@ -25,7 +29,7 @@ ref class Messaggi
 	unsigned int NID_ENGINE;
 	// puntatori alle strutture dati per i pacchetti ATS/ATO
 	pacchettoCommandData ^pkgcd1;
-	pacchettoMissionPlan ^pkgMP;
+	pacchettoMissionData ^pkgMP;
 	pacchettopresentazione ^pgkPres;
 	pacchettostatolineaatc ^pkgStatoATC;
 	pacchettoAcknowledgement ^pkgAck;
@@ -88,8 +92,8 @@ public:
 	void set_pacchettoCommandData(){ pkgcd1 = gcnew pacchettoCommandData;};
 	pacchettoCommandData^ get_pacchettoCommandData(){ return pkgcd1;};
 
-	void set_pacchettoMissionPlan(){ pkgMP = gcnew pacchettoMissionPlan;};
-	pacchettoMissionPlan^ get_pacchettoMissionPlan(){ return pkgMP;};
+	void set_pacchettoMissionData(){ pkgMP = gcnew pacchettoMissionData;};
+	pacchettoMissionData^ get_pacchettoMissionData(){ return pkgMP;};
 
 	void set_pacchettoPresentazione(){ pgkPres = gcnew pacchettopresentazione;};
 	pacchettopresentazione^ get_pacchettoPresentazione(){ return pgkPres;};

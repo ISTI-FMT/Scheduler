@@ -1,6 +1,10 @@
 #pragma once
 #include "utility.h"
 
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Acnowledgement che l'ATS riceve dal ATO
+nel messaggio di acnowledgement, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
 /*-----------------------------------------------------------------------------------------------
 questa classe rappresenta un Pacchetto di Acnowledgement
 L'ATS riceve dal ATO dei messaggi di acnowledgement

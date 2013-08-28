@@ -1,6 +1,11 @@
 #pragma once
 #include "utility.h"
 
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Command Data che l'ATS invia dal ATO
+nel messaggio di Unconditional Command, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
+
 /*-----------------------------------------------------------------------------------------------
 questa classe rappresenta un Pacchetto per eseguire dei unconditional command verso ATO
 L'ATS manda messaggi di wake-up e TRN al treno con messaggi di tipo unconditional command

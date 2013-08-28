@@ -223,9 +223,9 @@ namespace Prototipo {
 					 Messaggi ^missionPlanPkt = gcnew Messaggi();
 
 					 missionPlanPkt->setNID_MESSAGE(200);
-					 missionPlanPkt->get_pacchettoMissionPlan()->setNID_PACKET(160);
+					 missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 					 int TRN = tabellaOrario->getFirstTRN();
-					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionPlan());
+					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData());
 
 
 

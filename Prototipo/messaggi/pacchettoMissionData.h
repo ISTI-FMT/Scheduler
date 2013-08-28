@@ -6,13 +6,18 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto MissionData che l'ATS invia dal ATO
+nel messaggio di MissionPlan, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
+
 /*-----------------------------------------------------------------------------------------------
-questa classe rappresenta un Pacchetto di Mission Plan
+questa classe rappresenta un Pacchetto di Mission Data
 L'ATS manda una missione al treno la missione da eseguire specificandola all'interno di un messaggio 
 mission plan
 -------------------------------------------------------------------------------------------------*/
 
-ref class pacchettoMissionPlan
+ref class pacchettoMissionData
 {
 	unsigned int NID_PACKET ;
 	unsigned int L_PACKET;
@@ -32,7 +37,7 @@ public:
 	int getSize();
 	void serializeMissionPlanPkt(array<Byte>^buff);
 	void deserializeMissionPlanPkt(array<Byte>^buff);
-	pacchettoMissionPlan();
+	pacchettoMissionData();
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	
 	void setNID_PACKET(int NID){NID_PACKET = NID;};

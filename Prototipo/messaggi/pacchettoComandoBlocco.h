@@ -1,6 +1,11 @@
 #pragma once
 #include "utility.h"
 
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto comando blocco che l'ATS invia dal IXL
+nel messaggio di Comando Direzione del Blocco, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
 /*-----------------------------------------------------------------------------------------------
 questa classe rappresenta un Pacchetto per eseguire dei comandi sui blocchi
 L'ATS invia all'IXl messaggi contenenti comandi sui blocchi

@@ -330,10 +330,10 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		Messaggi ^missionPlanPkt = gcnew Messaggi();
 
 		missionPlanPkt->setNID_MESSAGE(200);
-		missionPlanPkt->get_pacchettoMissionPlan()->setNID_PACKET(160);
+		missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 		missionPlanPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
 
-		tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionPlan());
+		tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData());
 
 
 

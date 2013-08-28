@@ -215,7 +215,7 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 
 // funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 // alla missione associata al TRN in questione
-void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
+void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt)
 {
 	// ottengo un riferimento alle fermate del treno TRN
 	List<Fermata^> ^stops = tabella[TRN];

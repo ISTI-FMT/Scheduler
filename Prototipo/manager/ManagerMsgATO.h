@@ -2,11 +2,14 @@
 #using <System.dll>
 #include "..\\messaggi\\StateCDB.h"
 #include "..\\phisicalTrain.h"
-
-
 #include "..\\Event.h"
+
+
 using namespace System;
 using namespace System::Collections::Generic;
+
+/*utilizzo questa classe per generare l'evento scaturito da un nuovo messaggio di presentazione dell'ATO*/
+
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni di presentazione dei ATO
 ref class ManagerMsgATO : public IObservable<Event^>
 {
@@ -14,8 +17,8 @@ ref class ManagerMsgATO : public IObservable<Event^>
 	 List<IObserver<Event^>^> ^observers;
 public:
 	ManagerMsgATO(void);
-	void addCheckAndSet(List<phisicalTrain^> ^listaCDB, String ^source);
-	void addCheckAndSet(phisicalTrain ^oneCDB, String ^source);
+	void addCheckAndSet(List<phisicalTrain^> ^listatrain, String ^source);
+	void addCheckAndSet(phisicalTrain ^onetrain, String ^source);
 
 	
 

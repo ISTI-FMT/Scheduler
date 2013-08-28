@@ -1,5 +1,10 @@
 #pragma once
 #include "utility.h"
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto End che l'ATS invia dal IXL in vari
+messaggi, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
 //questa classe rappresenta un Pacchetto END
 
 ref class pacchettoEnd

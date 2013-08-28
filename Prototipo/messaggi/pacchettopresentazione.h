@@ -2,6 +2,11 @@
 #include "utility.h"
 
 
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Presentazione che l'ATS riceve dal ATO
+nel messaggio di Presentazione, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
+
 /*-----------------------------------------------------------------------------------------------
 L'ATS riceve dal treno dei messaggi di presentazione dagli ATO
 -------------------------------------------------------------------------------------------------*/

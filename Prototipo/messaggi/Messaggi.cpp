@@ -14,7 +14,7 @@ void Messaggi::setNID_MESSAGE(int N){
 	NID_MESSAGE = N;
 	switch (N)
 	{
-	case 200 : {set_pacchettoMissionPlan();break;}
+	case 200 : {set_pacchettoMissionData();break;}
 	case 201 : { set_pacchettoCommandData();break;}
 	case 215 : { set_pacchettoPresentazione();break;}
 	case 1 : {set_pacchettoStatoLineaATC();break;}
@@ -44,7 +44,7 @@ void Messaggi::serialize(array<Byte>^buffer)
 	int offset = 0;
 	switch (N)
 	{
-	case 200 : {get_pacchettoMissionPlan()->serializeMissionPlanPkt(buffer);
+	case 200 : {get_pacchettoMissionData()->serializeMissionPlanPkt(buffer);
 		break;}
 	case 201 : {get_pacchettoCommandData()->serializepacchettoCommandData(buffer);
 		break;}
@@ -105,7 +105,7 @@ void Messaggi::deserialize(array<Byte>^buffer)
 	int offset = 0;
 	switch (NID_MESSAGE)
 	{
-	case 200 : {set_pacchettoMissionPlan();
+	case 200 : {set_pacchettoMissionData();
 		pkgMP->deserializeMissionPlanPkt(buffer);
 		break;
 
@@ -187,7 +187,7 @@ String ^Messaggi::ToString(){
 		out= out+get_pacchettoCommandData()->ToString();
 
 	if( pkgMP)
-		out= out+get_pacchettoMissionPlan()->ToString();
+		out= out+get_pacchettoMissionData()->ToString();
 	if(pgkPres)
 		out= out+get_pacchettoPresentazione()->ToString();
 	if(pkgStatoATC)

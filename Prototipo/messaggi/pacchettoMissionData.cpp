@@ -1,11 +1,11 @@
-#include "pacchettoMissionPlan.h"
+#include "pacchettoMissionData.h"
 #include "utility.h"
 #include <iostream>
 using namespace std;
 #include "Mission.h"
 
 
-pacchettoMissionPlan::pacchettoMissionPlan()
+pacchettoMissionData::pacchettoMissionData()
 {
 
 	NID_PACKET = 0;
@@ -20,21 +20,21 @@ pacchettoMissionPlan::pacchettoMissionPlan()
 }
 
 // funzione che sette N_ITER1
-void pacchettoMissionPlan::setN_ITER1(int N)
+void pacchettoMissionData::setN_ITER1(int N)
 {
 	N_ITER1 = N;
 
 }
 
 // funzione che sette N_ITER2
-void pacchettoMissionPlan::setN_ITER2(int N)
+void pacchettoMissionData::setN_ITER2(int N)
 {
 	N_ITER2 = N;
 
 
 }
 
-void pacchettoMissionPlan::serializeMissionPlanPkt(array<Byte>^buffer)
+void pacchettoMissionData::serializeMissionPlanPkt(array<Byte>^buffer)
 {
 
 	utility::push(buffer, NID_PACKET, 8, 51);
@@ -83,7 +83,7 @@ void pacchettoMissionPlan::serializeMissionPlanPkt(array<Byte>^buffer)
 
 }
 
-void pacchettoMissionPlan::deserializeMissionPlanPkt(array<Byte>^buffer)
+void pacchettoMissionData::deserializeMissionPlanPkt(array<Byte>^buffer)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, 51);
@@ -138,7 +138,7 @@ void pacchettoMissionPlan::deserializeMissionPlanPkt(array<Byte>^buffer)
 // funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 // fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
 // questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
-int pacchettoMissionPlan::getSize()
+int pacchettoMissionData::getSize()
 {
 	// intero che rappresenta la dimensione in bit
 	int size = 0;
@@ -153,7 +153,7 @@ int pacchettoMissionPlan::getSize()
 	return size;
 }
 
-System::String ^ pacchettoMissionPlan::ToString(){
+System::String ^ pacchettoMissionData::ToString(){
 
 
 	System::String ^out;
