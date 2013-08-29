@@ -4,6 +4,9 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
+/*Utilizzo questa classe per leggere i dati di configurazione del file xml MapTreni.xml,
+e raccoglierli in una map tra id del treno fisico e una classe che raccoglie le altre informazioni*/
+
 /*-----------------------------------------------------------------------------------------------
 
 L'ATS associa ad ogni treno fisico un TRN

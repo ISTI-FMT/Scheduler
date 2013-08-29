@@ -2,6 +2,8 @@ using namespace System;
 using namespace System::Net::Sockets;
 using namespace System::Collections::Concurrent;
 
+/*Utilizzo questa classe per inviare ed inviare messaggi TCP asincroni*/
+
 ref class StateObject
 {
 public:
