@@ -65,9 +65,7 @@ void ThreadSchedule::SimpleSchedule(){
 			int enginenumber;
 			Event ^eventoATO;
 
-			//dormi un po 500  millisecondi 
-			Thread::Sleep(500);
-			wdogs->onNext();
+			
 
 			TimeSpan sec = DateTime::Now - time;
 			if(sec.TotalSeconds>20){
@@ -194,6 +192,7 @@ void ThreadSchedule::SimpleSchedule(){
 					int resultprecCdbU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
 
 					//int resultSuccCdbU = tabItinerari->get_CdbSuccItinerario(idstazione,itinUscita);
+
 					//se esiste un itinerario di uscita
 					if(itinUscita>0){
 
@@ -202,21 +201,21 @@ void ThreadSchedule::SimpleSchedule(){
 						int tempo = (int)oraattuale->TotalSeconds/30;
 						int  costante= 3;
 						int resutl = ((int)listaitinerari[indicelistaitinerari]->getOrarioPartenza())-costante;
-					//	int statocdbuscitaitinerario = managerIXL->StatoCDB(resultSuccCdbU)->getQ_STATOCDB();
+						//	int statocdbuscitaitinerario = managerIXL->StatoCDB(resultSuccCdbU)->getQ_STATOCDB();
 						//stato cdb uscita, controllo posizione e tempo 
 						if((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo | true)){//&
-						//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
+							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
-								//todo : se ti trovi nel posto giusto
+							//todo : se ti trovi nel posto giusto
 
 
-								//se l'itinerario è libero
-								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
-								//che riporti il cambiamento dello stato dell'itinerario
-								if(richestaItinerarioIXL(idstazione,itinUscita)){
-									statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
-									indicelistaitinerari++;
-								}
+							//se l'itinerario è libero
+							//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
+							//che riporti il cambiamento dello stato dell'itinerario
+							if(richestaItinerarioIXL(idstazione,itinUscita)){
+								statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
+								indicelistaitinerari++;
+							}
 						}
 
 
@@ -230,7 +229,9 @@ void ThreadSchedule::SimpleSchedule(){
 			default:
 				break;
 			}
-
+			//dormi un po 500  millisecondi 
+			Thread::Sleep(50);
+			wdogs->onNext();
 		}
 	}
 	catch ( ThreadAbortException^ abortException ) 
@@ -459,21 +460,23 @@ bool ThreadSchedule::richestaItinerarioIXL(int idstazione , int iditinerario){
 	if((managerIXL->getItinerario(idstazione+iditinerario)->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoNonInAtto) | (true)){
 		//controllo dei cdb che fanno parte dell'itinerario che devono essere liberi
 		List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
-		if(controllacdb(listaNIDcdb)|true){
+		if(controllacdb(listaNIDcdb)){
 
 			SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione);
 			if(!listIdCdbItinRic->Contains(listaNIDcdb[0])){
 				listIdCdbItinRic->Add(listaNIDcdb[0]);
 			}
-			//Thread::Sleep(500);
-			Event ^even = EQueueIXL->getEvent();
+		}else{
+				//Thread::Sleep(500);
+				Event ^even = EQueueIXL->getEvent();
 
-			if(even!=nullptr){
-				StateCDB ^statocdb =even->getEventStateCDB();
-				if(statocdb!=nullptr){
-					if(listIdCdbItinRic->Contains(statocdb->getNID_CDB()) ){
-						if( statocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato  ){
-							return true;
+				if(even!=nullptr){
+					StateCDB ^statocdb =even->getEventStateCDB();
+					if(statocdb!=nullptr){
+						if(listIdCdbItinRic->Contains(statocdb->getNID_CDB()) ){
+							if( statocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato  ){
+								return true;
+							}
 						}
 					}
 				}
@@ -495,11 +498,11 @@ bool ThreadSchedule::richestaItinerarioIXL(int idstazione , int iditinerario){
 			}*/
 		}
 
-	}else{
-		Console::WriteLine("itinerario nn libero ritenta");
-		return false;
+	//}else{
+	//	Console::WriteLine("itinerario nn libero ritenta");
+	//	return false;
 
-	}
+	//}
 	return false;
 
 }
