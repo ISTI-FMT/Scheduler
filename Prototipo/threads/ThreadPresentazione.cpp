@@ -28,6 +28,7 @@ ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt,  ManagerMsgATO ^
 {
 	listaTreni=lt;
 	ManaMsgATO=MA;
+	port=13000;
 }
 
 void  ThreadPresentazione::TCP_Management_receive(){
@@ -35,7 +36,7 @@ void  ThreadPresentazione::TCP_Management_receive(){
 	{
 
 		// Set the TcpListener on port 13000.
-		Int32 port = 13000;
+		
 		IPAddress^ localAddr = IPAddress::Any;//IPAddress::Parse( "127.0.0.1" );
 
 		// TcpListener* server = new TcpListener(port);

@@ -19,6 +19,7 @@ ref class ThreadPresentazione
 private:
 	 phisicalTrainList ^listaTreni;
 	 ManagerMsgATO ^ManaMsgATO;
+	 Int32 port;
 public:
 	
 	ThreadPresentazione();

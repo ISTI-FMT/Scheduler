@@ -20,7 +20,7 @@ ref class ThreadListenerATC_IXL
 {
 	static ManagerStatoLineaIXL ^ManStatoLineaIXL;
 	static ManagerStatoLineaATC ^ManStatoLineaATC;
-	
+	static int port;
 	static bool isMessageReceived;
 public:
 	/*ThreadListenerATC_IXL();*/

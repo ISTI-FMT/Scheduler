@@ -19,6 +19,9 @@ i pacchetti da inserire nel messaggio*/
 
 //questa classe rappresenta un messaggio cosi come definito nei documenti di specifica
 //e contiene i metodi per serializzare e desirializzare un messaggio
+enum  MessATC{ StatoLineaATC = 310,  FaultReportingATC = 311 };
+enum  MessIXL{ StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231};
+enum  MessATO{ MissionPlan = 600,  FaultReportingATO = 613, UnconditionCommand=601, Acknol=610,Presentation=615 };
 ref class Messaggi
 {
 	// puntatore all'header per i messaggi ATS/ATO

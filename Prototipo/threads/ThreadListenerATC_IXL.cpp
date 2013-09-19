@@ -22,6 +22,7 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 	ManStatoLineaIXL=MC;
 	ManStatoLineaATC=MA;
 	isMessageReceived=false;
+	port = 4010;
 }
 
 void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
@@ -59,15 +60,15 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	switch (pkt1->getNID_MESSAGE())
 	{
-	case 1: {
+	case 19: {
 		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoStatoLineaATC()->getCDB(),"ATC");
 		break;
 
 			}
-	case 101: {
+	case 1: {
 
 		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
+		//ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
 	
 		break;
 			  }
@@ -86,7 +87,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 	{
 		Console::ForegroundColor = ConsoleColor::Red;
 		Console::Write( "Thread Udp ATC Start... " );
-		int port = 23002;
+		
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
 		while ( true )

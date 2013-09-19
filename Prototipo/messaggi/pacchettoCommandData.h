@@ -11,7 +11,7 @@ questa classe rappresenta un Pacchetto per eseguire dei unconditional command ve
 L'ATS manda messaggi di wake-up e TRN al treno con messaggi di tipo unconditional command
 mission plan
 -------------------------------------------------------------------------------------------------*/
-enum  typeCmdData{ WAKE_UP = 0,  CHANGE_GOA_LEVEL = 3,TRN=4,SLEEP=7 };
+enum  typeCmdData{ WAKE_UP = 0, Door = 2,  CHANGE_GOA_LEVEL = 3,TRN=4,SLEEP=7 };
 ref class pacchettoCommandData
 {
 	unsigned int NID_PACKET;
@@ -27,11 +27,14 @@ public:
 	// funzione che restituisce la dimensione in bit
 	int getSize(){
 		//header 51 mess +24 fissi o+2 o +32
-		if(getQ_COMMAND_TYPE()==5){
+		if(getQ_COMMAND_TYPE()==typeCmdData::CHANGE_GOA_LEVEL){
+			return 26;
+		}
+		if(getQ_COMMAND_TYPE()==typeCmdData::TRN){
 			return 56;
 		}
-		if(getQ_COMMAND_TYPE()==4){
-			return 26;
+		if(getQ_COMMAND_TYPE()==typeCmdData::Door){
+			return 28;
 		}
 		return 24;};
 	// funzioni di interfaccia per l'accesso in scrittura e lettura dei campi dati della struttura commandData

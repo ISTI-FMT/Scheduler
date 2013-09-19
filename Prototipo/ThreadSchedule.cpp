@@ -117,9 +117,9 @@ void ThreadSchedule::SimpleSchedule(){
 								}
 
 								if(inviato->fine==1){
-									//itinerario entrata
+									//itinerario uscita
 
-									statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
+									statoInterno=StateSimpleSchedule::RicItinerarioUscita;
 								}
 								else{
 									//aspetta un po
@@ -243,6 +243,7 @@ void ThreadSchedule::SimpleSchedule(){
 
 bool ThreadSchedule::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 	try{
+		int portixl=4011;
 		Messaggi ^cmdItini = gcnew Messaggi();
 
 
@@ -255,7 +256,7 @@ bool ThreadSchedule::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 			System::Net::Sockets::ProtocolType::Udp);
 
 		IPAddress ^broadcast = IPAddress::Parse(ipixl);
-		IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 4011);
+		IPEndPoint ^ep = gcnew IPEndPoint(broadcast, portixl);
 
 		array<Byte>^sendBytes=	cmdItini->serialize();
 
