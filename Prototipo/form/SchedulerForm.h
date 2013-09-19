@@ -179,10 +179,7 @@ namespace Prototipo {
 			 void TCP_Management()
 			 {
 				 phisicalTrain ^Treno = listaTreni->getPrimo();
-				 const int WAKE_UP = 0;
-				 const int CHANGE_GOA_LEVEL = 3;
-				 const int TRN = 4;
-				 const int SLEEP = 7;
+				 
 				 try
 				 {
 
@@ -190,7 +187,7 @@ namespace Prototipo {
 					 Messaggi ^wakeUpPkt = gcnew Messaggi();
 
 
-					 wakeUpPkt->setNID_MESSAGE(201);
+					 wakeUpPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
 
 
 					 wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
@@ -210,7 +207,7 @@ namespace Prototipo {
 					 Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
 
 
-					 trainRunningNumberPkt->setNID_MESSAGE(201);
+					 trainRunningNumberPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
 					 trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
@@ -223,7 +220,7 @@ namespace Prototipo {
 
 					 Messaggi ^missionPlanPkt = gcnew Messaggi();
 
-					 missionPlanPkt->setNID_MESSAGE(200);
+					 missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
 					 missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 					 int TRN = tabellaOrario->getFirstTRN();
 					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData());

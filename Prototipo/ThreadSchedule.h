@@ -30,6 +30,7 @@ ref class ThreadSchedule
 	ManagerStatoLineaIXL ^managerIXL;
 	wdogcontrol ^wdogs;
 	String ^ipixl;
+	List<int> ^listIdCdbItinRic;
 public:
 	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL);
 

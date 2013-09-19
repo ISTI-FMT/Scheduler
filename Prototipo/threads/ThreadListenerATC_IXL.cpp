@@ -55,7 +55,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	isMessageReceived = true;
 
-	//aggiorniamo il manager  1 è stato linea ATC mentre 101 è stato linea IXL
+	//aggiorniamo il manager  11 è stato linea ATC mentre 1 è stato linea IXL
 
 
 	switch (pkt1->getNID_MESSAGE())
