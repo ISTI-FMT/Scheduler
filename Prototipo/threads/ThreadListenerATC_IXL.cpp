@@ -60,12 +60,12 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	switch (pkt1->getNID_MESSAGE())
 	{
-	case 19: {
+	case MessATC::StatoLineaATC: {
 		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoStatoLineaATC()->getCDB(),"ATC");
 		break;
 
 			}
-	case 1: {
+	case  MessIXL::StatoLineaIXL: {
 
 		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
 		//ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
