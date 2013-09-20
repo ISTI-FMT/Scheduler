@@ -61,6 +61,12 @@
     <Filter Include="File di intestazione\form">
       <UniqueIdentifier>{a59cbf2c-042c-4c9c-95a1-0747c85b997b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File di intestazione\ConfVelocita">
+      <UniqueIdentifier>{8ad3259c-dc5f-435d-91ed-2b70acb48852}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\ConfVelocita">
+      <UniqueIdentifier>{abcb8286-1f2f-4b84-8d2f-d99d8b3bb852}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">
@@ -236,6 +242,9 @@
     <ClInclude Include="messaggi\pacchettoMissionData.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
+    <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h">
+      <Filter>File di intestazione\ConfVelocita</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -402,6 +411,9 @@
     </ClCompile>
     <ClCompile Include="messaggi\pacchettoMissionData.cpp">
       <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp">
+      <Filter>File di origine\ConfVelocita</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

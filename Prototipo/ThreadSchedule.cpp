@@ -1,7 +1,6 @@
 #include "ThreadSchedule.h"
 #include "TrenoFisicoLogico.h"
 #include "messaggi\\pacchettoCommandData.h"
-
 using namespace System;
 using namespace System::IO;
 using namespace System::Net;
@@ -18,7 +17,7 @@ using namespace System::Xml;
 
 enum StateSimpleSchedule {StatoIgnoto = -1, PresentazioneTreno = 0, ControlloTreno = 1, RicItinerarioEntrata=3, RicItinerarioUscita=4};
 
-ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL)
+ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
 {
 	if(E->Count>2){
 		EQueueIXL=E[0];
@@ -28,6 +27,7 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 	mapTrenoLogFisico=mapTreno;
 	tabOrario=tabo;
 	tabItinerari=tabi;
+	confVelocita=cvel;
 	wdogs=w;
 	managerATC=manATC;
 	managerIXL=manIXL;
@@ -202,7 +202,7 @@ void ThreadSchedule::SimpleSchedule(){
 						int  costante= 3;
 						int resutl = ((int)listaitinerari[indicelistaitinerari]->getOrarioPartenza())-costante;
 						//	int statocdbuscitaitinerario = managerIXL->StatoCDB(resultSuccCdbU)->getQ_STATOCDB();
-						//stato cdb uscita, controllo posizione e tempo 
+						// controllo posizione e tempo 
 						if((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
@@ -338,7 +338,7 @@ StateObject ^ ThreadSchedule::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 		missionPlanPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
 
-		tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData());
+		tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn));
 
 
 

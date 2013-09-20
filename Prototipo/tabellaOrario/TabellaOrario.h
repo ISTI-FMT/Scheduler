@@ -36,7 +36,7 @@ public:
 	void leggiTabellaOrario(String ^nomeFile);
 	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 	// alla missione associata al TRN in questione
-	void setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt);
+	void setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel);
 	
 	List<Fermata^>^getItinerariFor(int TRN);
 

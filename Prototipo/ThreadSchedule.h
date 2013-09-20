@@ -11,6 +11,7 @@
 #include "manager\\ManagerStatoLineaATC.h"
 #include "manager\\ManagerStatoLineaIXL.h"
 #include "StateObject.h"
+#include "ConfVelocita\\ConfigurazioneVelocita.h"
 
 /*Utilizzo questa classe per definire il comportamento dello schedulatore*/
 
@@ -31,8 +32,9 @@ ref class ThreadSchedule
 	wdogcontrol ^wdogs;
 	String ^ipixl;
 	List<int> ^listIdCdbItinRic;
+	ConfigurazioneVelocita ^confVelocita;
 public:
-	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL);
+	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 
 	void SimpleSchedule();
 	void Init();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configurazioneprofilivelocita  xmlns="urn:configurazioneprofilivelocita-schema">
 
-  
+  <profilovelocita trenoid="1152">
 <progressivakm km="0">
    <velocitamedia limite ="80"/>
   </progressivakm>
@@ -18,6 +18,28 @@
   <progressivakm km="9842">
     <velocitamedia limite ="80"/>
   </progressivakm>
+</profilovelocita>
+
+  <profilovelocita trenoid="1892">
+<progressivakm km="0">
+   <velocitamedia limite ="80"/>
+  </progressivakm>
+  
+    
+  <progressivakm km="8822">
+    <velocitamedia limite ="80"/>
+  </progressivakm>
+
+<progressivakm km="8827">
+    <velocitamedia limite ="80"/>
+  </progressivakm>
+  
+  <progressivakm km="9842">
+    <velocitamedia limite ="80"/>
+  </progressivakm>
+</profilovelocita>
+
+
 
 
 </configurazioneprofilivelocita>

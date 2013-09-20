@@ -22,6 +22,7 @@
 #include "..\\wdogcontrol.h"
 #include "..\\FormStatoItinerari.h"
 #include "FormStatoLineaATC.h"
+#include "..\\ConfVelocita\\ConfigurazioneVelocita.h"
 #define TRACE
 namespace Prototipo {
 	using namespace System::Diagnostics;
@@ -92,6 +93,7 @@ namespace Prototipo {
 		 Thread^ oThreadformStatoI;
 		 Thread^ oThreadformStatoATC;
 		wdogcontrol ^wdogs;
+		ConfigurazioneVelocita ^confVelocita;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
@@ -223,7 +225,7 @@ namespace Prototipo {
 					 missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
 					 missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 					 int TRN = tabellaOrario->getFirstTRN();
-					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData());
+					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(TRN));
 
 
 
@@ -381,7 +383,9 @@ namespace Prototipo {
 
 				 mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
 
-				 //Console::WriteLine(tf->ToString());
+				 confVelocita= gcnew ConfigurazioneVelocita("..\\FileConfigurazione\\ConfigurazioneProfiliVelocita.xml");
+				
+				 Console::WriteLine(confVelocita->ToString());
 
 				 listaTreni = gcnew phisicalTrainList();
 
@@ -436,7 +440,7 @@ namespace Prototipo {
 				 listqueue->Add(EventQATO);
 
 
-				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL);
+				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
 
 				 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
 				 oThreadSchedule->Start();

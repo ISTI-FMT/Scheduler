@@ -75,6 +75,7 @@
     <ResourceCompile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="FormStatoItinerari.h">
@@ -139,6 +140,7 @@
     <ClInclude Include="wdogcontrol.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FormStatoItinerari.cpp" />
