@@ -19,14 +19,14 @@ void Messaggi::setNID_MESSAGE(int N){
 	case MessATO::Presentation : { set_pacchettoPresentazione();break;}
 	case MessATC::StatoLineaATC : {set_pacchettoStatoLineaATC();break;}
 	case MessATO::Acknol :{set_pacchettoAcknowledgement();break;}
-	case MessIXL::StatoLineaIXL: { set_pacchettoStatoLineaIXL(); 
-		set_pacchettoStatoItinerari(); 
-		set_pacchettoStatoSegnali(); 
-		set_pacchettoStatoBlocco(); 
+	case MessIXL::StatoLineaIXL: { set_pacchettoStatoLineaIXL();
+		set_pacchettoStatoItinerari();
+		set_pacchettoStatoSegnali();
+		set_pacchettoStatoBlocco();
 		set_pacchettoEnd(); break;}
 	case MessIXL::FaultReportingIXL: {set_pacchettoFaultReporting(); break;}
 	case MessIXL::ComandoItinerari: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
-	case MessIXL::ComandoBlocco: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}		
+	case MessIXL::ComandoBlocco: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}
 	default:
 		break;
 	}
@@ -51,14 +51,14 @@ void Messaggi::serialize(array<Byte>^buffer)
 	case MessATO::Presentation : {utility::push(buffer, NID_ENGINE, 24, 51);
 		get_pacchettoPresentazione()->serialize(buffer);
 		break;}
-	case  MessATC::StatoLineaATC : {get_pacchettoStatoLineaATC()->serialize(buffer);
+	case MessATC::StatoLineaATC : {get_pacchettoStatoLineaATC()->serialize(buffer);
 		break;}
-	case MessATO::Acknol  :{utility::push(buffer, NID_ENGINE, 24, 51);
+	case MessATO::Acknol :{utility::push(buffer, NID_ENGINE, 24, 51);
 		get_pacchettoAcknowledgement()->serialize(buffer);
 		break;}
-	case MessIXL::StatoLineaIXL: {offset += 51; 
-		get_pacchettoStatoLineaIXL()->serialize(buffer); 
-		offset += get_pacchettoStatoLineaIXL()->getSize(); 
+	case MessIXL::StatoLineaIXL: {offset += 51;
+		get_pacchettoStatoLineaIXL()->serialize(buffer);
+		offset += get_pacchettoStatoLineaIXL()->getSize();
 		//get_pacchettoStatoItinerario()->serialize(buffer, offset);
 		//offset += get_pacchettoStatoItinerario()->getSize();
 		get_pacchettoStatoSegnali()->serialize(buffer, offset);
@@ -67,15 +67,15 @@ void Messaggi::serialize(array<Byte>^buffer)
 		offset += get_pacchettoStatoBlocco()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
-	case MessIXL::FaultReportingIXL: {get_pacchettoFaultReporting()->serialize(buffer); 
+	case MessIXL::FaultReportingIXL: {get_pacchettoFaultReporting()->serialize(buffer);
 		break;}
-	case  MessIXL::ComandoItinerari: { offset += 51;
-		get_pacchettoComandoItinerari()->serialize(buffer); 
+	case MessIXL::ComandoItinerari: { offset += 51;
+		get_pacchettoComandoItinerari()->serialize(buffer);
 		offset += get_pacchettoComandoItinerari()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
-	case  MessIXL::ComandoBlocco: { offset += 51;
-		get_pacchettoComandoBlocco()->serialize(buffer); 
+	case MessIXL::ComandoBlocco: { offset += 51;
+		get_pacchettoComandoBlocco()->serialize(buffer);
 		offset += get_pacchettoComandoBlocco()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
@@ -89,89 +89,97 @@ void Messaggi::serialize(array<Byte>^buffer)
 
 array<System::Byte>^ Messaggi::serialize(){
 	array<Byte>^bytez = gcnew array<Byte>(getSize());
-	
+
 	serialize(bytez);
 
-	
+
 
 	return bytez;
 }
 
 void Messaggi::deserialize(array<Byte>^buffer)
 {
-	NID_MESSAGE= utility::pop(buffer, 8, 0);
-	L_MESSAGE=utility::pop(buffer,11, 8);
-	T_TIME=utility::pop(buffer, 32, 19);
-	int offset = 0;
-	switch (NID_MESSAGE)
-	{
-	case MessATO::MissionPlan : {set_pacchettoMissionData();
-		pkgMP->deserializeMissionPlanPkt(buffer);
-		break;
+	try{
+		NID_MESSAGE= utility::pop(buffer, 8, 0);
+		L_MESSAGE=utility::pop(buffer,11, 8);
+		T_TIME=utility::pop(buffer, 32, 19);
+		int offset = 0;
+		switch (NID_MESSAGE)
+		{
+		case MessATO::MissionPlan : {set_pacchettoMissionData();
+			pkgMP->deserializeMissionPlanPkt(buffer);
+			break;
 
-			   }
-	case MessATO::UnconditionCommand : {set_pacchettoCommandData();
-		pkgcd1->deserializepacchettoCommandData(buffer);
-		break;
+									}
+		case MessATO::UnconditionCommand : {set_pacchettoCommandData();
+			pkgcd1->deserializepacchettoCommandData(buffer);
+			break;
 
-			   }
+										   }
 
-	case MessATO::Presentation : {NID_ENGINE = utility::pop(buffer, 24, 51);
-		set_pacchettoPresentazione();
-		pgkPres->deserialize(buffer);
-		break;
+		case MessATO::Presentation : {NID_ENGINE = utility::pop(buffer, 24, 51);
+			set_pacchettoPresentazione();
+			pgkPres->deserialize(buffer);
+			break;
 
-			   }
+									 }
 
-	case  MessATC::StatoLineaATC  : {set_pacchettoStatoLineaATC();
-		pkgStatoATC->deserialize(buffer);
-		break;
-			 }
+		case MessATC::StatoLineaATC : {set_pacchettoStatoLineaATC();
+			pkgStatoATC->deserialize(buffer);
+			break;
+									  }
 
-	case MessATO::Acknol : {NID_ENGINE = utility::pop(buffer, 24, 51);
-		set_pacchettoAcknowledgement();
-		pkgAck->deserialize(buffer);
-		break;
-			   }
+		case MessATO::Acknol : {NID_ENGINE = utility::pop(buffer, 24, 51);
+			set_pacchettoAcknowledgement();
+			pkgAck->deserialize(buffer);
+			break;
+							   }
 
-	case MessIXL::StatoLineaIXL: {offset += 51; 
-		set_pacchettoStatoLineaIXL();
-		get_pacchettoStatoLineaIXL()->deserialize(buffer); 
-		offset += get_pacchettoStatoLineaIXL()->getL_PACKET();// ->getSize();
-		//set_pacchettoStatoItinerari();
-		//get_pacchettoStatoItinerario()->deserialize(buffer, offset);
-		//offset += get_pacchettoStatoItinerario()->getSize();
-		set_pacchettoStatoSegnali();
-		get_pacchettoStatoSegnali()->deserialize(buffer, offset);
-		offset += get_pacchettoStatoSegnali()->getL_PACKET();// ->getSize();
-		
-		set_pacchettoStatoBlocco();
-		get_pacchettoStatoBlocco()->deserialize(buffer, offset);
-		offset += get_pacchettoStatoBlocco()->getL_PACKET();// ->getSize();
-		set_pacchettoEnd();
-		get_pacchettoEnd()->deserialize(buffer, offset);
-		break;}
-	case MessIXL::FaultReportingIXL: {get_pacchettoFaultReporting()->deserialize(buffer); 
-		break;}
-	case  MessIXL::ComandoItinerari: { offset += 51;
-		set_pacchettoComandoItinerari();
-		get_pacchettoComandoItinerari()->deserialize(buffer); 
-		offset += get_pacchettoComandoItinerari()->getSize();
-		set_pacchettoEnd();
-		get_pacchettoEnd()->deserialize(buffer, offset);
-		break;}
-	case  MessIXL::ComandoBlocco: { offset += 51;
-		set_pacchettoComandoBlocco();
-		get_pacchettoComandoBlocco()->deserialize(buffer); 
-		offset += get_pacchettoComandoBlocco()->getSize();
-		set_pacchettoEnd();
-		get_pacchettoEnd()->deserialize(buffer, offset);
-		break;}
+		case MessIXL::StatoLineaIXL: {offset += 51;
+			set_pacchettoStatoLineaIXL();
+			get_pacchettoStatoLineaIXL()->deserialize(buffer);
+			offset += get_pacchettoStatoLineaIXL()->getL_PACKET();// ->getSize();
+			//set_pacchettoStatoItinerari();
+			//get_pacchettoStatoItinerario()->deserialize(buffer, offset);
+			//offset += get_pacchettoStatoItinerario()->getSize();
+			set_pacchettoStatoSegnali();
+			get_pacchettoStatoSegnali()->deserialize(buffer, offset);
+			offset += get_pacchettoStatoSegnali()->getL_PACKET();// ->getSize();
 
-	default:
-		break;
+			set_pacchettoStatoBlocco();
+			get_pacchettoStatoBlocco()->deserialize(buffer, offset);
+			offset += get_pacchettoStatoBlocco()->getL_PACKET();// ->getSize();
+			set_pacchettoEnd();
+			get_pacchettoEnd()->deserialize(buffer, offset);
+			break;}
+		case MessIXL::FaultReportingIXL: {get_pacchettoFaultReporting()->deserialize(buffer);
+			break;}
+		case MessIXL::ComandoItinerari: { offset += 51;
+			set_pacchettoComandoItinerari();
+			get_pacchettoComandoItinerari()->deserialize(buffer);
+			offset += get_pacchettoComandoItinerari()->getSize();
+			set_pacchettoEnd();
+			get_pacchettoEnd()->deserialize(buffer, offset);
+			break;}
+		case MessIXL::ComandoBlocco: { offset += 51;
+			set_pacchettoComandoBlocco();
+			get_pacchettoComandoBlocco()->deserialize(buffer);
+			offset += get_pacchettoComandoBlocco()->getSize();
+			set_pacchettoEnd();
+			get_pacchettoEnd()->deserialize(buffer, offset);
+			break;}
+
+		default:
+			break;
+		}
+	}catch(Exception ^e){
+#ifdef TRACE
+		Logger::Exception(e,"Messaggi");
+#endif // TRACE
+		Console::ForegroundColor = ConsoleColor::Red;
+		Console::WriteLine( "Messaggi Errore deserializzazione: {0}", e );
+		Console::ResetColor();
 	}
-
 }
 
 
@@ -225,23 +233,23 @@ String ^Messaggi::ToString(){
 
 int Messaggi::getSize(){
 
-		// 51 bit per l'header 
-		//24 di engine dove serve
-		int len =51;
-		switch (NID_MESSAGE)
-		{
-		case MessATO::MissionPlan : {len+=pkgMP->getSize();break;}
-		case MessATO::UnconditionCommand : {len+=pkgcd1->getSize();break;}
-		case MessATO::Presentation : {len+=24+pgkPres->getSize();break;}
-		case  MessATC::StatoLineaATC  : {len+=pkgStatoATC->getSize();break;}
-		case MessATO::Acknol :{len+=24+pkgAck->getSize();break;}
-		case MessIXL::StatoLineaIXL: {len += pkgStatoLineaIXL->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize();//+ pkgStatoItinerari->getSize() 
-			break;}
-		case MessIXL::FaultReportingIXL: {len += pkgFaultData->getSize(); break;}
-		case  MessIXL::ComandoItinerari: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
-		case  MessIXL::ComandoBlocco: {len +=pkgComandoBlocco->getSize()+ pkgEnd->getSize(); break;}
-		default: break;
-		}
-		int size = (len/8)+1;
-		return size ;
-	};
+	// 51 bit per l'header
+	//24 di engine dove serve
+	int len =51;
+	switch (NID_MESSAGE)
+	{
+	case MessATO::MissionPlan : {len+=pkgMP->getSize();break;}
+	case MessATO::UnconditionCommand : {len+=pkgcd1->getSize();break;}
+	case MessATO::Presentation : {len+=24+pgkPres->getSize();break;}
+	case MessATC::StatoLineaATC : {len+=pkgStatoATC->getSize();break;}
+	case MessATO::Acknol :{len+=24+pkgAck->getSize();break;}
+	case MessIXL::StatoLineaIXL: {len += pkgStatoLineaIXL->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize();//+ pkgStatoItinerari->getSize()
+		break;}
+	case MessIXL::FaultReportingIXL: {len += pkgFaultData->getSize(); break;}
+	case MessIXL::ComandoItinerari: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
+	case MessIXL::ComandoBlocco: {len +=pkgComandoBlocco->getSize()+ pkgEnd->getSize(); break;}
+	default: break;
+	}
+	int size = (len/8)+1;
+	return size ;
+};

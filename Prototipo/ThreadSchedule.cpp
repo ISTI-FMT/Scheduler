@@ -65,7 +65,7 @@ void ThreadSchedule::SimpleSchedule(){
 			int enginenumber;
 			Event ^eventoATO;
 
-			
+
 
 			TimeSpan sec = DateTime::Now - time;
 			if(sec.TotalSeconds>20){
@@ -467,36 +467,36 @@ bool ThreadSchedule::richestaItinerarioIXL(int idstazione , int iditinerario){
 				listIdCdbItinRic->Add(listaNIDcdb[0]);
 			}
 		}else{
-				//Thread::Sleep(500);
-				Event ^even = EQueueIXL->getEvent();
+			//Thread::Sleep(500);
+			Event ^even = EQueueIXL->getEvent();
 
-				if(even!=nullptr){
-					StateCDB ^statocdb =even->getEventStateCDB();
-					if(statocdb!=nullptr){
-						if(listIdCdbItinRic->Contains(statocdb->getNID_CDB()) ){
-							if( statocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato  ){
-								return true;
-							}
+			if(even!=nullptr){
+				StateCDB ^statocdb =even->getEventStateCDB();
+				if(statocdb!=nullptr){
+					if(listIdCdbItinRic->Contains(statocdb->getNID_CDB()) ){
+						if( statocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato  ){
+							return true;
 						}
 					}
 				}
 			}
-
-
-			//non controllo se è stato creato l'itinerario
-			//return true;
-
-			/*if(even!=nullptr){
-			StateItinerario ^statoi =even->getEventStateItinerario();
-			if(statoi!=nullptr){
-			if(idstazione+iditinerario==statoi->getNID_ITIN() ){
-			if( statoi->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto  ){
-			return true;
-			}
-			}
-			}
-			}*/
 		}
+
+
+		//non controllo se è stato creato l'itinerario
+		//return true;
+
+		/*if(even!=nullptr){
+		StateItinerario ^statoi =even->getEventStateItinerario();
+		if(statoi!=nullptr){
+		if(idstazione+iditinerario==statoi->getNID_ITIN() ){
+		if( statoi->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto  ){
+		return true;
+		}
+		}
+		}
+		}*/
+	}
 
 	//}else{
 	//	Console::WriteLine("itinerario nn libero ritenta");
