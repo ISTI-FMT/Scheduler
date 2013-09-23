@@ -230,7 +230,7 @@ void ThreadSchedule::SimpleSchedule(){
 				break;
 			}
 			//dormi un po 500  millisecondi 
-			Thread::Sleep(50);
+			Thread::Sleep(30);
 			wdogs->onNext();
 		}
 	}

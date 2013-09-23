@@ -225,7 +225,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, Li
 		//Todo: V_mission D_mission tratte
 		if(pvel!=nullptr){
 			pkt->setPV(pvel);
-			pkt->setN_ITER1(pvel->Count);
+			pkt->setN_ITER1(pvel->Count-1);
 		}else{
 			pkt->setPV(gcnew ProfiloVelocita);
 			pkt->setN_ITER1(0);
