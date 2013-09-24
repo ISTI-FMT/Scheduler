@@ -3,35 +3,35 @@
 
   <profilovelocita trenoid="1152">
 <progressivakm km="0">
-   <velocitamedia limite ="80"/>
+   <velocita limite ="80"/>
   </progressivakm>
   
     
   <progressivakm km="8822">
-    <velocitamedia limite ="80"/>
+    <velocita limite ="80"/>
   </progressivakm>
 
 <progressivakm km="8827">
-    <velocitamedia limite ="80"/>
+    <velocita limite ="80"/>
   </progressivakm>
   
   <progressivakm km="9842">
-    <velocitamedia limite ="80"/>
+    <velocita limite ="80"/>
   </progressivakm>
 </profilovelocita>
 
   <profilovelocita trenoid="1892">
 <progressivakm km="0">
-   <velocitamedia limite ="80"/>
+   <velocita limite ="80"/>
   </progressivakm>
   
 
 <progressivakm km="8827">
-    <velocitamedia limite ="80"/>
+    <velocita limite ="80"/>
   </progressivakm>
   
   <progressivakm km="9842">
-    <velocitamedia limite ="80"/>
+    <velocita limite ="80"/>
   </progressivakm>
 </profilovelocita>
 

@@ -131,11 +131,12 @@ void wdogcontrol::InitializeComponent(){
 }
 
 void wdogcontrol::onNext(){
-	/*try{*/
+	try{
+
 	this->Invoke(myDelegate);
-	/*}catch(Exception ^e){
+	}catch(Exception ^e){
 		Console::WriteLine("Sei troppo veloce");
-	}*/
+	}
 
 }
 void wdogcontrol::OverNext(){

@@ -68,7 +68,7 @@ void ConfigurazioneVelocita::leggifileConfigurazioneVelocita(String ^nomeFile)
 					
 					int pkm = int::Parse(inner->GetAttribute("km"));
 					System::Xml::XmlReader ^inner3 = inner->ReadSubtree();
-					inner3->ReadToFollowing("velocitamedia");
+					inner3->ReadToFollowing("velocita");
 					int limite = int::Parse( inner3->GetAttribute("limite"));
 					ProfiloVelocita ^progkm = gcnew ProfiloVelocita(pkm,limite);
 					lprogkm->Add(progkm);
