@@ -38,10 +38,10 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 void ThreadSchedule::StampaStato(int stato) {
 	switch (stato)
 	{
-	case StateSimpleSchedule::PresentazioneTreno:{Console::WriteLine("lo stato interno dello scheduler è PresentazioneTreno");break;}
-	case StateSimpleSchedule::ControlloTreno:{Console::WriteLine("lo stato interno dello scheduler è ControlloTreno");break;}
-	case StateSimpleSchedule::RicItinerarioEntrata:{Console::WriteLine("lo stato interno dello scheduler è RicItinerarioEntrata");break;}
-	case StateSimpleSchedule::RicItinerarioUscita:{Console::WriteLine("lo stato interno dello scheduler è RicItinerarioUscita");break;}
+	case StateSimpleSchedule::PresentazioneTreno:{Console::ForegroundColor = ConsoleColor::DarkGreen;Console::WriteLine("lo stato interno dello scheduler è PresentazioneTreno");break;}
+	case StateSimpleSchedule::ControlloTreno:{Console::ForegroundColor = ConsoleColor::White;Console::WriteLine("lo stato interno dello scheduler è ControlloTreno");break;}
+	case StateSimpleSchedule::RicItinerarioEntrata:{Console::ForegroundColor = ConsoleColor::Blue;Console::WriteLine("lo stato interno dello scheduler è RicItinerarioEntrata");break;}
+	case StateSimpleSchedule::RicItinerarioUscita:{Console::ForegroundColor = ConsoleColor::Red;Console::WriteLine("lo stato interno dello scheduler è RicItinerarioUscita");break;}
 
 	default:
 		break;
@@ -62,6 +62,9 @@ void ThreadSchedule::SimpleSchedule(){
 		StateObject ^inviato;
 		int trn =0;
 		while(true){
+			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
+			Thread::Sleep(100);
+			wdogs->onNext();
 			int enginenumber;
 			Event ^eventoATO;
 
@@ -229,9 +232,7 @@ void ThreadSchedule::SimpleSchedule(){
 			default:
 				break;
 			}
-			//dormi un po 500  millisecondi 
-			Thread::Sleep(30);
-			wdogs->onNext();
+			
 		}
 	}
 	catch ( ThreadAbortException^ abortException ) 
@@ -291,7 +292,8 @@ bool ThreadSchedule::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 
 void ThreadSchedule::Init(){
 	Console::WriteLine("Init Schedule session");
-
+	//TODO: in questa fase controllare che lo stato di tutti i cdb proveniente dall'IXL sia consistente
+	
 }
 
 

@@ -26,9 +26,10 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 }
 
 void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
-
+	//Thread::Sleep(1000);
 	Console::ForegroundColor = ConsoleColor::Red;
 	Console::WriteLine( "ATC/IXL Connected!" );
+	Console::ForegroundColor = ConsoleColor::White;
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
 
 
@@ -50,7 +51,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	Console::ForegroundColor = ConsoleColor::Red;
 	Console::WriteLine("{0} ATC/IXL ti ha inviato un messaggio",ipEndPoint->Address->ToString());
-	Console::WriteLine(pkt1->ToString());
+	//Console::WriteLine(pkt1->ToString());
 	Console::ResetColor();
 
 	isMessageReceived = true;
@@ -104,7 +105,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 			// we'll just sleep
 			while (!isMessageReceived)
 			{
-				Thread::Sleep(100);
+				Thread::Sleep(1000);
 				///isMessageReceived=true;
 			}
 			isMessageReceived=false;

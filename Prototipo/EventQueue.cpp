@@ -26,7 +26,9 @@ void EventQueue::OnError(Exception ^e)
 
 void EventQueue::OnNext(Event^ value)
 {
+	#ifdef DEBUG_MSG
 	Console::WriteLine("Evento: {0}",value->ToString());
+	#endif //DEBUG_MSG
 	queueEvent->Enqueue(value);
 }
 

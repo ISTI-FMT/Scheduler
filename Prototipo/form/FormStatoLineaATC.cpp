@@ -17,7 +17,7 @@ void Prototipo::FormStatoLineaATC::genera(){
 void Prototipo::FormStatoLineaATC::aggiorna(){
 
 	while(true){
-		//Thread::Sleep(50);
+		Thread::Sleep(30);
 		if(eventiATC!=nullptr){
 			Event ^even = eventiATC->getEvent();
 			if(even!=nullptr){
