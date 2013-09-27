@@ -20,7 +20,7 @@
 #include "..\\ThreadSchedule.h"
 #include "..\\EventQueue.h"
 #include "..\\wdogcontrol.h"
-#include "..\\FormStatoItinerari.h"
+#include "..\\FormStatoLineaIXL.h"
 #include "FormStatoLineaATC.h"
 #include "..\\ConfVelocita\\ConfigurazioneVelocita.h"
 #define TRACE
@@ -414,9 +414,9 @@ namespace Prototipo {
 ////
 				 EventQueue ^visualQIXL = gcnew EventQueue();
 				 visualQIXL->Subscribe(manaStateIXL);
-				 FormStatoItinerari ^stif = gcnew FormStatoItinerari(visualQIXL);
+				 FormStatoLineaIXL ^stif = gcnew FormStatoLineaIXL(visualQIXL);
 				 stif->Visible=true;
-				 oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoItinerari::aggiorna));
+				 oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoLineaIXL::aggiorna));
 				 oThreadformStatoI->Start();
 /////
 

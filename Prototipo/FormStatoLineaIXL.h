@@ -23,9 +23,9 @@ using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
 	/// <summary>
-	/// Riepilogo per FormStatoItinerari
+	/// Riepilogo per FormStatoLineaIXL
 	/// </summary>
-	 ref class FormStatoItinerari : public System::Windows::Forms::Form
+	 ref class FormStatoLineaIXL : public System::Windows::Forms::Form
 	{
 		tabellaItinerari ^tabItinerari;
 		EventQueue ^eventiItinerario;
@@ -33,7 +33,7 @@ using namespace System::Threading::Tasks;
 		Dictionary<int,Button^> ^listbuttonCDB;
 	public:
 
-		FormStatoItinerari(EventQueue ^ev)
+		FormStatoLineaIXL(EventQueue ^ev)
 		{
 			eventiItinerario=ev;
 			listbutton= gcnew Dictionary<int,Button^> ();
@@ -62,7 +62,7 @@ using namespace System::Threading::Tasks;
 		/// <summary>
 		/// Liberare le risorse in uso.
 		/// </summary>
-		~FormStatoItinerari()
+		~FormStatoLineaIXL()
 		{
 			if (components)
 			{
@@ -91,7 +91,7 @@ using namespace System::Threading::Tasks;
 			// 
 			// tableLayoutPanel1
 			// 
-			this->tableLayoutPanel1->ColumnCount = 4;
+		/*	this->tableLayoutPanel1->ColumnCount = 4;
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
@@ -103,16 +103,17 @@ using namespace System::Threading::Tasks;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 			this->tableLayoutPanel1->Size = System::Drawing::Size(1168, 444);
-			this->tableLayoutPanel1->TabIndex = 0;
+			this->tableLayoutPanel1->TabIndex = 0;*/
 			// 
-			// FormStatoItinerari
+			// FormStatoLineaIXL
 			// 
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1192, 836);
+			//this->ClientSize = System::Drawing::Size(1192, 836);
+			this->ClientSize = System::Drawing::Size(1150, 378);
 			this->Controls->Add(this->tableLayoutPanel1);
-			this->Name = L"FormStatoItinerari";
+			this->Name = L"FormStatoLineaIXL";
 			this->Text = L"FormStatoIXL";
 			this->ResumeLayout(false);
 

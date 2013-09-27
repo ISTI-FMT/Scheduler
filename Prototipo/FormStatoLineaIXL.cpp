@@ -1,23 +1,24 @@
-#include "FormStatoItinerari.h"
+#include "FormStatoLineaIXL.h"
 
-void Prototipo::FormStatoItinerari::genera(){
+void Prototipo::FormStatoLineaIXL::genera(){
 
-	Dictionary<int,stazione^ >::ValueCollection ^valueColl =
-		tabItinerari->getMap()->Values;
-	for each (stazione ^station in valueColl)
-	{
-		tableLayoutPanelSingleItin ^tablel = gcnew tableLayoutPanelSingleItin(station,listbutton);
-		tablel->Location =  System::Drawing::Point(1, 1);
-		tablel->Name = "statoItinerari";
-		//tablel->Size =  System::Drawing::Size(75, 16);
-		tablel->TabIndex = 1;
-		tablel->Text = "Stato Itinerari IXL";
+	//Dictionary<int,stazione^ >::ValueCollection ^valueColl =
+	//	tabItinerari->getMap()->Values;
+	//for each (stazione ^station in valueColl)
+	//{
+	//	tableLayoutPanelSingleItin ^tablel = gcnew tableLayoutPanelSingleItin(station,listbutton);
+	//	tablel->Location =  System::Drawing::Point(1, 1);
+	//	tablel->Name = "statoItinerari";
+	//	//tablel->Size =  System::Drawing::Size(75, 16);
+	//	tablel->TabIndex = 1;
+	//	tablel->Text = "Stato Itinerari IXL";
 
-		tableLayoutPanel1->Controls->Add(tablel);
-		//return;
-	}
+	//	tableLayoutPanel1->Controls->Add(tablel);
+	//	//return;
+	//}
 	tableLayoutPanelAllCDB ^tableCDB = gcnew tableLayoutPanelAllCDB(listbuttonCDB);
-	tableCDB->Location =  System::Drawing::Point(1, 475);
+	//tableCDB->Location =  System::Drawing::Point(1, 475);
+	tableCDB->Location =  System::Drawing::Point(1, 1);
 	tableCDB->Name = "statoCDB";
 	//tablel->Size =  System::Drawing::Size(75, 16);
 	tableCDB->TabIndex = 1;
@@ -27,7 +28,7 @@ void Prototipo::FormStatoItinerari::genera(){
 
 }
 
-void Prototipo::FormStatoItinerari::aggiorna(){
+void Prototipo::FormStatoLineaIXL::aggiorna(){
 
 	while(true){
 		//Thread::Sleep(50);
@@ -60,7 +61,7 @@ void Prototipo::FormStatoItinerari::aggiorna(){
 
 }
 
-void Prototipo::FormStatoItinerari::findandset(int id, int stato){
+void Prototipo::FormStatoLineaIXL::findandset(int id, int stato){
 	if(listbutton->ContainsKey(id)){
 		if(stato==typeStateItineraio::itinerarioStatoInAtto){
 			listbutton[id]->BackColor= System::Drawing::Color::Red;
@@ -75,7 +76,7 @@ void Prototipo::FormStatoItinerari::findandset(int id, int stato){
 
 }
 
-void  Prototipo::FormStatoItinerari::findandsetCDB(int id, int stato){
+void  Prototipo::FormStatoLineaIXL::findandsetCDB(int id, int stato){
 	if(listbuttonCDB->ContainsKey(id)){
 		if(stato==typeStateCDB::cdbOccupato){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::Red;
@@ -94,7 +95,7 @@ void  Prototipo::FormStatoItinerari::findandsetCDB(int id, int stato){
 
 
 
-void Prototipo::FormStatoItinerari::setCdBItin(List<StateCDB^> ^listCdB, int stato){
+void Prototipo::FormStatoLineaIXL::setCdBItin(List<StateCDB^> ^listCdB, int stato){
 	for each (StateCDB ^cdb in listCdB)
 	{
 		cdb->setQ_STATOCDB(stato);

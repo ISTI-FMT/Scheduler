@@ -78,7 +78,7 @@
     <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
-    <ClInclude Include="FormStatoItinerari.h">
+    <ClInclude Include="FormStatoLineaIXL.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="form\FormStatoLineaATC.h">
@@ -143,7 +143,7 @@
     <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
-    <ClCompile Include="FormStatoItinerari.cpp" />
+    <ClCompile Include="FormStatoLineaIXL.cpp" />
     <ClCompile Include="form\FormStatoLineaATC.cpp" />
     <ClCompile Include="form\tableLayoutPanelAllCDB.cpp" />
     <ClCompile Include="form\tableLayoutPanelSingleItin.cpp" />
@@ -204,8 +204,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormStatoItinerari.resx">
-      <DependentUpon>FormStatoItinerari.h</DependentUpon>
+    <EmbeddedResource Include="FormStatoLineaIXL.resx">
+      <DependentUpon>FormStatoLineaIXL.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStatoLineaATC.resx">
       <DependentUpon>form\FormStatoLineaATC.h</DependentUpon>

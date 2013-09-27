@@ -227,9 +227,6 @@
     <ClInclude Include="StateObject.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="FormStatoItinerari.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="form\tableLayoutPanelAllCDB.h">
       <Filter>File di intestazione\form</Filter>
     </ClInclude>
@@ -244,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h">
       <Filter>File di intestazione\ConfVelocita</Filter>
+    </ClInclude>
+    <ClInclude Include="FormStatoLineaIXL.h">
+      <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -397,9 +397,6 @@
     <ClCompile Include="TrenoFisicoLogico.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="FormStatoItinerari.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="form\tableLayoutPanelAllCDB.cpp">
       <Filter>File di origine\form</Filter>
     </ClCompile>
@@ -415,6 +412,9 @@
     <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp">
       <Filter>File di origine\ConfVelocita</Filter>
     </ClCompile>
+    <ClCompile Include="FormStatoLineaIXL.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -423,13 +423,13 @@
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStatoItinerari.resx">
-      <Filter>File di risorse</Filter>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormStatoLineaATC.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormStatoLineaATC.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatoLineaIXL.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
   </ItemGroup>
