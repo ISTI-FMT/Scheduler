@@ -32,6 +32,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	Console::ForegroundColor = ConsoleColor::White;
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
 
+	Console::WriteLine("{0} ttl",recv_udpClient->Ttl);
 
 	IPEndPoint^ ipEndPoint;
 
@@ -91,6 +92,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 		
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
+		udpClient->Client->ReceiveBufferSize=0;
 		while ( true )
 		{
 			// Receive a message and write it to the console.

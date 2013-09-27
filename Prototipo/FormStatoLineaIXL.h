@@ -112,7 +112,7 @@ using namespace System::Threading::Tasks;
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			//this->ClientSize = System::Drawing::Size(1192, 836);
 			this->ClientSize = System::Drawing::Size(1150, 378);
-			this->Controls->Add(this->tableLayoutPanel1);
+			//this->Controls->Add(this->tableLayoutPanel1);
 			this->Name = L"FormStatoLineaIXL";
 			this->Text = L"FormStatoIXL";
 			this->ResumeLayout(false);
