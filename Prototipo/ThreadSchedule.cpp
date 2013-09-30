@@ -113,7 +113,7 @@ void ThreadSchedule::SimpleSchedule(){
 
 								// gli assegni TRN e MISSION
 								if(inviato==nullptr){
-									Console::WriteLine("Si trova al posto giusto per partire e gli assegno la missione");
+									Console::WriteLine("Si trova al posto giusto per partire e gli invio WAKE-UP, TRN e MISSION");
 									inviato = SendTCPMsg(trn,eventoATO->getEventPresentTrain());
 									time=DateTime::Now;
 								}
@@ -232,7 +232,7 @@ void ThreadSchedule::SimpleSchedule(){
 			default:
 				break;
 			}
-			
+
 		}
 	}
 	catch ( ThreadAbortException^ abortException ) 
@@ -293,7 +293,7 @@ bool ThreadSchedule::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 void ThreadSchedule::Init(){
 	Console::WriteLine("Init Schedule session");
 	//TODO: in questa fase controllare che lo stato di tutti i cdb proveniente dall'IXL sia consistente
-	
+
 }
 
 
@@ -426,21 +426,23 @@ void ThreadSchedule::ReceiveCallback(IAsyncResult^ asyncResult){
 #endif // TRACE
 
 
+			Console::WriteLine("Ack Ricevuto da {0} esito: {1}",pktAck->getNID_ENGINE(), pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE() );
 
+			if( pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE()==1){
+				s->Close();
+				so->fine=1;
 
-			cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
+			}else{
 
+				//All of the data has been read
 
-			cout << "DONE\n";
-
-			//All of the data has been read
-
-			s->Close();
-			so->fine=1;
+				s->Close();
+				so->fine=0;
+			}
 		}
 	}catch(Exception ^e){
 
-		Console::WriteLine("avevi chiuso il sock l'ATO non ha mandato L'ack");
+		Console::WriteLine("hai chiuso il sock ma l'ATO non ha mandato L'ack");
 	}
 
 
