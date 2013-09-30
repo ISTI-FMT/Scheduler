@@ -169,7 +169,7 @@ void ThreadSchedule::SimpleSchedule(){
 						}else{
 							//se il treno si trova sul cdb giusto
 							// messo a true per fare test
-							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn | true){
+							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn){
 								//se l'itinerario è libero
 								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 								//che riporti il cambiamento dello stato dell'itinerario
@@ -206,7 +206,7 @@ void ThreadSchedule::SimpleSchedule(){
 						int resutl = ((int)listaitinerari[indicelistaitinerari]->getOrarioPartenza())-costante;
 						//	int statocdbuscitaitinerario = managerIXL->StatoCDB(resultSuccCdbU)->getQ_STATOCDB();
 						// controllo posizione e tempo 
-						if((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn | true)& (resutl<=tempo | true)){//&
+						if((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn )& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
 							//todo : se ti trovi nel posto giusto
@@ -461,7 +461,7 @@ void ThreadSchedule::SendCallback(IAsyncResult^ asyncResult){
 //continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL che 
 //che riporti il cambiamento dello stato dell'itinerario
 bool ThreadSchedule::richestaItinerarioIXL(int idstazione , int iditinerario){
-	if((managerIXL->getItinerario(idstazione+iditinerario)->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoNonInAtto) | (true)){
+	//if((managerIXL->getItinerario(idstazione+iditinerario)->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoNonInAtto)){
 		//controllo dei cdb che fanno parte dell'itinerario che devono essere liberi
 		List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
 		if(controllacdb(listaNIDcdb)){
@@ -500,7 +500,7 @@ bool ThreadSchedule::richestaItinerarioIXL(int idstazione , int iditinerario){
 		}
 		}
 		}*/
-	}
+	//}
 
 	//}else{
 	//	Console::WriteLine("itinerario nn libero ritenta");
