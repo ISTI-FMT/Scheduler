@@ -32,7 +32,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	Console::ForegroundColor = ConsoleColor::White;
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
 
-	Console::WriteLine("{0} ttl",recv_udpClient->Ttl);
+	//Console::WriteLine("{0} ttl",recv_udpClient->Ttl);
 
 	IPEndPoint^ ipEndPoint;
 

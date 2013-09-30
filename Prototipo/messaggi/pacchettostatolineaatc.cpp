@@ -24,7 +24,7 @@ int pacchettostatolineaatc::getSize()
 
 		size += 36 * N_ITER;
 	}else{
-		size += 36 *128;
+		size += 36 *138;
 	}
 	// ritorno il numero di byte occupato dalla struttura dati
 	return size;
