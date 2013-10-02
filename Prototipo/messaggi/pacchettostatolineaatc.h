@@ -18,9 +18,9 @@ ref class pacchettostatolineaatc
 	unsigned int L_PACKET ;
 	unsigned int NID_OPERATIONAL ;
 	
-	unsigned int N_ITER ;
+	//unsigned int N_ITER ;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
-	List< StateCDB^> ^pstato;
+	StateCDB ^pstato;
 public:
 	pacchettostatolineaatc();
 	
@@ -45,15 +45,14 @@ public:
 	void setNID_OPERATIONAL(int NID){NID_OPERATIONAL = NID;};
 	int getNID_OPERATIONAL(){return NID_OPERATIONAL;};
 
-	void setN_ITER(int N);
-	int getN_ITER(){return N_ITER;};
+	
 
 	
 
-	void setCDB(List< StateCDB^> ^all){pstato=all;};
-	List< StateCDB^> ^getCDB(){return pstato;};
+	
+	 StateCDB^ getCDB(){return pstato;};
 
-	void setCDB(StateCDB ^one){pstato->Add(one);};
+	void setCDB(StateCDB ^one){pstato=one;};
 
 
 

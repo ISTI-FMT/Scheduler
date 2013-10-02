@@ -20,7 +20,7 @@ void Messaggi::setNID_MESSAGE(int N){
 	case MessATC::StatoLineaATC : {set_pacchettoStatoLineaATC();break;}
 	case MessATO::Acknol :{set_pacchettoAcknowledgement();break;}
 	case MessIXL::StatoLineaIXL: { set_pacchettoStatoLineaIXL();
-		set_pacchettoStatoItinerari();
+		//set_pacchettoStatoItinerari();
 		set_pacchettoStatoSegnali();
 		set_pacchettoStatoBlocco();
 		set_pacchettoEnd(); break;}

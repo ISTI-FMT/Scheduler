@@ -31,7 +31,7 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 	wdogs=w;
 	managerATC=manATC;
 	managerIXL=manIXL;
-	ipixl="127.0.0.1";
+	ipixl="192.168.1.99";
 	listIdCdbItinRic = gcnew List<int>();
 }
 
