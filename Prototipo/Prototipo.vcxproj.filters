@@ -245,6 +245,12 @@
     <ClInclude Include="FormStatoLineaIXL.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="messaggi\pacchettoPositionDataATC.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\PositionData.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -414,6 +420,12 @@
     </ClCompile>
     <ClCompile Include="FormStatoLineaIXL.cpp">
       <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoPositionDataATC.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\PositionData.cpp">
+      <Filter>File di origine\messaggi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

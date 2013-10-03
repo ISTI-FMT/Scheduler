@@ -106,6 +106,7 @@
     <ClInclude Include="messaggi\pacchettoEnd.h" />
     <ClInclude Include="messaggi\pacchettoFaultData.h" />
     <ClInclude Include="messaggi\pacchettoMissionData.h" />
+    <ClInclude Include="messaggi\pacchettoPositionDataATC.h" />
     <ClInclude Include="messaggi\pacchettopresentazione.h" />
     <ClInclude Include="messaggi\pacchettoStatoBlocco.h" />
     <ClInclude Include="messaggi\pacchettoStatoItinerario.h" />
@@ -113,6 +114,7 @@
     <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h" />
     <ClInclude Include="messaggi\pacchettoStatoSegnali.h" />
     <ClInclude Include="messaggi\pachettoStatoScudetti.h" />
+    <ClInclude Include="messaggi\PositionData.h" />
     <ClInclude Include="messaggi\ProfiloVelocita.h" />
     <ClInclude Include="messaggi\StateBlocco.h" />
     <ClInclude Include="messaggi\StateCDB.h" />
@@ -168,6 +170,7 @@
     <ClCompile Include="messaggi\pacchettoEnd.cpp" />
     <ClCompile Include="messaggi\pacchettoFaultData.cpp" />
     <ClCompile Include="messaggi\pacchettoMissionData.cpp" />
+    <ClCompile Include="messaggi\pacchettoPositionDataATC.cpp" />
     <ClCompile Include="messaggi\pacchettopresentazione.cpp" />
     <ClCompile Include="messaggi\pacchettoStatoBlocco.cpp" />
     <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp" />
@@ -175,6 +178,7 @@
     <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp" />
     <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp" />
     <ClCompile Include="messaggi\pachettoStatoScudetti.cpp" />
+    <ClCompile Include="messaggi\PositionData.cpp" />
     <ClCompile Include="messaggi\ProfiloVelocita.cpp" />
     <ClCompile Include="messaggi\StateBlocco.cpp" />
     <ClCompile Include="messaggi\StateCDB.cpp" />

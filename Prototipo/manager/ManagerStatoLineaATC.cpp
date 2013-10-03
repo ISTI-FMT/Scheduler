@@ -9,48 +9,106 @@ ManagerStatoLineaATC::ManagerStatoLineaATC(void)
 
 void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^source)
 {
-	List<StateCDB^> ^listcdb=nullptr ;
+	List<StateCDB^> ^listcdbetmpo=nullptr ;
+	for each (StateCDB ^CDB in listaCDB)
+	{
+		int idltreno = CDB->getNID_OPERATIONAL();
+		int idftreno = CDB->getNID_ENGINE();
+		if(idltreno>0){
+			if(!tabellaTRenoListCDB->ContainsKey(idltreno)){
+				List<StateCDB^> ^listatempcdb = gcnew List<StateCDB^>();
+				listatempcdb->Add(CDB);
+				tabellaTRenoListCDB->Add(idltreno,listatempcdb);
+				addCheckAndSet(CDB,source);
+			}else{
+				listcdbetmpo=tabellaTRenoListCDB[idltreno];
+				if(!tabellaTRenoListCDB[idltreno]->Contains(CDB)){
+					tabellaTRenoListCDB[idltreno]->Add(CDB);
+					addCheckAndSet(CDB,source);
+				}else{
+					List<StateCDB^> ^listatempcdb = tabellaTRenoListCDB[idltreno];
+					int g = listatempcdb->IndexOf(CDB);
+					if (listatempcdb[g]->Update(CDB)){
+					   addCheckAndSet(CDB,source);
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+	if(listcdbetmpo!=nullptr){
+		for(int i=0;i<listcdbetmpo->Count;i++)
+		{
+			if(!listaCDB->Contains(listcdbetmpo[i])){
+
+				StateCDB ^cdbdel = listcdbetmpo[i];
+				listcdbetmpo->Remove(cdbdel);
+				StateCDB ^ncdbdel = cdbdel->Clone();
+				ncdbdel->setQ_STATOCDB(typeStateCDB::cdbLibero);
+				addCheckAndSet(ncdbdel,"me");
+
+			}
+		}
+
+	}
+	/*List<StateCDB^> ^listcdb=nullptr ;
 	int idtreno = listaCDB[0]->getNID_OPERATIONAL();
 	if(idtreno>0){
-		if(tabellaTRenoListCDB->ContainsKey(idtreno)){
+	if(tabellaTRenoListCDB->ContainsKey(idtreno)){
 
-			listcdb = tabellaTRenoListCDB[idtreno];
-		}else{
-			tabellaTRenoListCDB->Add(idtreno, listaCDB);
-			listcdb=listaCDB;
-		}
+	listcdb = tabellaTRenoListCDB[idtreno];
+	}else{
+	tabellaTRenoListCDB->Add(idtreno, listaCDB);
+	listcdb=listaCDB;
+	}
 	}
 
 	for each (StateCDB ^cdb in listaCDB)
 	{
-		addCheckAndSet(cdb, source);
-		if(listcdb!=nullptr){
-			if(listcdb->Contains(cdb)){
-				int g = listcdb->IndexOf(cdb);
-				listcdb[g]->Update(cdb);
+	addCheckAndSet(cdb, source);
+	if(listcdb!=nullptr){
+	if(listcdb->Contains(cdb)){
+	int g = listcdb->IndexOf(cdb);
+	listcdb[g]->Update(cdb);
 
-			}else{
-				listcdb->Add(cdb);
-			}
+	}else{
+	listcdb->Add(cdb);
+	}
 
-		}
+	}
 
 	}
 	if(listcdb!=listaCDB){
-		for(int i=0;i<listcdb->Count;i++)
-		{
-			if(!listaCDB->Contains(listcdb[i])){
+	for(int i=0;i<listcdb->Count;i++)
+	{
+	if(!listaCDB->Contains(listcdb[i])){
 
-				StateCDB ^cdbdel = listcdb[i];
-				listcdb->Remove(cdbdel);
-				StateCDB ^ncdbdel = cdbdel->Clone();
-				ncdbdel->setQ_STATOCDB(typeStateCDB::cdbLibero);
-				addCheckAndSet(ncdbdel,"me");
-				
-			}
-		}
+	StateCDB ^cdbdel = listcdb[i];
+	listcdb->Remove(cdbdel);
+	StateCDB ^ncdbdel = cdbdel->Clone();
+	ncdbdel->setQ_STATOCDB(typeStateCDB::cdbLibero);
+	addCheckAndSet(ncdbdel,"me");
+
 	}
+	}
+	}*/
 }
+
+
+/*void ManagerStatoLineaATC::Notify(StateCDB ^oneCDB, String ^source)
+{
+
+		// segnala l'evento!!!
+		for each (IObserver<Event^>^ observer in observers)
+		{
+			observer->OnNext(gcnew Event(oneCDB->Clone(),source));
+		}
+
+
+}*/
 
 void ManagerStatoLineaATC::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 {

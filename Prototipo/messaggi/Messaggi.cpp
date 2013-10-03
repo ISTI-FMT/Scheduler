@@ -17,13 +17,16 @@ void Messaggi::setNID_MESSAGE(int N){
 	case MessATO::MissionPlan : {set_pacchettoMissionData();break;}
 	case MessATO::UnconditionCommand : { set_pacchettoCommandData();break;}
 	case MessATO::Presentation : { set_pacchettoPresentazione();break;}
-	case MessATC::StatoLineaATC : {set_pacchettoStatoLineaATC();break;}
+	case MessATC::StatoLineaATC : {set_pacchettoPositionDataATC(); 
+		//set_pacchettoEnd();
+		break;}
 	case MessATO::Acknol :{set_pacchettoAcknowledgement();break;}
 	case MessIXL::StatoLineaIXL: { set_pacchettoStatoLineaIXL();
 		set_pacchettoStatoItinerari();
-		set_pacchettoStatoSegnali();
+		//set_pacchettoStatoSegnali();
 		set_pacchettoStatoBlocco();
-		set_pacchettoEnd(); break;}
+		set_pacchettoEnd();
+		break;}
 	case MessIXL::FaultReportingIXL: {set_pacchettoFaultReporting(); break;}
 	case MessIXL::ComandoItinerari: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
 	case MessIXL::ComandoBlocco: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}
@@ -51,7 +54,9 @@ void Messaggi::serialize(array<Byte>^buffer)
 	case MessATO::Presentation : {utility::push(buffer, NID_ENGINE, 24, 51);
 		get_pacchettoPresentazione()->serialize(buffer);
 		break;}
-	case MessATC::StatoLineaATC : {get_pacchettoStatoLineaATC()->serialize(buffer);
+	case MessATC::StatoLineaATC : {get_pacchettoPositionDataATC()->serialize(buffer);
+		//offset += get_pacchettoPositionDataATC()->getSize();
+		//get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
 	case MessATO::Acknol :{utility::push(buffer, NID_ENGINE, 24, 51);
 		get_pacchettoAcknowledgement()->serialize(buffer);
@@ -124,8 +129,11 @@ void Messaggi::deserialize(array<Byte>^buffer)
 
 									 }
 
-		case MessATC::StatoLineaATC : {set_pacchettoStatoLineaATC();
-			pkgStatoATC->deserialize(buffer);
+		case MessATC::StatoLineaATC : {set_pacchettoPositionDataATC();
+			pkgPositionDataATC->deserialize(buffer);
+			//offset += get_pacchettoPositionDataATC()->getL_PACKET();// ->getSize();
+			//set_pacchettoEnd();
+			//get_pacchettoEnd()->deserialize(buffer, offset);
 			break;
 									  }
 
@@ -199,8 +207,8 @@ String ^Messaggi::ToString(){
 		out= out+get_pacchettoMissionData()->ToString();
 	if(pgkPres)
 		out= out+get_pacchettoPresentazione()->ToString();
-	if(pkgStatoATC)
-		out= out+get_pacchettoStatoLineaATC()->toPrint();
+	if(pkgPositionDataATC)
+		out= out+get_pacchettoPositionDataATC()->toPrint();
 	if(pkgAck)
 		out= out+get_pacchettoAcknowledgement()->ToString();
 
@@ -241,7 +249,8 @@ int Messaggi::getSize(){
 	case MessATO::MissionPlan : {len+=pkgMP->getSize();break;}
 	case MessATO::UnconditionCommand : {len+=pkgcd1->getSize();break;}
 	case MessATO::Presentation : {len+=24+pgkPres->getSize();break;}
-	case MessATC::StatoLineaATC : {len+=pkgStatoATC->getSize();break;}
+	case MessATC::StatoLineaATC : {len+=pkgPositionDataATC->getSize();//+ pkgEnd->getSize();
+		break;}
 	case MessATO::Acknol :{len+=24+pkgAck->getSize();break;}
 	case MessIXL::StatoLineaIXL: {len += pkgStatoLineaIXL->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize();//+ pkgStatoItinerari->getSize()
 		break;}

@@ -8,7 +8,7 @@ pacchettoPositionDataATC::pacchettoPositionDataATC(void)
 	NID_PACKET = 0;
 	L_PACKET = 0;
 	N_ITER=0;
-	ListPostionData = gcnew List<PositionData^>();
+	ListPostionData = gcnew List<StateCDB^>();
 }
 
 
@@ -61,7 +61,12 @@ void pacchettoPositionDataATC::serialize(array<Byte>^buffer)
 	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
 	utility::push(buffer, L_PACKET, 13, 59);
-	ListPostionData[0]->serialize(buffer, 72);
+
+
+	utility::push(buffer, ListPostionData[0]->getNID_OPERATIONAL(), 32, 72);
+	utility::push(buffer,  ListPostionData[0]->getNID_ENGINE(), 32, 104);
+	utility::push(buffer,  ListPostionData[0]->getNID_CDB(), 32, 136);
+
 	
 	utility::push(buffer, N_ITER, 16, 168);
 	
@@ -69,9 +74,12 @@ void pacchettoPositionDataATC::serialize(array<Byte>^buffer)
 	for( int i=1;i<ListPostionData->Count;i++)
 	{
 
-		ListPostionData[i]->serialize(buffer, offset);
-		
-		offset += 96;
+		utility::push(buffer, ListPostionData[i]->getNID_OPERATIONAL(), 32, offset);
+		offset+=32;
+		utility::push(buffer,  ListPostionData[i]->getNID_ENGINE(), 32, offset);
+		offset+=32;
+		utility::push(buffer,  ListPostionData[i]->getNID_CDB(), 32, offset);
+		offset += 32;
 		
 	}
 
@@ -88,7 +96,7 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer)
 	int tNID_ENGINE =utility::pop(buffer, 32, 104);
 	int tNID_CDB =utility::pop(buffer, 32, 136);
 	
-	ListPostionData->Add(gcnew PositionData(tNID_OPERATIONAL,tNID_ENGINE,tNID_CDB));
+	ListPostionData->Add(gcnew StateCDB(tNID_CDB,typeStateCDB::cdbOccupato,typeStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
 	setN_ITER(utility::pop(buffer, 16, 168));
 	int offset = 184;
 
@@ -101,7 +109,7 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer)
 		tNID_CDB=utility::pop(buffer, 32, offset);
 		offset += 32;
 
-		ListPostionData->Add(gcnew  PositionData(tNID_OPERATIONAL,tNID_ENGINE,tNID_CDB));
+		ListPostionData->Add(gcnew  StateCDB(tNID_CDB,typeStateCDB::cdbOccupato,typeStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
 	}
 
 

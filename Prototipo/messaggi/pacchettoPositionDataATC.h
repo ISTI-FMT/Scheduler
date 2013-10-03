@@ -1,6 +1,6 @@
 #pragma once
 #include "utility.h"
-#include "PositionData.h"
+#include "StateCDB.h"
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -19,7 +19,7 @@ ref class pacchettoPositionDataATC
 	
 	unsigned int N_ITER ;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
-	List< PositionData^> ^ListPostionData;
+	List< StateCDB^> ^ListPostionData;
 public:
 	pacchettoPositionDataATC();
 	
@@ -48,10 +48,10 @@ public:
 
 	
 
-	void setPositionData(List< PositionData^> ^all){ListPostionData=all;};
-	List< PositionData^> ^getListPostitionData(){return ListPostionData;};
+	void setPositionData(List< StateCDB^> ^all){ListPostionData=all;};
+	List< StateCDB^> ^getListPostitionData(){return ListPostionData;};
 
-	void setPositionData(PositionData ^one){ListPostionData->Add(one);};
+	void setPositionData(StateCDB ^one){ListPostionData->Add(one);};
 
 
 

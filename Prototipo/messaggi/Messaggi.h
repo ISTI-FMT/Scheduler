@@ -2,7 +2,9 @@
 #include "pacchettoCommandData.h"
 #include "pacchettoMissionData.h"
 #include "pacchettopresentazione.h"
-#include "pacchettostatolineaatc.h"
+
+//#include "pacchettostatolineaatc.h"
+#include "pacchettoPositionDataATC.h"
 #include "pacchettoAcknowledgement.h"
 #include "pacchettoStatoItinerario.h"
 #include "pacchettoComandoItinerari.h"
@@ -35,12 +37,14 @@ ref class Messaggi
 	pacchettoCommandData ^pkgcd1;
 	pacchettoMissionData ^pkgMP;
 	pacchettopresentazione ^pgkPres;
-	pacchettostatolineaatc ^pkgStatoATC;
+	//pacchettostatolineaatc ^pkgStatoATC;
 	pacchettoAcknowledgement ^pkgAck;
 
 	// puntatori alle strutture dati per i pacchetti ATS/ATO
 
 	pacchettoStatoLineaIXL ^pkgStatoLineaIXL;
+	pacchettoPositionDataATC ^pkgPositionDataATC;
+
 	pacchettoStatoItinerario ^pkgStatoItinerari;
 	pacchettoStatoSegnali ^pkgStatoSegnali;
 	pacchettoFaultData ^pkgFaultData;
@@ -84,6 +88,9 @@ public:
 	void set_pacchettoStatoLineaIXL() {pkgStatoLineaIXL = gcnew pacchettoStatoLineaIXL;}
 	pacchettoStatoLineaIXL ^get_pacchettoStatoLineaIXL(){return pkgStatoLineaIXL;}
 
+	void set_pacchettoPositionDataATC() {pkgPositionDataATC = gcnew pacchettoPositionDataATC;}
+	pacchettoPositionDataATC ^get_pacchettoPositionDataATC(){return pkgPositionDataATC;}
+
 	void set_pacchettoStatoItinerari() {pkgStatoItinerari = gcnew pacchettoStatoItinerario;}
 	pacchettoStatoItinerario^ get_pacchettoStatoItinerario(){return pkgStatoItinerari;}
 
@@ -102,8 +109,8 @@ public:
 	void set_pacchettoPresentazione(){ pgkPres = gcnew pacchettopresentazione;};
 	pacchettopresentazione^ get_pacchettoPresentazione(){ return pgkPres;};
 
-	void set_pacchettoStatoLineaATC(){ pkgStatoATC = gcnew pacchettostatolineaatc;};
-	pacchettostatolineaatc^ get_pacchettoStatoLineaATC(){ return pkgStatoATC;};
+	//void set_pacchettoStatoLineaATC(){ pkgStatoATC = gcnew pacchettostatolineaatc;};
+	//pacchettostatolineaatc^ get_pacchettoStatoLineaATC(){ return pkgStatoATC;};
 
 	void set_pacchettoAcknowledgement(){ pkgAck = gcnew pacchettoAcknowledgement;};
 	pacchettoAcknowledgement^ get_pacchettoAcknowledgement(){ return pkgAck;};

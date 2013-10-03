@@ -266,7 +266,7 @@
 		<cdb>504</cdb>
       </partenza>
       
-      <partenza id="903" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="11302" nextcdb="0"  nextstation="12000" >
+      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="11302" nextcdb="0"  nextstation="12000" >
         
          
           <cdb>11013</cdb>
