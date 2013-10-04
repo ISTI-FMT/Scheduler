@@ -114,7 +114,6 @@
     <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h" />
     <ClInclude Include="messaggi\pacchettoStatoSegnali.h" />
     <ClInclude Include="messaggi\pachettoStatoScudetti.h" />
-    <ClInclude Include="messaggi\PositionData.h" />
     <ClInclude Include="messaggi\ProfiloVelocita.h" />
     <ClInclude Include="messaggi\StateBlocco.h" />
     <ClInclude Include="messaggi\StateCDB.h" />
@@ -178,7 +177,6 @@
     <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp" />
     <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp" />
     <ClCompile Include="messaggi\pachettoStatoScudetti.cpp" />
-    <ClCompile Include="messaggi\PositionData.cpp" />
     <ClCompile Include="messaggi\ProfiloVelocita.cpp" />
     <ClCompile Include="messaggi\StateBlocco.cpp" />
     <ClCompile Include="messaggi\StateCDB.cpp" />

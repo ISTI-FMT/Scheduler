@@ -44,6 +44,9 @@ System::String ^StateCDB::ToString() {
 	if(NID_OPERATIONAL>0){
 		out = out+"NID_OPERATIONAL: "+NID_OPERATIONAL+";";
 	}
+	if(NID_ENGINE>0){
+		out = out+"NID_ENGINE: "+NID_ENGINE+";";
+	}
 
 	return out;
 }

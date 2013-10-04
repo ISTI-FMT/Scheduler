@@ -9,19 +9,20 @@ ManagerStatoLineaATC::ManagerStatoLineaATC(void)
 
 void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^source)
 {
-	List<StateCDB^> ^listcdbetmpo=nullptr ;
+	
 	for each (StateCDB ^CDB in listaCDB)
 	{
 		int idltreno = CDB->getNID_OPERATIONAL();
 		int idftreno = CDB->getNID_ENGINE();
 		if(idltreno>0){
+			addCheckAndSet(CDB,source);
 			if(!tabellaTRenoListCDB->ContainsKey(idltreno)){
 				List<StateCDB^> ^listatempcdb = gcnew List<StateCDB^>();
 				listatempcdb->Add(CDB);
 				tabellaTRenoListCDB->Add(idltreno,listatempcdb);
-				addCheckAndSet(CDB,source);
+				//addCheckAndSet(CDB,source);
 			}else{
-				listcdbetmpo=tabellaTRenoListCDB[idltreno];
+				
 				if(!tabellaTRenoListCDB[idltreno]->Contains(CDB)){
 					tabellaTRenoListCDB[idltreno]->Add(CDB);
 					addCheckAndSet(CDB,source);
@@ -39,7 +40,13 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 		}
 
 	}
+	Dictionary<int,List<StateCDB^>^>::ValueCollection^ valuestab =tabellaTRenoListCDB->Values;
+	for each (List<StateCDB^>^listcdbetmpo in valuestab )
+	{
+
+	
 	if(listcdbetmpo!=nullptr){
+
 		for(int i=0;i<listcdbetmpo->Count;i++)
 		{
 			if(!listaCDB->Contains(listcdbetmpo[i])){
@@ -48,11 +55,16 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 				listcdbetmpo->Remove(cdbdel);
 				StateCDB ^ncdbdel = cdbdel->Clone();
 				ncdbdel->setQ_STATOCDB(typeStateCDB::cdbLibero);
+				ncdbdel->setNID_ENGINE(0);
+				ncdbdel->setNID_OPERATIONAL(0);
 				addCheckAndSet(ncdbdel,"me");
+				i--;
+				
 
 			}
 		}
 
+	}
 	}
 	/*List<StateCDB^> ^listcdb=nullptr ;
 	int idtreno = listaCDB[0]->getNID_OPERATIONAL();

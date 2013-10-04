@@ -48,10 +48,10 @@ public:
 
 	
 
-	void setPositionData(List< StateCDB^> ^all){ListPostionData=all;};
-	List< StateCDB^> ^getListPostitionData(){return ListPostionData;};
+	void setCDB(List< StateCDB^> ^all){ListPostionData=all;};
+	List< StateCDB^> ^getListCDB(){return ListPostionData;};
 
-	void setPositionData(StateCDB ^one){ListPostionData->Add(one);};
+	void setCDB(StateCDB ^one){ListPostionData->Add(one);};
 
 
 
