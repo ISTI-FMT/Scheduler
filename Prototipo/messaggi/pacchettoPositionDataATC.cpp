@@ -89,8 +89,9 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, 51);
-	L_PACKET=utility::pop(buffer, 13, 59);
 	if(NID_PACKET!=255){
+	L_PACKET=utility::pop(buffer, 13, 59);
+	
 
 		int tNID_OPERATIONAL =utility::pop(buffer, 32, 72);
 		int tNID_ENGINE =utility::pop(buffer, 32, 104);
