@@ -63,8 +63,9 @@ void pacchettoPositionDataATC::serialize(array<Byte>^buffer)
 	utility::push(buffer, L_PACKET, 13, 59);
 
 	if(ListPostionData->Count>0){
-		utility::push(buffer, ListPostionData[0]->getNID_OPERATIONAL(), 32, 72);
-		utility::push(buffer,  ListPostionData[0]->getNID_ENGINE(), 32, 104);
+		
+		utility::push(buffer,  ListPostionData[0]->getNID_ENGINE(), 32, 72);
+		utility::push(buffer, ListPostionData[0]->getNID_OPERATIONAL(), 32, 104);
 		utility::push(buffer,  ListPostionData[0]->getNID_CDB(), 32, 136);
 	}
 
@@ -74,9 +75,9 @@ void pacchettoPositionDataATC::serialize(array<Byte>^buffer)
 	for( int i=1;i<ListPostionData->Count;i++)
 	{
 
-		utility::push(buffer, ListPostionData[i]->getNID_OPERATIONAL(), 32, offset);
+		utility::push(buffer, ListPostionData[i]->getNID_ENGINE(), 32, offset);
 		offset+=32;
-		utility::push(buffer,  ListPostionData[i]->getNID_ENGINE(), 32, offset);
+		utility::push(buffer,  ListPostionData[i]->getNID_OPERATIONAL(), 32, offset);
 		offset+=32;
 		utility::push(buffer,  ListPostionData[i]->getNID_CDB(), 32, offset);
 		offset += 32;
@@ -93,8 +94,8 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer)
 	L_PACKET=utility::pop(buffer, 13, 59);
 	
 
-		int tNID_OPERATIONAL =utility::pop(buffer, 32, 72);
-		int tNID_ENGINE =utility::pop(buffer, 32, 104);
+		int tNID_ENGINE =utility::pop(buffer, 32, 72);
+		int tNID_OPERATIONAL  =utility::pop(buffer, 32, 104);
 		int tNID_CDB =utility::pop(buffer, 32, 136);
 
 		ListPostionData->Add(gcnew StateCDB(tNID_CDB,typeStateCDB::cdbOccupato,typeStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
@@ -103,9 +104,9 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer)
 
 		for(unsigned int i = 0; i < N_ITER; ++i)
 		{
-			tNID_OPERATIONAL=utility::pop(buffer, 32, offset);
-			offset += 32;
 			tNID_ENGINE=utility::pop(buffer, 32, offset);
+			offset += 32;
+			tNID_OPERATIONAL =utility::pop(buffer, 32, offset);
 			offset += 32;
 			tNID_CDB=utility::pop(buffer, 32, offset);
 			offset += 32;

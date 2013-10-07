@@ -13,9 +13,14 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 	for each (StateCDB ^CDB in listaCDB)
 	{
 		if(CDB->getNID_CDB()>0){
-			Console::WriteLine("CDB {0}",CDB->getNID_CDB());
+			
 			int idltreno = CDB->getNID_OPERATIONAL();
+			if(idltreno==4294967288){
+				idltreno=1152;
+				CDB->setNID_OPERATIONAL(idltreno);
+			}
 			int idftreno = CDB->getNID_ENGINE();
+			Console::WriteLine("CDB {0}, nid_op {1}",CDB->getNID_CDB(), CDB->getNID_OPERATIONAL());
 			if(idltreno>0){
 				addCheckAndSet(CDB,source);
 				if(!tabellaTRenoListCDB->ContainsKey(idltreno)){
@@ -43,7 +48,7 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 		}
 	}
 	Dictionary<int,List<StateCDB^>^>::ValueCollection^ valuestab =tabellaTRenoListCDB->Values;
-	/*for each (List<StateCDB^>^listcdbetmpo in valuestab )
+	/**/for each (List<StateCDB^>^listcdbetmpo in valuestab )
 	{
 
 
@@ -67,7 +72,7 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 			}
 
 		}
-	}*/
+	}
 	/*List<StateCDB^> ^listcdb=nullptr ;
 	int idtreno = listaCDB[0]->getNID_OPERATIONAL();
 	if(idtreno>0){
