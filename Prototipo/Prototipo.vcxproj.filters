@@ -248,6 +248,9 @@
     <ClInclude Include="messaggi\pacchettoPositionDataATC.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
+    <ClInclude Include="threads\ThreadSchedulerTrain.h">
+      <Filter>File di intestazione\threads</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -420,6 +423,9 @@
     </ClCompile>
     <ClCompile Include="messaggi\pacchettoPositionDataATC.cpp">
       <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ThreadSchedulerTrain.cpp">
+      <Filter>File di origine\threads</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
