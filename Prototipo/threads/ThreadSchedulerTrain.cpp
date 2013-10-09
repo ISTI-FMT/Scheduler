@@ -125,8 +125,9 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 					if(initEntrata>0){
 						int resultprecE = tabItinerari->get_CdbPrecItinerario(idstazione,initEntrata);
 						Event ^eventATC = EQueueATC->getEvent();
-
+						
 						if(eventATC!=nullptr){
+							Console::WriteLine("PReLEVATO: {0}",eventATC->ToString());
 							//se il treno si trova sul cdb giusto
 							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==trn)) |(
 								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn)){
@@ -461,8 +462,9 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 		}else{
 			//Thread::Sleep(500);
 			Event ^even = EQueueIXL->getEvent();
-
+			
 			if(even!=nullptr){
+				Console::WriteLine("PReLEVATO: {0}",even->ToString());
 				StateCDB ^statocdb =even->getEventStateCDB();
 				if(statocdb!=nullptr){
 					if(listIdCdbItinRic->Contains(statocdb->getNID_CDB()) ){

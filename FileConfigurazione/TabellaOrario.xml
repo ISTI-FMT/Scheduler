@@ -117,10 +117,31 @@
        <binarioprogrammato>3</binarioprogrammato>
 	   <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
  <itinerarioEntrata id="908">02-III</itinerarioEntrata>
-<itinerarioUscita id="906">III-03</itinerarioUscita>
+<itinerarioUscita id="912">III-03</itinerarioUscita>
+    </stazione>
+	
+	 <stazione id="11000"  name="Viale Monterosa">
+      <arrivo>09:40:00</arrivo>
+      <partenza>09:50:00</partenza>
+       <binarioprogrammato>2</binarioprogrammato>
+	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
+ <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+<itinerarioUscita id="905">II-02</itinerarioUscita>
     </stazione>
 
-    <stazione id="15000"  name="Via Verdi">
+    <stazione id="10000"  name="Vicolo Corto">
+      <arrivo>10:00:00</arrivo>
+      <partenza>10:10:00</partenza>
+       <binarioprogrammato>2</binarioprogrammato>
+	   <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+ <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+
+    </stazione>
+
+ <!--   
+ <itinerarioUscita id="903">III-01</itinerarioUscita>
+ 
+ <stazione id="15000"  name="Via Verdi">
       <arrivo>09:40:00</arrivo>
       <partenza>09:50:00</partenza>
        <binarioprogrammato>2</binarioprogrammato>
@@ -145,7 +166,7 @@
 	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
  <itinerarioEntrata id="903">01-II</itinerarioEntrata>
 
-    </stazione>
+    </stazione>-->
 
   </treno>
 

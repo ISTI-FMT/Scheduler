@@ -42,7 +42,7 @@ Event ^EventQueue::getEvent(){
 	if(!queueEvent->IsEmpty){
 
 		queueEvent->TryDequeue(result);
-		Console::WriteLine("PReLEVATO: {0}",result->ToString());
+		
 	}
 	return result;
 
