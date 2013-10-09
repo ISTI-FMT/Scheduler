@@ -31,6 +31,7 @@ using namespace System::Threading::Tasks;
 		EventQueue ^eventiItinerario;
 		//Dictionary<int,Button^> ^listbutton;
 		Dictionary<int,Button^> ^listbuttonCDB;
+		bool _shouldStop;
 	public:
 
 		FormStatoLineaIXL(EventQueue ^ev)
@@ -41,7 +42,7 @@ using namespace System::Threading::Tasks;
 			
 			this->ControlBox=false;
 			InitializeComponent();
-
+			_shouldStop=false;
 			tabItinerari = gcnew tabellaItinerari();
 			tabItinerari->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
 			genera();
@@ -54,6 +55,7 @@ using namespace System::Threading::Tasks;
 		void aggiorna();
 		//void findandset(int id, int stato);
 		void findandsetCDB(int id, int stato);
+		void RequestStop();
 	private: 
 			 //List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
 			 void setCdBItin(List<StateCDB^> ^listCdB, int stato);

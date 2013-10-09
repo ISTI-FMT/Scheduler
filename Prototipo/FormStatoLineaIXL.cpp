@@ -30,9 +30,10 @@ void Prototipo::FormStatoLineaIXL::genera(){
 
 void Prototipo::FormStatoLineaIXL::aggiorna(){
 
-	while(true){
-		//Thread::Sleep(50);
-		if(eventiItinerario!=nullptr){
+	while(!_shouldStop){
+		if(eventiItinerario==nullptr){
+		Thread::Sleep(100);
+		}else{
 			Event ^even = eventiItinerario->getEvent();
 			if(even!=nullptr){
 			/*	StateItinerario ^st =	even->getEventStateItinerario();
@@ -103,3 +104,9 @@ void Prototipo::FormStatoLineaIXL::setCdBItin(List<StateCDB^> ^listCdB, int stat
 
 
 }
+
+
+void Prototipo::FormStatoLineaIXL::RequestStop()
+    {
+        _shouldStop = true;
+    }

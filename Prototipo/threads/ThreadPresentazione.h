@@ -20,10 +20,12 @@ private:
 	 phisicalTrainList ^listaTreni;
 	 ManagerMsgATO ^ManaMsgATO;
 	 Int32 port;
+	 bool _shouldStop;
 public:
 	
 	ThreadPresentazione();
 	ThreadPresentazione(phisicalTrainList ^lt, ManagerMsgATO ^MA);
 	void TCP_Management_receive();
+	void RequestStop();
 	
 };

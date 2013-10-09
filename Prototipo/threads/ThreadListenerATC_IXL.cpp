@@ -23,6 +23,7 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 	ManStatoLineaATC=MA;
 	isMessageReceived=false;
 	port = 4010;
+	_shouldStop=false;
 }
 
 void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
@@ -45,7 +46,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 #ifdef TRACE
 
-	Logger::Info(pkt1->getNID_MESSAGE(),ipEndPoint->Address->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
+	Logger::Info(pkt1->getNID_MESSAGE(),"ATC/IXL->ATS",ipEndPoint->Address->ToString(),pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
 
 #endif // TRACE
 
@@ -66,14 +67,14 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoPositionDataATC()->getListCDB(),"ATC");
 		break;
 
-			}
+								 }
 	case  MessIXL::StatoLineaIXL: {
 
 		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
 		//ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
-	
+
 		break;
-			  }
+								  }
 
 	default:
 		break;
@@ -89,11 +90,11 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 	{
 		Console::ForegroundColor = ConsoleColor::Red;
 		Console::Write( "Thread Udp ATC Start... " );
-		
+
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
 		udpClient->Client->ReceiveBufferSize=0;
-		while ( true )
+		while ( !_shouldStop )
 		{
 			// Receive a message and write it to the console.
 
@@ -105,7 +106,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 
 			// Do some work while we wait for a message. For this example,
 			// we'll just sleep
-			while (!isMessageReceived)
+			while (!isMessageReceived & !_shouldStop)
 			{
 				Thread::Sleep(1000);
 				///isMessageReceived=true;
@@ -146,4 +147,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 }
 
 
-
+void ThreadListenerATC_IXL::RequestStop()
+{
+	_shouldStop = true;
+}

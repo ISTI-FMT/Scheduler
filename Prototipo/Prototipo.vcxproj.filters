@@ -409,23 +409,23 @@
     <ClCompile Include="form\tableLayoutPanelSingleItin.cpp">
       <Filter>File di origine\form</Filter>
     </ClCompile>
-    <ClCompile Include="form\FormStatoLineaATC.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="messaggi\pacchettoMissionData.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
     <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp">
       <Filter>File di origine\ConfVelocita</Filter>
     </ClCompile>
-    <ClCompile Include="FormStatoLineaIXL.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="messaggi\pacchettoPositionDataATC.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
     <ClCompile Include="threads\ThreadSchedulerTrain.cpp">
       <Filter>File di origine\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="form\FormStatoLineaATC.cpp">
+      <Filter>File di origine\form</Filter>
+    </ClCompile>
+    <ClCompile Include="FormStatoLineaIXL.cpp">
+      <Filter>File di origine\form</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

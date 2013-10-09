@@ -16,27 +16,24 @@ void Prototipo::FormStatoLineaATC::genera(){
 
 void Prototipo::FormStatoLineaATC::aggiorna(){
 
-	while(true){
-		Thread::Sleep(30);
-		if(eventiATC!=nullptr){
+	while(!_shouldStop){
+		if(eventiATC==nullptr){
+			Thread::Sleep(100);
+		}else{
 			Event ^even = eventiATC->getEvent();
 			if(even!=nullptr){
-			StateCDB ^stCDB =	even->getEventStateCDB();
-			if(stCDB!=nullptr){
-				int id =	stCDB->getNID_CDB();
-				int stato =	stCDB->getQ_STATOCDB();
-				int nid_op=	stCDB->getNID_OPERATIONAL();
-				int nid_engine =	stCDB->getNID_ENGINE();
-				//tableCDB->findandsetCDB(id,stato, nid_op, nid_engine);
-				this->Invoke(myDelegate,id,stato, nid_op, nid_engine);
-			}
+				StateCDB ^stCDB =	even->getEventStateCDB();
+				if(stCDB!=nullptr){
+					int id =	stCDB->getNID_CDB();
+					int stato =	stCDB->getQ_STATOCDB();
+					int nid_op=	stCDB->getNID_OPERATIONAL();
+					int nid_engine =	stCDB->getNID_ENGINE();
+					//tableCDB->findandsetCDB(id,stato, nid_op, nid_engine);
+					this->Invoke(myDelegate,id,stato, nid_op, nid_engine);
+				}
 			}
 
 		}
-
-
-
-
 	}
 
 }
@@ -45,19 +42,25 @@ void  Prototipo::FormStatoLineaATC::findandsetCDB(int id, int stato, int nid_op,
 	if(listbuttonCDB->ContainsKey(id)){
 		if(stato==typeStateCDB::cdbOccupato){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::Red;
-			String ^texttoltip =String::Format("NID_OP {0}\n\r NID_ENGI {1}", nid_op, nid_engine);
+			String ^texttoltip =String::Format("NID_O {0}\n\rNID_E {1}", nid_op, nid_engine);
 			ToolTip1->SetToolTip(listbuttonCDB[id], texttoltip );
 		}
 		if(stato==typeStateCDB::cdbLibero){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::Gray;
-			ToolTip1->SetToolTip(listbuttonCDB[id], "" );
+			ToolTip1->SetToolTip(listbuttonCDB[id], "Libero" );
 		}
 		if(stato==typeStateCDB::cdbImpegnato){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::White;
-			String ^texttoltip =String::Format("NID_OP {0}\n\r NID_ENGI {1}", nid_op, nid_engine);
+			String ^texttoltip =String::Format("NID_O {0}\n\rNID_E {1}", nid_op, nid_engine);
 			ToolTip1->SetToolTip(listbuttonCDB[id], texttoltip );
 		}
 
 	}
 
 }
+
+
+void Prototipo::FormStatoLineaATC::RequestStop()
+    {
+        _shouldStop = true;
+    }

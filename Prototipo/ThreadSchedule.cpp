@@ -1,7 +1,7 @@
 #include "ThreadSchedule.h"
 #include "TrenoFisicoLogico.h"
 #include "messaggi\\pacchettoCommandData.h"
-#include "threads\\ThreadSchedulerTrain.h"
+
 using namespace System;
 using namespace System::IO;
 using namespace System::Net;
@@ -34,6 +34,8 @@ ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabell
 	managerIXL=manIXL;
 	ipixl="127.0.0.1";
 	listIdCdbItinRic = gcnew List<int>();
+	_shouldStop=false;
+	listThreadTrain = gcnew List<ThreadSchedulerTrain^>();
 }
 
 
@@ -49,7 +51,7 @@ void ThreadSchedule::SimpleSchedule(){
 		DateTime time=DateTime::Now;
 	
 		int trn =0;
-		while(true){
+		while(!_shouldStop){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
 			Thread::Sleep(100);
 			//wdogs->onNext();
@@ -87,6 +89,7 @@ void ThreadSchedule::SimpleSchedule(){
 						Thread ^oThread = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadSchedulerTrain::SimpleSchedule ) );
 
 						oThread->Start();
+						listThreadTrain->Add(ThreadP);
 					}
 					break;
 				}
@@ -107,7 +110,14 @@ void ThreadSchedule::SimpleSchedule(){
 }
 
 
-
+void ThreadSchedule::RequestStop()
+    {
+        _shouldStop = true;
+		for each (ThreadSchedulerTrain ^var in listThreadTrain)
+		{
+			var->RequestStop();
+		}
+    }
 
 
 

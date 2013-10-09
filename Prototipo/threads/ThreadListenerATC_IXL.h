@@ -22,6 +22,7 @@ ref class ThreadListenerATC_IXL
 	static ManagerStatoLineaATC ^ManStatoLineaATC;
 	static int port;
 	static bool isMessageReceived;
+	static bool _shouldStop;
 public:
 	/*ThreadListenerATC_IXL();*/
 	ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC, ManagerStatoLineaATC ^MA);
@@ -30,6 +31,7 @@ public:
 	
 
     static void ReceiveCallback(IAsyncResult^ asyncResult);
+	static void RequestStop();
 	/*delegate void SetCallback(Messaggi ^msg);
 	SetCallback^ myDelegate;
 	void SetManager(Messaggi ^msg);*/

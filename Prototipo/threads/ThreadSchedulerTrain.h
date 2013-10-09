@@ -27,6 +27,7 @@ ref class ThreadSchedulerTrain
 	List<int> ^listIdCdbItinRic;
 	ConfigurazioneVelocita ^confVelocita;
 	phisicalTrain ^phisical;
+	bool _shouldStop;
 public:
 	//ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 	
@@ -38,6 +39,7 @@ public:
 	void StampaStato(int stato);
 	bool richestaItinerarioIXL(int idstazione ,int iditinerario);
 	bool controllacdb(List<int>^lcdb);
+	void RequestStop();
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 	static void SendCallback(IAsyncResult^ asyncResult);
 

@@ -15,14 +15,14 @@ namespace Prototipo {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Net::Sockets;
-using namespace System::Threading;
-using namespace System::Threading::Tasks;
+	using namespace System::Threading;
+	using namespace System::Threading::Tasks;
 
 
 	/// <summary>
 	/// Riepilogo per FormStatoLineaATC
 	/// </summary>
- ref class FormStatoLineaATC : public System::Windows::Forms::Form
+	ref class FormStatoLineaATC : public System::Windows::Forms::Form
 	{
 		Dictionary<int,Button^> ^listbuttonCDB;
 		EventQueue ^eventiATC;
@@ -31,13 +31,13 @@ using namespace System::Threading::Tasks;
 
 		delegate void GoCallback(int id, int stato , int nid_op, int nid_engine);
 		GoCallback^ myDelegate;
-	
+		bool _shouldStop;
 	public:
 		FormStatoLineaATC(EventQueue ^ev)
 		{
 			InitializeComponent();
-						eventiATC=ev;
-
+			eventiATC=ev;
+			_shouldStop=false;
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			genera();
 			ToolTip1 = gcnew System::Windows::Forms::ToolTip();
@@ -49,7 +49,7 @@ using namespace System::Threading::Tasks;
 		}
 		void genera();
 		void aggiorna();
-	
+		void RequestStop();
 		void findandsetCDB(int id, int stato , int nid_op, int nid_engine);
 	protected:
 		/// <summary>

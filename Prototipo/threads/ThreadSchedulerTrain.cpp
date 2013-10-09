@@ -14,12 +14,13 @@ using namespace System::Globalization;
 using namespace System::Xml;
 using namespace System::Collections::Concurrent;
 
+#define TRACE
 ThreadSchedulerTrain::ThreadSchedulerTrain(phisicalTrain ^phi, List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
 {
 	if(E->Count>1){
 		EQueueIXL=E[0];
 		EQueueATC=E[1];
-		
+
 	}
 	mapTrenoLogFisico=mapTreno;
 	tabOrario=tabo;
@@ -31,6 +32,7 @@ ThreadSchedulerTrain::ThreadSchedulerTrain(phisicalTrain ^phi, List<EventQueue^>
 	ipixl="127.0.0.1";
 	listIdCdbItinRic = gcnew List<int>();
 	phisical=phi;
+	_shouldStop=false;
 }
 
 void ThreadSchedulerTrain::SimpleSchedule(){
@@ -45,12 +47,12 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 		DateTime time=DateTime::Now;
 		StateObject ^inviato;
 		int trn =0;
-		while(true){
+		while(!_shouldStop){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
 			Thread::Sleep(100);
 			wdogs->onNext();
-			
-			
+
+
 
 			int enginenumber = phisical->getEngineNumber();
 
@@ -66,7 +68,7 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 
 			switch (statoInterno)
 			{
-			
+
 			case StateSimpleSchedule::ControlloTreno: 
 				{
 
@@ -125,7 +127,7 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 					if(initEntrata>0){
 						int resultprecE = tabItinerari->get_CdbPrecItinerario(idstazione,initEntrata);
 						Event ^eventATC = EQueueATC->getEvent();
-						
+
 						if(eventATC!=nullptr){
 							Console::WriteLine("PReLEVATO: {0}",eventATC->ToString());
 							//se il treno si trova sul cdb giusto
@@ -259,7 +261,7 @@ bool ThreadSchedulerTrain::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 		s->SendTo( sendBytes, ep);
 #ifdef TRACE
 
-		Logger::Info(cmdItini->getNID_MESSAGE(),"ATS",broadcast->ToString(),cmdItini->getSize(),BitConverter::ToString(sendBytes),"ThreadSchedulerTrain");
+		Logger::Info(cmdItini->getNID_MESSAGE(),"ATS->IXL",broadcast->ToString(),cmdItini->getSize(),BitConverter::ToString(sendBytes),"ThreadSchedulerTrain");
 
 #endif // TRACE
 
@@ -349,7 +351,7 @@ StateObject ^ ThreadSchedulerTrain::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		//myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
 #ifdef TRACE
 
-		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedulerTrain");
+		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedulerTrain");
 
 #endif // TRACE
 		sock->Send(bytes_buffer2);
@@ -357,7 +359,7 @@ StateObject ^ ThreadSchedulerTrain::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		//myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
 #ifdef TRACE
 
-		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedulerTrain");
+		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedulerTrain");
 
 #endif // TRACE
 		sock->Send(bytes_buffer3);
@@ -365,7 +367,7 @@ StateObject ^ ThreadSchedulerTrain::SendTCPMsg(int trn, phisicalTrain ^Treno)
 		//myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
 #ifdef TRACE
 
-		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain");
+		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain");
 
 #endif // TRACE
 
@@ -410,7 +412,7 @@ void ThreadSchedulerTrain::ReceiveCallback(IAsyncResult^ asyncResult){
 
 #ifdef TRACE
 
-			Logger::Info(pktAck->getNID_MESSAGE(),"IP","ATS",pktAck->getSize(),BitConverter::ToString(so->buffer),"ThreadSchedulerTrain");
+			Logger::Info(pktAck->getNID_MESSAGE(),"IP","ATO->ATS",pktAck->getSize(),BitConverter::ToString(so->buffer),"ThreadSchedulerTrain");
 
 #endif // TRACE
 
@@ -451,45 +453,45 @@ void ThreadSchedulerTrain::SendCallback(IAsyncResult^ asyncResult){
 //che riporti il cambiamento dello stato dell'itinerario
 bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerario){
 	//if((managerIXL->getItinerario(idstazione+iditinerario)->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoNonInAtto)){
-		//controllo dei cdb che fanno parte dell'itinerario che devono essere liberi
-		List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
-		if(controllacdb(listaNIDcdb)){
+	//controllo dei cdb che fanno parte dell'itinerario che devono essere liberi
+	List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
+	if(controllacdb(listaNIDcdb)){
 
-			SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione);
-			if(!listIdCdbItinRic->Contains(listaNIDcdb[0])){
-				listIdCdbItinRic->Add(listaNIDcdb[0]);
-			}
-		}else{
-			//Thread::Sleep(500);
-			Event ^even = EQueueIXL->getEvent();
-			
-			if(even!=nullptr){
-				Console::WriteLine("PReLEVATO: {0}",even->ToString());
-				StateCDB ^statocdb =even->getEventStateCDB();
-				if(statocdb!=nullptr){
-					if(listIdCdbItinRic->Contains(statocdb->getNID_CDB()) ){
-						if( statocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato  ){
-							return true;
-						}
+		SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione);
+		if(!listIdCdbItinRic->Contains(listaNIDcdb[0])){
+			listIdCdbItinRic->Add(listaNIDcdb[0]);
+		}
+	}else{
+		//Thread::Sleep(500);
+		Event ^even = EQueueIXL->getEvent();
+
+		if(even!=nullptr){
+			Console::WriteLine("PReLEVATO: {0}",even->ToString());
+			StateCDB ^statocdb =even->getEventStateCDB();
+			if(statocdb!=nullptr){
+				if(listIdCdbItinRic->Contains(statocdb->getNID_CDB()) ){
+					if( statocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato  ){
+						return true;
 					}
 				}
 			}
 		}
+	}
 
 
-		//non controllo se è stato creato l'itinerario
-		//return true;
+	//non controllo se è stato creato l'itinerario
+	//return true;
 
-		/*if(even!=nullptr){
-		StateItinerario ^statoi =even->getEventStateItinerario();
-		if(statoi!=nullptr){
-		if(idstazione+iditinerario==statoi->getNID_ITIN() ){
-		if( statoi->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto  ){
-		return true;
-		}
-		}
-		}
-		}*/
+	/*if(even!=nullptr){
+	StateItinerario ^statoi =even->getEventStateItinerario();
+	if(statoi!=nullptr){
+	if(idstazione+iditinerario==statoi->getNID_ITIN() ){
+	if( statoi->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoInAtto  ){
+	return true;
+	}
+	}
+	}
+	}*/
 	//}
 
 	//}else{
@@ -515,4 +517,9 @@ bool ThreadSchedulerTrain::controllacdb(List<int>^lcdb){
 		}
 	}
 	return res;
+}
+
+void ThreadSchedulerTrain::RequestStop()
+{
+	_shouldStop = true;
 }

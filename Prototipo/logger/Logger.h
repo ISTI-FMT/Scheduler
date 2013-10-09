@@ -17,10 +17,10 @@ public:
 	Logger(void);
 	static void WriteEntry(String ^message, String ^type, String ^module);
 
-	 static void Info(int NID_MSG,String ^mit, String ^dest,int dim ,String ^ message, String ^ module)
+	 static void Info(int NID_MSG,String ^io, String ^desc,int dim ,String ^ message, String ^ module)
     {
 		int id = Process::GetCurrentProcess()->Id;
-		String ^result =  String::Format("{0};{1};{2};{3};{4};{5}",id,NID_MSG,dest,mit,message,dim);
+		String ^result =  String::Format("{0};{1};{2};{3};{4};{5}",id,NID_MSG,desc,io,message,dim);
         WriteEntry(result, "Info", module);
     }
 

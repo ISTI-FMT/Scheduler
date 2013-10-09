@@ -1,7 +1,7 @@
 #include "Messaggi.h"
 #include "utility.h"
-
-
+#include "..//logger//Logger.h"
+#define TRACE
 Messaggi::Messaggi(void)
 {
 	NID_MESSAGE = 0;
@@ -185,7 +185,7 @@ void Messaggi::deserialize(array<Byte>^buffer)
 		Logger::Exception(e,"Messaggi");
 #endif // TRACE
 		Console::ForegroundColor = ConsoleColor::Red;
-		Console::WriteLine( "Messaggi Errore deserializzazione: {0}", e );
+		Console::WriteLine( "Messaggi Errore deserializzazione: {0}", e->Message );
 		Console::ResetColor();
 	}
 }

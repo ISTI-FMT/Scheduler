@@ -12,6 +12,7 @@
 #include "manager\\ManagerStatoLineaIXL.h"
 //#include "StateObject.h"
 #include "ConfVelocita\\ConfigurazioneVelocita.h"
+#include "threads\\ThreadSchedulerTrain.h"
 
 /*Utilizzo questa classe per definire il comportamento dello schedulatore*/
 
@@ -35,6 +36,8 @@ ref class ThreadSchedule
 	String ^ipixl;
 	List<int> ^listIdCdbItinRic;
 	ConfigurazioneVelocita ^confVelocita;
+	bool _shouldStop;
+	List<ThreadSchedulerTrain^> ^listThreadTrain;
 public:
 	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 
@@ -47,5 +50,6 @@ public:
 	bool controllacdb(List<int>^lcdb);
 	//static void ReceiveCallback(IAsyncResult^ asyncResult);
 	//static void SendCallback(IAsyncResult^ asyncResult);
+	void RequestStop();
 };
 
