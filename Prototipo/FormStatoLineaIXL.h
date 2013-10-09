@@ -29,14 +29,14 @@ using namespace System::Threading::Tasks;
 	{
 		tabellaItinerari ^tabItinerari;
 		EventQueue ^eventiItinerario;
-		Dictionary<int,Button^> ^listbutton;
+		//Dictionary<int,Button^> ^listbutton;
 		Dictionary<int,Button^> ^listbuttonCDB;
 	public:
 
 		FormStatoLineaIXL(EventQueue ^ev)
 		{
 			eventiItinerario=ev;
-			listbutton= gcnew Dictionary<int,Button^> ();
+		//	listbutton= gcnew Dictionary<int,Button^> ();
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			
 			this->ControlBox=false;
@@ -52,7 +52,7 @@ using namespace System::Threading::Tasks;
 		}
 		void genera();
 		void aggiorna();
-		void findandset(int id, int stato);
+		//void findandset(int id, int stato);
 		void findandsetCDB(int id, int stato);
 	private: 
 			 //List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);

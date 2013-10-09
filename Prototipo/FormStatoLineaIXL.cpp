@@ -35,13 +35,13 @@ void Prototipo::FormStatoLineaIXL::aggiorna(){
 		if(eventiItinerario!=nullptr){
 			Event ^even = eventiItinerario->getEvent();
 			if(even!=nullptr){
-				StateItinerario ^st =	even->getEventStateItinerario();
+			/*	StateItinerario ^st =	even->getEventStateItinerario();
 				if(st!=nullptr){
 					int id =	st->getNID_ITIN();
 					int stato =	st->getQ_STATOITIN();
 
 					findandset(id,stato);
-				}else{
+				}else{*/
 					StateCDB ^stCDB =	even->getEventStateCDB();
 					if(stCDB!=nullptr){
 						int id =	stCDB->getNID_CDB();
@@ -52,7 +52,7 @@ void Prototipo::FormStatoLineaIXL::aggiorna(){
 					}
 				}
 
-			}
+			/*}*/
 
 		}
 
@@ -61,7 +61,7 @@ void Prototipo::FormStatoLineaIXL::aggiorna(){
 
 }
 
-void Prototipo::FormStatoLineaIXL::findandset(int id, int stato){
+/*void Prototipo::FormStatoLineaIXL::findandset(int id, int stato){
 	if(listbutton->ContainsKey(id)){
 		if(stato==typeStateItineraio::itinerarioStatoInAtto){
 			listbutton[id]->BackColor= System::Drawing::Color::Red;
@@ -74,7 +74,7 @@ void Prototipo::FormStatoLineaIXL::findandset(int id, int stato){
 	}
 
 
-}
+}*/
 
 void  Prototipo::FormStatoLineaIXL::findandsetCDB(int id, int stato){
 	if(listbuttonCDB->ContainsKey(id)){

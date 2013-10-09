@@ -26,6 +26,12 @@ using namespace System::Threading::Tasks;
 	{
 		Dictionary<int,Button^> ^listbuttonCDB;
 		EventQueue ^eventiATC;
+		System::Windows::Forms::ToolTip ^ToolTip1;
+		tableLayoutPanelAllCDB ^tableCDB;
+
+		delegate void GoCallback(int id, int stato , int nid_op, int nid_engine);
+		GoCallback^ myDelegate;
+	
 	public:
 		FormStatoLineaATC(EventQueue ^ev)
 		{
@@ -34,6 +40,9 @@ using namespace System::Threading::Tasks;
 
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			genera();
+			ToolTip1 = gcnew System::Windows::Forms::ToolTip();
+
+			myDelegate = gcnew GoCallback( this, &FormStatoLineaATC::findandsetCDB );
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
@@ -41,7 +50,7 @@ using namespace System::Threading::Tasks;
 		void genera();
 		void aggiorna();
 	
-		void findandsetCDB(int id, int stato);
+		void findandsetCDB(int id, int stato , int nid_op, int nid_engine);
 	protected:
 		/// <summary>
 		/// Liberare le risorse in uso.
