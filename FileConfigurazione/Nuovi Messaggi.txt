@@ -1,132 +1,17 @@
-STATO Linea IXL
-MESSAGGIO_ID 03  PackgeID 00 + 03 + 04 + 255
 
-NID_MESSAGE : 8;
-L_MESSAGE : 11;
-T_IXL : 32;
+TRENO 65280
 
-PKG(00) Stato Linea sizebit(73+N_ITER*36)
-NID_PACKET : 8;
-L_PACKET : 13;
-NID_CDB : 32;
-Q_STATOCDB : 2;
-Q_DEVIATIOIO : 2;
-N_ITER : 16;
-NID_CDB : 32;
-Q_STATOCDB : 2;
-Q_DEVIATIOIO : 2;
+Presentazione valori 115;16;258;65280;25;53;3610 730220000020401FE003203500000E1A00
 
-PKG(03) Stato Itinerari sizebit(71+N_ITER*34)
-NID_PACKET : 8;
-L_PACKET : 13;
-NID_ITIN : 32;
-Q_STATOITIN : 2;
-N_ITER : 16;
-NID_ITIN : 32;
-STATO_ITIN : 2;
-
-PKG(04) Stato Segnali sizebit(71+N_ITER*34)
-NID_PACKET : 8;
-L_PACKET : 13;
-NID_SEGN : 32;
-Q_STATOSTATOSEGN : 2;
-N_ITER : 16;
-NID_SEGN : 32;
-Q_STATOSTATOSEGN : 2;
-
-PKG(255) End sizebit(8)
-NID_PACKET : 8;
---------------------------------------------------------------------------------------------------
-
-Comando Itinerari da ATS a IXL
-MESSAGGIO_ID 10  PackgeID 10 + 255
-
-NID_MESSAGE : 8;
-L_MESSAGE : 11;
-T_ATS : 32;
-
-PKG(10) Comando Itinerari  sizebit(55)
-NID_PACKET : 8;
-L_PACKET : 13;
-NID_ITIN : 32;
-Q_CMDITIN: 2;
-
-PKG(255) End
-NID_PACKET : 8;
-
------------------------------------------------------------------------------------------------------
-
-Comando direzione Blocco da ATS a IXL
-MESSAGGIO_ID 11  PackgeID 11 + 255
-
-NID_MESSAGE : 8;
-L_MESSAGE : 11;
-T_ATS : 32;
-
-PKG(11) Comando Blocco sizebit(55)
-NID_PACKET : 8;
-L_PACKET : 13;
-NID_BLOCCO: 32;
-Q_CMDBLOCCO: 2;
-
-PKG(255) End
-NID_PACKET : 8;
+ACK  110;17;32;65280;162;54;12;1 6E0220000004001FE01440360000000C80
 
 
------------------------------------------------------------------------------------------------------
-structuredHeader 3+1
-NID_MESSAGE : 8;
-L_MESSAGE : 11;
-T_TRAIN : 32;
-NID_ENGINE : 24;
-	
-201 commandData 3+3+1
-NID_PACKET : 8;
-L_PACKET : 13;
-Q_COMMAND_TYPE : 3;
-M_GOA_LEVEL : 2;
-NID_OPERATIONAL : 32;
-PADDING : 5;
-	
-1 pkgstatolinea 3+7+k
-NID_PACKET : 8;
-L_PACKET : 13;
-NID_OPERATIONAL : 32;
-NID_CDB : 32;
-Q_STATOCDB : 2;
-Q_DEVIATIOIO : 2;
-N_ITER : 5;	
-	
-210 missionAck 4+4
-NID_PACKET : 8;
-L_PACKET : 13;
-T_TRAIN : 32;
-Q_MISSION_RESPONSE : 1;
-padding : 7;
--------------------------------------
 
- 215 presentation 4+3
-NID_PACKET : 8;
-L_PACKET : 13;
-M_PORT : 32;
-	
-200 missionData 3+6+k1+6+k2
-NID_PACKET : 8;
-L_PACKET : 13;
-Q_SCALE : 2;
-D_MISSION : 15;
-V_MISSION : 7;
-N_ITER1 : 5;
-D_MISSION : 15;
-V_MISSION : 7;
-T_START_TIME : 12;
-NID_LRGB : 24;
-D_STOP : 15;
-Q_DOORS : 4;
-T_DOORS_TIME : 12;
-N_ITER2 : 5;
-T_START_TIME : 12;
-NID_LRGB : 24;
-D_STOP : 15;
-Q_DOORS : 4;
-T_DOORS_TIME : 12;
+
+TRENO 65315
+
+
+Presentazione valori 115;16;258;65315;25;53;3610 730220000020401FE463203500000E1A00
+
+ACK  110;17;32;65315;162;54;12;1  6E0220000004001FE47440360000000C80
+

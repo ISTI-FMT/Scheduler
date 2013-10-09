@@ -50,7 +50,7 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 			Thread::Sleep(100);
 			wdogs->onNext();
 			
-			Event ^eventoATO;
+			
 
 			int enginenumber = phisical->getEngineNumber();
 

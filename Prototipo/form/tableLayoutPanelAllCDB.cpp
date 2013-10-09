@@ -17,7 +17,7 @@ void tableLayoutPanelAllCDB::init(){
 	// tableLayoutPanel1
 	// 
 	this->tableLayoutPanel1->AutoSize = true;
-	this->tableLayoutPanel1->ColumnCount = 23;
+	this->tableLayoutPanel1->ColumnCount = 24;
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
@@ -45,7 +45,7 @@ void tableLayoutPanelAllCDB::init(){
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
-
+	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 
 	this->tableLayoutPanel1->Cursor = System::Windows::Forms::Cursors::Hand;
 	this->tableLayoutPanel1->Location = System::Drawing::Point(0, 0);

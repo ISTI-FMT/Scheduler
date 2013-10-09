@@ -45,15 +45,15 @@ void ThreadSchedule::SimpleSchedule(){
 		Init();
 		int statoInterno = StateSimpleSchedule::PresentazioneTreno;
 		int indicelistaitinerari=0;
-		List<Fermata^> ^listaitinerari;
+	
 		DateTime time=DateTime::Now;
-		StateObject ^inviato;
+	
 		int trn =0;
 		while(true){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
 			Thread::Sleep(100);
-			wdogs->onNext();
-			int enginenumber;
+			//wdogs->onNext();
+		
 			Event ^eventoATO;
 
 
