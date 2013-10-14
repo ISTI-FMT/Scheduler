@@ -458,9 +458,11 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 	if(controllacdb(listaNIDcdb)){
 
 		SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione);
-		if(!listIdCdbItinRic->Contains(listaNIDcdb[0])){
-			listIdCdbItinRic->Add(listaNIDcdb[0]);
-		}
+		listIdCdbItinRic = gcnew List<int>();
+		listIdCdbItinRic->AddRange(listaNIDcdb);
+		//if(!listIdCdbItinRic->Contains(listaNIDcdb[0])){
+		//	listIdCdbItinRic->Add(listaNIDcdb[0]);
+		//}
 	}else{
 		//Thread::Sleep(500);
 		Event ^even = EQueueIXL->getEvent();
@@ -471,10 +473,34 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 			if(statocdb!=nullptr){
 				if(listIdCdbItinRic->Contains(statocdb->getNID_CDB()) ){
 					if( statocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato  ){
-						return true;
+						listIdCdbItinRic->Remove(statocdb->getNID_CDB());
 					}
 				}
+				if(listIdCdbItinRic->Count==0){
+					return true;
+				}
 			}
+		}else{
+			int len = listIdCdbItinRic->Count;
+			for each (int varcdb in listIdCdbItinRic)
+			{
+				StateCDB ^statocorrentecdb = managerIXL->StatoCDB(varcdb);
+				if(statocorrentecdb!=nullptr){
+					if(statocorrentecdb->getQ_STATOCDB()!=typeStateCDB::cdbImpegnato){
+						return false;
+					}else{
+						if(statocorrentecdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato){
+							len--;
+						}
+					}
+
+				}
+
+			}
+			if(len==0){
+				return true;
+			}
+
 		}
 	}
 

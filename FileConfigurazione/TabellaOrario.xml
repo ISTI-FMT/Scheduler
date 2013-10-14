@@ -170,5 +170,53 @@
 
   </treno>
 
+  
+  
+ <treno id="1151">
+ 
+  <stazione id="12000"  name="Piazza Dante">
+    <arrivo>17:13:00</arrivo>
+    <partenza>17:15:00</partenza>
+    <binarioprogrammato>3</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+ <itinerarioUscita id="903">III-01</itinerarioUscita>
+  </stazione>
+  
+  
+    <stazione id="15000"  name="Via Verdi">
+    <arrivo>17:20:00</arrivo>
+    <partenza>17:22:00</partenza>
+    <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+ <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+<itinerarioUscita id="907">II-02</itinerarioUscita>
+  </stazione>
+  
+    <stazione id="14000"  name="Piazza Università">
+    <arrivo>17:30:00</arrivo>
+    <partenza>17:35:00</partenza>
+    <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+ <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+<itinerarioUscita id="907">II-02</itinerarioUscita>
+  </stazione>
 
+  
+ <stazione id="13000"  name="Via Accademia">
+    <arrivo>17:40:00</arrivo>
+    <partenza>17:45:00</partenza>
+    <binarioprogrammato>2</binarioprogrammato>
+	<latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
+<itinerarioEntrata id="903">01-II</itinerarioEntrata>
+  </stazione>
+
+
+
+
+
+ 
+
+ 
+
+</treno>
 </orario>

@@ -48,7 +48,7 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 		}
 	}
 	Dictionary<int,List<StateCDB^>^>::ValueCollection^ valuestab =tabellaTRenoListCDB->Values;
-	/*for each (List<StateCDB^>^listcdbetmpo in valuestab )
+	/**/for each (List<StateCDB^>^listcdbetmpo in valuestab )
 	{
 
 
@@ -64,7 +64,7 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 					ncdbdel->setQ_STATOCDB(typeStateCDB::cdbLibero);
 					ncdbdel->setNID_ENGINE(0);
 					ncdbdel->setNID_OPERATIONAL(0);
-					addCheckAndSet(ncdbdel,"me");
+					addCheckAndSet(ncdbdel,"ATS-ATS");
 					i--;
 
 
@@ -72,7 +72,7 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 			}
 
 		}
-	}*/
+	}
 	/*List<StateCDB^> ^listcdb=nullptr ;
 	int idtreno = listaCDB[0]->getNID_OPERATIONAL();
 	if(idtreno>0){
