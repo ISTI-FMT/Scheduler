@@ -463,11 +463,12 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 		//if(!listIdCdbItinRic->Contains(listaNIDcdb[0])){
 		//	listIdCdbItinRic->Add(listaNIDcdb[0]);
 		//}
-	}else{
+	//}else{
 		//Thread::Sleep(500);
 		Event ^even = EQueueIXL->getEvent();
 
-		if(even!=nullptr){
+		if(false){
+			int len = listIdCdbItinRic->Count;
 			Console::WriteLine("PReLEVATO: {0}",even->ToString());
 			StateCDB ^statocdb =even->getEventStateCDB();
 			if(statocdb!=nullptr){

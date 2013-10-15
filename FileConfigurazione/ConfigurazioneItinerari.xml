@@ -441,7 +441,7 @@
 
       </partenza>
       <partenza id="903" name="III-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="12303" nextcdb="0"  nextstation="15000" >     
-          <cdb>12303</cdb>
+          
           <cdb>12016</cdb>
           <cdb>12015</cdb>
           <cdb>12012</cdb>
