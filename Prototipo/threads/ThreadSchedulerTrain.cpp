@@ -455,6 +455,7 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 	//if((managerIXL->getItinerario(idstazione+iditinerario)->getQ_STATOITIN()==typeStateItineraio::itinerarioStatoNonInAtto)){
 	//controllo dei cdb che fanno parte dell'itinerario che devono essere liberi
 	List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
+	
 	if(controllacdb(listaNIDcdb)){
 
 		SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione);
@@ -462,12 +463,13 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 		listIdCdbItinRic->AddRange(listaNIDcdb);
 		//if(!listIdCdbItinRic->Contains(listaNIDcdb[0])){
 		//	listIdCdbItinRic->Add(listaNIDcdb[0]);
-		//}
+	}
 	//}else{
 		//Thread::Sleep(500);
-		Event ^even = EQueueIXL->getEvent();
+		
 
 		if(false){
+			Event ^even = EQueueIXL->getEvent();
 			int len = listIdCdbItinRic->Count;
 			Console::WriteLine("PReLEVATO: {0}",even->ToString());
 			StateCDB ^statocdb =even->getEventStateCDB();
@@ -502,7 +504,7 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 				return true;
 			}
 
-		}
+		//}
 	}
 
 

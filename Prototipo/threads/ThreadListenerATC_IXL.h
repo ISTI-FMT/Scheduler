@@ -23,6 +23,8 @@ ref class ThreadListenerATC_IXL
 	static int port;
 	static bool isMessageReceived;
 	static bool _shouldStop;
+	static array<Byte>^ end_byte_old;
+	static array<Byte>^ end_byte_old_ATC;
 public:
 	/*ThreadListenerATC_IXL();*/
 	ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC, ManagerStatoLineaATC ^MA);

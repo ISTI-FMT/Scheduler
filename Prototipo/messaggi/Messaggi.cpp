@@ -244,20 +244,24 @@ int Messaggi::getSize(){
 	// 51 bit per l'header
 	//24 di engine dove serve
 	int len =51;
-	switch (NID_MESSAGE)
-	{
-	case MessATO::MissionPlan : {len+=pkgMP->getSize();break;}
-	case MessATO::UnconditionCommand : {len+=pkgcd1->getSize();break;}
-	case MessATO::Presentation : {len+=24+pgkPres->getSize();break;}
-	case MessATC::StatoLineaATC : {len+=pkgPositionDataATC->getSize();//+ pkgEnd->getSize();
-		break;}
-	case MessATO::Acknol :{len+=24+pkgAck->getSize();break;}
-	case MessIXL::StatoLineaIXL: {len += pkgStatoLineaIXL->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize();//+ pkgStatoItinerari->getSize()
-		break;}
-	case MessIXL::FaultReportingIXL: {len += pkgFaultData->getSize(); break;}
-	case MessIXL::ComandoItinerari: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
-	case MessIXL::ComandoBlocco: {len +=pkgComandoBlocco->getSize()+ pkgEnd->getSize(); break;}
-	default: break;
+	try{
+		switch (NID_MESSAGE)
+		{
+		case MessATO::MissionPlan : {len+=pkgMP->getSize();break;}
+		case MessATO::UnconditionCommand : {len+=pkgcd1->getSize();break;}
+		case MessATO::Presentation : {len+=24+pgkPres->getSize();break;}
+		case MessATC::StatoLineaATC : {len+=pkgPositionDataATC->getSize();//+ pkgEnd->getSize();
+			break;}
+		case MessATO::Acknol :{len+=24+pkgAck->getSize();break;}
+		case MessIXL::StatoLineaIXL: {len += pkgStatoLineaIXL->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize();//+ pkgStatoItinerari->getSize()
+			break;}
+		case MessIXL::FaultReportingIXL: {len += pkgFaultData->getSize(); break;}
+		case MessIXL::ComandoItinerari: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
+		case MessIXL::ComandoBlocco: {len +=pkgComandoBlocco->getSize()+ pkgEnd->getSize(); break;}
+		default: break;
+		}
+	}catch(Exception ^e){
+		return 1345;
 	}
 	int size = (len/8)+1;
 	return size ;

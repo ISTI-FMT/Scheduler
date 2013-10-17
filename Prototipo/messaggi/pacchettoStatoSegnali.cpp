@@ -29,7 +29,9 @@ int pacchettoStatoSegnali::getSize()
 	// 38 per la parte fissa
 	size += 74;
 	// 12 bit per ogni N_ITER
-	size += 37 * N_ITER;
+	if(N_ITER>0){
+		size += 37 * N_ITER;
+	}
 
 	return size;
 }

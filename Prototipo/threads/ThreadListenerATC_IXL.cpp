@@ -24,6 +24,7 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 	isMessageReceived=false;
 	port = 4010;
 	_shouldStop=false;
+	end_byte_old = nullptr;
 }
 
 void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
@@ -41,47 +42,109 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	Messaggi ^pkt1 = gcnew Messaggi();
 
+	int len =receiveBytes->Length;
 
-	pkt1->deserialize(receiveBytes);
+	int index=0;
+	bool scarta=false;
+	if(len>50){
+		array<Byte>^ end_byte = gcnew array<Byte>(1316); 
+		for (int i = 8; i < len; i++)
+		{
+			end_byte[index]=receiveBytes[i];
+			index++;
+		}
+		if(end_byte_old==nullptr){
+			end_byte_old=end_byte;
+		}else{
+			int ind=0;
+			for each (Byte ^Bytevar in end_byte_old)
+			{
+				String ^A =  Bytevar->ToString();
+				String ^B = end_byte[ind].ToString();
+				if(A->Equals(B)){
+					scarta=true;
+				}else{
+					scarta=false; 
+					end_byte_old=end_byte;
+					break;
+				}
+				ind++;
+			}
+
+			isMessageReceived = true;
+		}
+	}else{
+		array<Byte>^ end_byte = gcnew array<Byte>(39); 
+		for (int i = 8; i < len; i++)
+		{
+			end_byte[index]=receiveBytes[i];
+			index++;
+		}
+		if(end_byte_old_ATC==nullptr){
+			end_byte_old_ATC=end_byte;
+		}else{
+			int ind=0;
+			for each (Byte ^Bytevar in end_byte_old_ATC)
+			{
+				String ^A =  Bytevar->ToString();
+				String ^B = end_byte[ind].ToString();
+				if(A->Equals(B)){
+					scarta=true;
+				}else{
+					scarta=false; 
+					end_byte_old_ATC=end_byte;
+					break;
+				}
+				ind++;
+			}
+
+			isMessageReceived = true;
+		}
+
+
+	}
+	if(!scarta){
+		pkt1->deserialize(receiveBytes);
+
 
 #ifdef TRACE
 
-	Logger::Info(pkt1->getNID_MESSAGE(),"ATC/IXL->ATS",ipEndPoint->Address->ToString(),pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
+		Logger::Info(pkt1->getNID_MESSAGE(),"ATC/IXL->ATS",ipEndPoint->Address->ToString(),pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
 
 #endif // TRACE
 
 
-	Console::ForegroundColor = ConsoleColor::Red;
-	Console::WriteLine("{0} ATC/IXL ti ha inviato un messaggio",ipEndPoint->Address->ToString());
-	//Console::WriteLine(pkt1->ToString());
-	Console::ResetColor();
+		Console::ForegroundColor = ConsoleColor::Red;
+		Console::WriteLine("{0} ATC/IXL ti ha inviato un messaggio",ipEndPoint->Address->ToString());
+		//Console::WriteLine(pkt1->ToString());
+		Console::ResetColor();
 
-	isMessageReceived = true;
+		isMessageReceived = true;
 
-	//aggiorniamo il manager  11 è stato linea ATC mentre 1 è stato linea IXL
+		//aggiorniamo il manager  11 è stato linea ATC mentre 1 è stato linea IXL
 
 
-	switch (pkt1->getNID_MESSAGE())
-	{
-	case MessATC::StatoLineaATC: {
-		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoPositionDataATC()->getListCDB(),"ATC");
-		break;
+		switch (pkt1->getNID_MESSAGE())
+		{
+		case MessATC::StatoLineaATC: {
+			ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoPositionDataATC()->getListCDB(),"ATC");
+			break;
 
-								 }
-	case  MessIXL::StatoLineaIXL: {
+									 }
+		case  MessIXL::StatoLineaIXL: {
 
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
-		//ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
+			ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
+			//ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
 
-		break;
-								  }
+			break;
+									  }
 
-	default:
-		break;
+		default:
+			break;
+		}
+
+
 	}
-
-
-
 }
 
 
@@ -93,7 +156,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
-		udpClient->Client->ReceiveBufferSize=0;
+		udpClient->Client->ReceiveBufferSize=2048;
 		while ( !_shouldStop )
 		{
 			// Receive a message and write it to the console.
@@ -108,8 +171,8 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 			// we'll just sleep
 			while (!isMessageReceived & !_shouldStop)
 			{
-				Thread::Sleep(1000);
-				///isMessageReceived=true;
+				Thread::Sleep(100);
+				////isMessageReceived=true;
 			}
 			isMessageReceived=false;
 			// Set the TcpListener on port 13000.
