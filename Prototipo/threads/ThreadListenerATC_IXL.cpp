@@ -74,7 +74,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 			isMessageReceived = true;
 		}
 	}else{
-		array<Byte>^ end_byte = gcnew array<Byte>(39); 
+		array<Byte>^ end_byte = gcnew array<Byte>(len-8); 
 		for (int i = 8; i < len; i++)
 		{
 			end_byte[index]=receiveBytes[i];

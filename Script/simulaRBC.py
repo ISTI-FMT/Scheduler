@@ -213,7 +213,6 @@ def messageRBC1(list):
 	niter=len(list)-1
 	push(buff,niter , 16, 168); #N_ITER
 	offset = 184;
-	print niter
 	for i in range(1,niter+1):
 		push(buff,  list[i][0], 32, offset);
 		offset+=32
@@ -221,7 +220,6 @@ def messageRBC1(list):
 		offset+=32
 		push(buff, list[i][2], 32, offset);
 		offset+=32
-		print offset
 	return buff
 	
 
@@ -268,27 +266,34 @@ UDP_PORT = 1111
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 sock.bind((UDP_IP, UDP_PORT))
+sock.setblocking(0)
 list={0:[0,0,0],1:[0,0,0]}
 while 1:
-	data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-	buff = map(ord,data)
-	result = des_messageRBC_new(buff)
-	if result[0]==65280:
-		list[0]=result
-	if result[0]==65281:
-		list[1]=result
-	print "received message:", data
+	try:
+		data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
+		buff = map(ord,data)
+		result = des_messageRBC_new(buff)
+		if result[0]==65280:
+			list[0]=result
+		if result[0]==65281:
+			list[1]=result
+		print "received message:", data
+		
+	except socket.error as msg:
+        #sock.close() 
+		print msg
 	print "list ", list 
 	buff = messageRBC1(list)
 	sendUDP(buff,4010)
-	raw_input("-->> PRESS ENTER <<<--- ")
+	time.sleep(0.5)
+	#raw_input("-->> PRESS ENTER <<<--- ")
 
 	
 exit(0)
 #### MOVIMENTO ######
 for line in spamReader:
 	for element in line:
-		sendBytes = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+		sendBytes = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 		push(sendBytes, 18, 8, 0); #//nid_msg
 		push(sendBytes, 12, 10, 8); #//L_msg
 		push(sendBytes, 5555, 32, 18); #//T_msg
@@ -300,7 +305,7 @@ for line in spamReader:
 		buff = messageRBC(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 		for i in range(0,70):
 			sendUDP(buff,4010)
-			time.sleep(0.1)
+			time.sleep(1)
 		raw_input("-->> PRESS ENTER <<<--- ")
 		
 

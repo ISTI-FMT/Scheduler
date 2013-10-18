@@ -22,7 +22,7 @@ i pacchetti da inserire nel messaggio*/
 //questa classe rappresenta un messaggio cosi come definito nei documenti di specifica
 //e contiene i metodi per serializzare e desirializzare un messaggio
 
-enum  MessATC{ StatoLineaATC = 51,  FaultReportingATC = 12 };
+enum  MessATC{ StatoLineaATC = 11,  FaultReportingATC = 12 };
 enum  MessIXL{ StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231};
 enum  MessATO{ MissionPlan = 100,  FaultReportingATO = 113, UnconditionCommand=101, Acknol=110,Presentation=115 };
 ref class Messaggi
