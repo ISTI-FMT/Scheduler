@@ -45,6 +45,7 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 		int indicelistaitinerari=0;
 		List<Fermata^> ^listaitinerari;
 		DateTime time=DateTime::Now;
+		DateTime timeStatoInterno=DateTime::Now;
 		StateObject ^inviato;
 		int trn =0;
 		while(!_shouldStop){
@@ -56,12 +57,12 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 
 			int enginenumber = phisical->getEngineNumber();
 
-			TimeSpan sec = DateTime::Now - time;
+			TimeSpan sec = DateTime::Now - timeStatoInterno;
 			if(sec.TotalSeconds>20){
 				StampaStato(statoInterno);
 
 
-				time=DateTime::Now;
+				timeStatoInterno=DateTime::Now;
 			}
 
 
@@ -105,7 +106,9 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 									if(sec.TotalSeconds>20){
 										//riinvia
 										inviato->fine=0;
+										if(inviato->workSocket!=nullptr){
 										inviato->workSocket->Close();
+										}
 										inviato = SendTCPMsg(trn,phisical);
 										time=DateTime::Now;
 										Console::WriteLine(time);
@@ -373,8 +376,9 @@ StateObject ^ ThreadSchedulerTrain::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 		StateObject^ so2 = gcnew StateObject;
 		so2->workSocket = sock;
-		sock->BeginReceive( so2->buffer, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedulerTrain::ReceiveCallback ), so2 );
 		so2->fine=-1;
+		sock->BeginReceive( so2->buffer, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedulerTrain::ReceiveCallback ), so2 );
+		
 
 		return so2;
 	}
@@ -463,6 +467,8 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 		listIdCdbItinRic->AddRange(listaNIDcdb);
 		//if(!listIdCdbItinRic->Contains(listaNIDcdb[0])){
 		//	listIdCdbItinRic->Add(listaNIDcdb[0]);
+		timeRicIXL=DateTime::Now;
+			
 	}
 	//}else{
 		//Thread::Sleep(500);
@@ -484,12 +490,16 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 				}
 			}
 		}else{
+			if(listIdCdbItinRic!= nullptr){
 			int len = listIdCdbItinRic->Count;
 			for each (int varcdb in listIdCdbItinRic)
 			{
 				StateCDB ^statocorrentecdb = managerIXL->StatoCDB(varcdb);
 				if(statocorrentecdb!=nullptr){
 					if(statocorrentecdb->getQ_STATOCDB()!=typeStateCDB::cdbImpegnato){
+						TimeSpan sec = DateTime::Now - timeRicIXL;
+						if(sec.TotalSeconds>10)
+							listIdCdbItinRic= nullptr;
 						return false;
 					}else{
 						if(statocorrentecdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato){
@@ -503,7 +513,9 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 			if(len==0){
 				return true;
 			}
-
+			}else{
+				return false;
+			}
 		//}
 	}
 

@@ -29,9 +29,9 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 
 void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	//Thread::Sleep(1000);
-	Console::ForegroundColor = ConsoleColor::Red;
-	Console::WriteLine( "ATC/IXL Connected!" );
-	Console::ForegroundColor = ConsoleColor::White;
+	//Console::ForegroundColor = ConsoleColor::White;
+	//Console::WriteLine( "ATC/IXL Connected!" );
+	//Console::ForegroundColor = ConsoleColor::White;
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
 
 	//Console::WriteLine("{0} ttl",recv_udpClient->Ttl);
@@ -47,7 +47,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	int index=0;
 	bool scarta=false;
 	if(len>50){
-		array<Byte>^ end_byte = gcnew array<Byte>(1316); 
+		array<Byte>^ end_byte = gcnew array<Byte>(len-8); 
 		for (int i = 8; i < len; i++)
 		{
 			end_byte[index]=receiveBytes[i];
@@ -83,27 +83,32 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 		if(end_byte_old_ATC==nullptr){
 			end_byte_old_ATC=end_byte;
 		}else{
-			int ind=0;
-			for each (Byte ^Bytevar in end_byte_old_ATC)
-			{
-				String ^A =  Bytevar->ToString();
-				String ^B = end_byte[ind].ToString();
-				if(A->Equals(B)){
-					scarta=true;
-				}else{
-					scarta=false; 
-					end_byte_old_ATC=end_byte;
-					break;
-				}
-				ind++;
-			}
 
+			if(end_byte_old_ATC->Length!=end_byte->Length){
+				end_byte_old_ATC=end_byte;
+			}else{
+				int ind=0;
+				for each (Byte ^Bytevar in end_byte_old_ATC)
+				{
+					String ^A =  Bytevar->ToString();
+					String ^B = end_byte[ind].ToString();
+					if(A->Equals(B)){
+						scarta=true;
+					}else{
+						scarta=false; 
+						end_byte_old_ATC=end_byte;
+						break;
+					}
+					ind++;
+				}
+			}
 			isMessageReceived = true;
 		}
 
 
 	}
 	if(!scarta){
+		Console::WriteLine( "ATC/IXL Connected! Messaggio Accettato" );
 		pkt1->deserialize(receiveBytes);
 
 
@@ -128,6 +133,8 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 		{
 		case MessATC::StatoLineaATC: {
 			ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoPositionDataATC()->getListCDB(),"ATC");
+			Console::ForegroundColor = ConsoleColor::White;
+			Console::WriteLine("ricevuto messaggio da ATC");
 			break;
 
 									 }
@@ -135,7 +142,8 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 			ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
 			//ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
-
+			Console::ForegroundColor = ConsoleColor::White;
+			Console::WriteLine("ricevuto messaggio da IXL");
 			break;
 									  }
 

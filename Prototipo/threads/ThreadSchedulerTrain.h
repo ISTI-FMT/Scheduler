@@ -28,6 +28,7 @@ ref class ThreadSchedulerTrain
 	ConfigurazioneVelocita ^confVelocita;
 	phisicalTrain ^phisical;
 	bool _shouldStop;
+	DateTime timeRicIXL;
 public:
 	//ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 	
