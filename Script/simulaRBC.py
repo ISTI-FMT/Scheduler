@@ -36,7 +36,7 @@ def getbit(buf, offset):
   Byteoffset = offset/8;
   bitoffset = offset%8;
   workByte= buf[Byteoffset];
-  masks = [-128,64,32,16,8,4,2,1]; 
+  masks = [128,64,32,16,8,4,2,1]; 
   res = (workByte & masks[bitoffset]) != 0;
   return res;
 
@@ -201,7 +201,7 @@ def messageRBC_ST(buff,buff1):
 '''	
 	
 def messageRBC1(list):
-	buff = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+	buff = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 	push(buff, 11, 8, 0); #//nid_msg
 	push(buff, 17, 11, 8); #//L_msg
 	push(buff, 32, 32, 19); #//T_msg
@@ -211,6 +211,7 @@ def messageRBC1(list):
 	push(buff, list[0][1], 32, 104);
 	push(buff, list[0][2], 32, 136);
 	niter=len(list)-1
+	print niter
 	push(buff,niter , 16, 168); #N_ITER
 	offset = 184;
 	for i in range(1,niter+1):
@@ -267,7 +268,7 @@ UDP_PORT = 1111
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 sock.bind((UDP_IP, UDP_PORT))
 sock.setblocking(0)
-list={0:[0,0,0],1:[0,0,0]}
+list={0:[0,0,0],1:[0,0,0],2:[0,0,0],3:[0,0,0]}
 while 1:
 	try:
 		data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
@@ -277,15 +278,19 @@ while 1:
 			list[0]=result
 		if result[0]==65281:
 			list[1]=result
+		if result[0]==65315:
+			list[2]=result
+		if result[0]==65316:
+			list[3]=result
 		print "received message:", data
 		
 	except socket.error as msg:
         #sock.close() 
-		print msg
+		print "nessun messaggio ricevuto"
 	print "list ", list 
 	buff = messageRBC1(list)
 	sendUDP(buff,4010)
-	time.sleep(0.5)
+	time.sleep(2)
 	#raw_input("-->> PRESS ENTER <<<--- ")
 
 	

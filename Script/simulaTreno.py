@@ -38,7 +38,7 @@ def getbit(buf, offset):
   Byteoffset = offset/8;
   bitoffset = offset%8;
   workByte= buf[Byteoffset];
-  masks = [-128,64,32,16,8,4,2,1]; 
+  masks = [128,64,32,16,8,4,2,1]; 
   res = (workByte & masks[bitoffset]) != 0;
   return res;
 
@@ -135,11 +135,11 @@ def ReceiveTCP(TCP_PORT, ACK):
 	sock.listen(3)
 	conn, addr = sock.accept()
 	print 'Connection address:', addr
-	MESSAGE1 = conn.recv(10).strip()
+	MESSAGE1 = conn.recv(10)
 	print 'Prima ricezione: ',MESSAGE1
-	MESSAGE2 = conn.recv(14).strip()
+	MESSAGE2 = conn.recv(15)
 	print 'Seconda ricezione: ',MESSAGE2
-	MESSAGE3 = conn.recv(2048).strip()
+	MESSAGE3 = conn.recv(2048)
 	print 'Terza ricezione: ',MESSAGE3
 	conn.send(ACK)  # echo
 	conn.close()
@@ -147,6 +147,7 @@ def ReceiveTCP(TCP_PORT, ACK):
 	buffer1 = map(ord,MESSAGE1)
 	deserializzaCommandDATA(buffer1)
 	buffer2 = map(ord,MESSAGE2)
+	print "lenb",len(buffer2)
 	NID_OPERATIONAL = deserializzaCommandDATA(buffer2)
 	buffer3 = map(ord,MESSAGE3)
 	print "received data:", deserializzaMissionDATA(buffer3)

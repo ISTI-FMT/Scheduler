@@ -498,7 +498,7 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 				if(statocorrentecdb!=nullptr){
 					if(statocorrentecdb->getQ_STATOCDB()!=typeStateCDB::cdbImpegnato){
 						TimeSpan sec = DateTime::Now - timeRicIXL;
-						if(sec.TotalSeconds>10)
+						if(sec.TotalSeconds>3)
 							listIdCdbItinRic= nullptr;
 						return false;
 					}else{
