@@ -12,6 +12,7 @@
 #include "..\\manager\\ManagerStatoLineaIXL.h"
 #include "..\\StateObject.h"
 #include "..\\ConfVelocita\\ConfigurazioneVelocita.h"
+#include "..\\ParalellMethod.h"
 
 ref class ThreadSchedulerTrain
 {
@@ -43,6 +44,7 @@ public:
 	void RequestStop();
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 	static void SendCallback(IAsyncResult^ asyncResult);
+	
 
 };
 

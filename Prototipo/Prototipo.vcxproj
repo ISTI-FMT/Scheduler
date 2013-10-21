@@ -121,6 +121,7 @@
     <ClInclude Include="messaggi\StateScudetti.h" />
     <ClInclude Include="messaggi\StateSegnale.h" />
     <ClInclude Include="messaggi\utility.h" />
+    <ClInclude Include="ParalellMethod.h" />
     <ClInclude Include="phisicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
     <ClInclude Include="resource.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="messaggi\StateScudetti.cpp" />
     <ClCompile Include="messaggi\StateSegnale.cpp" />
     <ClCompile Include="messaggi\utility.cpp" />
+    <ClCompile Include="ParalellMethod.cpp" />
     <ClCompile Include="phisicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />

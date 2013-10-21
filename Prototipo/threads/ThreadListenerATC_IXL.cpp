@@ -26,7 +26,23 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 	_shouldStop=false;
 	end_byte_old = nullptr;
 }
+bool ThreadListenerATC_IXL::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B){
 
+	bool scarta = false;
+	for (int ind=8;ind<B->Length;ind++)
+	{
+		String ^A_string =  B[ind].ToString();
+		String ^B_string = A[ind].ToString();
+		if(A_string->Equals(B_string)){
+			scarta=true;
+		}else{
+			scarta=false; 
+			B=A;
+			break;
+		}
+	}
+	return scarta;
+}
 void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	//Thread::Sleep(1000);
 	//Console::ForegroundColor = ConsoleColor::White;
@@ -42,65 +58,55 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	Messaggi ^pkt1 = gcnew Messaggi();
 
-	int len =receiveBytes->Length;
 
-	int index=0;
+
+
+
 	bool scarta=false;
-	if(len>50){
-		array<Byte>^ end_byte = gcnew array<Byte>(len-8); 
-		for (int i = 8; i < len; i++)
-		{
-			end_byte[index]=receiveBytes[i];
-			index++;
-		}
-		if(end_byte_old==nullptr){
-			end_byte_old=end_byte;
-		}else{
-			int ind=0;
-			for each (Byte ^Bytevar in end_byte_old)
-			{
-				String ^A =  Bytevar->ToString();
-				String ^B = end_byte[ind].ToString();
-				if(A->Equals(B)){
-					scarta=true;
-				}else{
-					scarta=false; 
-					end_byte_old=end_byte;
-					break;
-				}
-				ind++;
-			}
 
+	int NID_MESSAGE= utility::pop(receiveBytes, 8, 0);
+
+	if(NID_MESSAGE==MessIXL::StatoLineaIXL){
+
+		if(end_byte_old==nullptr){
+			end_byte_old=receiveBytes;
+		}else{
+			if(end_byte_old->Length!=receiveBytes->Length){
+				end_byte_old=receiveBytes;
+			}else{
+				scarta = ConfrontaArrayByte(receiveBytes,end_byte_old);
+				if(!scarta)
+					end_byte_old=receiveBytes;
+			}
 			isMessageReceived = true;
 		}
 	}else{
-		array<Byte>^ end_byte = gcnew array<Byte>(len-8); 
-		for (int i = 8; i < len; i++)
-		{
-			end_byte[index]=receiveBytes[i];
-			index++;
-		}
+
+
 		if(end_byte_old_ATC==nullptr){
-			end_byte_old_ATC=end_byte;
+			end_byte_old_ATC=receiveBytes;
 		}else{
 
-			if(end_byte_old_ATC->Length!=end_byte->Length){
-				end_byte_old_ATC=end_byte;
+			if(end_byte_old_ATC->Length!=receiveBytes->Length){
+				end_byte_old_ATC=receiveBytes;
 			}else{
-				int ind=0;
+				scarta = ConfrontaArrayByte(receiveBytes,end_byte_old_ATC);
+				if(!scarta)
+					end_byte_old_ATC=receiveBytes;
+				/*int ind=0;
 				for each (Byte ^Bytevar in end_byte_old_ATC)
 				{
-					String ^A =  Bytevar->ToString();
-					String ^B = end_byte[ind].ToString();
-					if(A->Equals(B)){
-						scarta=true;
-					}else{
-						scarta=false; 
-						end_byte_old_ATC=end_byte;
-						break;
-					}
-					ind++;
+				String ^A =  Bytevar->ToString();
+				String ^B = end_byte[ind].ToString();
+				if(A->Equals(B)){
+				scarta=true;
+				}else{
+				scarta=false; 
+				end_byte_old_ATC=end_byte;
+				break;
 				}
+				ind++;
+				}*/
 			}
 			isMessageReceived = true;
 		}
@@ -108,13 +114,18 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	}
 	if(!scarta){
-		Console::WriteLine( "ATC/IXL Connected! Messaggio Accettato" );
+		String ^mittente = gcnew String("Sconosciuto");
+		if(NID_MESSAGE==MessATC::StatoLineaATC)
+			mittente="ATC";
+		if(NID_MESSAGE==MessIXL::StatoLineaIXL)
+			mittente="IXL";
+		Console::WriteLine( "{0} Connected! Messaggio Accettato",mittente );
 		pkt1->deserialize(receiveBytes);
 
 
 #ifdef TRACE
 
-		Logger::Info(pkt1->getNID_MESSAGE(),"ATC/IXL->ATS",ipEndPoint->Address->ToString(),pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
+		Logger::Info(pkt1->getNID_MESSAGE(),mittente+"->ATS",ipEndPoint->Address->ToString(),pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
 
 #endif // TRACE
 
@@ -160,7 +171,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 	try
 	{
 		Console::ForegroundColor = ConsoleColor::Red;
-		Console::Write( "Thread Udp ATC Start... " );
+		Console::WriteLine( "Thread Udp ATC Start... " );
 
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
@@ -222,3 +233,4 @@ void ThreadListenerATC_IXL::RequestStop()
 {
 	_shouldStop = true;
 }
+

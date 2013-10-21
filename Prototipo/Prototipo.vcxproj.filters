@@ -251,6 +251,9 @@
     <ClInclude Include="threads\ThreadSchedulerTrain.h">
       <Filter>File di intestazione\threads</Filter>
     </ClInclude>
+    <ClInclude Include="ParalellMethod.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -426,6 +429,9 @@
     </ClCompile>
     <ClCompile Include="FormStatoLineaIXL.cpp">
       <Filter>File di origine\form</Filter>
+    </ClCompile>
+    <ClCompile Include="ParalellMethod.cpp">
+      <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

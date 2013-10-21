@@ -3,7 +3,7 @@
 #include "..\\messaggi\\pacchettostatolineaatc.h"
 #include "..\\manager\\ManagerStatoLineaIXL.h"
 #include "..\\manager\\ManagerStatoLineaATC.h"
-
+#include "..\\ParalellMethod.h"
 
 using namespace System;
 
@@ -25,6 +25,7 @@ ref class ThreadListenerATC_IXL
 	static bool _shouldStop;
 	static array<Byte>^ end_byte_old;
 	static array<Byte>^ end_byte_old_ATC;
+	
 public:
 	/*ThreadListenerATC_IXL();*/
 	ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC, ManagerStatoLineaATC ^MA);
@@ -34,6 +35,7 @@ public:
 
     static void ReceiveCallback(IAsyncResult^ asyncResult);
 	static void RequestStop();
+	static bool ConfrontaArrayByte(array<Byte>^A,array<Byte>^B);
 	/*delegate void SetCallback(Messaggi ^msg);
 	SetCallback^ myDelegate;
 	void SetManager(Messaggi ^msg);*/
