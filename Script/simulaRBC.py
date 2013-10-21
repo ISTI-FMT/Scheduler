@@ -211,7 +211,6 @@ def messageRBC1(list):
 	push(buff, list[0][1], 32, 104);
 	push(buff, list[0][2], 32, 136);
 	niter=len(list)-1
-	print niter
 	push(buff,niter , 16, 168); #N_ITER
 	offset = 184;
 	for i in range(1,niter+1):
