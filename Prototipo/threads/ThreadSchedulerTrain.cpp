@@ -511,7 +511,9 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 
 			}
 			if(len==0){
+				listIdCdbItinRic= nullptr;
 				return true;
+
 			}
 			}else{
 				return false;
