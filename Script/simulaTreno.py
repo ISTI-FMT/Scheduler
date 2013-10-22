@@ -222,29 +222,35 @@ del spamReader[0][0]
 
 print "Sono il TRENO: ", NID_ENGINE
 #13301;13012;13011;13010;501;14020;14021;14022;14301;14012;14011;14010;502;15020;15021;15022;15301;15012;15011;503;12010;12011;12012;12301;12026;12025;12024;400;402;404;406;408;410;412;414;416;418;420;422;424;426;428;16020;16021;16022;16023;16302;16016;16015;16014;16013;440;442;444;446;448;17010;17011;17012;17013;17014;17302;17016;17018;17020
-
+NID_OPERATIONAL=0
 bandiera=True
 if(sys.argv[2]=='1'):
 	bandiera=False
+	op = sys.argv[1][18:22]
+	NID_OPERATIONAL=int(op)
 #####PRESENTAZIONE#####
 #115;16;258;65280;25;53;3610 Presentazione
-NID_OPERATIONAL=0
+
 
 if bandiera==True:
-	sendBytesP = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	push(sendBytesP, 115, 8, 0); #//nid_msg
-	push(sendBytesP, 16, 11, 8); #//L_msg
-	push(sendBytesP, 5555, 32, 19); #//T_msg
-	push(sendBytesP, NID_ENGINE, 24, 51); #//nid_op
-	push(sendBytesP, 25, 8, 75);
-	push(sendBytesP, 56, 13, 83);
-	push(sendBytesP, M_PORT, 32, 96);
-	print "Invio Presentazione"
-	sendTCP(sendBytesP)
-	print "Ricevo Wake-up TRN MISSION"
-	
-	NID_OPERATIONAL = ReceiveTCP(M_PORT,sendACk(NID_ENGINE))
-	print NID_OPERATIONAL
+	try:
+		sendBytesP = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+		push(sendBytesP, 115, 8, 0); #//nid_msg
+		push(sendBytesP, 16, 11, 8); #//L_msg
+		push(sendBytesP, 5555, 32, 19); #//T_msg
+		push(sendBytesP, 25, 8, 75);
+		push(sendBytesP, NID_ENGINE, 24, 51); #//nid_op
+		push(sendBytesP, 56, 13, 83);
+		push(sendBytesP, M_PORT, 32, 96);
+		print "Invio Presentazione"
+		sendTCP(sendBytesP)
+		print "Ricevo Wake-up TRN MISSION"
+		
+		NID_OPERATIONAL = ReceiveTCP(M_PORT,sendACk(NID_ENGINE))
+		print NID_OPERATIONAL
+	except socket.error as msg:
+        #sock.close() 
+		print "Nessuna Presentazione Eseguita, Avvia lo Scheduler",msg
 
 
 

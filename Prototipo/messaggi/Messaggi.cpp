@@ -182,10 +182,11 @@ void Messaggi::deserialize(array<Byte>^buffer)
 		}
 	}catch(Exception ^e){
 #ifdef TRACE
-		Logger::Exception(e,"Messaggi");
+		String ^module = "Errore -Messaggi- Messaggio non deserializzato: "+BitConverter::ToString(buffer);
+		Logger::Exception(e,module);
 #endif // TRACE
 		Console::ForegroundColor = ConsoleColor::Red;
-		Console::WriteLine( "Messaggi Errore deserializzazione: {0}", e->Message );
+		Console::WriteLine( "-Messaggi- Errore deserializzazione: {0}", e->Message );
 		Console::ResetColor();
 	}
 }
