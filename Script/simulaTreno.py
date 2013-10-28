@@ -181,7 +181,7 @@ def messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB):
 def sendACk(NID_ENGINE):
 	#110;17;32;65280;162;54;12;1 ACK
 	buffer = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	push(buffer, 110, 8, 0); #//nid_msg
+	push(buffer, 210, 8, 0); #//nid_msg
 	push(buffer, 17, 11, 8); #//L_msg
 	push(buffer, 32, 32, 19); #//T_msg
 	push(buffer, NID_ENGINE, 24, 51); #//NID_ENGINE
@@ -235,7 +235,7 @@ if(sys.argv[2]=='1'):
 if bandiera==True:
 	try:
 		sendBytesP = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-		push(sendBytesP, 115, 8, 0); #//nid_msg
+		push(sendBytesP, 215, 8, 0); #//nid_msg
 		push(sendBytesP, 16, 11, 8); #//L_msg
 		push(sendBytesP, 5555, 32, 19); #//T_msg
 		push(sendBytesP, 25, 8, 75);

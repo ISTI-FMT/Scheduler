@@ -103,7 +103,7 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 								else{
 									//aspetta un po
 									TimeSpan sec = DateTime::Now - time;
-									if(sec.TotalSeconds>20){
+									if(sec.TotalSeconds>1000){
 										//riinvia
 										inviato->fine=0;
 										if(inviato->workSocket!=nullptr){
@@ -355,7 +355,7 @@ StateObject ^ ThreadSchedulerTrain::SendTCPMsg(int trn, phisicalTrain ^Treno)
 #ifdef TRACE
 
 		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedulerTrain::WakeUP");
-
+	
 #endif // TRACE
 		sock->Send(bytes_buffer2);
 		//sock->BeginSend(bytes_buffer2, 0, trainRunningNumberPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
@@ -363,7 +363,7 @@ StateObject ^ ThreadSchedulerTrain::SendTCPMsg(int trn, phisicalTrain ^Treno)
 #ifdef TRACE
 
 		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedulerTrain::TRN");
-
+		Thread::Sleep(350);
 #endif // TRACE
 		sock->Send(bytes_buffer3);
 		//sock->BeginSend(bytes_buffer3, 0, missionPlanPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);

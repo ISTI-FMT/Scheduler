@@ -24,7 +24,7 @@ i pacchetti da inserire nel messaggio*/
 
 enum  MessATC{ StatoLineaATC = 11,  FaultReportingATC = 12 };
 enum  MessIXL{ StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231};
-enum  MessATO{ MissionPlan = 100,  FaultReportingATO = 113, UnconditionCommand=101, Acknol=110,Presentation=115 };
+enum  MessATO{ MissionPlan = 200,  FaultReportingATO = 113, UnconditionCommand=201, Acknol=210,Presentation=215 };
 ref class Messaggi
 {
 	// puntatore all'header per i messaggi ATS/ATO
