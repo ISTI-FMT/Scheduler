@@ -72,9 +72,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ResourceCompile Include="Prototipo.rc" />
+    <_EmbedManagedResourceFile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfigurazioneFermate.h">
+      <DependentUpon>..\FileConfigurazione\ConfigurazioneFermate.xsd</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="ConfigurazioneItinerari.h">
+      <DependentUpon>..\FileConfigurazione\ConfigurazioneItinerari.xsd</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="ConfigurazioneProfiliVelocita.h">
+      <DependentUpon>..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd</DependentUpon>
+    </ClInclude>
     <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
@@ -95,6 +104,9 @@
     <ClInclude Include="Itinerari\tabellaItinerari.h" />
     <ClInclude Include="logger\Logger.h" />
     <ClInclude Include="logger\TextBoxTraceListener.h" />
+    <ClInclude Include="MapTreni.h">
+      <DependentUpon>..\FileConfigurazione\MapTreni.xsd</DependentUpon>
+    </ClInclude>
     <ClInclude Include="mapTrenoFisicoLogico.h" />
     <ClInclude Include="messaggi\Fault.h" />
     <ClInclude Include="messaggi\Messaggi.h" />
@@ -132,6 +144,9 @@
     <ClInclude Include="manager\ManagerStatoLineaATC.h" />
     <ClInclude Include="manager\ManagerStatoLineaIXL.h" />
     <ClInclude Include="StateObject.h" />
+    <ClInclude Include="TabellaOrario.h">
+      <DependentUpon>..\FileConfigurazione\TabellaOrario.xsd</DependentUpon>
+    </ClInclude>
     <ClInclude Include="tabellaOrario\Fermata.h" />
     <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
@@ -204,6 +219,9 @@
     <ClCompile Include="wdogcontrol.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDB.csv">
+      <FileType>Document</FileType>
+    </_EmbedManagedResourceFile>
     <None Include="app.config">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
@@ -229,6 +247,20 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

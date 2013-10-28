@@ -9,18 +9,15 @@ using namespace System::Collections::Generic;
 mapTrenoFisicoLogico::mapTrenoFisicoLogico(void)
 {
 	map = gcnew Dictionary<int, TrenoFisicoLogico^>();
-}
-
-mapTrenoFisicoLogico::mapTrenoFisicoLogico(System::String^ s)
-{
-	map = gcnew Dictionary<int, TrenoFisicoLogico^>();
-	inizializza(s);
+	inizializza();
 }
 
 
-void mapTrenoFisicoLogico::inizializza(System::String^ s){
+
+void mapTrenoFisicoLogico::inizializza(){
 	try{
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(s);
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("MapTreni.xml");
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
 		while (reader->ReadToFollowing("map")){
 			System::Xml::XmlReader ^inner = reader->ReadSubtree();
 

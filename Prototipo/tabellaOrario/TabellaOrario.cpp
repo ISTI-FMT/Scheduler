@@ -16,13 +16,13 @@ using namespace System::Xml::Schema;
 TabellaOrario::TabellaOrario(void)
 {
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
-	schemaxsd="..\\FileConfigurazione\\TabellaOrario.xsd";
+	schemaxsd="TabellaOrario.xsd";
 }
 
 TabellaOrario::TabellaOrario(tabellaItinerari ^T)
 {
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
-	schemaxsd="..\\FileConfigurazione\\TabellaOrario.xsd";
+	schemaxsd="TabellaOrario.xsd";
 	tabItinerari=T;
 }
 
@@ -58,7 +58,7 @@ int TabellaOrario::getFirstTRN()
 		  }*/
 
 // questa funzione legge il file di configurazione contenente la descrizione della tabella orario
-void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
+void TabellaOrario::leggiTabellaOrario()
 {
 	try{
 		// oggetti DateTime di supporto
@@ -67,21 +67,22 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 		TimeSpan sinceMidnight;
 
 #ifdef VALIDATEXML
+		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
 		// Create the XmlSchemaSet class.
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
 
 		// Add the schema to the collection.
-		sc->Add( "urn:tabellaorario-schema", schemaxsd );
+		sc->Add( "urn:tabellaorario-schema",  gcnew XmlTextReader (readStreamschemaxsd) );
 		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
 		settings->ValidationType = System::Xml::ValidationType::Schema;
 		settings->Schemas = sc;
 		/*ValidationEventHandler ^ed = gcnew ValidationEventHandler( ValidationCallBack );
 		settings->ValidationEventHandler +=ed;*/
 
-
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("TabellaOrario.xml");
 
 		//System::String^ nome = gcnew System::String(nomeFile.c_str());
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 		//	XmlDocument ^document = gcnew XmlDocument();
 		//document->Load(readers);

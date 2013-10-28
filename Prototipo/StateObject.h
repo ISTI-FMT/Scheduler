@@ -2,7 +2,7 @@ using namespace System;
 using namespace System::Net::Sockets;
 using namespace System::Collections::Concurrent;
 
-/*Utilizzo questa classe per inviare ed inviare messaggi TCP asincroni*/
+/*Utilizzo questa classe per ricevere ed inviare messaggi TCP asincroni*/
 
 ref class StateObject
 {
@@ -11,11 +11,13 @@ public:
    Socket^ workSocket;
    array<Byte>^ buffer;
    int fine;
-   StateObject() 
+   int enginenumber;
+   StateObject(int e) 
    {
 	   workSocket=nullptr ;
 	   BUFFER_SIZE=17;
       buffer = gcnew array<Byte>(BUFFER_SIZE);
       fine=0;
+	  enginenumber=e;
    };
 };

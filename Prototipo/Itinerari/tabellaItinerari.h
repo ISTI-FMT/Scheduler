@@ -18,7 +18,7 @@ ref class tabellaItinerari
 public:
 	tabellaItinerari(void);
 
-	void leggifileconfigurazioneItinerari(String ^nomefile);
+	void leggifileconfigurazioneItinerari();
 
 
 	virtual System::String^ ToString() override;

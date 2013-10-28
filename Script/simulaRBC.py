@@ -10,6 +10,12 @@ import socket
 import re
 from array import array
 
+def enum(**enums):
+    return type('Enum', (object,), enums)
+
+MessATC=enum   (StatoLineaATC = 11,  FaultReportingATC = 12 );
+MessIXL =enum  ( StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231);
+MessATO = enum( MissionPlan = 200,  FaultReportingATO = 213, UnconditionCommand=201, Acknol=210,Presentation=215 )
 
 	
 def date_key(row):
@@ -62,51 +68,6 @@ def sendTCP(MESSAGE):
 	sock.send(MESSAGE)
 	sock.close()
 
-def deserializzaMissionDATA(buf):
-	NID_MESSAGE= pop(buf, 8, 0);
-	L_MESSAGE=pop(buf,11, 8);
-	T_TIME=pop(buf, 32, 19);
-	NID_PACKET=pop(buf,  8, 51);
-	L_PACKET=pop(buf, 13, 59);
-	Q_SCALE=pop(buf, 2, 72);
-	tD_MISSION =pop(buf, 15, 74);
-	tV_MISSION =pop(buf, 7, 89);
-	N_ITER1 = pop(buf, 5, 96);
-	offset = 101;
-	mS1_vect =[]
-	for i in range(0, N_ITER1):
-		D_MISSION=pop(buf, 15, offset);
-		offset += 15;
-		V_MISSION=pop(buf, 7, offset);
-		offset += 7;
-		mS1_vect.append([D_MISSION,V_MISSION])
-	tT_START_TIME=pop(buf, 12, offset);
-	offset += 12;
-	tNID_LRGB=pop(buf, 24, offset);
-	offset += 24;
-	tD_STOP=pop(buf, 15, offset);
-	offset += 15;
-	tQ_DOORS=pop(buf, 4, offset);
-	offset += 4;
-	tT_DOORS_TIME=pop(buf, 12, offset);
-	mS2_vect=[]
-	mS2_vect.append([tT_START_TIME,tNID_LRGB,tD_STOP,tQ_DOORS,tT_DOORS_TIME]);
-	offset += 12;
-	N_ITER2 =pop(buf, 5, offset);
-	offset += 5;
-	for i in range(0,N_ITER2-1):
-		T_START_TIME=pop(buf, 12, offset);
-		offset += 12;
-		NID_LRGB=pop(buf, 24, offset);
-		offset += 24;
-		D_STOP=pop(buf, 15, offset);
-		offset += 15;
-		Q_DOORS=pop(buf, 4, offset);
-		offset += 4;
-		T_DOORS_TIME=pop(buf, 12, offset);
-		offset += 12;
-		mS2_vect.append([T_START_TIME,NID_LRGB,D_STOP,Q_DOORS,T_DOORS_TIME])
-	return mS2_vect
 
 	
 def deserializzaCommandDATA(buff):
@@ -126,29 +87,7 @@ def deserializzaCommandDATA(buff):
 	return NID_OPERATIONAL
 	
 
-def ReceiveTCP(TCP_PORT, ACK):
-	TCP_IP = "127.0.0.1"
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # UDP
-	sock.bind((TCP_IP, TCP_PORT))
-	sock.listen(3)
-	conn, addr = sock.accept()
-	print 'Connection address:', addr
-	MESSAGE1 = conn.recv(10).strip()
-	print 'Prima ricezione: ',MESSAGE1
-	MESSAGE2 = conn.recv(14).strip()
-	print 'Seconda ricezione: ',MESSAGE2
-	MESSAGE3 = conn.recv(2048).strip()
-	print 'Terza ricezione: ',MESSAGE3
-	conn.send(ACK)  # echo
-	conn.close()
-	sock.close()
-	buffer1 = map(ord,MESSAGE1)
-	deserializzaCommandDATA(buffer1)
-	buffer2 = map(ord,MESSAGE2)
-	NID_OPERATIONAL = deserializzaCommandDATA(buffer2)
-	buffer3 = map(ord,MESSAGE3)
-	print "received data:", deserializzaMissionDATA(buffer3)
-	return NID_OPERATIONAL
+
 	
 	
 def messageRBC(NID_ENGINE,NID_OPERATIONAL,NID_CDB):
@@ -173,8 +112,8 @@ def des_messageRBC_new(buff):
 
 '''
 def messageRBC_ST(buff,buff1):
-	buff = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	push(buff, 11, 8, 0); #//nid_msg
+	buff = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+	push(buff,  MessATC.StatoLineaATC, 8, 0); #//nid_msg
 	push(buff, 17, 11, 8); #//L_msg
 	push(buff, 32, 32, 19); #//T_msg
 	push(buff, 141, 8, 51);
@@ -202,7 +141,7 @@ def messageRBC_ST(buff,buff1):
 	
 def messageRBC1(list):
 	buff = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	push(buff, 11, 8, 0); #//nid_msg
+	push(buff, MessATC.StatoLineaATC, 8, 0); #//nid_msg
 	push(buff, 17, 11, 8); #//L_msg
 	push(buff, 32, 32, 19); #//T_msg
 	push(buff, 141, 8, 51);
@@ -223,42 +162,7 @@ def messageRBC1(list):
 	return buff
 	
 
-	
-def sendACk(NID_ENGINE):
-	#110;17;32;65280;162;54;12;1 ACK
-	buffer = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	push(buffer, 110, 8, 0); #//nid_msg
-	push(buffer, 17, 11, 8); #//L_msg
-	push(buffer, 32, 32, 19); #//T_msg
-	push(buffer, NID_ENGINE, 24, 51); #//NID_ENGINE
-	push(buffer,162 , 8, 75);#NID_PACKET
-	push(buffer, 54, 13, 83);#L_PACKET
-	push(buffer, 12, 32, 96);#T_TRAIN
-	Q_MISSION_RESPONSE=1
-	push(buffer, Q_MISSION_RESPONSE, 1, 128);
-	return buffer
-'''
-my_array = array('I',[int('0B',16),int('04',16),int('80',16),int('00',16),int('00',16),int('0E',16),int('61',16),int('00',16),int('E5',16),int('00',16),int('00',16),int('04',16),int('80',16),int('00',16),int('00',16),int('1A',16),int('C6',16),int('00',16),int('00',16),int('33',16),int('F5',16),int('00',16),int('01',16),int('00',16),int('00',16),int('04',16),int('81',16),int('00',16),int('00',16),int('1B',16),int('28',16),int('00',16),int('00',16),int('2C',16),int('25',16),int('00',16)])
 
-
-NID_MESSAGE= pop(my_array, 8, 0);
-L_MESSAGE=pop(my_array,11, 8);
-T_TIME=pop(my_array, 32, 19);
-NID_PACKET=pop(my_array,  8, 51);
-L_PACKET=pop(my_array, 13, 59);
-tNID_ENGINE =pop(my_array, 32, 72);
-tNID_OPERATIONAL =pop(my_array, 32, 104);
-tNID_CDB =pop(my_array, 32, 136);
-
-print NID_MESSAGE
-print L_MESSAGE
-print T_TIME
-print NID_PACKET
-print L_PACKET
-print tNID_ENGINE
-print tNID_OPERATIONAL
-print tNID_CDB
-'''
 
 
 UDP_IP = "127.0.0.1"
@@ -294,27 +198,7 @@ while 1:
 
 	
 exit(0)
-#### MOVIMENTO ######
-for line in spamReader:
-	for element in line:
-		sendBytes = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-		push(sendBytes, 18, 8, 0); #//nid_msg
-		push(sendBytes, 12, 10, 8); #//L_msg
-		push(sendBytes, 5555, 32, 18); #//T_msg
-		push(sendBytes, NID_ENGINE, 32, 50); #//nid_op
-		NID_CDB =  int(element,10)
-		push(sendBytes,NID_CDB, 32, 82);#//nid_cdb
-		print "Sono sul CDB: ",element
-		sendUDP(sendBytes,302)
-		buff = messageRBC(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
-		for i in range(0,70):
-			sendUDP(buff,4010)
-			time.sleep(1)
-		raw_input("-->> PRESS ENTER <<<--- ")
-		
 
-
-sendBytes = raw_input("Enter something: ")
 
  
 

@@ -44,7 +44,7 @@ using namespace System::Threading::Tasks;
 			InitializeComponent();
 			_shouldStop=false;
 			tabItinerari = gcnew tabellaItinerari();
-			tabItinerari->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
+			tabItinerari->leggifileconfigurazioneItinerari();
 			genera();
 			//aggiorna();
 			//

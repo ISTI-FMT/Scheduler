@@ -69,11 +69,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Prototipo.rc">
-      <Filter>File di risorse</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="messaggi\Messaggi.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
@@ -450,5 +445,43 @@
     <EmbeddedResource Include="FormStatoLineaIXL.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDB.csv">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="Prototipo.rc">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
   </ItemGroup>
 </Project>

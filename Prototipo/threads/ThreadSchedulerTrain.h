@@ -38,7 +38,7 @@ public:
 	void Init();
 	StateObject ^SendTCPMsg(int trn,phisicalTrain ^Treno);
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
-	void StampaStato(int stato);
+	void StampaStato(int stato, int enginenumber);
 	bool richestaItinerarioIXL(int idstazione ,int iditinerario);
 	bool controllacdb(List<int>^lcdb);
 	void RequestStop();

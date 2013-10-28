@@ -13,19 +13,15 @@ using namespace System::Xml::Schema;
 ConfigurazioneVelocita::ConfigurazioneVelocita(void)
 {
 	mapidtrenologicopvel= gcnew Dictionary<int,List<ProfiloVelocita^>^>() ;
-	schemaxsd="..\\FileConfigurazione\\ConfigurazioneProfiliVelocita.xsd";
+	schemaxsd="ConfigurazioneProfiliVelocita.xsd";
+	leggifileConfigurazioneVelocita();
 	
 }
 
-ConfigurazioneVelocita::ConfigurazioneVelocita(String ^nomefile)
-{
-	mapidtrenologicopvel= gcnew Dictionary<int,List<ProfiloVelocita^>^>() ;
-	schemaxsd="..\\FileConfigurazione\\ConfigurazioneProfiliVelocita.xsd";
-	 leggifileConfigurazioneVelocita(nomefile);
-}
+
 
 // questa funzione legge il file di configurazione 
-void ConfigurazioneVelocita::leggifileConfigurazioneVelocita(String ^nomeFile)
+void ConfigurazioneVelocita::leggifileConfigurazioneVelocita()
 {
 
 	try{
@@ -33,22 +29,23 @@ void ConfigurazioneVelocita::leggifileConfigurazioneVelocita(String ^nomeFile)
 #ifdef VALIDATEXML
 		// Create the XmlSchemaSet class.
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
-
+		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
 		// Add the schema to the collection.
-		sc->Add("urn:configurazioneprofilivelocita-schema", schemaxsd );
+		sc->Add("urn:configurazioneprofilivelocita-schema",   gcnew XmlTextReader (readStreamschemaxsd)  );
 		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
 		settings->ValidationType = System::Xml::ValidationType::Schema;
 		settings->Schemas = sc;
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneProfiliVelocita.xml");
 
-
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 	/*	XmlDocument ^document = gcnew XmlDocument();
 		document->Load(readers);  */
 
 #endif // VALIDATEXML
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneProfiliVelocita.xml");
 
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
 
 		// 
 		while (reader->ReadToFollowing("profilovelocita")){

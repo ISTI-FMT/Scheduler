@@ -20,7 +20,7 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 				CDB->setNID_OPERATIONAL(idltreno);
 			}
 			int idftreno = CDB->getNID_ENGINE();
-			Console::WriteLine("CDB {0}, nid_op {1}",CDB->getNID_CDB(), CDB->getNID_OPERATIONAL());
+			//Console::WriteLine("CDB {0}, nid_op {1}",CDB->getNID_CDB(), CDB->getNID_OPERATIONAL());
 			if(idltreno>0){
 				addCheckAndSet(CDB,source);
 				if(!tabellaTRenoListCDB->ContainsKey(idltreno)){

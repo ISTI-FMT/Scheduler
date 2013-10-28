@@ -14,7 +14,7 @@ using namespace System::Xml::Schema;
 tabellaFermate::tabellaFermate(void)
 {
 	tabella = gcnew Dictionary<String ^, List<binario^> ^>;
-	schemaxsd  ="..\\FileConfigurazione\\ConfigurazioneFermate.xsd";
+	schemaxsd  ="ConfigurazioneFermate.xsd";
 }
 
 
@@ -33,18 +33,21 @@ System::String^ tabellaFermate::ToString() {
 	return out;
 }
 
-void tabellaFermate::leggifileconfigurazioneFermate(String ^nomeFile)
+void tabellaFermate::leggifileconfigurazioneFermate()
 {
 	try{
 		// Create the XmlSchemaSet class.
+		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
 
 		// Add the schema to the collection.
-		sc->Add( "urn:conffermate-schema", schemaxsd );
+		sc->Add( "urn:conffermate-schema", gcnew XmlTextReader (readStreamschemaxsd) );
 		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
 		settings->ValidationType = System::Xml::ValidationType::Schema;
 		settings->Schemas = sc;
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneFermate.xml");
+
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 		// per ogni stazione presente nel file di configurazione degli itinerari...
 		while (reader->ReadToFollowing("fermata"))

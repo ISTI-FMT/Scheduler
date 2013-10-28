@@ -125,6 +125,7 @@ namespace Prototipo {
 				 // 
 				 // button1
 				 // 
+				 this->button1->Enabled = false;
 				 this->button1->Location = System::Drawing::Point(168, 20);
 				 this->button1->Name = L"button1";
 				 this->button1->Size = System::Drawing::Size(87, 23);
@@ -374,17 +375,17 @@ namespace Prototipo {
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //
 				 tabItinerari = gcnew tabellaItinerari();
-				 tabItinerari->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
+				 tabItinerari->leggifileconfigurazioneItinerari();
 
 				 tabellaOrario  = gcnew TabellaOrario(tabItinerari);
-				 tabellaOrario->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
+				 tabellaOrario->leggiTabellaOrario();
 
 				 tabfermate=gcnew tabellaFermate();
-				 tabfermate->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
+				 tabfermate->leggifileconfigurazioneFermate();
 
-				 mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
+				 mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico();
 
-				 confVelocita= gcnew ConfigurazioneVelocita("..\\FileConfigurazione\\ConfigurazioneProfiliVelocita.xml");
+				 confVelocita= gcnew ConfigurazioneVelocita();
 
 				 Console::WriteLine(confVelocita->ToString());
 

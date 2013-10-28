@@ -18,11 +18,11 @@ Dictionary<int, TrenoFisicoLogico^>^ map;
 public:
 
 	mapTrenoFisicoLogico(void);
-	mapTrenoFisicoLogico(System::String^ s);
+
 	void set_Map(Dictionary<int, TrenoFisicoLogico^>^ m){map=m;};
 	Dictionary<int, TrenoFisicoLogico^>^ get_Map(){return map;};
 
-	void inizializza(System::String^ s);
+	void inizializza();
 	virtual  System::String^ ToString() override{
 		System::String ^out ="";
 		for each( KeyValuePair<int, TrenoFisicoLogico^> kvp in map )

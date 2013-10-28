@@ -10,6 +10,13 @@ import socket
 import re
 from array import array
 
+def enum(**enums):
+    return type('Enum', (object,), enums)
+
+MessATC=enum   (StatoLineaATC = 11,  FaultReportingATC = 12 );
+MessIXL =enum  ( StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231);
+MessATO = enum( MissionPlan = 200,  FaultReportingATO = 213, UnconditionCommand=201, Acknol=210,Presentation=215 )
+
 if len(sys.argv) < 2:
     print "script.py <namefile>"
     exit(1)
@@ -118,7 +125,6 @@ def deserializzaCommandDATA(buff):
 	NID_PACKET=pop(buff,  8, 51);
 	L_PACKET=pop(buff, 13, 59);
 	Q_COMMAND_TYPE=pop(buff,3, 72);
-	print Q_COMMAND_TYPE
 	if(Q_COMMAND_TYPE==3):
 		M_GOA_LEVEL=pop(buff, 2, 75);
 	NID_OPERATIONAL=0
@@ -137,10 +143,11 @@ def ReceiveTCP(TCP_PORT, ACK):
 	print 'Connection address:', addr
 	MESSAGE1 = conn.recv(10)
 	print 'Prima ricezione: ',MESSAGE1
-	MESSAGE2 = conn.recv(15)
+	MESSAGE2 = conn.recv(14)
 	print 'Seconda ricezione: ',MESSAGE2
 	MESSAGE3 = conn.recv(2048)
 	print 'Terza ricezione: ',MESSAGE3
+	print len(ACK)
 	conn.send(ACK)  # echo
 	conn.close()
 	sock.close()
@@ -156,7 +163,7 @@ def ReceiveTCP(TCP_PORT, ACK):
 	
 def messageRBC(NID_ENGINE,NID_OPERATIONAL,NID_CDB):
 	buff = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	push(buff, 11, 8, 0); #//nid_msg
+	push(buff, MessATC.StatoLineaATC, 8, 0); #//nid_msg
 	push(buff, 17, 11, 8); #//L_msg
 	push(buff, 32, 32, 19); #//T_msg
 	push(buff, 141, 8, 51);
@@ -181,7 +188,7 @@ def messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB):
 def sendACk(NID_ENGINE):
 	#110;17;32;65280;162;54;12;1 ACK
 	buffer = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	push(buffer, 110, 8, 0); #//nid_msg
+	push(buffer, MessATO.Acknol, 8, 0); #//nid_msg
 	push(buffer, 17, 11, 8); #//L_msg
 	push(buffer, 32, 32, 19); #//T_msg
 	push(buffer, NID_ENGINE, 24, 51); #//NID_ENGINE
@@ -235,13 +242,13 @@ if(sys.argv[2]=='1'):
 if bandiera==True:
 	try:
 		sendBytesP = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-		push(sendBytesP, 115, 8, 0); #//nid_msg
+		push(sendBytesP, MessATO.Presentation, 8, 0); #//nid_msg
 		push(sendBytesP, 16, 11, 8); #//L_msg
 		push(sendBytesP, 5555, 32, 19); #//T_msg
 		push(sendBytesP, 25, 8, 75);
 		push(sendBytesP, NID_ENGINE, 24, 51); #//nid_op
 		push(sendBytesP, 56, 13, 83);
-		push(sendBytesP, M_PORT, 32, 96);
+		push(sendBytesP, M_PORT, 24, 96);
 		print "Invio Presentazione"
 		sendTCP(sendBytesP)
 		print "Ricevo Wake-up TRN MISSION"

@@ -25,6 +25,6 @@ public:
 	void addbutton(String ^namebutton, int riga, int colonna);
 	//void addbuttonUscita(String ^namebutton, int id);
 	/*Void button_Click(System::Object^  sender, System::EventArgs^  e);*/
-	void read(String ^file);
+	void read();
 };
 

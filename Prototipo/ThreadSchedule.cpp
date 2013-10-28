@@ -60,7 +60,7 @@ void ThreadSchedule::SimpleSchedule(){
 
 
 
-			TimeSpan sec = DateTime::Now - time;
+		/*	TimeSpan sec = DateTime::Now - time;
 			if(sec.TotalSeconds>20){
 				Console::ForegroundColor = ConsoleColor::DarkGreen;
 				Console::WriteLine("lo stato interno dello scheduler 1 è PresentazioneTreno");
@@ -68,7 +68,7 @@ void ThreadSchedule::SimpleSchedule(){
 
 				time=DateTime::Now;
 			}
-
+			*/
 
 
 			switch (statoInterno)
@@ -79,7 +79,10 @@ void ThreadSchedule::SimpleSchedule(){
 					// aspetta che si presenti un treno
 					eventoATO = EQueueATO->getEvent();
 					if(eventoATO!=nullptr){
+						
 						phisicalTrain ^phisical = eventoATO->getEventPresentTrain();
+						int enginenumber = phisical->getEngineNumber();
+						Console::WriteLine("Si è presentato il treno {0}",enginenumber);
 						//statoInterno=StateSimpleSchedule::ControlloTreno;
 						List<EventQueue^> ^EList = gcnew List<EventQueue^>();
 						EList->Add(EQueueIXL);
@@ -122,9 +125,9 @@ void ThreadSchedule::RequestStop()
 
 
 void ThreadSchedule::Init(){
-	Console::WriteLine("Init Schedule session");
-	//TODO: in questa fase controllare che lo stato di tutti i cdb proveniente dall'IXL sia consistente
-
+	Console::WriteLine("Inizio Inizializzazione dello Scheduler");
+	//TODO: in questa fase ad es. controllare che lo stato di tutti i cdb proveniente dall'IXL sia consistente
+	Console::WriteLine("Fine Inizializzazione dello Scheduler");
 }
 
 

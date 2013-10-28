@@ -23,7 +23,7 @@ public:
 
 	Dictionary<String ^, List<binario^> ^> ^getTabFermate(){return tabella;};
 
-	void leggifileconfigurazioneFermate(String ^nomeFile);
+	void leggifileconfigurazioneFermate();
 
 	virtual System::String^ ToString() override;
 

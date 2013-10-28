@@ -12,9 +12,9 @@ ref class ConfigurazioneVelocita
 	String ^schemaxsd;
 public:
 	ConfigurazioneVelocita(void);
-	ConfigurazioneVelocita(String ^nomefile);
+	
 
-	void leggifileConfigurazioneVelocita(String ^nomefile);
+	void leggifileConfigurazioneVelocita();
 
 
 	virtual System::String^ ToString() override;
