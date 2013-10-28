@@ -79,7 +79,7 @@ Button^ tableLayoutPanelSingleItin::getButton(String ^textbutton, int id){
 	button->AccessibleRole = System::Windows::Forms::AccessibleRole::Grip;
 	button->Anchor = System::Windows::Forms::AnchorStyles::Top;
 
-	button->BackColor = System::Drawing::Color::Silver;
+	button->BackColor = System::Drawing::Color::Fuchsia;
 	button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 
 	//button->Location = System::Drawing::Point(91, 3);
@@ -99,7 +99,7 @@ Button^ tableLayoutPanelSingleItin::getButton(String ^textbutton, int id){
 }
 
 
-System::Void tableLayoutPanelSingleItin::button_Click(System::Object^  sender, System::EventArgs^  e) {
+/*System::Void tableLayoutPanelSingleItin::button_Click(System::Object^  sender, System::EventArgs^  e) {
 
 	Button ^button =(Button^) sender ;
 	if(button->BackColor==System::Drawing::Color::Silver){
@@ -115,7 +115,7 @@ System::Void tableLayoutPanelSingleItin::button_Click(System::Object^  sender, S
 		return;
 	}
 
-}
+}*/
 
 void tableLayoutPanelSingleItin::addbuttonEntrata(String ^namebutton, int id){
 	Button ^but = getButton(namebutton, id);

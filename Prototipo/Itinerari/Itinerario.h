@@ -3,6 +3,8 @@
 #include "..\\messaggi\\StateCDB.h"
 using namespace System;
 using namespace System::Collections::Generic;
+/*utilizzo questa classe per rappresentare le informazioni degli itinerari parsate dal file xml ConfigurazioneItinerari.xml*/
+
 //questa classe rappresenta un itinerario
 ref class Itinerario
 {
@@ -15,7 +17,7 @@ ref class Itinerario
 	String ^latoBanchina;
 	int prevCDB;
 	int nextCDB;
-	List<StateCDB^> ^cdb;
+	List<int> ^cdb;
 	int nextstation;
 public:
 	Itinerario(void);
@@ -40,7 +42,7 @@ public:
 	void setNextCDB(int p){nextCDB = p;}
 	int getNextCDB(){return nextCDB;}
 	
-	List<StateCDB^>^ getLCDB(){return cdb;}
+	List<int>^ getLCDB(){return cdb;}
 
 		virtual System::String^ ToString() override;
 };

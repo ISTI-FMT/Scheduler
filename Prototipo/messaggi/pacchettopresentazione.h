@@ -2,6 +2,11 @@
 #include "utility.h"
 
 
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Presentazione che l'ATS riceve dal ATO
+nel messaggio di Presentazione, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
+
 /*-----------------------------------------------------------------------------------------------
 L'ATS riceve dal treno dei messaggi di presentazione dagli ATO
 -------------------------------------------------------------------------------------------------*/
@@ -28,8 +33,8 @@ public:
 	int getM_PORT(){return M_PORT;};
 	// metodi per la serializzazione e deserializzazione del messaggio
 	// il buffer di byte deve essere stato precedentemente correttamente allocato.
-	void serialize(byte *buff);
-	void deserialize(byte *buff);
+	void serialize(array<Byte>^buff);
+	void deserialize(array<Byte>^buff);
 	
 
 	virtual System::String ^ToString() override;

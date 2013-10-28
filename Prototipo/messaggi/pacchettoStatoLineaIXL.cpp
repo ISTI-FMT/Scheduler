@@ -34,7 +34,7 @@ int pacchettoStatoLineaIXL::getSize()
 	return size;
 }
 
-void pacchettoStatoLineaIXL::serialize(byte *buffer)
+void pacchettoStatoLineaIXL::serialize(array<Byte>^buffer)
 {
 	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
@@ -57,7 +57,7 @@ void pacchettoStatoLineaIXL::serialize(byte *buffer)
 	}
 }
 
-void pacchettoStatoLineaIXL::deserialize(byte *buffer)
+void pacchettoStatoLineaIXL::deserialize(array<Byte>^buffer)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, 51);

@@ -1,8 +1,10 @@
 #pragma once
 #include "pacchettoCommandData.h"
-#include "pacchettoMissionPlan.h"
+#include "pacchettoMissionData.h"
 #include "pacchettopresentazione.h"
-#include "pacchettostatolineaatc.h"
+
+//#include "pacchettostatolineaatc.h"
+#include "pacchettoPositionDataATC.h"
 #include "pacchettoAcknowledgement.h"
 #include "pacchettoStatoItinerario.h"
 #include "pacchettoComandoItinerari.h"
@@ -12,8 +14,17 @@
 #include "pacchettoStatoSegnali.h"
 #include "pacchettoEnd.h"
 #include "pacchettoFaultData.h"
+#include "pachettoStatoScudetti.h"
+
+/*Utilizzo questa classe per creare serializzare deserializzare i messaggi specificando
+i pacchetti da inserire nel messaggio*/
+
 //questa classe rappresenta un messaggio cosi come definito nei documenti di specifica
 //e contiene i metodi per serializzare e desirializzare un messaggio
+
+enum  MessATC{ StatoLineaATC = 11,  FaultReportingATC = 12 };
+enum  MessIXL{ StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231};
+enum  MessATO{ MissionPlan = 200,  FaultReportingATO = 213, UnconditionCommand=201, Acknol=210,Presentation=215 };
 ref class Messaggi
 {
 	// puntatore all'header per i messaggi ATS/ATO
@@ -24,18 +35,22 @@ ref class Messaggi
 	unsigned int NID_ENGINE;
 	// puntatori alle strutture dati per i pacchetti ATS/ATO
 	pacchettoCommandData ^pkgcd1;
-	pacchettoMissionPlan ^pkgMP;
+	pacchettoMissionData ^pkgMP;
 	pacchettopresentazione ^pgkPres;
-	pacchettostatolineaatc ^pkgStatoATC;
+	//pacchettostatolineaatc ^pkgStatoATC;
 	pacchettoAcknowledgement ^pkgAck;
 
 	// puntatori alle strutture dati per i pacchetti ATS/ATO
 
 	pacchettoStatoLineaIXL ^pkgStatoLineaIXL;
+	pacchettoPositionDataATC ^pkgPositionDataATC;
+
 	pacchettoStatoItinerario ^pkgStatoItinerari;
 	pacchettoStatoSegnali ^pkgStatoSegnali;
 	pacchettoFaultData ^pkgFaultData;
 	pacchettoStatoBlocco ^pkgStatoBlocco;
+	pachettoStatoScudetti ^pkgStatoScudetti;
+
 
 	pacchettoComandoItinerari ^pkgComandoItinerario;
 	pacchettoComandoBlocco ^pkgComandoBlocco;
@@ -58,6 +73,9 @@ public:
 	void set_pacchettoEnd(){pkgEnd = gcnew pacchettoEnd;};
 	pacchettoEnd ^ get_pacchettoEnd(){return pkgEnd;};
 
+	void set_pacchettoStatoScudetti(){pkgStatoScudetti = gcnew pachettoStatoScudetti;};
+	pachettoStatoScudetti^ get_pacchettoStatoScudetti(){return pkgStatoScudetti;};
+
 	void set_pacchettoComandoItinerari(){pkgComandoItinerario = gcnew pacchettoComandoItinerari;};
 	pacchettoComandoItinerari^ get_pacchettoComandoItinerari(){return pkgComandoItinerario;};
 
@@ -69,6 +87,9 @@ public:
 
 	void set_pacchettoStatoLineaIXL() {pkgStatoLineaIXL = gcnew pacchettoStatoLineaIXL;}
 	pacchettoStatoLineaIXL ^get_pacchettoStatoLineaIXL(){return pkgStatoLineaIXL;}
+
+	void set_pacchettoPositionDataATC() {pkgPositionDataATC = gcnew pacchettoPositionDataATC;}
+	pacchettoPositionDataATC ^get_pacchettoPositionDataATC(){return pkgPositionDataATC;}
 
 	void set_pacchettoStatoItinerari() {pkgStatoItinerari = gcnew pacchettoStatoItinerario;}
 	pacchettoStatoItinerario^ get_pacchettoStatoItinerario(){return pkgStatoItinerari;}
@@ -82,23 +103,23 @@ public:
 	void set_pacchettoCommandData(){ pkgcd1 = gcnew pacchettoCommandData;};
 	pacchettoCommandData^ get_pacchettoCommandData(){ return pkgcd1;};
 
-	void set_pacchettoMissionPlan(){ pkgMP = gcnew pacchettoMissionPlan;};
-	pacchettoMissionPlan^ get_pacchettoMissionPlan(){ return pkgMP;};
+	void set_pacchettoMissionData(){ pkgMP = gcnew pacchettoMissionData;};
+	pacchettoMissionData^ get_pacchettoMissionData(){ return pkgMP;};
 
 	void set_pacchettoPresentazione(){ pgkPres = gcnew pacchettopresentazione;};
 	pacchettopresentazione^ get_pacchettoPresentazione(){ return pgkPres;};
 
-	void set_pacchettoStatoLineaATC(){ pkgStatoATC = gcnew pacchettostatolineaatc;};
-	pacchettostatolineaatc^ get_pacchettoStatoLineaATC(){ return pkgStatoATC;};
+	//void set_pacchettoStatoLineaATC(){ pkgStatoATC = gcnew pacchettostatolineaatc;};
+	//pacchettostatolineaatc^ get_pacchettoStatoLineaATC(){ return pkgStatoATC;};
 
 	void set_pacchettoAcknowledgement(){ pkgAck = gcnew pacchettoAcknowledgement;};
 	pacchettoAcknowledgement^ get_pacchettoAcknowledgement(){ return pkgAck;};
 
-	void serialize(byte *buffer);
-	void deserialize(byte *buff);
+	void serialize(array<Byte>^buffer);
+	
 
 	array<System::Byte>^ serialize();
-	void deserialize(array<System::Byte>^bytez);
+	void deserialize(array<Byte>^buffer);
 
 	int getSize();
 

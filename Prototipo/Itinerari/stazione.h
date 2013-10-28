@@ -3,6 +3,10 @@
 #include "Itinerario.h"
 using namespace System;
 using namespace System::Collections::Generic;
+
+/*utilizzo questa classe per rappresentare le informazioni delle stazioni parsate dal file xml ConfigurazioneItinerari.xml*/
+
+
 //questa classe rappresenta una stazione
 //contiene oltre id numerico e il nome della stazione
 //due dizionari per trovare gli itinerari uno la cui chieave è prevcdb

@@ -4,7 +4,7 @@ tableLayoutPanelAllCDB::tableLayoutPanelAllCDB(	Dictionary<int,Button^> ^lbCDB)
 {
 	lbuttonCDB =lbCDB;
 	init();
-	read("..\\FileConfigurazione\\CDB.csv");
+	read();
 }
 
 
@@ -17,7 +17,7 @@ void tableLayoutPanelAllCDB::init(){
 	// tableLayoutPanel1
 	// 
 	this->tableLayoutPanel1->AutoSize = true;
-	this->tableLayoutPanel1->ColumnCount = 23;
+	this->tableLayoutPanel1->ColumnCount = 24;
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
@@ -45,28 +45,28 @@ void tableLayoutPanelAllCDB::init(){
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
-
+	this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 
 	this->tableLayoutPanel1->Cursor = System::Windows::Forms::Cursors::Hand;
 	this->tableLayoutPanel1->Location = System::Drawing::Point(0, 0);
 	this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 	this->tableLayoutPanel1->RowCount = 18;
-	
+
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 19)));
-	
+
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 19)));
-	
+
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 19)));
-	
+
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
@@ -118,7 +118,7 @@ Button^ tableLayoutPanelAllCDB::getButton(String ^textbutton){
 	button->AccessibleRole = System::Windows::Forms::AccessibleRole::Grip;
 	button->Anchor = System::Windows::Forms::AnchorStyles::Top;
 
-	button->BackColor = System::Drawing::Color::Silver;
+	button->BackColor = System::Drawing::Color::Fuchsia;
 	button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 	button->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.25F));
 	//button->Location = System::Drawing::Point(91, 3);
@@ -127,7 +127,7 @@ Button^ tableLayoutPanelAllCDB::getButton(String ^textbutton){
 	button->TabIndex = 0;
 	button->Text = textbutton;
 	button->UseVisualStyleBackColor = true;
-//	button->Click += gcnew System::EventHandler(this, &tableLayoutPanelAllCDB::button_Click);
+	//	button->Click += gcnew System::EventHandler(this, &tableLayoutPanelAllCDB::button_Click);
 
 
 
@@ -136,23 +136,23 @@ Button^ tableLayoutPanelAllCDB::getButton(String ^textbutton){
 }
 
 
-System::Void tableLayoutPanelAllCDB::button_Click(System::Object^  sender, System::EventArgs^  e) {
+/*System::Void tableLayoutPanelAllCDB::button_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	Button ^button =(Button^) sender ;
-	if(button->BackColor==System::Drawing::Color::Yellow){
-		button->BackColor= System::Drawing::Color::Red;
-		return;
-	}
-	if(button->BackColor== System::Drawing::Color::Red){
-		button->BackColor= System::Drawing::Color::Green;
-		return;
-	}
-	if(button->BackColor== System::Drawing::Color::Green){
-		button->BackColor= System::Drawing::Color::Yellow;
-		return;
-	}
-
+Button ^button =(Button^) sender ;
+if(button->BackColor==System::Drawing::Color::Yellow){
+button->BackColor= System::Drawing::Color::Red;
+return;
 }
+if(button->BackColor== System::Drawing::Color::Red){
+button->BackColor= System::Drawing::Color::Green;
+return;
+}
+if(button->BackColor== System::Drawing::Color::Green){
+button->BackColor= System::Drawing::Color::Yellow;
+return;
+}
+
+}*/
 
 void tableLayoutPanelAllCDB::addbutton(String ^namebutton, int riga, int colonna){
 
@@ -165,30 +165,36 @@ void tableLayoutPanelAllCDB::addbutton(String ^namebutton, int riga, int colonna
 
 
 
-void tableLayoutPanelAllCDB::read(String ^file){
+void tableLayoutPanelAllCDB::read(){
 	int riga=0;
-	
-	if (File::Exists(file))
+	//"CDB.csv"
+	String^ tmpFilename = System::IO::Path::GetTempFileName();
+	Stream^ readStream = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("CDB.csv");
+	FileStream^ writeStream = gcnew FileStream(tmpFilename, FileMode::Create);
+	readStream->CopyTo(writeStream);
+	readStream->Close();
+	writeStream->Close();
+	//if (File::Exists(file))
+	//{
+	// Create a file to write to.
+
+	array<String^> ^righe =	File::ReadAllLines(tmpFilename);
+	for each (String ^var in righe)
 	{
-		// Create a file to write to.
-
-		array<String^> ^righe =	File::ReadAllLines(file);
-		for each (String ^var in righe)
+		int colonna=0;
+		array<String^> ^elementi =  var->Split(';');//,StringSplitOptions::None);
+		for each (String ^elemento in elementi)
 		{
-			int colonna=0;
-			array<String^> ^elementi =  var->Split(';');//,StringSplitOptions::None);
-			for each (String ^elemento in elementi)
-			{
-				if(elemento->Length>0){
-					addbutton(elemento,riga,colonna);
-				}
-				colonna++;
+			if(elemento->Length>0){
+				addbutton(elemento,riga,colonna);
 			}
-			riga++;
-
-
+			colonna++;
 		}
+		riga++;
+
 
 	}
+
+	//}
 
 }

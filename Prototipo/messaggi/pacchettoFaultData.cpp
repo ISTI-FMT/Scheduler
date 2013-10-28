@@ -34,7 +34,7 @@ int pacchettoFaultData::getSize()
 	return size;
 }
 
-void pacchettoFaultData::serialize(byte *buffer)
+void pacchettoFaultData::serialize(array<Byte>^buffer)
 {
 	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
@@ -54,7 +54,7 @@ void pacchettoFaultData::serialize(byte *buffer)
 
 }
 
-void pacchettoFaultData::deserialize(byte *buffer)
+void pacchettoFaultData::deserialize(array<Byte>^buffer)
 {
 	NID_PACKET=utility::pop(buffer,  8, 51);
 	L_PACKET=utility::pop(buffer, 13, 59);

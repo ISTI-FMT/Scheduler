@@ -27,23 +27,25 @@ int pacchettoStatoSegnali::getSize()
 	int size = 0;
 
 	// 38 per la parte fissa
-	size += 71;
+	size += 74;
 	// 12 bit per ogni N_ITER
-	size += 37 * N_ITER;
+	if(N_ITER>0){
+		size += 37 * N_ITER;
+	}
 
 	return size;
 }
 
-void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
+void pacchettoStatoSegnali::serialize(array<Byte>^buffer, int offset)
 {
 	utility::push(buffer, NID_PACKET, 8, offset);
 	setL_PACKET(getSize());
 	utility::push(buffer, L_PACKET, 13, offset +8);
 	utility::push(buffer, vStatoSegnale[0]->getNID_SEGN(), 32, offset + 21);
-	utility::push(buffer, vStatoSegnale[0]->getQSTATO_SEGN(), 2, offset + 53);
-	utility::push(buffer, N_ITER, 16, offset + 55);
+	utility::push(buffer, vStatoSegnale[0]->getQSTATO_SEGN(), 5, offset + 53);
+	utility::push(buffer, N_ITER, 16, offset + 58);
 	//mS1_vect = new missionStruct1[N_ITER1];
-	int shift = 71;
+	int shift = 74;
 	for( int i =1; i <vStatoSegnale->Count;i++)
 	{
 		utility::push(buffer, vStatoSegnale[i]->getNID_SEGN(), 32, offset + shift);
@@ -54,15 +56,15 @@ void pacchettoStatoSegnali::serialize(byte *buffer, int offset)
 
 }
 
-void pacchettoStatoSegnali::deserialize(byte *buffer, int offset)
+void pacchettoStatoSegnali::deserialize(array<Byte>^buffer, int offset)
 {
 	NID_PACKET=utility::pop(buffer,  8, offset );
 	L_PACKET=utility::pop(buffer, 13, offset + 8);
 	int tNID_SEGN = utility::pop(buffer, 32, offset + 21);
-	int tQSTATO_SEGN = utility::pop(buffer, 2, offset + 53);
+	int tQSTATO_SEGN = utility::pop(buffer, 5, offset + 53);
 	vStatoSegnale->Add(gcnew StateSegnale(tNID_SEGN,tQSTATO_SEGN));
-	setN_ITER(utility::pop(buffer, 16, offset + 55));
-	int shift = 71;
+	setN_ITER(utility::pop(buffer, 16, offset + 58));
+	int shift = 74;
 	for(unsigned int i = 0; i < N_ITER; ++i)
 	{
 		int NID_SEGN=utility::pop(buffer, 32, offset + shift);

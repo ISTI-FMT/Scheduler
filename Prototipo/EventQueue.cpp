@@ -26,7 +26,9 @@ void EventQueue::OnError(Exception ^e)
 
 void EventQueue::OnNext(Event^ value)
 {
+	#ifdef DEBUG_MSG
 	Console::WriteLine("Evento: {0}",value->ToString());
+	#endif //DEBUG_MSG
 	queueEvent->Enqueue(value);
 }
 
@@ -40,7 +42,7 @@ Event ^EventQueue::getEvent(){
 	if(!queueEvent->IsEmpty){
 
 		queueEvent->TryDequeue(result);
-		Console::WriteLine("PReLEVATO: {0}",result->ToString());
+		
 	}
 	return result;
 

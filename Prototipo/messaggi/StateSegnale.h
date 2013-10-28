@@ -1,6 +1,8 @@
 #pragma once
 //questa classe rappresenta lo stato di un segnale
 
+/*Utilizzo questa classe per serializzare le informazioni sullo stato dei segnali del pacchetto stato segnali
+rivevuto dall'IXL*/
 
 ref class StateSegnale
 {

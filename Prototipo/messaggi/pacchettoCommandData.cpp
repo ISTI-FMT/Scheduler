@@ -15,33 +15,33 @@ pacchettoCommandData::pacchettoCommandData(void)
 
 // questa funzione prende in ingresso un buffer di byte (la cui dimensione deve essere almeno 10, ma il controllo sulla 
 // dimensione deve essere fatto all'esterno della funzione) e copia in buffer il contenuto del pacchettoCommandData
-void pacchettoCommandData::serializepacchettoCommandData(byte *buffer)
+void pacchettoCommandData::serializepacchettoCommandData(array<Byte>^buffer)
 {
 
 	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
 	utility::push(buffer, L_PACKET, 13, 59);
 	utility::push(buffer, Q_COMMAND_TYPE, 3, 72);
-	if(Q_COMMAND_TYPE==4){
+	if(Q_COMMAND_TYPE==typeCmdData::CHANGE_GOA_LEVEL){
 		utility::push(buffer, M_GOA_LEVEL, 2, 75);
 	}
-	if(Q_COMMAND_TYPE==5){
+	if(Q_COMMAND_TYPE==typeCmdData::TRN){
 		utility::push(buffer, NID_OPERATIONAL, 32, 75);
 
 	}
 
 }
 
-void pacchettoCommandData::deserializepacchettoCommandData(byte *buffer)
+void pacchettoCommandData::deserializepacchettoCommandData(array<Byte>^buffer)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, 51);
 	L_PACKET=utility::pop(buffer, 13, 59);
 	Q_COMMAND_TYPE=utility::pop(buffer,3, 72);
-	if(Q_COMMAND_TYPE==4){
+	if(Q_COMMAND_TYPE==typeCmdData::CHANGE_GOA_LEVEL){
 		M_GOA_LEVEL=utility::pop(buffer, 2, 75);
 	}
-	if(Q_COMMAND_TYPE==5){
+	if(Q_COMMAND_TYPE==typeCmdData::TRN){
 		NID_OPERATIONAL=utility::pop(buffer, 32, 75);
 
 	}

@@ -11,6 +11,9 @@
 	using namespace System::Net;
 	using namespace System::Net::Sockets;
 	
+/*Utilizzo questa classe per visualizzare graficamente le informazioni presenti nel file di configurazione della
+tabella orario*/
+
 //form per visualizzare sotto forma di tabella le informazioni contenute nel file della tabella orario
 
 ref class FormVisualizzeTabOrario : public Form

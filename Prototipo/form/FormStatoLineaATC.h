@@ -2,6 +2,10 @@
 #include "tableLayoutPanelAllCDB.h"
 #include "..\\EventQueue.h"
 
+/*Utilizzo questa classe per rappresentare graficamente una form che contiene le informazioni sullo stato  dei cdb 
+dei messaggi stato della linea dell'ATC*/
+
+
 namespace Prototipo {
 
 	using namespace System;
@@ -11,33 +15,42 @@ namespace Prototipo {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Net::Sockets;
-using namespace System::Threading;
-using namespace System::Threading::Tasks;
+	using namespace System::Threading;
+	using namespace System::Threading::Tasks;
 
 
 	/// <summary>
 	/// Riepilogo per FormStatoLineaATC
 	/// </summary>
- ref class FormStatoLineaATC : public System::Windows::Forms::Form
+	ref class FormStatoLineaATC : public System::Windows::Forms::Form
 	{
 		Dictionary<int,Button^> ^listbuttonCDB;
 		EventQueue ^eventiATC;
+		System::Windows::Forms::ToolTip ^ToolTip1;
+		tableLayoutPanelAllCDB ^tableCDB;
+
+		delegate void GoCallback(int id, int stato , int nid_op, int nid_engine);
+		GoCallback^ myDelegate;
+		bool _shouldStop;
 	public:
 		FormStatoLineaATC(EventQueue ^ev)
 		{
 			InitializeComponent();
-						eventiATC=ev;
-
+			eventiATC=ev;
+			_shouldStop=false;
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			genera();
+			ToolTip1 = gcnew System::Windows::Forms::ToolTip();
+
+			myDelegate = gcnew GoCallback( this, &FormStatoLineaATC::findandsetCDB );
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 		}
 		void genera();
 		void aggiorna();
-	
-		void findandsetCDB(int id, int stato);
+		void RequestStop();
+		void findandsetCDB(int id, int stato , int nid_op, int nid_engine);
 	protected:
 		/// <summary>
 		/// Liberare le risorse in uso.
@@ -71,7 +84,7 @@ using namespace System::Threading::Tasks;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1150, 378);
+			this->ClientSize = System::Drawing::Size(1240, 378);
 			this->Name = L"FormStatoLineaATC";
 			this->Text = L"FormStatoLineaATC";
 			this->ResumeLayout(false);

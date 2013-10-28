@@ -5,6 +5,10 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
+
+/*Utilizzo questa classe per rappresentare graficamente un controllo che visualizzi delle scritte che cambiano colore
+in loop cosi da verificare se effettivamente l'applicazione è "viva"*/
+
 //questo oggetto rappresenta un controllo che implementa un watch dog
 ref class wdogcontrol : public System::Windows::Forms::UserControl
 {

@@ -12,26 +12,26 @@ pacchettopresentazione::pacchettopresentazione(void)
 
 // metodo per la serializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
-void pacchettopresentazione::serialize(byte *buffer)
+void pacchettopresentazione::serialize(array<Byte>^buffer)
 {
 	//utility::push(buffer, data.NID_ENGINE, 24, 51);
 	utility::push(buffer, NID_PACKET, 8, 75);
 	setL_PACKET(getSize());
 	utility::push(buffer, L_PACKET, 13, 83);
-	utility::push(buffer, M_PORT, 32, 96);
+	utility::push(buffer, M_PORT, 24, 96);
 
 }
 
 // metodo per la deserializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
-void pacchettopresentazione::deserialize(byte *buff)
+void pacchettopresentazione::deserialize(array<Byte>^buff)
 {
 
 
 	//data.NID_ENGINE = utility::pop(buff, 24, 51);
 	NID_PACKET = utility::pop(buff, 8, 75);
 	L_PACKET = utility::pop(buff, 13, 83);
-	M_PORT = utility::pop(buff, 32, 96);
+	M_PORT = utility::pop(buff, 24, 96);
 
 }
 

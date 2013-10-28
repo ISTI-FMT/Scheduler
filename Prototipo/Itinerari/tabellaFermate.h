@@ -3,7 +3,14 @@
 #using <System.dll>
 using namespace System;
 using namespace System::Collections::Generic;
-//questa classe contiene una mappa tra id delle fermata ed una lista di "binari"
+
+/*utilizzo questa classe per rappresentare le informazioni delle stazioni parsate dal file xml ConfigurazioneFermate.xml
+queste vengono inserite in una mappa tra id delle fermata ed una lista di "binario"
+contiene i metodi per leggere il file di configurazione verificarlo con lo scheda xsd..
+*/
+
+
+//questa classe contiene una mappa tra id delle fermata ed una lista di "binario"
 ref class tabellaFermate
 {
 	// dizionario delle fermate. L'indice è l'id della fermata
@@ -16,11 +23,11 @@ public:
 
 	Dictionary<String ^, List<binario^> ^> ^getTabFermate(){return tabella;};
 
-	void leggifileconfigurazioneFermate(String ^nomeFile);
+	void leggifileconfigurazioneFermate();
 
 	virtual System::String^ ToString() override;
 
-	//fornendo id della fermarta il binario e banchina restiuisce una lista di 2 valori interi che rappresentano rispettivamente
+	//fornendo id della fermata il binario e banchina restiuisce una lista di 2 valori interi che rappresentano rispettivamente
 	//nid_lrgb e D_stop per quella fermata 
 	List<int> ^get_infobalise(String ^idfermata, int binp, int banchina){
 		List<int> ^ret = gcnew List<int>();

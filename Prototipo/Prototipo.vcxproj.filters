@@ -61,11 +61,12 @@
     <Filter Include="File di intestazione\form">
       <UniqueIdentifier>{a59cbf2c-042c-4c9c-95a1-0747c85b997b}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Prototipo.rc">
-      <Filter>File di risorse</Filter>
-    </ResourceCompile>
+    <Filter Include="File di intestazione\ConfVelocita">
+      <UniqueIdentifier>{8ad3259c-dc5f-435d-91ed-2b70acb48852}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File di origine\ConfVelocita">
+      <UniqueIdentifier>{abcb8286-1f2f-4b84-8d2f-d99d8b3bb852}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="messaggi\Messaggi.h">
@@ -75,9 +76,6 @@
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
     <ClInclude Include="messaggi\pacchettoCommandData.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoMissionPlan.h">
       <Filter>File di intestazione\messaggi</Filter>
     </ClInclude>
     <ClInclude Include="messaggi\pacchettopresentazione.h">
@@ -224,9 +222,6 @@
     <ClInclude Include="StateObject.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="FormStatoItinerari.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="form\tableLayoutPanelAllCDB.h">
       <Filter>File di intestazione\form</Filter>
     </ClInclude>
@@ -234,6 +229,24 @@
       <Filter>File di intestazione\form</Filter>
     </ClInclude>
     <ClInclude Include="form\FormStatoLineaATC.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoMissionData.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h">
+      <Filter>File di intestazione\ConfVelocita</Filter>
+    </ClInclude>
+    <ClInclude Include="FormStatoLineaIXL.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="messaggi\pacchettoPositionDataATC.h">
+      <Filter>File di intestazione\messaggi</Filter>
+    </ClInclude>
+    <ClInclude Include="threads\ThreadSchedulerTrain.h">
+      <Filter>File di intestazione\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="ParalellMethod.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
@@ -245,9 +258,6 @@
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
     <ClCompile Include="messaggi\pacchettoCommandData.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoMissionPlan.cpp">
       <Filter>File di origine\messaggi</Filter>
     </ClCompile>
     <ClCompile Include="messaggi\pacchettopresentazione.cpp">
@@ -391,16 +401,31 @@
     <ClCompile Include="TrenoFisicoLogico.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="FormStatoItinerari.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="form\tableLayoutPanelAllCDB.cpp">
       <Filter>File di origine\form</Filter>
     </ClCompile>
     <ClCompile Include="form\tableLayoutPanelSingleItin.cpp">
       <Filter>File di origine\form</Filter>
     </ClCompile>
+    <ClCompile Include="messaggi\pacchettoMissionData.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp">
+      <Filter>File di origine\ConfVelocita</Filter>
+    </ClCompile>
+    <ClCompile Include="messaggi\pacchettoPositionDataATC.cpp">
+      <Filter>File di origine\messaggi</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ThreadSchedulerTrain.cpp">
+      <Filter>File di origine\threads</Filter>
+    </ClCompile>
     <ClCompile Include="form\FormStatoLineaATC.cpp">
+      <Filter>File di origine\form</Filter>
+    </ClCompile>
+    <ClCompile Include="FormStatoLineaIXL.cpp">
+      <Filter>File di origine\form</Filter>
+    </ClCompile>
+    <ClCompile Include="ParalellMethod.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -411,14 +436,52 @@
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStatoItinerari.resx">
-      <Filter>File di risorse</Filter>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormStatoLineaATC.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormStatoLineaATC.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStatoLineaIXL.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDB.csv">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="Prototipo.rc">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
   </ItemGroup>
 </Project>

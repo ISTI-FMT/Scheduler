@@ -6,6 +6,10 @@
 #include "..\\Event.h"
 using namespace System;
 using namespace System::Collections::Generic;
+
+/*utilizzo questa classe per generare gli eventi scaturiti da un nuovi messaggi di stato della linea o stato degli itinerari provenienti dall'IXL
+filtra i messaggi inviando allo scheduler solo quelli che hanno subito una modifica*/
+
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni sullo stato della linea fornite da IXL
 ref class ManagerStatoLineaIXL : public IObservable<Event^>
 {

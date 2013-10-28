@@ -13,6 +13,9 @@ const int aperturaTrenoBanchinaDx = 4;
 const int aperturaTrenoBanchinaSx = 5;
 const int aperturaTrenoBanchinaDxSx = 6;
 
+/*Utilizzo questa classe per serializzare le informazioni sulle fermate presenti nella tabella orario*/
+
+
 /*
 Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di un singolo treno.
 Un oggetto di tipo fermata rappresenta una fermata di un treno

@@ -35,7 +35,7 @@ int pacchettoStatoItinerario::getSize()
 }
 
 
-void pacchettoStatoItinerario::serialize(byte *buffer, int offset)
+void pacchettoStatoItinerario::serialize(array<Byte>^buffer, int offset)
 {
 	utility::push(buffer, NID_PACKET, 8, offset);
 	setL_PACKET(getSize());
@@ -56,7 +56,7 @@ void pacchettoStatoItinerario::serialize(byte *buffer, int offset)
 	}
 }
 
-void pacchettoStatoItinerario::deserialize(byte *buffer, int offset)
+void pacchettoStatoItinerario::deserialize(array<Byte>^buffer, int offset)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, offset);

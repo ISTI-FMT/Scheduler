@@ -4,6 +4,9 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
+/*Utilizzo questa classe per leggere i dati di configurazione del file xml MapTreni.xml,
+e raccoglierli in una map tra id del treno fisico e una classe che raccoglie le altre informazioni*/
+
 /*-----------------------------------------------------------------------------------------------
 
 L'ATS associa ad ogni treno fisico un TRN
@@ -15,11 +18,11 @@ Dictionary<int, TrenoFisicoLogico^>^ map;
 public:
 
 	mapTrenoFisicoLogico(void);
-	mapTrenoFisicoLogico(System::String^ s);
+
 	void set_Map(Dictionary<int, TrenoFisicoLogico^>^ m){map=m;};
 	Dictionary<int, TrenoFisicoLogico^>^ get_Map(){return map;};
 
-	void inizializza(System::String^ s);
+	void inizializza();
 	virtual  System::String^ ToString() override{
 		System::String ^out ="";
 		for each( KeyValuePair<int, TrenoFisicoLogico^> kvp in map )

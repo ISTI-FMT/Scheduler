@@ -16,14 +16,22 @@ void TextBoxTraceListener::init(void){
 	textBox->Location =  System::Drawing::Point(5, 5);
 	textBox->Multiline = true;
 	textBox->Name = L"textBox";
-	textBox->Size = System::Drawing::Size(725, 410);
+	textBox->Size = System::Drawing::Size(1225, 410);
 	textBox->TabIndex = 4;
+	//textBox->BackColor = System::Drawing::Color::Black;
+	textBox->Font = (gcnew System::Drawing::Font(L"Courier New", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+	//textBox->Font = (gcnew System::Drawing::Font(L"Courier New", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+	//			static_cast<System::Byte>(0)));
+//	textBox->ForeColor = System::Drawing::Color::White;
 	//textBox->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox2_TextChanged);
 	textBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 	form = gcnew Form();
 	form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-	form->ClientSize = System::Drawing::Size(730, 415);
+	form->ClientSize = System::Drawing::Size(1230, 415);
+	//form->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+	form->ControlBox=false;
 	form->Controls->Add(textBox);
 	form->Name = L"Message Log Monitor";
 	form->Text = L"Message Log Monitor";
@@ -84,8 +92,10 @@ void TextBoxTraceListener::SetText(String ^text)
 	if(text->Contains(";")){
 
 		array<String^> ^arraystr=text->Split(';');
-		if(arraystr->Length==7){
-			String ^result = String::Format("{0} Module:{1} NID_MSG:{2} Message:{3} Mitt:{4}->Dest:{5} Size:{6}",arraystr[0],arraystr[2],
+		if(arraystr->Length>=7){
+			//String ^result = String::Format("{0} Module:{1} NID_MSG:{2} Message:{3} {4} Send in/out:{5} Size:{6}",arraystr[0],arraystr[2],
+			//	arraystr[4],arraystr[7],arraystr[6],arraystr[5],arraystr[8]);
+			String ^result = String::Format("{4} {0} Module:{1} NID_MSG:{2} Message:{3}\r\n",arraystr[0],arraystr[2],
 				arraystr[4],arraystr[7],arraystr[6],arraystr[5],arraystr[8]);
 			textBox->Text += result;
 		}else{
@@ -102,3 +112,4 @@ void TextBoxTraceListener::Form_Resize(System::Object^  sender, System::EventArg
 
 	textBox->Size= System::Drawing::Size(form->Width-30,form->Height-50);
 }
+

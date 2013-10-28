@@ -6,6 +6,8 @@
 #include "messaggi\\Messaggi.h"
 #include "EventQueue.h"
 
+/*Utilizzo questa classe per rappresentare graficamente una form che contiene le informazioni sullo stato degli itininerari
+e sullo stato dei cdb dei messaggi stato della linea dell'IXL*/
 
 namespace Prototipo {
 
@@ -21,27 +23,28 @@ using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
 	/// <summary>
-	/// Riepilogo per FormStatoItinerari
+	/// Riepilogo per FormStatoLineaIXL
 	/// </summary>
-	 ref class FormStatoItinerari : public System::Windows::Forms::Form
+	 ref class FormStatoLineaIXL : public System::Windows::Forms::Form
 	{
 		tabellaItinerari ^tabItinerari;
 		EventQueue ^eventiItinerario;
-		Dictionary<int,Button^> ^listbutton;
+		//Dictionary<int,Button^> ^listbutton;
 		Dictionary<int,Button^> ^listbuttonCDB;
+		bool _shouldStop;
 	public:
 
-		FormStatoItinerari(EventQueue ^ev)
+		FormStatoLineaIXL(EventQueue ^ev)
 		{
 			eventiItinerario=ev;
-			listbutton= gcnew Dictionary<int,Button^> ();
+		//	listbutton= gcnew Dictionary<int,Button^> ();
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			
 			this->ControlBox=false;
 			InitializeComponent();
-
+			_shouldStop=false;
 			tabItinerari = gcnew tabellaItinerari();
-			tabItinerari->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
+			tabItinerari->leggifileconfigurazioneItinerari();
 			genera();
 			//aggiorna();
 			//
@@ -50,17 +53,18 @@ using namespace System::Threading::Tasks;
 		}
 		void genera();
 		void aggiorna();
-		void findandset(int id, int stato);
+		//void findandset(int id, int stato);
 		void findandsetCDB(int id, int stato);
+		void RequestStop();
 	private: 
-			 List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
+			 //List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
 			 void setCdBItin(List<StateCDB^> ^listCdB, int stato);
 
 	protected:
 		/// <summary>
 		/// Liberare le risorse in uso.
 		/// </summary>
-		~FormStatoItinerari()
+		~FormStatoLineaIXL()
 		{
 			if (components)
 			{
@@ -89,7 +93,7 @@ using namespace System::Threading::Tasks;
 			// 
 			// tableLayoutPanel1
 			// 
-			this->tableLayoutPanel1->ColumnCount = 4;
+		/*	this->tableLayoutPanel1->ColumnCount = 4;
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
@@ -101,16 +105,17 @@ using namespace System::Threading::Tasks;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 			this->tableLayoutPanel1->Size = System::Drawing::Size(1168, 444);
-			this->tableLayoutPanel1->TabIndex = 0;
+			this->tableLayoutPanel1->TabIndex = 0;*/
 			// 
-			// FormStatoItinerari
+			// FormStatoLineaIXL
 			// 
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1192, 836);
-			this->Controls->Add(this->tableLayoutPanel1);
-			this->Name = L"FormStatoItinerari";
+			//this->ClientSize = System::Drawing::Size(1192, 836);
+			this->ClientSize = System::Drawing::Size(1240, 378);
+			//this->Controls->Add(this->tableLayoutPanel1);
+			this->Name = L"FormStatoLineaIXL";
 			this->Text = L"FormStatoIXL";
 			this->ResumeLayout(false);
 

@@ -1,4 +1,7 @@
 #pragma once
+
+/*Utilizzo questa classe per serializzare le informazioni dei messaggi di fault*/
+
 //rappresenta le informazioni contenute nel messaggio di fault
 ref class Fault
 {
@@ -7,7 +10,7 @@ ref class Fault
 public:
 	Fault(void);
 	Fault(int N, int M){NID_COMPONENT=N;M_FAULT=M;};
-	int Size(){return 8+4;}
+	int Size(){return 12;}
 	void setNID_COMPONENT(int N){NID_COMPONENT=N;};
 	int getNID_COMPONENT(){ return NID_COMPONENT;};
 	void setM_FAULT(int M){M_FAULT=M;};

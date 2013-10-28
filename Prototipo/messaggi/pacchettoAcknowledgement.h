@@ -1,6 +1,10 @@
 #pragma once
 #include "utility.h"
 
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Acnowledgement che l'ATS riceve dal ATO
+nel messaggio di acnowledgement, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
 /*-----------------------------------------------------------------------------------------------
 questa classe rappresenta un Pacchetto di Acnowledgement
 L'ATS riceve dal ATO dei messaggi di acnowledgement
@@ -30,8 +34,8 @@ public:
 	int getT_TRAIN(){return T_TRAIN;};
 	// metodi per la serializzazione e deserializzazione del messaggio
 	// il buffer di byte deve essere stato precedentemente correttamente allocato.
-	void serialize(byte *buff);
-	void deserialize(byte *buff);
+	void serialize(array<Byte>^buff);
+	void deserialize(array<Byte>^buff);
 	~pacchettoAcknowledgement(void);
 	virtual System::String ^ToString() override;
 	

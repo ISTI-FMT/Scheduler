@@ -11,31 +11,32 @@ void ManagerStatoLineaIXL::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 {
 	for each (StateCDB ^cdb in listaCDB)
 	{
-		if(!tabellaCDB->ContainsKey(cdb->getNID_CDB()))
-		{
-			tabellaCDB->Add(cdb->getNID_CDB(), cdb);
-			// segnala l'evento!!!
-			for each (IObserver<Event^>^ observer in observers)
-			{
-				observer->OnNext(gcnew Event(cdb->Clone(),source));
-			}
+		addCheckAndSet(cdb,source);
+		//if(!tabellaCDB->ContainsKey(cdb->getNID_CDB()))
+		//{
+		//	tabellaCDB->Add(cdb->getNID_CDB(), cdb);
+		//	// segnala l'evento!!!
+		//	for each (IObserver<Event^>^ observer in observers)
+		//	{
+		//		observer->OnNext(gcnew Event(cdb->Clone(),source));
+		//	}
 
 
-		}
-		else 
-		{
-			bool mod = tabellaCDB[cdb->getNID_CDB()]->Update(cdb);
-			if(mod)
-			{
+		//}
+		//else 
+		//{
+		//	bool mod = tabellaCDB[cdb->getNID_CDB()]->Update(cdb);
+		//	if(mod)
+		//	{
 
-				// segnala evento!!!
-				for each (IObserver<Event^>^ observer in observers)
-				{
-					observer->OnNext(gcnew Event(cdb->Clone(),source));
-				}
-			}
+		//		// segnala evento!!!
+		//		for each (IObserver<Event^>^ observer in observers)
+		//		{
+		//			observer->OnNext(gcnew Event(cdb->Clone(),source));
+		//		}
+		//	}
 
-		}
+		//}
 	}
 }
 
@@ -152,7 +153,7 @@ StateCDB^ ManagerStatoLineaIXL::StatoCDB(int idcdb){
 		return	tabellaCDB[idcdb];
 
 	}
-	return gcnew StateCDB();
+	return nullptr;
 	 
 
 }

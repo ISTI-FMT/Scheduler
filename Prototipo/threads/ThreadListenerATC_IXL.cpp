@@ -22,14 +22,35 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 	ManStatoLineaIXL=MC;
 	ManStatoLineaATC=MA;
 	isMessageReceived=false;
+	port = 4010;
+	_shouldStop=false;
+	end_byte_old = nullptr;
 }
+bool ThreadListenerATC_IXL::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B){
 
+	bool scarta = false;
+	for (int ind=8;ind<B->Length;ind++)
+	{
+		String ^A_string =  B[ind].ToString();
+		String ^B_string = A[ind].ToString();
+		if(A_string->Equals(B_string)){
+			scarta=true;
+		}else{
+			scarta=false; 
+			B=A;
+			break;
+		}
+	}
+	return scarta;
+}
 void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
-
-	Console::ForegroundColor = ConsoleColor::Red;
-	Console::WriteLine( "ATC/IXL Connected!" );
+	//Thread::Sleep(1000);
+	//Console::ForegroundColor = ConsoleColor::White;
+	//Console::WriteLine( "ATC/IXL Connected!" );
+	//Console::ForegroundColor = ConsoleColor::White;
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
 
+	//Console::WriteLine("{0} ttl",recv_udpClient->Ttl);
 
 	IPEndPoint^ ipEndPoint;
 
@@ -38,46 +59,111 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	Messaggi ^pkt1 = gcnew Messaggi();
 
 
-	pkt1->deserialize(receiveBytes);
+
+
+
+	bool scarta=false;
+
+	int NID_MESSAGE= utility::pop(receiveBytes, 8, 0);
+
+	if(NID_MESSAGE==MessIXL::StatoLineaIXL){
+
+		if(end_byte_old==nullptr){
+			end_byte_old=receiveBytes;
+		}else{
+			if(end_byte_old->Length!=receiveBytes->Length){
+				end_byte_old=receiveBytes;
+			}else{
+				scarta = ConfrontaArrayByte(receiveBytes,end_byte_old);
+				if(!scarta)
+					end_byte_old=receiveBytes;
+			}
+			isMessageReceived = true;
+		}
+	}else{
+
+
+		if(end_byte_old_ATC==nullptr){
+			end_byte_old_ATC=receiveBytes;
+		}else{
+
+			if(end_byte_old_ATC->Length!=receiveBytes->Length){
+				end_byte_old_ATC=receiveBytes;
+			}else{
+				scarta = ConfrontaArrayByte(receiveBytes,end_byte_old_ATC);
+				if(!scarta)
+					end_byte_old_ATC=receiveBytes;
+				/*int ind=0;
+				for each (Byte ^Bytevar in end_byte_old_ATC)
+				{
+				String ^A =  Bytevar->ToString();
+				String ^B = end_byte[ind].ToString();
+				if(A->Equals(B)){
+				scarta=true;
+				}else{
+				scarta=false; 
+				end_byte_old_ATC=end_byte;
+				break;
+				}
+				ind++;
+				}*/
+			}
+			isMessageReceived = true;
+		}
+
+
+	}
+	if(!scarta){
+		String ^mittente = gcnew String("Sconosciuto");
+		if(NID_MESSAGE==MessATC::StatoLineaATC)
+			mittente="ATC";
+		if(NID_MESSAGE==MessIXL::StatoLineaIXL)
+			mittente="IXL";
+		Console::WriteLine( "{0} Connected! Messaggio Accettato",mittente );
+		pkt1->deserialize(receiveBytes);
+
 
 #ifdef TRACE
 
-	Logger::Info(pkt1->getNID_MESSAGE(),ipEndPoint->Address->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
+		Logger::Info(pkt1->getNID_MESSAGE(),mittente+"->ATS",ipEndPoint->Address->ToString(),pkt1->getSize(),BitConverter::ToString(receiveBytes),"ListenerATC/IXL");
 
 #endif // TRACE
 
 
-	Console::ForegroundColor = ConsoleColor::Red;
-	Console::WriteLine("{0} ATC/IXL ti ha inviato un messaggio",ipEndPoint->Address->ToString());
-	Console::WriteLine(pkt1->ToString());
-	Console::ResetColor();
+		Console::ForegroundColor = ConsoleColor::Red;
+		Console::WriteLine("{0} ATC/IXL ti ha inviato un messaggio",ipEndPoint->Address->ToString());
+		//Console::WriteLine(pkt1->ToString());
+		Console::ResetColor();
 
-	isMessageReceived = true;
+		isMessageReceived = true;
 
-	//aggiorniamo il manager  1 è stato linea ATC mentre 101 è stato linea IXL
+		//aggiorniamo il manager  11 è stato linea ATC mentre 1 è stato linea IXL
 
 
-	switch (pkt1->getNID_MESSAGE())
-	{
-	case 1: {
-		ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoStatoLineaATC()->getCDB(),"ATC");
-		break;
+		switch (pkt1->getNID_MESSAGE())
+		{
+		case MessATC::StatoLineaATC: {
+			ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoPositionDataATC()->getListCDB(),"ATC");
+			Console::ForegroundColor = ConsoleColor::White;
+			Console::WriteLine("ricevuto messaggio da ATC");
+			break;
 
-			}
-	case 101: {
+									 }
+		case  MessIXL::StatoLineaIXL: {
 
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
-		ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
-	
-		break;
-			  }
+			ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
+			//ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");
+			Console::ForegroundColor = ConsoleColor::White;
+			Console::WriteLine("ricevuto messaggio da IXL");
+			break;
+									  }
 
-	default:
-		break;
+		default:
+			break;
+		}
+
+
 	}
-
-
-
 }
 
 
@@ -85,11 +171,12 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 	try
 	{
 		Console::ForegroundColor = ConsoleColor::Red;
-		Console::Write( "Thread Udp ATC Start... " );
-		int port = 23002;
+		Console::WriteLine( "Thread Udp ATC Start... " );
+
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
-		while ( true )
+		udpClient->Client->ReceiveBufferSize=2048;
+		while ( !_shouldStop )
 		{
 			// Receive a message and write it to the console.
 
@@ -101,10 +188,10 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 
 			// Do some work while we wait for a message. For this example,
 			// we'll just sleep
-			while (!isMessageReceived)
+			while (!isMessageReceived & !_shouldStop)
 			{
 				Thread::Sleep(100);
-				///isMessageReceived=true;
+				////isMessageReceived=true;
 			}
 			isMessageReceived=false;
 			// Set the TcpListener on port 13000.
@@ -142,4 +229,8 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 }
 
 
+void ThreadListenerATC_IXL::RequestStop()
+{
+	_shouldStop = true;
+}
 

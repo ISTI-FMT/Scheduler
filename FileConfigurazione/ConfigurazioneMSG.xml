@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurazionemsg xmlns="urn:configurazionemsg-schema">
+<MessIXL>
+<Message id="1" name="StatoLineaIXL"/> 
+<Message id="211" name="FaultReportingIXL"/> 
+<Message id="10" name="ComandoItinerari"/> 
+<Message id="231" name="ComandoBlocco"/> 
+</MessIXL>
+<MessATC>
+<Message id="11" name="StatoLineaATC"/> 
+<Message id="12" name="FaultReportingATC"/> 
+</MessATC>
+<MessATO>
+<Message id="100" name="MissionPlan"/> 
+<Message id="113" name="FaultReportingATO"/> 
+<Message id="101" name="UnconditionCommand"/> 
+<Message id="110" name="Acknowledgement"/> 
+<Message id="115" name="Presentation"/> 
+</MessATO>
+  
+  
+</configurazionemsg>

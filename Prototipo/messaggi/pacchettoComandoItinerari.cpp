@@ -17,7 +17,7 @@ int pacchettoComandoItinerari::getSize()
 	return 55;
 }
 
-void pacchettoComandoItinerari::serialize(byte *buffer)
+void pacchettoComandoItinerari::serialize(array<Byte>^buffer)
 {
 	utility::push(buffer, NID_PACKET, 8, 51);
 	setL_PACKET(getSize());
@@ -25,7 +25,7 @@ void pacchettoComandoItinerari::serialize(byte *buffer)
 	utility::push(buffer, NID_ITIN, 32, 72);
 	utility::push(buffer, Q_CMDITIN, 2, 104);}
 
-void pacchettoComandoItinerari::deserialize(byte *buffer)
+void pacchettoComandoItinerari::deserialize(array<Byte>^buffer)
 {
 	NID_PACKET=utility::pop(buffer,  8, 51);
 	L_PACKET=utility::pop(buffer, 13, 59);

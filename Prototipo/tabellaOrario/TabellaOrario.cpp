@@ -16,13 +16,13 @@ using namespace System::Xml::Schema;
 TabellaOrario::TabellaOrario(void)
 {
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
-	schemaxsd="..\\FileConfigurazione\\TabellaOrario.xsd";
+	schemaxsd="TabellaOrario.xsd";
 }
 
 TabellaOrario::TabellaOrario(tabellaItinerari ^T)
 {
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
-	schemaxsd="..\\FileConfigurazione\\TabellaOrario.xsd";
+	schemaxsd="TabellaOrario.xsd";
 	tabItinerari=T;
 }
 
@@ -58,7 +58,7 @@ int TabellaOrario::getFirstTRN()
 		  }*/
 
 // questa funzione legge il file di configurazione contenente la descrizione della tabella orario
-void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
+void TabellaOrario::leggiTabellaOrario()
 {
 	try{
 		// oggetti DateTime di supporto
@@ -67,21 +67,22 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 		TimeSpan sinceMidnight;
 
 #ifdef VALIDATEXML
+		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
 		// Create the XmlSchemaSet class.
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
 
 		// Add the schema to the collection.
-		sc->Add( "urn:tabellaorario-schema", schemaxsd );
+		sc->Add( "urn:tabellaorario-schema",  gcnew XmlTextReader (readStreamschemaxsd) );
 		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
 		settings->ValidationType = System::Xml::ValidationType::Schema;
 		settings->Schemas = sc;
 		/*ValidationEventHandler ^ed = gcnew ValidationEventHandler( ValidationCallBack );
 		settings->ValidationEventHandler +=ed;*/
 
-
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("TabellaOrario.xml");
 
 		//System::String^ nome = gcnew System::String(nomeFile.c_str());
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 		//	XmlDocument ^document = gcnew XmlDocument();
 		//document->Load(readers);
@@ -215,19 +216,24 @@ void TabellaOrario::leggiTabellaOrario(String ^nomeFile)
 
 // funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
 // alla missione associata al TRN in questione
-void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
+void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel)
 {
 	// ottengo un riferimento alle fermate del treno TRN
 	List<Fermata^> ^stops = tabella[TRN];
 	// se il teno esiste
 	if(stops!=nullptr)
 	{
-		//Todo: V_mission D_mission ancora da trattare
-		pkt->setPV(gcnew ProfiloVelocita());
-		pkt->setN_ITER1(0);
+		//Todo: V_mission D_mission tratte
+		if(pvel!=nullptr){
+			pkt->setPV(pvel);
+			pkt->setN_ITER1(pvel->Count-1);
+		}else{
+			pkt->setPV(gcnew ProfiloVelocita);
+			pkt->setN_ITER1(0);
+		}
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
 		pkt->setN_ITER2((stops->Count) - 1);
-		
+
 		for each (Fermata ^stop in stops)
 		{
 			Mission ^mission= gcnew Mission();
@@ -249,11 +255,11 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionPlan ^pkt)
 				}
 
 			}
-			
-			pkt->setMission(mission);
-			
 
-			
+			pkt->setMission(mission);
+
+
+
 		}
 	}
 }
@@ -275,11 +281,18 @@ System::String^ TabellaOrario::ToString(){
 }
 
 List<Fermata^> ^TabellaOrario::getItinerariFor(int TRN){
-	
-	if(tabella->ContainsKey(TRN)){
-		return tabella[TRN];
-		
 
+	if(tabella->ContainsKey(TRN)){
+
+		//return tabella[TRN];
+		List<Fermata^> ^result = gcnew List<Fermata^>();
+		for each (Fermata ^ferm in tabella[TRN])
+		{
+			if(ferm->getIdStazione()>1000){
+				result->Add(ferm);
+			}
+		}
+		return result;
 	}
 	return nullptr;
 }

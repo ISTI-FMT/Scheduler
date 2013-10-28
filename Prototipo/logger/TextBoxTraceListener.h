@@ -5,6 +5,10 @@
 using namespace  System::Diagnostics;
 using namespace  System::Windows::Forms;
 using namespace  System;
+
+/*Utilizzo questa classe per visualizzare graficamente in un area di testo in cui stampare i messaggi di log 
+intercettati dal TraceListener */
+
 //questa classe listener estende TextWriterTraceListener e  permette di visualizzare le informazioni di logging in una text box.
 ref class TextBoxTraceListener :TextWriterTraceListener
 {

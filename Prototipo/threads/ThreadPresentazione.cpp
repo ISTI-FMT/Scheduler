@@ -28,6 +28,8 @@ ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt,  ManagerMsgATO ^
 {
 	listaTreni=lt;
 	ManaMsgATO=MA;
+	port=13000;
+	_shouldStop=false;
 }
 
 void  ThreadPresentazione::TCP_Management_receive(){
@@ -35,7 +37,7 @@ void  ThreadPresentazione::TCP_Management_receive(){
 	{
 
 		// Set the TcpListener on port 13000.
-		Int32 port = 13000;
+		
 		IPAddress^ localAddr = IPAddress::Any;//IPAddress::Parse( "127.0.0.1" );
 
 		// TcpListener* server = new TcpListener(port);
@@ -48,9 +50,10 @@ void  ThreadPresentazione::TCP_Management_receive(){
 		array<Byte>^bytes = gcnew array<Byte>(16);
 		String^ data = nullptr;
 
-		while ( true )
+		while (! _shouldStop )
 		{
-			while (!server->Pending()) Thread::Sleep(500);
+			while (!server->Pending()&(!_shouldStop)) Thread::Sleep(500);
+			if(! _shouldStop){
 			Console::ForegroundColor = ConsoleColor::DarkGreen;
 			Console::Write( "Waiting for a connection... " );
 
@@ -81,7 +84,7 @@ void  ThreadPresentazione::TCP_Management_receive(){
 
 #ifdef TRACE
 
-			Logger::Info(pkt1->getNID_MESSAGE(),(((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString(),"ATS",pkt1->getSize(),BitConverter::ToString(bytes),"Presentazione");
+			Logger::Info(pkt1->getNID_MESSAGE(),"ATO->ATS",(((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString(),pkt1->getSize(),BitConverter::ToString(bytes),"Presentazione");
 
 #endif // TRACE
 
@@ -118,6 +121,7 @@ void  ThreadPresentazione::TCP_Management_receive(){
 			Console::ResetColor();
 
 		}
+		}
 	}
 	catch ( SocketException^ e ) 
 	{
@@ -140,3 +144,7 @@ void  ThreadPresentazione::TCP_Management_receive(){
 }
 
 
+void ThreadPresentazione::RequestStop()
+    {
+        _shouldStop = true;
+    }

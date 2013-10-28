@@ -4,6 +4,11 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Stato Segnali che l'ATS riceve dal IXL
+nel messaggio di stato della linea, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
 /*-----------------------------------------------------------------------------------------------
 questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei segnali
 L'ATS riceve dall'IXL messaggi contenenti informazioni relative allo stato degi segnali
@@ -39,8 +44,8 @@ public:
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 	int getSize();
-	void serialize(byte *buffer, int offset);
-	void deserialize(byte *buffer, int offset);
+	void serialize(array<Byte>^buffer, int offset);
+	void deserialize(array<Byte>^buffer, int offset);
 
 	virtual System::String ^ToString() override;
 };

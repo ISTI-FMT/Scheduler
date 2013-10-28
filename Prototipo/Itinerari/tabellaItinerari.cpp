@@ -13,28 +13,31 @@ using namespace System::Xml::Schema;
 tabellaItinerari::tabellaItinerari(void)
 {
 	mapidstazioneitinerari= gcnew Dictionary<int,stazione^ >() ;
-	schemaxsd="..\\FileConfigurazione\\ConfigurazioneItinerari.xsd";
+	schemaxsd="ConfigurazioneItinerari.xsd";
 }
 
 
 // questa funzione legge il file di configurazione contenente la descrizione degli itinerari
-void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
+void tabellaItinerari::leggifileconfigurazioneItinerari()
 {
 
 	try{
 
 #ifdef VALIDATEXML
+		 System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
+
 		// Create the XmlSchemaSet class.
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
 
 		// Add the schema to the collection.
-		sc->Add("urn:configurazioneitinerari-schema", schemaxsd );
+		sc->Add("urn:configurazioneitinerari-schema", gcnew XmlTextReader (readStreamschemaxsd) );
 		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
 		settings->ValidationType = System::Xml::ValidationType::Schema;
 		settings->Schemas = sc;
 
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneItinerari.xml");
 
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile, settings);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 	/*	XmlDocument ^document = gcnew XmlDocument();
 		document->Load(readers);  */
@@ -100,7 +103,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 
 						int cdb = int::Parse( inner3->ReadString());
-						newitinerario->getLCDB()->Add(gcnew StateCDB(cdb,0,0));
+						newitinerario->getLCDB()->Add(cdb);
 
 					}
 
@@ -160,7 +163,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari(String ^nomeFile)
 
 
 						int cdb = int::Parse( inner3->ReadString());
-						newitinerario->getLCDB()->Add(gcnew StateCDB(cdb,0,0));
+						newitinerario->getLCDB()->Add(cdb);
 
 					}
 
@@ -232,3 +235,16 @@ int tabellaItinerari::get_CdbSuccItinerario(int stazione, int iditin){
 	}
 	return result;
 }
+
+List<int> ^tabellaItinerari::get_Cdb_Itinerario(int stazione, int iditin){
+	
+	if(mapidstazioneitinerari->ContainsKey(stazione)){
+		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
+			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->getLCDB();
+		}
+
+	}
+	return nullptr;
+
+}
+

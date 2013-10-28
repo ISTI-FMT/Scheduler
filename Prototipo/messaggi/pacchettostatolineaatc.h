@@ -5,6 +5,11 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Stato linea che l'ATS riceve dal ATC
+nel messaggio di stato della linea, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
 //questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei CDB dall'ATC
 
 ref class pacchettostatolineaatc
@@ -26,8 +31,8 @@ public:
 	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 	int getSize();
-	void serialize(byte *buff);
-	void deserialize(byte *buff);
+	void serialize(array<Byte>^buff);
+	void deserialize(array<Byte>^buff);
 	
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	

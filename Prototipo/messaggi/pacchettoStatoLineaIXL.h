@@ -4,6 +4,11 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
+
+/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Stato della Linea che l'ATS riceve dal IXL
+nel messaggio di stato della linea, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
+
+
 /*-----------------------------------------------------------------------------------------------
 questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei CDB dall'IXL
 L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato della linea
@@ -40,8 +45,8 @@ public:
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 	int getSize();
-	void serialize(byte *buffer);
-	void deserialize(byte *buffer);
+	void serialize(array<Byte>^buffer);
+	void deserialize(array<Byte>^buffer);
 
 	/*int Size(){
 		int sizecdb = statoCDB->Size();

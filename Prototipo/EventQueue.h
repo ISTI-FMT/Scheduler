@@ -3,7 +3,7 @@
 #include "messaggi\\StateItinerario.h"
 #include "messaggi\\StateCDB.h"
 #include "Event.h"
-
+/*questa classe rappresenta la struttura dati coda di eventi che lo schedulatore interroga per avere l'evento successivo*/
 using namespace System;
 using namespace System::Collections::Concurrent;
 //rappresenta una coda di eventi che implementa l'interfaccia observer 

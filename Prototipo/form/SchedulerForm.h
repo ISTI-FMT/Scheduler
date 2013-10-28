@@ -20,8 +20,9 @@
 #include "..\\ThreadSchedule.h"
 #include "..\\EventQueue.h"
 #include "..\\wdogcontrol.h"
-#include "..\\FormStatoItinerari.h"
+#include "..\\FormStatoLineaIXL.h"
 #include "FormStatoLineaATC.h"
+#include "..\\ConfVelocita\\ConfigurazioneVelocita.h"
 #define TRACE
 namespace Prototipo {
 	using namespace System::Diagnostics;
@@ -36,7 +37,8 @@ namespace Prototipo {
 	using namespace System::Runtime::InteropServices;
 	using namespace System::Globalization;
 	using namespace System::Xml;
-
+	/*Utilizzo questa classe per rappresentare graficamente un pannello di controllo dello scheduler
+	sono presenti alcuni pulsanti che visualizzano informazioni sulla configurazione del sistema*/
 	/// <summary>
 	/// Riepilogo per SchedulerForm
 	/// </summary>
@@ -45,7 +47,7 @@ namespace Prototipo {
 	public:
 		SchedulerForm(void)
 		{
-			
+
 			InitializeComponent();
 			this->wdogs =( gcnew wdogcontrol());
 			//this->wdogs->BackColor = System::Drawing::Color::Blue;
@@ -85,12 +87,13 @@ namespace Prototipo {
 		phisicalTrainList ^listaTreni;
 		tabellaItinerari ^tabItinerari;
 		tabellaFermate ^tabfermate;
-		Thread^ oThreadTCP_ATO;
-		Thread^ oThreadUDP_ATC_IXL;
-		Thread^ oThreadSchedule;
-		 Thread^ oThreadformStatoI;
-		 Thread^ oThreadformStatoATC;
+		FormStatoLineaATC ^stATC;
+		FormStatoLineaIXL ^stif ;
+		ThreadListenerATC_IXL ^ThLATCIXL;
+		ThreadPresentazione ^ThreadP;
+		ThreadSchedule ^ThSchedule;
 		wdogcontrol ^wdogs;
+		ConfigurazioneVelocita ^confVelocita;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
@@ -122,6 +125,7 @@ namespace Prototipo {
 				 // 
 				 // button1
 				 // 
+				 this->button1->Enabled = false;
 				 this->button1->Location = System::Drawing::Point(168, 20);
 				 this->button1->Name = L"button1";
 				 this->button1->Size = System::Drawing::Size(87, 23);
@@ -178,10 +182,7 @@ namespace Prototipo {
 			 void TCP_Management()
 			 {
 				 phisicalTrain ^Treno = listaTreni->getPrimo();
-				 const int WAKE_UP = 0;
-				 const int CHANGE_GOA_LEVEL = 3;
-				 const int TRN = 4;
-				 const int SLEEP = 7;
+
 				 try
 				 {
 
@@ -189,7 +190,7 @@ namespace Prototipo {
 					 Messaggi ^wakeUpPkt = gcnew Messaggi();
 
 
-					 wakeUpPkt->setNID_MESSAGE(201);
+					 wakeUpPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
 
 
 					 wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
@@ -209,7 +210,7 @@ namespace Prototipo {
 					 Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
 
 
-					 trainRunningNumberPkt->setNID_MESSAGE(201);
+					 trainRunningNumberPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 					 trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
 					 trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
@@ -222,10 +223,10 @@ namespace Prototipo {
 
 					 Messaggi ^missionPlanPkt = gcnew Messaggi();
 
-					 missionPlanPkt->setNID_MESSAGE(200);
-					 missionPlanPkt->get_pacchettoMissionPlan()->setNID_PACKET(160);
+					 missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
+					 missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 					 int TRN = tabellaOrario->getFirstTRN();
-					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionPlan());
+					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(TRN));
 
 
 
@@ -319,11 +320,12 @@ namespace Prototipo {
 #ifdef TRACE
 				 Logger::Info("SchedulerForm"," ExitButton_Click");  
 #endif // TRACE
-				 oThreadTCP_ATO->Abort();
-				 oThreadUDP_ATC_IXL->Abort();
-				 oThreadSchedule->Abort();
-				 oThreadformStatoI->Abort();
-				 oThreadformStatoATC->Abort();
+				 stATC->RequestStop();
+				 stif->RequestStop() ;
+				 ThLATCIXL->RequestStop();
+				 ThreadP->RequestStop();
+
+				 ThSchedule->RequestStop();
 				 Application::Exit();
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -373,26 +375,29 @@ namespace Prototipo {
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //
 				 tabItinerari = gcnew tabellaItinerari();
-				 tabItinerari->leggifileconfigurazioneItinerari("..\\FileConfigurazione\\ConfigurazioneItinerari.xml");
+				 tabItinerari->leggifileconfigurazioneItinerari();
 
 				 tabellaOrario  = gcnew TabellaOrario(tabItinerari);
-				 tabellaOrario->leggiTabellaOrario("..\\FileConfigurazione\\TabellaOrario.xml");
+				 tabellaOrario->leggiTabellaOrario();
 
 				 tabfermate=gcnew tabellaFermate();
-				 tabfermate->leggifileconfigurazioneFermate("..\\FileConfigurazione\\ConfigurazioneFermate.xml");
+				 tabfermate->leggifileconfigurazioneFermate();
 
-				 mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico("..\\FileConfigurazione\\MapTreni.xml");
+				 mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico();
 
-				 //Console::WriteLine(tf->ToString());
+				 confVelocita= gcnew ConfigurazioneVelocita();
+
+				 Console::WriteLine(confVelocita->ToString());
 
 				 listaTreni = gcnew phisicalTrainList();
 
 				 //filtro osservabile dei messaggi dell'ATO
 				 ManagerMsgATO ^manaStateATO = gcnew ManagerMsgATO();
 
-				 ThreadPresentazione ^ThreadP = gcnew ThreadPresentazione(listaTreni,manaStateATO);
+
+				 ThreadP= gcnew ThreadPresentazione(listaTreni,manaStateATO);
 				 //Thread TCP che ascolta i messaggi provenienti dall'ATO
-				 oThreadTCP_ATO = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadPresentazione::TCP_Management_receive ) );
+				 Thread^ oThreadTCP_ATO = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadPresentazione::TCP_Management_receive ) );
 
 				 oThreadTCP_ATO->Start();
 
@@ -401,31 +406,31 @@ namespace Prototipo {
 				 ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
 
 
-				 ThreadListenerATC_IXL ^ThLATCIXL = gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
+				 ThLATCIXL= gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
 
-				 oThreadUDP_ATC_IXL = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
+				 Thread^ oThreadUDP_ATC_IXL = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
 
 				 oThreadUDP_ATC_IXL->Start();
 
 				 EventQueue ^EventQIXL = gcnew EventQueue();
 				 EventQIXL->Subscribe(manaStateIXL);
-////
+				 ////
 				 EventQueue ^visualQIXL = gcnew EventQueue();
 				 visualQIXL->Subscribe(manaStateIXL);
-				 FormStatoItinerari ^stif = gcnew FormStatoItinerari(visualQIXL);
+				 stif = gcnew FormStatoLineaIXL(visualQIXL);
 				 stif->Visible=true;
-				 oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoItinerari::aggiorna));
+				 Thread ^ oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoLineaIXL::aggiorna));
 				 oThreadformStatoI->Start();
-/////
+				 /////
 
- ////
+				 ////
 				 EventQueue ^visualQATC = gcnew EventQueue();
 				 visualQATC->Subscribe(manaStateATC);
-				 FormStatoLineaATC ^stATC = gcnew FormStatoLineaATC(visualQATC);
+				 stATC = gcnew FormStatoLineaATC(visualQATC);
 				 stATC->Visible=true;
-				 oThreadformStatoATC  = gcnew Thread( gcnew ThreadStart(stATC,&FormStatoLineaATC::aggiorna));
+				 Thread ^	 oThreadformStatoATC  = gcnew Thread( gcnew ThreadStart(stATC,&FormStatoLineaATC::aggiorna));
 				 oThreadformStatoATC->Start();
-/////
+				 /////
 				 EventQueue ^EventQATC = gcnew EventQueue();
 				 EventQATC->Subscribe(manaStateATC);
 
@@ -438,9 +443,9 @@ namespace Prototipo {
 				 listqueue->Add(EventQATO);
 
 
-				 ThreadSchedule ^ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL);
+				 ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
 
-				 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
+				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
 				 oThreadSchedule->Start();
 
 			 }

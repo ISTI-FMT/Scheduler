@@ -1,5 +1,9 @@
 #pragma once
 enum  typeStatoBlocco {  illegale = 0, legale = 1};
+
+/*Utilizzo questa classe per serializzare le informazioni dello stato del blocco del pacchetto StatoBlocco da inviare all'IXL*/
+
+
 //questa classe rappresenta lo stato del blocco
 ref class StateBlocco
 {
