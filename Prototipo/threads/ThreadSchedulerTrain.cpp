@@ -86,32 +86,39 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 							// cerca se si trova nella stazione in cui deve partire
 							if(lastpos==prevfirstcdbu){
 
-								// gli assegni TRN e MISSION
-								if(inviato==nullptr){
-									Console::WriteLine("Il treno {0} si trova al posto giusto per partire e gli invio WAKE-UP, TRN={1} e MISSION",enginenumber,trn);
-									inviato = SendTCPMsg(trn,phisical);
-									time=DateTime::Now;
-								}
 
-								if(inviato->fine==1){
-									//itinerario uscita
+								//se il treno si trova sul cdb giusto
+								if(((managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL()==trn)|managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE()==enginenumber)|true){
 
-									statoInterno=StateSimpleSchedule::RicItinerarioUscita;
-								}
-								else{
-									//aspetta un po
-									TimeSpan sec = DateTime::Now - time;
-									if(sec.TotalSeconds>20){
-										//riinvia
-										inviato->fine=0;
-										if(inviato->workSocket!=nullptr){
-											inviato->workSocket->Close();
-										}
+									// gli assegni TRN e MISSION
+									if(inviato==nullptr){
+										Console::WriteLine("Il treno {0} si trova al posto giusto per partire e gli invio WAKE-UP, TRN={1} e MISSION",enginenumber,trn);
 										inviato = SendTCPMsg(trn,phisical);
 										time=DateTime::Now;
-										Console::WriteLine(time);
-										Console::WriteLine("Il treno {0} non ha risposto con l'ack all'assegnazione della missione",enginenumber);
 									}
+
+									if(inviato->fine==1){
+										//itinerario uscita
+
+										statoInterno=StateSimpleSchedule::RicItinerarioUscita;
+									}
+									else{
+										//aspetta un po
+										TimeSpan sec = DateTime::Now - time;
+										if(sec.TotalSeconds>20){
+											//riinvia
+											inviato->fine=0;
+											if(inviato->workSocket!=nullptr){
+												inviato->workSocket->Close();
+											}
+											inviato = SendTCPMsg(trn,phisical);
+											time=DateTime::Now;
+											Console::WriteLine(time);
+											Console::WriteLine("Il treno {0} non ha risposto con l'ack all'assegnazione della missione",enginenumber);
+										}
+
+									}
+
 
 								}
 							}
@@ -132,8 +139,8 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 						if(eventATC!=nullptr){
 							//Console::WriteLine("PReLEVATO: {0}",eventATC->ToString());
 							//se il treno si trova sul cdb giusto
-							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==trn)) |(
-								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn)){
+							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==trn | eventATC->getEventStateCDB()->getNID_ENGINE()==enginenumber)) |((
+								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==trn)|managerATC->getCDB(resultprecE)->getNID_ENGINE()==enginenumber)){
 									//se l'itinerario è libero
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 									//che riporti il cambiamento dello stato dell'itinerario
@@ -184,7 +191,7 @@ void ThreadSchedulerTrain::SimpleSchedule(){
 						int resutl = ((int)listaitinerari[indicelistaitinerari]->getOrarioPartenza())-costante;
 						//	int statocdbuscitaitinerario = managerIXL->StatoCDB(resultSuccCdbU)->getQ_STATOCDB();
 						// controllo posizione e tempo 
-						if((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn )& (resutl<=tempo | true)){//&
+						if(((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==trn)|managerATC->getCDB(resultprecCdbU)->getNID_ENGINE()==enginenumber)& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
 							//todo : se ti trovi nel posto giusto
@@ -418,6 +425,11 @@ void ThreadSchedulerTrain::ReceiveCallback(IAsyncResult^ asyncResult){
 
 
 			Console::WriteLine("Ack Ricevuto da {0} esito: {1}",pktAck->getNID_ENGINE(), pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE() );
+
+			if(so->enginenumber!=pktAck->getNID_ENGINE()){
+				Console::WriteLine("Ack Ricevuto da {0} ma era atteso da: {1}",pktAck->getNID_ENGINE(),so->enginenumber);
+			}
+
 
 			if( pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE()==1){
 				s->Close();

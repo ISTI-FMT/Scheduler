@@ -235,6 +235,24 @@ if(sys.argv[2]=='1'):
 	bandiera=False
 	op = sys.argv[1][18:22]
 	NID_OPERATIONAL=int(op)
+	
+###MOV0	
+#### MOVIMENTO ######
+
+sendBytes = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+push(sendBytes, 18, 8, 0); #//nid_msg
+push(sendBytes, 12, 10, 8); #//L_msg
+push(sendBytes, 5555, 32, 18); #//T_msg
+push(sendBytes, NID_ENGINE, 32, 50); #//nid_op
+NID_CDB =  int(spamReader[0][0],10)
+push(sendBytes,NID_CDB, 32, 82);#//nid_cdb
+print "Sono sul CDB1: ",spamReader[0][0]
+sendUDP(sendBytes,302)
+buff = messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
+#for i in range(0,70):
+sendUDP(buff,1111)
+sendUDP(buff,1111)
+sendUDP(buff,1111)
 #####PRESENTAZIONE#####
 #115;16;258;65280;25;53;3610 Presentazione
 
