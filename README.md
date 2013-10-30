@@ -1,10 +1,10 @@
-Scheduler
+﻿Scheduler
 =========
 
 Prototipo Schedurer ATS
 
 
 
-Il wiki del progetto � disponibile alla pagina https://github.com/ISTI-FMT/Scheduler/wiki/_pages
+Il wiki del progetto è disponibile alla pagina https://github.com/ISTI-FMT/Scheduler/wiki
 
-Gli Obiettivi del progetto sono disponibili alla pagina https://github.com/ISTI-FMT/Scheduler/wiki/Obiettivi-Fase-1---Giugno-2013
+Gli Obiettivi del progetto sono disponibili alla pagina https://github.com/ISTI-FMT/Scheduler/wiki/Obiettivi-Fasi

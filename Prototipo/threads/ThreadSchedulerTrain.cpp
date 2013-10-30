@@ -346,7 +346,7 @@ StateObject ^ ThreadSchedulerTrain::SendTCPMsg(int trn, phisicalTrain ^Treno)
 
 		// Creates the Socket to send data over a TCP connection.
 		Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
-
+		 sock->SendBufferSize = 0;
 
 		String ^IP = gcnew String(Treno->getIpAddress());
 		sock->Connect(IP, Treno->getTcpPort());
