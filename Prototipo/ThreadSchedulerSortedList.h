@@ -1,0 +1,67 @@
+#pragma once
+#include "wdogcontrol.h"
+#include "manager\\ManagerStatoLineaATC.h"
+#include "manager\\ManagerStatoLineaIXL.h"
+#include "ConfVelocita\\ConfigurazioneVelocita.h"
+#using <System.dll>
+#include "Event.h"
+#include "EventQueue.h"
+#include "tabellaOrario\\TabellaOrario.h"
+#include "Itinerari\\tabellaItinerari.h"
+#include "logger\\Logger.h"
+#include "mapTrenoFisicoLogico.h"
+#include "messaggi\\Messaggi.h"
+#include "wdogcontrol.h"
+#include "manager\\ManagerStatoLineaATC.h"
+#include "manager\\ManagerStatoLineaIXL.h"
+#include "KeyListTrain.h"
+#include "Train.h"
+#include "StateObject.h"
+
+
+/*Utilizzo questa classe per definire il comportamento dello schedulatore*/
+
+using namespace System;
+
+using namespace System::Collections::Generic;
+
+
+ref class ThreadSchedulerSortedList
+{
+	EventQueue ^EQueueIXL;
+	EventQueue ^EQueueATO;
+	EventQueue ^EQueueATC;
+	TabellaOrario ^tabOrario;
+	tabellaItinerari ^tabItinerari;
+	mapTrenoFisicoLogico ^mapTrenoLogFisico;
+	ManagerStatoLineaATC ^managerATC;
+	ManagerStatoLineaIXL ^managerIXL;
+	wdogcontrol ^wdogs;
+	String ^ipixl;
+	List<int> ^ListRequestCDB;
+	ConfigurazioneVelocita ^confVelocita;
+	bool _shouldStop;
+	DateTime timeRicIXL;
+	System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
+public:
+	ThreadSchedulerSortedList(void);
+
+
+	ThreadSchedulerSortedList(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
+
+	void Schedule();
+	void Init();
+	void ControllaMSG_ATO();
+	
+	bool controllacdb(List<int>^lcdb);
+	
+	void RequestStop();
+
+	StateObject ^InizializzeATO(int trn,phisicalTrain ^Treno);
+	static void ReceiveCallback(IAsyncResult^ asyncResult);
+
+	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
+	bool RequestItinerarioIXL(int idstazione ,int iditinerario);
+
+};
+

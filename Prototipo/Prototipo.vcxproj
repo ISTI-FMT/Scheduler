@@ -102,6 +102,7 @@
     <ClInclude Include="Itinerari\stazione.h" />
     <ClInclude Include="Itinerari\tabellaFermate.h" />
     <ClInclude Include="Itinerari\tabellaItinerari.h" />
+    <ClInclude Include="KeyListTrain.h" />
     <ClInclude Include="logger\Logger.h" />
     <ClInclude Include="logger\TextBoxTraceListener.h" />
     <ClInclude Include="MapTreni.h">
@@ -151,9 +152,11 @@
     <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
     <ClInclude Include="ThreadSchedule.h" />
+    <ClInclude Include="ThreadSchedulerSortedList.h" />
     <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
     <ClInclude Include="threads\ThreadPresentazione.h" />
     <ClInclude Include="threads\ThreadSchedulerTrain.h" />
+    <ClInclude Include="Train.h" />
     <ClInclude Include="TrenoFisicoLogico.h" />
     <ClInclude Include="wdogcontrol.h" />
   </ItemGroup>
@@ -172,6 +175,7 @@
     <ClCompile Include="Itinerari\stazione.cpp" />
     <ClCompile Include="Itinerari\tabellaFermate.cpp" />
     <ClCompile Include="Itinerari\tabellaItinerari.cpp" />
+    <ClCompile Include="KeyListTrain.cpp" />
     <ClCompile Include="logger\Logger.cpp" />
     <ClCompile Include="logger\TextBoxTraceListener.cpp" />
     <ClCompile Include="main.cpp" />
@@ -212,9 +216,11 @@
     <ClCompile Include="tabellaOrario\FormVisualizzeTabOrario.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
     <ClCompile Include="ThreadSchedule.cpp" />
+    <ClCompile Include="ThreadSchedulerSortedList.cpp" />
     <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />
     <ClCompile Include="threads\ThreadPresentazione.cpp" />
     <ClCompile Include="threads\ThreadSchedulerTrain.cpp" />
+    <ClCompile Include="Train.cpp" />
     <ClCompile Include="TrenoFisicoLogico.cpp" />
     <ClCompile Include="wdogcontrol.cpp" />
   </ItemGroup>

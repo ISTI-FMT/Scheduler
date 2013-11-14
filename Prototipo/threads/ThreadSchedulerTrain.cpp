@@ -34,7 +34,7 @@ ThreadSchedulerTrain::ThreadSchedulerTrain(phisicalTrain ^phi, List<EventQueue^>
 	phisical=phi;
 	_shouldStop=false;
 }
-
+/*
 void ThreadSchedulerTrain::SimpleSchedule(){
 	try
 	{
@@ -498,7 +498,7 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 	}
 	}
 	}else{*/
-	if(listIdCdbItinRic!= nullptr){
+/*	if(listIdCdbItinRic!= nullptr){
 		int len = listIdCdbItinRic->Count;
 		for each (int varcdb in listIdCdbItinRic)
 		{
@@ -549,7 +549,7 @@ bool ThreadSchedulerTrain::richestaItinerarioIXL(int idstazione , int iditinerar
 	//	return false;
 
 	//}
-	return false;
+/*	return false;
 
 }
 
@@ -573,3 +573,5 @@ void ThreadSchedulerTrain::RequestStop()
 {
 	_shouldStop = true;
 }
+
+*/

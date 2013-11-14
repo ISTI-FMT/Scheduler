@@ -89,10 +89,10 @@ void ThreadSchedule::SimpleSchedule(){
 						EList->Add(EQueueATC);
 						ThreadSchedulerTrain ^ThreadP = gcnew ThreadSchedulerTrain(phisical,EList,tabOrario,tabItinerari,mapTrenoLogFisico,wdogs,	managerATC,managerIXL,confVelocita);
 						//Thread TCP che ascolta i messaggi provenienti dall'ATO
-						Thread ^oThread = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadSchedulerTrain::SimpleSchedule ) );
+						/*Thread ^oThread = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadSchedulerTrain::SimpleSchedule ) );
 
 						oThread->Start();
-						listThreadTrain->Add(ThreadP);
+						listThreadTrain->Add(ThreadP);*/
 					}
 					break;
 				}
@@ -116,10 +116,10 @@ void ThreadSchedule::SimpleSchedule(){
 void ThreadSchedule::RequestStop()
     {
         _shouldStop = true;
-		for each (ThreadSchedulerTrain ^var in listThreadTrain)
+		/*for each (ThreadSchedulerTrain ^var in listThreadTrain)
 		{
 			var->RequestStop();
-		}
+		}*/
     }
 
 

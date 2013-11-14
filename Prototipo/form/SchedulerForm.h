@@ -18,6 +18,7 @@
 #include "..\\manager\\ManagerStatoLineaIXL.h"
 #include "..\\manager\\ManagerMsgATO.h"
 #include "..\\ThreadSchedule.h"
+#include "..\\ThreadSchedulerSortedList.h"
 #include "..\\EventQueue.h"
 #include "..\\wdogcontrol.h"
 #include "..\\FormStatoLineaIXL.h"
@@ -92,6 +93,7 @@ namespace Prototipo {
 		ThreadListenerATC_IXL ^ThLATCIXL;
 		ThreadPresentazione ^ThreadP;
 		ThreadSchedule ^ThSchedule;
+		ThreadSchedulerSortedList ^ThScheduleSortedList;
 		wdogcontrol ^wdogs;
 		ConfigurazioneVelocita ^confVelocita;
 	private: System::Windows::Forms::Button^  button2;
@@ -443,9 +445,14 @@ namespace Prototipo {
 				 listqueue->Add(EventQATO);
 
 
-				 ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
+				/* ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
 
 				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
+				 oThreadSchedule->Start();*/
+
+				  ThScheduleSortedList =gcnew ThreadSchedulerSortedList(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
+
+				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThScheduleSortedList,&ThreadSchedulerSortedList::Schedule));
 				 oThreadSchedule->Start();
 
 			 }

@@ -10,7 +10,7 @@
 #include "..\\wdogcontrol.h"
 #include "..\\manager\\ManagerStatoLineaATC.h"
 #include "..\\manager\\ManagerStatoLineaIXL.h"
-#include "..\\StateObject.h"
+//#include "..\\StateObject.h"
 #include "..\\ConfVelocita\\ConfigurazioneVelocita.h"
 #include "..\\ParalellMethod.h"
 
@@ -34,16 +34,16 @@ public:
 	//ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 	
 	ThreadSchedulerTrain(phisicalTrain ^phi,List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
-	void SimpleSchedule();
+	/*void SimpleSchedule();
 	void Init();
-	StateObject ^SendTCPMsg(int trn,phisicalTrain ^Treno);
+	//StateObject ^SendTCPMsg(int trn,phisicalTrain ^Treno);
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
 	void StampaStato(int stato, int enginenumber);
 	bool richestaItinerarioIXL(int idstazione ,int iditinerario);
 	bool controllacdb(List<int>^lcdb);
 	void RequestStop();
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
-	static void SendCallback(IAsyncResult^ asyncResult);
+	static void SendCallback(IAsyncResult^ asyncResult);*/
 	
 
 };
