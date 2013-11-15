@@ -96,9 +96,6 @@
     <ClInclude Include="mapTrenoFisicoLogico.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="phisicalTrain.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="phisicalTrainList.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
@@ -271,6 +268,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="ThreadSchedulerSortedList.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="physicalTrain.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

@@ -34,7 +34,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, Tabel
 	managerATC=manATC;
 	managerIXL=manIXL;
 	ipixl="127.0.0.1";
-	ListRequestCDB  = gcnew List<int>();
+	RaccoltaTrenoRequestCDB  = gcnew Dictionary<KeyListTrain^,List<int>^> ();
 	_shouldStop=false;
 	ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	timeRicIXL;
@@ -53,12 +53,13 @@ void ThreadSchedulerSortedList::Schedule(){
 
 		DateTime time=DateTime::Now;
 
-		int trn =0;
+
 		while(!_shouldStop){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
 			//Thread::Sleep(100);
 			//wdogs->onNext();
 			ControllaMSG_ATO();
+			ControllaMSG_IXL();
 
 			for each (KeyValuePair<KeyListTrain^, Train^> ^KVTrain in ListSortedTrains)
 			{
@@ -66,10 +67,109 @@ void ThreadSchedulerSortedList::Schedule(){
 				{
 				case PRONTO:
 					break;
-				case USCITASTAZIONE:
+				case USCITASTAZIONE:{
+					KeyListTrain^ key = KVTrain->Key;
+					Train^ train = KVTrain->Value;
+					//itinerario uscita
+					KeyValuePair<int, int> ^itistazione = train->getStazioneItinerario();
+					int itinUscita = itistazione->Value;
+					int idstazione = itistazione->Key;
+
+					int resultprecCdbU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
+
+					//int resultSuccCdbU = tabItinerari->get_CdbSuccItinerario(idstazione,itinUscita);
+
+					//se esiste un itinerario di uscita
+					if(itinUscita>0){
+
+						DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+						TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
+						int tempo = (int)oraattuale->TotalSeconds/30;
+						int  costante= 3;
+						int resutl = ((int)train->getOrarioPartenza())-costante;
+						//	int statocdbuscitaitinerario = managerIXL->StatoCDB(resultSuccCdbU)->getQ_STATOCDB();
+						// controllo posizione e tempo 
+						if(((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==train->getTRN())|managerATC->getCDB(resultprecCdbU)->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
+							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
+
+							//todo : se ti trovi nel posto giusto
+
+
+							//se l'itinerario è libero
+							//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
+							//che riporti il cambiamento dello stato dell'itinerario
+							if(!RaccoltaTrenoRequestCDB->ContainsKey(key)){
+								List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
+								if(cdbricPrenotazione!=nullptr){
+									RaccoltaTrenoRequestCDB->Add(key,cdbricPrenotazione);
+								}
+							}
+							//statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
+
+							//indicelistaitinerari++;
+
+						}
+
+
+					}else{
+						train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
+					}
 					break;
-				case ENTRATASTAZIONE: 
+									}
+				case ENTRATASTAZIONE: {
+
+					KeyListTrain^ key = KVTrain->Key;
+					Train^ train = KVTrain->Value;
+					//itinerario uscita
+					KeyValuePair<int, int> ^itistazione = train->getStazioneItinerario();
+
+					int initEntrata = itistazione->Value;
+					int idstazione = itistazione->Key;
+					//se esiste un itinerario di entrata
+					if(initEntrata>0){
+						int resultprecE = tabItinerari->get_CdbPrecItinerario(idstazione,initEntrata);
+						Event ^eventATC = EQueueATC->getEvent();
+
+						if(eventATC!=nullptr){
+							//Console::WriteLine("PReLEVATO: {0}",eventATC->ToString());
+							//se il treno si trova sul cdb giusto
+							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==train->getTRN() | eventATC->getEventStateCDB()->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())) |((
+								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==train->getTRN() )|managerATC->getCDB(resultprecE)->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())){
+									//se l'itinerario è libero
+									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
+									//che riporti il cambiamento dello stato dell'itinerario
+									if(!RaccoltaTrenoRequestCDB->ContainsKey(key)){
+										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
+										if(cdbricPrenotazione!=nullptr){
+											RaccoltaTrenoRequestCDB->Add(key,cdbricPrenotazione);
+										}
+									}
+
+							}
+						}else{
+							//se il treno si trova sul cdb giusto
+							// messo a true per fare test
+							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==train->getTRN()){
+								//se l'itinerario è libero
+								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
+								//che riporti il cambiamento dello stato dell'itinerario
+								if(!RaccoltaTrenoRequestCDB->ContainsKey(key)){
+									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
+									if(cdbricPrenotazione!=nullptr){
+										RaccoltaTrenoRequestCDB->Add(key,cdbricPrenotazione);
+									}
+								}
+							}
+						}
+					}else{
+						train->setStatoTreno(StateTrain::USCITASTAZIONE);
+					}
+
+
+
+
 					break;
+									  }
 				case NONPRONTO:
 					break;
 				case TERMINATO:
@@ -78,7 +178,6 @@ void ThreadSchedulerSortedList::Schedule(){
 					break;
 				}
 			}
-
 
 
 
@@ -93,6 +192,31 @@ void ThreadSchedulerSortedList::Schedule(){
 	}
 }
 
+void ThreadSchedulerSortedList::ControllaMSG_IXL(){
+	Event ^eventoIXL;
+	eventoIXL = EQueueIXL->getEvent();
+	if(eventoIXL!=nullptr){
+		StateCDB ^eventocambiostatocdb = eventoIXL->getEventStateCDB();
+		if(eventocambiostatocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato ){
+			List<KeyListTrain^> ^elemetidaeliminare = gcnew List<KeyListTrain^>();
+			for each (KeyValuePair<KeyListTrain^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+			{
+				if(kvpair->Value->Contains(eventocambiostatocdb->getNID_CDB())){
+					kvpair->Value->Remove(eventocambiostatocdb->getNID_CDB());
+				}
+				if(kvpair->Value->Count==0){
+					elemetidaeliminare->Add(kvpair->Key);
+					ListSortedTrains[kvpair->Key]->goNextItinerario();
+				}
+
+			}
+			for each (KeyListTrain ^var in elemetidaeliminare)
+			{
+				RaccoltaTrenoRequestCDB->Remove(var);
+			}
+		}
+	}
+}
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 	DateTime time=DateTime::Now;
@@ -101,7 +225,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 	// aspetta che si presenti un treno
 	eventoATO = EQueueATO->getEvent();
 	if(eventoATO!=nullptr){
-		phisicalTrain ^phisical = eventoATO->getEventPresentTrain();
+		physicalTrain ^phisical = eventoATO->getEventPresentTrain();
 		int enginenumber = phisical->getEngineNumber();
 		Console::WriteLine("Si è presentato il treno {0}",enginenumber);
 
@@ -129,19 +253,10 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 							inviato = InizializzeATO(trn,phisical);
 							time=DateTime::Now;
 						}
-
-						if(inviato->fine==1){
-							//Creo il treno
-							Train ^treno = gcnew Train(enginenumber);
-							//Creo KeyListTrain
-							int priorita = 1;
-							KeyListTrain ^key = gcnew KeyListTrain(priorita,enginenumber);
-							ListSortedTrains->Add(key,treno);
-						}
-						else{
+						while (inviato->fine!=1){
 							//aspetta un po
 							TimeSpan sec = DateTime::Now - time;
-							if(sec.TotalSeconds>20){
+							if(sec.TotalSeconds>200){
 								//riinvia
 								inviato->fine=0;
 								if(inviato->workSocket!=nullptr){
@@ -153,8 +268,18 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 								Console::WriteLine("Il treno {0} non ha risposto con l'ack all'assegnazione della missione",enginenumber);
 							}
 
-						}
 
+						}
+						if(inviato->fine==1){
+							//Creo il treno
+							Console::WriteLine("ok {0}",listaitinerari[0]->getOrarioPartenza());
+							listaitinerari[0]->getOrarioPartenza();
+							Train ^treno = gcnew Train(trn,phisical,listaitinerari);
+							//Creo KeyListTrain
+							int priorita = 1;
+							KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber,listaitinerari[0]->getOrarioPartenza());
+							ListSortedTrains->Add(key,treno);
+						}
 
 					}
 				}
@@ -196,10 +321,14 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 		}else{
 			return false;
 		}
-		if(ListRequestCDB!=nullptr){
-			if(ListRequestCDB->Contains(cdb)){
-				return false;
+		if(RaccoltaTrenoRequestCDB!=nullptr){
+			for each (KeyValuePair<KeyListTrain^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+			{
+				if(kvpair->Value->Contains(cdb)){
+					return false;
+				}
 			}
+
 		}
 	}
 
@@ -207,7 +336,7 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 }
 
 
-StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, phisicalTrain ^Treno)
+StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^Treno)
 {
 	try
 	{
@@ -364,47 +493,21 @@ void ThreadSchedulerSortedList::ReceiveCallback(IAsyncResult^ asyncResult){
 }
 
 
-bool ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int iditinerario){
+List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int iditinerario){
 	List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
 
 	if(controllacdb(listaNIDcdb)){
 
-		SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione);
-		//ListRequestCDB = gcnew List<int>();
-		ListRequestCDB->AddRange(listaNIDcdb);
-		timeRicIXL=DateTime::Now;
+		if(SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione)){
 
-	}
-	/*if(listIdCdbItinRic!= nullptr){
-	int len = listIdCdbItinRic->Count;
-	for each (int varcdb in listIdCdbItinRic)
-	{
-	StateCDB ^statocorrentecdb = managerIXL->StatoCDB(varcdb);
-	if(statocorrentecdb!=nullptr){
-	if(statocorrentecdb->getQ_STATOCDB()!=typeStateCDB::cdbImpegnato){
-	TimeSpan sec = DateTime::Now - timeRicIXL;
-	if(sec.TotalSeconds>3)
-	listIdCdbItinRic= nullptr;
-	return false;
-	}else{
-	if(statocorrentecdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato){
-	len--;
-	}
+
+			timeRicIXL=DateTime::Now;
+
+			return listaNIDcdb;
+		}
 	}
 
-	}
-
-	}
-	if(len==0){
-	listIdCdbItinRic= nullptr;
-	return true;
-
-	}
-	}else{
-	return false;
-	}
-	*/
-	return false;
+	return nullptr;
 
 }
 

@@ -89,7 +89,7 @@ void  ThreadPresentazione::TCP_Management_receive(){
 #endif // TRACE
 
 			if(pkt1->get_pacchettoPresentazione()!=nullptr){
-				phisicalTrain ^treno = gcnew phisicalTrain();
+				physicalTrain ^treno = gcnew physicalTrain();
 				treno->setEngineNumber(pkt1->getNID_ENGINE());
 				treno->setTcpPort(pkt1->get_pacchettoPresentazione()->getM_PORT());
 

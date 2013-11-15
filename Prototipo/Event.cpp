@@ -36,8 +36,8 @@ StateCDB ^Event::getEventStateCDB(){
 		return sCDB;}
 	//else {
 	//	return gcnew StateCDB();}};
-phisicalTrain ^Event::getEventPresentTrain(){
+physicalTrain ^Event::getEventPresentTrain(){
 	//if(lTrain!=nullptr){
 		return lTrain;}
 	//else{
-	//	return gcnew phisicalTrain();}};
+	//	return gcnew physicalTrain();}};

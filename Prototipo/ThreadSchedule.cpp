@@ -80,7 +80,7 @@ void ThreadSchedule::SimpleSchedule(){
 					eventoATO = EQueueATO->getEvent();
 					if(eventoATO!=nullptr){
 						
-						phisicalTrain ^phisical = eventoATO->getEventPresentTrain();
+						physicalTrain ^phisical = eventoATO->getEventPresentTrain();
 						int enginenumber = phisical->getEngineNumber();
 						Console::WriteLine("Si è presentato il treno {0}",enginenumber);
 						//statoInterno=StateSimpleSchedule::ControlloTreno;

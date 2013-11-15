@@ -27,16 +27,16 @@ ref class ThreadSchedulerTrain
 	String ^ipixl;
 	List<int> ^listIdCdbItinRic;
 	ConfigurazioneVelocita ^confVelocita;
-	phisicalTrain ^phisical;
+	physicalTrain ^phisical;
 	bool _shouldStop;
 	DateTime timeRicIXL;
 public:
 	//ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 	
-	ThreadSchedulerTrain(phisicalTrain ^phi,List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
+	ThreadSchedulerTrain(physicalTrain ^phi,List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 	/*void SimpleSchedule();
 	void Init();
-	//StateObject ^SendTCPMsg(int trn,phisicalTrain ^Treno);
+	//StateObject ^SendTCPMsg(int trn,physicalTrain ^Treno);
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
 	void StampaStato(int stato, int enginenumber);
 	bool richestaItinerarioIXL(int idstazione ,int iditinerario);

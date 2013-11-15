@@ -38,7 +38,7 @@ ref class ThreadSchedulerSortedList
 	ManagerStatoLineaIXL ^managerIXL;
 	wdogcontrol ^wdogs;
 	String ^ipixl;
-	List<int> ^ListRequestCDB;
+	Dictionary<KeyListTrain^,List<int>^> ^RaccoltaTrenoRequestCDB;
 	ConfigurazioneVelocita ^confVelocita;
 	bool _shouldStop;
 	DateTime timeRicIXL;
@@ -52,16 +52,16 @@ public:
 	void Schedule();
 	void Init();
 	void ControllaMSG_ATO();
-	
+	void ControllaMSG_IXL();
 	bool controllacdb(List<int>^lcdb);
 	
 	void RequestStop();
 
-	StateObject ^InizializzeATO(int trn,phisicalTrain ^Treno);
+	StateObject ^InizializzeATO(int trn,physicalTrain ^Treno);
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
-	bool RequestItinerarioIXL(int idstazione ,int iditinerario);
+	List<int> ^RequestItinerarioIXL(int idstazione ,int iditinerario);
 
 };
 

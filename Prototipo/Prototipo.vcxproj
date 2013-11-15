@@ -135,7 +135,7 @@
     <ClInclude Include="messaggi\StateSegnale.h" />
     <ClInclude Include="messaggi\utility.h" />
     <ClInclude Include="ParalellMethod.h" />
-    <ClInclude Include="phisicalTrain.h" />
+    <ClInclude Include="physicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="form\SchedulerForm.h">

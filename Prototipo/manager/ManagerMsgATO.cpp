@@ -2,13 +2,13 @@
 
 ManagerMsgATO::ManagerMsgATO(void)
 {
-	tabellaTrain = gcnew Dictionary<int, phisicalTrain^>;
+	tabellaTrain = gcnew Dictionary<int, physicalTrain^>;
 	observers = gcnew List<IObserver<Event^>^>();
 }
 
-void ManagerMsgATO::addCheckAndSet(List<phisicalTrain^> ^listatrain, String ^source)
+void ManagerMsgATO::addCheckAndSet(List<physicalTrain^> ^listatrain, String ^source)
 {
-	for each (phisicalTrain ^train in listatrain)
+	for each (physicalTrain ^train in listatrain)
 	{
 		if(!tabellaTrain->ContainsKey(train->getEngineNumber()))
 		{
@@ -38,7 +38,7 @@ void ManagerMsgATO::addCheckAndSet(List<phisicalTrain^> ^listatrain, String ^sou
 	}
 }
 
-void ManagerMsgATO::addCheckAndSet(phisicalTrain ^onetrain, String ^source)
+void ManagerMsgATO::addCheckAndSet(physicalTrain ^onetrain, String ^source)
 {
 	
 		if(!tabellaTrain->ContainsKey(onetrain->getEngineNumber()))

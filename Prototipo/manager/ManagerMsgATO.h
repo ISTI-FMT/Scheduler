@@ -1,7 +1,7 @@
 #pragma once
 #using <System.dll>
 #include "..\\messaggi\\StateCDB.h"
-#include "..\\phisicalTrain.h"
+#include "..\\physicalTrain.h"
 #include "..\\Event.h"
 
 
@@ -13,12 +13,12 @@ using namespace System::Collections::Generic;
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni di presentazione dei ATO
 ref class ManagerMsgATO : public IObservable<Event^>
 {
-	Dictionary<int, phisicalTrain^> ^tabellaTrain;
+	Dictionary<int, physicalTrain^> ^tabellaTrain;
 	 List<IObserver<Event^>^> ^observers;
 public:
 	ManagerMsgATO(void);
-	void addCheckAndSet(List<phisicalTrain^> ^listatrain, String ^source);
-	void addCheckAndSet(phisicalTrain ^onetrain, String ^source);
+	void addCheckAndSet(List<physicalTrain^> ^listatrain, String ^source);
+	void addCheckAndSet(physicalTrain ^onetrain, String ^source);
 
 	
 

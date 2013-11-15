@@ -92,7 +92,7 @@ namespace Prototipo {
 		FormStatoLineaIXL ^stif ;
 		ThreadListenerATC_IXL ^ThLATCIXL;
 		ThreadPresentazione ^ThreadP;
-		ThreadSchedule ^ThSchedule;
+		//ThreadSchedule ^ThSchedule;
 		ThreadSchedulerSortedList ^ThScheduleSortedList;
 		wdogcontrol ^wdogs;
 		ConfigurazioneVelocita ^confVelocita;
@@ -183,7 +183,7 @@ namespace Prototipo {
 			 }
 			 void TCP_Management()
 			 {
-				 phisicalTrain ^Treno = listaTreni->getPrimo();
+				 physicalTrain ^Treno = listaTreni->getPrimo();
 
 				 try
 				 {
@@ -327,7 +327,8 @@ namespace Prototipo {
 				 ThLATCIXL->RequestStop();
 				 ThreadP->RequestStop();
 
-				 ThSchedule->RequestStop();
+				// ThSchedule->RequestStop();
+				 ThScheduleSortedList->RequestStop();
 				 Application::Exit();
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {

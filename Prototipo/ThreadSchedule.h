@@ -43,7 +43,7 @@ public:
 
 	void SimpleSchedule();
 	void Init();
-	//StateObject ^SendTCPMsg(int trn,phisicalTrain ^Treno);
+	//StateObject ^SendTCPMsg(int trn,physicalTrain ^Treno);
 	//bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
 	//void StampaStato(int stato);
 	//bool richestaItinerarioIXL(int idstazione ,int iditinerario);

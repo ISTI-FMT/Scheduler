@@ -3,41 +3,59 @@
 
 
 
-Train::Train( int trn, int tpn){
+Train::Train( int trn, physicalTrain ^pt){
 	TrainRunningNumber=trn;
-	 TrainPhisicalNumber=tpn;
-	 Listaitinerari= gcnew List<Fermata^>();
-	 Statodeltreno=StateTrain::NONPRONTO;
-	 indicelistaitinerari=0;
+	PhysicalTrain=pt;
+	Listaitinerari= gcnew List<Fermata^>();
+	Statodeltreno=StateTrain::NONPRONTO;
+	indicelistaitinerari=0;
 
 }
 
-Train::Train( int tpn){
+Train::Train( physicalTrain ^pt){
 	TrainRunningNumber=0;
-	 TrainPhisicalNumber=tpn;
-	 Listaitinerari= gcnew List<Fermata^>();
-	 Statodeltreno=StateTrain::NONPRONTO;
-	 indicelistaitinerari=0;
+	PhysicalTrain=pt;
+	Listaitinerari= gcnew List<Fermata^>();
+	Statodeltreno=StateTrain::NONPRONTO;
+	indicelistaitinerari=0;
 
 }
 
 
-Train::Train( int trn, int tpn, List<Fermata^> ^listit){
+Train::Train( int trn,physicalTrain ^pt, List<Fermata^> ^listit){
 
-	 TrainRunningNumber=trn;
-	 TrainPhisicalNumber=tpn;
-	 Listaitinerari=listit;
-	  Statodeltreno=StateTrain::NONPRONTO;
-	  indicelistaitinerari=0;
+	TrainRunningNumber=trn;
+	PhysicalTrain=pt;
+	Listaitinerari=listit;
+	Statodeltreno=StateTrain::USCITASTAZIONE;
+	indicelistaitinerari=0;
 }
 
-Train::Train( int trn, int tpn, List<Fermata^> ^listit, StateTrain st){
+Train::Train( int trn, physicalTrain ^pt, List<Fermata^> ^listit, StateTrain st){
 
-	 TrainRunningNumber=trn;
-	 TrainPhisicalNumber=tpn;
-	 Listaitinerari=listit;
-	 Statodeltreno=st;
-	 indicelistaitinerari=0;
+	TrainRunningNumber=trn;
+	PhysicalTrain=pt;
+	Listaitinerari=listit;
+	Statodeltreno=st;
+	indicelistaitinerari=0;
+}
+
+Double Train::getOrarioPartenza(){
+
+	return Listaitinerari[indicelistaitinerari]->getOrarioPartenza();
+}
+
+void  Train::goNextItinerario(){
+
+	if(Statodeltreno==StateTrain::ENTRATASTAZIONE){
+		Statodeltreno=StateTrain::USCITASTAZIONE;
+
+	}else{
+		if(Statodeltreno==StateTrain::USCITASTAZIONE){
+			Statodeltreno=StateTrain::ENTRATASTAZIONE;
+			indicelistaitinerari++;
+		}
+	}
 }
 
 KeyValuePair<int, int> ^Train::getStazioneItinerario(){
@@ -67,6 +85,6 @@ KeyValuePair<int, int> ^Train::getStazioneItinerario(){
 }
 
 System::String ^Train::ToString(){
-	
+
 	return "";
 }
