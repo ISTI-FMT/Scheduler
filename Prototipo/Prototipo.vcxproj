@@ -85,6 +85,7 @@
       <DependentUpon>..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd</DependentUpon>
     </ClInclude>
     <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
+    <ClInclude Include="ControllerListTrain.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="FormStatoLineaIXL.h">
@@ -95,6 +96,9 @@
     </ClInclude>
     <ClInclude Include="form\tableLayoutPanelAllCDB.h" />
     <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
+    <ClInclude Include="IControllerListTrain.h" />
+    <ClInclude Include="IListTrainModel.h" />
+    <ClInclude Include="IListTrainView.h" />
     <ClInclude Include="Itinerari\binario.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfFermate.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfItine.h" />
@@ -102,7 +106,12 @@
     <ClInclude Include="Itinerari\stazione.h" />
     <ClInclude Include="Itinerari\tabellaFermate.h" />
     <ClInclude Include="Itinerari\tabellaItinerari.h" />
+    <ClInclude Include="ItineraryBox.h" />
     <ClInclude Include="KeyListTrain.h" />
+    <ClInclude Include="ListTrainModel.h" />
+    <ClInclude Include="ListTrainView.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="logger\Logger.h" />
     <ClInclude Include="logger\TextBoxTraceListener.h" />
     <ClInclude Include="MapTreni.h">
@@ -144,6 +153,7 @@
     <ClInclude Include="manager\ManagerMsgATO.h" />
     <ClInclude Include="manager\ManagerStatoLineaATC.h" />
     <ClInclude Include="manager\ManagerStatoLineaIXL.h" />
+    <ClInclude Include="SingleTrainInfoForm.h" />
     <ClInclude Include="StateObject.h" />
     <ClInclude Include="TabellaOrario.h">
       <DependentUpon>..\FileConfigurazione\TabellaOrario.xsd</DependentUpon>
@@ -162,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp" />
+    <ClCompile Include="ControllerListTrain.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FormStatoLineaIXL.cpp" />
@@ -175,7 +186,10 @@
     <ClCompile Include="Itinerari\stazione.cpp" />
     <ClCompile Include="Itinerari\tabellaFermate.cpp" />
     <ClCompile Include="Itinerari\tabellaItinerari.cpp" />
+    <ClCompile Include="ItineraryBox.cpp" />
     <ClCompile Include="KeyListTrain.cpp" />
+    <ClCompile Include="ListTrainModel.cpp" />
+    <ClCompile Include="ListTrainView.cpp" />
     <ClCompile Include="logger\Logger.cpp" />
     <ClCompile Include="logger\TextBoxTraceListener.cpp" />
     <ClCompile Include="main.cpp" />
@@ -206,12 +220,13 @@
     <ClCompile Include="messaggi\StateSegnale.cpp" />
     <ClCompile Include="messaggi\utility.cpp" />
     <ClCompile Include="ParalellMethod.cpp" />
-    <ClCompile Include="phisicalTrain.cpp" />
+    <ClCompile Include="physicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />
     <ClCompile Include="form\SchedulerForm.cpp" />
     <ClCompile Include="manager\ManagerMsgATO.cpp" />
     <ClCompile Include="manager\ManagerStatoLineaATC.cpp" />
     <ClCompile Include="manager\ManagerStatoLineaIXL.cpp" />
+    <ClCompile Include="SingleTrainInfoForm.cpp" />
     <ClCompile Include="tabellaOrario\Fermata.cpp" />
     <ClCompile Include="tabellaOrario\FormVisualizzeTabOrario.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
@@ -245,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\SchedulerForm.resx">
       <DependentUpon>form\SchedulerForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListTrainView.resx">
+      <DependentUpon>ListTrainView.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

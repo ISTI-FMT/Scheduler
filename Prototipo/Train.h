@@ -9,7 +9,7 @@ using namespace System::Globalization;
 
 enum  StateTrain { PRONTO = 0, USCITASTAZIONE = 1, ENTRATASTAZIONE = 2,  NONPRONTO = 3, TERMINATO=4};
 
-ref class Train
+public ref class Train
 { 
 	DateTime TimeStampNextEvent;
 	int TrainRunningNumber;

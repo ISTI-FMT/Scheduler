@@ -5,7 +5,7 @@ using namespace System;
 /*Utilizzo questa classe per serializzare le informazioni di presentazione inviate all'ATS dagli ATO*/
 
 //questa classe contiene le informazioni di presentazione del treno
-ref class physicalTrain
+public ref class physicalTrain
 {
 	int engineNumber;
 	String ^ipAddress;

@@ -21,7 +21,7 @@ Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di u
 Un oggetto di tipo fermata rappresenta una fermata di un treno
 */
 // Commento inutile
-ref class Fermata
+public ref class Fermata
 {
 	int idStazione;
 	String ^nameStazione;

@@ -17,6 +17,7 @@
 #include "KeyListTrain.h"
 #include "Train.h"
 #include "StateObject.h"
+#include "ControllerListTrain.h"
 
 
 /*Utilizzo questa classe per definire il comportamento dello schedulatore*/
@@ -42,7 +43,8 @@ ref class ThreadSchedulerSortedList
 	ConfigurazioneVelocita ^confVelocita;
 	bool _shouldStop;
 	DateTime timeRicIXL;
-	System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
+	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
+	IControllerListTrain ^controlListtrain;
 public:
 	ThreadSchedulerSortedList(void);
 

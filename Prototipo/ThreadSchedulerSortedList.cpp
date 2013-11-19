@@ -1,5 +1,6 @@
 #include "ThreadSchedulerSortedList.h"
 
+
 using namespace System;
 using namespace System::IO;
 using namespace System::Net;
@@ -36,8 +37,15 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, Tabel
 	ipixl="127.0.0.1";
 	RaccoltaTrenoRequestCDB  = gcnew Dictionary<KeyListTrain^,List<int>^> ();
 	_shouldStop=false;
-	ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
+	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	timeRicIXL;
+	Prototipo::ListTrainView ^view = gcnew Prototipo::ListTrainView();
+	ListTrainModel ^model = gcnew ListTrainModel();
+	controlListtrain = gcnew ControllerListTrain(view,model);
+  
+     //Application::Run(view);
+	 view->Visible=true;
+			
 }
 
 
@@ -56,12 +64,12 @@ void ThreadSchedulerSortedList::Schedule(){
 
 		while(!_shouldStop){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
-			//Thread::Sleep(100);
-			//wdogs->onNext();
+			Thread::Sleep(100);
+			wdogs->onNext();
 			ControllaMSG_ATO();
 			ControllaMSG_IXL();
 
-			for each (KeyValuePair<KeyListTrain^, Train^> ^KVTrain in ListSortedTrains)
+			for each (KeyValuePair<KeyListTrain^, Train^> ^KVTrain in controlListtrain->getListTrain())
 			{
 				switch (KVTrain->Value->getStatoTreno())
 				{
@@ -76,9 +84,7 @@ void ThreadSchedulerSortedList::Schedule(){
 					int idstazione = itistazione->Key;
 
 					int resultprecCdbU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
-
-					//int resultSuccCdbU = tabItinerari->get_CdbSuccItinerario(idstazione,itinUscita);
-
+			
 					//se esiste un itinerario di uscita
 					if(itinUscita>0){
 
@@ -87,27 +93,18 @@ void ThreadSchedulerSortedList::Schedule(){
 						int tempo = (int)oraattuale->TotalSeconds/30;
 						int  costante= 3;
 						int resutl = ((int)train->getOrarioPartenza())-costante;
-						//	int statocdbuscitaitinerario = managerIXL->StatoCDB(resultSuccCdbU)->getQ_STATOCDB();
-						// controllo posizione e tempo 
+					// controllo posizione e tempo 
 						if(((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==train->getTRN())|managerATC->getCDB(resultprecCdbU)->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
-							//todo : se ti trovi nel posto giusto
-
-
-							//se l'itinerario è libero
-							//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
-							//che riporti il cambiamento dello stato dell'itinerario
+							
 							if(!RaccoltaTrenoRequestCDB->ContainsKey(key)){
 								List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
 								if(cdbricPrenotazione!=nullptr){
 									RaccoltaTrenoRequestCDB->Add(key,cdbricPrenotazione);
 								}
 							}
-							//statoInterno=StateSimpleSchedule::RicItinerarioEntrata;
-
-							//indicelistaitinerari++;
-
+					
 						}
 
 
@@ -131,8 +128,7 @@ void ThreadSchedulerSortedList::Schedule(){
 						Event ^eventATC = EQueueATC->getEvent();
 
 						if(eventATC!=nullptr){
-							//Console::WriteLine("PReLEVATO: {0}",eventATC->ToString());
-							//se il treno si trova sul cdb giusto
+								//se il treno si trova sul cdb giusto
 							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==train->getTRN() | eventATC->getEventStateCDB()->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())) |((
 								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==train->getTRN() )|managerATC->getCDB(resultprecE)->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())){
 									//se l'itinerario è libero
@@ -206,7 +202,7 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 				}
 				if(kvpair->Value->Count==0){
 					elemetidaeliminare->Add(kvpair->Key);
-					ListSortedTrains[kvpair->Key]->goNextItinerario();
+					controlListtrain->OnNextIt(kvpair->Key);
 				}
 
 			}
@@ -278,7 +274,8 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 							//Creo KeyListTrain
 							int priorita = 1;
 							KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber,listaitinerari[0]->getOrarioPartenza());
-							ListSortedTrains->Add(key,treno);
+							//ListSortedTrains->Add(key,treno);
+							controlListtrain->OnSetTrain(key,treno);
 						}
 
 					}
@@ -302,9 +299,13 @@ void ThreadSchedulerSortedList::RequestStop()
 
 
 void ThreadSchedulerSortedList::Init(){
+
 	Console::WriteLine("Inizio Inizializzazione dello Scheduler");
 	//TODO: in questa fase ad es. controllare che lo stato di tutti i cdb proveniente dall'IXL sia consistente
 	Console::WriteLine("Fine Inizializzazione dello Scheduler");
+
+
+
 }
 
 

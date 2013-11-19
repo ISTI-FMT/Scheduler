@@ -273,6 +273,30 @@
     <ClInclude Include="physicalTrain.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="IListTrainModel.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="ListTrainModel.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="IListTrainView.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerListTrain.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="ListTrainView.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTrainInfoForm.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="IControllerListTrain.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="ItineraryBox.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -303,9 +327,6 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="mapTrenoFisicoLogico.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="phisicalTrain.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="phisicalTrainList.cpp">
@@ -459,6 +480,24 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="ThreadSchedulerSortedList.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="physicalTrain.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ListTrainModel.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerListTrain.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ListTrainView.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleTrainInfoForm.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ItineraryBox.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

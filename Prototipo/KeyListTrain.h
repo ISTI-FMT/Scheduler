@@ -6,7 +6,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Globalization;
 
-ref class KeyListTrain : public IComparable<KeyListTrain^>
+public ref class KeyListTrain : public IComparable<KeyListTrain^>
 {
 	int Priorita;
 	DateTime ^TimeStampNextEvent;
