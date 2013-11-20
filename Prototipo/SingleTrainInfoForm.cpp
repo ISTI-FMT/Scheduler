@@ -171,29 +171,7 @@ void SingleTrainInfoForm::setitinerary(){
 		itbox->CambioItineraioUscita += gcnew System::EventHandler(this, &SingleTrainInfoForm::ItBox_ItChangedU);
 		itbox->CambioItineraioEntrata += gcnew System::EventHandler(this, &SingleTrainInfoForm::ItBox_ItChangedE);
 		this->tableLayoutPanelItinerari->Controls->Add(itbox);
-		/*	if(var->getIditinerarioEntrata()>0){
-		this->tableLayoutPanelItinerari->Controls->Add(getTextBox(var->getIditinerarioEntrata().ToString(), 0),colonna,riga);
-		colonna++;
-		}
-		if(colonna==6){
-		riga++;
-		colonna=0;
-		}
-		if(var->getIditinerarioUscita()>0){
-		this->tableLayoutPanelItinerari->Controls->Add(getTextBox(var->getIditinerarioUscita().ToString(), 1),colonna,riga);
-		colonna++;
-		}
-		if(colonna==6){
-		riga++;
-		colonna=0;
-		}
-		
-		if(var->getIditinerarioEntrata()>0){
-			this->tableLayoutPanelItinerari->Controls->Add(getTextBox(var->getIditinerarioEntrata().ToString(), 0));
-		}
-		if(var->getIditinerarioUscita()>0){
-			this->tableLayoutPanelItinerari->Controls->Add(getTextBox(var->getIditinerarioUscita().ToString(), 1));
-		}*/
+
 	}
 }
 
@@ -210,16 +188,18 @@ Void SingleTrainInfoForm::B_Click(System::Object^  sender, System::EventArgs^  e
 }
 
 Void SingleTrainInfoForm::ItBox_ItChangedU(System::Object^  sender, System::EventArgs^  e){
-	ItineraryBox ^itbox =(ItineraryBox^) sender ;
-	
-	Console::WriteLine("hai provato a cambiare NID_IT:{0} di {1}",itbox->getIdIUscita(),itbox->getStationName());
+	//ItineraryBox ^itbox =(ItineraryBox^) sender ;
+	System::Windows::Forms::ComboBox ^combo =( System::Windows::Forms::ComboBox^) sender ;
+	Itinerario ^itsel = (Itinerario^) combo->SelectedItem;
+//	Console::WriteLine("hai provato a cambiare NID_IT:{0} di {1}",itbox->getIdIUscita(),itbox->getStationName());
 	
 }
 
 Void SingleTrainInfoForm::ItBox_ItChangedE(System::Object^  sender, System::EventArgs^  e){
-		ItineraryBox ^itbox =(ItineraryBox^) sender ;
-	
-	Console::WriteLine("hai provato a cambiare NID_IT:{0} di {1}",itbox->getIdIEntrata(),itbox->getStationName());
+	//	ItineraryBox ^itbox =(ItineraryBox^) sender ;
+	System::Windows::Forms::ComboBox ^combo =( System::Windows::Forms::ComboBox^) sender ;
+	Itinerario ^itsel = (Itinerario^) combo->SelectedItem;
+	//Console::WriteLine("hai provato a cambiare NID_IT:{0} di {1}",itbox->getIdIEntrata(),itbox->getStationName());
 
 }
 

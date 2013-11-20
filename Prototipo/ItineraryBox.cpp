@@ -128,8 +128,10 @@ void ItineraryBox::setInitEntrata(int id){
 	Itinerario ^i = station->getItinerariid()[id];
 	int index = comboBoxE->FindString(i->getName());
 	comboBoxE->SelectedIndex = index;
+	}else{
+		comboBoxE->Visible=false;
 	}
-
+	
 }
 
 
@@ -138,18 +140,21 @@ void ItineraryBox::setInitUscita(int id){
 	Itinerario ^i = station->getItinerariid()[id];
 	int index = comboBoxU->FindString(i->getName());
 	comboBoxU->SelectedIndex = index;
+	}else{
+		comboBoxU->Visible=false;
 	}
 }
 
 Void ItineraryBox::comboBoxE_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e){
-	System::Windows::Forms::ComboBox ^textarea =( System::Windows::Forms::ComboBox^) sender ;
-
-
-	CambioItineraioEntrata(this,e);
+	/*System::Windows::Forms::ComboBox ^combo =( System::Windows::Forms::ComboBox^) sender ;
+	Itinerario ^itsel = (Itinerario^) combo->SelectedItem;
+	fermata->setIditinerarioEntrata(itsel->getId());*/
+	CambioItineraioEntrata(sender,e);
 }
 
 Void ItineraryBox::comboBoxU_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e){
-	System::Windows::Forms::ComboBox ^comboBox =( System::Windows::Forms::ComboBox^) sender ;
-
-	CambioItineraioUscita(this,e);
+	/*System::Windows::Forms::ComboBox ^combo =( System::Windows::Forms::ComboBox^) sender ;
+	Itinerario ^itsel = (Itinerario^) combo->SelectedItem;
+	fermata->setIditinerarioUscita(itsel->getId());*/
+	CambioItineraioUscita(sender,e);
 }

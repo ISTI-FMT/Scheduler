@@ -269,7 +269,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 						if(inviato->fine==1){
 							//Creo il treno
 							Console::WriteLine("ok {0}",listaitinerari[0]->getOrarioPartenza());
-							listaitinerari[0]->getOrarioPartenza();
+							
 							Train ^treno = gcnew Train(trn,phisical,listaitinerari);
 							//Creo KeyListTrain
 							int priorita = 1;
