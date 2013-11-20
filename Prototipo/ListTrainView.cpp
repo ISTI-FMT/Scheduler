@@ -5,7 +5,7 @@ void Prototipo::ListTrainView::AddListener(IControllerListTrain ^c){
 }
 void Prototipo::ListTrainView::ViewNewTrain(KeyListTrain ^key,Train^ train){
 
-
+	//setNewTrain(key,train);
 	this->Invoke(myDelegateNewTrain,key,train);
 
 }
@@ -13,7 +13,7 @@ void Prototipo::ListTrainView::ViewNewTrain(KeyListTrain ^key,Train^ train){
 void Prototipo::ListTrainView::setNewTrain(KeyListTrain ^key,Train^ train){
 
 
-	SingleTrainInfoForm ^trainView = gcnew SingleTrainInfoForm(train,key,controller);
+	SingleTrainInfoForm ^trainView = gcnew SingleTrainInfoForm(train,key,controller,tabItinerari);
 
 	tableLayoutPanel1->Controls->Add(trainView);
 

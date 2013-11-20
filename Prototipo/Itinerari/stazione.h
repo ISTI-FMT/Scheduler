@@ -11,7 +11,7 @@ using namespace System::Collections::Generic;
 //contiene oltre id numerico e il nome della stazione
 //due dizionari per trovare gli itinerari uno la cui chieave è prevcdb
 //l'altro la cui chiave è id dell'itinerario
-ref class stazione
+public ref class stazione
 {
 	String ^nomeStazione;
 	int idStazione;

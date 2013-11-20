@@ -1,9 +1,10 @@
 #include "SingleTrainInfoForm.h"
 
 
-SingleTrainInfoForm::SingleTrainInfoForm(Train ^t, KeyListTrain ^k, IControllerListTrain ^c)
+SingleTrainInfoForm::SingleTrainInfoForm(Train ^t, KeyListTrain ^k, IControllerListTrain ^c, tabellaItinerari ^ti)
 {
 	Button::Button();
+	tabItineari=ti;
 	controller=c;
 	train=t;
 	key=k;
@@ -163,8 +164,12 @@ void SingleTrainInfoForm::setitinerary(){
 	int colonna=0;*/
 	for each (Fermata ^var in train->getListaItineari())
 	{
-		ItineraryBox ^itbox = gcnew ItineraryBox(var,controller);
+		int id = var->getIdStazione();
+		stazione ^s = tabItineari->getMap()[id];
 		
+		ItineraryBox ^itbox = gcnew ItineraryBox(var,s);
+		itbox->CambioItineraioUscita += gcnew System::EventHandler(this, &SingleTrainInfoForm::ItBox_ItChangedU);
+		itbox->CambioItineraioEntrata += gcnew System::EventHandler(this, &SingleTrainInfoForm::ItBox_ItChangedE);
 		this->tableLayoutPanelItinerari->Controls->Add(itbox);
 		/*	if(var->getIditinerarioEntrata()>0){
 		this->tableLayoutPanelItinerari->Controls->Add(getTextBox(var->getIditinerarioEntrata().ToString(), 0),colonna,riga);
@@ -193,29 +198,7 @@ void SingleTrainInfoForm::setitinerary(){
 }
 
 
-System::Windows::Forms::TextBox ^ SingleTrainInfoForm::getTextBox(String ^text, int id){
-	// 
-	// button
-	// 
-	System::Windows::Forms::TextBox ^textarea = (gcnew System::Windows::Forms::TextBox());
-	textarea->AccessibleRole = System::Windows::Forms::AccessibleRole::Grip;
-	textarea->Anchor = System::Windows::Forms::AnchorStyles::Top;
 
-	textarea->BackColor = System::Drawing::Color::Silver;
-
-	//button->Location = System::Drawing::Point(91, 3);
-	textarea->Name = id.ToString();
-	textarea->Size = System::Drawing::Size(60, 23);
-	textarea->TabIndex = 0;
-	textarea->Text = text;
-
-
-
-	textarea->TextChanged += gcnew System::EventHandler(this, &SingleTrainInfoForm::textBox_TextChanged);
-
-	return textarea;
-
-}
 
 
 
@@ -226,15 +209,18 @@ Void SingleTrainInfoForm::B_Click(System::Object^  sender, System::EventArgs^  e
 	form->Visible=true;
 }
 
-Void SingleTrainInfoForm::textBox_TextChanged(System::Object^  sender, System::EventArgs^  e){
-	TextBox ^textarea =(TextBox^) sender ;
-	if (System::Text::RegularExpressions::Regex::IsMatch(textarea->Text,"[^0-9]"))
-	{
-		MessageBox::Show("Please enter only numbers.");
-		textarea->Text=textarea->Text->Remove(textarea->Text->Length - 1);
-	}
-	Console::WriteLine("hai provato a cambiare NID_IT:{0} di {1}",textarea->Text,textarea->Name);
+Void SingleTrainInfoForm::ItBox_ItChangedU(System::Object^  sender, System::EventArgs^  e){
+	ItineraryBox ^itbox =(ItineraryBox^) sender ;
 	
+	Console::WriteLine("hai provato a cambiare NID_IT:{0} di {1}",itbox->getIdIUscita(),itbox->getStationName());
+	
+}
+
+Void SingleTrainInfoForm::ItBox_ItChangedE(System::Object^  sender, System::EventArgs^  e){
+		ItineraryBox ^itbox =(ItineraryBox^) sender ;
+	
+	Console::WriteLine("hai provato a cambiare NID_IT:{0} di {1}",itbox->getIdIEntrata(),itbox->getStationName());
+
 }
 
 Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e){
@@ -246,7 +232,6 @@ Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::
 	}
 
 }
-
 Void SingleTrainInfoForm::ButtonClose_Click(System::Object^  sender, System::EventArgs^  e){
 
 	form->Visible=false;

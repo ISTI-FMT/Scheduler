@@ -4,12 +4,12 @@
 using namespace System;
 using namespace System::Collections::Generic;
 /*utilizzo questa classe per rappresentare le informazioni degli itinerari parsate dal file xml ConfigurazioneItinerari.xml*/
-
+enum typeItini  {Entrata =0, Uscita=1};
 //questa classe rappresenta un itinerario
-ref class Itinerario
+public ref class Itinerario
 {
 	int id;
-	String ^name;
+    String ^name;
 	String ^direzione;
 	int lrgb;
 	int dStop;
@@ -19,10 +19,19 @@ ref class Itinerario
 	int nextCDB;
 	List<int> ^cdb;
 	int nextstation;
+	typeItini tipoitin;
 public:
-	Itinerario(void);
+	 property String^ ShortName 
+   {
+      String^ get()
+      {
+         return name;
+      }
+   }
+	Itinerario(typeItini t);
 	void setId(int i){id = i;}
 	int getId(){return id;}
+	typeItini getTipiItinerario(){return tipoitin;}
 	void set_nextstation(int i){nextstation = i;}
 	int^ get_nextstation(){return nextstation;}
 	void setName(String ^i){name = i;}

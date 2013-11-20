@@ -68,7 +68,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari()
 
 
 
-					Itinerario ^newitinerario = gcnew Itinerario();
+					Itinerario ^newitinerario = gcnew Itinerario(typeItini::Entrata);
 
 					int Iditinerario = int::Parse(inner2->GetAttribute("id"));
 					newitinerario->setId(Iditinerario);
@@ -127,7 +127,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari()
 				inner2 = inner->ReadSubtree();
 				while (inner2->ReadToFollowing("partenza")){
 
-					Itinerario ^newitinerario = gcnew Itinerario();
+					Itinerario ^newitinerario = gcnew Itinerario(typeItini::Uscita);
 					int Iditinerario = int::Parse(inner2->GetAttribute("id"));
 					newitinerario->setId(Iditinerario);
 

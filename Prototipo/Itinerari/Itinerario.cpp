@@ -2,9 +2,10 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
-Itinerario::Itinerario(void)
+Itinerario::Itinerario(typeItini t)
 {
 	id = 0;
+	tipoitin=t;
 	name=gcnew String("");
 	direzione = gcnew String("");
 	lrgb = 0;

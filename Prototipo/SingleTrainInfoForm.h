@@ -1,6 +1,7 @@
 #pragma once
 #include "ControllerListTrain.h"
 #include "ItineraryBox.h"
+#include "Itinerari\\tabellaItinerari.h"
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -22,13 +23,14 @@ ref class SingleTrainInfoForm : public System::Windows::Forms::Button
 	System::ComponentModel::IContainer^ components;
 	System::Windows::Forms::ErrorProvider^ errorProvider;
 	IControllerListTrain ^controller;
+	tabellaItinerari ^tabItineari;
 public:
-	SingleTrainInfoForm(Train ^t, KeyListTrain ^ k, IControllerListTrain ^c);
+	SingleTrainInfoForm(Train ^t, KeyListTrain ^ k, IControllerListTrain ^c,tabellaItinerari ^ti);
 	void init();
 	void set();
-	System::Windows::Forms::TextBox ^getTextBox(String ^text, int id);
 	
-	Void textBox_TextChanged(System::Object^  sender, System::EventArgs^  e);
+	Void ItBox_ItChangedU(System::Object^  sender, System::EventArgs^  e);
+	Void ItBox_ItChangedE(System::Object^  sender, System::EventArgs^  e);
 	Void textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e);
 	Void B_Click(System::Object^  sender, System::EventArgs^  e);
 	Void ButtonClose_Click(System::Object^  sender, System::EventArgs^  e);

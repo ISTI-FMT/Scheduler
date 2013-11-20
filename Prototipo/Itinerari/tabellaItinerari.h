@@ -10,7 +10,7 @@ queste vengono inserite in una mappa tra id della stazione e le informazioni del
 */
 
 //questa classe rappresenta una mappa tra id della stazione e la stazione 
-ref class tabellaItinerari
+public ref class tabellaItinerari
 {
 
 	Dictionary<int,stazione^ > ^mapidstazioneitinerari;
