@@ -9,7 +9,7 @@ enum typeItini  {Entrata =0, Uscita=1};
 public ref class Itinerario
 {
 	int id;
-    String ^name;
+	String ^name;
 	String ^direzione;
 	int lrgb;
 	int dStop;
@@ -21,13 +21,26 @@ public ref class Itinerario
 	int nextstation;
 	typeItini tipoitin;
 public:
-	 property String^ ShortName 
-   {
-      String^ get()
-      {
-         return name;
-      }
-   }
+	property String^ ShortName 
+	{
+		String^ get()
+		{
+			return name;
+		}
+	}
+	property String^ ShortDescName 
+	{
+		String^ get()
+		{
+			String ^dir="";
+			if(direzione=="sx"){
+				dir="<--";
+			}else{
+				dir="-->";
+			}
+			return name+dir;
+		}
+	}
 	Itinerario(typeItini t);
 	void setId(int i){id = i;}
 	int getId(){return id;}
@@ -50,9 +63,9 @@ public:
 	int getPrevCDB(){return prevCDB;}
 	void setNextCDB(int p){nextCDB = p;}
 	int getNextCDB(){return nextCDB;}
-	
+
 	List<int>^ getLCDB(){return cdb;}
 
-		virtual System::String^ ToString() override;
+	virtual System::String^ ToString() override;
 };
 

@@ -77,8 +77,8 @@ void tabellaItinerari::leggifileconfigurazioneItinerari()
 
 					newitinerario->setName( inner2->GetAttribute("name"));
 
-					inner2->GetAttribute("direzione");
-
+					String^ direzione = inner2->GetAttribute("direzione");
+					newitinerario->setDirezione(direzione);
 					System::String ^porte = inner2->GetAttribute("portebanchina");
 					if(porte->Equals("true")){
 						newitinerario->setPorteBanchina(true);
@@ -135,8 +135,8 @@ void tabellaItinerari::leggifileconfigurazioneItinerari()
 
 					newitinerario->setName( inner2->GetAttribute("name"));
 
-					inner2->GetAttribute("direzione");
-
+					String ^direzione = inner2->GetAttribute("direzione");
+					newitinerario->setDirezione(direzione);
 					System::String ^porte = inner2->GetAttribute("portebanchina");
 					if(porte->Equals("true")){
 						newitinerario->setPorteBanchina(true);

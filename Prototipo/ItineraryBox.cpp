@@ -6,7 +6,7 @@ ItineraryBox::ItineraryBox(Fermata ^f, stazione ^s)
 	fermata=f;
 	station=s;
 	init();
-	initCombo();
+
 	this->setNameStation(f->getnameStazione());
 	this->setInitEntrata(f->getIditinerarioEntrata());
 	this->setInitUscita(f->getIditinerarioUscita());
@@ -46,7 +46,7 @@ void ItineraryBox::init()
 	this->comboBoxE->Name = L"comboBoxe";
 	this->comboBoxE->Size = System::Drawing::Size(60, 23);
 	this->comboBoxE->TabIndex = 8;
-	this->comboBoxE->DisplayMember = "ShortName";
+	this->comboBoxE->DisplayMember = "ShortDescName";
 	this->comboBoxE->ValueMember = "ShortName";
 	this->SuspendLayout();
 
@@ -59,7 +59,7 @@ void ItineraryBox::init()
 	this->comboBoxU->Name = L"comboBoxu";
 	this->comboBoxU->Size = System::Drawing::Size(60, 23);
 	this->comboBoxU->TabIndex = 9;
-	this->comboBoxU->DisplayMember = "ShortName";
+	this->comboBoxU->DisplayMember = "ShortDescName";
 	this->comboBoxU->ValueMember = "ShortName";
 	this->SuspendLayout();
 
@@ -95,22 +95,25 @@ void ItineraryBox::init()
 	this->PerformLayout();
 }
 
-void ItineraryBox::initCombo(){
+void ItineraryBox::initCombo(String ^direzione){
 	Dictionary<int,Itinerario^ > ^itinerari =  station->getItinerariid();
 	Dictionary<int,Itinerario^ >::ValueCollection ^valueColl =   station->getItinerariid()->Values;
+	if(comboBoxE->Items->Count==0){
+		for each (Itinerario ^itin in valueColl)
+		{
+			if(itin->getDirezione()==direzione){
+				if(itin->getTipiItinerario()==typeItini::Entrata){
+					comboBoxE->Items->Add(itin);
+				}else{
+					if(itin->getTipiItinerario()==typeItini::Uscita){
+						comboBoxU->Items->Add(itin);
+					}
 
-	for each (Itinerario ^itin in valueColl)
-	{
-		if(itin->getTipiItinerario()==typeItini::Entrata){
-			comboBoxE->Items->Add(itin);
-		}else{
-			if(itin->getTipiItinerario()==typeItini::Uscita){
-				comboBoxU->Items->Add(itin);
+
+				}
 			}
 
-
 		}
-
 	}
 
 
@@ -125,23 +128,25 @@ void ItineraryBox::setNameStation(System::String ^s){
 
 void ItineraryBox::setInitEntrata(int id){
 	if(id>0){
-	Itinerario ^i = station->getItinerariid()[id];
-	int index = comboBoxE->FindString(i->getName());
-	comboBoxE->SelectedIndex = index;
+		Itinerario ^i = station->getItinerariid()[id];
+		initCombo(i->getDirezione());
+		int index = comboBoxE->FindString(i->getName());
+		comboBoxE->SelectedIndex = index;
 	}else{
-		comboBoxE->Visible=false;
+		//comboBoxE->Visible=false;
 	}
-	
+
 }
 
 
 void ItineraryBox::setInitUscita(int id){
 	if(id>0){
-	Itinerario ^i = station->getItinerariid()[id];
-	int index = comboBoxU->FindString(i->getName());
-	comboBoxU->SelectedIndex = index;
+		Itinerario ^i = station->getItinerariid()[id];
+		initCombo(i->getDirezione());
+		int index = comboBoxU->FindString(i->getName());
+		comboBoxU->SelectedIndex = index;
 	}else{
-		comboBoxU->Visible=false;
+		//comboBoxU->Visible=false;
 	}
 }
 

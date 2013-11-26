@@ -35,7 +35,7 @@ public:
 	String ^getStationName(){
 		return fermata->getnameStazione();
 	}
-	void initCombo();
+	void initCombo(String^ direzione);
 	//static void CambioItineraioUscita();
 	Void comboBoxE_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 	Void comboBoxU_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
