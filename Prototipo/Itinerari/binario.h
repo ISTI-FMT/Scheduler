@@ -4,7 +4,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 /*utilizzo questa classe per rappresentare le informazioni delle stazioni parsate dal file xml ConfigurazioneFermate.xml*/
 //questa classe rappresenta le informazioni delle stazioni che sono solo fermate || forse andrebbe chiamata stazionifermate?!!
-ref class binario
+public ref class binario
 {
 	String ^namebin;
 	int bin;

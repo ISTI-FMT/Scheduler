@@ -1,7 +1,7 @@
 #pragma once
 #include "IListTrainView.h"
 #include "SingleTrainInfoForm.h"
-#include "Itinerari\\tabellaItinerari.h"
+#include "Itinerari\\TabellaStazioni.h"
 
 namespace Prototipo {
 
@@ -20,9 +20,9 @@ namespace Prototipo {
 		IControllerListTrain ^controller;
 		delegate void GoCallback(KeyListTrain ^key,Train^ train);
 		GoCallback^ myDelegateNewTrain;
-		tabellaItinerari ^tabItinerari;
+		TabellaStazioni ^tabItinerari;
 	public:
-		ListTrainView(tabellaItinerari ^ti)
+		ListTrainView(TabellaStazioni ^ti)
 		{
 			myDelegateNewTrain = gcnew GoCallback( this, &ListTrainView::setNewTrain );
 			tabItinerari=ti;

@@ -6,7 +6,7 @@
 Train::Train( int trn, physicalTrain ^pt){
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
-	Listaitinerari= gcnew List<Fermata^>();
+	Listafermate= gcnew List<Fermata^>();
 	Statodeltreno=StateTrain::NONPRONTO;
 	indicelistaitinerari=0;
 
@@ -15,34 +15,34 @@ Train::Train( int trn, physicalTrain ^pt){
 Train::Train( physicalTrain ^pt){
 	TrainRunningNumber=0;
 	PhysicalTrain=pt;
-	Listaitinerari= gcnew List<Fermata^>();
+	Listafermate= gcnew List<Fermata^>();
 	Statodeltreno=StateTrain::NONPRONTO;
 	indicelistaitinerari=0;
 
 }
 
 
-Train::Train( int trn,physicalTrain ^pt, List<Fermata^> ^listit){
+Train::Train( int trn,physicalTrain ^pt, List<Fermata^> ^listf){
 
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
-	Listaitinerari=listit;
+	Listafermate=listf;
 	Statodeltreno=StateTrain::USCITASTAZIONE;
 	indicelistaitinerari=0;
 }
 
-Train::Train( int trn, physicalTrain ^pt, List<Fermata^> ^listit, StateTrain st){
+Train::Train( int trn, physicalTrain ^pt, List<Fermata^> ^listf, StateTrain st){
 
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
-	Listaitinerari=listit;
+	Listafermate=listf;
 	Statodeltreno=st;
 	indicelistaitinerari=0;
 }
 
 Double Train::getOrarioPartenza(){
 
-	return Listaitinerari[indicelistaitinerari]->getOrarioPartenza();
+	return Listafermate[indicelistaitinerari]->getOrarioPartenza();
 }
 
 void  Train::goNextItinerario(){
@@ -64,13 +64,13 @@ KeyValuePair<int, int> ^Train::getStazioneItinerario(){
 	case PRONTO:
 		break;
 	case USCITASTAZIONE:{
-		int itinUscita = Listaitinerari[indicelistaitinerari]->getIditinerarioUscita();
-		int idstazione = Listaitinerari[indicelistaitinerari]->getIdStazione();
+		int itinUscita = Listafermate[indicelistaitinerari]->getIditinerarioUscita();
+		int idstazione = Listafermate[indicelistaitinerari]->getIdStazione();
 		return gcnew  KeyValuePair<int, int>(idstazione, itinUscita);
 		break;}
 	case ENTRATASTAZIONE:{
-		int initEntrata = Listaitinerari[indicelistaitinerari]->getIditinerarioEntrata();
-		int idstazione = Listaitinerari[indicelistaitinerari]->getIdStazione();
+		int initEntrata = Listafermate[indicelistaitinerari]->getIditinerarioEntrata();
+		int idstazione = Listafermate[indicelistaitinerari]->getIdStazione();
 		return gcnew  KeyValuePair<int, int>(idstazione, initEntrata);
 		break;}
 	case NONPRONTO:

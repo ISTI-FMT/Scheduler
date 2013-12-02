@@ -12,8 +12,8 @@
 #include "..\\mapTrenoFisicoLogico.h"
 #include "..\\messaggi\\Messaggi.h"
 #include "..\\logger\\Logger.h"
-#include "..\\Itinerari\\tabellaItinerari.h"
-#include "..\\Itinerari\\tabellaFermate.h"
+#include "..\\Itinerari\\TabellaStazioni.h"
+
 #include "..\\manager\\ManagerStatoLineaATC.h"
 #include "..\\manager\\ManagerStatoLineaIXL.h"
 #include "..\\manager\\ManagerMsgATO.h"
@@ -86,8 +86,7 @@ namespace Prototipo {
 		System::ComponentModel::Container ^components;
 		TabellaOrario ^tabellaOrario;
 		phisicalTrainList ^listaTreni;
-		tabellaItinerari ^tabItinerari;
-		tabellaFermate ^tabfermate;
+		TabellaStazioni ^tabItinerari;
 		FormStatoLineaATC ^stATC;
 		FormStatoLineaIXL ^stif ;
 		ThreadListenerATC_IXL ^ThLATCIXL;
@@ -359,13 +358,13 @@ namespace Prototipo {
 			 }
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 if(tabfermate->getTabFermate()->Count<1){
+				 if(tabItinerari->getMap()->Count<1){
 					 MessageBox::Show("Tabella Conf Fermate Vuota");
 #ifdef TRACE
 					 Logger::Info("SchedulerForm"," Tabella Conf Fermate Vuota");  
 #endif // TRACE
 				 }else{
-					 FormVisualizzeConfFermate ^formCF = gcnew FormVisualizzeConfFermate(tabfermate);
+					 FormVisualizzeConfFermate ^formCF = gcnew FormVisualizzeConfFermate(tabItinerari);
 
 					 formCF->Visible=true;
 
@@ -377,14 +376,15 @@ namespace Prototipo {
 				 //
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //
-				 tabItinerari = gcnew tabellaItinerari();
+				 tabItinerari = gcnew TabellaStazioni();
 				 tabItinerari->leggifileconfigurazioneItinerari();
+				 tabItinerari->leggifileconfigurazioneFermate();
 
 				 tabellaOrario  = gcnew TabellaOrario(tabItinerari);
 				 tabellaOrario->leggiTabellaOrario();
 
-				 tabfermate=gcnew tabellaFermate();
-				 tabfermate->leggifileconfigurazioneFermate();
+				// tabfermate=gcnew tabellaFermate();
+				// tabfermate->leggifileconfigurazioneFermate();
 
 				 mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico();
 

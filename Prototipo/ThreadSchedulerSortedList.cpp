@@ -20,7 +20,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(void)
 }
 
 
-ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
+ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
 {
 	if(E->Count>2){
 		EQueueIXL=E[0];
@@ -110,6 +110,7 @@ void ThreadSchedulerSortedList::Schedule(){
 
 					}else{
 						train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
+						controlListtrain->OnNextIt(key);
 					}
 					break;
 									}
@@ -159,6 +160,7 @@ void ThreadSchedulerSortedList::Schedule(){
 						}
 					}else{
 						train->setStatoTreno(StateTrain::USCITASTAZIONE);
+						controlListtrain->OnNextIt(key);
 					}
 
 
@@ -269,8 +271,10 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 						if(inviato->fine==1){
 							//Creo il treno
 							Console::WriteLine("ok {0}",listaitinerari[0]->getOrarioPartenza());
+
+							List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn);
 							
-							Train ^treno = gcnew Train(trn,phisical,listaitinerari);
+							Train ^treno = gcnew Train(trn,phisical,listafermate);
 							//Creo KeyListTrain
 							int priorita = 1;
 							KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber,listaitinerari[0]->getOrarioPartenza());

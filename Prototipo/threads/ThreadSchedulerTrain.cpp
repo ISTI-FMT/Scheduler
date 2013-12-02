@@ -15,7 +15,7 @@ using namespace System::Xml;
 using namespace System::Collections::Concurrent;
 
 #define TRACE
-ThreadSchedulerTrain::ThreadSchedulerTrain(physicalTrain ^phi, List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
+ThreadSchedulerTrain::ThreadSchedulerTrain(physicalTrain ^phi, List<EventQueue^> ^E, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
 {
 	if(E->Count>1){
 		EQueueIXL=E[0];

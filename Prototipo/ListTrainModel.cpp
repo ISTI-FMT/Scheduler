@@ -27,7 +27,7 @@ SortedList<KeyListTrain^, Train^> ^ListTrainModel::getList(){
 void ListTrainModel::set(KeyListTrain ^key,List<Fermata^> ^list){
 	if(ListSortedTrains->ContainsKey(key)){
 		Train ^t = ListSortedTrains[key];
-		t->setListaItineari(list);
+		t->setListaFermate(list);
 
 	}
 }

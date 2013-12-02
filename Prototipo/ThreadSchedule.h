@@ -3,7 +3,7 @@
 #include "Event.h"
 #include "EventQueue.h"
 #include "tabellaOrario\\TabellaOrario.h"
-#include "Itinerari\\tabellaItinerari.h"
+#include "Itinerari\\TabellaStazioni.h"
 #include "logger\\Logger.h"
 #include "mapTrenoFisicoLogico.h"
 #include "messaggi\\Messaggi.h"
@@ -28,7 +28,7 @@ ref class ThreadSchedule
 	EventQueue ^EQueueATO;
 	EventQueue ^EQueueATC;
 	TabellaOrario ^tabOrario;
-	tabellaItinerari ^tabItinerari;
+	TabellaStazioni ^tabItinerari;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
 	ManagerStatoLineaATC ^managerATC;
 	ManagerStatoLineaIXL ^managerIXL;
@@ -39,7 +39,7 @@ ref class ThreadSchedule
 	bool _shouldStop;
 	List<ThreadSchedulerTrain^> ^listThreadTrain;
 public:
-	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
+	ThreadSchedule(List<EventQueue^> ^E , TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 
 	void SimpleSchedule();
 	void Init();

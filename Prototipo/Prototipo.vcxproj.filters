@@ -135,9 +135,6 @@
     <ClInclude Include="Itinerari\stazione.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
-    <ClInclude Include="Itinerari\tabellaItinerari.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
     <ClInclude Include="threads\ThreadListenerATC_IXL.h">
       <Filter>File di intestazione\threads</Filter>
     </ClInclude>
@@ -151,9 +148,6 @@
       <Filter>File di intestazione\logger</Filter>
     </ClInclude>
     <ClInclude Include="Itinerari\binario.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
-    <ClInclude Include="Itinerari\tabellaFermate.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
     <ClInclude Include="messaggi\utility.h">
@@ -297,6 +291,9 @@
     <ClInclude Include="ItineraryBox.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="Itinerari\TabellaStazioni.h">
+      <Filter>File di intestazione\itinerari</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messaggi\Messaggi.cpp">
@@ -365,9 +362,6 @@
     <ClCompile Include="Itinerari\stazione.cpp">
       <Filter>File di origine\itinerari</Filter>
     </ClCompile>
-    <ClCompile Include="Itinerari\tabellaItinerari.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
     <ClCompile Include="threads\ThreadListenerATC_IXL.cpp">
       <Filter>File di origine\threads</Filter>
     </ClCompile>
@@ -381,9 +375,6 @@
       <Filter>File di origine\logger</Filter>
     </ClCompile>
     <ClCompile Include="Itinerari\binario.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="Itinerari\tabellaFermate.cpp">
       <Filter>File di origine\itinerari</Filter>
     </ClCompile>
     <ClCompile Include="messaggi\utility.cpp">
@@ -500,6 +491,9 @@
     <ClCompile Include="ItineraryBox.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="Itinerari\TabellaStazioni.cpp">
+      <Filter>File di origine\itinerari</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -515,6 +509,9 @@
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStatoLineaIXL.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListTrainView.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
   </ItemGroup>

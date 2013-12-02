@@ -19,7 +19,7 @@ TabellaOrario::TabellaOrario(void)
 	schemaxsd="TabellaOrario.xsd";
 }
 
-TabellaOrario::TabellaOrario(tabellaItinerari ^T)
+TabellaOrario::TabellaOrario(TabellaStazioni ^T)
 {
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
 	schemaxsd="TabellaOrario.xsd";
@@ -278,6 +278,23 @@ System::String^ TabellaOrario::ToString(){
 		}
 	}
 	return out;
+}
+
+List<Fermata^> ^TabellaOrario::getFermateFor(int TRN){
+
+	if(tabella->ContainsKey(TRN)){
+
+		//return tabella[TRN];
+		List<Fermata^> ^result = gcnew List<Fermata^>();
+		for each (Fermata ^ferm in tabella[TRN])
+		{
+			if(ferm->getIdStazione()>0){
+				result->Add(ferm);
+			}
+		}
+		return result;
+	}
+	return nullptr;
 }
 
 List<Fermata^> ^TabellaOrario::getItinerariFor(int TRN){

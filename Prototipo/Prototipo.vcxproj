@@ -104,8 +104,7 @@
     <ClInclude Include="Itinerari\FormVisualizzeConfItine.h" />
     <ClInclude Include="Itinerari\Itinerario.h" />
     <ClInclude Include="Itinerari\stazione.h" />
-    <ClInclude Include="Itinerari\tabellaFermate.h" />
-    <ClInclude Include="Itinerari\tabellaItinerari.h" />
+    <ClInclude Include="Itinerari\TabellaStazioni.h" />
     <ClInclude Include="ItineraryBox.h" />
     <ClInclude Include="KeyListTrain.h" />
     <ClInclude Include="ListTrainModel.h" />
@@ -184,8 +183,7 @@
     <ClCompile Include="Itinerari\FormVisualizzeConfItine.cpp" />
     <ClCompile Include="Itinerari\Itinerario.cpp" />
     <ClCompile Include="Itinerari\stazione.cpp" />
-    <ClCompile Include="Itinerari\tabellaFermate.cpp" />
-    <ClCompile Include="Itinerari\tabellaItinerari.cpp" />
+    <ClCompile Include="Itinerari\TabellaStazioni.cpp" />
     <ClCompile Include="ItineraryBox.cpp" />
     <ClCompile Include="KeyListTrain.cpp" />
     <ClCompile Include="ListTrainModel.cpp" />

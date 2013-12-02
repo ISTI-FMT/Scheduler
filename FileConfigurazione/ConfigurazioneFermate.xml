@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configurazionefermate xmlns="urn:conffermate-schema" >
-<fermata id="Vicolo Stretto">
+<fermata id="500" name="Vicolo Stretto">
     <binario bin="1" namebin="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" nextCDB="11020" prevCDB="10010">
       
-       <cdb>BCA504</cdb>
+       <cdb>504</cdb>
 	    
     </binario>
     <binario bin="1" namebin="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextCDB="10010" prevCDB="11020">
 
-      <cdb>BCA504</cdb>
+      <cdb>504</cdb>
 	  
     </binario>
 
@@ -16,7 +16,7 @@
    
   </fermata>
 
-  <fermata id="Via Marco Polo">
+  <fermata id="400" name="Via Marco Polo">
     <binario bin="1" namebin="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" nextCDB="408" prevCDB="404">
       
        <cdb>406</cdb>
@@ -42,7 +42,7 @@
    
   </fermata>
 
-  <fermata id="Via Roma">
+  <fermata id="410" name="Via Roma">
     <binario bin="1" namebin="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextCDB="420" prevCDB="416">
 
       <cdb>418</cdb>

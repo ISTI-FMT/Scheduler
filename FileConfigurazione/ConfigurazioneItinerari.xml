@@ -842,9 +842,59 @@
       </partenza>
      </itinerariUscita>
   </stazione>
+<!--
+   <stazione name="Via Roma" id_offset="418">
+   <itinerariIngresso>
+    <ingresso id="1418" name="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  prevcdb="416" nextcdb="420">
+      <cdb>418</cdb>  
+    </ingresso>
+    <ingresso id="1419" name="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx"  prevcdb="417" nextcdb="421">
+      <cdb>419</cdb>   
+    </ingresso>
+	</itinerariIngresso>
 
+ <itinerariUscita> 
+ 
+ <partenza id="2418" name="I" direzione="sx"   portebanchina="true" latobanchina="sx" prevcdb="420"   nextcdb="416" nextstation="406">
 
+      <cdb>418</cdb>
+	   
+    </partenza>
+	<partenza id="2419" name="II" direzione="sx"   portebanchina="true" latobanchina="sx"  prevcdb="421"  nextcdb="417" nextstation="406">
 
+      <cdb>419</cdb>
+	 
+    </partenza>
+    </itinerariUscita>
+  </stazione>
+
+  <stazione name="Via Marco Polo" id_offset="40">
+   <itinerariIngresso>
+    <ingresso id="1" name="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" nextcdb="408" prevcdb="404">
+      
+       <cdb>406</cdb>
+  </ingresso>
+  
+ <ingresso id="2" name="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  nextcdb="409" prevcdb="405">
+
+      <cdb>407</cdb>
+	   
+  </ingresso>
+	</itinerariIngresso>
+
+ <itinerariUscita> 
+ 
+   <partenza  id="2" name="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx"  nextcdb="405" prevcdb="409"  nextstation="406">
+
+      <cdb>407</cdb>
+	  </partenza>
+  
+  <partenza id="1"  name="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextcdb="404" prevcdb="408"  nextstation="406">
+
+      <cdb>406</cdb>
+  </partenza>
+    </itinerariUscita>
+  </stazione>-->
 
 
 </ConfigurazioneItinerari>

@@ -1,5 +1,5 @@
 #pragma once
-#include "..\\Itinerari\\tabellaFermate.h"
+#include "..\\Itinerari\\TabellaStazioni.h"
 
 	using namespace System::Diagnostics;
 	using namespace System;
@@ -17,10 +17,10 @@ ref class FormVisualizzeConfFermate : public Form
 {
 	// System::Windows::Forms::Form ^  form;
 	  System::Windows::Forms::DataGridView^  dataGridView1;
-	  tabellaFermate ^tabella;
+	  TabellaStazioni ^tabella;
 	  void Form_Resize(System::Object^  sender, System::EventArgs^  e);
 public:
-	FormVisualizzeConfFermate(tabellaFermate ^tab);
+	FormVisualizzeConfFermate(TabellaStazioni ^tab);
 	void Inizialize();
 
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include "ControllerListTrain.h"
 #include "ItineraryBox.h"
-#include "Itinerari\\tabellaItinerari.h"
+#include "Itinerari\\TabellaStazioni.h"
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -23,9 +23,9 @@ ref class SingleTrainInfoForm : public System::Windows::Forms::Button
 	System::ComponentModel::IContainer^ components;
 	System::Windows::Forms::ErrorProvider^ errorProvider;
 	IControllerListTrain ^controller;
-	tabellaItinerari ^tabItineari;
+	TabellaStazioni ^tabItineari;
 public:
-	SingleTrainInfoForm(Train ^t, KeyListTrain ^ k, IControllerListTrain ^c,tabellaItinerari ^ti);
+	SingleTrainInfoForm(Train ^t, KeyListTrain ^ k, IControllerListTrain ^c,TabellaStazioni ^ti);
 	void init();
 	void set();
 	

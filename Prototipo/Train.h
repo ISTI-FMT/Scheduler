@@ -14,7 +14,7 @@ public ref class Train
 	DateTime TimeStampNextEvent;
 	int TrainRunningNumber;
 	physicalTrain ^PhysicalTrain;
-	List<Fermata^> ^Listaitinerari;
+	List<Fermata^> ^Listafermate;
 	StateTrain Statodeltreno;
 	int indicelistaitinerari;
 public:
@@ -26,10 +26,10 @@ public:
 	physicalTrain^ getPhysicalTrain(){return PhysicalTrain;};
 	StateTrain getStatoTreno(){return Statodeltreno;};
 	void setStatoTreno(StateTrain st){Statodeltreno=st;};
-	void setListaItineari(List<Fermata^> ^listIt){Listaitinerari=listIt; };
+	void setListaFermate(List<Fermata^> ^listIt){Listafermate=listIt; };
 	KeyValuePair<int, int> ^getStazioneItinerario();
 
-	List<Fermata^>^getListaItineari(){return Listaitinerari; };
+	List<Fermata^>^getListaFermate(){return Listafermate; };
 	DateTime ^getTimeNextEvent(){return TimeStampNextEvent;};
 	Double getOrarioPartenza();
 	void goNextItinerario();

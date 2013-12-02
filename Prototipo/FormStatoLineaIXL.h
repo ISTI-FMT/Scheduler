@@ -1,7 +1,7 @@
 #pragma once
 #include "form\\tableLayoutPanelSingleItin.h"
 #include "form\\tableLayoutPanelAllCDB.h"
-#include "itinerari\\tabellaItinerari.h"
+#include "itinerari\\TabellaStazioni.h"
 #include "messaggi\\StateItinerario.h"
 #include "messaggi\\Messaggi.h"
 #include "EventQueue.h"
@@ -27,7 +27,7 @@ using namespace System::Threading::Tasks;
 	/// </summary>
 	 ref class FormStatoLineaIXL : public System::Windows::Forms::Form
 	{
-		tabellaItinerari ^tabItinerari;
+		TabellaStazioni ^tabItinerari;
 		EventQueue ^eventiItinerario;
 		//Dictionary<int,Button^> ^listbutton;
 		Dictionary<int,Button^> ^listbuttonCDB;
@@ -43,7 +43,7 @@ using namespace System::Threading::Tasks;
 			this->ControlBox=false;
 			InitializeComponent();
 			_shouldStop=false;
-			tabItinerari = gcnew tabellaItinerari();
+			tabItinerari = gcnew TabellaStazioni();
 			tabItinerari->leggifileconfigurazioneItinerari();
 			genera();
 			//aggiorna();

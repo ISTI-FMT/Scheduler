@@ -1,7 +1,7 @@
 #include "SingleTrainInfoForm.h"
 
 
-SingleTrainInfoForm::SingleTrainInfoForm(Train ^t, KeyListTrain ^k, IControllerListTrain ^c, tabellaItinerari ^ti)
+SingleTrainInfoForm::SingleTrainInfoForm(Train ^t, KeyListTrain ^k, IControllerListTrain ^c, TabellaStazioni ^ti)
 {
 	Button::Button();
 	tabItineari=ti;
@@ -77,7 +77,7 @@ void SingleTrainInfoForm::init(){
 	// 
 	// button1
 	// 
-	this->bclose->Location = System::Drawing::Point(410, 381);
+	this->bclose->Location = System::Drawing::Point(500, 451);
 	this->bclose->Name = L"button1";
 	this->bclose->Size = System::Drawing::Size(75, 23);
 	this->bclose->TabIndex = 5;
@@ -105,7 +105,7 @@ void SingleTrainInfoForm::init(){
 	this->tableLayoutPanelItinerari->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanelItinerari->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanelItinerari->TabIndex = 12;
-	this->tableLayoutPanelItinerari->Size = System::Drawing::Size(493, 226);
+	this->tableLayoutPanelItinerari->Size = System::Drawing::Size(500, 326);
 
 	// 
 	// label5
@@ -122,7 +122,7 @@ void SingleTrainInfoForm::init(){
 
 	//this->tableLayoutPanelItinerari->SetColumnSpan(this->label0, 2);
 	this->form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-	this->form->ClientSize = System::Drawing::Size(511, 416);
+	this->form->ClientSize = System::Drawing::Size(551, 456);
 	array<System::Windows::Forms::Control^>^temp0 = {label5,Labeltrn,Labelip,LabelEngineNumber,LabelPriorita,textboxPriorita,bclose,tableLayoutPanelItinerari};
 	this->form->Controls->AddRange( temp0 );
 	this->form->ControlBox=false;
@@ -162,7 +162,7 @@ void SingleTrainInfoForm::set(){
 void SingleTrainInfoForm::setitinerary(){
 	/*int riga=0;
 	int colonna=0;*/
-	for each (Fermata ^var in train->getListaItineari())
+	for each (Fermata ^var in train->getListaFermate())
 	{
 		int id = var->getIdStazione();
 		stazione ^s = tabItineari->getMap()[id];

@@ -7,7 +7,7 @@
 #include "Event.h"
 #include "EventQueue.h"
 #include "tabellaOrario\\TabellaOrario.h"
-#include "Itinerari\\tabellaItinerari.h"
+#include "Itinerari\\TabellaStazioni.h"
 #include "logger\\Logger.h"
 #include "mapTrenoFisicoLogico.h"
 #include "messaggi\\Messaggi.h"
@@ -33,7 +33,7 @@ ref class ThreadSchedulerSortedList
 	EventQueue ^EQueueATO;
 	EventQueue ^EQueueATC;
 	TabellaOrario ^tabOrario;
-	tabellaItinerari ^tabItinerari;
+	TabellaStazioni ^tabItinerari;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
 	ManagerStatoLineaATC ^managerATC;
 	ManagerStatoLineaIXL ^managerIXL;
@@ -49,7 +49,7 @@ public:
 	ThreadSchedulerSortedList(void);
 
 
-	ThreadSchedulerSortedList(List<EventQueue^> ^E , TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
+	ThreadSchedulerSortedList(List<EventQueue^> ^E , TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 
 	void Schedule();
 	void Init();

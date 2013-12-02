@@ -37,7 +37,7 @@
 <itinerarioUscita id="916">I-04</itinerarioUscita>
   </stazione>
 
-  <stazione id="406"  name="Via Marco Polo">
+  <stazione id="400"  name="Via Marco Polo">
     <arrivo>17:17:00</arrivo>
     <partenza>17:19:00</partenza>
     <binarioprogrammato>1</binarioprogrammato>
@@ -46,7 +46,7 @@
 <itinerarioUscita id="">I</itinerarioUscita>-->
   </stazione>
 
-  <stazione id="418"  name="Via Roma">
+  <stazione id="410"  name="Via Roma">
     <arrivo>17:21:00</arrivo>
     <partenza>17:23:00</partenza>
     <binarioprogrammato>1</binarioprogrammato>

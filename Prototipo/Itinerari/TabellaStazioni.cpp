@@ -1,4 +1,4 @@
-#include "tabellaItinerari.h"
+#include "TabellaStazioni.h"
 #using <System.Xml.dll>
 #include "..\\logger\\Logger.h"
 
@@ -10,7 +10,7 @@ using namespace System::Xml::Schema;
 #define TRACE
 #define VALIDATEXML
 
-tabellaItinerari::tabellaItinerari(void)
+TabellaStazioni::TabellaStazioni(void)
 {
 	mapidstazioneitinerari= gcnew Dictionary<int,stazione^ >() ;
 	schemaxsd="ConfigurazioneItinerari.xsd";
@@ -18,13 +18,13 @@ tabellaItinerari::tabellaItinerari(void)
 
 
 // questa funzione legge il file di configurazione contenente la descrizione degli itinerari
-void tabellaItinerari::leggifileconfigurazioneItinerari()
+void TabellaStazioni::leggifileconfigurazioneItinerari()
 {
 
 	try{
 
 #ifdef VALIDATEXML
-		 System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
+		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
 
 		// Create the XmlSchemaSet class.
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
@@ -39,12 +39,12 @@ void tabellaItinerari::leggifileconfigurazioneItinerari()
 
 		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
-	/*	XmlDocument ^document = gcnew XmlDocument();
+		/*	XmlDocument ^document = gcnew XmlDocument();
 		document->Load(readers);  */
 #endif // VALIDATEXML
 
-
-		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
+		//System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneItinerari.xml");
+		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
 
 		// per ogni stazione presente nel file di configurazione degli itinerari...
 		while (reader->ReadToFollowing("stazione")){
@@ -198,7 +198,7 @@ void tabellaItinerari::leggifileconfigurazioneItinerari()
 
 
 
-System::String^ tabellaItinerari::ToString() {
+System::String^ TabellaStazioni::ToString() {
 	String ^out="";
 	for each( KeyValuePair<int  , stazione^> kvp in mapidstazioneitinerari )
 	{
@@ -212,7 +212,7 @@ System::String^ tabellaItinerari::ToString() {
 	return out;
 }
 
-int tabellaItinerari::get_CdbPrecItinerario(int stazione, int iditin){
+int TabellaStazioni::get_CdbPrecItinerario(int stazione, int iditin){
 	int result=0;
 	if(mapidstazioneitinerari->ContainsKey(stazione)){
 		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
@@ -225,7 +225,7 @@ int tabellaItinerari::get_CdbPrecItinerario(int stazione, int iditin){
 
 
 
-int tabellaItinerari::get_CdbSuccItinerario(int stazione, int iditin){
+int TabellaStazioni::get_CdbSuccItinerario(int stazione, int iditin){
 	int result=0;
 	if(mapidstazioneitinerari->ContainsKey(stazione)){
 		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
@@ -236,8 +236,8 @@ int tabellaItinerari::get_CdbSuccItinerario(int stazione, int iditin){
 	return result;
 }
 
-List<int> ^tabellaItinerari::get_Cdb_Itinerario(int stazione, int iditin){
-	
+List<int> ^TabellaStazioni::get_Cdb_Itinerario(int stazione, int iditin){
+
 	if(mapidstazioneitinerari->ContainsKey(stazione)){
 		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
 			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->getLCDB();
@@ -247,4 +247,133 @@ List<int> ^tabellaItinerari::get_Cdb_Itinerario(int stazione, int iditin){
 	return nullptr;
 
 }
+
+void TabellaStazioni::leggifileconfigurazioneFermate()
+{
+	try{
+		// Create the XmlSchemaSet class.
+/*		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
+		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
+
+		// Add the schema to the collection.
+		sc->Add( "urn:conffermate-schema", gcnew XmlTextReader (readStreamschemaxsd) );
+		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
+		settings->ValidationType = System::Xml::ValidationType::Schema;
+		settings->Schemas = sc;	*/
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneFermate.xml");
+	
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);//, settings);
+
+		// per ogni stazione presente nel file di configurazione degli itinerari...
+		while (reader->ReadToFollowing("fermata"))
+		{
+			System::Xml::XmlReader ^inner = reader->ReadSubtree();
+			// ...leggo l'id della stazione
+
+			System::String ^StrIdstazione = reader->GetAttribute("id");
+			System::String ^nomestazione= reader->GetAttribute("name");
+
+			int Idstazione = int::Parse(StrIdstazione);
+
+			if(!mapidstazioneitinerari->ContainsKey(Idstazione)){
+
+				stazione ^newstazione = gcnew stazione();
+				newstazione->setNomeStazione(nomestazione);
+				newstazione->set_SetIDStazione(Idstazione);
+				mapidstazioneitinerari->Add(Idstazione,newstazione );
+
+				while (inner->ReadToFollowing("binario"))
+				{
+					// creo il binario che devo inserire
+					binario ^bin = gcnew binario;
+
+					//System::Xml::XmlReader ^inner = reader->ReadSubtree();
+
+					// ...leggo name del binario
+					System::String ^StrnameBinario = inner->GetAttribute("namebin");
+					// setto name del binario
+					bin->setNameBin(StrnameBinario);
+
+					// ...leggo il bin del binario
+					System::String ^StrBinario = inner->GetAttribute("bin");
+					// setto il bin del binario
+					bin->setBin(int::Parse(StrBinario));
+
+					// ...leggo direzione del binario
+					System::String ^direzione = inner->GetAttribute("direzione");
+					// setto direzione del binario
+					bin->setDirezione(direzione);
+
+					// ...leggo nid_lrgb del binario
+					System::String ^Strnid_lrgb = inner->GetAttribute("nid_lrgb");
+					// converto nid_lrgb dellbinario da System::String a int
+					int nid_lrgb = int::Parse(Strnid_lrgb);
+					// setto nid_lrgb del binario
+					bin->setNid_lrgb(nid_lrgb);
+
+					// ...leggo d_stop del binario
+					System::String ^Strd_stop = inner->GetAttribute("d_stop");
+					// converto d_stop dellbinario da System::String a int
+					int d_stop = int::Parse(Strd_stop);
+					// setto d_stop del binario
+					bin->setD_stop(d_stop);
+
+					// ...leggo portebanchina del binario
+					System::String ^Strportebanchina = inner->GetAttribute("portebanchina");
+					// converto in bool
+					bool porte = (Strportebanchina == "true")?true:false;
+					// setto d_stop del binario
+					bin->setPorteBanchina(porte);
+
+					// ...leggo latobanchina del binario
+					System::String ^latobanchina = inner->GetAttribute("latobanchina");
+					// setto latobanchina del binario
+
+					int strlatobanchina;
+					if(latobanchina == "dx")
+						strlatobanchina = 1;
+					else if(latobanchina == "sx")
+						strlatobanchina = 2;
+					else if(latobanchina == "sd")
+						strlatobanchina = 3;
+					else
+						strlatobanchina = 0;
+					bin->setLatoBanchina(strlatobanchina);
+
+					// ...leggo nextCDB del binario
+					System::String ^StrnextCDB = inner->GetAttribute("nextCDB");
+					// converto nextCDB dellbinario da System::String a int
+					int nextCDB = int::Parse(StrnextCDB);
+					// setto nextCDB del binario
+					bin->setNextCDB(nextCDB);
+
+					// ...leggo prevCDB del binario
+					System::String ^StrprevCDB = inner->GetAttribute("prevCDB");
+					// converto prevCDB dellbinario da System::String a int
+					int prevCDB = int::Parse(StrprevCDB);
+					// setto prevCDB del binario
+					bin->setPrevCDB(prevCDB);
+
+					reader->ReadToFollowing("cdb");
+					System::String ^StrCDB = inner->ReadString();
+					// converto CDB dellbinario da System::String a int
+					//int CDB = int::Parse(StrCDB);
+					bin->setCDB(StrCDB);
+
+					// inserisco il binario nella lista
+					newstazione->addBinario(bin);
+				}
+			}
+
+		}
+	}catch(Exception ^e){
+
+#ifdef TRACE
+		Logger::Exception(e,"Tabella Fermate");  
+#endif // TRACE
+		Console::WriteLine( L"Validation Error: {0}", e->Message );
+	}	
+}
+
+
 
