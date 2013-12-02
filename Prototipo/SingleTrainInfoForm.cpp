@@ -105,7 +105,7 @@ void SingleTrainInfoForm::init(){
 	this->tableLayoutPanelItinerari->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanelItinerari->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanelItinerari->TabIndex = 12;
-	this->tableLayoutPanelItinerari->Size = System::Drawing::Size(483, 226);
+	this->tableLayoutPanelItinerari->Size = System::Drawing::Size(493, 226);
 
 	// 
 	// label5

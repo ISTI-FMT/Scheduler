@@ -10,6 +10,8 @@ public System::Windows::Forms::UserControl
 	System::Windows::Forms::TableLayoutPanel ^ tableLayoutPanel;
 	System::Windows::Forms::ComboBox^  comboBoxE;
 	System::Windows::Forms::ComboBox^  comboBoxU;
+	System::Windows::Forms::DateTimePicker^  orarioP;
+	System::Windows::Forms::DateTimePicker^  orarioA;
 	Fermata ^fermata;
 	stazione ^station;
 public:
@@ -21,6 +23,8 @@ public:
 	void setNameStation(System::String ^s);
 	void setInitUscita(int id);
 	void setInitEntrata(int id);
+	void setOrarioP(double id);
+	void setOrarioA(double id);
 	int getStationId(){
 		return fermata->getIdStazione();
 	}

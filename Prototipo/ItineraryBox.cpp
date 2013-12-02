@@ -10,6 +10,8 @@ ItineraryBox::ItineraryBox(Fermata ^f, stazione ^s)
 	this->setNameStation(f->getnameStazione());
 	this->setInitEntrata(f->getIditinerarioEntrata());
 	this->setInitUscita(f->getIditinerarioUscita());
+	this->setOrarioA(f->getOrarioArrivo());
+	this->setOrarioP(f->getOrarioPartenza());
 	this->comboBoxU->SelectedIndexChanged += gcnew System::EventHandler(this, &ItineraryBox::comboBoxU_SelectedIndexChanged);
 	this->comboBoxE->SelectedIndexChanged += gcnew System::EventHandler(this, &ItineraryBox::comboBoxE_SelectedIndexChanged);
 }
@@ -19,6 +21,8 @@ void ItineraryBox::init()
 	this->components = gcnew System::ComponentModel::Container;
 
 	this->errorProvider = gcnew System::Windows::Forms::ErrorProvider;
+	this->orarioA = (gcnew System::Windows::Forms::DateTimePicker());
+	this->orarioP = (gcnew System::Windows::Forms::DateTimePicker());
 
 	this->label = (gcnew System::Windows::Forms::Label());
 	this->tableLayoutPanel = (gcnew System::Windows::Forms::TableLayoutPanel());
@@ -26,6 +30,29 @@ void ItineraryBox::init()
 	this->comboBoxU = (gcnew System::Windows::Forms::ComboBox());
 	//this->textboxE = gcnew System::Windows::Forms::TextBox();
 	//this->textboxU = gcnew System::Windows::Forms::TextBox();
+
+
+	// 
+	// orarioP
+	// 
+	this->orarioP->Format = System::Windows::Forms::DateTimePickerFormat::Time;
+	this->orarioP->ShowUpDown = true;
+	//this->orarioP->Location = System::Drawing::Point(243, 247);
+	this->orarioP->Name = L"orarioP";
+	this->orarioP->Size = System::Drawing::Size(67, 20);
+	this->orarioP->TabIndex = 9;
+	this->orarioP->Value = System::DateTime(2013, 12, 2, 0, 0, 0, 0);
+
+	// 
+	// orarioA
+	// 
+	this->orarioA->Format = System::Windows::Forms::DateTimePickerFormat::Time;
+	this->orarioA->ShowUpDown = true;
+	//this->orarioA->Location = System::Drawing::Point(243, 247);
+	this->orarioA->Name = L"orarioP";
+	this->orarioA->Size = System::Drawing::Size(67, 20);
+	this->orarioA->TabIndex = 19;
+	this->orarioA->Value = System::DateTime(2013, 12, 2, 0, 0, 0, 0);
 
 	//
 	// label 
@@ -71,14 +98,19 @@ void ItineraryBox::init()
 	this->tableLayoutPanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 
 
-	this->tableLayoutPanel->RowCount = 1;
+	this->tableLayoutPanel->RowCount = 2;
+	this->tableLayoutPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 
 	this->tableLayoutPanel->TabIndex = 12;
-	this->tableLayoutPanel->Size = System::Drawing::Size(127, 44);
+	this->tableLayoutPanel->Size = System::Drawing::Size(142, 54);
 
-	tableLayoutPanel->Controls->Add(comboBoxE,0,0);
-	tableLayoutPanel->Controls->Add(comboBoxU,2,0);
+	tableLayoutPanel->Controls->Add(orarioA,0,0);
+	tableLayoutPanel->Controls->Add(orarioP,2,0);
+
+
+	tableLayoutPanel->Controls->Add(comboBoxE,0,1);
+	tableLayoutPanel->Controls->Add(comboBoxU,2,1);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	//this->ClientSize = System::Drawing::Size(511, 416);
 	array<System::Windows::Forms::Control^>^temp0 = {label,tableLayoutPanel};
@@ -126,6 +158,25 @@ void ItineraryBox::setNameStation(System::String ^s){
 
 }
 
+void ItineraryBox::setOrarioA(double o){
+	if(o>0){
+		Double times = o*30;
+		TimeSpan sinceMidnight = TimeSpan::FromSeconds(times);
+		DateTime orarioSupporto = DateTime::ParseExact("00:00:00", "HH:mm:ss", System::Globalization::CultureInfo::InvariantCulture);
+		DateTime TimeStampNextEvent= orarioSupporto+sinceMidnight;
+		this->orarioA->Value=TimeStampNextEvent;
+	}
+}
+void ItineraryBox::setOrarioP(double o){
+	if(o>0){
+		Double times = o*30;
+		TimeSpan sinceMidnight = TimeSpan::FromSeconds(times);
+		DateTime orarioSupporto = DateTime::ParseExact("00:00:00", "HH:mm:ss",  System::Globalization::CultureInfo::InvariantCulture);
+		DateTime 	TimeStampNextEvent= orarioSupporto+sinceMidnight;
+		this->orarioP->Value=TimeStampNextEvent;
+	}
+}
+
 void ItineraryBox::setInitEntrata(int id){
 	if(id>0){
 		Itinerario ^i = station->getItinerariid()[id];
@@ -133,7 +184,7 @@ void ItineraryBox::setInitEntrata(int id){
 		int index = comboBoxE->FindString(i->getName());
 		comboBoxE->SelectedIndex = index;
 	}else{
-		//comboBoxE->Visible=false;
+		comboBoxE->Visible=false;
 	}
 
 }
@@ -146,7 +197,7 @@ void ItineraryBox::setInitUscita(int id){
 		int index = comboBoxU->FindString(i->getName());
 		comboBoxU->SelectedIndex = index;
 	}else{
-		//comboBoxU->Visible=false;
+		comboBoxU->Visible=false;
 	}
 }
 
