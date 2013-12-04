@@ -46,7 +46,7 @@
 <itinerarioUscita id="">I</itinerarioUscita>-->
   </stazione>
 
-  <stazione id="410"  name="Via Roma">
+  <stazione id="410 "  name="Via Roma">
     <arrivo>17:21:00</arrivo>
     <partenza>17:23:00</partenza>
     <binarioprogrammato>1</binarioprogrammato>
@@ -93,7 +93,7 @@
 <itinerarioUscita id="919">I-04</itinerarioUscita>
     </stazione>
 
-    <stazione id="419"  name="Via Roma">
+    <stazione id="410"  name="Via Roma">
       <arrivo>08:40:00</arrivo>
       <partenza>08:50:00</partenza>
        <binarioprogrammato>2</binarioprogrammato>
@@ -102,7 +102,7 @@
 <itinerarioUscita id=""></itinerarioUscita>-->
     </stazione>
 
-    <stazione id="407"  name="Via Marco Polo">
+    <stazione id="400"  name="Via Marco Polo">
       <arrivo>09:00:00</arrivo>
       <partenza>09:10:00</partenza>
        <binarioprogrammato>2</binarioprogrammato>
@@ -210,14 +210,6 @@
 <itinerarioEntrata id="903">01-II</itinerarioEntrata>
   </stazione>
 
-
-
-
-
- 
-
- 
-
 </treno>
 
 
@@ -230,6 +222,13 @@
 <itinerarioUscita id="900">I-01</itinerarioUscita>
   </stazione>
 
+  <stazione id="500"  name="Vicolo Stretto">
+    <arrivo>17:02:00</arrivo>
+    <partenza>17:03:00</partenza>
+    <binarioprogrammato>1</binarioprogrammato>
+	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+  </stazione>
+  
   <stazione id="11000"  name="Viale Monterosa">
     <arrivo>17:04:00</arrivo>
     <partenza>17:05:00</partenza>
@@ -251,7 +250,7 @@
 <itinerarioUscita id="915">II-04</itinerarioUscita>
   </stazione>
 
-  <stazione id="406"  name="Via Marco Polo">
+  <stazione id="400"  name="Via Marco Polo">
     <arrivo>17:17:00</arrivo>
     <partenza>17:19:00</partenza>
     <binarioprogrammato>1</binarioprogrammato>
@@ -260,7 +259,7 @@
 <itinerarioUscita id="">I</itinerarioUscita>-->
   </stazione>
 
-  <stazione id="418"  name="Via Roma">
+  <stazione id="410"  name="Via Roma">
     <arrivo>17:21:00</arrivo>
     <partenza>17:23:00</partenza>
     <binarioprogrammato>1</binarioprogrammato>

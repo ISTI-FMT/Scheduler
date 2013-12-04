@@ -13,7 +13,8 @@ using namespace System::Xml::Schema;
 TabellaStazioni::TabellaStazioni(void)
 {
 	mapidstazioneitinerari= gcnew Dictionary<int,stazione^ >() ;
-	schemaxsd="ConfigurazioneItinerari.xsd";
+	
+
 }
 
 
@@ -24,7 +25,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 	try{
 
 #ifdef VALIDATEXML
-		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
+		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneItinerari.xsd");
 
 		// Create the XmlSchemaSet class.
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
@@ -251,18 +252,20 @@ List<int> ^TabellaStazioni::get_Cdb_Itinerario(int stazione, int iditin){
 void TabellaStazioni::leggifileconfigurazioneFermate()
 {
 	try{
+#ifdef VALIDATEXML
 		// Create the XmlSchemaSet class.
-/*		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(schemaxsd);
+		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneFermate.xsd");
 		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
 
 		// Add the schema to the collection.
 		sc->Add( "urn:conffermate-schema", gcnew XmlTextReader (readStreamschemaxsd) );
 		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
 		settings->ValidationType = System::Xml::ValidationType::Schema;
-		settings->Schemas = sc;	*/
+		settings->Schemas = sc;	
 		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneFermate.xml");
-	
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);//, settings);
+
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
+#endif // VALIDATEXML
 
 		// per ogni stazione presente nel file di configurazione degli itinerari...
 		while (reader->ReadToFollowing("fermata"))

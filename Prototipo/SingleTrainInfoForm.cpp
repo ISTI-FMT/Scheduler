@@ -164,6 +164,7 @@ void SingleTrainInfoForm::setitinerary(){
 	int colonna=0;*/
 	for each (Fermata ^var in train->getListaFermate())
 	{
+		try{
 		int id = var->getIdStazione();
 		stazione ^s = tabItineari->getMap()[id];
 		
@@ -171,6 +172,9 @@ void SingleTrainInfoForm::setitinerary(){
 		itbox->CambioItineraioUscita += gcnew System::EventHandler(this, &SingleTrainInfoForm::ItBox_ItChangedU);
 		itbox->CambioItineraioEntrata += gcnew System::EventHandler(this, &SingleTrainInfoForm::ItBox_ItChangedE);
 		this->tableLayoutPanelItinerari->Controls->Add(itbox);
+		}catch(Exception ^e){
+			Console::WriteLine("Errore ",e->Message);
+		}
 
 	}
 }

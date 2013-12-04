@@ -14,7 +14,7 @@ public ref class TabellaStazioni
 {
 
 	Dictionary<int,stazione^ > ^mapidstazioneitinerari;
-	String ^schemaxsd;
+
 public:
 	TabellaStazioni(void);
 
