@@ -46,3 +46,17 @@ void ListTrainModel::NextIt(KeyListTrain ^key){
 
 	}
 }
+
+void ListTrainModel::changePrior(KeyListTrain ^key, int newprior){
+	if(ListSortedTrains->ContainsKey(key)){
+		Train ^ t = ListSortedTrains[key];
+		ListSortedTrains->Remove(key);
+		key->setPriorita(newprior);
+		ListSortedTrains->Add(key,t);
+	}
+	 Console::WriteLine("");
+	for each( KeyValuePair<KeyListTrain^, Train^> ^kvp in ListSortedTrains )
+        {
+            Console::WriteLine("Key = {0}",kvp->Key);
+        }
+}

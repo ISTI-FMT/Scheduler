@@ -11,6 +11,7 @@ SingleTrainInfoForm::SingleTrainInfoForm(Train ^t, KeyListTrain ^k, IControllerL
 	init();
 	set();
 	this->Click += gcnew System::EventHandler(this, &SingleTrainInfoForm::B_Click);
+	this->textboxPriorita->TextChanged += gcnew System::EventHandler(this, &SingleTrainInfoForm::textBox_TextChangedP);
 }
 
 void SingleTrainInfoForm::init(){
@@ -63,7 +64,7 @@ void SingleTrainInfoForm::init(){
 	this->textboxPriorita->Name = L"textBox1";
 	this->textboxPriorita->Size = System::Drawing::Size(100, 20);
 	this->textboxPriorita->TabIndex = 3;
-	this->textboxPriorita->TextChanged += gcnew System::EventHandler(this, &SingleTrainInfoForm::textBox_TextChangedP);
+	
 	// 
 	// LabelPriorita
 	// 
@@ -213,6 +214,13 @@ Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::
 	{
 		MessageBox::Show("Please enter only numbers.");
 		textarea->Text=textarea->Text->Remove(textarea->Text->Length - 1);
+	}else{
+		if(textarea->Text->Length>0){
+			try{
+			controller->changePrior(key,int::Parse(textarea->Text));
+			}catch(Exception ^e){
+			}
+		}
 	}
 
 }

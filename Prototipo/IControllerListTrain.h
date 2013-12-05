@@ -10,4 +10,5 @@ public interface class IControllerListTrain{
 	void OnNextIt(KeyListTrain ^key);
 	System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ getListTrain();
 	void OnDelete();
+	void changePrior(KeyListTrain ^key, int newprior);
 };

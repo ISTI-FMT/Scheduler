@@ -35,3 +35,8 @@ void ControllerListTrain::OnDelete(){
 	  
 	  model->NextIt(key);
   }
+
+  	void ControllerListTrain::changePrior(KeyListTrain ^key, int newprior){
+
+		model->changePrior(key,newprior);
+	}

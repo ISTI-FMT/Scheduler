@@ -16,5 +16,6 @@ public:
 	virtual void OnNextIt(KeyListTrain ^key);
 	virtual  System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ getListTrain();
 	virtual void OnDelete();
+	virtual void changePrior(KeyListTrain ^key, int newprior);
 };
 

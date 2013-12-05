@@ -12,5 +12,6 @@ public interface class IListTrainModel
    void set(KeyListTrain ^key,List<Fermata^> ^list);
 	void set(KeyListTrain ^key,StateTrain state);
 	void NextIt(KeyListTrain ^key);
+	void changePrior(KeyListTrain ^key, int newprior);
 	
 };

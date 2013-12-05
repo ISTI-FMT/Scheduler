@@ -18,6 +18,8 @@ public:
 	KeyListTrain(int p, int ptn);
 	virtual Int32 CompareTo(KeyListTrain^ otherKey);
 	int getPriorita(){return Priorita;};
+	void setPriorita(int p){Priorita=p;};
+
 	int getTRN(){return TrainRunningNumber;};
 	int getPTN(){return PhysicalTrainNumber;};
 	DateTime ^getTimeNextEvent(){return TimeStampNextEvent;};

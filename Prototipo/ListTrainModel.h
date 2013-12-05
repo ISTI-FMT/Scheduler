@@ -11,6 +11,6 @@ public:
     virtual void set(KeyListTrain ^key,List<Fermata^> ^list);
 	virtual void set(KeyListTrain ^key,StateTrain state);
 	virtual void NextIt(KeyListTrain ^key);
-
+	virtual void changePrior(KeyListTrain ^key, int newprior);
 };
 
