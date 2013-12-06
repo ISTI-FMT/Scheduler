@@ -29,3 +29,12 @@ Void  Prototipo::ListTrainView::B_Click(System::Object^  sender, System::EventAr
 
 
 }
+void Prototipo::ListTrainView::DeleteList(){
+
+	tableLayoutPanel1->Controls->Clear();
+}
+
+void Prototipo::ListTrainView::ViewDeleteList(){
+
+	this->Invoke(myDelegateDeleteList);
+}

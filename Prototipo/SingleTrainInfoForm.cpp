@@ -218,7 +218,9 @@ Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::
 		if(textarea->Text->Length>0){
 			try{
 			controller->changePrior(key,int::Parse(textarea->Text));
+			form->Close();
 			}catch(Exception ^e){
+				Console::WriteLine("Errore Form Single Train Information",e->Message);
 			}
 		}
 	}

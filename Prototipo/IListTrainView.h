@@ -10,4 +10,5 @@ public interface class IListTrainView
 	void ViewNewTrain(KeyListTrain ^key,Train^ train);
 	void ViewChangeTrain(KeyListTrain ^key,StateTrain state);
 	void ViewChangeTrain(KeyListTrain ^key,List<Fermata^>^ train);
+	void ViewDeleteList();
 };

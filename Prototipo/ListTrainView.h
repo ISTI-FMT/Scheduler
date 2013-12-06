@@ -19,6 +19,8 @@ namespace Prototipo {
 	{
 		IControllerListTrain ^controller;
 		delegate void GoCallback(KeyListTrain ^key,Train^ train);
+		delegate void DeleteListCallback();
+		DeleteListCallback ^myDelegateDeleteList;
 		GoCallback^ myDelegateNewTrain;
 		TabellaStazioni ^tabItinerari;
 	public:
@@ -27,6 +29,7 @@ namespace Prototipo {
 			myDelegateNewTrain = gcnew GoCallback( this, &ListTrainView::setNewTrain );
 			tabItinerari=ti;
 			InitializeComponent();
+			myDelegateDeleteList = gcnew DeleteListCallback(this, &ListTrainView::DeleteList);
 			
 			
 			//
@@ -36,8 +39,10 @@ namespace Prototipo {
 		virtual void AddListener(IControllerListTrain ^c );
 		virtual void ViewNewTrain(KeyListTrain ^key,Train^ train);
 		 void setNewTrain(KeyListTrain ^key,Train^ train);
+		 void DeleteList();
 		virtual void ViewChangeTrain(KeyListTrain ^key,StateTrain state);
 		virtual void ViewChangeTrain(KeyListTrain ^key,List<Fermata^>^ train);
+		virtual void ViewDeleteList();
 		Void B_Click(System::Object^  sender, System::EventArgs^  e);
 	protected:
 		/// <summary>

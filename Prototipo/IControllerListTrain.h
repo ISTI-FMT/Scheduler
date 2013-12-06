@@ -11,4 +11,5 @@ public interface class IControllerListTrain{
 	System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ getListTrain();
 	void OnDelete();
 	void changePrior(KeyListTrain ^key, int newprior);
+	void RePaint();
 };

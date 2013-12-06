@@ -26,17 +26,27 @@ void ControllerListTrain::OnSetTrain(KeyListTrain ^key,Train^ train){
 void ControllerListTrain::OnDelete(){
 }
 
-  System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ControllerListTrain::getListTrain(){
+System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ControllerListTrain::getListTrain(){
 
 	return model->getList();
- }
+}
 
-  void ControllerListTrain::OnNextIt(KeyListTrain ^key){
-	  
-	  model->NextIt(key);
-  }
+void ControllerListTrain::OnNextIt(KeyListTrain ^key){
 
-  	void ControllerListTrain::changePrior(KeyListTrain ^key, int newprior){
+	model->NextIt(key);
+}
 
-		model->changePrior(key,newprior);
+void ControllerListTrain::changePrior(KeyListTrain ^key, int newprior){
+
+	model->changePrior(key,newprior);
+	RePaint();
+}
+
+void ControllerListTrain::RePaint(){
+	view->ViewDeleteList();
+
+	for each (KeyValuePair<KeyListTrain^, Train^> ^ var in model->getList())
+	{
+		view->ViewNewTrain(var->Key,var->Value);
 	}
+}
