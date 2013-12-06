@@ -69,15 +69,15 @@ void ThreadSchedulerSortedList::Schedule(){
 			ControllaMSG_ATO();
 			ControllaMSG_IXL();
 
-			for each (KeyValuePair<KeyListTrain^, Train^> ^KVTrain in controlListtrain->getListTrain())
+			for each (KeyValuePair<KeyListTrain^, Train^> KVTrain in controlListtrain->getListTrain())
 			{
-				switch (KVTrain->Value->getStatoTreno())
+				switch (KVTrain.Value->getStatoTreno())
 				{
 				case PRONTO:
 					break;
 				case USCITASTAZIONE:{
-					KeyListTrain^ key = KVTrain->Key;
-					Train^ train = KVTrain->Value;
+					KeyListTrain^ key = KVTrain.Key;
+					Train^ train = KVTrain.Value;
 					//itinerario uscita
 					KeyValuePair<int, int> ^itistazione = train->getStazioneItinerario();
 					int itinUscita = itistazione->Value;
@@ -116,8 +116,8 @@ void ThreadSchedulerSortedList::Schedule(){
 									}
 				case ENTRATASTAZIONE: {
 
-					KeyListTrain^ key = KVTrain->Key;
-					Train^ train = KVTrain->Value;
+					KeyListTrain^ key = KVTrain.Key;
+					Train^ train = KVTrain.Value;
 					//itinerario uscita
 					KeyValuePair<int, int> ^itistazione = train->getStazioneItinerario();
 

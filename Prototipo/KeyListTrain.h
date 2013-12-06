@@ -24,6 +24,7 @@ public:
 	int getPTN(){return PhysicalTrainNumber;};
 	DateTime ^getTimeNextEvent(){return TimeStampNextEvent;};
 	void setTimeStampNextEvent(DateTime TNE){TimeStampNextEvent=TNE;};
+	void setTimeStampNextEvent(double time);
 	virtual String ^ToString() override;
 };
 

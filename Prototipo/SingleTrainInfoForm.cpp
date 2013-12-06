@@ -210,7 +210,26 @@ Void SingleTrainInfoForm::ItBox_ItChangedE(System::Object^  sender, System::Even
 
 Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e){
 	TextBox ^textarea =(TextBox^) sender ;
-	if (System::Text::RegularExpressions::Regex::IsMatch(textarea->Text,"[^0-9]"))
+
+	//[0-9]+(?:\.[0-9]*)?
+	 System::Text::RegularExpressions::Match ^m = System::Text::RegularExpressions::Regex::Match(textarea->Text,"[0-9]+(?:\.[0-9]*)?");
+	if (m->Success){
+		
+			try{
+				controller->changePrior(key,int::Parse(m->Value));
+				form->Close();
+			}catch(Exception ^e){
+				Console::WriteLine("Errore Form Single Train Information",e->Message);
+			}
+			if(m->Value->Length!=textarea->Text->Length){
+				textarea->Text=m->Value;
+		}
+
+	}else{
+		MessageBox::Show("Please enter only numbers.");
+
+	}
+	/*if (System::Text::RegularExpressions::Regex::IsMatch(textarea->Text,"[^0-9]"))
 	{
 		MessageBox::Show("Please enter only numbers.");
 		textarea->Text=textarea->Text->Remove(textarea->Text->Length - 1);
@@ -223,7 +242,7 @@ Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::
 				Console::WriteLine("Errore Form Single Train Information",e->Message);
 			}
 		}
-	}
+	}*/
 
 }
 Void SingleTrainInfoForm::ButtonClose_Click(System::Object^  sender, System::EventArgs^  e){

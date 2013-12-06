@@ -42,8 +42,11 @@ void ListTrainModel::set(KeyListTrain ^key,StateTrain state){
 
 void ListTrainModel::NextIt(KeyListTrain ^key){
 	if(ListSortedTrains->ContainsKey(key)){
-		ListSortedTrains[key]->goNextItinerario();
-
+		Train ^t =	ListSortedTrains[key];
+		t->goNextItinerario();
+		//ListSortedTrains->Remove(key);
+		key->setTimeStampNextEvent(t->getOrarioPartenza());
+		//ListSortedTrains->Add(key,t);
 	}
 }
 

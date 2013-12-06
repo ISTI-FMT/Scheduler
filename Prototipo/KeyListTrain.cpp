@@ -16,7 +16,7 @@ KeyListTrain::KeyListTrain(int p, int trn, int ptn, double time)
 	Double times = time*30;
 	TimeSpan sinceMidnight = TimeSpan::FromSeconds(times);
 	DateTime orarioSupporto = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-	TimeStampNextEvent= orarioSupporto+sinceMidnight;
+	setTimeStampNextEvent(orarioSupporto+sinceMidnight);
 	
 }
 
@@ -27,7 +27,13 @@ KeyListTrain::KeyListTrain(int p,   int ptn)
 	TrainRunningNumber=0;
 	
 }
+void KeyListTrain::setTimeStampNextEvent(double time){
+	Double times = time*30;
+	TimeSpan sinceMidnight = TimeSpan::FromSeconds(times);
+	DateTime orarioSupporto = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+	setTimeStampNextEvent(orarioSupporto+sinceMidnight);
 
+}
 
 Int32 KeyListTrain::CompareTo(KeyListTrain^otherKey){
 

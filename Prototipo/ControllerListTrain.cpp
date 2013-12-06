@@ -34,6 +34,7 @@ System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ControllerListT
 void ControllerListTrain::OnNextIt(KeyListTrain ^key){
 
 	model->NextIt(key);
+	RePaint();
 }
 
 void ControllerListTrain::changePrior(KeyListTrain ^key, int newprior){
