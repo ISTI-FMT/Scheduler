@@ -264,13 +264,7 @@
     <ClInclude Include="physicalTrain.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="IListTrainModel.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="ListTrainModel.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="IListTrainView.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="ControllerListTrain.h">
@@ -280,9 +274,6 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="SingleTrainInfoForm.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="IControllerListTrain.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="ItineraryBox.h">

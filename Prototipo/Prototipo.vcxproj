@@ -96,9 +96,6 @@
     </ClInclude>
     <ClInclude Include="form\tableLayoutPanelAllCDB.h" />
     <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
-    <ClInclude Include="IControllerListTrain.h" />
-    <ClInclude Include="IListTrainModel.h" />
-    <ClInclude Include="IListTrainView.h" />
     <ClInclude Include="Itinerari\binario.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfFermate.h" />
     <ClInclude Include="Itinerari\FormVisualizzeConfItine.h" />

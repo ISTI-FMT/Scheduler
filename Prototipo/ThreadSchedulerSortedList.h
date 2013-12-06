@@ -17,6 +17,8 @@
 #include "Train.h"
 #include "StateObject.h"
 #include "ControllerListTrain.h"
+#include "ListTrainView.h"
+#include "ListTrainModel.h"
 
 
 /*Utilizzo questa classe per definire il comportamento dello schedulatore*/
@@ -43,7 +45,7 @@ ref class ThreadSchedulerSortedList
 	bool _shouldStop;
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
-	IControllerListTrain ^controlListtrain;
+	ControllerListTrain ^controlListtrain;
 public:
 	ThreadSchedulerSortedList(void);
 

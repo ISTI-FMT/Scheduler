@@ -39,9 +39,13 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, Tabel
 	_shouldStop=false;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	timeRicIXL;
-	Prototipo::ListTrainView ^view = gcnew Prototipo::ListTrainView(tabItinerari);
+	
 	ListTrainModel ^model = gcnew ListTrainModel();
-	controlListtrain = gcnew ControllerListTrain(view,model);
+
+	Prototipo::ListTrainView ^view = gcnew Prototipo::ListTrainView(tabItinerari);
+	model->Subscribe(view);
+	view->AddListener(model);
+	controlListtrain = gcnew ControllerListTrain(model);
   
      //Application::Run(view);
 	 view->Visible=true;

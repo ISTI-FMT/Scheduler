@@ -1,11 +1,10 @@
 #include "ControllerListTrain.h"
 
 
-ControllerListTrain::ControllerListTrain(IListTrainView ^v, IListTrainModel ^m)
+ControllerListTrain::ControllerListTrain(ListTrainModel ^m)
 {
 	this->model = m;
-	this->view  = v;
-	this->view->AddListener(this);
+
 
 }
 
@@ -14,7 +13,7 @@ ControllerListTrain::ControllerListTrain(IListTrainView ^v, IListTrainModel ^m)
 
 void ControllerListTrain::OnSetTrain(Train^ train){
 	model->Add(train);
-	view->ViewNewTrain(train);
+	
 }
 void ControllerListTrain::OnDelete(){
 }
@@ -38,7 +37,7 @@ void ControllerListTrain::changePrior(Train ^key, int newprior){
 
 void ControllerListTrain::RePaint(){
 	//view->ViewDeleteList();
-	view->PaintTrain();
+	//view->PaintTrain();
 	/*for each (Train^ var in model->getList())
 	{
 		view->ViewNewTrain(var);
@@ -47,5 +46,5 @@ void ControllerListTrain::RePaint(){
 
 void ControllerListTrain::Sort(){
 	model->Sort();
-	RePaint();
+	//RePaint();
 }

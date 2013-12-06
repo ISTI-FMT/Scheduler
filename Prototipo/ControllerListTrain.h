@@ -1,15 +1,14 @@
 #pragma once
-//#include "IControllerListTrain.h"
 #include "ListTrainModel.h"
-#include "ListTrainView.h"
+#include "Train.h"
 
 
-ref class ControllerListTrain : public IControllerListTrain
+ref class ControllerListTrain
 {
-	IListTrainView ^view;
-	IListTrainModel ^model;
+	
+	ListTrainModel ^model;
 public:
-	ControllerListTrain(IListTrainView ^v, IListTrainModel ^m);
+	ControllerListTrain(ListTrainModel ^m);
 
 	virtual void OnSetTrain(Train^ train);
 	virtual void OnNextIt(Train ^key);

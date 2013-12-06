@@ -1,5 +1,4 @@
 #pragma once
-#include "IListTrainView.h"
 #include "SingleTrainInfoForm.h"
 #include "Itinerari\\TabellaStazioni.h"
 
@@ -15,9 +14,11 @@ namespace Prototipo {
 	/// <summary>
 	/// Riepilogo per ListTrainView
 	/// </summary>
-	public ref class ListTrainView : public System::Windows::Forms::Form,IListTrainView
+	public ref class ListTrainView : public System::Windows::Forms::Form,IObserver<List<Train^>^>
 	{
-		IControllerListTrain ^controller;
+
+		IDisposable ^unsubscriber;
+		ListTrainModel ^model;
 		delegate void GoCallback(Train^ train);
 		delegate void DeleteListCallback();
 		delegate void PaintCallback();
@@ -33,19 +34,28 @@ namespace Prototipo {
 			InitializeComponent();
 			myDelegateDeleteList = gcnew DeleteListCallback(this, &ListTrainView::DeleteList);
 			myDelegatePaint = gcnew PaintCallback(this, &ListTrainView::RePaintList);
-			
+
+
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 		}
-		virtual void AddListener(IControllerListTrain ^c );
-		virtual void ViewNewTrain(Train^ train);
-		 void setNewTrain(Train^ train);
-		 void DeleteList();
-		 void RePaintList();
-		 virtual void PaintTrain();
-		virtual void ViewDeleteList();
+		void AddListener(ListTrainModel ^c );
+		void ViewNewTrain(Train^ train);
+		void setNewTrain(Train^ train);
+		void DeleteList();
+		void RePaintList();
+		void PaintTrain();
+		void ViewDeleteList();
 		Void B_Click(System::Object^  sender, System::EventArgs^  e);
+
+		virtual void OnCompleted();
+		virtual void OnError(Exception ^e);
+		virtual void OnNext(List<Train^> ^value);
+		
+		virtual void Subscribe(IObservable<List<Train^>^> ^provider);
+		virtual void Unsubscribe();
+
 	protected:
 		/// <summary>
 		/// Liberare le risorse in uso.
@@ -119,6 +129,6 @@ namespace Prototipo {
 
 		}
 #pragma endregion
-		
+
 	};
 }

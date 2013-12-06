@@ -1,21 +1,22 @@
 #include "SingleTrainInfoForm.h"
 
 
-SingleTrainInfoForm::SingleTrainInfoForm(Train ^t,  IControllerListTrain ^c, TabellaStazioni ^ti)
+SingleTrainInfoForm::SingleTrainInfoForm(Train ^t,  ListTrainModel ^m, TabellaStazioni ^ti)
 {
-	Button::Button();
+
+	Form::Form();
 	tabItineari=ti;
-	controller=c;
+	model=m;
 	train=t;
 	init();
 	set();
-	this->Click += gcnew System::EventHandler(this, &SingleTrainInfoForm::B_Click);
+	//this->Click += gcnew System::EventHandler(this, &SingleTrainInfoForm::B_Click);
 	this->textboxPriorita->TextChanged += gcnew System::EventHandler(this, &SingleTrainInfoForm::textBox_TextChangedP);
 }
 
 void SingleTrainInfoForm::init(){
 	this->components = gcnew System::ComponentModel::Container;
-	this->form = gcnew System::Windows::Forms::Form();
+	//this->form = gcnew System::Windows::Forms::Form();
 	this->errorProvider = gcnew System::Windows::Forms::ErrorProvider;
 	this->tableLayoutPanelItinerari = (gcnew System::Windows::Forms::TableLayoutPanel());
 	this->label5 = (gcnew System::Windows::Forms::Label());
@@ -121,12 +122,12 @@ void SingleTrainInfoForm::init(){
 	//this->tableLayoutPanelItinerari->Controls->Add(this->label0, 0, 0);
 
 	//this->tableLayoutPanelItinerari->SetColumnSpan(this->label0, 2);
-	this->form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-	this->form->ClientSize = System::Drawing::Size(551, 456);
+	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+	this->ClientSize = System::Drawing::Size(551, 456);
 	array<System::Windows::Forms::Control^>^temp0 = {label5,Labeltrn,Labelip,LabelEngineNumber,LabelPriorita,textboxPriorita,bclose,tableLayoutPanelItinerari};
-	this->form->Controls->AddRange( temp0 );
-	this->form->ControlBox=false;
-	this->form->AutoSize = true;
+	this->Controls->AddRange( temp0 );
+	this->ControlBox=false;
+	this->AutoSize = true;
 
 	//this->Click += gcnew System::EventHandler(this, &SingleTrainInfoForm::Click);
 
@@ -135,9 +136,8 @@ void SingleTrainInfoForm::init(){
 	//this->ForeColor=System::Drawing::Color::Yellow;
 	this->ResumeLayout(false);
 	this->PerformLayout();
-	this->form->ResumeLayout(false);
-	this->form->PerformLayout();
-	this->form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+
+	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 
 
 
@@ -150,8 +150,8 @@ void SingleTrainInfoForm::init(){
 void SingleTrainInfoForm::set(){
 	this->Name =  train->getPhysicalTrain()->getEngineNumber().ToString();
 	this->Text =  train->getPhysicalTrain()->getEngineNumber().ToString();
-	this->form->Name =  train->getPhysicalTrain()->getEngineNumber().ToString();
-	this->form->Text =  train->getPhysicalTrain()->getEngineNumber().ToString();
+	//this->form->Name =  train->getPhysicalTrain()->getEngineNumber().ToString();
+	//this->form->Text =  train->getPhysicalTrain()->getEngineNumber().ToString();
 	this->Labeltrn->Text += train->getTRN().ToString();
 	this->LabelEngineNumber->Text += train->getPhysicalTrain()->getEngineNumber().ToString();
 	this->Labelip->Text +=train->getPhysicalTrain()->getIpAddress();
@@ -184,12 +184,12 @@ void SingleTrainInfoForm::setitinerary(){
 
 
 
-Void SingleTrainInfoForm::B_Click(System::Object^  sender, System::EventArgs^  e){
+/*Void SingleTrainInfoForm::B_Click(System::Object^  sender, System::EventArgs^  e){
 
 	//this->form->Visible==true;
 	//Button::OnClick(e);
-	form->Visible=true;
-}
+	Visible=true;
+}*/
 
 Void SingleTrainInfoForm::ItBox_ItChangedU(System::Object^  sender, System::EventArgs^  e){
 	//ItineraryBox ^itbox =(ItineraryBox^) sender ;
@@ -215,7 +215,7 @@ Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::
 	if (m->Success){
 		
 			try{
-				controller->changePrior(train,int::Parse(m->Value));
+				model->changePrior(train,int::Parse(m->Value));
 				//form->Close();
 			}catch(Exception ^e){
 				Console::WriteLine("Errore Form Single Train Information",e->Message);
@@ -246,7 +246,7 @@ Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::
 }
 Void SingleTrainInfoForm::ButtonClose_Click(System::Object^  sender, System::EventArgs^  e){
 
-	form->Visible=false;
+	Visible=false;
 }
 
 

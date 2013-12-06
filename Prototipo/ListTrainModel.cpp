@@ -8,6 +8,7 @@ using namespace System::Collections::Generic;
 ListTrainModel::ListTrainModel(void)
 {
 	ListSortedTrains = gcnew System::Collections::Generic::List< Train^>();
+	observers = gcnew List<IObserver<List<Train^>^>^>();
 }
 
 
@@ -25,6 +26,12 @@ List<Train^> ^ListTrainModel::getList(){
 	return ListSortedTrains;
 }
 
+IDisposable ^ListTrainModel::Subscribe(IObserver<List<Train^>^> ^observer){
+	if (! observers->Contains(observer)) 
+		observers->Add(observer);
+	return gcnew UnsubModel(observers, observer);
+
+}
 
  void ListTrainModel::Sort(){
 	ListSortedTrains->Sort();
@@ -33,8 +40,23 @@ List<Train^> ^ListTrainModel::getList(){
         {
             Console::WriteLine("Key = {0}",kvp);
         }
+	for each (IObserver<List<Train^>^>^ observer in observers)
+		{
+			observer->OnNext(ListSortedTrains);
+		}
 }
 
+
+Train ^ListTrainModel::getTrain(String ^t){
+	for each (Train ^var in ListSortedTrains)
+	{
+		if(var->getPTN().ToString()==t){
+
+			return var;
+		}
+	}
+	return nullptr;
+}
 
 void ListTrainModel::NextIt(Train ^key){
 	if(ListSortedTrains->Contains(key)){
