@@ -10,13 +10,13 @@ ref class ControllerListTrain : public IControllerListTrain
 	IListTrainModel ^model;
 public:
 	ControllerListTrain(IListTrainView ^v, IListTrainModel ^m);
-	virtual void OnSetTrainI(KeyListTrain ^key,List<Fermata^> ^list);
-	virtual void OnSetTrain(KeyListTrain ^key,StateTrain state);
-	virtual void OnSetTrain(KeyListTrain ^key,Train^ train);
-	virtual void OnNextIt(KeyListTrain ^key);
-	virtual  System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ getListTrain();
+
+	virtual void OnSetTrain(Train^ train);
+	virtual void OnNextIt(Train ^key);
+	virtual  System::Collections::Generic::List< Train^> ^ getListTrain();
 	virtual void OnDelete();
-	virtual void changePrior(KeyListTrain ^key, int newprior);
+	virtual void changePrior(Train ^key, int newprior);
 	virtual void RePaint();
+	virtual void Sort();
 };
 

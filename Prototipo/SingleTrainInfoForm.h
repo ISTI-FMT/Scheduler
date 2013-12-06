@@ -7,10 +7,9 @@ using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
 
-ref class SingleTrainInfoForm : public System::Windows::Forms::Button
+ref class SingleTrainInfoForm : public System::Windows::Forms::Button,IComparable<SingleTrainInfoForm^>
 {
 	Train ^train;
-	KeyListTrain ^key;
 	System::Windows::Forms::Form ^form;
 	System::Windows::Forms::TableLayoutPanel^  tableLayoutPanelItinerari;
 	System::Windows::Forms::Label^  label5;
@@ -25,10 +24,10 @@ ref class SingleTrainInfoForm : public System::Windows::Forms::Button
 	IControllerListTrain ^controller;
 	TabellaStazioni ^tabItineari;
 public:
-	SingleTrainInfoForm(Train ^t, KeyListTrain ^ k, IControllerListTrain ^c,TabellaStazioni ^ti);
+	SingleTrainInfoForm(Train ^t,  IControllerListTrain ^c,TabellaStazioni ^ti);
 	void init();
 	void set();
-	
+	virtual Int32 CompareTo(SingleTrainInfoForm^ otherKey);
 	Void ItBox_ItChangedU(System::Object^  sender, System::EventArgs^  e);
 	Void ItBox_ItChangedE(System::Object^  sender, System::EventArgs^  e);
 	Void textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e);

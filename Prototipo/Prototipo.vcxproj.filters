@@ -255,9 +255,6 @@
     <ClInclude Include="TabellaOrario.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="KeyListTrain.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="Train.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
@@ -462,9 +459,6 @@
       <Filter>File di origine\form</Filter>
     </ClCompile>
     <ClCompile Include="ParalellMethod.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyListTrain.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="Train.cpp">

@@ -106,7 +106,6 @@
     <ClInclude Include="Itinerari\stazione.h" />
     <ClInclude Include="Itinerari\TabellaStazioni.h" />
     <ClInclude Include="ItineraryBox.h" />
-    <ClInclude Include="KeyListTrain.h" />
     <ClInclude Include="ListTrainModel.h" />
     <ClInclude Include="ListTrainView.h">
       <FileType>CppForm</FileType>
@@ -185,7 +184,6 @@
     <ClCompile Include="Itinerari\stazione.cpp" />
     <ClCompile Include="Itinerari\TabellaStazioni.cpp" />
     <ClCompile Include="ItineraryBox.cpp" />
-    <ClCompile Include="KeyListTrain.cpp" />
     <ClCompile Include="ListTrainModel.cpp" />
     <ClCompile Include="ListTrainView.cpp" />
     <ClCompile Include="logger\Logger.cpp" />

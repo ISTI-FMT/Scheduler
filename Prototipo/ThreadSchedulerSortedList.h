@@ -14,7 +14,6 @@
 #include "wdogcontrol.h"
 #include "manager\\ManagerStatoLineaATC.h"
 #include "manager\\ManagerStatoLineaIXL.h"
-#include "KeyListTrain.h"
 #include "Train.h"
 #include "StateObject.h"
 #include "ControllerListTrain.h"
@@ -27,7 +26,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 
 
-ref class ThreadSchedulerSortedList
+ref class ThreadSchedulerSortedList 
 {
 	EventQueue ^EQueueIXL;
 	EventQueue ^EQueueATO;
@@ -39,7 +38,7 @@ ref class ThreadSchedulerSortedList
 	ManagerStatoLineaIXL ^managerIXL;
 	wdogcontrol ^wdogs;
 	String ^ipixl;
-	Dictionary<KeyListTrain^,List<int>^> ^RaccoltaTrenoRequestCDB;
+	Dictionary<Train^,List<int>^> ^RaccoltaTrenoRequestCDB;
 	ConfigurazioneVelocita ^confVelocita;
 	bool _shouldStop;
 	DateTime timeRicIXL;

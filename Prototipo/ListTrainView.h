@@ -18,10 +18,12 @@ namespace Prototipo {
 	public ref class ListTrainView : public System::Windows::Forms::Form,IListTrainView
 	{
 		IControllerListTrain ^controller;
-		delegate void GoCallback(KeyListTrain ^key,Train^ train);
+		delegate void GoCallback(Train^ train);
 		delegate void DeleteListCallback();
+		delegate void PaintCallback();
 		DeleteListCallback ^myDelegateDeleteList;
-		GoCallback^ myDelegateNewTrain;
+		GoCallback ^myDelegateNewTrain;
+		PaintCallback^ myDelegatePaint;
 		TabellaStazioni ^tabItinerari;
 	public:
 		ListTrainView(TabellaStazioni ^ti)
@@ -30,18 +32,18 @@ namespace Prototipo {
 			tabItinerari=ti;
 			InitializeComponent();
 			myDelegateDeleteList = gcnew DeleteListCallback(this, &ListTrainView::DeleteList);
-			
+			myDelegatePaint = gcnew PaintCallback(this, &ListTrainView::RePaintList);
 			
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 		}
 		virtual void AddListener(IControllerListTrain ^c );
-		virtual void ViewNewTrain(KeyListTrain ^key,Train^ train);
-		 void setNewTrain(KeyListTrain ^key,Train^ train);
+		virtual void ViewNewTrain(Train^ train);
+		 void setNewTrain(Train^ train);
 		 void DeleteList();
-		virtual void ViewChangeTrain(KeyListTrain ^key,StateTrain state);
-		virtual void ViewChangeTrain(KeyListTrain ^key,List<Fermata^>^ train);
+		 void RePaintList();
+		 virtual void PaintTrain();
 		virtual void ViewDeleteList();
 		Void B_Click(System::Object^  sender, System::EventArgs^  e);
 	protected:

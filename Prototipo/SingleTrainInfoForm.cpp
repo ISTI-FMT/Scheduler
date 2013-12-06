@@ -1,13 +1,12 @@
 #include "SingleTrainInfoForm.h"
 
 
-SingleTrainInfoForm::SingleTrainInfoForm(Train ^t, KeyListTrain ^k, IControllerListTrain ^c, TabellaStazioni ^ti)
+SingleTrainInfoForm::SingleTrainInfoForm(Train ^t,  IControllerListTrain ^c, TabellaStazioni ^ti)
 {
 	Button::Button();
 	tabItineari=ti;
 	controller=c;
 	train=t;
-	key=k;
 	init();
 	set();
 	this->Click += gcnew System::EventHandler(this, &SingleTrainInfoForm::B_Click);
@@ -156,7 +155,7 @@ void SingleTrainInfoForm::set(){
 	this->Labeltrn->Text += train->getTRN().ToString();
 	this->LabelEngineNumber->Text += train->getPhysicalTrain()->getEngineNumber().ToString();
 	this->Labelip->Text +=train->getPhysicalTrain()->getIpAddress();
-	this->textboxPriorita->Text = key->getPriorita().ToString();
+	this->textboxPriorita->Text = train->getPriorita().ToString();
 	setitinerary();
 }
 
@@ -216,8 +215,8 @@ Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::
 	if (m->Success){
 		
 			try{
-				controller->changePrior(key,int::Parse(m->Value));
-				form->Close();
+				controller->changePrior(train,int::Parse(m->Value));
+				//form->Close();
 			}catch(Exception ^e){
 				Console::WriteLine("Errore Form Single Train Information",e->Message);
 			}
@@ -253,3 +252,10 @@ Void SingleTrainInfoForm::ButtonClose_Click(System::Object^  sender, System::Eve
 
 
 
+Int32 SingleTrainInfoForm::CompareTo(SingleTrainInfoForm^otherKey){
+
+	if (otherKey == nullptr) return 1;
+
+	
+	return train->CompareTo(otherKey->train);
+}

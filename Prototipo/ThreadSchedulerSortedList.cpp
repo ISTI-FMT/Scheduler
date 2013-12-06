@@ -35,7 +35,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, Tabel
 	managerATC=manATC;
 	managerIXL=manIXL;
 	ipixl="127.0.0.1";
-	RaccoltaTrenoRequestCDB  = gcnew Dictionary<KeyListTrain^,List<int>^> ();
+	RaccoltaTrenoRequestCDB  = gcnew Dictionary<Train^,List<int>^> ();
 	_shouldStop=false;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	timeRicIXL;
@@ -64,22 +64,21 @@ void ThreadSchedulerSortedList::Schedule(){
 
 		while(!_shouldStop){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
-			Thread::Sleep(100);
+			Thread::Sleep(200);
 			wdogs->onNext();
 			ControllaMSG_ATO();
 			ControllaMSG_IXL();
-
-			for each (KeyValuePair<KeyListTrain^, Train^> KVTrain in controlListtrain->getListTrain())
+			controlListtrain->Sort();
+			for each (Train^ Train in controlListtrain->getListTrain())
 			{
-				switch (KVTrain.Value->getStatoTreno())
+				switch (Train->getStatoTreno())
 				{
 				case PRONTO:
 					break;
 				case USCITASTAZIONE:{
-					KeyListTrain^ key = KVTrain.Key;
-					Train^ train = KVTrain.Value;
+					
 					//itinerario uscita
-					KeyValuePair<int, int> ^itistazione = train->getStazioneItinerario();
+					KeyValuePair<int, int> ^itistazione = Train->getStazioneItinerario();
 					int itinUscita = itistazione->Value;
 					int idstazione = itistazione->Key;
 
@@ -92,16 +91,16 @@ void ThreadSchedulerSortedList::Schedule(){
 						TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
 						int tempo = (int)oraattuale->TotalSeconds/30;
 						int  costante= 3;
-						int resutl = ((int)train->getOrarioPartenza())-costante;
+						int resutl = ((int)Train->getOrarioPartenza())-costante;
 					// controllo posizione e tempo 
-						if(((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==train->getTRN())|managerATC->getCDB(resultprecCdbU)->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
+						if(((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==Train->getTRN())|managerATC->getCDB(resultprecCdbU)->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
 							
-							if(!RaccoltaTrenoRequestCDB->ContainsKey(key)){
+							if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 								List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
 								if(cdbricPrenotazione!=nullptr){
-									RaccoltaTrenoRequestCDB->Add(key,cdbricPrenotazione);
+									RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 								}
 							}
 					
@@ -109,17 +108,16 @@ void ThreadSchedulerSortedList::Schedule(){
 
 
 					}else{
-						train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
-						controlListtrain->OnNextIt(key);
+						Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
+						controlListtrain->OnNextIt(Train);
 					}
 					break;
 									}
 				case ENTRATASTAZIONE: {
 
-					KeyListTrain^ key = KVTrain.Key;
-					Train^ train = KVTrain.Value;
+				
 					//itinerario uscita
-					KeyValuePair<int, int> ^itistazione = train->getStazioneItinerario();
+					KeyValuePair<int, int> ^itistazione = Train->getStazioneItinerario();
 
 					int initEntrata = itistazione->Value;
 					int idstazione = itistazione->Key;
@@ -130,15 +128,15 @@ void ThreadSchedulerSortedList::Schedule(){
 
 						if(eventATC!=nullptr){
 								//se il treno si trova sul cdb giusto
-							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==train->getTRN() | eventATC->getEventStateCDB()->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())) |((
-								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==train->getTRN() )|managerATC->getCDB(resultprecE)->getNID_ENGINE()==train->getPhysicalTrain()->getEngineNumber())){
+							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==Train->getTRN() | eventATC->getEventStateCDB()->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())) |((
+								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==Train->getTRN() )|managerATC->getCDB(resultprecE)->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())){
 									//se l'itinerario è libero
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 									//che riporti il cambiamento dello stato dell'itinerario
-									if(!RaccoltaTrenoRequestCDB->ContainsKey(key)){
+									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
 										if(cdbricPrenotazione!=nullptr){
-											RaccoltaTrenoRequestCDB->Add(key,cdbricPrenotazione);
+											RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 										}
 									}
 
@@ -146,21 +144,21 @@ void ThreadSchedulerSortedList::Schedule(){
 						}else{
 							//se il treno si trova sul cdb giusto
 							// messo a true per fare test
-							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==train->getTRN()){
+							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==Train->getTRN()){
 								//se l'itinerario è libero
 								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 								//che riporti il cambiamento dello stato dell'itinerario
-								if(!RaccoltaTrenoRequestCDB->ContainsKey(key)){
+								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
 									if(cdbricPrenotazione!=nullptr){
-										RaccoltaTrenoRequestCDB->Add(key,cdbricPrenotazione);
+										RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 									}
 								}
 							}
 						}
 					}else{
-						train->setStatoTreno(StateTrain::USCITASTAZIONE);
-						controlListtrain->OnNextIt(key);
+						Train->setStatoTreno(StateTrain::USCITASTAZIONE);
+						controlListtrain->OnNextIt(Train);
 					}
 
 
@@ -196,8 +194,8 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 	if(eventoIXL!=nullptr){
 		StateCDB ^eventocambiostatocdb = eventoIXL->getEventStateCDB();
 		if(eventocambiostatocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato ){
-			List<KeyListTrain^> ^elemetidaeliminare = gcnew List<KeyListTrain^>();
-			for each (KeyValuePair<KeyListTrain^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+			List<Train^> ^elemetidaeliminare = gcnew List<Train^>();
+			for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
 			{
 				if(kvpair->Value->Contains(eventocambiostatocdb->getNID_CDB())){
 					kvpair->Value->Remove(eventocambiostatocdb->getNID_CDB());
@@ -208,7 +206,7 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 				}
 
 			}
-			for each (KeyListTrain ^var in elemetidaeliminare)
+			for each (Train ^var in elemetidaeliminare)
 			{
 				RaccoltaTrenoRequestCDB->Remove(var);
 			}
@@ -273,13 +271,13 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 							Console::WriteLine("ok {0}",listaitinerari[0]->getOrarioPartenza());
 
 							List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn);
-							
-							Train ^treno = gcnew Train(trn,phisical,listafermate);
-							//Creo KeyListTrain
 							int priorita = 1;
-							KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber,listaitinerari[0]->getOrarioPartenza());
+							Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
+							//Creo KeyListTrain
+							
+							//KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber);
 							//ListSortedTrains->Add(key,treno);
-							controlListtrain->OnSetTrain(key,treno);
+							controlListtrain->OnSetTrain(treno);
 						}
 
 					}
@@ -327,7 +325,7 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 			return false;
 		}
 		if(RaccoltaTrenoRequestCDB!=nullptr){
-			for each (KeyValuePair<KeyListTrain^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+			for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
 			{
 				if(kvpair->Value->Contains(cdb)){
 					return false;

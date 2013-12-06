@@ -7,59 +7,52 @@ using namespace System::Collections::Generic;
 
 ListTrainModel::ListTrainModel(void)
 {
-	ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
+	ListSortedTrains = gcnew System::Collections::Generic::List< Train^>();
 }
 
 
-void ListTrainModel::Add(KeyListTrain ^key,Train^ train){
+void ListTrainModel::Add(Train^ train){
 	try{
 
-		ListSortedTrains->Add(key,train);
+		ListSortedTrains->Add(train);
+		//ListSortedTrains->Sort();
 	}catch(ArgumentException ^e){
 		Console::WriteLine("Attenzione: tenti di aggiungere una chiave già esistente");
 	}
 }
 
-SortedList<KeyListTrain^, Train^> ^ListTrainModel::getList(){
+List<Train^> ^ListTrainModel::getList(){
 	return ListSortedTrains;
 }
 
-void ListTrainModel::set(KeyListTrain ^key,List<Fermata^> ^list){
-	if(ListSortedTrains->ContainsKey(key)){
-		Train ^t = ListSortedTrains[key];
-		t->setListaFermate(list);
 
-	}
+ void ListTrainModel::Sort(){
+	ListSortedTrains->Sort();
+	//Console::WriteLine("");
+	for each(  Train^ kvp in ListSortedTrains )
+        {
+            Console::WriteLine("Key = {0}",kvp);
+        }
 }
 
-void ListTrainModel::set(KeyListTrain ^key,StateTrain state){
-	if(ListSortedTrains->ContainsKey(key)){
-		Train ^t = ListSortedTrains[key];
-		t->setStatoTreno(state);
 
-	}
-}
-
-void ListTrainModel::NextIt(KeyListTrain ^key){
-	if(ListSortedTrains->ContainsKey(key)){
-		Train ^t =	ListSortedTrains[key];
-		t->goNextItinerario();
+void ListTrainModel::NextIt(Train ^key){
+	if(ListSortedTrains->Contains(key)){
+		
+		key->goNextItinerario();
 		//ListSortedTrains->Remove(key);
-		key->setTimeStampNextEvent(t->getOrarioPartenza());
+		key->setTimeStampNextEvent(key->getOrarioPartenza());
+	//	ListSortedTrains->Sort();
 		//ListSortedTrains->Add(key,t);
 	}
 }
 
-void ListTrainModel::changePrior(KeyListTrain ^key, int newprior){
-	if(ListSortedTrains->ContainsKey(key)){
-		Train ^ t = ListSortedTrains[key];
-		ListSortedTrains->Remove(key);
+void ListTrainModel::changePrior(Train ^key, int newprior){
+	if(ListSortedTrains->Contains(key)){
+		
+		
 		key->setPriorita(newprior);
-		ListSortedTrains->Add(key,t);
+	//	ListSortedTrains->Sort();
 	}
-	 Console::WriteLine("");
-	for each( KeyValuePair<KeyListTrain^, Train^> ^kvp in ListSortedTrains )
-        {
-            Console::WriteLine("Key = {0}",kvp->Key);
-        }
+	
 }
