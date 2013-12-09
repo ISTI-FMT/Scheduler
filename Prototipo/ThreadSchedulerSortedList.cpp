@@ -44,7 +44,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, Tabel
 
 	Prototipo::ListTrainView ^view = gcnew Prototipo::ListTrainView(tabItinerari);
 	model->Subscribe(view);
-	view->AddListener(model);
+	view->AddModel(model);
 	controlListtrain = gcnew ControllerListTrain(model);
   
      //Application::Run(view);
@@ -68,11 +68,12 @@ void ThreadSchedulerSortedList::Schedule(){
 
 		while(!_shouldStop){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
-			Thread::Sleep(200);
+			//controlListtrain->Sort();
+			Thread::Sleep(100);
 			wdogs->onNext();
 			ControllaMSG_ATO();
 			ControllaMSG_IXL();
-			controlListtrain->Sort();
+			
 			for each (Train^ Train in controlListtrain->getListTrain())
 			{
 				switch (Train->getStatoTreno())
@@ -96,8 +97,11 @@ void ThreadSchedulerSortedList::Schedule(){
 						int tempo = (int)oraattuale->TotalSeconds/30;
 						int  costante= 3;
 						int resutl = ((int)Train->getOrarioPartenza())-costante;
+
+						int idTRenoCDBPrecIT = managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL();
+						int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecCdbU)->getNID_ENGINE();
 					// controllo posizione e tempo 
-						if(((managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL()==Train->getTRN())|managerATC->getCDB(resultprecCdbU)->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
+						if(((idTRenoCDBPrecIT==Train->getTRN())|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
 							
@@ -131,9 +135,11 @@ void ThreadSchedulerSortedList::Schedule(){
 						Event ^eventATC = EQueueATC->getEvent();
 
 						if(eventATC!=nullptr){
+							int idTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_OPERATIONAL();
+						int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_ENGINE();
 								//se il treno si trova sul cdb giusto
 							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==Train->getTRN() | eventATC->getEventStateCDB()->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())) |((
-								managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==Train->getTRN() )|managerATC->getCDB(resultprecE)->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())){
+								idTRenoCDBPrecIT==Train->getTRN() )|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())){
 									//se l'itinerario è libero
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 									//che riporti il cambiamento dello stato dell'itinerario

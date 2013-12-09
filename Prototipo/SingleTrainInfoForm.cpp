@@ -249,6 +249,10 @@ Void SingleTrainInfoForm::ButtonClose_Click(System::Object^  sender, System::Eve
 	Visible=false;
 }
 
+void SingleTrainInfoForm::UpdateInfo(){
+	init();
+	set();
+}
 
 
 

@@ -34,6 +34,7 @@ public:
 	//Void B_Click(System::Object^  sender, System::EventArgs^  e);
 	Void ButtonClose_Click(System::Object^  sender, System::EventArgs^  e);
 	void setitinerary();
+	void UpdateInfo();
 
 };
 

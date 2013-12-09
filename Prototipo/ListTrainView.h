@@ -19,13 +19,14 @@ namespace Prototipo {
 
 		IDisposable ^unsubscriber;
 		ListTrainModel ^model;
-		delegate void GoCallback(Train^ train);
+		delegate void GoCallback(List<Train^>^ trains);
 		delegate void DeleteListCallback();
 		delegate void PaintCallback();
 		DeleteListCallback ^myDelegateDeleteList;
 		GoCallback ^myDelegateNewTrain;
 		PaintCallback^ myDelegatePaint;
 		TabellaStazioni ^tabItinerari;
+		Dictionary<String^,SingleTrainInfoForm^> ^dictionaryTrainsInfoForm;
 	public:
 		ListTrainView(TabellaStazioni ^ti)
 		{
@@ -34,15 +35,15 @@ namespace Prototipo {
 			InitializeComponent();
 			myDelegateDeleteList = gcnew DeleteListCallback(this, &ListTrainView::DeleteList);
 			myDelegatePaint = gcnew PaintCallback(this, &ListTrainView::RePaintList);
-
+			dictionaryTrainsInfoForm = gcnew Dictionary<String^,SingleTrainInfoForm^>();
 
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 		}
-		void AddListener(ListTrainModel ^c );
-		void ViewNewTrain(Train^ train);
-		void setNewTrain(Train^ train);
+		void AddModel(ListTrainModel ^c );
+		void ViewNewTrain(List<Train^>^ trains);
+		void setNewTrain(List<Train^>^ trains);
 		void DeleteList();
 		void RePaintList();
 		void PaintTrain();

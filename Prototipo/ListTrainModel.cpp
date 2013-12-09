@@ -16,7 +16,7 @@ void ListTrainModel::Add(Train^ train){
 	try{
 
 		ListSortedTrains->Add(train);
-		//ListSortedTrains->Sort();
+		Sort();
 	}catch(ArgumentException ^e){
 		Console::WriteLine("Attenzione: tenti di aggiungere una chiave già esistente");
 	}
@@ -62,10 +62,8 @@ void ListTrainModel::NextIt(Train ^key){
 	if(ListSortedTrains->Contains(key)){
 		
 		key->goNextItinerario();
-		//ListSortedTrains->Remove(key);
 		key->setTimeStampNextEvent(key->getOrarioPartenza());
-	//	ListSortedTrains->Sort();
-		//ListSortedTrains->Add(key,t);
+	
 	}
 }
 
@@ -74,7 +72,7 @@ void ListTrainModel::changePrior(Train ^key, int newprior){
 		
 		
 		key->setPriorita(newprior);
-	//	ListSortedTrains->Sort();
+		Sort();
 	}
 	
 }
