@@ -26,6 +26,7 @@ void SingleTrainInfoForm::init(){
 	this->LabelPriorita= (gcnew System::Windows::Forms::Label());
 	this->textboxPriorita = gcnew System::Windows::Forms::TextBox();
 	this->bclose = (gcnew System::Windows::Forms::Button());
+	this->bapply = (gcnew System::Windows::Forms::Button());
 
 	//
 	// label TRN
@@ -85,7 +86,16 @@ void SingleTrainInfoForm::init(){
 	this->bclose->Text = L"Close";
 	this->bclose->UseVisualStyleBackColor = true;
 	this->bclose->Click += gcnew System::EventHandler(this, &SingleTrainInfoForm::ButtonClose_Click);
-
+	// 
+	// buttonAplly
+	// 
+	this->bapply->Location = System::Drawing::Point(500, 371);
+	this->bapply->Name = L"button2";
+	this->bapply->Size = System::Drawing::Size(75, 23);
+	this->bapply->TabIndex = 7;
+	this->bapply->Text = L"Apply";
+	this->bapply->UseVisualStyleBackColor = true;
+	this->bapply->Click += gcnew System::EventHandler(this, &SingleTrainInfoForm::ButtonApply_Click);
 	// 
 	// tableLayoutPanel1
 	// 
@@ -124,7 +134,7 @@ void SingleTrainInfoForm::init(){
 	//this->tableLayoutPanelItinerari->SetColumnSpan(this->label0, 2);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	this->ClientSize = System::Drawing::Size(551, 456);
-	array<System::Windows::Forms::Control^>^temp0 = {label5,Labeltrn,Labelip,LabelEngineNumber,LabelPriorita,textboxPriorita,bclose,tableLayoutPanelItinerari};
+	array<System::Windows::Forms::Control^>^temp0 = {label5,Labeltrn,Labelip,LabelEngineNumber,LabelPriorita,textboxPriorita,bclose,bapply,tableLayoutPanelItinerari};
 	this->Controls->AddRange( temp0 );
 	this->ControlBox=false;
 	this->AutoSize = true;
@@ -254,7 +264,18 @@ void SingleTrainInfoForm::UpdateInfo(){
 	set();
 }
 
+Void SingleTrainInfoForm::ButtonApply_Click(System::Object^  sender, System::EventArgs^  e){
+	Dictionary<int,KeyValuePair<DateTime, DateTime>> ^nuoviorari = gcnew Dictionary<int,KeyValuePair<DateTime, DateTime>>();
+	for each (ItineraryBox ^var in tableLayoutPanelItinerari->Controls)
+	{
+		
+		nuoviorari->Add(var->getIdStation(),var->getOrari());
+	}
 
+
+	model->changeOrari(train,nuoviorari);
+	//
+}
 
 Int32 SingleTrainInfoForm::CompareTo(SingleTrainInfoForm^otherKey){
 

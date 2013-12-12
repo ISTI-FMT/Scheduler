@@ -12,6 +12,7 @@ public:
 	 void Sort();
 	 void NextIt(Train ^key);
 	 void changePrior(Train ^key, int newprior);
+	 void changeOrari(Train ^key, Dictionary<int,KeyValuePair<DateTime, DateTime>> ^nuoviorari);
 	 Train ^getTrain(String ^t);
 	 virtual IDisposable ^Subscribe(IObserver<List<Train^>^> ^observer);
 };

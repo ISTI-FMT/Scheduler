@@ -132,7 +132,7 @@ Int32 Train::CompareTo(Train^otherKey){
 
 	if (otherKey == nullptr) return 1;
 
-	
+
 	if(getPriorita() ==otherKey->getPriorita()){
 
 		if(getTimeNextEvent()!=nullptr & otherKey->getTimeNextEvent()!=nullptr ){
@@ -157,4 +157,29 @@ Int32 Train::CompareTo(Train^otherKey){
 		return -1;
 	}
 	return 0;
+}
+
+void Train::changeOrari(Dictionary<int,KeyValuePair<DateTime, DateTime>> ^nuoviorari){
+	for each (Fermata ^var in Listafermate)
+	{
+		int idstazione = var->getIdStazione();
+		if(nuoviorari->ContainsKey(idstazione)){
+			DateTime arrivo = nuoviorari[idstazione].Key;
+			DateTime partenza = nuoviorari[idstazione].Value;
+			DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+
+			TimeSpan sinceMidnighta = arrivo - orarioSupporto3;
+			TimeSpan sinceMidnightp = partenza - orarioSupporto3;
+			double	darrivo = sinceMidnighta.TotalSeconds/30;
+			double	dpartenza = sinceMidnightp.TotalSeconds/30;
+			if(var->getOrarioArrivo()!=darrivo){
+				var->setOrarioArrivo(darrivo);
+			}
+			if(var->getOrarioPartenza()!=dpartenza){
+				var->setOrarioPartenza(dpartenza);
+			}
+		}
+	}
+
+
 }

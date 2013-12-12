@@ -76,3 +76,14 @@ void ListTrainModel::changePrior(Train ^key, int newprior){
 	}
 	
 }
+
+ void  ListTrainModel::changeOrari(Train ^key, Dictionary<int,KeyValuePair<DateTime, DateTime>> ^nuoviorari){
+	 if(ListSortedTrains->Contains(key)){
+		
+		
+		key->changeOrari(nuoviorari);
+		Sort();
+	}
+
+
+ }

@@ -39,6 +39,15 @@ public:
 	String ^getStationName(){
 		return fermata->getnameStazione();
 	}
+	int getIdStation(){
+		return fermata->getIdStazione();
+	}
+	KeyValuePair<DateTime, DateTime> getOrari(){
+DateTime arr =  DateTime(orarioA->Value);
+DateTime parr = DateTime(orarioP->Value);
+ KeyValuePair<DateTime, DateTime> result = KeyValuePair<DateTime, DateTime>(arr,parr);
+		return result;
+	}
 	void initCombo(String^ direzione);
 	//static void CambioItineraioUscita();
 	Void comboBoxE_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);

@@ -31,9 +31,11 @@ public:
 	void setStatoTreno(StateTrain st){Statodeltreno=st;};
 	void setListaFermate(List<Fermata^> ^listIt){Listafermate=listIt; };
 	KeyValuePair<int, int> ^getStazioneItinerario();
-
+	void changeOrari(Dictionary<int,KeyValuePair<DateTime, DateTime>> ^nuoviorari);
 	List<Fermata^>^getListaFermate(){return Listafermate; };
-	DateTime ^getTimeNextEvent(){return TimeStampNextEvent;};
+	DateTime ^getTimeNextEvent(){
+		setTimeStampNextEvent(getOrarioPartenza());
+		return TimeStampNextEvent;};
 	Double getOrarioPartenza();
 	void goNextItinerario();
 	void setTimeStampNextEvent(DateTime TNE){TimeStampNextEvent=TNE;};

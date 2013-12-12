@@ -19,6 +19,7 @@ ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<
 	System::Windows::Forms::Label^  LabelPriorita;
 	System::Windows::Forms::TextBox ^textboxPriorita;
 	System::Windows::Forms::Button ^ bclose;
+	System::Windows::Forms::Button ^ bapply;
 	System::ComponentModel::IContainer^ components;
 	System::Windows::Forms::ErrorProvider^ errorProvider;
 	ListTrainModel ^model;
@@ -33,6 +34,7 @@ public:
 	Void textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e);
 	//Void B_Click(System::Object^  sender, System::EventArgs^  e);
 	Void ButtonClose_Click(System::Object^  sender, System::EventArgs^  e);
+	Void ButtonApply_Click(System::Object^  sender, System::EventArgs^  e);
 	void setitinerary();
 	void UpdateInfo();
 
