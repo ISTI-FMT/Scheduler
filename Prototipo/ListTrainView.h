@@ -1,6 +1,7 @@
 #pragma once
 #include "SingleTrainInfoForm.h"
 #include "Itinerari\\TabellaStazioni.h"
+#include "EventQueue.h"
 
 namespace Prototipo {
 
@@ -27,8 +28,9 @@ namespace Prototipo {
 		PaintCallback^ myDelegatePaint;
 		TabellaStazioni ^tabItinerari;
 		Dictionary<String^,SingleTrainInfoForm^> ^dictionaryTrainsInfoForm;
+		EventQueue ^EQueueCambioOrario;
 	public:
-		ListTrainView(TabellaStazioni ^ti)
+		ListTrainView(TabellaStazioni ^ti,EventQueue ^ECambioOrario)
 		{
 			myDelegateNewTrain = gcnew GoCallback( this, &ListTrainView::setNewTrain );
 			tabItinerari=ti;
@@ -36,7 +38,7 @@ namespace Prototipo {
 			myDelegateDeleteList = gcnew DeleteListCallback(this, &ListTrainView::DeleteList);
 			myDelegatePaint = gcnew PaintCallback(this, &ListTrainView::RePaintList);
 			dictionaryTrainsInfoForm = gcnew Dictionary<String^,SingleTrainInfoForm^>();
-
+			EQueueCambioOrario =ECambioOrario;
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//

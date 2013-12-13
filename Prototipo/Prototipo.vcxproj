@@ -163,6 +163,7 @@
     <ClInclude Include="threads\ThreadSchedulerTrain.h" />
     <ClInclude Include="Train.h" />
     <ClInclude Include="TrenoFisicoLogico.h" />
+    <ClInclude Include="Unsubscriber.h" />
     <ClInclude Include="wdogcontrol.h" />
   </ItemGroup>
   <ItemGroup>

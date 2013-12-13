@@ -12,6 +12,7 @@ SingleTrainInfoForm::SingleTrainInfoForm(Train ^t,  ListTrainModel ^m, TabellaSt
 	set();
 	//this->Click += gcnew System::EventHandler(this, &SingleTrainInfoForm::B_Click);
 	this->textboxPriorita->TextChanged += gcnew System::EventHandler(this, &SingleTrainInfoForm::textBox_TextChangedP);
+	observers = gcnew List<IObserver<Event^>^>();
 }
 
 void SingleTrainInfoForm::init(){
@@ -265,15 +266,20 @@ void SingleTrainInfoForm::UpdateInfo(){
 }
 
 Void SingleTrainInfoForm::ButtonApply_Click(System::Object^  sender, System::EventArgs^  e){
-	Dictionary<int,KeyValuePair<DateTime, DateTime>> ^nuoviorari = gcnew Dictionary<int,KeyValuePair<DateTime, DateTime>>();
+	List<Fermata^> ^nuoviorari = gcnew List<Fermata^>();
 	for each (ItineraryBox ^var in tableLayoutPanelItinerari->Controls)
 	{
 		
-		nuoviorari->Add(var->getIdStation(),var->getOrari());
+		nuoviorari->Add(var->getOrari());
 	}
 
-
-	model->changeOrari(train,nuoviorari);
+	// segnala evento!!!
+	String ^source = "View "+train->getTRN();
+	for each (IObserver<Event^>^ observer in observers)
+	{
+		observer->OnNext(gcnew Event(train,nuoviorari,source));
+	}
+	//model->changeOrari(train,nuoviorari);
 	//
 }
 
@@ -283,4 +289,11 @@ Int32 SingleTrainInfoForm::CompareTo(SingleTrainInfoForm^otherKey){
 
 	
 	return train->CompareTo(otherKey->train);
+}
+
+IDisposable ^SingleTrainInfoForm::Subscribe(IObserver<Event^> ^observer){
+	if (! observers->Contains(observer)) 
+		observers->Add(observer);
+	return gcnew Unsubscriber(observers, observer);
+
 }

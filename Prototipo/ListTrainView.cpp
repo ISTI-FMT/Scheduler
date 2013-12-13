@@ -90,6 +90,7 @@ Void  Prototipo::ListTrainView::B_Click(System::Object^  sender, System::EventAr
 
 		Train ^train = model->getTrain(b->Name);
 		SingleTrainInfoForm ^trainView = gcnew SingleTrainInfoForm(train,model,tabItinerari);
+		trainView->Subscribe(EQueueCambioOrario);
 		dictionaryTrainsInfoForm->Add(b->Name,trainView );
 		trainView->Visible=true;
 	}

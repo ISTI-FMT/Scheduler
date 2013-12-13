@@ -3,7 +3,7 @@
 #include "..\\messaggi\\StateCDB.h"
 #include "..\\physicalTrain.h"
 #include "..\\Event.h"
-
+#include "..\\Unsubscriber.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -28,21 +28,3 @@ public:
 
 };
 
-ref class Unsubus : public  IDisposable
-{
-    List<IObserver<Event^>^> ^_observers;
-    IObserver<Event^> ^_observer;
-
-public:
-	Unsubus(List<IObserver<Event^>^> ^observers, IObserver<Event^> ^observer)
-   {
-      _observers = observers;
-      _observer = observer;
-   };
-private:
-	 ~Unsubus(){
-      if ((_observer != nullptr)){
-		  _observers->Remove(_observer);
-	  }
-   };
-};

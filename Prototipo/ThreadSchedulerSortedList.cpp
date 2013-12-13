@@ -36,13 +36,14 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, Tabel
 	managerIXL=manIXL;
 	ipixl="127.0.0.1";
 	RaccoltaTrenoRequestCDB  = gcnew Dictionary<Train^,List<int>^> ();
+	EQueueCambioOrario = gcnew EventQueue();
 	_shouldStop=false;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	timeRicIXL;
 	
 	ListTrainModel ^model = gcnew ListTrainModel();
 
-	Prototipo::ListTrainView ^view = gcnew Prototipo::ListTrainView(tabItinerari);
+	Prototipo::ListTrainView ^view = gcnew Prototipo::ListTrainView(tabItinerari,EQueueCambioOrario);
 	model->Subscribe(view);
 	view->AddModel(model);
 	controlListtrain = gcnew ControllerListTrain(model);
@@ -73,6 +74,7 @@ void ThreadSchedulerSortedList::Schedule(){
 			wdogs->onNext();
 			ControllaMSG_ATO();
 			ControllaMSG_IXL();
+			ControllaEventiCambioOrario();
 			
 			for each (Train^ Train in controlListtrain->getListTrain())
 			{
@@ -195,6 +197,32 @@ void ThreadSchedulerSortedList::Schedule(){
 		Logger::Exception(abortException,"ThreadSchedule");  
 #endif // TRACE
 		Console::WriteLine( dynamic_cast<String^>(abortException->ExceptionState) );
+	}
+}
+void  ThreadSchedulerSortedList::ControllaEventiCambioOrario(){
+	Event ^eventoOrario= EQueueCambioOrario->getEvent();
+	if(eventoOrario!=nullptr){
+
+		Console::WriteLine("ciao");
+		Train ^train = eventoOrario->getTrain();
+		List<Fermata^> ^nuoviorari = eventoOrario->getEventOrari();
+		
+		
+		//invia messaggio all'ato
+		 StateObject ^inviato =	SendUpdateMissionATO(train->getTRN(),train->getPhysicalTrain(),nuoviorari);
+		//aspetta ack
+		 DateTime time=DateTime::Now;
+		 while (inviato->fine!=1){
+			 TimeSpan sec = DateTime::Now - time;
+			 //reinvia
+			
+
+		 }
+		 if(inviato->fine==1){
+			//aggiorna modello se ack è giusto
+			 controlListtrain->AggiornaOrario(train, nuoviorari);
+		 }
+		 
 	}
 }
 
@@ -348,6 +376,105 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 	return res;
 }
 
+StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTrain ^Treno,List<Fermata^> ^stops){
+	try
+	{
+
+				Messaggi ^missionPlanPkt = gcnew Messaggi();
+
+		DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+		TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
+		missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
+		missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
+		missionPlanPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
+
+		//tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn));
+
+		setMissionPlanMsg(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn),stops);
+
+		// Buffer for reading data
+		array<Byte>^bytes_buffer3 = missionPlanPkt->serialize();
+
+			// Creates the Socket to send data over a TCP connection.
+		Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
+		sock->SendBufferSize = 0;
+
+		String ^IP = gcnew String(Treno->getIpAddress());
+		sock->Connect(IP, Treno->getTcpPort());
+		sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
+#ifdef TRACE
+
+		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
+
+#endif // TRACE
+
+		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
+		so2->workSocket = sock;
+		so2->fine=-1;
+		sock->BeginReceive( so2->buffer, 0, 17,System::Net::Sockets::SocketFlags::Peek, gcnew AsyncCallback( &ThreadSchedulerSortedList::ReceiveCallback ), so2 );
+
+
+		return so2;
+	}
+	catch ( Exception^ e ) 
+	{
+		Console::WriteLine( "SocketException: {0}", e->Message );
+#ifdef TRACE
+		Logger::Exception(e,"ThreadSchedulerTrain::SendTCPMsg");  
+#endif // TRACE
+		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
+
+		return so2;
+	}
+}
+
+void ThreadSchedulerSortedList::setMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops)
+{
+	
+	
+	// se il teno esiste
+	if(stops!=nullptr)
+	{
+		//Todo: V_mission D_mission tratte
+		if(pvel!=nullptr){
+			pkt->setPV(pvel);
+			pkt->setN_ITER1(pvel->Count-1);
+		}else{
+			pkt->setPV(gcnew ProfiloVelocita);
+			pkt->setN_ITER1(0);
+		}
+		// -1 perchè la prima fermata non viene considerata negli N_ITER
+		pkt->setN_ITER2((stops->Count) - 1);
+
+		for each (Fermata ^stop in stops)
+		{
+			Mission ^mission= gcnew Mission();
+			mission->setQ_DOORS(stop->getLatoAperturaPorte());
+
+			int orarioPartenza = (int)stop->getOrarioPartenza();
+
+			mission->setT_START_TIME(orarioPartenza);
+			mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
+
+			if(tabItinerari!=nullptr ){
+				if(stop->getIditinerarioEntrata()!=0){
+					List<int> ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
+					if(infobalise!=nullptr){
+
+						mission->setNID_LRGB(infobalise[0]);
+						mission->setD_STOP(infobalise[1]);
+					}
+				}
+
+			}
+
+			pkt->setMission(mission);
+
+
+
+		}
+	}
+}
 
 StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^Treno)
 {

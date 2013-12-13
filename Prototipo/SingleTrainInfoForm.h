@@ -2,12 +2,14 @@
 #include "ControllerListTrain.h"
 #include "ItineraryBox.h"
 #include "Itinerari\\TabellaStazioni.h"
+#include "Event.h"
+#include "Unsubscriber.h"
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
 
-ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<SingleTrainInfoForm^>
+ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<SingleTrainInfoForm^>, IObservable<Event^>
 {
 	Train ^train;
 	
@@ -24,6 +26,7 @@ ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<
 	System::Windows::Forms::ErrorProvider^ errorProvider;
 	ListTrainModel ^model;
 	TabellaStazioni ^tabItineari;
+	List<IObserver<Event^>^> ^observers;
 public:
 	SingleTrainInfoForm(Train ^t,  ListTrainModel ^m,TabellaStazioni ^ti);
 	void init();
@@ -35,6 +38,9 @@ public:
 	//Void B_Click(System::Object^  sender, System::EventArgs^  e);
 	Void ButtonClose_Click(System::Object^  sender, System::EventArgs^  e);
 	Void ButtonApply_Click(System::Object^  sender, System::EventArgs^  e);
+	
+	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
+
 	void setitinerary();
 	void UpdateInfo();
 

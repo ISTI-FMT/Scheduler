@@ -163,7 +163,7 @@ void ManagerStatoLineaATC::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 IDisposable ^ManagerStatoLineaATC::Subscribe(IObserver<Event^> ^observer){
 	if (! observers->Contains(observer)) 
 		observers->Add(observer);
-	return gcnew Unsub(observers, observer);
+	return gcnew Unsubscriber(observers, observer);
 
 }
 

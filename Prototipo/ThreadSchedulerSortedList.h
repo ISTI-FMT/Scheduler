@@ -33,6 +33,7 @@ ref class ThreadSchedulerSortedList
 	EventQueue ^EQueueIXL;
 	EventQueue ^EQueueATO;
 	EventQueue ^EQueueATC;
+	EventQueue ^EQueueCambioOrario;
 	TabellaOrario ^tabOrario;
 	TabellaStazioni ^tabItinerari;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
@@ -57,10 +58,12 @@ public:
 	void ControllaMSG_ATO();
 	void ControllaMSG_IXL();
 	bool controllacdb(List<int>^lcdb);
-	
+	void ControllaEventiCambioOrario();
 	void RequestStop();
 
 	StateObject ^InizializzeATO(int trn,physicalTrain ^Treno);
+	StateObject ^SendUpdateMissionATO(int trn,physicalTrain ^Treno,List<Fermata^> ^stops);
+	void setMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops);
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);

@@ -35,6 +35,11 @@ void ControllerListTrain::changePrior(Train ^key, int newprior){
 	
 }
 
+ void ControllerListTrain::AggiornaOrario(Train ^train, List<Fermata^> ^nuovior){
+	 model->changeOrari(train,nuovior);
+
+ }
+
 void ControllerListTrain::RePaint(){
 	//view->ViewDeleteList();
 	//view->PaintTrain();

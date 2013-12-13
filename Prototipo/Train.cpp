@@ -159,11 +159,14 @@ Int32 Train::CompareTo(Train^otherKey){
 	return 0;
 }
 
-void Train::changeOrari(Dictionary<int,KeyValuePair<DateTime, DateTime>> ^nuoviorari){
-	for each (Fermata ^var in Listafermate)
+void Train::changeOrari( List<Fermata^> ^nuoviorari){
+	Listafermate->Clear();
+	Listafermate =nuoviorari;
+	Console::WriteLine("AGGIORNATI ORARI NEL MODELLO");
+	/*for each (Fermata ^var in Listafermate)
 	{
 		int idstazione = var->getIdStazione();
-		if(nuoviorari->ContainsKey(idstazione)){
+		if(nuoviorari->Contains(idstazione)){
 			DateTime arrivo = nuoviorari[idstazione].Key;
 			DateTime partenza = nuoviorari[idstazione].Value;
 			DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
@@ -179,7 +182,7 @@ void Train::changeOrari(Dictionary<int,KeyValuePair<DateTime, DateTime>> ^nuovio
 				var->setOrarioPartenza(dpartenza);
 			}
 		}
-	}
+	}*/
 
 
 }

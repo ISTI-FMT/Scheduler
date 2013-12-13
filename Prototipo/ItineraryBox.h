@@ -29,11 +29,11 @@ public:
 		return fermata->getIdStazione();
 	}
 	int getIdIUscita(){
-		
+
 		return ((Itinerario^)comboBoxU->SelectedItem)->getId();
 	}
 	int getIdIEntrata(){
-		
+
 		return ((Itinerario^)comboBoxE->SelectedItem)->getId();
 	}
 	String ^getStationName(){
@@ -42,10 +42,13 @@ public:
 	int getIdStation(){
 		return fermata->getIdStazione();
 	}
-	KeyValuePair<DateTime, DateTime> getOrari(){
-DateTime arr =  DateTime(orarioA->Value);
-DateTime parr = DateTime(orarioP->Value);
- KeyValuePair<DateTime, DateTime> result = KeyValuePair<DateTime, DateTime>(arr,parr);
+	Fermata ^getOrari(){
+		DateTime arr =  DateTime(orarioA->Value);
+		DateTime parr = DateTime(orarioP->Value);
+
+		Fermata ^result = fermata->Clone();
+		result->setOrarioArrivo(arr);
+		result->setOrarioPartenza(parr);
 		return result;
 	}
 	void initCombo(String^ direzione);

@@ -72,6 +72,6 @@ void ManagerMsgATO::addCheckAndSet(physicalTrain ^onetrain, String ^source)
 IDisposable ^ManagerMsgATO::Subscribe(IObserver<Event^> ^observer){
 	if (! observers->Contains(observer)) 
 		observers->Add(observer);
-	return gcnew Unsubus(observers, observer);
+	return gcnew Unsubscriber(observers, observer);
 
 }

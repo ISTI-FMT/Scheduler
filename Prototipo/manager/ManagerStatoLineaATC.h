@@ -2,6 +2,7 @@
 #using <System.dll>
 #include "..\\messaggi\\StateCDB.h"
 #include "..\\Event.h"
+#include "..\\Unsubscriber.h"
 using namespace System;
 using namespace System::Collections::Generic;
 
@@ -29,21 +30,4 @@ public:
 
 };
 
-ref class Unsub : public  IDisposable
-{
-    List<IObserver<Event^>^> ^_observers;
-    IObserver<Event^> ^_observer;
 
-public:
-	Unsub(List<IObserver<Event^>^> ^observers, IObserver<Event^> ^observer)
-   {
-      _observers = observers;
-      _observer = observer;
-   };
-private:
-	 ~Unsub(){
-      if ((_observer != nullptr)){
-		  _observers->Remove(_observer);
-	  }
-   };
-};

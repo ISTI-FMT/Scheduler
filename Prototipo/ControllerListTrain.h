@@ -10,12 +10,13 @@ ref class ControllerListTrain
 public:
 	ControllerListTrain(ListTrainModel ^m);
 
-	virtual void OnSetTrain(Train^ train);
-	virtual void OnNextIt(Train ^key);
-	virtual  System::Collections::Generic::List< Train^> ^ getListTrain();
-	virtual void OnDelete();
-	virtual void changePrior(Train ^key, int newprior);
-	virtual void RePaint();
-	virtual void Sort();
+	 void OnSetTrain(Train^ train);
+	 void OnNextIt(Train ^key);
+	  System::Collections::Generic::List< Train^> ^ getListTrain();
+	 void OnDelete();
+	 void changePrior(Train ^key, int newprior);
+	 void RePaint();
+	 void Sort();
+	 void AggiornaOrario(Train ^train, List<Fermata^> ^nuovior);
 };
 

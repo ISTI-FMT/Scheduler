@@ -23,6 +23,10 @@ System::String ^Event::ToString() {
 	if(lTrain){
 		out+= lTrain->ToString();
 	}
+	if(nuoviorari){
+		out+= nuoviorari->ToString();
+
+	}
 	return out;
 }
 
