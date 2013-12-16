@@ -3,18 +3,22 @@
 #include "Event.h"
 using namespace System::Collections::Generic;
 using namespace System;
-
+generic <typename T>
 public ref class Unsubscriber : public  IDisposable
 {
-    List<IObserver<Event^>^> ^_observers;
-    IObserver<Event^> ^_observer;
+	
+    List<IObserver<T>^> ^_observers;
+    IObserver<T> ^_observer;
 
 public:
-	Unsubscriber(List<IObserver<Event^>^> ^observers, IObserver<Event^> ^observer)
+	/*Unsubscriber(void);*/
+	Unsubscriber(List<IObserver<T>^> ^observers, IObserver<T> ^observer)
    {
       _observers = observers;
       _observer = observer;
    };
+	void createUnsub(List<IObserver<T>^> ^observers, IObserver<T> ^observer){ _observers = observers;
+      _observer = observer;};
 private:
 	 ~Unsubscriber(){
       if ((_observer != nullptr)){

@@ -415,10 +415,10 @@ namespace Prototipo {
 
 				 oThreadUDP_ATC_IXL->Start();
 
-				 EventQueue ^EventQIXL = gcnew EventQueue();
+				 EventQueue<StateCDB^> ^EventQIXL = gcnew EventQueue<StateCDB^>();
 				 EventQIXL->Subscribe(manaStateIXL);
 				 ////
-				 EventQueue ^visualQIXL = gcnew EventQueue();
+				 EventQueue<StateCDB^>  ^visualQIXL = gcnew EventQueue<StateCDB^>();
 				 visualQIXL->Subscribe(manaStateIXL);
 				 stif = gcnew FormStatoLineaIXL(visualQIXL);
 				 stif->Visible=true;
@@ -427,23 +427,20 @@ namespace Prototipo {
 				 /////
 
 				 ////
-				 EventQueue ^visualQATC = gcnew EventQueue();
+				 EventQueue<StateCDB^>  ^visualQATC = gcnew EventQueue<StateCDB^> ();
 				 visualQATC->Subscribe(manaStateATC);
 				 stATC = gcnew FormStatoLineaATC(visualQATC);
 				 stATC->Visible=true;
 				 Thread ^	 oThreadformStatoATC  = gcnew Thread( gcnew ThreadStart(stATC,&FormStatoLineaATC::aggiorna));
 				 oThreadformStatoATC->Start();
 				 /////
-				 EventQueue ^EventQATC = gcnew EventQueue();
+				 EventQueue<StateCDB^>  ^EventQATC = gcnew EventQueue<StateCDB^> ();
 				 EventQATC->Subscribe(manaStateATC);
 
-				 EventQueue ^EventQATO = gcnew EventQueue();
+				 EventQueue<physicalTrain^>  ^EventQATO = gcnew EventQueue<physicalTrain^>();
 
 				 EventQATO->Subscribe(manaStateATO);
-				 List<EventQueue^>^listqueue = gcnew List<EventQueue^>();
-				 listqueue->Add(EventQIXL);
-				 listqueue->Add(EventQATC);
-				 listqueue->Add(EventQATO);
+				
 
 
 				/* ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
@@ -451,7 +448,7 @@ namespace Prototipo {
 				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
 				 oThreadSchedule->Start();*/
 
-				  ThScheduleSortedList =gcnew ThreadSchedulerSortedList(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
+				  ThScheduleSortedList =gcnew ThreadSchedulerSortedList(EventQIXL,EventQATC,EventQATO,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
 
 				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThScheduleSortedList,&ThreadSchedulerSortedList::Schedule));
 				 oThreadSchedule->Start();

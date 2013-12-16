@@ -28,9 +28,9 @@ namespace Prototipo {
 		PaintCallback^ myDelegatePaint;
 		TabellaStazioni ^tabItinerari;
 		Dictionary<String^,SingleTrainInfoForm^> ^dictionaryTrainsInfoForm;
-		EventQueue ^EQueueCambioOrario;
+		EventQueue<List<Fermata^>^> ^EQueueCambioOrario;
 	public:
-		ListTrainView(TabellaStazioni ^ti,EventQueue ^ECambioOrario)
+		ListTrainView(TabellaStazioni ^ti,EventQueue<List<Fermata^>^> ^ECambioOrario)
 		{
 			myDelegateNewTrain = gcnew GoCallback( this, &ListTrainView::setNewTrain );
 			tabItinerari=ti;

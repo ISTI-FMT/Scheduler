@@ -25,7 +25,7 @@ namespace Prototipo {
 	ref class FormStatoLineaATC : public System::Windows::Forms::Form
 	{
 		Dictionary<int,Button^> ^listbuttonCDB;
-		EventQueue ^eventiATC;
+		EventQueue<StateCDB^> ^eventiATC;
 		System::Windows::Forms::ToolTip ^ToolTip1;
 		tableLayoutPanelAllCDB ^tableCDB;
 
@@ -33,7 +33,7 @@ namespace Prototipo {
 		GoCallback^ myDelegate;
 		bool _shouldStop;
 	public:
-		FormStatoLineaATC(EventQueue ^ev)
+		FormStatoLineaATC(EventQueue<StateCDB^> ^ev)
 		{
 			InitializeComponent();
 			eventiATC=ev;

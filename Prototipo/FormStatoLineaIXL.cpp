@@ -31,10 +31,10 @@ void Prototipo::FormStatoLineaIXL::genera(){
 void Prototipo::FormStatoLineaIXL::aggiorna(){
 
 	while(!_shouldStop){
-		if(eventiItinerario==nullptr){
+		if(eventiCDB==nullptr){
 		Thread::Sleep(100);
 		}else{
-			Event ^even = eventiItinerario->getEvent();
+			Event<StateCDB^> ^even = eventiCDB->getEvent();
 			if(even!=nullptr){
 			/*	StateItinerario ^st =	even->getEventStateItinerario();
 				if(st!=nullptr){
@@ -43,7 +43,7 @@ void Prototipo::FormStatoLineaIXL::aggiorna(){
 
 					findandset(id,stato);
 				}else{*/
-					StateCDB ^stCDB =	even->getEventStateCDB();
+					StateCDB ^stCDB =	even->getEvent();
 					if(stCDB!=nullptr){
 						int id =	stCDB->getNID_CDB();
 						int stato =	stCDB->getQ_STATOCDB();

@@ -20,9 +20,9 @@ void Prototipo::FormStatoLineaATC::aggiorna(){
 		if(eventiATC==nullptr){
 			Thread::Sleep(100);
 		}else{
-			Event ^even = eventiATC->getEvent();
+			Event<StateCDB^> ^even = eventiATC->getEvent();
 			if(even!=nullptr){
-				StateCDB ^stCDB =	even->getEventStateCDB();
+				StateCDB ^stCDB =	even->getEvent();
 				if(stCDB!=nullptr){
 					int id =	stCDB->getNID_CDB();
 					int stato =	stCDB->getQ_STATOCDB();

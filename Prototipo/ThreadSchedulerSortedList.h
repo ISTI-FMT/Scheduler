@@ -4,7 +4,6 @@
 #include "manager\\ManagerStatoLineaIXL.h"
 #include "ConfVelocita\\ConfigurazioneVelocita.h"
 #using <System.dll>
-#include "Event.h"
 #include "EventQueue.h"
 #include "tabellaOrario\\TabellaOrario.h"
 #include "Itinerari\\TabellaStazioni.h"
@@ -30,10 +29,10 @@ using namespace System::Collections::Generic;
 
 ref class ThreadSchedulerSortedList 
 {
-	EventQueue ^EQueueIXL;
-	EventQueue ^EQueueATO;
-	EventQueue ^EQueueATC;
-	EventQueue ^EQueueCambioOrario;
+	EventQueue<StateCDB^> ^EQueueIXL;
+	EventQueue<physicalTrain^> ^EQueueATO;
+	EventQueue<StateCDB^> ^EQueueATC;
+	EventQueue<List<Fermata^>^> ^EQueueCambioOrario;
 	TabellaOrario ^tabOrario;
 	TabellaStazioni ^tabItinerari;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
@@ -51,7 +50,7 @@ public:
 	ThreadSchedulerSortedList(void);
 
 
-	ThreadSchedulerSortedList(List<EventQueue^> ^E , TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
+	ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E3, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
 
 	void Schedule();
 	void Init();

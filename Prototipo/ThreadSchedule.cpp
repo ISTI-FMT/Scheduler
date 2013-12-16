@@ -16,7 +16,7 @@ using namespace System::Xml;
 
 #define TRACE
 
-
+/*
 
 ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
 {
@@ -70,7 +70,7 @@ void ThreadSchedule::SimpleSchedule(){
 			}
 			*/
 
-
+/*
 			switch (statoInterno)
 			{
 			case StateSimpleSchedule::PresentazioneTreno:
@@ -93,7 +93,7 @@ void ThreadSchedule::SimpleSchedule(){
 
 						oThread->Start();
 						listThreadTrain->Add(ThreadP);*/
-					}
+/*					}
 					break;
 				}
 		
@@ -120,7 +120,7 @@ void ThreadSchedule::RequestStop()
 		{
 			var->RequestStop();
 		}*/
-    }
+/*    }
 
 
 
@@ -146,4 +146,4 @@ bool ThreadSchedule::controllacdb(List<int>^lcdb){
 		}
 	}
 	return res;
-}
+}*/

@@ -3,7 +3,7 @@
 ManagerMsgATO::ManagerMsgATO(void)
 {
 	tabellaTrain = gcnew Dictionary<int, physicalTrain^>;
-	observers = gcnew List<IObserver<Event^>^>();
+	observers = gcnew List<IObserver<Event<physicalTrain^>^>^>();
 }
 
 void ManagerMsgATO::addCheckAndSet(List<physicalTrain^> ^listatrain, String ^source)
@@ -14,9 +14,12 @@ void ManagerMsgATO::addCheckAndSet(List<physicalTrain^> ^listatrain, String ^sou
 		{
 			tabellaTrain->Add(train->getEngineNumber(), train);
 			// segnala l'evento!!!
-			for each (IObserver<Event^>^ observer in observers)
+			for each (IObserver<Event<physicalTrain^>^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(train->Clone(),source));
+			
+				 Event<physicalTrain^> ^evento = gcnew Event<physicalTrain^>(train->Clone());
+				 
+				observer->OnNext(evento);
 			}
 
 
@@ -28,9 +31,11 @@ void ManagerMsgATO::addCheckAndSet(List<physicalTrain^> ^listatrain, String ^sou
 			{
 
 				// segnala evento!!!
-				for each (IObserver<Event^>^ observer in observers)
+				for each (IObserver<Event<physicalTrain^>^>^ observer in observers)
 				{
-					observer->OnNext(gcnew Event(train->Clone(),source));
+					Event<physicalTrain^> ^evento = gcnew Event<physicalTrain^>(train->Clone());
+				
+					observer->OnNext(evento);
 				}
 			}
 
@@ -45,9 +50,11 @@ void ManagerMsgATO::addCheckAndSet(physicalTrain ^onetrain, String ^source)
 		{
 			tabellaTrain->Add(onetrain->getEngineNumber(), onetrain);
 			// segnala l'evento!!!
-			for each (IObserver<Event^>^ observer in observers)
+			for each (IObserver<Event<physicalTrain^>^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(onetrain->Clone(),source));
+				Event<physicalTrain^> ^evento = gcnew Event<physicalTrain^>(onetrain->Clone());
+					observer->OnNext(evento);
+			
 			}
 
 
@@ -59,9 +66,10 @@ void ManagerMsgATO::addCheckAndSet(physicalTrain ^onetrain, String ^source)
 			{
 
 				// segnala evento!!!
-				for each (IObserver<Event^>^ observer in observers)
+				for each (IObserver<Event<physicalTrain^>^>^ observer in observers)
 				{
-					observer->OnNext(gcnew Event(onetrain->Clone(),source));
+					Event<physicalTrain^> ^evento = gcnew Event<physicalTrain^>(onetrain->Clone());
+					observer->OnNext(evento);
 				}
 			}
 
@@ -69,9 +77,9 @@ void ManagerMsgATO::addCheckAndSet(physicalTrain ^onetrain, String ^source)
 	
 }
 
-IDisposable ^ManagerMsgATO::Subscribe(IObserver<Event^> ^observer){
+IDisposable ^ManagerMsgATO::Subscribe(IObserver<Event<physicalTrain^>^> ^observer){
 	if (! observers->Contains(observer)) 
 		observers->Add(observer);
-	return gcnew Unsubscriber(observers, observer);
+	return gcnew Unsubscriber<Event<physicalTrain^>^>(observers, observer);
 
 }

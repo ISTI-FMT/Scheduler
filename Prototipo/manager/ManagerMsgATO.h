@@ -11,10 +11,10 @@ using namespace System::Collections::Generic;
 /*utilizzo questa classe per generare l'evento scaturito da un nuovo messaggio di presentazione dell'ATO*/
 
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni di presentazione dei ATO
-ref class ManagerMsgATO : public IObservable<Event^>
+ref class ManagerMsgATO : public IObservable<Event<physicalTrain^>^>
 {
 	Dictionary<int, physicalTrain^> ^tabellaTrain;
-	 List<IObserver<Event^>^> ^observers;
+	 List<IObserver<Event<physicalTrain^>^>^> ^observers;
 public:
 	ManagerMsgATO(void);
 	void addCheckAndSet(List<physicalTrain^> ^listatrain, String ^source);
@@ -22,7 +22,7 @@ public:
 
 	
 
-	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
+	virtual IDisposable ^Subscribe(IObserver<Event<physicalTrain^>^> ^observer);
    
 
 

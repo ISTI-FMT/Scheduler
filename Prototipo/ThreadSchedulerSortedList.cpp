@@ -20,13 +20,13 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(void)
 }
 
 
-ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
+ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E2, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
 {
-	if(E->Count>2){
-		EQueueIXL=E[0];
-		EQueueATC=E[1];
-		EQueueATO=E[2];
-	}
+
+		EQueueIXL=E0;
+		EQueueATC=E1;
+		EQueueATO=E2;
+	
 	mapTrenoLogFisico=mapTreno;
 	tabOrario=tabo;
 	tabItinerari=tabi;
@@ -36,7 +36,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(List<EventQueue^> ^E, Tabel
 	managerIXL=manIXL;
 	ipixl="127.0.0.1";
 	RaccoltaTrenoRequestCDB  = gcnew Dictionary<Train^,List<int>^> ();
-	EQueueCambioOrario = gcnew EventQueue();
+	EQueueCambioOrario = gcnew EventQueue<List<Fermata^>^>();
 	_shouldStop=false;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	timeRicIXL;
@@ -134,13 +134,14 @@ void ThreadSchedulerSortedList::Schedule(){
 					//se esiste un itinerario di entrata
 					if(initEntrata>0){
 						int resultprecE = tabItinerari->get_CdbPrecItinerario(idstazione,initEntrata);
-						Event ^eventATC = EQueueATC->getEvent();
+						Event<StateCDB^> ^eventATC = EQueueATC->getEvent();
 
 						if(eventATC!=nullptr){
 							int idTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_OPERATIONAL();
 						int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_ENGINE();
 								//se il treno si trova sul cdb giusto
-							if(((eventATC->getEventStateCDB()->getNID_CDB()==resultprecE) & (eventATC->getEventStateCDB()->getNID_OPERATIONAL()==Train->getTRN() | eventATC->getEventStateCDB()->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())) |((
+
+							if(((eventATC->getEvent()->getNID_CDB()==resultprecE) & (eventATC->getEvent()->getNID_OPERATIONAL()==Train->getTRN() | eventATC->getEvent()->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())) |((
 								idTRenoCDBPrecIT==Train->getTRN() )|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())){
 									//se l'itinerario è libero
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
@@ -200,12 +201,12 @@ void ThreadSchedulerSortedList::Schedule(){
 	}
 }
 void  ThreadSchedulerSortedList::ControllaEventiCambioOrario(){
-	Event ^eventoOrario= EQueueCambioOrario->getEvent();
+	Event<List<Fermata^>^> ^eventoOrario= EQueueCambioOrario->getEvent();
 	if(eventoOrario!=nullptr){
 
 		Console::WriteLine("ciao");
-		Train ^train = eventoOrario->getTrain();
-		List<Fermata^> ^nuoviorari = eventoOrario->getEventOrari();
+		Train ^train = eventoOrario->getEventAttribute();
+		List<Fermata^> ^nuoviorari = eventoOrario->getEvent();
 		
 		
 		//invia messaggio all'ato
@@ -227,10 +228,10 @@ void  ThreadSchedulerSortedList::ControllaEventiCambioOrario(){
 }
 
 void ThreadSchedulerSortedList::ControllaMSG_IXL(){
-	Event ^eventoIXL;
+	Event<StateCDB^> ^eventoIXL;
 	eventoIXL = EQueueIXL->getEvent();
 	if(eventoIXL!=nullptr){
-		StateCDB ^eventocambiostatocdb = eventoIXL->getEventStateCDB();
+		StateCDB ^eventocambiostatocdb = eventoIXL->getEvent();
 		if(eventocambiostatocdb->getQ_STATOCDB()==typeStateCDB::cdbImpegnato ){
 			List<Train^> ^elemetidaeliminare = gcnew List<Train^>();
 			for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
@@ -254,12 +255,12 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 	DateTime time=DateTime::Now;
-	Event ^eventoATO;
+	
 	StateObject ^inviato;
 	// aspetta che si presenti un treno
-	eventoATO = EQueueATO->getEvent();
+	Event<physicalTrain^> ^eventoATO = EQueueATO->getEvent();
 	if(eventoATO!=nullptr){
-		physicalTrain ^phisical = eventoATO->getEventPresentTrain();
+		physicalTrain ^phisical = eventoATO->getEvent();
 		int enginenumber = phisical->getEngineNumber();
 		Console::WriteLine("Si è presentato il treno {0}",enginenumber);
 

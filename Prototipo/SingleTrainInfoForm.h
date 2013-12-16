@@ -9,7 +9,7 @@ using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
 
-ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<SingleTrainInfoForm^>, IObservable<Event^>
+ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<SingleTrainInfoForm^>, IObservable<Event<List<Fermata^>^>^>
 {
 	Train ^train;
 	
@@ -26,7 +26,7 @@ ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<
 	System::Windows::Forms::ErrorProvider^ errorProvider;
 	ListTrainModel ^model;
 	TabellaStazioni ^tabItineari;
-	List<IObserver<Event^>^> ^observers;
+	List<IObserver<Event<List<Fermata^>^>^>^> ^observers;
 public:
 	SingleTrainInfoForm(Train ^t,  ListTrainModel ^m,TabellaStazioni ^ti);
 	void init();
@@ -39,7 +39,7 @@ public:
 	Void ButtonClose_Click(System::Object^  sender, System::EventArgs^  e);
 	Void ButtonApply_Click(System::Object^  sender, System::EventArgs^  e);
 	
-	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
+	virtual IDisposable ^Subscribe(IObserver<Event<List<Fermata^>^>^> ^observer);
 
 	void setitinerary();
 	void UpdateInfo();

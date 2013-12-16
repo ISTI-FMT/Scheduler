@@ -28,23 +28,23 @@ using namespace System::Threading::Tasks;
 	 ref class FormStatoLineaIXL : public System::Windows::Forms::Form
 	{
 		TabellaStazioni ^tabItinerari;
-		EventQueue ^eventiItinerario;
+		EventQueue<StateCDB^> ^eventiCDB;
 		//Dictionary<int,Button^> ^listbutton;
 		Dictionary<int,Button^> ^listbuttonCDB;
 		bool _shouldStop;
 	public:
 
-		FormStatoLineaIXL(EventQueue ^ev)
+		FormStatoLineaIXL(EventQueue<StateCDB^> ^ev)
 		{
-			eventiItinerario=ev;
+			eventiCDB=ev;
 		//	listbutton= gcnew Dictionary<int,Button^> ();
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			
 			this->ControlBox=false;
 			InitializeComponent();
 			_shouldStop=false;
-			tabItinerari = gcnew TabellaStazioni();
-			tabItinerari->leggifileconfigurazioneItinerari();
+			//tabItinerari = gcnew TabellaStazioni();
+			//tabItinerari->leggifileconfigurazioneItinerari();
 			genera();
 			//aggiorna();
 			//

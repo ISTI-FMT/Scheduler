@@ -4,7 +4,7 @@ ManagerStatoLineaIXL::ManagerStatoLineaIXL(void)
 {
 	tabellaCDB = gcnew Dictionary<int, StateCDB^>;
 	tabellaItin = gcnew Dictionary<int, StateItinerario^>;
-	observers = gcnew List<IObserver<Event^>^>();
+	observers = gcnew List<IObserver<Event<StateCDB^>^>^>();
 }
 
 void ManagerStatoLineaIXL::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^source)
@@ -47,9 +47,12 @@ void ManagerStatoLineaIXL::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 	{
 		tabellaCDB->Add(oneCDB->getNID_CDB(), oneCDB);
 		// segnala l'evento!!!
-		for each (IObserver<Event^>^ observer in observers)
+		for each (IObserver<Event<StateCDB^>^>^ observer in observers)
 		{
-			observer->OnNext(gcnew Event(oneCDB->Clone(),source));
+			Event<StateCDB^> ^evento = gcnew Event<StateCDB^>(oneCDB->Clone());
+
+			observer->OnNext(evento);
+
 		}
 
 
@@ -61,9 +64,11 @@ void ManagerStatoLineaIXL::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 		{
 
 			// segnala evento!!!
-			for each (IObserver<Event^>^ observer in observers)
+			for each (IObserver<Event<StateCDB^>^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(oneCDB->Clone(),source));
+				Event<StateCDB^> ^evento = gcnew Event<StateCDB^>(oneCDB->Clone());
+
+				observer->OnNext(evento);
 			}
 		}
 
@@ -71,10 +76,11 @@ void ManagerStatoLineaIXL::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 
 }
 
-IDisposable ^ManagerStatoLineaIXL::Subscribe(IObserver<Event^> ^observer){
+IDisposable ^ManagerStatoLineaIXL::Subscribe(IObserver<Event<StateCDB^>^>^ observer){
 	if (! observers->Contains(observer)) 
 		observers->Add(observer);
-	return gcnew Unsubscriber(observers, observer);
+	Unsubscriber<Event<StateCDB^>^> ^unsub = gcnew Unsubscriber<Event<StateCDB^>^>(observers, observer);
+	return unsub;
 
 }
 
@@ -86,9 +92,12 @@ void ManagerStatoLineaIXL::addCheckAndSet(List<StateItinerario^> ^listaItin, Str
 		{
 			tabellaItin->Add(itin->getNID_ITIN(), itin);
 			// segnala l'evento!!!
-			for each (IObserver<Event^>^ observer in observers)
+			for each (IObserver<Event<StateItinerario^>^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(itin->Clone(),source));
+				Event<StateItinerario^> ^evento = gcnew Event<StateItinerario^>(itin->Clone());
+
+				observer->OnNext(evento);
+
 			}
 		}
 		else 
@@ -98,9 +107,10 @@ void ManagerStatoLineaIXL::addCheckAndSet(List<StateItinerario^> ^listaItin, Str
 			{
 
 				// segnala evento!!!
-				for each (IObserver<Event^>^ observer in observers)
+				for each (IObserver<Event<StateItinerario^>^>^ observer in observers)
 				{
-					observer->OnNext(gcnew Event(itin->Clone(),source));
+					Event<StateItinerario^> ^evento = gcnew Event<StateItinerario^>(itin->Clone());
+					observer->OnNext(evento);
 				}
 			}
 
@@ -115,9 +125,12 @@ void ManagerStatoLineaIXL::addCheckAndSet(StateItinerario ^oneItinerario, String
 	{
 		tabellaItin->Add(oneItinerario->getNID_ITIN(), oneItinerario);
 		// segnala l'evento!!!
-		for each (IObserver<Event^>^ observer in observers)
+		for each (IObserver<Event<StateItinerario^>^>^ observer in observers)
 		{
-			observer->OnNext(gcnew Event(oneItinerario->Clone(),source));
+			Event<StateItinerario^> ^evento = gcnew Event<StateItinerario^>(oneItinerario->Clone());
+
+			observer->OnNext(evento);
+
 		}
 	}
 	else 
@@ -125,9 +138,11 @@ void ManagerStatoLineaIXL::addCheckAndSet(StateItinerario ^oneItinerario, String
 		bool mod = tabellaItin[oneItinerario->getNID_ITIN()]->Update(oneItinerario);
 		if(mod)
 		{
-			for each (IObserver<Event^>^ observer in observers)
+			for each (IObserver<Event<StateItinerario^>^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(oneItinerario->Clone(),source));
+
+
+				observer->OnNext(gcnew Event<StateItinerario^>(oneItinerario->Clone()));
 			}
 
 			// segnala evento!!!
@@ -149,11 +164,11 @@ StateItinerario ^ManagerStatoLineaIXL::getItinerario(int iditin){
 
 StateCDB^ ManagerStatoLineaIXL::StatoCDB(int idcdb){
 	if(tabellaCDB->ContainsKey(idcdb)){
-		 
+
 		return	tabellaCDB[idcdb];
 
 	}
 	return nullptr;
-	 
+
 
 }

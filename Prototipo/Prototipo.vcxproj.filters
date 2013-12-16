@@ -198,9 +198,6 @@
     <ClInclude Include="ThreadSchedule.h">
       <Filter>File di intestazione\threads</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>File di intestazione\Event</Filter>
-    </ClInclude>
     <ClInclude Include="EventQueue.h">
       <Filter>File di intestazione\Event</Filter>
     </ClInclude>
@@ -233,9 +230,6 @@
     </ClInclude>
     <ClInclude Include="messaggi\pacchettoPositionDataATC.h">
       <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\ThreadSchedulerTrain.h">
-      <Filter>File di intestazione\threads</Filter>
     </ClInclude>
     <ClInclude Include="ParalellMethod.h">
       <Filter>File di intestazione</Filter>
@@ -284,6 +278,12 @@
     </ClInclude>
     <ClInclude Include="Unsubscriber.h">
       <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="IEvent.h">
+      <Filter>File di intestazione\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>File di intestazione\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -416,9 +416,6 @@
     <ClCompile Include="ThreadSchedule.cpp">
       <Filter>File di origine\threads</Filter>
     </ClCompile>
-    <ClCompile Include="Event.cpp">
-      <Filter>File di origine\Event</Filter>
-    </ClCompile>
     <ClCompile Include="EventQueue.cpp">
       <Filter>File di origine\Event</Filter>
     </ClCompile>
@@ -442,9 +439,6 @@
     </ClCompile>
     <ClCompile Include="messaggi\pacchettoPositionDataATC.cpp">
       <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="threads\ThreadSchedulerTrain.cpp">
-      <Filter>File di origine\threads</Filter>
     </ClCompile>
     <ClCompile Include="form\FormStatoLineaATC.cpp">
       <Filter>File di origine\form</Filter>
