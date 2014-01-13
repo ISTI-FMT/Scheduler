@@ -1,9 +1,9 @@
 #pragma once
 #using <System.dll>
 #include "..\\messaggi\\StateCDB.h"
-#include "..\\phisicalTrain.h"
+#include "..\\physicalTrain.h"
 #include "..\\Event.h"
-
+#include "..\\Unsubscriber.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -11,38 +11,20 @@ using namespace System::Collections::Generic;
 /*utilizzo questa classe per generare l'evento scaturito da un nuovo messaggio di presentazione dell'ATO*/
 
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni di presentazione dei ATO
-ref class ManagerMsgATO : public IObservable<Event^>
+ref class ManagerMsgATO : public IObservable<Event<physicalTrain^>^>
 {
-	Dictionary<int, phisicalTrain^> ^tabellaTrain;
-	 List<IObserver<Event^>^> ^observers;
+	Dictionary<int, physicalTrain^> ^tabellaTrain;
+	 List<IObserver<Event<physicalTrain^>^>^> ^observers;
 public:
 	ManagerMsgATO(void);
-	void addCheckAndSet(List<phisicalTrain^> ^listatrain, String ^source);
-	void addCheckAndSet(phisicalTrain ^onetrain, String ^source);
+	void addCheckAndSet(List<physicalTrain^> ^listatrain, String ^source);
+	void addCheckAndSet(physicalTrain ^onetrain, String ^source);
 
 	
 
-	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
+	virtual IDisposable ^Subscribe(IObserver<Event<physicalTrain^>^> ^observer);
    
 
 
 };
 
-ref class Unsubus : public  IDisposable
-{
-    List<IObserver<Event^>^> ^_observers;
-    IObserver<Event^> ^_observer;
-
-public:
-	Unsubus(List<IObserver<Event^>^> ^observers, IObserver<Event^> ^observer)
-   {
-      _observers = observers;
-      _observer = observer;
-   };
-private:
-	 ~Unsubus(){
-      if ((_observer != nullptr)){
-		  _observers->Remove(_observer);
-	  }
-   };
-};

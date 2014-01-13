@@ -6,7 +6,7 @@ rivevuto dall'IXL*/
 
 
 //questa classe rappresenta lo stato di un itinerario
-ref class StateItinerario
+public ref class StateItinerario
 {
 	unsigned int NID_ITIN;
 	int Q_STATOITIN ;

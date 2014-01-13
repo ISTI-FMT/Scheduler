@@ -69,3 +69,25 @@ ostream& operator<<(ostream &out, const Fermata &stop)
 }
 */
 
+
+ 	void Fermata::setOrarioArrivo(DateTime arr){
+		DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+
+			TimeSpan sinceMidnighta = arr - orarioSupporto3;
+			
+			double	darrivo = sinceMidnighta.TotalSeconds/30;
+			
+	setOrarioArrivo(darrivo);
+
+	}
+	void Fermata::setOrarioPartenza(DateTime orario){
+				DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+
+			TimeSpan sinceMidnighta = orario - orarioSupporto3;
+			
+			double	dpart= sinceMidnighta.TotalSeconds/30;
+			
+	setOrarioPartenza(dpart);
+
+
+	}

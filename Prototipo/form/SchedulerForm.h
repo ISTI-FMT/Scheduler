@@ -12,12 +12,13 @@
 #include "..\\mapTrenoFisicoLogico.h"
 #include "..\\messaggi\\Messaggi.h"
 #include "..\\logger\\Logger.h"
-#include "..\\Itinerari\\tabellaItinerari.h"
-#include "..\\Itinerari\\tabellaFermate.h"
+#include "..\\Itinerari\\TabellaStazioni.h"
+
 #include "..\\manager\\ManagerStatoLineaATC.h"
 #include "..\\manager\\ManagerStatoLineaIXL.h"
 #include "..\\manager\\ManagerMsgATO.h"
 #include "..\\ThreadSchedule.h"
+#include "..\\ThreadSchedulerSortedList.h"
 #include "..\\EventQueue.h"
 #include "..\\wdogcontrol.h"
 #include "..\\FormStatoLineaIXL.h"
@@ -85,13 +86,13 @@ namespace Prototipo {
 		System::ComponentModel::Container ^components;
 		TabellaOrario ^tabellaOrario;
 		phisicalTrainList ^listaTreni;
-		tabellaItinerari ^tabItinerari;
-		tabellaFermate ^tabfermate;
+		TabellaStazioni ^tabItinerari;
 		FormStatoLineaATC ^stATC;
 		FormStatoLineaIXL ^stif ;
 		ThreadListenerATC_IXL ^ThLATCIXL;
 		ThreadPresentazione ^ThreadP;
-		ThreadSchedule ^ThSchedule;
+		//ThreadSchedule ^ThSchedule;
+		ThreadSchedulerSortedList ^ThScheduleSortedList;
 		wdogcontrol ^wdogs;
 		ConfigurazioneVelocita ^confVelocita;
 	private: System::Windows::Forms::Button^  button2;
@@ -181,7 +182,7 @@ namespace Prototipo {
 			 }
 			 void TCP_Management()
 			 {
-				 phisicalTrain ^Treno = listaTreni->getPrimo();
+				 physicalTrain ^Treno = listaTreni->getPrimo();
 
 				 try
 				 {
@@ -325,7 +326,8 @@ namespace Prototipo {
 				 ThLATCIXL->RequestStop();
 				 ThreadP->RequestStop();
 
-				 ThSchedule->RequestStop();
+				// ThSchedule->RequestStop();
+				 ThScheduleSortedList->RequestStop();
 				 Application::Exit();
 			 }
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -356,13 +358,13 @@ namespace Prototipo {
 			 }
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 if(tabfermate->getTabFermate()->Count<1){
+				 if(tabItinerari->getMap()->Count<1){
 					 MessageBox::Show("Tabella Conf Fermate Vuota");
 #ifdef TRACE
 					 Logger::Info("SchedulerForm"," Tabella Conf Fermate Vuota");  
 #endif // TRACE
 				 }else{
-					 FormVisualizzeConfFermate ^formCF = gcnew FormVisualizzeConfFermate(tabfermate);
+					 FormVisualizzeConfFermate ^formCF = gcnew FormVisualizzeConfFermate(tabItinerari);
 
 					 formCF->Visible=true;
 
@@ -374,14 +376,15 @@ namespace Prototipo {
 				 //
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //
-				 tabItinerari = gcnew tabellaItinerari();
+				 tabItinerari = gcnew TabellaStazioni();
 				 tabItinerari->leggifileconfigurazioneItinerari();
+				 tabItinerari->leggifileconfigurazioneFermate();
 
 				 tabellaOrario  = gcnew TabellaOrario(tabItinerari);
 				 tabellaOrario->leggiTabellaOrario();
 
-				 tabfermate=gcnew tabellaFermate();
-				 tabfermate->leggifileconfigurazioneFermate();
+				// tabfermate=gcnew tabellaFermate();
+				// tabfermate->leggifileconfigurazioneFermate();
 
 				 mapTrenoFisicoLogico ^mapsTrenoFisicoLogico = gcnew mapTrenoFisicoLogico();
 
@@ -412,10 +415,10 @@ namespace Prototipo {
 
 				 oThreadUDP_ATC_IXL->Start();
 
-				 EventQueue ^EventQIXL = gcnew EventQueue();
+				 EventQueue<StateCDB^> ^EventQIXL = gcnew EventQueue<StateCDB^>();
 				 EventQIXL->Subscribe(manaStateIXL);
 				 ////
-				 EventQueue ^visualQIXL = gcnew EventQueue();
+				 EventQueue<StateCDB^>  ^visualQIXL = gcnew EventQueue<StateCDB^>();
 				 visualQIXL->Subscribe(manaStateIXL);
 				 stif = gcnew FormStatoLineaIXL(visualQIXL);
 				 stif->Visible=true;
@@ -424,28 +427,30 @@ namespace Prototipo {
 				 /////
 
 				 ////
-				 EventQueue ^visualQATC = gcnew EventQueue();
+				 EventQueue<StateCDB^>  ^visualQATC = gcnew EventQueue<StateCDB^> ();
 				 visualQATC->Subscribe(manaStateATC);
 				 stATC = gcnew FormStatoLineaATC(visualQATC);
 				 stATC->Visible=true;
 				 Thread ^	 oThreadformStatoATC  = gcnew Thread( gcnew ThreadStart(stATC,&FormStatoLineaATC::aggiorna));
 				 oThreadformStatoATC->Start();
 				 /////
-				 EventQueue ^EventQATC = gcnew EventQueue();
+				 EventQueue<StateCDB^>  ^EventQATC = gcnew EventQueue<StateCDB^> ();
 				 EventQATC->Subscribe(manaStateATC);
 
-				 EventQueue ^EventQATO = gcnew EventQueue();
+				 EventQueue<physicalTrain^>  ^EventQATO = gcnew EventQueue<physicalTrain^>();
 
 				 EventQATO->Subscribe(manaStateATO);
-				 List<EventQueue^>^listqueue = gcnew List<EventQueue^>();
-				 listqueue->Add(EventQIXL);
-				 listqueue->Add(EventQATC);
-				 listqueue->Add(EventQATO);
+				
 
 
-				 ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
+				/* ThSchedule =gcnew ThreadSchedule(listqueue,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
 
 				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
+				 oThreadSchedule->Start();*/
+
+				  ThScheduleSortedList =gcnew ThreadSchedulerSortedList(EventQIXL,EventQATC,EventQATO,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
+
+				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThScheduleSortedList,&ThreadSchedulerSortedList::Schedule));
 				 oThreadSchedule->Start();
 
 			 }

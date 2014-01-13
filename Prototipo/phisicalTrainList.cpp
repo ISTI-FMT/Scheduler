@@ -5,19 +5,19 @@ using namespace System::Collections::Generic;
 
 phisicalTrainList::phisicalTrainList(void)
 {
-	treni = gcnew ConcurrentDictionary<int,phisicalTrain^>();
+	treni = gcnew ConcurrentDictionary<int,physicalTrain^>();
 }
 
 //metodo momentaneo
-phisicalTrain^ phisicalTrainList::getPrimo(){
+physicalTrain^ phisicalTrainList::getPrimo(){
 	
-	for each (phisicalTrain ^var in treni->Values)
+	for each (physicalTrain ^var in treni->Values)
 		{
 			return var;
 		}
 	
 		
-	/*	for each (KeyValuePair<int,phisicalTrain^> ^var in treni)
+	/*	for each (KeyValuePair<int,physicalTrain^> ^var in treni)
 		{
 			return var->Value;
 		}*/

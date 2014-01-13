@@ -21,7 +21,7 @@ Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di u
 Un oggetto di tipo fermata rappresenta una fermata di un treno
 */
 // Commento inutile
-ref class Fermata
+public ref class Fermata
 {
 	int idStazione;
 	String ^nameStazione;
@@ -39,6 +39,21 @@ ref class Fermata
 	//ostream& operator<<(ostream &out, const Fermata &stop);
 public:
 	Fermata(void);
+	Fermata(int i, String ^n,double oa, double op,double tmpa,int bp,int lap,int idie,String ^nie,int idiu,String ^niu){
+		idStazione=i;
+		nameStazione=n;
+		orarioArrivo=oa;
+		orarioPartenza=op;
+		tempoMinimoAperturaPorte=tmpa;
+		binarioProgrammato=bp;
+		latoAperturaPorte=lap;
+
+		iditinerarioentrata=idie;
+		nameitinerarioentrata=nie;
+		iditinerariouscita=idiu;
+		nameitinerariouscita=niu;
+
+	}
 	// Funzioni per la manipolazione (set e get) dell'id della stazione
 	void setIdStazione(int id){idStazione = id;};
 	int getIdStazione(){return idStazione;};
@@ -72,6 +87,12 @@ public:
 	void setnameitinerarioUscita(String ^name){nameitinerariouscita = name;};
 	String^ getnameitinerarioUscita(){return nameitinerariouscita;};
 
+	void setOrarioArrivo(DateTime arr);
+	void setOrarioPartenza(DateTime orario);
+
+	Fermata ^Clone(){
+			return gcnew Fermata(idStazione,nameStazione,orarioArrivo,orarioPartenza,tempoMinimoAperturaPorte,binarioProgrammato,latoAperturaPorte,iditinerarioentrata,nameitinerarioentrata,iditinerariouscita,nameitinerariouscita);
+	}
 
 	virtual System::String^ ToString() override;
 };

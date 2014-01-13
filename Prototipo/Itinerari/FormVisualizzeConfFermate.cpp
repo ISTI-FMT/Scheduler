@@ -1,7 +1,7 @@
 #include "FormVisualizzeConfFermate.h"
 
 
-FormVisualizzeConfFermate::FormVisualizzeConfFermate(tabellaFermate ^tab )
+FormVisualizzeConfFermate::FormVisualizzeConfFermate(TabellaStazioni ^tab )
 {
 	tabella=tab;
 	Inizialize();
@@ -52,13 +52,14 @@ void FormVisualizzeConfFermate::Inizialize(){
 	dataGridView1->Columns[ 10]->Name = "CDB";
 
 
-	for each( KeyValuePair<String^ ,  List<binario^> ^> ^kvp in tabella->getTabFermate() )
+	for each( KeyValuePair<int ,  stazione ^> ^kvp in tabella->getMap() )
 	{
 
-		String ^po=kvp->Key+"\n\r";
+		String ^po=kvp->Value->get_NomeStazione()+"\n\r";
 		dataGridView1->Rows[riga]->Cells[0]->Value=po;
 
-		List<binario^> ^binari =kvp->Value;
+		
+		List<binario^> ^binari =kvp->Value->getBinari();
 
 		for each (binario^ ikvp in binari)
 		{	

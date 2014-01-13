@@ -4,9 +4,9 @@
 using namespace System;
 using namespace System::Collections::Generic;
 /*utilizzo questa classe per rappresentare le informazioni degli itinerari parsate dal file xml ConfigurazioneItinerari.xml*/
-
+enum typeItini  {Entrata =0, Uscita=1};
 //questa classe rappresenta un itinerario
-ref class Itinerario
+public ref class Itinerario
 {
 	int id;
 	String ^name;
@@ -19,10 +19,32 @@ ref class Itinerario
 	int nextCDB;
 	List<int> ^cdb;
 	int nextstation;
+	typeItini tipoitin;
 public:
-	Itinerario(void);
+	property String^ ShortName 
+	{
+		String^ get()
+		{
+			return name;
+		}
+	}
+	property String^ ShortDescName 
+	{
+		String^ get()
+		{
+			String ^dir="";
+			if(direzione=="sx"){
+				dir="<--";
+			}else{
+				dir="-->";
+			}
+			return name+dir;
+		}
+	}
+	Itinerario(typeItini t);
 	void setId(int i){id = i;}
 	int getId(){return id;}
+	typeItini getTipiItinerario(){return tipoitin;}
 	void set_nextstation(int i){nextstation = i;}
 	int^ get_nextstation(){return nextstation;}
 	void setName(String ^i){name = i;}
@@ -41,9 +63,9 @@ public:
 	int getPrevCDB(){return prevCDB;}
 	void setNextCDB(int p){nextCDB = p;}
 	int getNextCDB(){return nextCDB;}
-	
+
 	List<int>^ getLCDB(){return cdb;}
 
-		virtual System::String^ ToString() override;
+	virtual System::String^ ToString() override;
 };
 

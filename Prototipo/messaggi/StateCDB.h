@@ -7,7 +7,7 @@ enum  typeStateDeviatoio{deviatoioStatoIgnoto = 4, deviatoioNonPresente = 0, dev
 
 //questa classe rappresenta lo stato di un CDB
 
-ref class StateCDB
+public ref class StateCDB
 {
 	unsigned int NID_CDB ;
 	unsigned int Q_STATOCDB ;

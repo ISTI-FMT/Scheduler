@@ -1,6 +1,6 @@
 #pragma once
 #include "stazione.h"
-#include "tabellaItinerari.h"
+#include "TabellaStazioni.h"
 
 	using namespace System::Diagnostics;
 	using namespace System;
@@ -19,10 +19,10 @@ ref class FormVisualizzeConfItine : public Form
 {
 	// System::Windows::Forms::Form ^  form;
 	  System::Windows::Forms::DataGridView^  dataGridView1;
-	  tabellaItinerari ^tabella;
+	  TabellaStazioni ^tabella;
 	  void Form_Resize(System::Object^  sender, System::EventArgs^  e);
 public:
-	FormVisualizzeConfItine(tabellaItinerari ^tab);
+	FormVisualizzeConfItine(TabellaStazioni ^tab);
 	void Inizialize();
 
 };

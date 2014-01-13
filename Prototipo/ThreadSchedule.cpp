@@ -16,9 +16,9 @@ using namespace System::Xml;
 
 #define TRACE
 
+/*
 
-
-ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, tabellaItinerari ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
+ThreadSchedule::ThreadSchedule(List<EventQueue^> ^E, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
 {
 	if(E->Count>2){
 		EQueueIXL=E[0];
@@ -70,7 +70,7 @@ void ThreadSchedule::SimpleSchedule(){
 			}
 			*/
 
-
+/*
 			switch (statoInterno)
 			{
 			case StateSimpleSchedule::PresentazioneTreno:
@@ -80,7 +80,7 @@ void ThreadSchedule::SimpleSchedule(){
 					eventoATO = EQueueATO->getEvent();
 					if(eventoATO!=nullptr){
 						
-						phisicalTrain ^phisical = eventoATO->getEventPresentTrain();
+						physicalTrain ^phisical = eventoATO->getEventPresentTrain();
 						int enginenumber = phisical->getEngineNumber();
 						Console::WriteLine("Si è presentato il treno {0}",enginenumber);
 						//statoInterno=StateSimpleSchedule::ControlloTreno;
@@ -89,11 +89,11 @@ void ThreadSchedule::SimpleSchedule(){
 						EList->Add(EQueueATC);
 						ThreadSchedulerTrain ^ThreadP = gcnew ThreadSchedulerTrain(phisical,EList,tabOrario,tabItinerari,mapTrenoLogFisico,wdogs,	managerATC,managerIXL,confVelocita);
 						//Thread TCP che ascolta i messaggi provenienti dall'ATO
-						Thread ^oThread = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadSchedulerTrain::SimpleSchedule ) );
+						/*Thread ^oThread = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadSchedulerTrain::SimpleSchedule ) );
 
 						oThread->Start();
-						listThreadTrain->Add(ThreadP);
-					}
+						listThreadTrain->Add(ThreadP);*/
+/*					}
 					break;
 				}
 		
@@ -116,11 +116,11 @@ void ThreadSchedule::SimpleSchedule(){
 void ThreadSchedule::RequestStop()
     {
         _shouldStop = true;
-		for each (ThreadSchedulerTrain ^var in listThreadTrain)
+		/*for each (ThreadSchedulerTrain ^var in listThreadTrain)
 		{
 			var->RequestStop();
-		}
-    }
+		}*/
+/*    }
 
 
 
@@ -146,4 +146,4 @@ bool ThreadSchedule::controllacdb(List<int>^lcdb){
 		}
 	}
 	return res;
-}
+}*/

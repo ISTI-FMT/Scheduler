@@ -2,6 +2,7 @@
 #using <System.dll>
 #include "..\\messaggi\\StateCDB.h"
 #include "..\\Event.h"
+#include "..\\Unsubscriber.h"
 using namespace System;
 using namespace System::Collections::Generic;
 
@@ -9,13 +10,13 @@ using namespace System::Collections::Generic;
 filtra i messaggi inviando allo scheduler solo quelli che hanno subito una modifica*/
 
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni sullo stato della linea fornite da ATC
-ref class ManagerStatoLineaATC : public IObservable<Event^>
+ref class ManagerStatoLineaATC : public IObservable<Event<StateCDB^>^>
 {
 	//id della mappa è id del CDB
 	Dictionary<int, StateCDB^> ^tabellaCDB;
 	//id della mappa è il numero del treno
 	Dictionary<int,List<StateCDB^>^> ^tabellaTRenoListCDB;
-	 List<IObserver<Event^>^> ^observers;
+	List<IObserver<Event<StateCDB^>^>^> ^observers;
 public:
 	ManagerStatoLineaATC(void);
 	void addCheckAndSet(List<StateCDB^> ^listaCDB, String ^source);
@@ -23,27 +24,10 @@ public:
 	//void Notify(StateCDB ^oneCDB, String ^source);
 	StateCDB^ getCDB(int idcdb);
 
-	virtual IDisposable ^Subscribe(IObserver<Event^> ^observer);
+	virtual IDisposable ^Subscribe(IObserver<Event<StateCDB^>^> ^observer);
    
 
 
 };
 
-ref class Unsub : public  IDisposable
-{
-    List<IObserver<Event^>^> ^_observers;
-    IObserver<Event^> ^_observer;
 
-public:
-	Unsub(List<IObserver<Event^>^> ^observers, IObserver<Event^> ^observer)
-   {
-      _observers = observers;
-      _observer = observer;
-   };
-private:
-	 ~Unsub(){
-      if ((_observer != nullptr)){
-		  _observers->Remove(_observer);
-	  }
-   };
-};

@@ -1,18 +1,18 @@
-#include "phisicalTrain.h"
+#include "physicalTrain.h"
 
 
-phisicalTrain::phisicalTrain(void)
+physicalTrain::physicalTrain(void)
 {
 	engineNumber = 0;
 	ipAddress = "";
 	tcpPort = 0;
 }
 
-phisicalTrain::~phisicalTrain(void)
+physicalTrain::~physicalTrain(void)
 {
 }
 
-bool phisicalTrain::Update(phisicalTrain ^t){
+bool physicalTrain::Update(physicalTrain ^t){
 	bool ret = false;
 	if(engineNumber==t->getEngineNumber()){
 		if(t->getIpAddress()!=ipAddress){
@@ -27,14 +27,14 @@ bool phisicalTrain::Update(phisicalTrain ^t){
 	return ret;
 }
 
-phisicalTrain ^phisicalTrain::Clone(){
+physicalTrain ^physicalTrain::Clone(){
 
 
-	return gcnew phisicalTrain(engineNumber,ipAddress,tcpPort);
+	return gcnew physicalTrain(engineNumber,ipAddress,tcpPort);
 
 }
 
-System::String ^phisicalTrain::ToString() {
+System::String ^physicalTrain::ToString() {
 	System::String ^out="";
 	out += " EngineNumber: "+engineNumber+" ";
 	out += " ipAddress: "+ipAddress+" ";

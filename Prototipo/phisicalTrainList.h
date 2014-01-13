@@ -1,5 +1,5 @@
 #pragma once
-#include "phisicalTrain.h"
+#include "physicalTrain.h"
 
 using namespace System::Collections::Generic;
 using namespace System::Threading;
@@ -11,13 +11,13 @@ using namespace System::Collections::Concurrent;
 //rappresenta una lista di treni che si sono presentati
 ref class phisicalTrainList
 {
-	ConcurrentDictionary<int,phisicalTrain^> ^treni;
+	ConcurrentDictionary<int,physicalTrain^> ^treni;
 public:
 	phisicalTrainList(void);
-	void setMapTreni( phisicalTrain^ treno ){
+	void setMapTreni( physicalTrain^ treno ){
 		
 			int key = treno->getEngineNumber();
-			//treni->AddOrUpdate(key,treno, gcnew Func<int,phisicalTrain^,phisicalTrain^>(&phisicalTrainList::result ));
+			//treni->AddOrUpdate(key,treno, gcnew Func<int,physicalTrain^,physicalTrain^>(&phisicalTrainList::result ));
 			if(!treni->ContainsKey(key)){
 				
 				treni->GetOrAdd(key,treno);
@@ -27,14 +27,14 @@ public:
 			}
 		
 	}
-	/*static phisicalTrain^ result(int k ,phisicalTrain^ o){
+	/*static physicalTrain^ result(int k ,physicalTrain^ o){
 		return o;
 	}*/
-	ConcurrentDictionary<int,phisicalTrain^> ^ getMapTreni(){
+	ConcurrentDictionary<int,physicalTrain^> ^ getMapTreni(){
 		return treni;
 		
 	}
-	phisicalTrain^ phisicalTrainList::getPrimo();
+	physicalTrain^ phisicalTrainList::getPrimo();
 
 	bool  phisicalTrainList::is_Empthy(){
 		

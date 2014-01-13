@@ -3,7 +3,7 @@
 ManagerStatoLineaATC::ManagerStatoLineaATC(void)
 {
 	tabellaCDB = gcnew Dictionary<int, StateCDB^>;
-	observers = gcnew List<IObserver<Event^>^>();
+	observers = gcnew List<IObserver<Event<StateCDB^>^>^>();
 	tabellaTRenoListCDB = gcnew Dictionary<int,List<StateCDB^>^>();
 }
 
@@ -21,7 +21,7 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 			}
 			int idftreno = CDB->getNID_ENGINE();
 			//Console::WriteLine("CDB {0}, nid_op {1}",CDB->getNID_CDB(), CDB->getNID_OPERATIONAL());
-			if(idltreno>0){
+			if(idltreno>0 | idftreno>0){
 				addCheckAndSet(CDB,source);
 				if(!tabellaTRenoListCDB->ContainsKey(idltreno)){
 					List<StateCDB^> ^listatempcdb = gcnew List<StateCDB^>();
@@ -136,9 +136,12 @@ void ManagerStatoLineaATC::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 	{
 		tabellaCDB->Add(oneCDB->getNID_CDB(), oneCDB);
 		// segnala l'evento!!!
-		for each (IObserver<Event^>^ observer in observers)
+		for each (IObserver<Event<StateCDB^>^>^ observer in observers)
 		{
-			observer->OnNext(gcnew Event(oneCDB->Clone(),source));
+			Event<StateCDB^> ^evento = gcnew Event<StateCDB^>(oneCDB->Clone());
+				 
+					observer->OnNext(evento);
+			
 		}
 
 
@@ -150,9 +153,12 @@ void ManagerStatoLineaATC::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 		{
 
 			// segnala evento!!!
-			for each (IObserver<Event^>^ observer in observers)
+			for each (IObserver<Event<StateCDB^>^>^ observer in observers)
 			{
-				observer->OnNext(gcnew Event(oneCDB->Clone(),source));
+				Event<StateCDB^> ^evento = gcnew Event<StateCDB^>(oneCDB->Clone());
+				
+					observer->OnNext(evento);
+				
 			}
 		}
 
@@ -160,10 +166,10 @@ void ManagerStatoLineaATC::addCheckAndSet(StateCDB ^oneCDB, String ^source)
 
 }
 
-IDisposable ^ManagerStatoLineaATC::Subscribe(IObserver<Event^> ^observer){
+IDisposable ^ManagerStatoLineaATC::Subscribe(IObserver<Event<StateCDB^>^> ^observer){
 	if (! observers->Contains(observer)) 
 		observers->Add(observer);
-	return gcnew Unsub(observers, observer);
+	return gcnew Unsubscriber<Event<StateCDB^>^>(observers, observer);
 
 }
 

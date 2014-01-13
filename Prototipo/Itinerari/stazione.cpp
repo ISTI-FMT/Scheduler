@@ -6,6 +6,7 @@ stazione::stazione(void)
 	idStazione = 0;
 	itinerari= gcnew Dictionary<int,List<Itinerario^>^ >;
 	itinerariid= gcnew Dictionary<int,Itinerario^ >;
+	binari = gcnew List<binario^>();
 
 }
 

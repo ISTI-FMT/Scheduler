@@ -1,7 +1,7 @@
 #include "FormVisualizzeConfItine.h"
 
 
-FormVisualizzeConfItine::FormVisualizzeConfItine(tabellaItinerari ^tab )
+FormVisualizzeConfItine::FormVisualizzeConfItine(TabellaStazioni ^tab )
 {
 	tabella=tab;
 	Inizialize();
