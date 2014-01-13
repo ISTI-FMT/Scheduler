@@ -10,6 +10,8 @@ using namespace System::Globalization;
 using namespace System::Xml;
 using namespace System::Xml::Schema;
 
+//Questa classe viene usata per leggere e gestire la tabella orario
+
 #define TRACE
 #define VALIDATEXML
 
@@ -21,8 +23,7 @@ TabellaOrario::TabellaOrario(void)
 
 TabellaOrario::TabellaOrario(TabellaStazioni ^T)
 {
-	tabella = gcnew Dictionary<int, List<Fermata^>^>;
-	schemaxsd="TabellaOrario.xsd";
+	TabellaOrario();
 	tabItinerari=T;
 }
 

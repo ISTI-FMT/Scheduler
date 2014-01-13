@@ -7,6 +7,8 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Globalization;
 
+//questa classe viene usata per rappresentare il treno nella lista pronti
+
 enum  StateTrain { PRONTO = 0, USCITASTAZIONE = 1, ENTRATASTAZIONE = 2,  NONPRONTO = 3, TERMINATO=4};
 
 public ref class Train : public IComparable<Train^>

@@ -373,6 +373,11 @@ namespace Prototipo {
 			 }
 
 	private: void FasediConfigurazione(){
+				 //leggo file di configurazione
+
+				 //fine
+
+
 				 //
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //

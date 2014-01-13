@@ -106,8 +106,11 @@ void ThreadSchedulerSortedList::Schedule(){
 						if(((idTRenoCDBPrecIT==Train->getTRN())|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
-							
+							//inserire codice per sapere se questo passo comporta un deadlock o meno
+
+							//fine
 							if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
+
 								List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
 								if(cdbricPrenotazione!=nullptr){
 									RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
@@ -146,6 +149,11 @@ void ThreadSchedulerSortedList::Schedule(){
 									//se l'itinerario è libero
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 									//che riporti il cambiamento dello stato dell'itinerario
+
+									//inserire codice per sapere se questo passo comporta un deadlock o meno
+
+									//fine
+
 									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
 										if(cdbricPrenotazione!=nullptr){
@@ -158,6 +166,13 @@ void ThreadSchedulerSortedList::Schedule(){
 							//se il treno si trova sul cdb giusto
 							// messo a true per fare test
 							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==Train->getTRN()){
+
+								//inserire codice per sapere se questo passo comporta un deadlock o meno
+
+								//fine
+
+
+
 								//se l'itinerario è libero
 								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 								//che riporti il cambiamento dello stato dell'itinerario
