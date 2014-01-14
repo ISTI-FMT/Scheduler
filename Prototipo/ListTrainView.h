@@ -2,7 +2,7 @@
 #include "SingleTrainInfoForm.h"
 #include "Itinerari\\TabellaStazioni.h"
 #include "EventQueue.h"
-
+/*questa classe rappresenta la vista nel modello mvc e viene utilizzata per visualizzare i treni presenti in lista pronti*/
 namespace Prototipo {
 
 	using namespace System;

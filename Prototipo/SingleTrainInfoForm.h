@@ -9,6 +9,8 @@ using namespace System::ComponentModel;
 using namespace System::Collections;
 using namespace System::Windows::Forms;
 
+/*questa classe rappresenta la form con le informazioni del treno*/
+
 ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<SingleTrainInfoForm^>, IObservable<Event<List<Fermata^>^>^>
 {
 	Train ^train;

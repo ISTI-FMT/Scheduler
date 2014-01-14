@@ -1,6 +1,7 @@
 #pragma once
 #using <System.dll>
 #include "Event.h"
+/*classe generica per disiscriversi nel pattern observer*/
 using namespace System::Collections::Generic;
 using namespace System;
 generic <typename T>

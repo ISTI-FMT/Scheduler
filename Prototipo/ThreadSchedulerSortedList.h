@@ -20,7 +20,7 @@
 #include "ListTrainModel.h"
 
 
-/*Utilizzo questa classe per definire il comportamento dello schedulatore*/
+/*Utilizzo questa classe per definire il comportamento dello schedulatore con la lista pronti ordinata*/
 
 using namespace System;
 

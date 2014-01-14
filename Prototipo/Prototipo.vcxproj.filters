@@ -195,9 +195,6 @@
     <ClInclude Include="Itinerari\FormVisualizzeConfItine.h">
       <Filter>File di intestazione\itinerari</Filter>
     </ClInclude>
-    <ClInclude Include="ThreadSchedule.h">
-      <Filter>File di intestazione\threads</Filter>
-    </ClInclude>
     <ClInclude Include="EventQueue.h">
       <Filter>File di intestazione\Event</Filter>
     </ClInclude>
@@ -412,9 +409,6 @@
     </ClCompile>
     <ClCompile Include="Itinerari\FormVisualizzeConfItine.cpp">
       <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadSchedule.cpp">
-      <Filter>File di origine\threads</Filter>
     </ClCompile>
     <ClCompile Include="EventQueue.cpp">
       <Filter>File di origine\Event</Filter>

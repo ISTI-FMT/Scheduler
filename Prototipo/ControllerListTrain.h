@@ -2,7 +2,7 @@
 #include "ListTrainModel.h"
 #include "Train.h"
 
-
+/*rappresenta il controllo nel pattern mvc*/
 ref class ControllerListTrain
 {
 	

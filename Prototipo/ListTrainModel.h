@@ -1,6 +1,6 @@
 #pragma once
 #include "Train.h"
-
+/*rappresenta il modello dei dati nel patter mvc*/
 public ref class ListTrainModel : public IObservable<List<Train^> ^>
 {
 	System::Collections::Generic::List<Train^> ^ListSortedTrains;

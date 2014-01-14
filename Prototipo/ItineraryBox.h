@@ -1,6 +1,9 @@
 #pragma once
 #include "tabellaOrario\\Fermata.h"
 #include "Itinerari\\stazione.h"
+
+/*Utilizzo questa classe per rappresentare graficamente un controllo che visualizzi le informazioni sugli itinerari*/
+
 ref class ItineraryBox :
 public System::Windows::Forms::UserControl
 {

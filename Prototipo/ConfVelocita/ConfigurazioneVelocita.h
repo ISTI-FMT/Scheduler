@@ -4,7 +4,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
-//questa classe viene usarta per leggere il file xml di configurazioni della velocità
+//questa classe viene usarta per leggere il file xml delle configurazioni della velocità
 
 ref class ConfigurazioneVelocita
 {
