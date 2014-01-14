@@ -23,7 +23,8 @@ TabellaOrario::TabellaOrario(void)
 
 TabellaOrario::TabellaOrario(TabellaStazioni ^T)
 {
-	TabellaOrario();
+	tabella = gcnew Dictionary<int, List<Fermata^>^>;
+	schemaxsd="TabellaOrario.xsd";
 	tabItinerari=T;
 }
 
