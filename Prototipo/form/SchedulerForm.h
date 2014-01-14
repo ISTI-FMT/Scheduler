@@ -17,7 +17,6 @@
 #include "..\\manager\\ManagerStatoLineaATC.h"
 #include "..\\manager\\ManagerStatoLineaIXL.h"
 #include "..\\manager\\ManagerMsgATO.h"
-#include "..\\ThreadSchedule.h"
 #include "..\\ThreadSchedulerSortedList.h"
 #include "..\\EventQueue.h"
 #include "..\\wdogcontrol.h"
