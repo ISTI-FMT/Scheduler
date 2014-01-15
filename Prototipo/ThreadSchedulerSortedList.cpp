@@ -110,7 +110,7 @@ void ThreadSchedulerSortedList::Schedule(){
 
 							//fine
 							if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
-
+								
 								List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
 								if(cdbricPrenotazione!=nullptr){
 									RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
@@ -155,6 +155,7 @@ void ThreadSchedulerSortedList::Schedule(){
 									//fine
 
 									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
+										
 										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
 										if(cdbricPrenotazione!=nullptr){
 											RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
@@ -165,19 +166,21 @@ void ThreadSchedulerSortedList::Schedule(){
 						}else{
 							//se il treno si trova sul cdb giusto
 							// messo a true per fare test
-							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==Train->getTRN()){
+							int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_ENGINE();
+							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==Train->getTRN()|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber()){
 
 								//inserire codice per sapere se questo passo comporta un deadlock o meno
 
 								//fine
 
 
-
+							
 								//se l'itinerario è libero
 								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 								//che riporti il cambiamento dello stato dell'itinerario
 								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
+								
 									if(cdbricPrenotazione!=nullptr){
 										RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 									}
@@ -365,7 +368,7 @@ void ThreadSchedulerSortedList::Init(){
 }
 
 
-
+//controlla che funzioni sempre sembra che fai delle richieste e non ci siano le condizioni
 bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 	bool res=true;
 	for each (int cdb in lcdb)
@@ -651,7 +654,7 @@ void ThreadSchedulerSortedList::ReceiveCallback(IAsyncResult^ asyncResult){
 
 List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int iditinerario){
 	List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
-
+	int nextcdb = tabItinerari->get_CdbSuccItinerario(idstazione,iditinerario);
 	if(controllacdb(listaNIDcdb)){
 
 		if(SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione)){

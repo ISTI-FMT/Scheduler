@@ -140,7 +140,7 @@ def messageRBC_ST(buff,buff1):
 '''	
 	
 def messageRBC1(list):
-	buff = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+	buff = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 	push(buff, MessATC.StatoLineaATC, 8, 0); #//nid_msg
 	push(buff, 17, 11, 8); #//L_msg
 	push(buff, 32, 32, 19); #//T_msg
@@ -171,7 +171,7 @@ UDP_PORT = 1111
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 sock.bind((UDP_IP, UDP_PORT))
 sock.setblocking(0)
-list={0:[0,0,0],1:[0,0,0],2:[0,0,0],3:[0,0,0]}
+list={0:[0,0,0],1:[0,0,0],2:[0,0,0],3:[0,0,0],4:[0,0,0]}
 while 1:
 	try:
 		data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
@@ -185,6 +185,8 @@ while 1:
 			list[2]=result
 		if result[0]==65316:
 			list[3]=result
+		if result[0]==65282:
+			list[4]=result
 		print "received message:", data
 		
 	except socket.error as msg:

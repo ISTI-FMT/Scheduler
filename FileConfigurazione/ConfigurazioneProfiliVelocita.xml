@@ -35,7 +35,35 @@
   </progressivakm>
 </profilovelocita>
 
+ <profilovelocita trenoid="1154">
+<progressivakm km="0">
+   <velocita limite ="80"/>
+  </progressivakm>
+  
 
+<progressivakm km="8827">
+    <velocita limite ="80"/>
+  </progressivakm>
+  
+  <progressivakm km="9842">
+    <velocita limite ="80"/>
+  </progressivakm>
+</profilovelocita>
+
+ <profilovelocita trenoid="1155">
+<progressivakm km="0">
+   <velocita limite ="80"/>
+  </progressivakm>
+  
+
+<progressivakm km="8827">
+    <velocita limite ="80"/>
+  </progressivakm>
+  
+  <progressivakm km="9842">
+    <velocita limite ="80"/>
+  </progressivakm>
+</profilovelocita>
 
 
 </configurazioneprofilivelocita>

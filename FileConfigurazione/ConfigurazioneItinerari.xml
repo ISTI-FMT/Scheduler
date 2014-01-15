@@ -842,8 +842,8 @@
       </partenza>
      </itinerariUscita>
   </stazione>
-<!--
-   <stazione name="Via Roma" id_offset="418">
+</ConfigurazioneItinerari>
+ <!--  <stazione name="Via Roma" id_offset="418">
    <itinerariIngresso>
     <ingresso id="1418" name="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  prevcdb="416" nextcdb="420">
       <cdb>418</cdb>  
@@ -897,4 +897,3 @@
   </stazione>-->
 
 
-</ConfigurazioneItinerari>

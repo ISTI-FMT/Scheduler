@@ -241,7 +241,7 @@ List<int> ^TabellaStazioni::get_Cdb_Itinerario(int stazione, int iditin){
 
 	if(mapidstazioneitinerari->ContainsKey(stazione)){
 		if(mapidstazioneitinerari[stazione]->getItinerariid()->ContainsKey(iditin)){
-			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->getLCDB();
+			return mapidstazioneitinerari[stazione]->getItinerariid()[iditin]->CloneListCDB();
 		}
 
 	}

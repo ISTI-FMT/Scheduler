@@ -64,8 +64,8 @@ public:
 	void setNextCDB(int p){nextCDB = p;}
 	int getNextCDB(){return nextCDB;}
 
-	List<int>^ getLCDB(){return cdb;}
-
+	List<int>^ getLCDB(){return cdb;};
+	List<int>^ CloneListCDB();
 	virtual System::String^ ToString() override;
 };
 
