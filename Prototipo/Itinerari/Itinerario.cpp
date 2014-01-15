@@ -38,3 +38,14 @@ System::String^ Itinerario::ToString(){
 
 	return out;
 }
+
+
+List<int>^Itinerario::CloneListCDB(){
+	List<int> ^newcdblist = gcnew List<int>();
+	for each (int var in cdb)
+	{
+		newcdblist->Add(var);
+	}
+	return newcdblist;
+
+}

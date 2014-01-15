@@ -278,7 +278,7 @@ if bandiera==True:
 		print "Nessuna Presentazione Eseguita, Avvia lo Scheduler",msg
 
 
-
+#exit(0)
 
 #### MOVIMENTO ######
 for line in spamReader:

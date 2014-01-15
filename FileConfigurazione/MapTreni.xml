@@ -2,8 +2,15 @@
 <bind xmlns="urn:confMapTreni-schema" >
 <map>
 <idtrenologico>1151</idtrenologico>
-<idtrenofisico>65281</idtrenofisico>
+<idtrenofisico>65282</idtrenofisico>
 <cdbpos>12303</cdbpos>
+
+</map>
+
+<map>
+<idtrenologico>1155</idtrenologico>
+<idtrenofisico>65281</idtrenofisico>
+<cdbpos>13302</cdbpos>
 
 </map>
 
