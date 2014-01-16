@@ -655,13 +655,19 @@ void ThreadSchedulerSortedList::ReceiveCallback(IAsyncResult^ asyncResult){
 List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int iditinerario){
 	List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
 	int nextcdb = tabItinerari->get_CdbSuccItinerario(idstazione,iditinerario);
+	if(nextcdb>0){
+		StateCDB ^statocorrentecdb = managerIXL->StatoCDB(nextcdb);
+		if(statocorrentecdb!=nullptr){
+			if(statocorrentecdb->getQ_STATOCDB()!=typeStateCDB::cdbLibero){
+				return nullptr;
+			}
+		}else{
+			return nullptr;
+		}
+	}
 	if(controllacdb(listaNIDcdb)){
 
 		if(SendBloccItinIXL(idstazione+iditinerario,typeCmdItinerari::creazione)){
-
-
-			timeRicIXL=DateTime::Now;
-
 			return listaNIDcdb;
 		}
 	}

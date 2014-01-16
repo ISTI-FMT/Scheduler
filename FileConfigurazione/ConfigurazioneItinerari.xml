@@ -19,14 +19,14 @@
  </itinerariIngresso>
 
  <itinerariUscita>
-      <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="13301" nextcdb="0" nextstation="14000" >
+      <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="13301" nextcdb="14020" nextstation="14000" >
       
         <cdb>13012</cdb>
         <cdb>13011</cdb>
         <cdb>13010</cdb>
 		<cdb>501</cdb>
       </partenza>
-      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="13302" nextcdb="0" nextstation="14000">
+      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="13302" nextcdb="14020" nextstation="14000">
        
         <cdb>13012</cdb>
         <cdb>13011</cdb>
@@ -69,26 +69,26 @@
  </itinerariIngresso>
 
  <itinerariUscita>
-	  <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="14301" nextcdb="0" nextstation="15000" >
+	  <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="14301" nextcdb="15020" nextstation="15000" >
         <cdb>14012</cdb>
         <cdb>14011</cdb>
         <cdb>14010</cdb>
 		<cdb>502</cdb>
       </partenza>
-      <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="14301" nextcdb="0"  nextstation="13000" >
+      <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="14301" nextcdb="13010"  nextstation="13000" >
         <cdb>14022</cdb>
         <cdb>14021</cdb>
         <cdb>14020</cdb>
 		<cdb>501</cdb>
       </partenza>
-      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="14302" nextcdb="0"  nextstation="15000" >
+      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="14302" nextcdb="15020"  nextstation="15000" >
        
         <cdb>14012</cdb>
         <cdb>14011</cdb>
         <cdb>14010</cdb>
 		<cdb>502</cdb>
       </partenza>
-      <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="14302" nextcdb="0"  nextstation="13000" >
+      <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="14302" nextcdb="13010"  nextstation="13000" >
         
         <cdb>14022</cdb>
         <cdb>14021</cdb>
@@ -135,7 +135,7 @@
 	   </itinerariIngresso>
 
  <itinerariUscita>
-	  <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="15301" nextcdb="0"  nextstation="12000" >
+	  <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="15301" nextcdb="12010"  nextstation="12000" >
        
          
           <cdb>15012</cdb>
@@ -144,7 +144,7 @@
 		  <cdb>503</cdb>
       </partenza>
 
-        <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="15301" nextcdb="0"  nextstation="14000" >
+        <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="15301" nextcdb="14010"  nextstation="14000" >
         
         
           <cdb>15022</cdb>
@@ -152,7 +152,7 @@
           <cdb>15020</cdb>
 		  <cdb>502</cdb>
       </partenza>
-      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="15302" nextcdb="0"  nextstation="12000" >
+      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="15302" nextcdb="12010"  nextstation="12000" >
         
           
           <cdb>15012</cdb>
@@ -160,7 +160,7 @@
           <cdb>15010</cdb>
         <cdb>503</cdb>
       </partenza>
-      <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="15302" nextcdb="0"  nextstation="14000" >
+      <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="15302" nextcdb="14010"  nextstation="14000" >
         
          
           <cdb>15022</cdb>
@@ -192,14 +192,14 @@
  </itinerariIngresso>
 
  <itinerariUscita>
-	  <partenza id="900" name="I-01"  direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="10301" nextcdb="0"  nextstation="504" >
+	  <partenza id="900" name="I-01"  direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="10301" nextcdb="11020"  nextstation="11000" >
       
         <cdb>10012</cdb>
         <cdb>10011</cdb>
         <cdb>10010</cdb>
 		<cdb>504</cdb>
       </partenza>
-      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="10302" nextcdb="0"  nextstation="504" >
+      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="10302" nextcdb="11020"  nextstation="11000" >
    
         <cdb>10013</cdb>
         <cdb>10012</cdb>
@@ -249,7 +249,7 @@
  </itinerariIngresso>
 
  <itinerariUscita>
-	  <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="11301" nextcdb="0"  nextstation="12000" >
+	  <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="11301" nextcdb="12013"  nextstation="12000" >
         
          
           <cdb>11012</cdb>
@@ -257,7 +257,7 @@
           <cdb>11010</cdb>
        <cdb>505</cdb>
       </partenza>
-        <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="11301" nextcdb="0"  nextstation="10000" >
+        <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="11301" nextcdb="10010"  nextstation="10000" >
         
           
           <cdb>11022</cdb>
@@ -266,7 +266,7 @@
 		<cdb>504</cdb>
       </partenza>
       
-      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="11302" nextcdb="0"  nextstation="12000" >
+      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="11302" nextcdb="12013"  nextstation="12000" >
         
          
           <cdb>11013</cdb>
@@ -276,7 +276,7 @@
 		<cdb>505</cdb>
       </partenza>
 
-      <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="11302" nextcdb="0"  nextstation="10000" >
+      <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="11302" nextcdb="10010"  nextstation="10000" >
        
          
           <cdb>11023</cdb>
@@ -381,7 +381,7 @@
  </itinerariIngresso>
 
  <itinerariUscita>
-	  <partenza id="905" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="12301" nextcdb="0"  nextstation="15000" >
+	  <partenza id="905" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="12301" nextcdb="15010"  nextstation="15000" >
         
           
           <cdb>12012</cdb>
@@ -390,7 +390,7 @@
 		<cdb>503</cdb>
         
       </partenza>
-        <partenza id="916" name="I-04" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="12301" nextcdb="0"  nextstation="4051" >
+        <partenza id="916" name="I-04" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="12301" nextcdb="402"  nextstation="16000" >
        
          
           <cdb>12026</cdb>
@@ -400,7 +400,7 @@
 
         
       </partenza>
-      <partenza id="904" name="II-01" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="12302" nextcdb="0"  nextstation="15000" >
+      <partenza id="904" name="II-01" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="12302" nextcdb="15010"  nextstation="15000" >
         
          
           <cdb>12016</cdb>
@@ -411,7 +411,7 @@
 
         
       </partenza>
-        <partenza id="913" name="II-03" direzione="sx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="0"  nextstation="11000" >
+        <partenza id="913" name="II-03" direzione="sx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="11010"  nextstation="11000" >
           
           <cdb>12016</cdb>
           <cdb>12015</cdb>
@@ -421,7 +421,7 @@
 		          
 
         </partenza>
-          <partenza id="915" name="II-04" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="0"  nextstation="406" >
+          <partenza id="915" name="II-04" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="402"  nextstation="16000" >
          
           <cdb>12023</cdb>
           <cdb>12022</cdb>
@@ -431,7 +431,7 @@
 		  <cdb>400</cdb>
 
           </partenza>
-            <partenza id="907" name="II-02" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="0"  nextstation="407" >
+            <partenza id="907" name="II-02" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="403"  nextstation="16000" >
          
           <cdb>12023</cdb>
           <cdb>12022</cdb>
@@ -440,7 +440,7 @@
 		  <cdb>401</cdb>
 
       </partenza>
-      <partenza id="903" name="III-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="12303" nextcdb="0"  nextstation="15000" >     
+      <partenza id="903" name="III-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="12303" nextcdb="15010"  nextstation="15000" >     
           
           <cdb>12016</cdb>
           <cdb>12015</cdb>
@@ -451,7 +451,7 @@
 
       
       </partenza>
-        <partenza id="912" name="III-03" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="12303" nextcdb="0"  nextstation="11000" >
+        <partenza id="912" name="III-03" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="12303" nextcdb="11010"  nextstation="11000" >
          
           <cdb>12016</cdb>
           <cdb>12015</cdb>
@@ -460,7 +460,7 @@
 		  <cdb>505</cdb>
 
         </partenza>
-          <partenza id="914" name="III-04" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="12303" nextcdb="0"  nextstation="406" >
+          <partenza id="914" name="III-04" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="12303" nextcdb="402"  nextstation="16000" >
          
           <cdb>12023</cdb>
           <cdb>12022</cdb>
@@ -470,7 +470,7 @@
 		  <cdb>400</cdb>
 
           </partenza>
-            <partenza id="906" name="III-02" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="12303" nextcdb="0"  nextstation="407" >
+            <partenza id="906" name="III-02" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="12303" nextcdb="403"  nextstation="16000" >
         
           <cdb>12023</cdb>
           <cdb>12022</cdb>
@@ -585,7 +585,7 @@
 	   </itinerariIngresso>
 
  <itinerariUscita>
-	  <partenza id="902" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="0"   nextstation="17000" >
+	  <partenza id="902" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="443"   nextstation="17000" >
        
        
           <cdb>16012</cdb>
@@ -594,7 +594,7 @@
 		  <cdb>441</cdb>
       
       </partenza>
-        <partenza id="919" name="I-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="0"   nextstation="419" >
+        <partenza id="919" name="I-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="427"   nextstation="12000" >
         
         
           <cdb>16026</cdb>
@@ -603,7 +603,7 @@
 		  <cdb>429</cdb>
        
       </partenza>
-      <partenza id="909" name="II-02" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="16302" nextcdb="0"   nextstation="418" >
+      <partenza id="909" name="II-02" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="16302" nextcdb="426"   nextstation="12000" >
      
       
           <cdb>16023</cdb>
@@ -612,7 +612,7 @@
           <cdb>16020</cdb>
 		  <cdb>428</cdb>
       </partenza>
-        <partenza id="918" name="II-04" direzione="sx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="0"   nextstation="419" >
+        <partenza id="918" name="II-04" direzione="sx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="427"   nextstation="12000" >
         
      
           <cdb>16023</cdb>
@@ -623,7 +623,7 @@
 		  <cdb>429</cdb>
          
         </partenza>
-          <partenza id="911" name="II-03" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="0"   nextstation="17000" >
+          <partenza id="911" name="II-03" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="442"   nextstation="17000" >
         
           <cdb>16016</cdb>
           <cdb>16015</cdb>
@@ -632,7 +632,7 @@
 		  <cdb>440</cdb>
         
           </partenza>
-            <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="0"   nextstation="17000" >
+            <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="443"   nextstation="17000" >
         
         
           <cdb>16016</cdb>
@@ -643,7 +643,7 @@
 		  <cdb>441</cdb>
         
       </partenza>
-      <partenza id="908" name="III-02" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="0"   nextstation="418" >
+      <partenza id="908" name="III-02" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="426"   nextstation="12000" >
         
       
           <cdb>16027</cdb>
@@ -654,7 +654,7 @@
 		  <cdb>428</cdb>
         
       </partenza>
-        <partenza id="917" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="0"   nextstation="419" >
+        <partenza id="917" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="427"   nextstation="17000" >
        
        
           <cdb>16027</cdb>
@@ -665,7 +665,7 @@
           <cdb>16024</cdb>
 		  <cdb>429</cdb>
         </partenza>
-        <partenza id="910" name="III-03" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="0"   nextstation="17000" >
+        <partenza id="910" name="III-03" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="442"   nextstation="17000" >
       
         
           <cdb>16017</cdb>
@@ -676,7 +676,7 @@
 		  <cdb>440</cdb>
      
         </partenza>
-          <partenza id="900" name="III-01" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="0"   nextstation="17000" >
+          <partenza id="900" name="III-01" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="443"   nextstation="17000" >
         
           <cdb>16017</cdb>
           <cdb>16016</cdb>
@@ -745,7 +745,7 @@
           <cdb>17014</cdb>
           <cdb>17302</cdb>
         </ingresso>
-          <ingresso id="909" name="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="449" nextcdb="0" >
+          <ingresso id="909" name="03-III" direzione="dx" nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" prevcdb="449" nextcdb="17036" >
           <cdb>17030</cdb>
           <cdb>17031</cdb>
           <cdb>17032</cdb>
@@ -764,7 +764,7 @@
   </itinerariIngresso>
 
  <itinerariUscita>
-      <partenza id="907" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="0"  nextstation="16000" >
+      <partenza id="907" name="I-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="446"  nextstation="16000" >
        
           <cdb>17014</cdb>
           <cdb>17013</cdb>
@@ -773,7 +773,7 @@
           <cdb>17010</cdb>
 		  <cdb>448</cdb>
       </partenza>
-        <partenza id="915" name="I-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="0" nextstation="16000" >
+        <partenza id="915" name="I-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="447" nextstation="16000" >
        
           <cdb>17014</cdb>
           <cdb>17013</cdb>
@@ -783,7 +783,7 @@
           <cdb>17030</cdb>
 		  <cdb>449</cdb>
       </partenza>
-      <partenza id="906" name="II-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="0" nextstation="16000" >
+      <partenza id="906" name="II-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="446" nextstation="16000" >
        
           <cdb>17014</cdb>
           <cdb>17013</cdb>
@@ -792,7 +792,7 @@
           <cdb>17010</cdb>
 		  <cdb>448</cdb>
       </partenza>
-        <partenza id="914" name="II-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="0" nextstation="16000" >
+        <partenza id="914" name="II-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="447" nextstation="16000" >
      
           <cdb>17014</cdb>
           <cdb>17013</cdb>
@@ -802,7 +802,7 @@
           <cdb>17030</cdb>
 		  <cdb>449</cdb>
       </partenza>
-      <partenza id="913" name="III-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="0" nextstation="16000" >
+      <partenza id="913" name="III-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="447" nextstation="16000" >
       
           <cdb>17034</cdb>
           <cdb>17033</cdb>
@@ -811,7 +811,7 @@
           <cdb>17030</cdb>
 		  <cdb>449</cdb>
       </partenza>
-        <partenza id="905" name="III-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="0" nextstation="16000" >
+        <partenza id="905" name="III-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="446" nextstation="16000" >
         
           <cdb>17034</cdb>
           <cdb>17033</cdb>
@@ -821,7 +821,7 @@
           <cdb>17010</cdb>
 		  <cdb>448</cdb>
       </partenza>
-      <partenza id="912" name="IV-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="0" nextstation="16000" >
+      <partenza id="912" name="IV-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="447" nextstation="16000" >
         
           <cdb>17034</cdb>
           <cdb>17033</cdb>
@@ -830,7 +830,7 @@
           <cdb>17030</cdb>
 		  <cdb>449</cdb>
       </partenza>
-        <partenza id="904" name="IV-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="0" nextstation="16000" > 
+        <partenza id="904" name="IV-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="446" nextstation="16000" > 
           
           <cdb>17034</cdb>
           <cdb>17033</cdb>
