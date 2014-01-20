@@ -9,6 +9,7 @@ import fileinput
 import socket
 import re
 from array import array
+import thread
 
 def enum(**enums):
     return type('Enum', (object,), enums)
@@ -17,10 +18,33 @@ MessATC=enum   (StatoLineaATC = 11,  FaultReportingATC = 12 );
 MessIXL =enum  ( StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231);
 MessATO = enum( MissionPlan = 200,  FaultReportingATO = 213, UnconditionCommand=201, Acknol=210,Presentation=215 )
 
+
 if len(sys.argv) < 2:
     print "script.py <namefile>"
     exit(1)
 	
+	
+def serverTCP(host, port,ACK):
+	while 1:
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		s.bind((host, port))
+		s.listen(1)
+		conn, addr = s.accept()
+		print "##########################CAMBIO MISSION###############################"
+		print 'CAMBIO MISSION Connection address:', addr
+		data = conn.recv(86)
+		if not data: break
+		#print "received data:", data
+		buffer3 = map(ord,data)
+		print "CAMBIO MISSION received data:", deserializzaMissionDATA(buffer3)
+		conn.send(ACK)
+		conn.close()
+		s.close()
+		print "##########################END MISSION###############################"		# echo
+		#conn.close()
+
+
+
 def date_key(row):
         return datetime.strptime(row[2].strip(), "%d-%m-%Y %H:%M")
 		
@@ -236,8 +260,8 @@ if(sys.argv[2]=='1'):
 	op = sys.argv[1][18:22]
 	NID_OPERATIONAL=int(op)
 	
-###MOV0	
-#### MOVIMENTO ######
+
+########## MOVIMENTO VS RBC inizializzazione ######
 
 sendBytes = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 push(sendBytes, 18, 8, 0); #//nid_msg
@@ -253,7 +277,9 @@ buff = messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 sendUDP(buff,1111)
 sendUDP(buff,1111)
 sendUDP(buff,1111)
-#####PRESENTAZIONE#####
+
+
+#####PRESENTAZIONE VS ATS #########
 #115;16;258;65280;25;53;3610 Presentazione
 
 
@@ -273,6 +299,8 @@ if bandiera==True:
 		
 		NID_OPERATIONAL = ReceiveTCP(M_PORT,sendACk(NID_ENGINE))
 		print NID_OPERATIONAL
+		####ASCOLTO TCP
+		thread.start_new_thread(serverTCP, ('127.0.0.1', M_PORT,sendACk(NID_ENGINE)))
 	except socket.error as msg:
         #sock.close() 
 		print "Nessuna Presentazione Eseguita, Avvia lo Scheduler",msg
@@ -280,7 +308,7 @@ if bandiera==True:
 
 #exit(0)
 
-#### MOVIMENTO ######
+####### MOVIMENTO VS RBC NEXT MOV######
 for line in spamReader:
 	for element in line:
 		sendBytes = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
