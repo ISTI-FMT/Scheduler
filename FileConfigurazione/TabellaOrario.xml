@@ -14,8 +14,8 @@
     <partenza>17:05:00</partenza>
     <binarioprogrammato>1</binarioprogrammato>
 	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="905">02-II</itinerarioEntrata>
-<itinerarioUscita id="901">II-01</itinerarioUscita>
+ <itinerarioEntrata id="904">02-I</itinerarioEntrata>
+<itinerarioUscita id="900">I-01</itinerarioUscita>
   </stazione>
 
   <stazione id="15000"  name="Via Verdi">
