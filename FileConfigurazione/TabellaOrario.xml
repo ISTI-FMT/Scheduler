@@ -4,9 +4,9 @@
   <stazione id="13000"  name="Via Accademia">
     <arrivo>17:00:00</arrivo>
     <partenza>17:02:00</partenza>
-    <binarioprogrammato>1</binarioprogrammato>
+    <binarioprogrammato>2</binarioprogrammato>
 	<latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
-<itinerarioUscita id="900">I-01</itinerarioUscita>
+<itinerarioUscita id="901">II-01</itinerarioUscita>
   </stazione>
 
   <stazione id="14000"  name="Piazza Università">
@@ -75,13 +75,13 @@
 
 </treno>
 
-<treno id="1155">
+<treno id="1153">
   <stazione id="13000"  name="Via Accademia">
     <arrivo>17:00:00</arrivo>
     <partenza>17:02:00</partenza>
     <binarioprogrammato>1</binarioprogrammato>
 	<latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
-<itinerarioUscita id="901">II-01</itinerarioUscita>
+<itinerarioUscita id="900">I-01</itinerarioUscita>
   </stazione>
 
   <stazione id="14000"  name="Piazza Università">
@@ -89,8 +89,8 @@
     <partenza>17:05:00</partenza>
     <binarioprogrammato>1</binarioprogrammato>
 	<latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="905">02-II</itinerarioEntrata>
-<itinerarioUscita id="901">II-01</itinerarioUscita>
+ <itinerarioEntrata id="904">02-I</itinerarioEntrata>
+<itinerarioUscita id="900">I-01</itinerarioUscita>
   </stazione>
 
   <stazione id="15000"  name="Via Verdi">
@@ -151,7 +151,7 @@
 </treno>
 
 
-  <treno id="1153">
+  <treno id="1166">
 
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>08:00:00</arrivo>
