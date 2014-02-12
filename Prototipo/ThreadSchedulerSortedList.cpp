@@ -50,6 +50,8 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
   
      //Application::Run(view);
 	 view->Visible=true;
+
+	 
 			
 }
 
@@ -231,8 +233,11 @@ void  ThreadSchedulerSortedList::ControllaEventiCambioOrario(){
 		 StateObject ^inviato =	SendUpdateMissionATO(train->getTRN(),train->getPhysicalTrain(),nuoviorari);
 		//aspetta ack
 		 DateTime time=DateTime::Now;
-		 while (inviato->fine!=1){
-			 TimeSpan sec = DateTime::Now - time;
+		 TimeSpan ^sec =  TimeSpan::Zero;
+		 int seconds=0;
+		 while (inviato->fine!=1 & seconds<10){
+			  sec = DateTime::Now - time;
+			  seconds = sec->TotalSeconds;
 			 //reinvia
 			
 
@@ -395,6 +400,52 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 	return res;
 }
 
+
+void ThreadSchedulerSortedList::Connect(EndPoint ^remoteEP, Socket ^client) {
+	 client->BeginConnect(remoteEP, 
+        gcnew AsyncCallback(ConnectCallbackMethod), client );
+
+  
+}
+
+ void ThreadSchedulerSortedList::ConnectCallbackMethod(IAsyncResult ^ar) {
+    try {
+        // Retrieve the socket from the state object.
+        Socket ^client = (Socket^) ar->AsyncState;
+
+        // Complete the connection.
+        client->EndConnect(ar);
+
+        Console::WriteLine("Socket connected to {0}",  client->RemoteEndPoint->ToString());
+
+        
+    } catch (Exception ^e) {
+        Console::WriteLine(e->ToString());
+    }
+}
+
+
+  void ThreadSchedulerSortedList::Send(Socket ^client, array<Byte> ^data){
+	    client->BeginSend(data, 0, data->Length,System::Net::Sockets::SocketFlags::None,
+        gcnew AsyncCallback(SendCallbackMethod), client);
+
+  }
+ void ThreadSchedulerSortedList::SendCallbackMethod(IAsyncResult ^ar){
+	  try {
+        // Retrieve the socket from the state object.
+        Socket ^client = (Socket^) ar->AsyncState;
+
+        // Complete sending the data to the remote device.
+        int bytesSent = client->EndSend(ar);
+        Console::WriteLine("Sent {0} bytes to server.", bytesSent);
+
+        // Signal that all bytes have been sent.
+        //sendDone.Set();
+    } catch (Exception ^e) {
+        Console::WriteLine(e->ToString());
+    }
+ }
+
 StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTrain ^Treno,List<Fermata^> ^stops){
 	try
 	{
@@ -419,8 +470,11 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 		sock->SendBufferSize = 0;
 
 		String ^IP = gcnew String(Treno->getIpAddress());
-		sock->Connect(IP, Treno->getTcpPort());
-		sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
+		IPEndPoint ^lep = gcnew IPEndPoint(IPAddress::Parse(IP), Treno->getTcpPort());
+
+		Connect(lep,sock);
+		Send(sock,bytes_buffer3);
+		//sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
 #ifdef TRACE
 
 		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
@@ -548,10 +602,15 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		sock->SendBufferSize = 0;
 
 		String ^IP = gcnew String(Treno->getIpAddress());
-		sock->Connect(IP, Treno->getTcpPort());
+		//sock->Connect(IP, Treno->getTcpPort());
+		IPEndPoint ^lep = gcnew IPEndPoint(IPAddress::Parse(IP), Treno->getTcpPort());
+
+		Connect(lep,sock);
+		
 
 		//NetworkStream ^myStream = gcnew NetworkStream(sock);
-		sock->Send(bytes_buffer1,bytes_buffer1->Length, System::Net::Sockets::SocketFlags::None);
+		//sock->Send(bytes_buffer1,bytes_buffer1->Length, System::Net::Sockets::SocketFlags::None);
+		Send(sock,bytes_buffer1);
 		//sock->BeginSend(bytes_buffer1, 0, wakeUpPkt->getSize(),System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
 		//myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
 #ifdef TRACE
@@ -559,7 +618,8 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedulerTrain::WakeUP");
 
 #endif // TRACE
-		sock->Send(bytes_buffer2,bytes_buffer2->Length, System::Net::Sockets::SocketFlags::None);
+		//sock->Send(bytes_buffer2,bytes_buffer2->Length, System::Net::Sockets::SocketFlags::None);
+		Send(sock,bytes_buffer2);
 		//sock->BeginSend(bytes_buffer2, 0, trainRunningNumberPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
 		//myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
 #ifdef TRACE
@@ -567,7 +627,8 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedulerTrain::TRN");
 
 #endif // TRACE
-		sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
+		//sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
+		Send(sock,bytes_buffer3);
 		//sock->BeginSend(bytes_buffer3, 0, missionPlanPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
 		//myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
 #ifdef TRACE

@@ -23,7 +23,7 @@
 /*Utilizzo questa classe per definire il comportamento dello schedulatore con la lista pronti ordinata*/
 
 using namespace System;
-
+using namespace System::Net;
 using namespace System::Collections::Generic;
 
 
@@ -46,6 +46,8 @@ ref class ThreadSchedulerSortedList
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
 	ControllerListTrain ^controlListtrain;
+
+	
 public:
 	ThreadSchedulerSortedList(void);
 
@@ -67,6 +69,11 @@ public:
 
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
 	List<int> ^RequestItinerarioIXL(int idstazione ,int iditinerario);
+	static void Connect(EndPoint ^remoteEP, Socket ^client);
+	static void ConnectCallbackMethod(IAsyncResult ^ar);
+
+	static void SendCallbackMethod(IAsyncResult ^ar);
+	static void Send(Socket ^client, array<Byte> ^data);
 
 };
 
