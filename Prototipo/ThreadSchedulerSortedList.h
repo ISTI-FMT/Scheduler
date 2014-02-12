@@ -25,7 +25,7 @@
 using namespace System;
 using namespace System::Net;
 using namespace System::Collections::Generic;
-
+using namespace System::Threading;
 
 ref class ThreadSchedulerSortedList 
 {
@@ -46,8 +46,7 @@ ref class ThreadSchedulerSortedList
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
 	ControllerListTrain ^controlListtrain;
-
-	
+	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);;
 public:
 	ThreadSchedulerSortedList(void);
 

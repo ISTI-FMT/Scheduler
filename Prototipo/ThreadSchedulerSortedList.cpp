@@ -50,7 +50,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
   
      //Application::Run(view);
 	 view->Visible=true;
-
+	  
 	 
 			
 }
@@ -311,10 +311,11 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 							inviato = InizializzeATO(trn,phisical);
 							time=DateTime::Now;
 						}
-						while (inviato->fine!=1){
+						TimeSpan ^sec = TimeSpan::Zero; 
+						while (inviato->fine!=1 & sec->TotalSeconds<20){
 							//aspetta un po
-							TimeSpan sec = DateTime::Now - time;
-							if(sec.TotalSeconds>200){
+							 sec = DateTime::Now - time;
+							if(sec->TotalSeconds>20){
 								//riinvia
 								inviato->fine=0;
 								if(inviato->workSocket!=nullptr){
@@ -404,8 +405,8 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 void ThreadSchedulerSortedList::Connect(EndPoint ^remoteEP, Socket ^client) {
 	 client->BeginConnect(remoteEP, 
         gcnew AsyncCallback(ConnectCallbackMethod), client );
+	mre->WaitOne();
 
-  
 }
 
  void ThreadSchedulerSortedList::ConnectCallbackMethod(IAsyncResult ^ar) {
@@ -418,7 +419,7 @@ void ThreadSchedulerSortedList::Connect(EndPoint ^remoteEP, Socket ^client) {
 
         Console::WriteLine("Socket connected to {0}",  client->RemoteEndPoint->ToString());
 
-        
+     mre->Set();
     } catch (Exception ^e) {
         Console::WriteLine(e->ToString());
     }
@@ -472,9 +473,10 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 		String ^IP = gcnew String(Treno->getIpAddress());
 		IPEndPoint ^lep = gcnew IPEndPoint(IPAddress::Parse(IP), Treno->getTcpPort());
 
-		Connect(lep,sock);
-		Send(sock,bytes_buffer3);
-		//sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
+		//Connect(lep,sock);
+	//	Send(sock,bytes_buffer3);
+		sock->Connect(IP, Treno->getTcpPort());
+		sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
 #ifdef TRACE
 
 		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
