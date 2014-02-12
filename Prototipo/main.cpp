@@ -14,7 +14,6 @@
 
 
 using namespace System::Diagnostics;
-using namespace std;
 using namespace System;
 using namespace System::IO;
 using namespace System::Net;

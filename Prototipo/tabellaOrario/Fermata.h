@@ -1,20 +1,12 @@
 #pragma once
 
-#include <time.h>
-#include <iostream>
-using namespace std;
 using namespace System;
 
-const int noApertura = 0;
-const int aperturaTrenoDx = 1;
-const int aperturaTrenoSx = 2;
-const int aperturaTrenoDxSx = 3;
-const int aperturaTrenoBanchinaDx = 4;
-const int aperturaTrenoBanchinaSx = 5;
-const int aperturaTrenoBanchinaDxSx = 6;
+
 
 /*Utilizzo questa classe per serializzare le informazioni sulle fermate presenti nella tabella orario*/
 
+enum  FermataType{noApertura = 0,aperturaTrenoDx = 1,aperturaTrenoSx = 2,aperturaTrenoDxSx = 3,aperturaTrenoBanchinaDx = 4,aperturaTrenoBanchinaSx = 5,aperturaTrenoBanchinaDxSx = 6 };
 
 /*
 Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di un singolo treno.

@@ -11,6 +11,9 @@ import re
 from array import array
 import thread
 
+SendUDP_IP = "127.0.0.1"
+ReceiveTCP_IP = "127.0.0.1"
+SendTCP_IP = "127.0.0.1"
 def enum(**enums):
     return type('Enum', (object,), enums)
 
@@ -83,15 +86,13 @@ def pop (buf, len, off):
 
    
 def sendUDP(message, UDP_PORT):
-	UDP_IP = "127.0.0.1"
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
-	sock.sendto( message, (UDP_IP, UDP_PORT))
+	sock.sendto( message, (SendUDP_IP, UDP_PORT))
 
 def sendTCP(MESSAGE):
-	TCP_IP = "127.0.0.1"
 	TCP_PORT = 13000
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # UDP
-	sock.connect((TCP_IP, TCP_PORT))
+	sock.connect((SendTCP_IP, TCP_PORT))
 	sock.send(MESSAGE)
 	sock.close()
 
@@ -159,9 +160,8 @@ def deserializzaCommandDATA(buff):
 	
 
 def ReceiveTCP(TCP_PORT, ACK):
-	TCP_IP = "127.0.0.1"
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # UDP
-	sock.bind((TCP_IP, TCP_PORT))
+	sock.bind((ReceiveTCP_IP, TCP_PORT))
 	sock.listen(3)
 	conn, addr = sock.accept()
 	print 'Connection address:', addr
@@ -300,7 +300,7 @@ if bandiera==True:
 		NID_OPERATIONAL = ReceiveTCP(M_PORT,sendACk(NID_ENGINE))
 		print NID_OPERATIONAL
 		####ASCOLTO TCP
-		thread.start_new_thread(serverTCP, ('127.0.0.1', M_PORT,sendACk(NID_ENGINE)))
+		thread.start_new_thread(serverTCP, (ReceiveTCP_IP, M_PORT,sendACk(NID_ENGINE)))
 	except socket.error as msg:
         #sock.close() 
 		print "Nessuna Presentazione Eseguita, Avvia lo Scheduler",msg

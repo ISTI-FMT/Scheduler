@@ -7,7 +7,7 @@
 #include "..\\Itinerari\\FormVisualizzeConfFermate.h"
 #include "..\\phisicalTrainList.h"
 #include "..\\threads\\ThreadListenerATC_IXL.h"
-#include <iostream>
+
 #include "..\\threads\\ThreadPresentazione.h"
 #include "..\\mapTrenoFisicoLogico.h"
 #include "..\\messaggi\\Messaggi.h"
@@ -280,10 +280,10 @@ namespace Prototipo {
 
 
 
-					 cout << "RESPONSE\n" << pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE();
+					 Console::WriteLine( "RESPONSE\n ", pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE());
 
 
-					 cout << "DONE\n";
+					Console::WriteLine( "DONE\n");
 					 myStream->Close();
 					 sock->Close();
 				 }

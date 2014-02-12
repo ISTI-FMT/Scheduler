@@ -12,9 +12,9 @@ void utility::setbit(array<Byte>^buf, int offset) {
   //
   int Byteoffset = offset/8;
   int bitoffset = offset%8;
-  char workByte;
+  Byte workByte;
   workByte= buf[Byteoffset];
-   char masks[] = {-128,64,32,16,8,4,2,1}; // le maschere per settare i bit
+   array<Byte> ^masks = {-128,64,32,16,8,4,2,1}; // le maschere per settare i bit
   //
   // setta il bit;
   //
@@ -80,9 +80,9 @@ int utility::getbit(array<Byte>^buf, int offset) {
   int res;
   int Byteoffset = offset/8;
   int bitoffset = offset%8;
-  char workByte;
+  Byte workByte;
   workByte= buf[Byteoffset];
-   char masks[] = {-128,64,32,16,8,4,2,1}; // le maschere per settare i bit
+   array<Byte> ^ masks = {-128,64,32,16,8,4,2,1}; // le maschere per settare i bit
   //
   // leggi il bit;
   //

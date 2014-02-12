@@ -1,10 +1,9 @@
 #include "TabellaOrario.h"
 #using <System.Xml.dll>
-#include <iostream>
+
 
 #include "..\\logger\\Logger.h"
 #include "..\\messaggi\\Mission.h"
-using namespace std;
 using namespace System;
 using namespace System::Globalization;
 using namespace System::Xml;
