@@ -53,7 +53,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	//Console::WriteLine("{0} ttl",recv_udpClient->Ttl);
 
-	IPEndPoint^ ipEndPoint;
+	IPEndPoint^ ipEndPoint= gcnew IPEndPoint(IPAddress::Any,port );
 
 	array<Byte>^ receiveBytes = recv_udpClient->EndReceive(asyncResult, ipEndPoint);
 
