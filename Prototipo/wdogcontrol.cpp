@@ -135,7 +135,11 @@ void wdogcontrol::onNext(){
 
 	this->Invoke(myDelegate);
 	}catch(Exception ^e){
+		e->ToString();
+		Console::WriteLine("########################");
 		Console::WriteLine("Sei troppo veloce");
+		//Console::WriteLine("Exception ",e->ToString());
+		Console::WriteLine("########################");
 	}
 
 }

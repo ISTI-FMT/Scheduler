@@ -135,7 +135,7 @@ Int32 Train::CompareTo(Train^otherKey){
 
 	if(getPriorita() ==otherKey->getPriorita()){
 
-		if(getTimeNextEvent()!=nullptr & otherKey->getTimeNextEvent()!=nullptr ){
+		if((getTimeNextEvent()!=nullptr)&(otherKey->getTimeNextEvent()!=nullptr)){
 			DateTime ^time = getTimeNextEvent();
 			DateTime ^timeNext = otherKey->getTimeNextEvent();
 			if(time->CompareTo(timeNext)!=0){

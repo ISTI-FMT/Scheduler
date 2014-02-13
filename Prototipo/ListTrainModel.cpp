@@ -11,6 +11,27 @@ ListTrainModel::ListTrainModel(void)
 	observers = gcnew List<IObserver<List<Train^>^>^>();
 }
 
+bool ListTrainModel::RemoveElement(Train^ train){
+	for each (Train^ treno  in ListSortedTrains)
+	{
+		if(treno->getPhysicalTrain()->getEngineNumber()==train->getPhysicalTrain()->getEngineNumber()){
+			ListSortedTrains->Remove(treno);
+			return true;
+		}
+	}
+
+	return false;
+}
+bool ListTrainModel::Contains(Train^ train){
+	for each (Train^ treno  in ListSortedTrains)
+	{
+		if(treno->getPhysicalTrain()->getEngineNumber()==train->getPhysicalTrain()->getEngineNumber()){
+			return true;
+		}
+	}
+
+	return false;
+}
 
 void ListTrainModel::Add(Train^ train){
 	try{
@@ -19,6 +40,9 @@ void ListTrainModel::Add(Train^ train){
 		Sort();
 	}catch(ArgumentException ^e){
 		Console::WriteLine("Attenzione: tenti di aggiungere una chiave già esistente");
+		Console::WriteLine("########################");
+		Console::WriteLine("Exception ",e->ToString());
+		Console::WriteLine("########################");
 	}
 }
 
@@ -33,17 +57,17 @@ IDisposable ^ListTrainModel::Subscribe(IObserver<List<Train^>^> ^observer){
 
 }
 
- void ListTrainModel::Sort(){
+void ListTrainModel::Sort(){
 	ListSortedTrains->Sort();
 	//Console::WriteLine("");
 	for each(  Train^ kvp in ListSortedTrains )
-        {
-            Console::WriteLine("Key = {0}",kvp);
-        }
+	{
+		Console::WriteLine("Key = {0}",kvp);
+	}
 	for each (IObserver<List<Train^>^>^ observer in observers)
-		{
-			observer->OnNext(ListSortedTrains);
-		}
+	{
+		observer->OnNext(ListSortedTrains);
+	}
 }
 
 
@@ -60,30 +84,30 @@ Train ^ListTrainModel::getTrain(String ^t){
 
 void ListTrainModel::NextIt(Train ^key){
 	if(ListSortedTrains->Contains(key)){
-		
+
 		key->goNextItinerario();
 		key->setTimeStampNextEvent(key->getOrarioPartenza());
-	
+
 	}
 }
 
 void ListTrainModel::changePrior(Train ^key, int newprior){
 	if(ListSortedTrains->Contains(key)){
-		
-		
+
+
 		key->setPriorita(newprior);
 		Sort();
 	}
-	
+
 }
 
- void  ListTrainModel::changeOrari(Train ^key,  List<Fermata^> ^nuoviorari){
-	 if(ListSortedTrains->Contains(key)){
-		
-		
+void  ListTrainModel::changeOrari(Train ^key,  List<Fermata^> ^nuoviorari){
+	if(ListSortedTrains->Contains(key)){
+
+
 		key->changeOrari(nuoviorari);
 		Sort();
 	}
 
 
- }
+}

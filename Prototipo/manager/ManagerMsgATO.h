@@ -24,7 +24,7 @@ public:
 
 	virtual IDisposable ^Subscribe(IObserver<Event<physicalTrain^>^> ^observer);
    
-
+	void Notify(physicalTrain ^onetrain);
 
 };
 

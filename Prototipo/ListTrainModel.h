@@ -10,6 +10,8 @@ public:
 	 void Add(Train^ train);
 	 System::Collections::Generic::List<Train^> ^getList();
 	 void Sort();
+	 bool Contains(Train^ train);
+	 bool RemoveElement(Train^ train);
 	 void NextIt(Train ^key);
 	 void changePrior(Train ^key, int newprior);
 	 void changeOrari(Train ^key,  List<Fermata^> ^nuoviorari);

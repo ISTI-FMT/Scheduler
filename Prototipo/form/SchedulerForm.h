@@ -5,7 +5,7 @@
 #include "..\\tabellaOrario\\FormVisualizzeTabOrario.h"
 #include "..\\Itinerari\\FormVisualizzeConfItine.h"
 #include "..\\Itinerari\\FormVisualizzeConfFermate.h"
-#include "..\\phisicalTrainList.h"
+/*#include "..\\phisicalTrainList.h"*/
 #include "..\\threads\\ThreadListenerATC_IXL.h"
 
 #include "..\\threads\\ThreadPresentazione.h"
@@ -84,7 +84,7 @@ namespace Prototipo {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 		TabellaOrario ^tabellaOrario;
-		phisicalTrainList ^listaTreni;
+/*		phisicalTrainList ^listaTreni;*/
 		TabellaStazioni ^tabItinerari;
 		FormStatoLineaATC ^stATC;
 		FormStatoLineaIXL ^stif ;
@@ -179,128 +179,128 @@ namespace Prototipo {
 				 this->ResumeLayout(false);
 
 			 }
-			 void TCP_Management()
-			 {
-				 physicalTrain ^Treno = listaTreni->getPrimo();
-
-				 try
-				 {
-
-
-					 Messaggi ^wakeUpPkt = gcnew Messaggi();
-
-
-					 wakeUpPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
-
-
-					 wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
-					 wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
-					 DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-					 TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
-					 wakeUpPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
-
-
-
-
-
-					 // Buffer for reading data
-					 array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
-
-
-					 Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
-
-
-					 trainRunningNumberPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
-					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
-					 trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
-					 trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
-
-					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabellaOrario->getFirstTRN());
-
-
-					 // Buffer for reading data
-					 array<Byte>^bytes_buffer2 = trainRunningNumberPkt->serialize();
-
-					 Messaggi ^missionPlanPkt = gcnew Messaggi();
-
-					 missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
-					 missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
-					 int TRN = tabellaOrario->getFirstTRN();
-					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(TRN));
-
-
-
-					 // Buffer for reading data
-					 array<Byte>^bytes_buffer3 =  missionPlanPkt->serialize();
-
-					 // Creates the Socket to send data over a TCP connection.
-					 Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
-
-
-					 String ^IP = gcnew String(Treno->getIpAddress());
-					 sock->Connect(IP, Treno->getTcpPort());
-
-					 NetworkStream ^myStream = gcnew NetworkStream(sock);
-
-					 myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
-#ifdef TRACE
-
-					 Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"Init");
-
-#endif // TRACE
-					 myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
-#ifdef TRACE
-
-					 Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"Init");
-
-#endif // TRACE
-					 myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
-#ifdef TRACE
-
-					 Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"Init");
-
-#endif // TRACE
-
-					 Messaggi ^pktAck = gcnew Messaggi();
-
-					 pktAck->set_pacchettoAcknowledgement();
-
-					 // Buffer for reading data
-					 array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck->getSize());
-
-					 myStream->Read(bytes_buffer4, 0, pktAck->getSize());
-					 pktAck->deserialize(bytes_buffer4);
-
-#ifdef TRACE
-
-					 Logger::Info(pktAck->getNID_MESSAGE(),IP->ToString(),"ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"Init");
-
-#endif // TRACE
-
-
-
-
-					 Console::WriteLine( "RESPONSE\n ", pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE());
-
-
-					Console::WriteLine( "DONE\n");
-					 myStream->Close();
-					 sock->Close();
-				 }
-				 catch ( SocketException^ e ) 
-				 {
-					 Console::WriteLine( "SocketException: {0}", e );
-#ifdef TRACE
-					 Logger::Exception(e,"SchedulerForm");  
-#endif // TRACE
-				 }
-
-
-			 }
+//			 void TCP_Management()
+//			 {
+//				 physicalTrain ^Treno = listaTreni->getPrimo();
+//
+//				 try
+//				 {
+//
+//
+//					 Messaggi ^wakeUpPkt = gcnew Messaggi();
+//
+//
+//					 wakeUpPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
+//
+//
+//					 wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
+//					 wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
+//					 DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+//					 TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
+//					 wakeUpPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
+//
+//
+//
+//
+//
+//					 // Buffer for reading data
+//					 array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
+//
+//
+//					 Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
+//
+//
+//					 trainRunningNumberPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
+//					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
+//					 trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
+//					 trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
+//
+//					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabellaOrario->getFirstTRN());
+//
+//
+//					 // Buffer for reading data
+//					 array<Byte>^bytes_buffer2 = trainRunningNumberPkt->serialize();
+//
+//					 Messaggi ^missionPlanPkt = gcnew Messaggi();
+//
+//					 missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
+//					 missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
+//					 int TRN = tabellaOrario->getFirstTRN();
+//					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(TRN));
+//
+//
+//
+//					 // Buffer for reading data
+//					 array<Byte>^bytes_buffer3 =  missionPlanPkt->serialize();
+//
+//					 // Creates the Socket to send data over a TCP connection.
+//					 Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
+//
+//
+//					 String ^IP = gcnew String(Treno->getIpAddress());
+//					 sock->Connect(IP, Treno->getTcpPort());
+//
+//					 NetworkStream ^myStream = gcnew NetworkStream(sock);
+//
+//					 myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
+//#ifdef TRACE
+//
+//					 Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"Init");
+//
+//#endif // TRACE
+//					 myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
+//#ifdef TRACE
+//
+//					 Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"Init");
+//
+//#endif // TRACE
+//					 myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
+//#ifdef TRACE
+//
+//					 Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"Init");
+//
+//#endif // TRACE
+//
+//					 Messaggi ^pktAck = gcnew Messaggi();
+//
+//					 pktAck->set_pacchettoAcknowledgement();
+//
+//					 // Buffer for reading data
+//					 array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck->getSize());
+//
+//					 myStream->Read(bytes_buffer4, 0, pktAck->getSize());
+//					 pktAck->deserialize(bytes_buffer4);
+//
+//#ifdef TRACE
+//
+//					 Logger::Info(pktAck->getNID_MESSAGE(),IP->ToString(),"ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"Init");
+//
+//#endif // TRACE
+//
+//
+//
+//
+//					 Console::WriteLine( "RESPONSE\n ", pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE());
+//
+//
+//					Console::WriteLine( "DONE\n");
+//					 myStream->Close();
+//					 sock->Close();
+//				 }
+//				 catch ( SocketException^ e ) 
+//				 {
+//					 Console::WriteLine( "SocketException: {0}", e );
+//#ifdef TRACE
+//					 Logger::Exception(e,"SchedulerForm");  
+//#endif // TRACE
+//				 }
+//
+//
+//			 }
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 if(!listaTreni->is_Empthy()){
+/*				 if(!listaTreni->is_Empthy()){
 					 Thread  ^oThread = gcnew Thread( gcnew ThreadStart(this, &Prototipo::SchedulerForm::TCP_Management) );
 
 					 oThread->Start();
@@ -312,7 +312,7 @@ namespace Prototipo {
 #endif // TRACE
 
 					 MessageBox::Show("Lista treni Vuota");
-				 }
+				 }*/
 
 
 			 }
@@ -395,14 +395,14 @@ namespace Prototipo {
 				 confVelocita= gcnew ConfigurazioneVelocita();
 
 				 Console::WriteLine(confVelocita->ToString());
-
-				 listaTreni = gcnew phisicalTrainList();
+/*
+				 listaTreni = gcnew phisicalTrainList();*/
 
 				 //filtro osservabile dei messaggi dell'ATO
 				 ManagerMsgATO ^manaStateATO = gcnew ManagerMsgATO();
 
 
-				 ThreadP= gcnew ThreadPresentazione(listaTreni,manaStateATO);
+				 ThreadP= gcnew ThreadPresentazione(/*listaTreni,*/manaStateATO);
 				 //Thread TCP che ascolta i messaggi provenienti dall'ATO
 				 Thread^ oThreadTCP_ATO = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadPresentazione::TCP_Management_receive ) );
 

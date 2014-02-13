@@ -7,7 +7,7 @@ using namespace System::Collections::Concurrent;
 
 
 /*Utilizzo questa classe per raccogliere in una mappa le informazioni di presentazione inviate all'ATS dagli ATO*/
-
+/*DISMESSA*/
 //rappresenta una lista di treni che si sono presentati
 ref class phisicalTrainList
 {

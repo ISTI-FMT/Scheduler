@@ -41,8 +41,8 @@ def serverTCP(host, port,ACK):
 		buffer3 = map(ord,data)
 		print "CAMBIO MISSION received data:", deserializzaMissionDATA(buffer3)
 		conn.send(ACK)
-		conn.close()
-		s.close()
+		#conn.close()
+		#s.close()
 		print "##########################END MISSION###############################"		# echo
 		#conn.close()
 

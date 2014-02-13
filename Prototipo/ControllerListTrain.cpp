@@ -12,7 +12,8 @@ ControllerListTrain::ControllerListTrain(ListTrainModel ^m)
 
 
 void ControllerListTrain::OnSetTrain(Train^ train){
-	model->Add(train);
+	model->RemoveElement(train);
+		model->Add(train);
 	
 }
 void ControllerListTrain::OnDelete(){

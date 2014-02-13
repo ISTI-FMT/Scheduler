@@ -23,10 +23,10 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(void)
 ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E2, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w,ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel)
 {
 
-		EQueueIXL=E0;
-		EQueueATC=E1;
-		EQueueATO=E2;
-	
+	EQueueIXL=E0;
+	EQueueATC=E1;
+	EQueueATO=E2;
+
 	mapTrenoLogFisico=mapTreno;
 	tabOrario=tabo;
 	tabItinerari=tabi;
@@ -40,19 +40,19 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	_shouldStop=false;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	timeRicIXL;
-	
+
 	ListTrainModel ^model = gcnew ListTrainModel();
 
 	Prototipo::ListTrainView ^view = gcnew Prototipo::ListTrainView(tabItinerari,EQueueCambioOrario);
 	model->Subscribe(view);
 	view->AddModel(model);
 	controlListtrain = gcnew ControllerListTrain(model);
-  
-     //Application::Run(view);
-	 view->Visible=true;
-	  
-	 
-			
+
+	//Application::Run(view);
+	view->Visible=true;
+
+
+
 }
 
 
@@ -77,7 +77,7 @@ void ThreadSchedulerSortedList::Schedule(){
 			ControllaMSG_ATO();
 			ControllaMSG_IXL();
 			ControllaEventiCambioOrario();
-			
+
 			for each (Train^ Train in controlListtrain->getListTrain())
 			{
 				switch (Train->getStatoTreno())
@@ -85,14 +85,14 @@ void ThreadSchedulerSortedList::Schedule(){
 				case PRONTO:
 					break;
 				case USCITASTAZIONE:{
-					
+
 					//itinerario uscita
 					KeyValuePair<int, int> ^itistazione = Train->getStazioneItinerario();
 					int itinUscita = itistazione->Value;
 					int idstazione = itistazione->Key;
 
 					int resultprecCdbU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
-			
+
 					//se esiste un itinerario di uscita
 					if(itinUscita>0){
 
@@ -104,7 +104,7 @@ void ThreadSchedulerSortedList::Schedule(){
 
 						int idTRenoCDBPrecIT = managerATC->getCDB(resultprecCdbU)->getNID_OPERATIONAL();
 						int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecCdbU)->getNID_ENGINE();
-					// controllo posizione e tempo 
+						// controllo posizione e tempo 
 						if(((idTRenoCDBPrecIT==Train->getTRN())|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
@@ -112,13 +112,13 @@ void ThreadSchedulerSortedList::Schedule(){
 
 							//fine
 							if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
-								
+
 								List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
 								if(cdbricPrenotazione!=nullptr){
 									RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 								}
 							}
-					
+
 						}
 
 
@@ -130,7 +130,7 @@ void ThreadSchedulerSortedList::Schedule(){
 									}
 				case ENTRATASTAZIONE: {
 
-				
+
 					//itinerario uscita
 					KeyValuePair<int, int> ^itistazione = Train->getStazioneItinerario();
 
@@ -143,8 +143,8 @@ void ThreadSchedulerSortedList::Schedule(){
 
 						if(eventATC!=nullptr){
 							int idTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_OPERATIONAL();
-						int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_ENGINE();
-								//se il treno si trova sul cdb giusto
+							int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_ENGINE();
+							//se il treno si trova sul cdb giusto
 
 							if(((eventATC->getEvent()->getNID_CDB()==resultprecE) & (eventATC->getEvent()->getNID_OPERATIONAL()==Train->getTRN() | eventATC->getEvent()->getNID_ENGINE()==Train->getPhysicalTrain()->getEngineNumber())) |((
 								idTRenoCDBPrecIT==Train->getTRN() )|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())){
@@ -157,7 +157,7 @@ void ThreadSchedulerSortedList::Schedule(){
 									//fine
 
 									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
-										
+
 										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
 										if(cdbricPrenotazione!=nullptr){
 											RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
@@ -176,13 +176,13 @@ void ThreadSchedulerSortedList::Schedule(){
 								//fine
 
 
-							
+
 								//se l'itinerario è libero
 								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 								//che riporti il cambiamento dello stato dell'itinerario
 								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
-								
+
 									if(cdbricPrenotazione!=nullptr){
 										RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 									}
@@ -227,26 +227,26 @@ void  ThreadSchedulerSortedList::ControllaEventiCambioOrario(){
 		Console::WriteLine("ciao");
 		Train ^train = eventoOrario->getEventAttribute();
 		List<Fermata^> ^nuoviorari = eventoOrario->getEvent();
-		
-		
-		//invia messaggio all'ato
-		 StateObject ^inviato =	SendUpdateMissionATO(train->getTRN(),train->getPhysicalTrain(),nuoviorari);
-		//aspetta ack
-		 DateTime time=DateTime::Now;
-		 TimeSpan ^sec =  TimeSpan::Zero;
-		 int seconds=0;
-		 while (inviato->fine!=1 & seconds<10){
-			  sec = DateTime::Now - time;
-			  seconds = sec->TotalSeconds;
-			 //reinvia
-			
 
-		 }
-		 if(inviato->fine==1){
+
+		//invia messaggio all'ato
+		StateObject ^inviato =	SendUpdateMissionATO(train->getTRN(),train->getPhysicalTrain(),nuoviorari);
+		//aspetta ack
+		DateTime time=DateTime::Now;
+		TimeSpan ^sec =  TimeSpan::Zero;
+
+		while ((inviato->fine!=1) & (sec->TotalSeconds<10)){
+			sec = DateTime::Now - time;
+
+			//reinvia
+
+
+		}
+		if(inviato->fine==1){
 			//aggiorna modello se ack è giusto
-			 controlListtrain->AggiornaOrario(train, nuoviorari);
-		 }
-		 
+			controlListtrain->AggiornaOrario(train, nuoviorari);
+		}
+
 	}
 }
 
@@ -278,7 +278,7 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 	DateTime time=DateTime::Now;
-	
+
 	StateObject ^inviato;
 	// aspetta che si presenti un treno
 	Event<physicalTrain^> ^eventoATO = EQueueATO->getEvent();
@@ -312,9 +312,9 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 							time=DateTime::Now;
 						}
 						TimeSpan ^sec = TimeSpan::Zero; 
-						while (inviato->fine!=1 & sec->TotalSeconds<20){
+						while ((inviato->fine!=1) & (sec->TotalSeconds<20)){
 							//aspetta un po
-							 sec = DateTime::Now - time;
+							sec = DateTime::Now - time;
 							if(sec->TotalSeconds>20){
 								//riinvia
 								inviato->fine=0;
@@ -337,7 +337,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 							int priorita = 1;
 							Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
 							//Creo KeyListTrain
-							
+
 							//KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber);
 							//ListSortedTrains->Add(key,treno);
 							controlListtrain->OnSetTrain(treno);
@@ -403,55 +403,56 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 
 
 void ThreadSchedulerSortedList::Connect(EndPoint ^remoteEP, Socket ^client) {
-	 client->BeginConnect(remoteEP, 
-        gcnew AsyncCallback(ConnectCallbackMethod), client );
+	client->BeginConnect(remoteEP, 
+		gcnew AsyncCallback(ConnectCallbackMethod), client );
 	mre->WaitOne();
 
 }
 
- void ThreadSchedulerSortedList::ConnectCallbackMethod(IAsyncResult ^ar) {
-    try {
-        // Retrieve the socket from the state object.
-        Socket ^client = (Socket^) ar->AsyncState;
+void ThreadSchedulerSortedList::ConnectCallbackMethod(IAsyncResult ^ar) {
+	try {
+		// Retrieve the socket from the state object.
+		Socket ^client = (Socket^) ar->AsyncState;
 
-        // Complete the connection.
-        client->EndConnect(ar);
+		// Complete the connection.
+		client->EndConnect(ar);
 
-        Console::WriteLine("Socket connected to {0}",  client->RemoteEndPoint->ToString());
+		Console::WriteLine("Socket connected to {0}",  client->RemoteEndPoint->ToString());
 
-     mre->Set();
-    } catch (Exception ^e) {
-        Console::WriteLine(e->ToString());
-    }
+		mre->Set();
+	} catch (Exception ^e) {
+		Console::WriteLine(e->ToString());
+		mre->Set();
+	}
 }
 
 
-  void ThreadSchedulerSortedList::Send(Socket ^client, array<Byte> ^data){
-	    client->BeginSend(data, 0, data->Length,System::Net::Sockets::SocketFlags::None,
-        gcnew AsyncCallback(SendCallbackMethod), client);
+void ThreadSchedulerSortedList::Send(Socket ^client, array<Byte> ^data){
+	client->BeginSend(data, 0, data->Length,System::Net::Sockets::SocketFlags::None,
+		gcnew AsyncCallback(SendCallbackMethod), client);
 
-  }
- void ThreadSchedulerSortedList::SendCallbackMethod(IAsyncResult ^ar){
-	  try {
-        // Retrieve the socket from the state object.
-        Socket ^client = (Socket^) ar->AsyncState;
+}
+void ThreadSchedulerSortedList::SendCallbackMethod(IAsyncResult ^ar){
+	try {
+		// Retrieve the socket from the state object.
+		Socket ^client = (Socket^) ar->AsyncState;
 
-        // Complete sending the data to the remote device.
-        int bytesSent = client->EndSend(ar);
-        Console::WriteLine("Sent {0} bytes to server.", bytesSent);
+		// Complete sending the data to the remote device.
+		int bytesSent = client->EndSend(ar);
+		Console::WriteLine("Sent {0} bytes to server.", bytesSent);
 
-        // Signal that all bytes have been sent.
-        //sendDone.Set();
-    } catch (Exception ^e) {
-        Console::WriteLine(e->ToString());
-    }
- }
+		// Signal that all bytes have been sent.
+		//sendDone.Set();
+	} catch (Exception ^e) {
+		Console::WriteLine(e->ToString());
+	}
+}
 
 StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTrain ^Treno,List<Fermata^> ^stops){
 	try
 	{
 
-				Messaggi ^missionPlanPkt = gcnew Messaggi();
+		Messaggi ^missionPlanPkt = gcnew Messaggi();
 
 		DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
 		TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
@@ -466,7 +467,7 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 		// Buffer for reading data
 		array<Byte>^bytes_buffer3 = missionPlanPkt->serialize();
 
-			// Creates the Socket to send data over a TCP connection.
+		// Creates the Socket to send data over a TCP connection.
 		Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
 		sock->SendBufferSize = 0;
 
@@ -474,7 +475,7 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 		IPEndPoint ^lep = gcnew IPEndPoint(IPAddress::Parse(IP), Treno->getTcpPort());
 
 		//Connect(lep,sock);
-	//	Send(sock,bytes_buffer3);
+		//Send(sock,bytes_buffer3);
 		sock->Connect(IP, Treno->getTcpPort());
 		sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
 #ifdef TRACE
@@ -505,8 +506,8 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 
 void ThreadSchedulerSortedList::setMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops)
 {
-	
-	
+
+
 	// se il teno esiste
 	if(stops!=nullptr)
 	{
@@ -604,15 +605,15 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		sock->SendBufferSize = 0;
 
 		String ^IP = gcnew String(Treno->getIpAddress());
-		//sock->Connect(IP, Treno->getTcpPort());
+
 		IPEndPoint ^lep = gcnew IPEndPoint(IPAddress::Parse(IP), Treno->getTcpPort());
 
-		Connect(lep,sock);
-		
+		//Connect(lep,sock);
+		sock->Connect(IP, Treno->getTcpPort());
 
 		//NetworkStream ^myStream = gcnew NetworkStream(sock);
-		//sock->Send(bytes_buffer1,bytes_buffer1->Length, System::Net::Sockets::SocketFlags::None);
-		Send(sock,bytes_buffer1);
+		sock->Send(bytes_buffer1,bytes_buffer1->Length, System::Net::Sockets::SocketFlags::None);
+		//Send(sock,bytes_buffer1);
 		//sock->BeginSend(bytes_buffer1, 0, wakeUpPkt->getSize(),System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
 		//myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
 #ifdef TRACE
@@ -620,8 +621,8 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedulerTrain::WakeUP");
 
 #endif // TRACE
-		//sock->Send(bytes_buffer2,bytes_buffer2->Length, System::Net::Sockets::SocketFlags::None);
-		Send(sock,bytes_buffer2);
+		sock->Send(bytes_buffer2,bytes_buffer2->Length, System::Net::Sockets::SocketFlags::None);
+		//Send(sock,bytes_buffer2);
 		//sock->BeginSend(bytes_buffer2, 0, trainRunningNumberPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
 		//myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
 #ifdef TRACE
@@ -629,8 +630,8 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedulerTrain::TRN");
 
 #endif // TRACE
-		//sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
-		Send(sock,bytes_buffer3);
+		sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
+		//Send(sock,bytes_buffer3);
 		//sock->BeginSend(bytes_buffer3, 0, missionPlanPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
 		//myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
 #ifdef TRACE
@@ -709,6 +710,9 @@ void ThreadSchedulerSortedList::ReceiveCallback(IAsyncResult^ asyncResult){
 	}catch(Exception ^e){
 
 		Console::WriteLine("hai chiuso il sock ma l'ATO {0} non ha mandato L'ack",so->enginenumber);
+		Console::WriteLine("########################");
+		Console::WriteLine("Exception ",e->ToString());
+		Console::WriteLine("########################");
 	}
 
 

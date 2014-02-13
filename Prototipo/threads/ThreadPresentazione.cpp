@@ -18,15 +18,15 @@ using namespace System::Threading::Tasks;
 using namespace System::Runtime::InteropServices;
 
 
-ThreadPresentazione::ThreadPresentazione()
+/*ThreadPresentazione::ThreadPresentazione()
 {
 
-}
+}*/
 
-ThreadPresentazione::ThreadPresentazione(phisicalTrainList ^lt,  ManagerMsgATO ^MA)
+ThreadPresentazione::ThreadPresentazione(/*phisicalTrainList ^lt,*/  ManagerMsgATO ^MA)
 	// :listaTreni(lt)
 {
-	listaTreni=lt;
+	/*listaTreni=lt;*/
 	ManaMsgATO=MA;
 	port=13000;
 	_shouldStop=false;
@@ -95,7 +95,7 @@ void  ThreadPresentazione::TCP_Management_receive(){
 
 				treno->setIpAddress((((IPEndPoint^)(client->Client->RemoteEndPoint) )->Address)->ToString());
 				// aggiungo il treno alla lista dei treni fisici
-				listaTreni->setMapTreni(treno);
+				//listaTreni->setMapTreni(treno);
 
 				ManaMsgATO->addCheckAndSet(treno, "ATO");
 
