@@ -30,6 +30,7 @@ if len(sys.argv) < 2:
 def serverTCP(host, port,ACK):
 	while 1:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 		s.bind((host, port))
 		s.listen(1)
 		conn, addr = s.accept()
