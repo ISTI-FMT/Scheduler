@@ -14,6 +14,7 @@ using namespace System::Xml;
 
 
 #define TRACE
+//#define UNIFI
 
 ThreadSchedulerSortedList::ThreadSchedulerSortedList(void)
 {
@@ -469,7 +470,9 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 
 		// Creates the Socket to send data over a TCP connection.
 		Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
-		sock->SendBufferSize = 0;
+#ifdef UNIFI
+		sock->SendBufferSize = 0;  
+#endif // UNIFI
 
 		String ^IP = gcnew String(Treno->getIpAddress());
 		IPEndPoint ^lep = gcnew IPEndPoint(IPAddress::Parse(IP), Treno->getTcpPort());
@@ -602,7 +605,10 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 
 		// Creates the Socket to send data over a TCP connection.
 		Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
-		sock->SendBufferSize = 0;
+#ifdef UNIFI
+		sock->SendBufferSize = 0;  
+#endif // UNIFI
+
 
 		String ^IP = gcnew String(Treno->getIpAddress());
 
