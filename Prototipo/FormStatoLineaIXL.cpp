@@ -27,7 +27,27 @@ void Prototipo::FormStatoLineaIXL::genera(){
 	Controls->Add(tableCDB);
 
 }
+ void Prototipo::FormStatoLineaIXL::OnNext(Event<StateCDB^> ^value){
 
+	 if(value!=nullptr){
+			/*	StateItinerario ^st =	even->getEventStateItinerario();
+				if(st!=nullptr){
+					int id =	st->getNID_ITIN();
+					int stato =	st->getQ_STATOITIN();
+
+					findandset(id,stato);
+				}else{*/
+					StateCDB ^stCDB =	value->getEvent();
+					if(stCDB!=nullptr){
+						int id =	stCDB->getNID_CDB();
+						int stato =	stCDB->getQ_STATOCDB();
+
+						findandsetCDB(id,stato);
+
+					}
+				}
+
+}
 void Prototipo::FormStatoLineaIXL::aggiorna(){
 
 	while(!_shouldStop){

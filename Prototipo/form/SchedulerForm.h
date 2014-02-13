@@ -422,12 +422,13 @@ namespace Prototipo {
 				 EventQueue<StateCDB^> ^EventQIXL = gcnew EventQueue<StateCDB^>();
 				 EventQIXL->Subscribe(manaStateIXL);
 				 ////
-				 EventQueue<StateCDB^>  ^visualQIXL = gcnew EventQueue<StateCDB^>();
-				 visualQIXL->Subscribe(manaStateIXL);
-				 stif = gcnew FormStatoLineaIXL(visualQIXL);
+				// EventQueue<StateCDB^>  ^visualQIXL = gcnew EventQueue<StateCDB^>();
+				// visualQIXL->Subscribe(manaStateIXL);
+				 stif = gcnew FormStatoLineaIXL();
+				 stif->Subscribe(manaStateIXL);
 				 stif->Visible=true;
-				 Thread ^ oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoLineaIXL::aggiorna));
-				 oThreadformStatoI->Start();
+				// Thread ^ oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoLineaIXL::aggiorna));
+				 //oThreadformStatoI->Start();
 				 /////
 
 				 ////

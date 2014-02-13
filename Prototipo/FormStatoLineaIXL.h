@@ -25,18 +25,19 @@ using namespace System::Threading::Tasks;
 	/// <summary>
 	/// Riepilogo per FormStatoLineaIXL
 	/// </summary>
-	 ref class FormStatoLineaIXL : public System::Windows::Forms::Form
+	 ref class FormStatoLineaIXL : public System::Windows::Forms::Form , IObserver<Event<StateCDB^>^>
 	{
 		TabellaStazioni ^tabItinerari;
 		EventQueue<StateCDB^> ^eventiCDB;
 		//Dictionary<int,Button^> ^listbutton;
 		Dictionary<int,Button^> ^listbuttonCDB;
 		bool _shouldStop;
+		IDisposable ^unsubscriber;
 	public:
 
-		FormStatoLineaIXL(EventQueue<StateCDB^> ^ev)
+		FormStatoLineaIXL()
 		{
-			eventiCDB=ev;
+			//eventiCDB=ev;
 		//	listbutton= gcnew Dictionary<int,Button^> ();
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			
@@ -51,6 +52,25 @@ using namespace System::Threading::Tasks;
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 		}
+		virtual void Subscribe(IObservable<Event<StateCDB^>^> ^provider){
+		if (provider != nullptr) 
+			unsubscriber = provider->Subscribe(this);	
+	};
+	
+	virtual void OnCompleted(){
+		
+		Unsubscribe();
+
+	};
+	virtual void OnError(Exception ^e){
+		
+		Unsubscribe();
+		
+	};
+	virtual void OnNext(Event<StateCDB^> ^value);
+	virtual void Unsubscribe(){
+		delete unsubscriber;
+	};
 		void genera();
 		void aggiorna();
 		//void findandset(int id, int stato);
