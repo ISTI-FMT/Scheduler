@@ -18,14 +18,14 @@ namespace Prototipo {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Net;
-using namespace System::Net::Sockets;
-using namespace System::Threading;
-using namespace System::Threading::Tasks;
+	using namespace System::Net::Sockets;
+	using namespace System::Threading;
+	using namespace System::Threading::Tasks;
 
 	/// <summary>
 	/// Riepilogo per FormStatoLineaIXL
 	/// </summary>
-	 ref class FormStatoLineaIXL : public System::Windows::Forms::Form , IObserver<Event<StateCDB^>^>
+	ref class FormStatoLineaIXL : public System::Windows::Forms::Form , IObserver<Event<StateCDB^>^>
 	{
 		TabellaStazioni ^tabItinerari;
 		EventQueue<StateCDB^> ^eventiCDB;
@@ -38,9 +38,9 @@ using namespace System::Threading::Tasks;
 		FormStatoLineaIXL()
 		{
 			//eventiCDB=ev;
-		//	listbutton= gcnew Dictionary<int,Button^> ();
+			//	listbutton= gcnew Dictionary<int,Button^> ();
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
-			
+
 			this->ControlBox=false;
 			InitializeComponent();
 			_shouldStop=false;
@@ -53,32 +53,32 @@ using namespace System::Threading::Tasks;
 			//
 		}
 		virtual void Subscribe(IObservable<Event<StateCDB^>^> ^provider){
-		if (provider != nullptr) 
-			unsubscriber = provider->Subscribe(this);	
-	};
-	
-	virtual void OnCompleted(){
-		
-		Unsubscribe();
+			if (provider != nullptr) 
+				unsubscriber = provider->Subscribe(this);	
+		};
 
-	};
-	virtual void OnError(Exception ^e){
-		
-		Unsubscribe();
-		
-	};
-	virtual void OnNext(Event<StateCDB^> ^value);
-	virtual void Unsubscribe(){
-		delete unsubscriber;
-	};
+		virtual void OnCompleted(){
+
+			Unsubscribe();
+
+		};
+		virtual void OnError(Exception ^e){
+
+			Unsubscribe();
+
+		};
+		virtual void OnNext(Event<StateCDB^> ^value);
+		virtual void Unsubscribe(){
+			delete unsubscriber;
+		};
 		void genera();
 		void aggiorna();
 		//void findandset(int id, int stato);
 		void findandsetCDB(int id, int stato);
 		void RequestStop();
 	private: 
-			 //List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
-			 void setCdBItin(List<StateCDB^> ^listCdB, int stato);
+		//List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
+		void setCdBItin(List<StateCDB^> ^listCdB, int stato);
 
 	protected:
 		/// <summary>
@@ -113,7 +113,7 @@ using namespace System::Threading::Tasks;
 			// 
 			// tableLayoutPanel1
 			// 
-		/*	this->tableLayoutPanel1->ColumnCount = 4;
+			/*	this->tableLayoutPanel1->ColumnCount = 4;
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
@@ -141,58 +141,58 @@ using namespace System::Threading::Tasks;
 
 		}
 #pragma endregion
-	/*private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-				 List< StateItinerario^> ^listI = gcnew List< StateItinerario^>();
-				 List<StateCDB^> ^listCItin = gcnew  List<StateCDB^>();
-				 for each ( tableLayoutPanelSingleItin ^c in tableLayoutPanel1->Controls )
-				 {
-					 int i=0;
-					  int offset =0;
-					 for each ( Object ^ssx in c->getTableLayoutPanel()->Controls )
-					 {
-						
-						 if(i==0){
-							 Label ^l  = (Label ^ )ssx;
-							 offset = int::Parse(l->Name);
+		/*private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		List< StateItinerario^> ^listI = gcnew List< StateItinerario^>();
+		List<StateCDB^> ^listCItin = gcnew  List<StateCDB^>();
+		for each ( tableLayoutPanelSingleItin ^c in tableLayoutPanel1->Controls )
+		{
+		int i=0;
+		int offset =0;
+		for each ( Object ^ssx in c->getTableLayoutPanel()->Controls )
+		{
 
-						 }
-						 if(i>0){
-							 Button ^s  = (Button ^ )ssx;
-						 StateItinerario^ itin = gcnew StateItinerario();
-						 int iditinerario = int::Parse(s->Name);
+		if(i==0){
+		Label ^l  = (Label ^ )ssx;
+		offset = int::Parse(l->Name);
 
-						 List<StateCDB^> ^listC = listCdBItin(offset,iditinerario);
+		}
+		if(i>0){
+		Button ^s  = (Button ^ )ssx;
+		StateItinerario^ itin = gcnew StateItinerario();
+		int iditinerario = int::Parse(s->Name);
 
-
-						 itin->setNID_ITIN(iditinerario+offset);
-						 if(s->BackColor== System::Drawing::Color::Red){
-							 itin->setQ_STATOITIN(1);
-							 setCdBItin(listC,2);
-							  listCItin->AddRange(listC);
-						 }else{
-
-							 itin->setQ_STATOITIN(0);
-							 if(s->BackColor== System::Drawing::Color::Green){
-							 setCdBItin(listC,0);
-							 listCItin->AddRange(listC);
-							 }
-						 }
-						
-						 listI->Add(itin);
-						 Console::WriteLine(itin);
-						 }
-
-						 i++;
-					 }
+		List<StateCDB^> ^listC = listCdBItin(offset,iditinerario);
 
 
-				 }
+		itin->setNID_ITIN(iditinerario+offset);
+		if(s->BackColor== System::Drawing::Color::Red){
+		itin->setQ_STATOITIN(1);
+		setCdBItin(listC,2);
+		listCItin->AddRange(listC);
+		}else{
 
-				 SendMessStatoIXL(listI, listCItin);
+		itin->setQ_STATOITIN(0);
+		if(s->BackColor== System::Drawing::Color::Green){
+		setCdBItin(listC,0);
+		listCItin->AddRange(listC);
+		}
+		}
 
-			 }*/
+		listI->Add(itin);
+		Console::WriteLine(itin);
+		}
+
+		i++;
+		}
+
+
+		}
+
+		SendMessStatoIXL(listI, listCItin);
+
+		}*/
 	};
-	
-	
+
+
 
 }

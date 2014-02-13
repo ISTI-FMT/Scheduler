@@ -432,12 +432,13 @@ namespace Prototipo {
 				 /////
 
 				 ////
-				 EventQueue<StateCDB^>  ^visualQATC = gcnew EventQueue<StateCDB^> ();
-				 visualQATC->Subscribe(manaStateATC);
-				 stATC = gcnew FormStatoLineaATC(visualQATC);
+				/* EventQueue<StateCDB^>  ^visualQATC = gcnew EventQueue<StateCDB^> ();
+				 visualQATC->Subscribe(manaStateATC);*/
+				 stATC = gcnew FormStatoLineaATC(/*visualQATC*/);
+				 stATC->Subscribe(manaStateATC);
 				 stATC->Visible=true;
-				 Thread ^	 oThreadformStatoATC  = gcnew Thread( gcnew ThreadStart(stATC,&FormStatoLineaATC::aggiorna));
-				 oThreadformStatoATC->Start();
+				/* Thread ^	 oThreadformStatoATC  = gcnew Thread( gcnew ThreadStart(stATC,&FormStatoLineaATC::aggiorna));
+				 oThreadformStatoATC->Start();*/
 				 /////
 				 EventQueue<StateCDB^>  ^EventQATC = gcnew EventQueue<StateCDB^> ();
 				 EventQATC->Subscribe(manaStateATC);

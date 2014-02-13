@@ -22,21 +22,21 @@ namespace Prototipo {
 	/// <summary>
 	/// Riepilogo per FormStatoLineaATC
 	/// </summary>
-	ref class FormStatoLineaATC : public System::Windows::Forms::Form
+	ref class FormStatoLineaATC : public System::Windows::Forms::Form , IObserver<Event<StateCDB^>^>
 	{
 		Dictionary<int,Button^> ^listbuttonCDB;
-		EventQueue<StateCDB^> ^eventiATC;
+		/*EventQueue<StateCDB^> ^eventiATC;*/
 		System::Windows::Forms::ToolTip ^ToolTip1;
 		tableLayoutPanelAllCDB ^tableCDB;
-
+		IDisposable ^unsubscriber;
 		delegate void GoCallback(int id, int stato , int nid_op, int nid_engine);
 		GoCallback^ myDelegate;
 		bool _shouldStop;
 	public:
-		FormStatoLineaATC(EventQueue<StateCDB^> ^ev)
+		FormStatoLineaATC(/*EventQueue<StateCDB^> ^ev*/)
 		{
 			InitializeComponent();
-			eventiATC=ev;
+			/*eventiATC=ev;*/
 			_shouldStop=false;
 			listbuttonCDB= gcnew Dictionary<int,Button^> ();
 			genera();
@@ -48,8 +48,27 @@ namespace Prototipo {
 			//
 		}
 		void genera();
-		void aggiorna();
+		/*void aggiorna();*/
 		void RequestStop();
+		virtual void Subscribe(IObservable<Event<StateCDB^>^> ^provider){
+			if (provider != nullptr) 
+				unsubscriber = provider->Subscribe(this);	
+		};
+
+		virtual void OnCompleted(){
+
+			Unsubscribe();
+
+		};
+		virtual void OnError(Exception ^e){
+
+			Unsubscribe();
+
+		};
+		virtual void OnNext(Event<StateCDB^> ^value);
+		virtual void Unsubscribe(){
+			delete unsubscriber;
+		};
 		void findandsetCDB(int id, int stato , int nid_op, int nid_engine);
 	protected:
 		/// <summary>

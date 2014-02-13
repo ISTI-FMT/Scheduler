@@ -13,7 +13,21 @@ void Prototipo::FormStatoLineaATC::genera(){
 	Controls->Add(tableCDB);
 
 }
+void Prototipo::FormStatoLineaATC::OnNext(Event<StateCDB^> ^value){
+	if(value!=nullptr){
+				StateCDB ^stCDB =	value->getEvent();
+				if(stCDB!=nullptr){
+					int id =	stCDB->getNID_CDB();
+					int stato =	stCDB->getQ_STATOCDB();
+					int nid_op=	stCDB->getNID_OPERATIONAL();
+					int nid_engine =	stCDB->getNID_ENGINE();
+					//tableCDB->findandsetCDB(id,stato, nid_op, nid_engine);
+					this->Invoke(myDelegate,id,stato, nid_op, nid_engine);
+				}
+			}
+}
 
+/*
 void Prototipo::FormStatoLineaATC::aggiorna(){
 
 	while(!_shouldStop){
@@ -36,7 +50,7 @@ void Prototipo::FormStatoLineaATC::aggiorna(){
 		}
 	}
 
-}
+}*/
 
 void  Prototipo::FormStatoLineaATC::findandsetCDB(int id, int stato, int nid_op, int nid_engine){
 	if(listbuttonCDB->ContainsKey(id)){
