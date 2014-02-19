@@ -12,11 +12,11 @@ L'ATS riceve dal ATO dei messaggi di acnowledgement
 
 ref class pacchettoAcknowledgement
 {
-	unsigned int NID_PACKET;
-	unsigned int L_PACKET;
-	unsigned int T_TRAIN ;
-	unsigned int Q_MISSION_RESPONSE;
-	unsigned int padding ;
+	 int NID_PACKET;
+	 int L_PACKET;
+	 int T_TRAIN ;
+	 int Q_MISSION_RESPONSE;
+	 int padding ;
 public:
 	pacchettoAcknowledgement(void);
 	// funzione che restituisce la dimensione in bit

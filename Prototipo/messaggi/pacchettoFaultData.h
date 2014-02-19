@@ -16,10 +16,10 @@ L'ATS riceve dall'IXl messaggi di fault reporting con cui l'IXL comunica l'occor
 
 ref class pacchettoFaultData
 {
-	unsigned int NID_PACKET ;
-	unsigned int L_PACKET ;
+	int NID_PACKET ;
+	int L_PACKET ;
 	Fault ^guasto;
-	unsigned int N_ITER ;
+	int N_ITER ;
 	List<Fault^> ^vGuasto;
 public:
 	pacchettoFaultData(void);

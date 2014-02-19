@@ -15,10 +15,10 @@ L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato degli
 
 ref class pacchettoStatoItinerario
 {
-	unsigned int NID_PACKET ;
-	unsigned int L_PACKET ;
+	int NID_PACKET ;
+	int L_PACKET ;
 	
-	unsigned int N_ITER ;
+	int N_ITER ;
 	List<StateItinerario^> ^vStatoItinerario;
 public:
 	pacchettoStatoItinerario(void);

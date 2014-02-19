@@ -13,10 +13,10 @@ enum  typeCmdItinerari { distruzione = 0,  creazione = 2 };
 
 ref class pacchettoComandoItinerari
 {
-	unsigned int NID_PACKET;
-	unsigned int L_PACKET ;
-	unsigned int NID_ITIN ;
-	unsigned int Q_CMDITIN ;
+	int NID_PACKET;
+	int L_PACKET ;
+	int NID_ITIN ;
+	int Q_CMDITIN ;
 public:
 	pacchettoComandoItinerari(void);
 

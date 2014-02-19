@@ -16,9 +16,9 @@ L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato dei b
 
 ref class pacchettoStatoBlocco
 {
-	unsigned int NID_PACKET ;
-	unsigned int L_PACKET ;
-	unsigned int N_ITER ;
+	int NID_PACKET ;
+	int L_PACKET ;
+	int N_ITER ;
 	List<StateBlocco^> ^vStatoBlocco;
 public:
 	pacchettoStatoBlocco(void);

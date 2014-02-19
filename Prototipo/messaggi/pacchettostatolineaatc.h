@@ -14,11 +14,11 @@ nel messaggio di stato della linea, sono presenti anche i metodi per serializzar
 
 ref class pacchettostatolineaatc
 {
-	unsigned int NID_PACKET;
-	unsigned int L_PACKET ;
-	unsigned int NID_OPERATIONAL ;
+	int NID_PACKET;
+	int L_PACKET ;
+	int NID_OPERATIONAL ;
 	
-	unsigned int N_ITER ;
+	int N_ITER ;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List< StateCDB^> ^pstato;
 public:

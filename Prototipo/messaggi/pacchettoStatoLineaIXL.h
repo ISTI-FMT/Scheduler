@@ -16,10 +16,10 @@ L'ATS riceve dall'IXl messaggi contenenti informazioni relative allo stato della
 
 ref class pacchettoStatoLineaIXL
 {
-	unsigned int NID_PACKET ;
-	unsigned int L_PACKET ;
+	int NID_PACKET ;
+	int L_PACKET ;
 	
-	unsigned int N_ITER;
+	int N_ITER;
 	List<StateCDB^> ^vStatoCDB;
 public:
 	pacchettoStatoLineaIXL(void);

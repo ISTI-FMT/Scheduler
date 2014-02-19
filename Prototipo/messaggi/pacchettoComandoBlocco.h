@@ -14,10 +14,10 @@ enum  typeCmdBlocco { direzionelegale = 1, direzioneillegale = 0};
 
 ref class pacchettoComandoBlocco
 {
-	unsigned int NID_PACKET ;
-	unsigned int L_PACKET ;
-	unsigned int NID_BLOCCO ;
-	unsigned int Q_CMDBLOCCO ;
+	int NID_PACKET ;
+	int L_PACKET ;
+	int NID_BLOCCO ;
+	int Q_CMDBLOCCO ;
 public:
 	pacchettoComandoBlocco(void);
 

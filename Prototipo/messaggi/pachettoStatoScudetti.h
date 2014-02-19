@@ -13,10 +13,10 @@ nel messaggio di stato della linea, sono presenti anche i metodi per serializzar
 
  ref class pachettoStatoScudetti
 {
-	unsigned int NID_PACKET;
-	unsigned int L_PACKET ;
+	int NID_PACKET;
+	int L_PACKET ;
 	
-	unsigned int N_ITER ;
+	int N_ITER ;
 	List<StateScudetti^> ^vStatoScudetti;
 public:
 	pachettoStatoScudetti(void);

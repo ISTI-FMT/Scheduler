@@ -19,15 +19,15 @@ mission plan
 
 ref class pacchettoMissionData
 {
-	unsigned int NID_PACKET ;
-	unsigned int L_PACKET;
-	unsigned int Q_SCALE ;
+	int NID_PACKET ;
+	int L_PACKET;
+	int Q_SCALE ;
 	
-	unsigned int N_ITER1;
+	int N_ITER1;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List<ProfiloVelocita^>^mS1_vect;
 
-	unsigned int N_ITER2;
+	int N_ITER2;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List<Mission^>^mS2_vect;
 public:

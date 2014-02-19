@@ -14,10 +14,10 @@ nel messaggio di stato della linea, sono presenti anche i metodi per serializzar
 
 ref class pacchettoPositionDataATC
 {
-	unsigned int NID_PACKET;
-	unsigned int L_PACKET ;
+	int NID_PACKET;
+	int L_PACKET ;
 	
-	unsigned int N_ITER ;
+	int N_ITER ;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List< StateCDB^> ^ListPostionData;
 public:

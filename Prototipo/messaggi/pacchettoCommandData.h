@@ -14,12 +14,12 @@ mission plan
 enum  typeCmdData{ WAKE_UP = 0, Door = 2,  CHANGE_GOA_LEVEL = 3,TRN=4,SLEEP=7 };
 ref class pacchettoCommandData
 {
-	unsigned int NID_PACKET;
-	unsigned int L_PACKET;
-	unsigned int Q_COMMAND_TYPE;
-	unsigned int M_GOA_LEVEL;
-	unsigned int NID_OPERATIONAL ;
-	unsigned int PADDING;
+	int NID_PACKET;
+	int L_PACKET;
+	int Q_COMMAND_TYPE;
+	int M_GOA_LEVEL;
+	int NID_OPERATIONAL ;
+	int PADDING;
 
 public:
 

@@ -9,7 +9,7 @@ messaggi, sono presenti anche i metodi per serializzare e deserializzare il cont
 
 ref class pacchettoEnd
 {
-	unsigned int NID_PACKET ;
+	int NID_PACKET ;
 public:
 	pacchettoEnd(void);
 	void setNID_PACKET(int N){NID_PACKET = N;};

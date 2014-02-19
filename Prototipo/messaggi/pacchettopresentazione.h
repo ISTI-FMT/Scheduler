@@ -13,9 +13,9 @@ L'ATS riceve dal treno dei messaggi di presentazione dagli ATO
 
 ref class pacchettopresentazione
 {
-	unsigned int NID_PACKET;
-	unsigned int L_PACKET;
-	unsigned int M_PORT;
+	int NID_PACKET;
+	int L_PACKET;
+	int M_PORT;
 public:
 	pacchettopresentazione(void);
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 

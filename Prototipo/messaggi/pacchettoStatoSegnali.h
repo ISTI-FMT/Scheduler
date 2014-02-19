@@ -16,9 +16,9 @@ L'ATS riceve dall'IXL messaggi contenenti informazioni relative allo stato degi 
 
 ref class pacchettoStatoSegnali
 {
-	unsigned int NID_PACKET ;
-	unsigned int L_PACKET ;
-	unsigned int N_ITER ;
+	int NID_PACKET ;
+	int L_PACKET ;
+	int N_ITER ;
 	List<StateSegnale^> ^vStatoSegnale;
 public:
 	pacchettoStatoSegnali(void);
