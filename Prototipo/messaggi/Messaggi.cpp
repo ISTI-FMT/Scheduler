@@ -5,9 +5,25 @@
 Messaggi::Messaggi(void)
 {
 	NID_MESSAGE = 0;
+	setTime();
+
 	L_MESSAGE = 0;
-	T_TIME = 0;
 	NID_ENGINE=0;
+}
+
+Messaggi::Messaggi(int NID_MESSAGE)
+{
+	setNID_MESSAGE(NID_MESSAGE);
+	setTime();
+	L_MESSAGE = 0;
+	NID_ENGINE=0;
+}
+
+void Messaggi::setTime()
+{
+	DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+	TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
+	T_TIME = (int)sinceMidnight->TotalSeconds/30;
 }
 
 void Messaggi::setNID_MESSAGE(int N){
@@ -94,10 +110,7 @@ void Messaggi::serialize(array<Byte>^buffer)
 
 array<System::Byte>^ Messaggi::serialize(){
 	array<Byte>^bytez = gcnew array<Byte>(getSize());
-
 	serialize(bytez);
-
-
 
 	return bytez;
 }

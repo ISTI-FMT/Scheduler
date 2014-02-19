@@ -16,6 +16,9 @@
 #include "pacchettoFaultData.h"
 #include "pachettoStatoScudetti.h"
 
+using namespace System;
+using namespace System::Globalization;
+
 /*Utilizzo questa classe per creare serializzare deserializzare i messaggi specificando
 i pacchetti da inserire nel messaggio*/
 
@@ -56,67 +59,55 @@ ref class Messaggi
 	pacchettoComandoBlocco ^pkgComandoBlocco;
 	pacchettoEnd ^pkgEnd;
 
+private:
+	void setL_MESSAGE(int N){L_MESSAGE = N;};
+	void setNID_MESSAGE(int N);
+	void setTime();
+
+	void set_pacchettoEnd(){pkgEnd = gcnew pacchettoEnd;};
+	void set_pacchettoComandoItinerari(){pkgComandoItinerario = gcnew pacchettoComandoItinerari;};
+	void set_pacchettoComandoBlocco(){pkgComandoBlocco = gcnew pacchettoComandoBlocco;};
+	void set_pacchettoFaultReporting() {pkgFaultData = gcnew pacchettoFaultData;}
+	void set_pacchettoPositionDataATC() {pkgPositionDataATC = gcnew pacchettoPositionDataATC;}
+	void set_pacchettoStatoItinerari() {pkgStatoItinerari = gcnew pacchettoStatoItinerario;}
+	void set_pacchettoStatoLineaIXL() {pkgStatoLineaIXL = gcnew pacchettoStatoLineaIXL;}
+	void set_pacchettoStatoSegnali() {pkgStatoSegnali = gcnew pacchettoStatoSegnali;}
+	void set_pacchettoStatoBlocco() {pkgStatoBlocco = gcnew pacchettoStatoBlocco;}
+	void set_pacchettoCommandData(){ pkgcd1 = gcnew pacchettoCommandData;};
+	void set_pacchettoPresentazione(){ pgkPres = gcnew pacchettopresentazione;};
+	void set_pacchettoMissionData(){ pkgMP = gcnew pacchettoMissionData;};
+	void set_pacchettoAcknowledgement(){ pkgAck = gcnew pacchettoAcknowledgement;};
+	//void set_pacchettoStatoLineaATC(){ pkgStatoATC = gcnew pacchettostatolineaatc;};
+
+	void serialize(array<Byte>^buffer);
+
 public:
 	Messaggi(void);
+	Messaggi(int NID_MESSAGE);
 
-
-	void setNID_MESSAGE(int N);
 	int getNID_MESSAGE(){return NID_MESSAGE;};
-	void setL_MESSAGE(int N){L_MESSAGE = N;};
 	int getL_MESSAGE(){return L_MESSAGE;};
-	void setT_TIME(int N){T_TIME = N;};
 	int getT_TIME(){return T_TIME;};
 
 	void setNID_ENGINE(int N){NID_ENGINE = N;};
 	int getNID_ENGINE(){return NID_ENGINE;};
 
-	void set_pacchettoEnd(){pkgEnd = gcnew pacchettoEnd;};
+
 	pacchettoEnd ^ get_pacchettoEnd(){return pkgEnd;};
-
-	void set_pacchettoStatoScudetti(){pkgStatoScudetti = gcnew pachettoStatoScudetti;};
 	pachettoStatoScudetti^ get_pacchettoStatoScudetti(){return pkgStatoScudetti;};
-
-	void set_pacchettoComandoItinerari(){pkgComandoItinerario = gcnew pacchettoComandoItinerari;};
 	pacchettoComandoItinerari^ get_pacchettoComandoItinerari(){return pkgComandoItinerario;};
-
-	void set_pacchettoComandoBlocco(){pkgComandoBlocco = gcnew pacchettoComandoBlocco;};
 	pacchettoComandoBlocco^ get_pacchettoComandoBlocco(){return pkgComandoBlocco;};
-
-	void set_pacchettoFaultReporting() {pkgFaultData = gcnew pacchettoFaultData;}
 	pacchettoFaultData^ get_pacchettoFaultReporting(){return pkgFaultData;}
-
-	void set_pacchettoStatoLineaIXL() {pkgStatoLineaIXL = gcnew pacchettoStatoLineaIXL;}
 	pacchettoStatoLineaIXL ^get_pacchettoStatoLineaIXL(){return pkgStatoLineaIXL;}
-
-	void set_pacchettoPositionDataATC() {pkgPositionDataATC = gcnew pacchettoPositionDataATC;}
 	pacchettoPositionDataATC ^get_pacchettoPositionDataATC(){return pkgPositionDataATC;}
-
-	void set_pacchettoStatoItinerari() {pkgStatoItinerari = gcnew pacchettoStatoItinerario;}
 	pacchettoStatoItinerario^ get_pacchettoStatoItinerario(){return pkgStatoItinerari;}
-
-	void set_pacchettoStatoSegnali() {pkgStatoSegnali = gcnew pacchettoStatoSegnali;}
 	pacchettoStatoSegnali ^get_pacchettoStatoSegnali(){return pkgStatoSegnali;}
-
-	void set_pacchettoStatoBlocco() {pkgStatoBlocco = gcnew pacchettoStatoBlocco;}
 	pacchettoStatoBlocco ^get_pacchettoStatoBlocco(){return pkgStatoBlocco;}
-
-	void set_pacchettoCommandData(){ pkgcd1 = gcnew pacchettoCommandData;};
 	pacchettoCommandData^ get_pacchettoCommandData(){ return pkgcd1;};
-
-	void set_pacchettoMissionData(){ pkgMP = gcnew pacchettoMissionData;};
 	pacchettoMissionData^ get_pacchettoMissionData(){ return pkgMP;};
-
-	void set_pacchettoPresentazione(){ pgkPres = gcnew pacchettopresentazione;};
 	pacchettopresentazione^ get_pacchettoPresentazione(){ return pgkPres;};
-
-	//void set_pacchettoStatoLineaATC(){ pkgStatoATC = gcnew pacchettostatolineaatc;};
 	//pacchettostatolineaatc^ get_pacchettoStatoLineaATC(){ return pkgStatoATC;};
-
-	void set_pacchettoAcknowledgement(){ pkgAck = gcnew pacchettoAcknowledgement;};
 	pacchettoAcknowledgement^ get_pacchettoAcknowledgement(){ return pkgAck;};
-
-	void serialize(array<Byte>^buffer);
-	
 
 	array<System::Byte>^ serialize();
 	void deserialize(array<Byte>^buffer);
