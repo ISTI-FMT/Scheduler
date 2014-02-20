@@ -24,11 +24,11 @@ public:
 
 	//serializza i campi del pacchetto in un buffer.
 	//il buffer di byte deve essere stato precedentemente correttamente allocato.
-	virtual void serialize(array<Byte>^buff) abstract;
+	virtual void serialize(array<Byte>^buff, int offset) abstract;
 
 	//popola i campi del pacchetto a partire dai dati serializzati
 	//il buffer di byte deve essere stato precedentemente correttamente allocato.
-	virtual void deserialize(array<Byte>^buff) abstract;
+	virtual void deserialize(array<Byte>^buff, int offset) abstract;
 
 	// funzione che restituisce la dimensione in bit (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding

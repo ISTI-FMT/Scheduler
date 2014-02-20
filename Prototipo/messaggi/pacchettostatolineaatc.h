@@ -1,6 +1,7 @@
 #pragma once
 #include "utility.h"
 #include "StateCDB.h"
+#include "pacchettoBase.h"
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -12,9 +13,8 @@ nel messaggio di stato della linea, sono presenti anche i metodi per serializzar
 
 //questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei CDB dall'ATC
 
-ref class pacchettostatolineaatc
+ref class pacchettostatolineaatc : pacchettoBase
 {
-	int NID_PACKET;
 	int L_PACKET ;
 	int NID_OPERATIONAL ;
 	
@@ -23,16 +23,12 @@ ref class pacchettostatolineaatc
 	List< StateCDB^> ^pstato;
 public:
 	pacchettostatolineaatc();
-	
-	
-	
-public:
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
-	int getSize();
-	void serialize(array<Byte>^buff);
-	void deserialize(array<Byte>^buff);
+	virtual int getSize() override;
+	virtual void serialize(array<Byte>^buff, int offset) override;
+	virtual void deserialize(array<Byte>^buff, int offset) override;
 	
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	

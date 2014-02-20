@@ -2,6 +2,8 @@
 #include "utility.h"
 #include "ProfiloVelocita.h"
 #include "Mission.h"
+#include "pacchettoBase.h"
+
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -17,9 +19,8 @@ L'ATS manda una missione al treno la missione da eseguire specificandola all'int
 mission plan
 -------------------------------------------------------------------------------------------------*/
 
-ref class pacchettoMissionData
+ref class pacchettoMissionData : pacchettoBase
 {
-	int NID_PACKET ;
 	int L_PACKET;
 	int Q_SCALE ;
 	
@@ -34,14 +35,12 @@ public:
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
-	int getSize();
-	void serializeMissionPlanPkt(array<Byte>^buff);
-	void deserializeMissionPlanPkt(array<Byte>^buff);
+	virtual int getSize() override;
+	virtual void serialize(array<Byte>^buff, int offset) override;
+	virtual void deserialize(array<Byte>^buff, int offset) override;
 	pacchettoMissionData();
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	
-	void setNID_PACKET(int NID){NID_PACKET = NID;};
-	int getNID_PACKET(){return NID_PACKET;};
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
 	void setQ_SCALE(int Q){Q_SCALE = Q;};

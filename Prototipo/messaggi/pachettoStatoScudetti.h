@@ -1,6 +1,7 @@
 #pragma once
 #include "utility.h"
 #include "StateScudetti.h"
+#include "pacchettoBase.h"
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -11,9 +12,8 @@ nel messaggio di stato della linea, sono presenti anche i metodi per serializzar
 
 //questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei scudetti
 
- ref class pachettoStatoScudetti
+ref class pachettoStatoScudetti : pacchettoBase
 {
-	int NID_PACKET;
 	int L_PACKET ;
 	
 	int N_ITER ;
@@ -21,26 +21,22 @@ nel messaggio di stato della linea, sono presenti anche i metodi per serializzar
 public:
 	pachettoStatoScudetti(void);
 
-	void setNID_PACKET(int N){NID_PACKET = N;};
-	int getNID_PACKET(){return NID_PACKET;};
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
 
-	// metodo che setta N_ITER
+	// metodo che setta N_ITERd
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 	
-	
-
 	void setStatoScud(List< StateScudetti^> ^all){vStatoScudetti=all;};
 	List< StateScudetti^> ^getStatoScud(){return vStatoScudetti;};
 
 	void setStatoScud( StateScudetti^ one){vStatoScudetti->Add(one);};
 
 	
-	int getSize();
-	void serialize(array<Byte>^buffer, int offset);
-	void deserialize(array<Byte>^buffer, int offset);
+	virtual int getSize() override;
+	virtual void serialize(array<Byte>^buffer, int offset) override;
+	virtual void deserialize(array<Byte>^buffer, int offset) override;
 
 	
 	virtual System::String ^ToString() override;

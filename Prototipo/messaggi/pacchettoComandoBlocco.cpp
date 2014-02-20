@@ -17,20 +17,26 @@ int pacchettoComandoBlocco::getSize()
 	return 55;
 }
 
-void pacchettoComandoBlocco::serialize(array<Byte>^buffer)
+void pacchettoComandoBlocco::serialize(array<Byte>^buffer, int offset)
 {
-	utility::push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, offset);
+	offset += 8;
 	setL_PACKET(getSize());
-	utility::push(buffer, L_PACKET, 13, 59);
-	utility::push(buffer, NID_BLOCCO, 32, 72);
-	utility::push(buffer, Q_CMDBLOCCO, 2, 104);}
+	utility::push(buffer, L_PACKET, 13, offset);
+	offset += 13;
+	utility::push(buffer, NID_BLOCCO, 32, offset);
+	offset += 32;
+	utility::push(buffer, Q_CMDBLOCCO, 2, offset);}
 
-void pacchettoComandoBlocco::deserialize(array<Byte>^buffer)
+void pacchettoComandoBlocco::deserialize(array<Byte>^buffer, int offset)
 {
-	NID_PACKET=utility::pop(buffer,  8, 51);
-	L_PACKET=utility::pop(buffer, 13, 59);
-	NID_BLOCCO=utility::pop(buffer, 32, 72);
-	Q_CMDBLOCCO=utility::pop(buffer, 2, 104);
+	NID_PACKET=utility::pop(buffer,  8, offset);
+	offset += 8;
+	L_PACKET=utility::pop(buffer, 13, offset);
+	offset += 13;
+	NID_BLOCCO=utility::pop(buffer, 32, offset);
+	offset += 32;
+	Q_CMDBLOCCO=utility::pop(buffer, 2, offset);
 }
 
 pacchettoComandoBlocco::~pacchettoComandoBlocco(void)

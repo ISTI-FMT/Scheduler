@@ -12,27 +12,29 @@ pacchettoAcknowledgement::pacchettoAcknowledgement(void)
 
 // metodo per la serializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
-void pacchettoAcknowledgement::serialize(array<Byte>^buffer)
+void pacchettoAcknowledgement::serialize(array<Byte>^buffer, int offset)
 {
-	
-	//utility::push(buffer, NID_ENGINE, 24, 51);
-	utility::push(buffer, NID_PACKET, 8, 75);
+	utility::push(buffer, NID_PACKET, 8, offset);
+	offset +=8;
 	setL_PACKET(getSize());
-	utility::push(buffer, L_PACKET, 13, 83);
-	utility::push(buffer, T_TRAIN, 32, 96);
-	utility::push(buffer, Q_MISSION_RESPONSE, 1, 128);
+	utility::push(buffer, L_PACKET, 13, offset);
+	offset +=13;
+	utility::push(buffer, T_TRAIN, 32, offset);
+	offset +=32;
+	utility::push(buffer, Q_MISSION_RESPONSE, 1, offset);
 }
 
 // metodo per la deserializzazion del messaggio
 // il buffer di byte deve essere stato precedentemente correttamente allocato.
-void pacchettoAcknowledgement::deserialize(array<Byte>^buff)
+void pacchettoAcknowledgement::deserialize(array<Byte>^buff, int offset)
 {
-	
-	//NID_ENGINE = utility::pop(buff, 24, 51);
-	NID_PACKET = utility::pop(buff, 8, 75);
-	L_PACKET = utility::pop(buff, 13, 83);
-	T_TRAIN = utility::pop(buff, 32, 96);
-	Q_MISSION_RESPONSE = utility::pop(buff, 1, 128);
+	NID_PACKET = utility::pop(buff, 8, offset);
+	offset += 8;
+	L_PACKET = utility::pop(buff, 13, offset);
+	offset += 13;
+	T_TRAIN = utility::pop(buff, 32, offset);
+	offset += 32;
+	Q_MISSION_RESPONSE = utility::pop(buff, 1, offset);
 }
 
 System::String ^ pacchettoAcknowledgement::ToString(){

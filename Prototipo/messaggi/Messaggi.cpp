@@ -63,22 +63,36 @@ void Messaggi::serialize(array<Byte>^buffer)
 	int offset = 0;
 	switch (N)
 	{
-	case MessATO::MissionPlan : {get_pacchettoMissionData()->serializeMissionPlanPkt(buffer);
+	case MessATO::MissionPlan : {
+		offset += 51;
+		get_pacchettoMissionData()->serialize(buffer, offset);
 		break;}
-	case MessATO::UnconditionCommand : {get_pacchettoCommandData()->serializepacchettoCommandData(buffer);
+	case MessATO::UnconditionCommand : {
+		offset += 51;
+		get_pacchettoCommandData()->serialize(buffer, offset);
 		break;}
-	case MessATO::Presentation : {utility::push(buffer, NID_ENGINE, 24, 51);
-		get_pacchettoPresentazione()->serialize(buffer);
+	case MessATO::Presentation : {
+		offset += 51;
+		utility::push(buffer, NID_ENGINE, 24, 51);
+		offset += 24;
+		get_pacchettoPresentazione()->serialize(buffer, offset);
 		break;}
-	case MessATC::StatoLineaATC : {get_pacchettoPositionDataATC()->serialize(buffer);
+	case MessATC::StatoLineaATC : 
+		{
+				offset += 51;
+				get_pacchettoPositionDataATC()->serialize(buffer, offset);
 		//offset += get_pacchettoPositionDataATC()->getSize();
 		//get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
-	case MessATO::Acknol :{utility::push(buffer, NID_ENGINE, 24, 51);
-		get_pacchettoAcknowledgement()->serialize(buffer);
+	case MessATO::Acknol :{
+		offset += 51;
+		utility::push(buffer, NID_ENGINE, 24, 51);
+		offset += 24;
+		get_pacchettoAcknowledgement()->serialize(buffer, offset);
 		break;}
-	case MessIXL::StatoLineaIXL: {offset += 51;
-		get_pacchettoStatoLineaIXL()->serialize(buffer);
+	case MessIXL::StatoLineaIXL: {
+		offset += 51;
+		get_pacchettoStatoLineaIXL()->serialize(buffer, offset);
 		offset += get_pacchettoStatoLineaIXL()->getSize();
 		//get_pacchettoStatoItinerario()->serialize(buffer, offset);
 		//offset += get_pacchettoStatoItinerario()->getSize();
@@ -88,15 +102,19 @@ void Messaggi::serialize(array<Byte>^buffer)
 		offset += get_pacchettoStatoBlocco()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
-	case MessIXL::FaultReportingIXL: {get_pacchettoFaultReporting()->serialize(buffer);
+	case MessIXL::FaultReportingIXL: {
+		offset += 51;
+		get_pacchettoFaultReporting()->serialize(buffer, offset);
 		break;}
-	case MessIXL::ComandoItinerari: { offset += 51;
-		get_pacchettoComandoItinerari()->serialize(buffer);
+	case MessIXL::ComandoItinerari: { 
+		offset += 51;
+		get_pacchettoComandoItinerari()->serialize(buffer, offset);
 		offset += get_pacchettoComandoItinerari()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
-	case MessIXL::ComandoBlocco: { offset += 51;
-		get_pacchettoComandoBlocco()->serialize(buffer);
+	case MessIXL::ComandoBlocco: { 
+		offset += 51;
+		get_pacchettoComandoBlocco()->serialize(buffer, offset);
 		offset += get_pacchettoComandoBlocco()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
@@ -125,40 +143,52 @@ void Messaggi::deserialize(array<Byte>^buffer)
 		switch (NID_MESSAGE)
 		{
 		case MessATO::MissionPlan : {set_pacchettoMissionData();
-			pkgMP->deserializeMissionPlanPkt(buffer);
+			offset += 51;
+			pkgMP->deserialize(buffer, offset);
 			break;
 
 									}
-		case MessATO::UnconditionCommand : {set_pacchettoCommandData();
-			pkgcd1->deserializepacchettoCommandData(buffer);
+		case MessATO::UnconditionCommand : {
+			offset += 51;
+			set_pacchettoCommandData();
+			pkgcd1->deserialize(buffer, offset);
 			break;
 
 										   }
 
-		case MessATO::Presentation : {NID_ENGINE = utility::pop(buffer, 24, 51);
+		case MessATO::Presentation : {
+			offset += 51;
+			NID_ENGINE = utility::pop(buffer, 24, 51);
+			offset += 24;
 			set_pacchettoPresentazione();
-			pgkPres->deserialize(buffer);
+			pgkPres->deserialize(buffer, offset);
 			break;
 
 									 }
 
-		case MessATC::StatoLineaATC : {set_pacchettoPositionDataATC();
-			pkgPositionDataATC->deserialize(buffer);
+		case MessATC::StatoLineaATC : {
+			offset += 51;
+			set_pacchettoPositionDataATC();
+			pkgPositionDataATC->deserialize(buffer, offset);
 			//offset += get_pacchettoPositionDataATC()->getL_PACKET();// ->getSize();
 			//set_pacchettoEnd();
 			//get_pacchettoEnd()->deserialize(buffer, offset);
 			break;
 									  }
 
-		case MessATO::Acknol : {NID_ENGINE = utility::pop(buffer, 24, 51);
+		case MessATO::Acknol : {
+			offset += 51;
+			NID_ENGINE = utility::pop(buffer, 24, 51);
+			offset += 24;
 			set_pacchettoAcknowledgement();
-			pkgAck->deserialize(buffer);
+			pkgAck->deserialize(buffer, offset);
 			break;
 							   }
 
-		case MessIXL::StatoLineaIXL: {offset += 51;
+		case MessIXL::StatoLineaIXL: {
+			offset += 51;
 			set_pacchettoStatoLineaIXL();
-			get_pacchettoStatoLineaIXL()->deserialize(buffer);
+			get_pacchettoStatoLineaIXL()->deserialize(buffer, offset);
 			offset += get_pacchettoStatoLineaIXL()->getL_PACKET();// ->getSize();
 			//set_pacchettoStatoItinerari();
 			//get_pacchettoStatoItinerario()->deserialize(buffer, offset);
@@ -173,18 +203,22 @@ void Messaggi::deserialize(array<Byte>^buffer)
 			set_pacchettoEnd();
 			get_pacchettoEnd()->deserialize(buffer, offset);
 			break;}
-		case MessIXL::FaultReportingIXL: {get_pacchettoFaultReporting()->deserialize(buffer);
+		case MessIXL::FaultReportingIXL: {
+			offset += 51;
+			get_pacchettoFaultReporting()->deserialize(buffer, offset);
 			break;}
-		case MessIXL::ComandoItinerari: { offset += 51;
+		case MessIXL::ComandoItinerari: { 
+			offset += 51;
 			set_pacchettoComandoItinerari();
-			get_pacchettoComandoItinerari()->deserialize(buffer);
+			get_pacchettoComandoItinerari()->deserialize(buffer, offset);
 			offset += get_pacchettoComandoItinerari()->getSize();
 			set_pacchettoEnd();
 			get_pacchettoEnd()->deserialize(buffer, offset);
 			break;}
-		case MessIXL::ComandoBlocco: { offset += 51;
+		case MessIXL::ComandoBlocco: { 
+			offset += 51;
 			set_pacchettoComandoBlocco();
-			get_pacchettoComandoBlocco()->deserialize(buffer);
+			get_pacchettoComandoBlocco()->deserialize(buffer, offset);
 			offset += get_pacchettoComandoBlocco()->getSize();
 			set_pacchettoEnd();
 			get_pacchettoEnd()->deserialize(buffer, offset);

@@ -3,8 +3,6 @@
 
 pacchettostatolineaatc::pacchettostatolineaatc(void)
 {
-
-
 	NID_PACKET = 0;
 	L_PACKET = 0;
 	NID_OPERATIONAL = 0;
@@ -58,19 +56,25 @@ void pacchettostatolineaatc::setN_ITER(int N)
 
 
 
-void pacchettostatolineaatc::serialize(array<Byte>^buffer)
+void pacchettostatolineaatc::serialize(array<Byte>^buffer, int offset)
 {
-
-	utility::push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, offset);
+	offset += 8;
 	setL_PACKET(getSize());
-	utility::push(buffer, L_PACKET, 13, 59);
-	utility::push(buffer, NID_OPERATIONAL, 32, 72);
-	utility::push(buffer, pstato[0]->getNID_CDB(), 32, 104);
-	utility::push(buffer, pstato[0]->getQ_STATOCDB(), 2, 136);
-	utility::push(buffer, pstato[0]->getQ_DEVIATOIO(), 2, 138);
-	utility::push(buffer, N_ITER, 5, 140);
+	utility::push(buffer, L_PACKET, 13, offset);
+	offset += 13;
+	utility::push(buffer, NID_OPERATIONAL, 32, offset);
+	offset += 32;
+	utility::push(buffer, pstato[0]->getNID_CDB(), 32, offset);
+	offset += 32;
+	utility::push(buffer, pstato[0]->getQ_STATOCDB(), 2, offset);
+	offset += 2;
+	utility::push(buffer, pstato[0]->getQ_DEVIATOIO(), 2, offset);
+	offset += 2;
+	utility::push(buffer, N_ITER, 5, offset);
+	offset += 5;
 	//pstato1 = new pstatolineastruct[N_ITER];
-	int offset = 145;
+	//int offset = 145;
 	for( int i=1;i<pstato->Count;i++)
 	{
 
@@ -84,20 +88,26 @@ void pacchettostatolineaatc::serialize(array<Byte>^buffer)
 
 }
 
-void pacchettostatolineaatc::deserialize(array<Byte>^buffer)
+void pacchettostatolineaatc::deserialize(array<Byte>^buffer, int offset)
 {
-
-	NID_PACKET=utility::pop(buffer,  8, 51);
-	L_PACKET=utility::pop(buffer, 13, 59);
-	NID_OPERATIONAL=utility::pop(buffer, 32, 72);
+	NID_PACKET=utility::pop(buffer,  8, offset);
+	offset += 8;
+	L_PACKET=utility::pop(buffer, 13, offset);
+	offset += 13;
+	NID_OPERATIONAL=utility::pop(buffer, 32, offset);
+	offset += 32;
 	
-	int tNID_CDB =utility::pop(buffer, 32, 104);
-	int tQ_STATOCDB =utility::pop(buffer, 2, 136);
-	int tQ_DEVIATOIO =utility::pop(buffer, 2, 138);
+	int tNID_CDB =utility::pop(buffer, 32, offset);
+	offset += 32;
+	int tQ_STATOCDB =utility::pop(buffer, 2, offset);
+	offset += 2;
+	int tQ_DEVIATOIO =utility::pop(buffer, 2, offset);
+	offset += 2;
 	
 	pstato->Add(gcnew StateCDB(tNID_CDB,tQ_STATOCDB,tQ_DEVIATOIO,NID_OPERATIONAL));
-	setN_ITER(utility::pop(buffer, 5, 140));
-	int offset = 145;
+	setN_ITER(utility::pop(buffer, 5, offset));
+	offset += 5;
+	//int offset = 145;
 
 	for(unsigned int i = 0; i < N_ITER; ++i)
 	{
@@ -110,6 +120,4 @@ void pacchettostatolineaatc::deserialize(array<Byte>^buffer)
 
 		pstato->Add(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO,NID_OPERATIONAL));
 	}
-
-
 }

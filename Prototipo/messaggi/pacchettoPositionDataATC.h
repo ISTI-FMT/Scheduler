@@ -1,6 +1,8 @@
 #pragma once
 #include "utility.h"
 #include "StateCDB.h"
+#include "pacchettoBase.h"
+
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
@@ -12,48 +14,34 @@ nel messaggio di stato della linea, sono presenti anche i metodi per serializzar
 
 //questa classe rappresenta un Pacchetto per ricevere informazioni sullo stato dei CDB dall'ATC
 
-ref class pacchettoPositionDataATC
+ref class pacchettoPositionDataATC : pacchettoBase
 {
-	int NID_PACKET;
-	int L_PACKET ;
-	
-	int N_ITER ;
+	int L_PACKET;	
+	int N_ITER;
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List< StateCDB^> ^ListPostionData;
 public:
-	pacchettoPositionDataATC();
-	
-	
-	
-public:
+	pacchettoPositionDataATC();	
 	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
 	// fatti dal compilatore) in byte del messaggio tenendo anche in conto l'eventuale padding
 	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
-	int getSize();
-	void serialize(array<Byte>^buff);
-	void deserialize(array<Byte>^buff);
+	virtual int getSize() override;
+	virtual void serialize(array<Byte>^buff, int offset) override;
+	virtual void deserialize(array<Byte>^buff, int offset) override;
 	
 	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	
 
-	void setNID_PACKET(int NID){NID_PACKET = NID;};
-	int getNID_PACKET(){return NID_PACKET;};
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
 
-
-
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
-
-	
 
 	void setCDB(List< StateCDB^> ^all){ListPostionData=all;};
 	List< StateCDB^> ^getListCDB(){return ListPostionData;};
 
 	void setCDB(StateCDB ^one){ListPostionData->Add(one);};
-
-
 
 	/*void setNID_CDB(int index, int NID);
 	int getNID_CDB(int index);
@@ -63,6 +51,5 @@ public:
 	int getQ_STATOCDB(int index);*/
 
 	System::String^ toPrint();
-
 };
 
