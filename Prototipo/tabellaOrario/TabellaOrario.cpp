@@ -90,7 +90,7 @@ void TabellaOrario::leggiTabellaOrario()
 		//document->Validate(ed);  
 #endif // VALIDATEXML
 
-		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(nomeFile);
+		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("FileConfigurazione//TabellaOrario.xml", settings);
 
 		// per ogni treno presente nel file di configurazione della tabella orario...
 		while (reader->ReadToFollowing("treno")){
