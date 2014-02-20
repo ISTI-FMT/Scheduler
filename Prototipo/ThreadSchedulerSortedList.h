@@ -46,7 +46,8 @@ ref class ThreadSchedulerSortedList
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
 	ControllerListTrain ^controlListtrain;
-	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);;
+	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);
+	List<int> ^treniPresentati;
 public:
 	ThreadSchedulerSortedList(void);
 
@@ -57,6 +58,7 @@ public:
 	void Init();
 	void ControllaMSG_ATO();
 	void ControllaMSG_IXL();
+	void ControllaMSG_ATC();
 	bool controllacdb(List<int>^lcdb);
 	void ControllaEventiCambioOrario();
 	void RequestStop();

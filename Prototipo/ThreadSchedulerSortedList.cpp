@@ -48,7 +48,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	model->Subscribe(view);
 	view->AddModel(model);
 	controlListtrain = gcnew ControllerListTrain(model);
-
+	treniPresentati= gcnew List<int>();
 	//Application::Run(view);
 	view->Visible=true;
 
@@ -75,9 +75,10 @@ void ThreadSchedulerSortedList::Schedule(){
 			//controlListtrain->Sort();
 			Thread::Sleep(100);
 			wdogs->onNext();
-			ControllaMSG_ATO();
+			ControllaMSG_ATC();
 			ControllaMSG_IXL();
 			ControllaEventiCambioOrario();
+
 
 			for each (Train^ Train in controlListtrain->getListTrain())
 			{
@@ -272,6 +273,34 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 			for each (Train ^var in elemetidaeliminare)
 			{
 				RaccoltaTrenoRequestCDB->Remove(var);
+			}
+		}
+	}
+}
+
+void ThreadSchedulerSortedList::ControllaMSG_ATC(){
+	Event<StateCDB^> ^eventoATC;
+	eventoATC = EQueueATC->getEvent();
+	if(eventoATC!=nullptr){
+		StateCDB ^cdb = eventoATC->getEvent();
+		int enginenumber = cdb->getNID_ENGINE();
+		if(!treniPresentati->Contains(enginenumber)){
+			treniPresentati->Add(enginenumber);
+			if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
+				TrenoFisicoLogico ^infotrenofisico = mapTrenoLogFisico->get_Map()[enginenumber];
+				int trn = infotrenofisico->getIdTrenoLogico(0);
+				List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn);
+							int priorita = 1;
+							physicalTrain ^phisical = gcnew physicalTrain();
+							phisical->setEngineNumber(enginenumber);
+							phisical->setIpAddress("127.0.0.1");
+							phisical->setTcpPort(3655);
+							Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
+							//Creo KeyListTrain
+
+							//KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber);
+							//ListSortedTrains->Add(key,treno);
+							controlListtrain->OnSetTrain(treno);
 			}
 		}
 	}
