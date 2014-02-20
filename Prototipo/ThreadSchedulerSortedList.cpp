@@ -35,7 +35,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	wdogs=w;
 	managerATC=manATC;
 	managerIXL=manIXL;
-	ipixl="127.0.0.1";
+	ipixl="192.168.1.116";//"127.0.0.1";
 	RaccoltaTrenoRequestCDB  = gcnew Dictionary<Train^,List<int>^> ();
 	EQueueCambioOrario = gcnew EventQueue<List<Fermata^>^>();
 	_shouldStop=false;

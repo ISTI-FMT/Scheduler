@@ -307,7 +307,7 @@ if bandiera==True:
 		print "Nessuna Presentazione Eseguita, Avvia lo Scheduler",msg
 
 
-#exit(0)
+exit(0)
 
 ####### MOVIMENTO VS RBC NEXT MOV######
 for line in spamReader:
