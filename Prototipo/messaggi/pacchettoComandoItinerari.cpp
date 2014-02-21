@@ -3,7 +3,7 @@
 
 pacchettoComandoItinerari::pacchettoComandoItinerari(void)
 {
-	setNID_PACKET(10);
+	setNID_PACKET(pacchettoIXL::PacchettoComandoItinerari);
 	L_PACKET = 0;
 	NID_ITIN = 0;
 	Q_CMDITIN = 0;

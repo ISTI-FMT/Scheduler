@@ -6,6 +6,10 @@ using namespace System::Collections;
 /* Questa classe astratta contiene metodi e informazioni comuni a tutti i pacchetti inviati e ricevuti dall'ATS.
 E' implementata da ogni classe pacchetto, che aggiunge le informazioni aggiuntive e gestisce la loro serializzazione/deserializzazione */
 
+enum pacchettoIXL { PacchettoStatoLineaIXL = 0, PacchettoFaultDataIXL = 1, PacchettoStatoBloccoIXL = 5,  PacchettoStatoItinerario = 3, PacchettoStatoSegnali = 4, PacchettoEnd = 255, PacchettoComandoItinerari = 10, PacchettoComandoBlocco = 11 };
+enum PacchettoATO { PacchettoMissionPlan = 200, PacchettoUnconditionalCommand = 201, PacchettoAck = 210, PacchettoDoorsStatusNotification = 211, PacchettoEmergencyNotification = 212, PacchettoFaultReporting = 213, PacchettoTrainDataReporting = 214, PacchettoPresentation = 215, PacchettoMissionData = 160, PacchettoCommandData = 161, PacchettoFaultData = 170, PacchettoDoorsStatus = 171, PacchettoTrainData = 172, PacchettoEmergencyEvents = 173, PacchettoMissionAck = 174, PacchettoNetworkData = 175};
+enum PacchettoATC { PacchettoStatoLineaATC = 0, PacchettoFaultDataATC = 1, PacchettoPositionDataATC = 3};
+
 ref class pacchettoBase abstract
 {
 protected:

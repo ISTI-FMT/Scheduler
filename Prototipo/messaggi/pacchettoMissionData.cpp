@@ -5,7 +5,7 @@
 
 pacchettoMissionData::pacchettoMissionData()
 {
-	setNID_PACKET(160);
+	setNID_PACKET(PacchettoATO::PacchettoMissionData);
 	L_PACKET = 0;
 	Q_SCALE = 0;
 	N_ITER1 = 0;

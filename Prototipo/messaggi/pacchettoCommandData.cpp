@@ -5,7 +5,7 @@
 
 pacchettoCommandData::pacchettoCommandData(void)
 {
-	setNID_PACKET(161);
+	setNID_PACKET(PacchettoATO::PacchettoCommandData);
 	L_PACKET = 0;
 	Q_COMMAND_TYPE = 0;
 	M_GOA_LEVEL = 0;
