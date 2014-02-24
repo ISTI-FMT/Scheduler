@@ -67,7 +67,7 @@ private:
 	void set_pacchettoEnd(){pkgEnd = gcnew pacchettoEnd;};
 	void set_pacchettoComandoItinerari(){pkgComandoItinerario = gcnew pacchettoComandoItinerari;};
 	void set_pacchettoComandoBlocco(){pkgComandoBlocco = gcnew pacchettoComandoBlocco;};
-	void set_pacchettoFaultReporting() {pkgFaultData = gcnew pacchettoFaultData;}
+	void set_pacchettoFaultReporting(int ID_PACKET) {pkgFaultData = gcnew pacchettoFaultData(ID_PACKET);}
 	void set_pacchettoPositionDataATC() {pkgPositionDataATC = gcnew pacchettoPositionDataATC;}
 	void set_pacchettoStatoItinerari() {pkgStatoItinerari = gcnew pacchettoStatoItinerario;}
 	void set_pacchettoStatoLineaIXL() {pkgStatoLineaIXL = gcnew pacchettoStatoLineaIXL;}

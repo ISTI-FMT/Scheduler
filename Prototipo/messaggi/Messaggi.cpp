@@ -43,7 +43,7 @@ void Messaggi::setNID_MESSAGE(int N){
 		set_pacchettoStatoBlocco();
 		set_pacchettoEnd();
 		break;}
-	case MessIXL::FaultReportingIXL: {set_pacchettoFaultReporting(); break;}
+	case MessIXL::FaultReportingIXL: {set_pacchettoFaultReporting(PacchettoIXL::PacchettoFaultDataIXL); break;}
 	case MessIXL::ComandoItinerari: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
 	case MessIXL::ComandoBlocco: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}
 	default:
