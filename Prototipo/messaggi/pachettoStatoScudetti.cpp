@@ -4,8 +4,7 @@
 
 pachettoStatoScudetti::pachettoStatoScudetti(void)
 {
-
-	NID_PACKET = 0;
+	setNID_PACKET(PacchettoIXL::PacchettoStatoScudetti);
 	L_PACKET = 0;
 	N_ITER = 0;
 	vStatoScudetti = gcnew List<StateScudetti^>();

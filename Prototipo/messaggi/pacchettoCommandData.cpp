@@ -10,7 +10,6 @@ pacchettoCommandData::pacchettoCommandData(void)
 	Q_COMMAND_TYPE = 0;
 	M_GOA_LEVEL = 0;
 	NID_OPERATIONAL = 0;
-
 }
 
 // questa funzione prende in ingresso un buffer di byte (la cui dimensione deve essere almeno 10, ma il controllo sulla 

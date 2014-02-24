@@ -3,7 +3,7 @@
 
 pacchettoStatoItinerario::pacchettoStatoItinerario(void)
 {
-	NID_PACKET = 0;
+	setNID_PACKET(PacchettoIXL::PacchettoStatoItinerario);
 	L_PACKET = 0;
 	N_ITER = 0;
 	vStatoItinerario = gcnew List<StateItinerario^>();

@@ -3,7 +3,7 @@
 
 pacchettoStatoLineaIXL::pacchettoStatoLineaIXL(void)
 {
-	NID_PACKET = 0;
+	setNID_PACKET(PacchettoIXL::PacchettoStatoLineaIXL);
 	L_PACKET = 0;
 
 	N_ITER = 0;

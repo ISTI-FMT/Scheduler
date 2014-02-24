@@ -3,8 +3,7 @@
 
 pacchettoAcknowledgement::pacchettoAcknowledgement(void)
 {
-	
-	NID_PACKET = 0;
+	setNID_PACKET(PacchettoATO::PacchettoMissionAck);
 	L_PACKET = 0;
 	T_TRAIN = 0;
 	Q_MISSION_RESPONSE = 0;

@@ -22,7 +22,9 @@ ref class pacchettoFaultData : pacchettoBase
 	int N_ITER ;
 	List<Fault^> ^vGuasto;
 public:
-	pacchettoFaultData(void);
+	//Costruttore che accetta l'id del pacchetto.
+	//FaultData può avere id diversi a seconda dell'utilizzo
+	pacchettoFaultData(int ID_PACKET);
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
 

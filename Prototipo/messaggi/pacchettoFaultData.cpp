@@ -1,9 +1,9 @@
 #include "pacchettoFaultData.h"
 #include "utility.h"
 
-pacchettoFaultData::pacchettoFaultData(void)
+pacchettoFaultData::pacchettoFaultData(int ID_PACKET)
 {
-	NID_PACKET = 0;
+	setNID_PACKET(ID_PACKET);
 	L_PACKET = 0;
 	
 	N_ITER = 0;
