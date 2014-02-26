@@ -7,7 +7,12 @@ lrbg::lrbg(int nid, int ds)
 	d_stop=ds;
 	pkmetricaVsStation = gcnew Dictionary<int,int>();
 }
-
+lrbg::lrbg(void)
+{
+	nid_lrgb=0;
+	d_stop=0;
+	pkmetricaVsStation = gcnew Dictionary<int,int>();
+}
 
 void lrbg::add_progressivakm(int km, int offstation){
 
@@ -24,4 +29,14 @@ int lrbg::get_progressivakm(int offsetStation){
 	}
 }
 
+System::String^ lrbg::ToString(){
+	String ^out="";
+	out+=" nid_lrgb: "+nid_lrgb;
+	out+=" d_stop: "+d_stop;
+	for each (int var in pkmetricaVsStation->Keys)
+	{
+		out+=" km_lrgb:  "+pkmetricaVsStation[var]+" from: "+var;
+	}
+	return out;
+}
 

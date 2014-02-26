@@ -23,8 +23,8 @@
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>
-                              <xs:attribute name="nid" type="xs:nonNegativeInteger"></xs:attribute>
-                              <xs:attribute name="dstop" type="xs:nonNegativeInteger"></xs:attribute>
+                              <xs:attribute name="nid" type="xs:nonNegativeInteger"/>
+                              <xs:attribute name="dstop" type="xs:nonNegativeInteger"/>
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>
@@ -47,7 +47,7 @@
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="cdb" maxOccurs="unbounded" type="xs:nonNegativeInteger"/>
-                          <xs:element name="pkm_fermata">
+                          <xs:element name="lrgb">
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="pkm"  maxOccurs="unbounded">
@@ -57,6 +57,8 @@
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>
+                              <xs:attribute name="nid" type="xs:nonNegativeInteger"/>
+                              <xs:attribute name="dstop" type="xs:nonNegativeInteger"/>
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>

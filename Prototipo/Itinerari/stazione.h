@@ -35,12 +35,12 @@ public:
 	virtual System::String^ ToString() override;
 	//fornendo id dell'itinerario restiuisce una lista di 2 valori interi che rappresentano rispettivamente
 	//nid_lrgb e D_stop per quell'itinerario 
-	List<int> ^get_infobalise(int id){
-		List<int> ^ret = gcnew List<int>();
+	lrbg ^get_infobalise(int id){
+		
 		if(itinerariid->ContainsKey(id)){
-			ret->Add(itinerariid[id]->getLrgb());
-			ret->Add(itinerariid[id]->getDStop());
-			return ret;
+			
+			
+			return itinerariid[id]->getLrgb();
 		}
 		return nullptr;
 

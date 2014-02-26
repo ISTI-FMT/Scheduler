@@ -13,7 +13,7 @@ using namespace System::Xml::Schema;
 TabellaStazioni::TabellaStazioni(void)
 {
 	mapidstazioneitinerari= gcnew Dictionary<int,stazione^ >() ;
-	
+
 
 }
 
@@ -87,10 +87,10 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 						newitinerario->setPorteBanchina(false);
 					}
 
-				//	int nidlrgb = int::Parse(inner2->GetAttribute("nid_lrgb"));
-				//	newitinerario->setLrgb(nidlrgb);
-				//	int dstop = int::Parse(inner2->GetAttribute("d_stop"));
-				//	newitinerario->setDStop(dstop);
+					//	int nidlrgb = int::Parse(inner2->GetAttribute("nid_lrgb"));
+					//	newitinerario->setLrgb(nidlrgb);
+					//	int dstop = int::Parse(inner2->GetAttribute("d_stop"));
+					//	newitinerario->setDStop(dstop);
 					newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
 					newitinerario->setNextCDB( int::Parse( inner2->GetAttribute("nextcdb")));
@@ -99,7 +99,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 					newitinerario->setPrevCDB( prevcdb);	
 
 					System::Xml::XmlReader ^inner3 = inner2->ReadSubtree();
-				
+
 					while (inner3->ReadToDescendant("cdb")){
 
 
@@ -109,22 +109,25 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 					}
 
-				
-					bool id =	inner3->ReadToFollowing("lrgb");
+
+					inner3->ReadToFollowing("lrgb");
 					int nid_lrgb = int::Parse(inner3->GetAttribute("nid"));
 					int d_stop = int::Parse(	inner3->GetAttribute("dstop"));
-					
-					
+
+					lrbg ^infolrbg = gcnew lrbg(nid_lrgb,d_stop);
+
+
 					while (inner3->ReadToFollowing("pkm")){
 
-					int rifkm = int::Parse(		inner2->GetAttribute("km"));
-					int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
+						int rifkm = int::Parse(		inner2->GetAttribute("km"));
+						int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
 
-						
-						
+						infolrbg->add_progressivakm(rifkm,idpstation);
+
 
 					}
 
+					newitinerario->setLrgb(infolrbg);
 
 					newstazione->getItinerariid()->Add(Iditinerario,newitinerario);
 
@@ -184,19 +187,24 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 						newitinerario->getLCDB()->Add(cdb);
 
 					}
-					
-					bool id =	inner3->ReadToFollowing("pkm_fermata");
-					
-					
+
+					inner3->ReadToFollowing("lrgb");
+					int nid_lrgb = int::Parse(inner3->GetAttribute("nid"));
+					int d_stop = int::Parse(	inner3->GetAttribute("dstop"));
+
+					lrbg ^infolrbg = gcnew lrbg(nid_lrgb,d_stop);
+
+
 					while (inner3->ReadToFollowing("pkm")){
 
-					int rifkm = int::Parse(		inner2->GetAttribute("km"));
-					int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
+						int rifkm = int::Parse(		inner2->GetAttribute("km"));
+						int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
 
-						
-						
+						infolrbg->add_progressivakm(rifkm,idpstation);
+
 
 					}
+					newitinerario->setLrgb(infolrbg);
 					newstazione->getItinerariid()->Add(Iditinerario,newitinerario);
 
 					if(!newstazione->getItinerari()->ContainsKey(prevcdb)){

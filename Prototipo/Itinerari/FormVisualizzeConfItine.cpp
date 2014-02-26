@@ -73,7 +73,7 @@ void FormVisualizzeConfItine::Inizialize(){
 				dataGridView1->Rows[riga]->Cells[3]->Value=itvar->getId();
 				dataGridView1->Rows[riga]->Cells[4]->Value=itvar->getName();
 				dataGridView1->Rows[riga]->Cells[5]->Value=itvar->getLrgb();
-				dataGridView1->Rows[riga]->Cells[6]->Value=itvar->getDStop();
+				
 				dataGridView1->Rows[riga]->Cells[7]->Value=itvar->getLatoBanchina();
 				dataGridView1->Rows[riga]->Cells[8]->Value=itvar->getNextCDB();
 				//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();

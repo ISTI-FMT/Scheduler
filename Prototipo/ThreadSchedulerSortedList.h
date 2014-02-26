@@ -63,7 +63,7 @@ public:
 
 	StateObject ^InizializzeATO(int trn,physicalTrain ^Treno);
 	StateObject ^SendUpdateMissionATO(int trn,physicalTrain ^Treno,List<Fermata^> ^stops);
-	void setMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops);
+	/*void setMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops);*/
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 
 	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);

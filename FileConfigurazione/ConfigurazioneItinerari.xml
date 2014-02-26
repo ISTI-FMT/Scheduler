@@ -29,9 +29,9 @@
         <cdb>13011</cdb>
         <cdb>13010</cdb>
 		<cdb>501</cdb>
-        <pkm_fermata>
-          <pkm km="0" idoffstaz="13000" />
-        </pkm_fermata>
+        <lrgb nid="104" dstop="10" >
+          <pkm km="150" idoffstaz="13000"/>
+        </lrgb>
       </partenza>
       <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="13302" nextcdb="14020"  nextstation="14000">
        
@@ -39,9 +39,9 @@
         <cdb>13011</cdb>
         <cdb>13010</cdb>
 		<cdb>501</cdb>
-		<pkm_fermata>
-          <pkm km="0" idoffstaz="13000" />
-        </pkm_fermata>
+        <lrgb nid="105" dstop="10" >
+          <pkm km="150" idoffstaz="13000"/>
+        </lrgb>
       </partenza>
      </itinerariUscita>
   </stazione>
@@ -92,18 +92,18 @@
         <cdb>14011</cdb>
         <cdb>14010</cdb>
 		<cdb>502</cdb>
-      <pkm_fermata>
-        <pkm km="3740" idoffstaz="13000" />
-      </pkm_fermata>
+      <lrgb nid="116" dstop="10" >
+        <pkm km="3890" idoffstaz="13000"/>
+      </lrgb>
       </partenza>
       <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="14301" nextcdb="13010"    nextstation="13000" >
         <cdb>14022</cdb>
         <cdb>14021</cdb>
         <cdb>14020</cdb>
 		<cdb>501</cdb>
-        <pkm_fermata>
-          <pkm km="3740" idoffstaz="13000" />
-        </pkm_fermata>
+        <lrgb nid="112" dstop="10" >
+          <pkm km="3590" idoffstaz="13000"/>
+        </lrgb>
       </partenza>
       <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="14302" nextcdb="15020"   nextstation="15000" >
        
@@ -111,9 +111,9 @@
         <cdb>14011</cdb>
         <cdb>14010</cdb>
 		<cdb>502</cdb>
-        <pkm_fermata>
-          <pkm km="3740" idoffstaz="13000" />
-        </pkm_fermata>
+        <lrgb nid="117" dstop="150" >
+          <pkm km="3890" idoffstaz="13000"/>
+        </lrgb>
       </partenza>
       <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="14302" nextcdb="13010"   nextstation="13000" >
         
@@ -121,9 +121,9 @@
         <cdb>14021</cdb>
         <cdb>14020</cdb>
 		<cdb>501</cdb>
-        <pkm_fermata>
-          <pkm km="3740" idoffstaz="13000" />
-        </pkm_fermata>
+        <lrgb nid="113" dstop="10" >
+          <pkm km="3590" idoffstaz="13000"/>
+        </lrgb>
       </partenza>
      </itinerariUscita>
   </stazione>
@@ -181,9 +181,9 @@
           <cdb>15011</cdb>
           <cdb>15010</cdb>
 		  <cdb>503</cdb>
-      <pkm_fermata>
-        <pkm km="7480" idoffstaz="13000" />
-      </pkm_fermata>
+      <lrgb nid="128" dstop="10" >
+        <pkm km="7630" idoffstaz="13000"/>
+      </lrgb>
       </partenza>
 
         <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="15301" nextcdb="14010"  nextstation="14000" >
@@ -193,9 +193,9 @@
           <cdb>15021</cdb>
           <cdb>15020</cdb>
 		  <cdb>502</cdb>
-          <pkm_fermata>
-            <pkm km="7480" idoffstaz="13000" />
-          </pkm_fermata>
+          <lrgb nid="124" dstop="10" >
+            <pkm km="7330" idoffstaz="13000"/>
+          </lrgb>
       </partenza>
       <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="sx" prevcdb="15302" nextcdb="12010"    nextstation="12000" >
         
@@ -204,9 +204,9 @@
           <cdb>15011</cdb>
           <cdb>15010</cdb>
         <cdb>503</cdb>
-        <pkm_fermata>
-          <pkm km="7480" idoffstaz="13000" />
-        </pkm_fermata>
+        <lrgb nid="129" dstop="10" >
+          <pkm km="7630" idoffstaz="13000"/>
+        </lrgb>
       </partenza>
       <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="15302" nextcdb="14010" nextstation="14000" >
         
@@ -215,9 +215,9 @@
           <cdb>15021</cdb>
           <cdb>15020</cdb>
         <cdb>502</cdb>
-        <pkm_fermata>
-          <pkm km="7480" idoffstaz="13000" />
-        </pkm_fermata>
+        <lrgb nid="125" dstop="10" >
+          <pkm km="7330" idoffstaz="13000"/>
+        </lrgb>
       </partenza>
      </itinerariUscita>
   </stazione>
@@ -255,9 +255,9 @@
         <cdb>10011</cdb>
         <cdb>10010</cdb>
 		<cdb>504</cdb>
-      <pkm_fermata>
-        <pkm km="0" idoffstaz="10000" />
-      </pkm_fermata>
+      <lrgb nid="173" dstop="10" >
+        <pkm km="150" idoffstaz="10000"/>
+      </lrgb>
       </partenza>
       <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="10302" nextcdb="11020"    nextstation="11000" >
    
@@ -266,9 +266,9 @@
         <cdb>10011</cdb>
         <cdb>10010</cdb>
 		<cdb>504</cdb>
-        <pkm_fermata>
-          <pkm km="0" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="174" dstop="10" >
+          <pkm km="150" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
      </itinerariUscita>
   </stazione>
@@ -330,9 +330,9 @@
           <cdb>11011</cdb>
           <cdb>11010</cdb>
        <cdb>505</cdb>
-      <pkm_fermata>
-        <pkm km="4570" idoffstaz="10000" />
-      </pkm_fermata>
+      <lrgb nid="160" dstop="10" >
+        <pkm km="4720" idoffstaz="10000"/>
+      </lrgb>
       </partenza>
         <partenza id="906" name="I-02" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="11301" nextcdb="10010"   nextstation="10000" >
         
@@ -341,9 +341,9 @@
           <cdb>11021</cdb>
           <cdb>11020</cdb>
 		<cdb>504</cdb>
-            <pkm_fermata>
-        <pkm km="4570" idoffstaz="10000" />
-      </pkm_fermata>
+          <lrgb nid="164" dstop="10" >
+            <pkm km="4420" idoffstaz="10000"/>
+          </lrgb>
       </partenza>
       
       <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="11302" nextcdb="12013"    nextstation="12000" >
@@ -354,9 +354,9 @@
           <cdb>11011</cdb>
           <cdb>11010</cdb>
 		<cdb>505</cdb>
-        <pkm_fermata>
-          <pkm km="4570" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="161" dstop="10" >
+          <pkm km="4720" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
 
       <partenza id="907" name="II-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="11302" nextcdb="10010"   nextstation="10000" >
@@ -366,10 +366,10 @@
           <cdb>11022</cdb>
           <cdb>11021</cdb>
           <cdb>11020</cdb>
-		<cdb>504</cdb> 
-        <pkm_fermata>
-     <pkm km="4570" idoffstaz="10000" />
-   </pkm_fermata>
+		<cdb>504</cdb>
+        <lrgb nid="165" dstop="10" >
+          <pkm km="4420" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
   
      </itinerariUscita>
@@ -509,10 +509,10 @@
           <cdb>12011</cdb>
           <cdb>12010</cdb>
 		<cdb>503</cdb>
-      <pkm_fermata>
-        <pkm km="11420" idoffstaz="13000" />
-        <pkm km="9420" idoffstaz="10000" />
-      </pkm_fermata>
+      <lrgb nid="137" dstop="10" >
+        <pkm km="11270" idoffstaz="13000"/>
+        <pkm km="9270" idoffstaz="10000"/>
+      </lrgb>
       </partenza>
         <partenza id="916" name="I-04" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="12301" nextcdb="402"   nextstation="16000" >
        
@@ -521,10 +521,10 @@
           <cdb>12025</cdb>
           <cdb>12024</cdb>
 		  <cdb>400</cdb>
-          <pkm_fermata>
-            <pkm km="11420" idoffstaz="13000" />
-            <pkm km="9420" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="145" dstop="10" >
+            <pkm km="11570" idoffstaz="13000"/>
+            <pkm km="9570" idoffstaz="10000"/>
+          </lrgb>
         
       </partenza>
       <partenza id="904" name="II-01" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="12302" nextcdb="15010"    nextstation="15000" >
@@ -535,10 +535,10 @@
           <cdb>12011</cdb>
           <cdb>12010</cdb>
 		  <cdb>503</cdb>
-        <pkm_fermata>
-          <pkm km="11420" idoffstaz="13000" />
-          <pkm km="9420" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="138" dstop="10" >
+          <pkm km="11100" idoffstaz="13000"/>
+          <pkm km="9100" idoffstaz="10000"/>
+        </lrgb>
         
       </partenza>
         <partenza id="913" name="II-03" direzione="sx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="11010"  nextstation="11000" >
@@ -548,10 +548,10 @@
           <cdb>12014</cdb>
           <cdb>12013</cdb>
 		  <cdb>505</cdb>
-          <pkm_fermata>
-            <pkm km="11420" idoffstaz="13000" />
-            <pkm km="9420" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="138" dstop="10" >
+            <pkm km="11100" idoffstaz="13000"/>
+            <pkm km="9100" idoffstaz="10000"/>
+          </lrgb>
 
         </partenza>
           <partenza id="915" name="II-04" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="402"    nextstation="16000" >
@@ -562,10 +562,10 @@
           <cdb>12025</cdb>
           <cdb>12024</cdb>
 		  <cdb>400</cdb>
-            <pkm_fermata>
-              <pkm km="11420" idoffstaz="13000" />
-              <pkm km="9420" idoffstaz="10000" />
-            </pkm_fermata>
+            <lrgb nid="144" dstop="10" >
+              <pkm km="11520" idoffstaz="13000"/>
+              <pkm km="9520" idoffstaz="10000"/>
+            </lrgb>
           </partenza>
             <partenza id="907" name="II-02" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="403" nextstation="16000" >
          
@@ -574,10 +574,10 @@
           <cdb>12021</cdb>
           <cdb>12020</cdb>
 		  <cdb>401</cdb>
-              <pkm_fermata>
-                <pkm km="11420" idoffstaz="13000" />
-                <pkm km="9420" idoffstaz="10000" />
-              </pkm_fermata>
+              <lrgb nid="144" dstop="10" >
+                <pkm km="11520" idoffstaz="13000"/>
+                <pkm km="9520" idoffstaz="10000"/>
+              </lrgb>
       </partenza>
       <partenza id="903" name="III-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="12303" nextcdb="15010"   nextstation="15000" >     
           
@@ -587,10 +587,10 @@
           <cdb>12011</cdb>
           <cdb>12010</cdb>
 		  <cdb>503</cdb>
-        <pkm_fermata>
-          <pkm km="11420" idoffstaz="13000" />
-          <pkm km="9420" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="140" dstop="10" >
+          <pkm km="11120" idoffstaz="13000"/>
+          <pkm km="9120" idoffstaz="10000"/>
+        </lrgb>
       
       </partenza>
         <partenza id="912" name="III-03" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="12303" nextcdb="11010"    nextstation="11000" >
@@ -600,10 +600,10 @@
           <cdb>12014</cdb>
           <cdb>12013</cdb>
 		  <cdb>505</cdb>
-          <pkm_fermata>
-            <pkm km="11420" idoffstaz="13000" />
-            <pkm km="9420" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="140" dstop="10" >
+            <pkm km="11120" idoffstaz="13000"/>
+            <pkm km="9120" idoffstaz="10000"/>
+          </lrgb>
         </partenza>
           <partenza id="914" name="III-04" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="12303" nextcdb="402"   nextstation="16000" >
          
@@ -613,10 +613,10 @@
           <cdb>12025</cdb>
           <cdb>12024</cdb>
 		  <cdb>400</cdb>
-            <pkm_fermata>
-              <pkm km="11420" idoffstaz="13000" />
-              <pkm km="9420" idoffstaz="10000" />
-            </pkm_fermata>
+            <lrgb nid="143" dstop="10" >
+              <pkm km="11490" idoffstaz="13000"/>
+              <pkm km="9490" idoffstaz="10000"/>
+            </lrgb>
           </partenza>
             <partenza id="906" name="III-02" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="12303" nextcdb="403"    nextstation="16000" >
         
@@ -625,10 +625,10 @@
           <cdb>12021</cdb>
           <cdb>12020</cdb>
 		  <cdb>401</cdb>
-              <pkm_fermata>
-                <pkm km="11420" idoffstaz="13000" />
-                <pkm km="9420" idoffstaz="10000" />
-              </pkm_fermata>
+              <lrgb nid="143" dstop="10" >
+                <pkm km="11490" idoffstaz="13000"/>
+                <pkm km="9490" idoffstaz="10000"/>
+              </lrgb>
       </partenza>
      </itinerariUscita>
   </stazione>
@@ -773,10 +773,10 @@
           <cdb>16011</cdb>
           <cdb>16010</cdb>
 		  <cdb>441</cdb>
-      <pkm_fermata>
-        <pkm km="19760" idoffstaz="13000" />
-        <pkm km="17760" idoffstaz="10000" />
-      </pkm_fermata>
+      <lrgb nid="202" dstop="10" >
+        <pkm km="20010" idoffstaz="13000"/>
+        <pkm km="18010" idoffstaz="10000"/>
+      </lrgb>
       </partenza>
         <partenza id="919" name="I-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="427"     nextstation="12000" >
         
@@ -785,10 +785,10 @@
           <cdb>16025</cdb>
           <cdb>16024</cdb>
 		  <cdb>429</cdb>
-          <pkm_fermata>
-            <pkm km="19760" idoffstaz="13000" />
-            <pkm km="17760" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="195" dstop="10" >
+            <pkm km="19560" idoffstaz="13000"/>
+            <pkm km="17560" idoffstaz="10000"/>
+          </lrgb>
       </partenza>
       <partenza id="909" name="II-02" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="16302" nextcdb="426"     nextstation="12000" >
      
@@ -798,10 +798,10 @@
           <cdb>16021</cdb>
           <cdb>16020</cdb>
 		  <cdb>428</cdb>
-        <pkm_fermata>
-          <pkm km="19760" idoffstaz="13000" />
-          <pkm km="17760" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="194" dstop="10" >
+          <pkm km="19590" idoffstaz="13000"/>
+          <pkm km="17590" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
         <partenza id="918" name="II-04" direzione="sx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="427"     nextstation="12000" >
         
@@ -812,10 +812,10 @@
           <cdb>16025</cdb>
           <cdb>16024</cdb>
 		  <cdb>429</cdb>
-          <pkm_fermata>
-            <pkm km="19760" idoffstaz="13000" />
-            <pkm km="17760" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="194" dstop="10" >
+            <pkm km="19590" idoffstaz="13000"/>
+            <pkm km="17590" idoffstaz="10000"/>
+          </lrgb>
         </partenza>
           <partenza id="911" name="II-03" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="442"     nextstation="17000" >
         
@@ -824,10 +824,10 @@
           <cdb>16014</cdb>
           <cdb>16013</cdb>
 		  <cdb>440</cdb>
-            <pkm_fermata>
-              <pkm km="19760" idoffstaz="13000" />
-              <pkm km="17760" idoffstaz="10000" />
-            </pkm_fermata>
+            <lrgb nid="201" dstop="10" >
+              <pkm km="19950" idoffstaz="13000"/>
+              <pkm km="17950" idoffstaz="10000"/>
+            </lrgb>
           </partenza>
             <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="443"     nextstation="17000" >
         
@@ -838,10 +838,10 @@
           <cdb>16011</cdb>
           <cdb>16010</cdb>
 		  <cdb>441</cdb>
-              <pkm_fermata>
-                <pkm km="19760" idoffstaz="13000" />
-                <pkm km="17760" idoffstaz="10000" />
-              </pkm_fermata>
+              <lrgb nid="201" dstop="10" >
+                <pkm km="19950" idoffstaz="13000"/>
+                <pkm km="17950" idoffstaz="10000"/>
+              </lrgb>
       </partenza>
       <partenza id="908" name="III-02" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="426"     nextstation="12000" >
         
@@ -852,10 +852,10 @@
           <cdb>16021</cdb>
           <cdb>16020</cdb>
 		  <cdb>428</cdb>
-        <pkm_fermata>
-          <pkm km="19760" idoffstaz="13000" />
-          <pkm km="17760" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="193" dstop="10" >
+          <pkm km="19610" idoffstaz="13000"/>
+          <pkm km="17610" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
         <partenza id="917" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="427"     nextstation="17000" >
        
@@ -867,10 +867,10 @@
           <cdb>16025</cdb>
           <cdb>16024</cdb>
 		  <cdb>429</cdb>
-          <pkm_fermata>
-            <pkm km="19760" idoffstaz="13000" />
-            <pkm km="17760" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="193" dstop="10" >
+            <pkm km="19610" idoffstaz="13000"/>
+            <pkm km="17610" idoffstaz="10000"/>
+          </lrgb>
         </partenza>
         <partenza id="910" name="III-03" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="442"     nextstation="17000" >
       
@@ -881,10 +881,10 @@
           <cdb>16014</cdb>
           <cdb>16013</cdb>
 		  <cdb>440</cdb>
-          <pkm_fermata>
-            <pkm km="19760" idoffstaz="13000" />
-            <pkm km="17760" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="200" dstop="10" >
+            <pkm km="19910" idoffstaz="13000"/>
+            <pkm km="17910" idoffstaz="10000"/>
+          </lrgb>
         </partenza>
           <partenza id="900" name="III-01" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="443"     nextstation="17000" >
         
@@ -895,10 +895,10 @@
           <cdb>16011</cdb>
           <cdb>16010</cdb>
 		  <cdb>441</cdb>
-            <pkm_fermata>
-              <pkm km="19760" idoffstaz="13000" />
-              <pkm km="17760" idoffstaz="10000" />
-            </pkm_fermata>
+            <lrgb nid="200" dstop="10" >
+              <pkm km="19910" idoffstaz="13000"/>
+              <pkm km="17910" idoffstaz="10000"/>
+            </lrgb>
       </partenza>
      </itinerariUscita>
   </stazione>
@@ -1018,10 +1018,10 @@
           <cdb>17011</cdb>
           <cdb>17010</cdb>
 		  <cdb>448</cdb>
-        <pkm_fermata>
-          <pkm km="24080" idoffstaz="13000" />
-          <pkm km="21080" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="215" dstop="10" >
+          <pkm km="24030" idoffstaz="13000"/>
+          <pkm km="21030" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
         <partenza id="915" name="I-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="447"   nextstation="16000" >
        
@@ -1032,10 +1032,10 @@
           <cdb>17031</cdb>
           <cdb>17030</cdb>
 		  <cdb>449</cdb>
-          <pkm_fermata>
-            <pkm km="24080" idoffstaz="13000" />
-            <pkm km="21080" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="215" dstop="10" >
+            <pkm km="24030" idoffstaz="13000"/>
+            <pkm km="21030" idoffstaz="10000"/>
+          </lrgb>
       </partenza>
       <partenza id="906" name="II-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="446"   nextstation="16000" >
        
@@ -1045,10 +1045,10 @@
           <cdb>17011</cdb>
           <cdb>17010</cdb>
 		  <cdb>448</cdb>
-        <pkm_fermata>
-          <pkm km="24080" idoffstaz="13000" />
-          <pkm km="21080" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="216" dstop="10" >
+          <pkm km="23930" idoffstaz="13000"/>
+          <pkm km="21930" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
         <partenza id="914" name="II-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="447"   nextstation="16000" >
      
@@ -1059,10 +1059,10 @@
           <cdb>17031</cdb>
           <cdb>17030</cdb>
 		  <cdb>449</cdb>
-          <pkm_fermata>
-            <pkm km="24080" idoffstaz="13000" />
-            <pkm km="21080" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="216" dstop="10" >
+            <pkm km="23930" idoffstaz="13000"/>
+            <pkm km="21930" idoffstaz="10000"/>
+          </lrgb>
       </partenza>
       <partenza id="913" name="III-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="447"   nextstation="16000" >
       
@@ -1072,10 +1072,10 @@
           <cdb>17031</cdb>
           <cdb>17030</cdb>
 		  <cdb>449</cdb>
-        <pkm_fermata>
-          <pkm km="24080" idoffstaz="13000" />
-          <pkm km="21080" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="217" dstop="10" >
+          <pkm km="23930" idoffstaz="13000"/>
+          <pkm km="21930" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
         <partenza id="905" name="III-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="446"   nextstation="16000" >
         
@@ -1086,10 +1086,10 @@
           <cdb>17011</cdb>
           <cdb>17010</cdb>
 		  <cdb>448</cdb>
-          <pkm_fermata>
-            <pkm km="24080" idoffstaz="13000" />
-            <pkm km="21080" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="217" dstop="10" >
+            <pkm km="23930" idoffstaz="13000"/>
+            <pkm km="21930" idoffstaz="10000"/>
+          </lrgb>
       </partenza>
       <partenza id="912" name="IV-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="447"   nextstation="16000" >
         
@@ -1099,10 +1099,10 @@
           <cdb>17031</cdb>
           <cdb>17030</cdb>
 		  <cdb>449</cdb>
-        <pkm_fermata>
-          <pkm km="24080" idoffstaz="13000" />
-          <pkm km="21080" idoffstaz="10000" />
-        </pkm_fermata>
+        <lrgb nid="218" dstop="10" >
+          <pkm km="23880" idoffstaz="13000"/>
+          <pkm km="21880" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
         <partenza id="904" name="IV-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="446"   nextstation="16000" > 
           
@@ -1113,10 +1113,10 @@
           <cdb>17011</cdb>
           <cdb>17010</cdb>
 		  <cdb>448</cdb>
-          <pkm_fermata>
-            <pkm km="24080" idoffstaz="13000" />
-            <pkm km="21080" idoffstaz="10000" />
-          </pkm_fermata>
+          <lrgb nid="218" dstop="10" >
+            <pkm km="23880" idoffstaz="13000"/>
+            <pkm km="21880" idoffstaz="10000"/>
+          </lrgb>
       </partenza>
      </itinerariUscita>
   </stazione>

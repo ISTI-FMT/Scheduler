@@ -38,6 +38,7 @@ public:
 	// alla missione associata al TRN in questione
 	void setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel);
 	
+	void createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops);
 	List<Fermata^>^getItinerariFor(int TRN);
 	List<Fermata^>^getFermateFor(int TRN);
 

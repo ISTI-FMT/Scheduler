@@ -25,7 +25,7 @@ public:
 
 	//fornendo id della stazione e dell'itinerario restiuisce una lista di 2 valori interi che rappresentano rispettivamente
 	//nid_lrgb e D_stop per quell'itinerario 
-	List<int> ^get_infobalise(int idstazione, int iditini){
+	lrbg ^get_infobalise(int idstazione, int iditini){
 
 		if(mapidstazioneitinerari->ContainsKey(idstazione)){
 			return mapidstazioneitinerari[idstazione]->get_infobalise(iditini);
