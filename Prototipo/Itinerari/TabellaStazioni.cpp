@@ -87,10 +87,10 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 						newitinerario->setPorteBanchina(false);
 					}
 
-					int nidlrgb = int::Parse(inner2->GetAttribute("nid_lrgb"));
-					newitinerario->setLrgb(nidlrgb);
-					int dstop = int::Parse(inner2->GetAttribute("d_stop"));
-					newitinerario->setDStop(dstop);
+				//	int nidlrgb = int::Parse(inner2->GetAttribute("nid_lrgb"));
+				//	newitinerario->setLrgb(nidlrgb);
+				//	int dstop = int::Parse(inner2->GetAttribute("d_stop"));
+				//	newitinerario->setDStop(dstop);
 					newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
 					newitinerario->setNextCDB( int::Parse( inner2->GetAttribute("nextcdb")));
@@ -99,12 +99,29 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 					newitinerario->setPrevCDB( prevcdb);	
 
 					System::Xml::XmlReader ^inner3 = inner2->ReadSubtree();
-					while (inner3->ReadToFollowing("cdb")){
+				
+					while (inner3->ReadToDescendant("cdb")){
 
 
 
 						int cdb = int::Parse( inner3->ReadString());
 						newitinerario->getLCDB()->Add(cdb);
+
+					}
+
+				
+					bool id =	inner3->ReadToFollowing("lrgb");
+					int nid_lrgb = int::Parse(inner3->GetAttribute("nid"));
+					int d_stop = int::Parse(	inner3->GetAttribute("dstop"));
+					
+					
+					while (inner3->ReadToFollowing("pkm")){
+
+					int rifkm = int::Parse(		inner2->GetAttribute("km"));
+					int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
+
+						
+						
 
 					}
 
@@ -159,7 +176,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 
 					System::Xml::XmlReader ^inner3 = reader->ReadSubtree();
-					while (inner3->ReadToFollowing("cdb")){
+					while (inner3->ReadToDescendant("cdb")){
 
 
 
@@ -167,7 +184,19 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 						newitinerario->getLCDB()->Add(cdb);
 
 					}
+					
+					bool id =	inner3->ReadToFollowing("pkm_fermata");
+					
+					
+					while (inner3->ReadToFollowing("pkm")){
 
+					int rifkm = int::Parse(		inner2->GetAttribute("km"));
+					int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
+
+						
+						
+
+					}
 					newstazione->getItinerariid()->Add(Iditinerario,newitinerario);
 
 					if(!newstazione->getItinerari()->ContainsKey(prevcdb)){
