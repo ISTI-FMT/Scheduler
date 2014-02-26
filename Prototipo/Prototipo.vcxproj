@@ -110,6 +110,7 @@
     </ClInclude>
     <ClInclude Include="logger\Logger.h" />
     <ClInclude Include="logger\TextBoxTraceListener.h" />
+    <ClInclude Include="Itinerari\lrbg.h" />
     <ClInclude Include="MapTreni.h">
       <DependentUpon>..\FileConfigurazione\MapTreni.xsd</DependentUpon>
     </ClInclude>
@@ -184,6 +185,7 @@
     <ClCompile Include="ListTrainView.cpp" />
     <ClCompile Include="logger\Logger.cpp" />
     <ClCompile Include="logger\TextBoxTraceListener.cpp" />
+    <ClCompile Include="Itinerari\lrbg.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapTrenoFisicoLogico.cpp" />
     <ClCompile Include="messaggi\Fault.cpp" />
