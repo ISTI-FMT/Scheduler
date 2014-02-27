@@ -3,7 +3,7 @@
 
 pacchettoEnd::pacchettoEnd(void)
 {
-	NID_PACKET = 0;
+	setNID_PACKET(PacchettoIXL::PacchettoEnd);
 }
 
 void pacchettoEnd::serialize(array<Byte>^buffer, int offset)

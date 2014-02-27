@@ -3,9 +3,7 @@
 
 pacchettoPositionDataATC::pacchettoPositionDataATC(void)
 {
-
-
-	NID_PACKET = 0;
+	setNID_PACKET(PacchettoATC::PacchettoPositionDataATC);
 	L_PACKET = 0;
 	N_ITER=0;
 	ListPostionData = gcnew List<StateCDB^>();
@@ -55,38 +53,40 @@ void pacchettoPositionDataATC::setN_ITER(int N)
 
 
 
-void pacchettoPositionDataATC::serialize(array<Byte>^buffer)
+void pacchettoPositionDataATC::serialize(array<Byte>^buffer, int offset)
 {
-
-	utility::push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, offset);
+	offset += 8;
 	setL_PACKET(getSize());
-	utility::push(buffer, L_PACKET, 13, 59);
+	utility::push(buffer, L_PACKET, 13, offset);
+	offset += 13;
 
 	if(ListPostionData->Count>0){
 		
-		utility::push(buffer,  ListPostionData[0]->getNID_ENGINE(), 32, 72);
-		utility::push(buffer, ListPostionData[0]->getNID_OPERATIONAL(), 32, 104);
-		utility::push(buffer,  ListPostionData[0]->getNID_CDB(), 32, 136);
+		utility::push(buffer,  ListPostionData[0]->getNID_ENGINE(), 32, offset);
+		offset += 32;
+		utility::push(buffer, ListPostionData[0]->getNID_OPERATIONAL(), 32, offset);
+		offset += 32;
+		utility::push(buffer,  ListPostionData[0]->getNID_CDB(), 32, offset);
+		offset += 32;
 	}
 
-	utility::push(buffer, N_ITER, 16, 168);
+	offset = 168;
+	utility::push(buffer, N_ITER, 16, offset);
+	offset += 16;
 
-	int offset = 184;
 	for( int i=1;i<ListPostionData->Count;i++)
 	{
-
 		utility::push(buffer, ListPostionData[i]->getNID_ENGINE(), 32, offset);
 		offset+=32;
 		utility::push(buffer,  ListPostionData[i]->getNID_OPERATIONAL(), 32, offset);
 		offset+=32;
 		utility::push(buffer,  ListPostionData[i]->getNID_CDB(), 32, offset);
 		offset += 32;
-
 	}
-
 }
 
-void pacchettoPositionDataATC::deserialize(array<Byte>^buffer)
+void pacchettoPositionDataATC::deserialize(array<Byte>^buffer, int offset)
 {
 
 	NID_PACKET=utility::pop(buffer,  8, 51);
@@ -102,7 +102,7 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer)
 		setN_ITER(utility::pop(buffer, 16, 168));
 		int offset = 184;
 
-		for(unsigned int i = 0; i < N_ITER; ++i)
+		for(int i = 0; i < N_ITER; ++i)
 		{
 			tNID_ENGINE=utility::pop(buffer, 32, offset);
 			offset += 32;

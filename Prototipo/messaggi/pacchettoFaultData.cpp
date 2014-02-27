@@ -1,9 +1,9 @@
 #include "pacchettoFaultData.h"
 #include "utility.h"
 
-pacchettoFaultData::pacchettoFaultData(void)
+pacchettoFaultData::pacchettoFaultData(int ID_PACKET)
 {
-	NID_PACKET = 0;
+	setNID_PACKET(ID_PACKET);
 	L_PACKET = 0;
 	
 	N_ITER = 0;
@@ -34,16 +34,21 @@ int pacchettoFaultData::getSize()
 	return size;
 }
 
-void pacchettoFaultData::serialize(array<Byte>^buffer)
+void pacchettoFaultData::serialize(array<Byte>^buffer, int offset)
 {
-	utility::push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, offset);
+	offset += 8;
 	setL_PACKET(getSize());
-	utility::push(buffer, L_PACKET, 13, 59);
-	utility::push(buffer, vGuasto[0]->getNID_COMPONENT(), 4, 72);
-	utility::push(buffer, vGuasto[0]->getM_FAULT(), 8, 76);
-	utility::push(buffer, N_ITER, 5, 84);
+	utility::push(buffer, L_PACKET, 13, offset);
+	offset += 13;
+	utility::push(buffer, vGuasto[0]->getNID_COMPONENT(), 4, offset);
+	offset += 4;
+	utility::push(buffer, vGuasto[0]->getM_FAULT(), 8, offset);
+	offset += 8;
+	utility::push(buffer, N_ITER, 5, offset);
+	offset += 5;
 	//mS1_vect = new missionStruct1[N_ITER1];
-	int offset = 89;
+	//int offset = 89;
 	for (int i=1;i<vGuasto->Count;i++)
 	{
 		utility::push(buffer, vGuasto[i]->getNID_COMPONENT(), 4, offset);
@@ -54,16 +59,21 @@ void pacchettoFaultData::serialize(array<Byte>^buffer)
 
 }
 
-void pacchettoFaultData::deserialize(array<Byte>^buffer)
+void pacchettoFaultData::deserialize(array<Byte>^buffer, int offset)
 {
-	NID_PACKET=utility::pop(buffer,  8, 51);
-	L_PACKET=utility::pop(buffer, 13, 59);
-	int tNID_COMPONENT= utility::pop(buffer, 4, 72);
-	int tM_FAULT =utility::pop(buffer, 8, 76);
+	NID_PACKET=utility::pop(buffer,  8, offset);
+	offset += 8;
+	L_PACKET=utility::pop(buffer, 13, offset);
+	offset += 13;
+	int tNID_COMPONENT= utility::pop(buffer, 4, offset);
+	offset += 4;
+	int tM_FAULT =utility::pop(buffer, 8, offset);
+	offset += 8;
 	vGuasto->Add(gcnew Fault(tNID_COMPONENT,tM_FAULT));
-	setN_ITER(utility::pop(buffer, 5, 84));
-	int offset = 89;
-	for(unsigned int i = 0; i < N_ITER; ++i)
+	setN_ITER(utility::pop(buffer, 5, offset));
+	offset += 5;
+	//int offset = 89;
+	for(int i = 0; i < N_ITER; ++i)
 	{
 		int NID_COMPONENT=utility::pop(buffer, 4, offset);
 		offset += 4;

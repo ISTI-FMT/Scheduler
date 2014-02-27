@@ -453,13 +453,9 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 	try
 	{
 
-		Messaggi ^missionPlanPkt = gcnew Messaggi();
-
-		DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-		TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
-		missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
-		missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
-		missionPlanPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
+		Messaggi ^missionPlanPkt = gcnew Messaggi(MessATO::MissionPlan);
+		//missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
+		
 
 		//tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn));
 
@@ -568,29 +564,20 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 	try
 	{
 
-		Messaggi ^wakeUpPkt = gcnew Messaggi();
-
-		wakeUpPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
-
-		wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
+		Messaggi ^wakeUpPkt = gcnew Messaggi(MessATO::UnconditionCommand);
+		//wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(typeCmdData::WAKE_UP);
-		//set time
-		DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-		TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
-		wakeUpPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
+
 
 		// Buffer for reading data
 		array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
 
 
-		Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
-
-
-		trainRunningNumberPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
-		trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
+		Messaggi ^trainRunningNumberPkt = gcnew Messaggi(MessATO::UnconditionCommand);
+		//trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(typeCmdData::TRN);
 
-		trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
+
 
 		trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(trn);
 
@@ -598,11 +585,8 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		// Buffer for reading data
 		array<Byte>^bytes_buffer2 = trainRunningNumberPkt->serialize();
 
-		Messaggi ^missionPlanPkt = gcnew Messaggi();
-
-		missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
-		missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
-		missionPlanPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
+		Messaggi ^missionPlanPkt = gcnew Messaggi(MessATO::MissionPlan);
+		//missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 
 		tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn));
 
@@ -760,11 +744,8 @@ List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int 
 bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 	try{
 		int portixl=4011;
-		Messaggi ^cmdItini = gcnew Messaggi();
-
-
-		cmdItini->setNID_MESSAGE(MessIXL::ComandoItinerari);
-		cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(10);
+		Messaggi ^cmdItini = gcnew Messaggi(MessIXL::ComandoItinerari);
+		//cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(10);
 		cmdItini->get_pacchettoComandoItinerari()->setNID_ITIN(NID_ITIN);
 		cmdItini->get_pacchettoComandoItinerari()->setQ_CMDITIN(Q_CMDITIN);
 

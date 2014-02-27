@@ -1,5 +1,6 @@
 #pragma once
 #include "utility.h"
+#include "pacchettoBase.h"
 
 
 /*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto comando blocco che l'ATS invia dal IXL
@@ -12,17 +13,15 @@ L'ATS invia all'IXl messaggi contenenti comandi sui blocchi
 -------------------------------------------------------------------------------------------------*/
 enum  typeCmdBlocco { direzionelegale = 1, direzioneillegale = 0};
 
-ref class pacchettoComandoBlocco
+ref class pacchettoComandoBlocco : pacchettoBase
 {
-	unsigned int NID_PACKET ;
-	unsigned int L_PACKET ;
-	unsigned int NID_BLOCCO ;
-	unsigned int Q_CMDBLOCCO ;
+	int L_PACKET ;
+	int NID_BLOCCO ;
+	int Q_CMDBLOCCO ;
 public:
 	pacchettoComandoBlocco(void);
 
-	void setNID_PACKET(int N){NID_PACKET = N;};
-	int getNID_PACKET(){return NID_PACKET;};
+
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
 	void setNID_BLOCCO(int N){NID_BLOCCO = N;};
@@ -31,9 +30,9 @@ public:
 	int getQ_CMDBLOCCO(){return Q_CMDBLOCCO;};
 
 	// funzione che restituisce la dimensione 
-	int getSize();
-	void serialize(array<Byte>^buffer);
-	void deserialize(array<Byte>^buffer);
+	virtual int getSize() override;
+	virtual void serialize(array<Byte>^buffer, int offset) override;
+	virtual void deserialize(array<Byte>^buffer, int offset) override;
 
 	~pacchettoComandoBlocco(void);
 

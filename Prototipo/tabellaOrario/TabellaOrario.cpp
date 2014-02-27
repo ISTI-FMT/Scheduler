@@ -239,7 +239,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, Li
 		}
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
 		pkt->setN_ITER2((stops->Count) - 1);
-
+		pkt->setQ_SCALE(QSCALEMissionData::M);
 		int i=0;
 		for each (Fermata ^stop in stops)
 		{

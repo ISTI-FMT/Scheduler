@@ -282,8 +282,13 @@
     <ClInclude Include="Event.h">
       <Filter>File di intestazione\Event</Filter>
     </ClInclude>
+
     <ClInclude Include="Itinerari\lrbg.h">
       <Filter>File di intestazione\itinerari</Filter>
+
+    <ClInclude Include="messaggi\pacchettoBase.h">
+      <Filter>File di intestazione</Filter>
+
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -473,8 +478,13 @@
     <ClCompile Include="Itinerari\TabellaStazioni.cpp">
       <Filter>File di origine\itinerari</Filter>
     </ClCompile>
+
     <ClCompile Include="Itinerari\lrbg.cpp">
       <Filter>File di origine\itinerari</Filter>
+
+    <ClCompile Include="messaggi\pacchettoBase.cpp">
+      <Filter>File di origine</Filter>
+
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

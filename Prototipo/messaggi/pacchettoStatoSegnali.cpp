@@ -3,7 +3,7 @@
 
 pacchettoStatoSegnali::pacchettoStatoSegnali(void)
 {
-	NID_PACKET = 0;
+	setNID_PACKET(PacchettoIXL::PacchettoStatoSegnali);
 	L_PACKET = 0;
 
 	N_ITER = 0;
@@ -65,7 +65,7 @@ void pacchettoStatoSegnali::deserialize(array<Byte>^buffer, int offset)
 	vStatoSegnale->Add(gcnew StateSegnale(tNID_SEGN,tQSTATO_SEGN));
 	setN_ITER(utility::pop(buffer, 16, offset + 58));
 	int shift = 74;
-	for(unsigned int i = 0; i < N_ITER; ++i)
+	for(int i = 0; i < N_ITER; ++i)
 	{
 		int NID_SEGN=utility::pop(buffer, 32, offset + shift);
 		shift += 32;

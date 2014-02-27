@@ -5,15 +5,11 @@
 
 pacchettoMissionData::pacchettoMissionData()
 {
-
-	NID_PACKET = 0;
+	setNID_PACKET(PacchettoATO::PacchettoMissionData);
 	L_PACKET = 0;
-	Q_SCALE = 0;
-
-	
+	Q_SCALE = QSCALEMissionData::M;
 	N_ITER1 = 0;
 	mS1_vect = gcnew List<ProfiloVelocita^>();
-	
 	mS2_vect = gcnew List<Mission^>();
 }
 
@@ -21,29 +17,31 @@ pacchettoMissionData::pacchettoMissionData()
 void pacchettoMissionData::setN_ITER1(int N)
 {
 	N_ITER1 = N;
-
 }
 
 // funzione che sette N_ITER2
 void pacchettoMissionData::setN_ITER2(int N)
 {
 	N_ITER2 = N;
-
-
 }
 
-void pacchettoMissionData::serializeMissionPlanPkt(array<Byte>^buffer)
+void pacchettoMissionData::serialize(array<Byte>^buffer, int offset)
 {
-
-	utility::push(buffer, NID_PACKET, 8, 51);
+	utility::push(buffer, NID_PACKET, 8, offset);
+	offset +=8;
 	setL_PACKET(getSize());
-	utility::push(buffer, L_PACKET, 13, 59);
-	utility::push(buffer, Q_SCALE, 2, 72);
-	utility::push(buffer, mS1_vect[0]->getD_MISSION(), 15, 74);
-	utility::push(buffer, mS1_vect[0]->getV_MISSION(), 7, 89);
-	utility::push(buffer, N_ITER1, 5, 96);
+	utility::push(buffer, L_PACKET, 13, offset);
+	offset +=13;
+	utility::push(buffer, Q_SCALE, 2, offset);
+	offset +=2;
+	utility::push(buffer, mS1_vect[0]->getD_MISSION(), 15, offset);
+	offset +=15;
+	utility::push(buffer, mS1_vect[0]->getV_MISSION(), 7, offset);
+	offset +=7;
+	utility::push(buffer, N_ITER1, 5, offset);
+	offset +=5;
 	//mS1_vect = new missionStruct1[N_ITER1];
-	int offset = 101;
+	//int offset = 101;
 	for( int i=1;i<mS1_vect->Count;i++)
 	{
 		utility::push(buffer, mS1_vect[i]->getD_MISSION(), 15, offset);
@@ -81,18 +79,23 @@ void pacchettoMissionData::serializeMissionPlanPkt(array<Byte>^buffer)
 
 }
 
-void pacchettoMissionData::deserializeMissionPlanPkt(array<Byte>^buffer)
+void pacchettoMissionData::deserialize(array<Byte>^buffer, int offset)
 {
-
-	NID_PACKET=utility::pop(buffer,  8, 51);
-	L_PACKET=utility::pop(buffer, 13, 59);
-	Q_SCALE=utility::pop(buffer, 2, 72);
-	int tD_MISSION =utility::pop(buffer, 15, 74);
-	int tV_MISSION =utility::pop(buffer, 7, 89);
+	NID_PACKET=utility::pop(buffer,  8, offset);
+	offset +=8;
+	L_PACKET=utility::pop(buffer, 13, offset);
+	offset +=13;
+	Q_SCALE=utility::pop(buffer, 2, offset);
+	offset +=2;
+	int tD_MISSION =utility::pop(buffer, 15, offset);
+	offset +=15;
+	int tV_MISSION =utility::pop(buffer, 7, offset);
+	offset +=7;
 	mS1_vect->Add(gcnew ProfiloVelocita(tD_MISSION,tV_MISSION));
-	setN_ITER1(utility::pop(buffer, 5, 96));
-	int offset = 101;
-	for(unsigned int i = 0; i < N_ITER1; ++i)
+	setN_ITER1(utility::pop(buffer, 5, offset));
+	offset +=5;
+	//int offset = 101;
+	for(int i = 0; i < N_ITER1; ++i)
 	{
 		int D_MISSION=utility::pop(buffer, 15, offset);
 		offset += 15;
@@ -114,7 +117,7 @@ void pacchettoMissionData::deserializeMissionPlanPkt(array<Byte>^buffer)
 	offset += 12;
 	setN_ITER2(utility::pop(buffer, 5, offset));
 	offset += 5;
-	for(unsigned int i = 0; i < N_ITER2; ++i)
+	for(int i = 0; i < N_ITER2; ++i)
 	{
 		int T_START_TIME=utility::pop(buffer, 12, offset);
 		offset += 12;
@@ -158,7 +161,7 @@ System::String ^ pacchettoMissionData::ToString(){
 
 	out = out+"NID_PACKET: "+NID_PACKET+";";
 	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+"Q_SCALE: "+Q_SCALE+";";
+	out = out+"Q_SCALE: "+(int)Q_SCALE+";";
 	out = out+mS1_vect[0]->ToString();
 	out = out+"N_ITER1: "+N_ITER1+";";
 	
