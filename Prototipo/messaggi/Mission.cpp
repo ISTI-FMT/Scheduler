@@ -4,6 +4,7 @@
 Mission::Mission(void)
 {
 	T_START_TIME = 0;
+	D_LRGB=0;
 	NID_LRGB = 0;
 	D_STOP = 0;
 	Q_DOORS = 0;

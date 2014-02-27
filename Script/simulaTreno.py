@@ -36,7 +36,7 @@ def serverTCP(host, port,ACK):
 		conn, addr = s.accept()
 		print "##########################CAMBIO MISSION###############################"
 		print 'CAMBIO MISSION Connection address:', addr
-		data = conn.recv(86)
+		data = conn.recv(1024)
 		if not data: break
 		#print "received data:", data
 		buffer3 = map(ord,data)
@@ -117,6 +117,8 @@ def deserializzaMissionDATA(buf):
 		mS1_vect.append([D_MISSION,V_MISSION])
 	tT_START_TIME=pop(buf, 12, offset);
 	offset += 12;
+	tD_LRGB=pop(buf, 15, offset);
+	offset += 15;
 	tNID_LRGB=pop(buf, 24, offset);
 	offset += 24;
 	tD_STOP=pop(buf, 15, offset);
@@ -125,13 +127,15 @@ def deserializzaMissionDATA(buf):
 	offset += 4;
 	tT_DOORS_TIME=pop(buf, 12, offset);
 	mS2_vect=[]
-	mS2_vect.append([tT_START_TIME,tNID_LRGB,tD_STOP,tQ_DOORS,tT_DOORS_TIME]);
+	mS2_vect.append([tT_START_TIME,tD_LRGB,tNID_LRGB,tD_STOP,tQ_DOORS,tT_DOORS_TIME]);
 	offset += 12;
 	N_ITER2 =pop(buf, 5, offset);
 	offset += 5;
 	for i in range(0,N_ITER2-1):
 		T_START_TIME=pop(buf, 12, offset);
 		offset += 12;
+		tD_LRGB=pop(buf, 15, offset);
+		offset += 15;
 		NID_LRGB=pop(buf, 24, offset);
 		offset += 24;
 		D_STOP=pop(buf, 15, offset);
@@ -140,7 +144,7 @@ def deserializzaMissionDATA(buf):
 		offset += 4;
 		T_DOORS_TIME=pop(buf, 12, offset);
 		offset += 12;
-		mS2_vect.append([T_START_TIME,NID_LRGB,D_STOP,Q_DOORS,T_DOORS_TIME])
+		mS2_vect.append([T_START_TIME,tD_LRGB,NID_LRGB,D_STOP,Q_DOORS,T_DOORS_TIME])
 	return mS2_vect
 
 	
