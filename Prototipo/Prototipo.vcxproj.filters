@@ -1,548 +1,168 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="File di origine">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="File di intestazione">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="File di risorse">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="File di intestazione\logger">
-      <UniqueIdentifier>{2d4ffbd1-cecd-4e8d-b9ea-02ab5eac6f06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\logger">
-      <UniqueIdentifier>{936a2012-2269-4628-b0cc-922973ec4651}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di intestazione\messaggi">
-      <UniqueIdentifier>{63f3ee32-426c-417d-9814-4ac8fc688b98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\messaggi">
-      <UniqueIdentifier>{8a185df8-3376-401c-b22e-aace322bd637}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di intestazione\tabellaOrario">
-      <UniqueIdentifier>{aa317d84-487b-43aa-860e-8be2a1e3ab98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\tabellaOrario">
-      <UniqueIdentifier>{80ece2c6-f5e0-4413-8794-d5a81df7e0cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di intestazione\threads">
-      <UniqueIdentifier>{ff1b9462-2487-4efd-bb19-2210e5de3662}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\threads">
-      <UniqueIdentifier>{cd924c59-33a9-4e15-bb5e-2f5aab31a8f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di intestazione\itinerari">
-      <UniqueIdentifier>{18ba1378-0b11-46e0-964b-642f5164265b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\itinerari">
-      <UniqueIdentifier>{7f5436f8-af3b-41da-9aed-817507a66fc1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\manager">
-      <UniqueIdentifier>{8f5f4c83-6aef-443c-b29b-d3772a38a281}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di intestazione\manager">
-      <UniqueIdentifier>{8b2e86a2-551e-41f5-b94b-80276180e467}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di intestazione\Event">
-      <UniqueIdentifier>{32775fc5-cd5f-43c4-bbe5-8de964f6bdd2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\Event">
-      <UniqueIdentifier>{ada9a739-5343-4866-aa58-ae4fc45068a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\form">
-      <UniqueIdentifier>{4aab709b-8aa4-4185-8a0c-0881d8d6e6c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di intestazione\form">
-      <UniqueIdentifier>{a59cbf2c-042c-4c9c-95a1-0747c85b997b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di intestazione\ConfVelocita">
-      <UniqueIdentifier>{8ad3259c-dc5f-435d-91ed-2b70acb48852}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File di origine\ConfVelocita">
-      <UniqueIdentifier>{abcb8286-1f2f-4b84-8d2f-d99d8b3bb852}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp" />
+    <ClCompile Include="ControllerListTrain.cpp" />
+    <ClCompile Include="EventQueue.cpp" />
+    <ClCompile Include="FormStatoLineaIXL.cpp" />
+    <ClCompile Include="form\FormStatoLineaATC.cpp" />
+    <ClCompile Include="form\tableLayoutPanelAllCDB.cpp" />
+    <ClCompile Include="form\tableLayoutPanelSingleItin.cpp" />
+    <ClCompile Include="Itinerari\binario.cpp" />
+    <ClCompile Include="Itinerari\FormVisualizzeConfFermate.cpp" />
+    <ClCompile Include="Itinerari\FormVisualizzeConfItine.cpp" />
+    <ClCompile Include="Itinerari\Itinerario.cpp" />
+    <ClCompile Include="Itinerari\stazione.cpp" />
+    <ClCompile Include="Itinerari\TabellaStazioni.cpp" />
+    <ClCompile Include="ItineraryBox.cpp" />
+    <ClCompile Include="ListTrainModel.cpp" />
+    <ClCompile Include="ListTrainView.cpp" />
+    <ClCompile Include="logger\Logger.cpp" />
+    <ClCompile Include="logger\TextBoxTraceListener.cpp" />
+    <ClCompile Include="Itinerari\lrbg.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mapTrenoFisicoLogico.cpp" />
+    <ClCompile Include="messaggi\Fault.cpp" />
+    <ClCompile Include="messaggi\Messaggi.cpp" />
+    <ClCompile Include="messaggi\Mission.cpp" />
+    <ClCompile Include="messaggi\pacchettoAcknowledgement.cpp" />
+    <ClCompile Include="messaggi\pacchettoComandoBlocco.cpp" />
+    <ClCompile Include="messaggi\pacchettoComandoItinerari.cpp" />
+    <ClCompile Include="messaggi\pacchettoCommandData.cpp" />
+    <ClCompile Include="messaggi\pacchettoEnd.cpp" />
+    <ClCompile Include="messaggi\pacchettoFaultData.cpp" />
+    <ClCompile Include="messaggi\pacchettoMissionData.cpp" />
+    <ClCompile Include="messaggi\pacchettoPositionDataATC.cpp" />
+    <ClCompile Include="messaggi\pacchettopresentazione.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoBlocco.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp" />
+    <ClCompile Include="messaggi\pacchettostatolineaatc.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp" />
+    <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp" />
+    <ClCompile Include="messaggi\pachettoStatoScudetti.cpp" />
+    <ClCompile Include="messaggi\ProfiloVelocita.cpp" />
+    <ClCompile Include="messaggi\StateBlocco.cpp" />
+    <ClCompile Include="messaggi\StateCDB.cpp" />
+    <ClCompile Include="messaggi\StateItinerario.cpp" />
+    <ClCompile Include="messaggi\StateScudetti.cpp" />
+    <ClCompile Include="messaggi\StateSegnale.cpp" />
+    <ClCompile Include="messaggi\utility.cpp" />
+    <ClCompile Include="messaggi\pacchettoBase.cpp" />
+    <ClCompile Include="ParalellMethod.cpp" />
+    <ClCompile Include="physicalTrain.cpp" />
+    <ClCompile Include="phisicalTrainList.cpp" />
+    <ClCompile Include="form\SchedulerForm.cpp" />
+    <ClCompile Include="manager\ManagerMsgATO.cpp" />
+    <ClCompile Include="manager\ManagerStatoLineaATC.cpp" />
+    <ClCompile Include="manager\ManagerStatoLineaIXL.cpp" />
+    <ClCompile Include="SingleTrainInfoForm.cpp" />
+    <ClCompile Include="tabellaOrario\Fermata.cpp" />
+    <ClCompile Include="tabellaOrario\FormVisualizzeTabOrario.cpp" />
+    <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
+    <ClCompile Include="ThreadSchedulerSortedList.cpp" />
+    <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />
+    <ClCompile Include="threads\ThreadPresentazione.cpp" />
+    <ClCompile Include="Train.cpp" />
+    <ClCompile Include="TrenoFisicoLogico.cpp" />
+    <ClCompile Include="wdogcontrol.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="messaggi\Messaggi.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoAcknowledgement.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoCommandData.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettopresentazione.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettostatolineaatc.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="tabellaOrario\Fermata.h">
-      <Filter>File di intestazione\tabellaOrario</Filter>
-    </ClInclude>
-    <ClInclude Include="tabellaOrario\TabellaOrario.h">
-      <Filter>File di intestazione\tabellaOrario</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\ThreadPresentazione.h">
-      <Filter>File di intestazione\threads</Filter>
-    </ClInclude>
-    <ClInclude Include="mapTrenoFisicoLogico.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="phisicalTrainList.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="logger\Logger.h">
-      <Filter>File di intestazione\logger</Filter>
-    </ClInclude>
-    <ClInclude Include="form\SchedulerForm.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoFaultData.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoStatoItinerario.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoStatoSegnali.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoComandoItinerari.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoEnd.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoComandoBlocco.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoStatoBlocco.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="Itinerari\stazione.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\ThreadListenerATC_IXL.h">
-      <Filter>File di intestazione\threads</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pachettoStatoScudetti.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="Itinerari\Itinerario.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
-    <ClInclude Include="logger\TextBoxTraceListener.h">
-      <Filter>File di intestazione\logger</Filter>
-    </ClInclude>
-    <ClInclude Include="Itinerari\binario.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\utility.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\ProfiloVelocita.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\Mission.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\Fault.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\StateBlocco.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\StateCDB.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\StateItinerario.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\StateScudetti.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\StateSegnale.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="manager\ManagerStatoLineaIXL.h">
-      <Filter>File di intestazione\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="manager\ManagerStatoLineaATC.h">
-      <Filter>File di intestazione\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="manager\ManagerMsgATO.h">
-      <Filter>File di intestazione\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h">
-      <Filter>File di intestazione\tabellaOrario</Filter>
-    </ClInclude>
-    <ClInclude Include="Itinerari\FormVisualizzeConfFermate.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
-    <ClInclude Include="Itinerari\FormVisualizzeConfItine.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
-    <ClInclude Include="EventQueue.h">
-      <Filter>File di intestazione\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="wdogcontrol.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="TrenoFisicoLogico.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="StateObject.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="form\tableLayoutPanelAllCDB.h">
-      <Filter>File di intestazione\form</Filter>
-    </ClInclude>
-    <ClInclude Include="form\tableLayoutPanelSingleItin.h">
-      <Filter>File di intestazione\form</Filter>
-    </ClInclude>
-    <ClInclude Include="form\FormStatoLineaATC.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoMissionData.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h">
-      <Filter>File di intestazione\ConfVelocita</Filter>
-    </ClInclude>
-    <ClInclude Include="FormStatoLineaIXL.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="messaggi\pacchettoPositionDataATC.h">
-      <Filter>File di intestazione\messaggi</Filter>
-    </ClInclude>
-    <ClInclude Include="ParalellMethod.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigurazioneFermate.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigurazioneItinerari.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigurazioneProfiliVelocita.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="MapTreni.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="TabellaOrario.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Train.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadSchedulerSortedList.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="physicalTrain.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ListTrainModel.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ControllerListTrain.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ListTrainView.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="SingleTrainInfoForm.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="ItineraryBox.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="Itinerari\TabellaStazioni.h">
-      <Filter>File di intestazione\itinerari</Filter>
-    </ClInclude>
-    <ClInclude Include="Unsubscriber.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="IEvent.h">
-      <Filter>File di intestazione\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>File di intestazione\Event</Filter>
-    </ClInclude>
-
-    <ClInclude Include="Itinerari\lrbg.h">
-      <Filter>File di intestazione\itinerari</Filter>
-
-    <ClInclude Include="messaggi\pacchettoBase.h">
-      <Filter>File di intestazione</Filter>
-
-    </ClInclude>
+    <ClInclude Include="ConfigurazioneFermate.h" />
+    <ClInclude Include="ConfigurazioneItinerari.h" />
+    <ClInclude Include="ConfigurazioneProfiliVelocita.h" />
+    <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
+    <ClInclude Include="ControllerListTrain.h" />
+    <ClInclude Include="EventQueue.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="FormStatoLineaIXL.h" />
+    <ClInclude Include="form\FormStatoLineaATC.h" />
+    <ClInclude Include="form\tableLayoutPanelAllCDB.h" />
+    <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
+    <ClInclude Include="IEvent.h" />
+    <ClInclude Include="Itinerari\binario.h" />
+    <ClInclude Include="Itinerari\FormVisualizzeConfFermate.h" />
+    <ClInclude Include="Itinerari\FormVisualizzeConfItine.h" />
+    <ClInclude Include="Itinerari\Itinerario.h" />
+    <ClInclude Include="Itinerari\stazione.h" />
+    <ClInclude Include="Itinerari\TabellaStazioni.h" />
+    <ClInclude Include="ItineraryBox.h" />
+    <ClInclude Include="ListTrainModel.h" />
+    <ClInclude Include="ListTrainView.h" />
+    <ClInclude Include="logger\Logger.h" />
+    <ClInclude Include="logger\TextBoxTraceListener.h" />
+    <ClInclude Include="Itinerari\lrbg.h" />
+    <ClInclude Include="MapTreni.h" />
+    <ClInclude Include="mapTrenoFisicoLogico.h" />
+    <ClInclude Include="messaggi\Fault.h" />
+    <ClInclude Include="messaggi\Messaggi.h" />
+    <ClInclude Include="messaggi\Mission.h" />
+    <ClInclude Include="messaggi\pacchettoAcknowledgement.h" />
+    <ClInclude Include="messaggi\pacchettoComandoBlocco.h" />
+    <ClInclude Include="messaggi\pacchettoComandoItinerari.h" />
+    <ClInclude Include="messaggi\pacchettoCommandData.h" />
+    <ClInclude Include="messaggi\pacchettoEnd.h" />
+    <ClInclude Include="messaggi\pacchettoFaultData.h" />
+    <ClInclude Include="messaggi\pacchettoMissionData.h" />
+    <ClInclude Include="messaggi\pacchettoPositionDataATC.h" />
+    <ClInclude Include="messaggi\pacchettopresentazione.h" />
+    <ClInclude Include="messaggi\pacchettoStatoBlocco.h" />
+    <ClInclude Include="messaggi\pacchettoStatoItinerario.h" />
+    <ClInclude Include="messaggi\pacchettostatolineaatc.h" />
+    <ClInclude Include="messaggi\pacchettoStatoLineaIXL.h" />
+    <ClInclude Include="messaggi\pacchettoStatoSegnali.h" />
+    <ClInclude Include="messaggi\pachettoStatoScudetti.h" />
+    <ClInclude Include="messaggi\ProfiloVelocita.h" />
+    <ClInclude Include="messaggi\StateBlocco.h" />
+    <ClInclude Include="messaggi\StateCDB.h" />
+    <ClInclude Include="messaggi\StateItinerario.h" />
+    <ClInclude Include="messaggi\StateScudetti.h" />
+    <ClInclude Include="messaggi\StateSegnale.h" />
+    <ClInclude Include="messaggi\utility.h" />
+    <ClInclude Include="messaggi\pacchettoBase.h" />
+    <ClInclude Include="ParalellMethod.h" />
+    <ClInclude Include="physicalTrain.h" />
+    <ClInclude Include="phisicalTrainList.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="form\SchedulerForm.h" />
+    <ClInclude Include="manager\ManagerMsgATO.h" />
+    <ClInclude Include="manager\ManagerStatoLineaATC.h" />
+    <ClInclude Include="manager\ManagerStatoLineaIXL.h" />
+    <ClInclude Include="SingleTrainInfoForm.h" />
+    <ClInclude Include="StateObject.h" />
+    <ClInclude Include="TabellaOrario.h" />
+    <ClInclude Include="tabellaOrario\Fermata.h" />
+    <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h" />
+    <ClInclude Include="tabellaOrario\TabellaOrario.h" />
+    <ClInclude Include="ThreadSchedulerSortedList.h" />
+    <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
+    <ClInclude Include="threads\ThreadPresentazione.h" />
+    <ClInclude Include="Train.h" />
+    <ClInclude Include="TrenoFisicoLogico.h" />
+    <ClInclude Include="Unsubscriber.h" />
+    <ClInclude Include="wdogcontrol.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="messaggi\Messaggi.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoAcknowledgement.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoCommandData.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettopresentazione.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettostatolineaatc.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="tabellaOrario\Fermata.cpp">
-      <Filter>File di origine\tabellaOrario</Filter>
-    </ClCompile>
-    <ClCompile Include="tabellaOrario\TabellaOrario.cpp">
-      <Filter>File di origine\tabellaOrario</Filter>
-    </ClCompile>
-    <ClCompile Include="threads\ThreadPresentazione.cpp">
-      <Filter>File di origine\threads</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="mapTrenoFisicoLogico.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="phisicalTrainList.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="logger\Logger.cpp">
-      <Filter>File di origine\logger</Filter>
-    </ClCompile>
-    <ClCompile Include="form\SchedulerForm.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoFaultData.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoStatoItinerario.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoStatoSegnali.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoComandoItinerari.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoEnd.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoComandoBlocco.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoStatoBlocco.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoStatoLineaIXL.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="Itinerari\stazione.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="threads\ThreadListenerATC_IXL.cpp">
-      <Filter>File di origine\threads</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pachettoStatoScudetti.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="Itinerari\Itinerario.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="logger\TextBoxTraceListener.cpp">
-      <Filter>File di origine\logger</Filter>
-    </ClCompile>
-    <ClCompile Include="Itinerari\binario.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\utility.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\ProfiloVelocita.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\Mission.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\Fault.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\StateSegnale.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\StateScudetti.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\StateItinerario.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\StateCDB.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\StateBlocco.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="manager\ManagerStatoLineaIXL.cpp">
-      <Filter>File di origine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="manager\ManagerStatoLineaATC.cpp">
-      <Filter>File di origine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="manager\ManagerMsgATO.cpp">
-      <Filter>File di origine\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="tabellaOrario\FormVisualizzeTabOrario.cpp">
-      <Filter>File di origine\tabellaOrario</Filter>
-    </ClCompile>
-    <ClCompile Include="Itinerari\FormVisualizzeConfFermate.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="Itinerari\FormVisualizzeConfItine.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-    <ClCompile Include="EventQueue.cpp">
-      <Filter>File di origine\Event</Filter>
-    </ClCompile>
-    <ClCompile Include="wdogcontrol.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="TrenoFisicoLogico.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="form\tableLayoutPanelAllCDB.cpp">
-      <Filter>File di origine\form</Filter>
-    </ClCompile>
-    <ClCompile Include="form\tableLayoutPanelSingleItin.cpp">
-      <Filter>File di origine\form</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoMissionData.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp">
-      <Filter>File di origine\ConfVelocita</Filter>
-    </ClCompile>
-    <ClCompile Include="messaggi\pacchettoPositionDataATC.cpp">
-      <Filter>File di origine\messaggi</Filter>
-    </ClCompile>
-    <ClCompile Include="form\FormStatoLineaATC.cpp">
-      <Filter>File di origine\form</Filter>
-    </ClCompile>
-    <ClCompile Include="FormStatoLineaIXL.cpp">
-      <Filter>File di origine\form</Filter>
-    </ClCompile>
-    <ClCompile Include="ParalellMethod.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="Train.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadSchedulerSortedList.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="physicalTrain.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="ListTrainModel.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="ControllerListTrain.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="ListTrainView.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="SingleTrainInfoForm.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="ItineraryBox.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="Itinerari\TabellaStazioni.cpp">
-      <Filter>File di origine\itinerari</Filter>
-    </ClCompile>
-
-    <ClCompile Include="Itinerari\lrbg.cpp">
-      <Filter>File di origine\itinerari</Filter>
-
-    <ClCompile Include="messaggi\pacchettoBase.cpp">
-      <Filter>File di origine</Filter>
-
-    </ClCompile>
+    <_EmbedManagedResourceFile Include="Prototipo.rc" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDB.csv" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormStatoLineaIXL.resx" />
+    <EmbeddedResource Include="FormStatoLineaATC.resx" />
+    <EmbeddedResource Include="form\FormStatoLineaATC.resx" />
+    <EmbeddedResource Include="form\SchedulerForm.resx" />
+    <EmbeddedResource Include="ListTrainView.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="form\SchedulerForm.resx">
-      <Filter>File di risorse</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormStatoLineaATC.resx">
-      <Filter>File di risorse</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="form\FormStatoLineaATC.resx">
-      <Filter>File di risorse</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormStatoLineaIXL.resx">
-      <Filter>File di risorse</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListTrainView.resx">
-      <Filter>File di risorse</Filter>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDB.csv">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xml">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xsd">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xml">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xsd">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xml">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xml">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="Prototipo.rc">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
   </ItemGroup>
 </Project>

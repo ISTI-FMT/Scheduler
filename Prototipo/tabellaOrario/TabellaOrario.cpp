@@ -223,12 +223,18 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, Li
 	List<Fermata^> ^stops = tabella[TRN];
 	createMissionPlanMsg(TRN,pkt,pvel,stops);
 }
- void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops){
-	
+void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops){
+
 	// se il teno esiste
-	
 	if(stops!=nullptr)
 	{
+		bool latolinea=false; //indica cone si percorre la linea: se false da o per Monterosa/VicoloCorto true gli altri casi
+		Fermata ^fakeVicoloCorto = gcnew Fermata(10000);
+		Fermata ^fakeVialeMonterosa = gcnew Fermata(11000);
+		if(!(stops->Contains(fakeVicoloCorto) | stops->Contains(fakeVialeMonterosa)  )){
+			latolinea = true;
+		}
+
 		//Todo: V_mission D_mission tratte
 		if(pvel!=nullptr){
 			pkt->setPV(pvel);
@@ -241,6 +247,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, Li
 		pkt->setN_ITER2((stops->Count) - 1);
 		pkt->setQ_SCALE(QSCALEMissionData::M);
 		int i=0;
+		int prevprogkm = 0;
 		for each (Fermata ^stop in stops)
 		{
 			Mission ^mission= gcnew Mission();
@@ -258,6 +265,15 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, Li
 
 						mission->setNID_LRGB(infobalise->nid_lrgb);
 						mission->setD_STOP(infobalise->d_stop);
+						int pkmlrbg = 0;
+						if(latolinea){
+						 pkmlrbg =	infobalise->get_progressivakm(13000);
+						}else{
+						 pkmlrbg =	infobalise->get_progressivakm(10000);
+							}
+						int d_lrgb = Math::Abs(pkmlrbg - prevprogkm);
+						prevprogkm = pkmlrbg +  infobalise->d_stop;
+						mission->setD_LRGB(d_lrgb);
 					}
 				}
 				if(i==0){
@@ -266,6 +282,12 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, Li
 
 						mission->setNID_LRGB(infobalise->nid_lrgb);
 						mission->setD_STOP(infobalise->d_stop);
+						mission->setD_LRGB(10);
+						if(latolinea){
+							prevprogkm = infobalise->get_progressivakm(13000);
+						}else{
+							prevprogkm = infobalise->get_progressivakm(10000);
+							}
 					}
 				}
 
@@ -277,7 +299,7 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, Li
 
 		}
 	}
-	
+
 }
 
 

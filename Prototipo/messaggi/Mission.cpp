@@ -19,6 +19,7 @@ System::String ^ Mission::ToString(){
 
 	out = out+"T_START_TIME: "+T_START_TIME+";";
 	out = out+"NID_LRGB: "+NID_LRGB+";";
+	out = out+"D_LRGB: "+D_LRGB+";";
 	out = out+"D_STOP: "+D_STOP+";";
 	out = out+"Q_DOORS: "+Q_DOORS+";";
 	out = out+"T_DOORS_TIME: "+T_DOORS_TIME+";";

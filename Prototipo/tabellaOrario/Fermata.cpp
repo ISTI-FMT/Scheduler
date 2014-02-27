@@ -91,3 +91,13 @@ ostream& operator<<(ostream &out, const Fermata &stop)
 
 
 	}
+
+
+	 bool Fermata::Equals(Fermata^ otherKey){
+		 if(idStazione==otherKey->getIdStazione()){
+
+			 return true;
+		 }else{
+			 return false;
+		 }
+	}
