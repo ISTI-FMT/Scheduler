@@ -66,7 +66,7 @@ void FormVisualizzeConfFermate::Inizialize(){
 			dataGridView1->Rows[riga]->Cells[1]->Value= ikvp->getNameBin();
 			dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->getBin();
 			dataGridView1->Rows[riga]->Cells[3]->Value=ikvp->getDirezione();
-			dataGridView1->Rows[riga]->Cells[4]->Value=ikvp->getNid_lrgb();
+			dataGridView1->Rows[riga]->Cells[4]->Value=ikvp->get_info_lrgb();
 			dataGridView1->Rows[riga]->Cells[5]->Value=ikvp->getD_stop();
 			dataGridView1->Rows[riga]->Cells[6]->Value=ikvp->getPorteBanchina();
 			dataGridView1->Rows[riga]->Cells[7]->Value=ikvp->getLatoBanchina();

@@ -344,7 +344,7 @@ void TabellaStazioni::leggifileconfigurazioneFermate()
 					// setto direzione del binario
 					bin->setDirezione(direzione);
 
-					// ...leggo nid_lrgb del binario
+					/*// ...leggo nid_lrgb del binario
 					System::String ^Strnid_lrgb = inner->GetAttribute("nid_lrgb");
 					// converto nid_lrgb dellbinario da System::String a int
 					int nid_lrgb = int::Parse(Strnid_lrgb);
@@ -356,7 +356,7 @@ void TabellaStazioni::leggifileconfigurazioneFermate()
 					// converto d_stop dellbinario da System::String a int
 					int d_stop = int::Parse(Strd_stop);
 					// setto d_stop del binario
-					bin->setD_stop(d_stop);
+					bin->setD_stop(d_stop);*/
 
 					// ...leggo portebanchina del binario
 					System::String ^Strportebanchina = inner->GetAttribute("portebanchina");
@@ -394,11 +394,34 @@ void TabellaStazioni::leggifileconfigurazioneFermate()
 					// setto prevCDB del binario
 					bin->setPrevCDB(prevCDB);
 
-					reader->ReadToFollowing("cdb");
+					System::Xml::XmlReader ^inner2 = inner->ReadSubtree();
+
+					inner->ReadToFollowing("cdb");
 					System::String ^StrCDB = inner->ReadString();
+					
 					// converto CDB dellbinario da System::String a int
 					//int CDB = int::Parse(StrCDB);
-					bin->setCDB(StrCDB);
+					bin->setCDB(int::Parse(StrCDB));
+					
+
+					inner2->ReadToFollowing("lrgb");
+					int nid_lrgb = int::Parse(inner2->GetAttribute("nid"));
+					int d_stop = int::Parse(	inner2->GetAttribute("dstop"));
+
+					lrbg ^infolrbg = gcnew lrbg(nid_lrgb,d_stop);
+
+
+					while (inner2->ReadToFollowing("pkm")){
+
+						int rifkm = int::Parse(		inner2->GetAttribute("km"));
+						int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
+
+						infolrbg->add_progressivakm(rifkm,idpstation);
+
+
+					}
+					bin->set_info_lrgb(infolrbg);
+					
 
 					// inserisco il binario nella lista
 					newstazione->addBinario(bin);

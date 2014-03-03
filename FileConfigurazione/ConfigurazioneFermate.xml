@@ -4,15 +4,15 @@
     <binario bin="1" namebin="I" direzione="dx"  portebanchina="true" latobanchina="dx" nextCDB="11020" prevCDB="10010">
       
        <cdb>504</cdb>
-	    <lrgb nid="169" dstop="215" >
+	    <lrgb nid="169" dstop="595" >
           <pkm km="2085" idoffstaz="10000"/>
       </lrgb>
     </binario>
     <binario bin="1" namebin="I" direzione="sx"  portebanchina="true" latobanchina="sx" nextCDB="10010" prevCDB="11020">
 
       <cdb>504</cdb>
-        <lrgb nid="168" dstop="1200" >
-          <pkm km="3500" idoffstaz="10000"/>
+        <lrgb nid="169" dstop="195" >
+          <pkm km="2085" idoffstaz="10000"/>
       </lrgb>
 	  
     </binario>
@@ -25,31 +25,35 @@
     <binario bin="1" namebin="I" direzione="dx"  portebanchina="true" latobanchina="dx" nextCDB="408" prevCDB="404">
       
        <cdb>406</cdb>
-	      <lrgb nid="" dstop="" >
-          <pkm km="" idoffstaz="10000"/>
+	      <lrgb nid="151" dstop="1" >
+          <pkm km="10910" idoffstaz="10000"/>
+          <pkm km="12910" idoffstaz="13000"/>
       </lrgb>
     </binario>
     <binario bin="1"  namebin="I" direzione="sx"  portebanchina="true" latobanchina="sx" nextCDB="404" prevCDB="408">
 
       <cdb>406</cdb>
-	  <lrgb nid="" dstop="" >
-          <pkm km="" idoffstaz="10000"/>
+	  <lrgb nid="183" dstop="1" >
+          <pkm km="12764" idoffstaz="10000"/>
+      <pkm km="14764" idoffstaz="13000"/>
       </lrgb>
     </binario>
 
     <binario bin="2" namebin="II" direzione="dx"  portebanchina="true" latobanchina="sx"  nextCDB="409" prevCDB="405">
 
       <cdb>407</cdb>
-	   <lrgb nid="" dstop="" >
-          <pkm km="" idoffstaz="10000"/>
+	   <lrgb nid="152" dstop="1" >
+          <pkm km="10910" idoffstaz="10000"/>
+       <pkm km="12910" idoffstaz="13000"/>
       </lrgb>
     </binario>
 
     <binario bin="2" namebin="II" direzione="sx"  portebanchina="true" latobanchina="dx"  nextCDB="405" prevCDB="409">
 
       <cdb>407</cdb>
-	  <lrgb nid="" dstop="" >
-          <pkm km="" idoffstaz="10000"/>
+	  <lrgb nid="184" dstop="1" >
+          <pkm km="12764" idoffstaz="10000"/>
+      <pkm km="14764" idoffstaz="13000"/>
       </lrgb>
     </binario>
    
@@ -59,31 +63,35 @@
     <binario bin="1" namebin="I" direzione="dx"  portebanchina="true" latobanchina="sx" nextCDB="420" prevCDB="416">
 
       <cdb>418</cdb>
-	  <lrgb nid="" dstop="" >
-          <pkm km="" idoffstaz="10000"/>
+      <lrgb nid="183" dstop="1" >
+        <pkm km="12764" idoffstaz="10000"/>
+        <pkm km="14764" idoffstaz="13000"/>
       </lrgb>
     </binario>
 
     <binario bin="1" namebin="I" direzione="sx"  portebanchina="true" latobanchina="sx"  nextCDB="416" prevCDB="420">
 
       <cdb>418</cdb>
-	   <lrgb nid="" dstop="" >
-          <pkm km="" idoffstaz="10000"/>
+	   <lrgb nid="185" dstop="1" >
+       <pkm km="14618" idoffstaz="10000"/>
+       <pkm km="16618" idoffstaz="13000"/>
       </lrgb>
     </binario>
     <binario bin="2" namebin="II" direzione="dx"  portebanchina="true" latobanchina="dx"  nextCDB="421" prevCDB="417">
 
       <cdb>419</cdb>
-	   <lrgb nid="" dstop="" >
-          <pkm km="" idoffstaz="10000"/>
+      <lrgb nid="184" dstop="1" >
+       <pkm km="14618" idoffstaz="10000"/>
+     <pkm km="16618" idoffstaz="13000"/>
       </lrgb>
     </binario>
 
     <binario bin="2" namebin="II" direzione="sx"  portebanchina="true" latobanchina="sx"  nextCDB="417" prevCDB="421">
 
       <cdb>419</cdb>
-	 <lrgb nid="" dstop="" >
-          <pkm km="" idoffstaz="10000"/>
+	 <lrgb nid="186" dstop="1" >
+          <pkm km="14618" idoffstaz="10000"/>
+     <pkm km="16618" idoffstaz="13000"/>
       </lrgb>
     </binario>
     

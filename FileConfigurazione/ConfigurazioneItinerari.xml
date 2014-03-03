@@ -633,274 +633,272 @@
      </itinerariUscita>
   </stazione>
 
-  
+
   <stazione  name="Viale dei Giardini" id_offset="16000">
-     <itinerariIngresso>
+    <itinerariIngresso>
       <ingresso id="907" name="02-II" direzione="dx"  portebanchina="true" latobanchina="ds" prevcdb="428"  nextcdb="16016" >
-        
-          <cdb>16020</cdb>
-          <cdb>16021</cdb>
-          <cdb>16022</cdb>
-          <cdb>16023</cdb>
-          <cdb>16302</cdb>
+
+        <cdb>16020</cdb>
+        <cdb>16021</cdb>
+        <cdb>16022</cdb>
+        <cdb>16023</cdb>
+        <cdb>16302</cdb>
         <lrgb nid="194" dstop="170" >
           <pkm km="19590" idoffstaz="13000"/>
           <pkm km="17590" idoffstaz="10000"/>
         </lrgb>
-        
+
       </ingresso>
-        <ingresso id="906" name="02-III" direzione="dx"  portebanchina="true" latobanchina="dx" prevcdb="428" nextcdb="16017" >
-        
-          <cdb>16020</cdb>
-          <cdb>16021</cdb>
-          <cdb>16022</cdb>
-          <cdb>16023</cdb>
-          <cdb>16027</cdb>
-          <cdb>16303</cdb>
-          <lrgb nid="193" dstop="150" >
-            <pkm km="19610" idoffstaz="13000"/>
-            <pkm km="17610" idoffstaz="10000"/>
-          </lrgb>
+      <ingresso id="906" name="02-I" direzione="dx"  portebanchina="true" latobanchina="dx" prevcdb="428" nextcdb="16017" >
+
+        <cdb>16020</cdb>
+        <cdb>16021</cdb>
+        <cdb>16022</cdb>
+        <cdb>16023</cdb>
+        <cdb>16027</cdb>
+        <cdb>16301</cdb>
+        <lrgb nid="193" dstop="150" >
+          <pkm km="19610" idoffstaz="13000"/>
+          <pkm km="17610" idoffstaz="10000"/>
+        </lrgb>
       </ingresso>
-      <ingresso id="916" name="04-I" direzione="dx"  portebanchina="true" latobanchina="sx" prevcdb="429"  nextcdb="16012" >
-        
-          <cdb>16024</cdb>
-          <cdb>16025</cdb>
-          <cdb>16026</cdb>
-          <cdb>16301</cdb>
+      <ingresso id="916" name="04-III" direzione="dx"  portebanchina="true" latobanchina="sx" prevcdb="429"  nextcdb="16012" >
+
+        <cdb>16024</cdb>
+        <cdb>16025</cdb>
+        <cdb>16026</cdb>
+        <cdb>16303</cdb>
         <lrgb nid="195" dstop="200" >
           <pkm km="19560" idoffstaz="13000"/>
           <pkm km="17560" idoffstaz="10000"/>
         </lrgb>
       </ingresso>
-        <ingresso id="915" name="04-II" direzione="dx"  portebanchina="true" latobanchina="ds" prevcdb="429" nextcdb="16016" >
-        
-          <cdb>16024</cdb>
-          <cdb>16025</cdb>
-          <cdb>16026</cdb>
-          <cdb>16022</cdb>
-          <cdb>16023</cdb>
-          <cdb>16302</cdb>
-          <lrgb nid="194" dstop="170" >
-            <pkm km="19590" idoffstaz="13000"/>
-            <pkm km="17590" idoffstaz="10000"/>
-          </lrgb>
-        </ingresso>
-          <ingresso id="914" name="04-III" direzione="dx"  portebanchina="true" latobanchina="dx" prevcdb="429" nextcdb="16017" >
-        
-          <cdb>16024</cdb>
-          <cdb>16025</cdb>
-          <cdb>16026</cdb>
-          <cdb>16022</cdb>
-          <cdb>16023</cdb>
-          <cdb>16027</cdb>
-          <cdb>16303</cdb>
-            <lrgb nid="193" dstop="150" >
-              <pkm km="19610" idoffstaz="13000"/>
-              <pkm km="17610" idoffstaz="10000"/>
-            </lrgb>
+      <ingresso id="915" name="04-II" direzione="dx"  portebanchina="true" latobanchina="ds" prevcdb="429" nextcdb="16016" >
+
+        <cdb>16024</cdb>
+        <cdb>16025</cdb>
+        <cdb>16026</cdb>
+        <cdb>16022</cdb>
+        <cdb>16023</cdb>
+        <cdb>16302</cdb>
+        <lrgb nid="194" dstop="170" >
+          <pkm km="19590" idoffstaz="13000"/>
+          <pkm km="17590" idoffstaz="10000"/>
+        </lrgb>
+      </ingresso>
+      <ingresso id="914" name="04-I" direzione="dx"  portebanchina="true" latobanchina="dx" prevcdb="429" nextcdb="16017" >
+
+        <cdb>16024</cdb>
+        <cdb>16025</cdb>
+        <cdb>16026</cdb>
+        <cdb>16022</cdb>
+        <cdb>16023</cdb>
+        <cdb>16027</cdb>
+        <cdb>16301</cdb>
+        <lrgb nid="193" dstop="150" >
+          <pkm km="19610" idoffstaz="13000"/>
+          <pkm km="17610" idoffstaz="10000"/>
+        </lrgb>
       </ingresso>
       <ingresso id="913" name="03-II" direzione="sx"  portebanchina="true" latobanchina="ds" prevcdb="440" nextcdb="16023" >
-        
-          <cdb>16013</cdb>
-          <cdb>16014</cdb>
-          <cdb>16015</cdb>
-          <cdb>16016</cdb>
-          <cdb>16302</cdb>
+
+        <cdb>16013</cdb>
+        <cdb>16014</cdb>
+        <cdb>16015</cdb>
+        <cdb>16016</cdb>
+        <cdb>16302</cdb>
         <lrgb nid="201" dstop="190" >
           <pkm km="19950" idoffstaz="13000"/>
           <pkm km="17950" idoffstaz="10000"/>
         </lrgb>
       </ingresso>
-        <ingresso id="912" name="03-III" direzione="sx"  portebanchina="true" latobanchina="sx" prevcdb="440" nextcdb="16027" >
-        
-          <cdb>16013</cdb>
-          <cdb>16014</cdb>
-          <cdb>16015</cdb>
-          <cdb>16016</cdb>
-          <cdb>16017</cdb>
-          <cdb>16303</cdb>
-          <lrgb nid="200" dstop="150" >
-            <pkm km="19910" idoffstaz="13000"/>
-            <pkm km="17910" idoffstaz="10000"/>
-          </lrgb>
+      <ingresso id="912" name="03-I" direzione="sx"  portebanchina="true" latobanchina="sx" prevcdb="440" nextcdb="16027" >
+
+        <cdb>16013</cdb>
+        <cdb>16014</cdb>
+        <cdb>16015</cdb>
+        <cdb>16016</cdb>
+        <cdb>16017</cdb>
+        <cdb>16301</cdb>
+        <lrgb nid="200" dstop="150" >
+          <pkm km="19910" idoffstaz="13000"/>
+          <pkm km="17910" idoffstaz="10000"/>
+        </lrgb>
       </ingresso>
-      <ingresso id="905" name="01-I" direzione="sx"  portebanchina="true" latobanchina="dx" prevcdb="441" nextcdb="16026" >
-       
-          <cdb>16010</cdb>
-          <cdb>16011</cdb>
-          <cdb>16012</cdb>
-          <cdb>16301</cdb>
+      <ingresso id="905" name="01-III" direzione="sx"  portebanchina="true" latobanchina="dx" prevcdb="441" nextcdb="16026" >
+
+        <cdb>16010</cdb>
+        <cdb>16011</cdb>
+        <cdb>16012</cdb>
+        <cdb>16303</cdb>
         <lrgb nid="202" dstop="250" >
           <pkm km="20010" idoffstaz="13000"/>
           <pkm km="18010" idoffstaz="10000"/>
         </lrgb>
       </ingresso>
-        <ingresso id="904" name="01-II" direzione="sx"  portebanchina="true" latobanchina="ds" prevcdb="441" nextcdb="16023" >
-        
-          <cdb>16010</cdb>
-          <cdb>16011</cdb>
-          <cdb>16012</cdb>
-          <cdb>16015</cdb>
-          <cdb>16016</cdb>
-          <cdb>16302</cdb>
-          <lrgb nid="201" dstop="190" >
-            <pkm km="19950" idoffstaz="13000"/>
-            <pkm km="17950" idoffstaz="10000"/>
-          </lrgb>
-        </ingresso>
-          <ingresso id="903" name="01-III" direzione="sx"  portebanchina="true" latobanchina="sx" prevcdb="441" nextcdb="16027" >
-       
-          <cdb>16010</cdb>
-          <cdb>16011</cdb>
-          <cdb>16012</cdb>
-          <cdb>16015</cdb>
-          <cdb>16016</cdb>
-          <cdb>16017</cdb>
-          <cdb>16303</cdb>
-            <lrgb nid="200" dstop="150" >
-              <pkm km="19910" idoffstaz="13000"/>
-              <pkm km="17910" idoffstaz="10000"/>
-            </lrgb>
-      </ingresso>
-	   </itinerariIngresso>
+      <ingresso id="904" name="01-II" direzione="sx"  portebanchina="true" latobanchina="ds" prevcdb="441" nextcdb="16023" >
 
- <itinerariUscita>
-	  <partenza id="902" name="I-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="443"     nextstation="17000" >
-       
-       
-          <cdb>16012</cdb>
-          <cdb>16011</cdb>
-          <cdb>16010</cdb>
-		  <cdb>441</cdb>
-      <lrgb nid="202" dstop="10" >
-        <pkm km="20010" idoffstaz="13000"/>
-        <pkm km="18010" idoffstaz="10000"/>
-      </lrgb>
+        <cdb>16010</cdb>
+        <cdb>16011</cdb>
+        <cdb>16012</cdb>
+        <cdb>16015</cdb>
+        <cdb>16016</cdb>
+        <cdb>16302</cdb>
+        <lrgb nid="201" dstop="190" >
+          <pkm km="19950" idoffstaz="13000"/>
+          <pkm km="17950" idoffstaz="10000"/>
+        </lrgb>
+      </ingresso>
+      <ingresso id="903" name="01-I" direzione="sx"  portebanchina="true" latobanchina="sx" prevcdb="441" nextcdb="16027" >
+        <cdb>16010</cdb>
+        <cdb>16011</cdb>
+        <cdb>16012</cdb>
+        <cdb>16015</cdb>
+        <cdb>16016</cdb>
+        <cdb>16017</cdb>
+        <cdb>16301</cdb>
+        <lrgb nid="200" dstop="150" >
+          <pkm km="19910" idoffstaz="13000"/>
+          <pkm km="17910" idoffstaz="10000"/>
+        </lrgb>
+      </ingresso>
+    </itinerariIngresso>
+
+    <itinerariUscita>
+      <partenza id="902" name="III-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="443"   nextstation="17000" >
+
+        <cdb>16012</cdb>
+        <cdb>16011</cdb>
+        <cdb>16010</cdb>
+        <cdb>441</cdb>
+        <lrgb nid="202" dstop="10" >
+          <pkm km="20010" idoffstaz="13000"/>
+          <pkm km="18010" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
-        <partenza id="919" name="I-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="427"     nextstation="12000" >
-        
-        
-          <cdb>16026</cdb>
-          <cdb>16025</cdb>
-          <cdb>16024</cdb>
-		  <cdb>429</cdb>
-          <lrgb nid="195" dstop="10" >
-            <pkm km="19560" idoffstaz="13000"/>
-            <pkm km="17560" idoffstaz="10000"/>
-          </lrgb>
+      <partenza id="919" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="427"   nextstation="12000" >
+
+
+        <cdb>16026</cdb>
+        <cdb>16025</cdb>
+        <cdb>16024</cdb>
+        <cdb>429</cdb>
+        <lrgb nid="195" dstop="10" >
+          <pkm km="19560" idoffstaz="13000"/>
+          <pkm km="17560" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
-      <partenza id="909" name="II-02" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="16302" nextcdb="426"     nextstation="12000" >
-     
-      
-          <cdb>16023</cdb>
-          <cdb>16022</cdb>
-          <cdb>16021</cdb>
-          <cdb>16020</cdb>
-		  <cdb>428</cdb>
+      <partenza id="909" name="II-02" direzione="sx" portebanchina="true" latobanchina="ds"  prevcdb="16302" nextcdb="426"   nextstation="12000" >
+
+
+        <cdb>16023</cdb>
+        <cdb>16022</cdb>
+        <cdb>16021</cdb>
+        <cdb>16020</cdb>
+        <cdb>428</cdb>
         <lrgb nid="194" dstop="10" >
           <pkm km="19590" idoffstaz="13000"/>
           <pkm km="17590" idoffstaz="10000"/>
         </lrgb>
       </partenza>
-        <partenza id="918" name="II-04" direzione="sx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="427"     nextstation="12000" >
-        
-     
-          <cdb>16023</cdb>
-          <cdb>16022</cdb>
-          <cdb>16026</cdb>
-          <cdb>16025</cdb>
-          <cdb>16024</cdb>
-		  <cdb>429</cdb>
-          <lrgb nid="194" dstop="10" >
-            <pkm km="19590" idoffstaz="13000"/>
-            <pkm km="17590" idoffstaz="10000"/>
-          </lrgb>
-        </partenza>
-          <partenza id="911" name="II-03" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="442"     nextstation="17000" >
-        
-          <cdb>16016</cdb>
-          <cdb>16015</cdb>
-          <cdb>16014</cdb>
-          <cdb>16013</cdb>
-		  <cdb>440</cdb>
-            <lrgb nid="201" dstop="10" >
-              <pkm km="19950" idoffstaz="13000"/>
-              <pkm km="17950" idoffstaz="10000"/>
-            </lrgb>
-          </partenza>
-            <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="ds"   prevcdb="16302" nextcdb="443"     nextstation="17000" >
-        
-        
-          <cdb>16016</cdb>
-          <cdb>16015</cdb>
-          <cdb>16012</cdb>
-          <cdb>16011</cdb>
-          <cdb>16010</cdb>
-		  <cdb>441</cdb>
-              <lrgb nid="201" dstop="10" >
-                <pkm km="19950" idoffstaz="13000"/>
-                <pkm km="17950" idoffstaz="10000"/>
-              </lrgb>
+      <partenza id="918" name="II-04" direzione="sx" portebanchina="true" latobanchina="ds" prevcdb="16302" nextcdb="427"   nextstation="12000" >
+
+
+        <cdb>16023</cdb>
+        <cdb>16022</cdb>
+        <cdb>16026</cdb>
+        <cdb>16025</cdb>
+        <cdb>16024</cdb>
+        <cdb>429</cdb>
+        <lrgb nid="194" dstop="10" >
+          <pkm km="19590" idoffstaz="13000"/>
+          <pkm km="17590" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
-      <partenza id="908" name="III-02" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="426"     nextstation="12000" >
-        
-      
-          <cdb>16027</cdb>
-          <cdb>16023</cdb>
-          <cdb>16022</cdb>
-          <cdb>16021</cdb>
-          <cdb>16020</cdb>
-		  <cdb>428</cdb>
+      <partenza id="911" name="II-03" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="16302" nextcdb="442"   nextstation="17000" >
+
+        <cdb>16016</cdb>
+        <cdb>16015</cdb>
+        <cdb>16014</cdb>
+        <cdb>16013</cdb>
+        <cdb>440</cdb>
+        <lrgb nid="201" dstop="10" >
+          <pkm km="19950" idoffstaz="13000"/>
+          <pkm km="17950" idoffstaz="10000"/>
+        </lrgb>
+      </partenza>
+      <partenza id="901" name="II-01" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="16302" nextcdb="443"   nextstation="17000" >
+
+
+        <cdb>16016</cdb>
+        <cdb>16015</cdb>
+        <cdb>16012</cdb>
+        <cdb>16011</cdb>
+        <cdb>16010</cdb>
+        <cdb>441</cdb>
+        <lrgb nid="201" dstop="10" >
+          <pkm km="19950" idoffstaz="13000"/>
+          <pkm km="17950" idoffstaz="10000"/>
+        </lrgb>
+      </partenza>
+      <partenza id="908" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="16303" nextcdb="426"   nextstation="12000" >
+
+
+        <cdb>16027</cdb>
+        <cdb>16023</cdb>
+        <cdb>16022</cdb>
+        <cdb>16021</cdb>
+        <cdb>16020</cdb>
+        <cdb>428</cdb>
         <lrgb nid="193" dstop="10" >
           <pkm km="19610" idoffstaz="13000"/>
           <pkm km="17610" idoffstaz="10000"/>
         </lrgb>
       </partenza>
-        <partenza id="917" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"   prevcdb="16303" nextcdb="427"     nextstation="17000" >
-       
-       
-          <cdb>16027</cdb>
-          <cdb>16023</cdb>
-          <cdb>16022</cdb>
-          <cdb>16026</cdb>
-          <cdb>16025</cdb>
-          <cdb>16024</cdb>
-		  <cdb>429</cdb>
-          <lrgb nid="193" dstop="10" >
-            <pkm km="19610" idoffstaz="13000"/>
-            <pkm km="17610" idoffstaz="10000"/>
-          </lrgb>
-        </partenza>
-        <partenza id="910" name="III-03" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="442"     nextstation="17000" >
-      
-        
-          <cdb>16017</cdb>
-          <cdb>16016</cdb>
-          <cdb>16015</cdb>
-          <cdb>16014</cdb>
-          <cdb>16013</cdb>
-		  <cdb>440</cdb>
-          <lrgb nid="200" dstop="10" >
-            <pkm km="19910" idoffstaz="13000"/>
-            <pkm km="17910" idoffstaz="10000"/>
-          </lrgb>
-        </partenza>
-          <partenza id="900" name="III-01" direzione="dx" portebanchina="true" latobanchina="dx"   prevcdb="16303" nextcdb="443"     nextstation="17000" >
-        
-          <cdb>16017</cdb>
-          <cdb>16016</cdb>
-          <cdb>16015</cdb>
-          <cdb>16012</cdb>
-          <cdb>16011</cdb>
-          <cdb>16010</cdb>
-		  <cdb>441</cdb>
-            <lrgb nid="200" dstop="10" >
-              <pkm km="19910" idoffstaz="13000"/>
-              <pkm km="17910" idoffstaz="10000"/>
-            </lrgb>
+      <partenza id="917" name="I-04" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="16303" nextcdb="427"   nextstation="17000" >
+
+
+        <cdb>16027</cdb>
+        <cdb>16023</cdb>
+        <cdb>16022</cdb>
+        <cdb>16026</cdb>
+        <cdb>16025</cdb>
+        <cdb>16024</cdb>
+        <cdb>429</cdb>
+        <lrgb nid="193" dstop="10" >
+          <pkm km="19610" idoffstaz="13000"/>
+          <pkm km="17610" idoffstaz="10000"/>
+        </lrgb>
       </partenza>
-     </itinerariUscita>
+      <partenza id="910" name="I-03" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="16303" nextcdb="442"   nextstation="17000" >
+
+
+        <cdb>16017</cdb>
+        <cdb>16016</cdb>
+        <cdb>16015</cdb>
+        <cdb>16014</cdb>
+        <cdb>16013</cdb>
+        <cdb>440</cdb>
+        <lrgb nid="200" dstop="10" >
+          <pkm km="19910" idoffstaz="13000"/>
+          <pkm km="17910" idoffstaz="10000"/>
+        </lrgb>
+      </partenza>
+      <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="16303" nextcdb="443"   nextstation="17000" >
+
+        <cdb>16017</cdb>
+        <cdb>16016</cdb>
+        <cdb>16015</cdb>
+        <cdb>16012</cdb>
+        <cdb>16011</cdb>
+        <cdb>16010</cdb>
+        <cdb>441</cdb>
+        <lrgb nid="200" dstop="10" >
+          <pkm km="19910" idoffstaz="13000"/>
+          <pkm km="17910" idoffstaz="10000"/>
+        </lrgb>
+      </partenza>
+    </itinerariUscita>
   </stazione>
 
   <stazione  name="Parco della Vittoria" id_offset="17000">
