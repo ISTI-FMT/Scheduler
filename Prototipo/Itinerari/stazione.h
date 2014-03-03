@@ -45,4 +45,15 @@ public:
 		return nullptr;
 
 	}
+
+	lrbg ^get_infobalise_fromBinario(int bina){
+		for each (binario ^bin in binari)
+		{
+			if(bin->getBin()==bina){
+				 return	bin->get_info_lrgb();
+			}
+		}
+		return gcnew lrbg();
+	}
+
 };

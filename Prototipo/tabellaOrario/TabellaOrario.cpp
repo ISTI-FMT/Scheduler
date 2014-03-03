@@ -290,6 +290,20 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 							}
 					}
 				}
+				if(stop->getIditinerarioEntrata()==0 & stop->getIditinerarioUscita()==0){
+					lrbg ^infobalise  = tabItinerari->get_infobalise_fromBinario(stop->getIdStazione(),stop->getBinarioProgrammato());
+					mission->setNID_LRGB(infobalise->nid_lrgb);
+						mission->setD_STOP(infobalise->d_stop);
+						int pkmlrbg = 0;
+						if(latolinea){
+						 pkmlrbg =	infobalise->get_progressivakm(13000);
+						}else{
+						 pkmlrbg =	infobalise->get_progressivakm(10000);
+							}
+						int d_lrgb = Math::Abs(pkmlrbg - prevprogkm);
+						prevprogkm = pkmlrbg +  infobalise->d_stop;
+						mission->setD_LRGB(d_lrgb);
+				}
 
 			}
 			i++;

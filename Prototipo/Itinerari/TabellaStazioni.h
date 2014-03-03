@@ -34,6 +34,15 @@ public:
 
 	}
 
+	lrbg ^get_infobalise_fromBinario(int idstazione, int bina){
+
+		if(mapidstazioneitinerari->ContainsKey(idstazione)){
+			return mapidstazioneitinerari[idstazione]->get_infobalise_fromBinario(bina);
+		}
+		return nullptr;
+
+	}
+
 	int get_CdbPrecItinerario(int stazione, int iditin);
 	
 	int get_CdbSuccItinerario(int stazione, int iditin);
