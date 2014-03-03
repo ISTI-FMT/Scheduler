@@ -56,6 +56,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies />
+      <IgnoreSpecificDefaultLibraries>OLDNAMES.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>copy app.config "$(TargetPath).config"</Command>
@@ -78,6 +79,10 @@
     <_EmbedManagedResourceFile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AreeCritiche\AreaCriticaCircolare.h" />
+    <ClInclude Include="AreeCritiche\AreaCriticaLineare.h" />
+    <ClInclude Include="AreeCritiche\AreaCritica.h" />
+    <ClInclude Include="AreeCritiche\AreeCritiche.h" />
     <ClInclude Include="ConfigurazioneFermate.h">
       <DependentUpon>..\FileConfigurazione\ConfigurazioneFermate.xsd</DependentUpon>
     </ClInclude>
@@ -171,6 +176,9 @@
     <ClInclude Include="wdogcontrol.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AreeCritiche\AreaCriticaCircolare.cpp" />
+    <ClCompile Include="AreeCritiche\AreaCriticaLineare.cpp" />
+    <ClCompile Include="AreeCritiche\AreeCritiche.cpp" />
     <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp" />
     <ClCompile Include="ControllerListTrain.cpp" />
     <ClCompile Include="EventQueue.cpp" />
@@ -264,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />

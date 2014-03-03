@@ -13,6 +13,7 @@
 #include "wdogcontrol.h"
 #include "manager\\ManagerStatoLineaATC.h"
 #include "manager\\ManagerStatoLineaIXL.h"
+#include "AreeCritiche\\AreeCritiche.h"
 #include "Train.h"
 #include "StateObject.h"
 #include "ControllerListTrain.h"
@@ -35,6 +36,7 @@ ref class ThreadSchedulerSortedList
 	EventQueue<List<Fermata^>^> ^EQueueCambioOrario;
 	TabellaOrario ^tabOrario;
 	TabellaStazioni ^tabItinerari;
+	AreeCritiche ^areeCritiche;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
 	ManagerStatoLineaATC ^managerATC;
 	ManagerStatoLineaIXL ^managerIXL;
@@ -51,7 +53,7 @@ public:
 	ThreadSchedulerSortedList(void);
 
 
-	ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E3, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
+	ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E3, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel, AreeCritiche^ areeCritiche);
 
 	void Schedule();
 	void Init();

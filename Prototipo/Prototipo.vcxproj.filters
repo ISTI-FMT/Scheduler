@@ -65,6 +65,9 @@
     <ClCompile Include="Train.cpp" />
     <ClCompile Include="TrenoFisicoLogico.cpp" />
     <ClCompile Include="wdogcontrol.cpp" />
+    <ClCompile Include="AreeCritiche\AreeCritiche.cpp" />
+    <ClCompile Include="AreeCritiche\AreaCriticaLineare.cpp" />
+    <ClCompile Include="AreeCritiche\AreaCriticaCircolare.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigurazioneFermate.h" />
@@ -140,6 +143,10 @@
     <ClInclude Include="TrenoFisicoLogico.h" />
     <ClInclude Include="Unsubscriber.h" />
     <ClInclude Include="wdogcontrol.h" />
+    <ClInclude Include="AreeCritiche\AreaCritica.h" />
+    <ClInclude Include="AreeCritiche\AreeCritiche.h" />
+    <ClInclude Include="AreeCritiche\AreaCriticaLineare.h" />
+    <ClInclude Include="AreeCritiche\AreaCriticaCircolare.h" />
   </ItemGroup>
   <ItemGroup>
     <_EmbedManagedResourceFile Include="Prototipo.rc" />

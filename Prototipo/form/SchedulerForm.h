@@ -7,7 +7,7 @@
 #include "..\\Itinerari\\FormVisualizzeConfFermate.h"
 /*#include "..\\phisicalTrainList.h"*/
 #include "..\\threads\\ThreadListenerATC_IXL.h"
-
+#include "..\\AreeCritiche\\AreeCritiche.h"
 #include "..\\threads\\ThreadPresentazione.h"
 #include "..\\mapTrenoFisicoLogico.h"
 #include "..\\messaggi\\Messaggi.h"
@@ -94,6 +94,7 @@ namespace Prototipo {
 		ThreadSchedulerSortedList ^ThScheduleSortedList;
 		wdogcontrol ^wdogs;
 		ConfigurazioneVelocita ^confVelocita;
+		AreeCritiche ^areeCritiche;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
@@ -380,6 +381,9 @@ namespace Prototipo {
 				 //
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //
+				 areeCritiche = gcnew AreeCritiche();
+				 areeCritiche->leggiFileConfigurazioneAreeCritiche();
+
 				 tabItinerari = gcnew TabellaStazioni();
 				 tabItinerari->leggifileconfigurazioneItinerari();
 				 tabItinerari->leggifileconfigurazioneFermate();
@@ -454,7 +458,7 @@ namespace Prototipo {
 				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThSchedule,&ThreadSchedule::SimpleSchedule));
 				 oThreadSchedule->Start();*/
 
-				  ThScheduleSortedList =gcnew ThreadSchedulerSortedList(EventQIXL,EventQATC,EventQATO,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita);
+				 ThScheduleSortedList =gcnew ThreadSchedulerSortedList(EventQIXL,EventQATC,EventQATO,tabellaOrario,tabItinerari,mapsTrenoFisicoLogico, wdogs,manaStateATC, manaStateIXL, confVelocita, areeCritiche);
 
 				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThScheduleSortedList,&ThreadSchedulerSortedList::Schedule));
 				 oThreadSchedule->Start();
