@@ -242,7 +242,7 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			pkt->setPV(pvel);
 			pkt->setN_ITER1(pvel->Count-1);
 		}else{
-			pkt->setPV(gcnew ProfiloVelocita);
+			pkt->setPV(gcnew ProfiloVelocita(10700,70));
 			pkt->setN_ITER1(0);
 		}
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
