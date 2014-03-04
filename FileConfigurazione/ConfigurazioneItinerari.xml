@@ -913,7 +913,7 @@
           <cdb>17301</cdb>
         <lrgb nid="219" dstop="100" >
           <pkm km="24080" idoffstaz="13000"/>
-          <pkm km="21080" idoffstaz="10000"/>
+          <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
       </ingresso>
         <ingresso id="902" name="01-II" direzione="dx"  portebanchina="true" latobanchina="sx" prevcdb="448" nextcdb="17016" >
@@ -925,7 +925,7 @@
           <cdb>17302</cdb>
           <lrgb nid="220" dstop="100" >
             <pkm km="24080" idoffstaz="13000"/>
-            <pkm km="21080" idoffstaz="10000"/>
+            <pkm km="22080" idoffstaz="10000"/>
           </lrgb>
         </ingresso>
           <ingresso id="901" name="01-III" direzione="dx"  portebanchina="true" latobanchina="dx" prevcdb="448" nextcdb="17036" >
@@ -938,7 +938,7 @@
           <cdb>17303</cdb>
             <lrgb nid="221" dstop="100" >
               <pkm km="24080" idoffstaz="13000"/>
-              <pkm km="21080" idoffstaz="10000"/>
+              <pkm km="22080" idoffstaz="10000"/>
             </lrgb>
           </ingresso>
             <ingresso id="900" name="01-IV" direzione="dx"  portebanchina="true" latobanchina="sx" prevcdb="448" nextcdb="17035" >
@@ -951,7 +951,7 @@
           <cdb>17304</cdb>
               <lrgb nid="222" dstop="100" >
                 <pkm km="24080" idoffstaz="13000"/>
-                <pkm km="21080" idoffstaz="10000"/>
+                <pkm km="22080" idoffstaz="10000"/>
               </lrgb>
       </ingresso>
 
@@ -965,7 +965,7 @@
           <cdb>17301</cdb>
         <lrgb nid="219" dstop="100" >
           <pkm km="24080" idoffstaz="13000"/>
-          <pkm km="21080" idoffstaz="10000"/>
+          <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
       </ingresso>
         <ingresso id="910" name="03-II" direzione="dx"  portebanchina="true" latobanchina="sx" prevcdb="449" nextcdb="17016" >
@@ -978,7 +978,7 @@
           <cdb>17302</cdb>
           <lrgb nid="220" dstop="100" >
             <pkm km="24080" idoffstaz="13000"/>
-            <pkm km="21080" idoffstaz="10000"/>
+            <pkm km="22080" idoffstaz="10000"/>
           </lrgb>
         </ingresso>
           <ingresso id="909" name="03-III" direzione="dx"  portebanchina="true" latobanchina="dx" prevcdb="449" nextcdb="17036" >
@@ -990,7 +990,7 @@
           <cdb>17303</cdb>
             <lrgb nid="221" dstop="100" >
                <pkm km="24080" idoffstaz="13000"/>
-          <pkm km="21080" idoffstaz="10000"/>
+          <pkm km="22080" idoffstaz="10000"/>
             </lrgb>
           </ingresso>
             <ingresso id="908" name="03-IV" direzione="dx"  portebanchina="true" latobanchina="sx" prevcdb="449" nextcdb="17035" >
@@ -1002,7 +1002,7 @@
           <cdb>17304</cdb>
               <lrgb nid="222" dstop="100" >
                 <pkm km="24080" idoffstaz="13000"/>
-                <pkm km="21080" idoffstaz="10000"/>
+                <pkm km="22080" idoffstaz="10000"/>
               </lrgb>
       </ingresso>
   </itinerariIngresso>
@@ -1018,7 +1018,7 @@
 		  <cdb>448</cdb>
         <lrgb nid="219" dstop="30" >
           <pkm km="24080" idoffstaz="13000"/>
-          <pkm km="21080" idoffstaz="10000"/>
+          <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
       </partenza>
         <partenza id="915" name="I-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17301" nextcdb="447"   nextstation="16000" >
@@ -1032,7 +1032,7 @@
 		  <cdb>449</cdb>
           <lrgb nid="219" dstop="30" >
             <pkm km="24080" idoffstaz="13000"/>
-            <pkm km="21080" idoffstaz="10000"/>
+            <pkm km="22080" idoffstaz="10000"/>
           </lrgb>
       </partenza>
       <partenza id="906" name="II-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="446"   nextstation="16000" >
@@ -1045,7 +1045,7 @@
 		  <cdb>448</cdb>
         <lrgb nid="220" dstop="130" >
           <pkm km="24080" idoffstaz="13000"/>
-          <pkm km="21080" idoffstaz="10000"/>
+          <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
       </partenza>
         <partenza id="914" name="II-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17302" nextcdb="447"   nextstation="16000" >
@@ -1059,7 +1059,7 @@
 		  <cdb>449</cdb>
           <lrgb nid="220" dstop="130" >
             <pkm km="24080" idoffstaz="13000"/>
-            <pkm km="21080" idoffstaz="10000"/>
+            <pkm km="22080" idoffstaz="10000"/>
           </lrgb>
       </partenza>
       <partenza id="913" name="III-03" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="447"   nextstation="16000" >
@@ -1072,7 +1072,7 @@
 		  <cdb>449</cdb>
         <lrgb nid="221" dstop="130" >
           <pkm km="24080" idoffstaz="13000"/>
-          <pkm km="21080" idoffstaz="10000"/>
+          <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
       </partenza>
         <partenza id="905" name="III-01" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="17303" nextcdb="446"   nextstation="16000" >
@@ -1086,7 +1086,7 @@
 		  <cdb>448</cdb>
           <lrgb nid="221" dstop="130" >
             <pkm km="24080" idoffstaz="13000"/>
-            <pkm km="21080" idoffstaz="10000"/>
+            <pkm km="22080" idoffstaz="10000"/>
           </lrgb>
       </partenza>
       <partenza id="912" name="IV-03" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="447"   nextstation="16000" >
@@ -1099,7 +1099,7 @@
 		  <cdb>449</cdb>
         <lrgb nid="222" dstop="180" >
           <pkm km="24080" idoffstaz="13000"/>
-          <pkm km="21080" idoffstaz="10000"/>
+          <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
       </partenza>
         <partenza id="904" name="IV-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="17304" nextcdb="446"   nextstation="16000" > 
@@ -1113,7 +1113,7 @@
 		  <cdb>448</cdb>
           <lrgb nid="222" dstop="180" >
             <pkm km="24080" idoffstaz="13000"/>
-            <pkm km="21080" idoffstaz="10000"/>
+            <pkm km="22080" idoffstaz="10000"/>
           </lrgb>
       </partenza>
      </itinerariUscita>

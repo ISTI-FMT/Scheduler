@@ -33,6 +33,13 @@ public:
 		return nullptr;
 
 	}
+	///indica la direzione in cui va il treno true dx da accademia -> vittoria, false viceversa
+	bool get_Direzione_itinerario(int idstazione, int iditini){
+		if(mapidstazioneitinerari->ContainsKey(idstazione)){
+			return mapidstazioneitinerari[idstazione]->get_Direzione_itinerario(iditini);
+		}
+		return false;
+	}
 
 	lrbg ^get_infobalise_fromBinario(int idstazione, int bina){
 
