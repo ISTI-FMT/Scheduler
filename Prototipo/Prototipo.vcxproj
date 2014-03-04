@@ -149,6 +149,7 @@
     <ClInclude Include="messaggi\StateSegnale.h" />
     <ClInclude Include="messaggi\utility.h" />
     <ClInclude Include="messaggi\pacchettoBase.h" />
+    <ClInclude Include="AreeCritiche\MissioneAnnotata.h" />
     <ClInclude Include="ParalellMethod.h" />
     <ClInclude Include="physicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />

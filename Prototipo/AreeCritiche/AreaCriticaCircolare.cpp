@@ -13,17 +13,37 @@ AreaCriticaCircolare::AreaCriticaCircolare(List<int> ^listaCdb, int limite)
 	this->limite = limite;
 }
 
-bool AreaCriticaCircolare::entrataPermessa(int idTreno, int cdb, AreaCriticaDirezione direzione)
+bool AreaCriticaCircolare::entrataPermessa(int idTreno, int cdb)
 {
-	return false;
+	bool res = true;
+	//l'ingresso è negato se:
+	//- il cdb è uno di quelli dell'area
+	//- il treno non è già dentro l'area
+	//- l'area ha già il numero massimo di treni
+	if (cdbs->Contains(cdb))
+	{
+		if (!treni->Contains(idTreno))
+		{
+			if (treni->Count >= limite)
+			{
+				res = false;
+			}
+		}
+	}
+	return res;
 }
 
-void AreaCriticaCircolare::entrata(int idTreno, AreaCriticaDirezione direzione)
+void AreaCriticaCircolare::entrata(int idTreno, int cdb)
 {
-
-}
-
-void AreaCriticaCircolare::uscita(int idTreno, AreaCriticaDirezione direzione)
-{
-
+	if (cdbs->Contains(cdb))
+	{
+		if (!treni->Contains(idTreno))
+		{
+			treni->Add(idTreno);
+		}
+	}
+	else if (treni->Contains(idTreno))
+	{
+		treni->Remove(idTreno);
+	}
 }

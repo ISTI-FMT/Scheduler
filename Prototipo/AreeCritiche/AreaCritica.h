@@ -17,9 +17,8 @@ ref class AreaCritica abstract
 public:
 	System::String ^nome;
 	/* Ritorna TRUE se l'area contiene già il numero massimo di treni */
-	virtual bool entrataPermessa(int idTreno, int cdb, AreaCriticaDirezione direzione) abstract;
-	virtual void entrata(int idTreno, AreaCriticaDirezione direzione) abstract;
-	virtual void uscita(int idTreno, AreaCriticaDirezione direzione) abstract;
+	virtual bool entrataPermessa(int idTreno, int cdb) abstract;
+	virtual void entrata(int idTreno, int cdb) abstract;
 
 };
 

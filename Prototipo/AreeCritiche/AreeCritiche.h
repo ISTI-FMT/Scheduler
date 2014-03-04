@@ -2,6 +2,7 @@
 #include "AreaCritica.h"
 #include "AreaCriticaCircolare.h"
 #include "AreaCriticaLineare.h"
+#include "MissioneAnnotata.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -20,10 +21,10 @@ public:
 	* Ritorna TRUE se un treno può entrare nel cdb, FALSE altrimenti.
 	* Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non hanno raggiunto il massimo numero di treni consentito
 	*/
-	bool richiestaCdb(int cdb);
+	bool richiestaCdb(int cdb, int Trn);
 
-	void entrataCdb(int cdb);
+	void entrataCdb(int cdb, int Trn);
 
-	void uscitaCdb(int cdb);
+	void uscitaCdb(int cdb, int Trn);
 };
 

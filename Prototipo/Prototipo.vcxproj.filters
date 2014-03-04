@@ -147,6 +147,7 @@
     <ClInclude Include="AreeCritiche\AreeCritiche.h" />
     <ClInclude Include="AreeCritiche\AreaCriticaLineare.h" />
     <ClInclude Include="AreeCritiche\AreaCriticaCircolare.h" />
+    <ClInclude Include="AreeCritiche\MissioneAnnotata.h" />
   </ItemGroup>
   <ItemGroup>
     <_EmbedManagedResourceFile Include="Prototipo.rc" />

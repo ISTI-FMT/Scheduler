@@ -1,14 +1,15 @@
 #pragma once
-#include "c:\users\simonedellalonga\projects\prototipo\devel_areecritiche2\scheduler\prototipo\areecritiche\areacritica.h"
+#include "areacritica.h"
 ref class AreaCriticaLineare :
 public AreaCritica
 {
 private:
-	List<int>^ listaCdb;
+	List<int>^ cdbs;
+	HashSet<int>^ treniSinistra;
+	HashSet<int>^ treniDestra;
 public:
 	AreaCriticaLineare(List<int> ^listaCdb);
-	virtual bool entrataPermessa(int idTreno, int cdb, AreaCriticaDirezione direzione) override;
-	virtual void entrata(int idTreno, AreaCriticaDirezione direzione) override;
-	virtual void uscita(int idTreno, AreaCriticaDirezione direzione) override;
+	virtual bool entrataPermessa(int idTreno, int cdb) override;
+	virtual void entrata(int idTreno, int cdb) override;
 };
 
