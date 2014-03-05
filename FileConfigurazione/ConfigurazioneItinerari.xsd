@@ -12,7 +12,13 @@
                     <xs:element name="ingresso" maxOccurs="unbounded">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="cdb" maxOccurs="unbounded" type="xs:nonNegativeInteger"/>
+                          <xs:element name="ListCDB" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cdb" maxOccurs="unbounded" type="xs:nonNegativeInteger"></xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
                           <xs:element name="lrgb">
                             <xs:complexType>
                               <xs:sequence>
@@ -46,7 +52,13 @@
                     <xs:element name="partenza" maxOccurs="unbounded">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="cdb" maxOccurs="unbounded" type="xs:nonNegativeInteger"/>
+                          <xs:element name="ListCDB" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cdb" maxOccurs="unbounded" type="xs:nonNegativeInteger"></xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
                           <xs:element name="lrgb">
                             <xs:complexType>
                               <xs:sequence>

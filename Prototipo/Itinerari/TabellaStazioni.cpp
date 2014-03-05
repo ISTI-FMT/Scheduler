@@ -7,6 +7,7 @@ using namespace System::Globalization;
 using namespace System::Xml;
 using namespace System::Xml::Schema;
 
+
 #define TRACE
 #define VALIDATEXML
 
@@ -48,6 +49,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
 
 		// per ogni stazione presente nel file di configurazione degli itinerari...
+		
 		while (reader->ReadToFollowing("stazione")){
 			System::Xml::XmlReader ^inner = reader->ReadSubtree();
 			// ...leggo l'id della stazione
@@ -98,9 +100,12 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 					int prevcdb = int::Parse(	inner2->GetAttribute("prevcdb"));
 					newitinerario->setPrevCDB( prevcdb);	
 
-					System::Xml::XmlReader ^inner3 = inner2->ReadSubtree();
+					inner2->ReadToFollowing("ListCDB");
 
-					while (inner3->ReadToDescendant("cdb")){
+					System::Xml::XmlReader ^inner3 = inner2->ReadSubtree();
+					
+
+					while (inner3->ReadToFollowing("cdb")){
 
 
 
@@ -108,19 +113,21 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 						newitinerario->getLCDB()->Add(cdb);
 
 					}
+					
 
+					inner2->ReadToFollowing("lrgb");
 
-					inner3->ReadToFollowing("lrgb");
-					int nid_lrgb = int::Parse(inner3->GetAttribute("nid"));
-					int d_stop = int::Parse(	inner3->GetAttribute("dstop"));
+					int nid_lrgb = int::Parse(inner2->GetAttribute("nid"));
+					int d_stop = int::Parse(	inner2->GetAttribute("dstop"));
 
 					lrbg ^infolrbg = gcnew lrbg(nid_lrgb,d_stop);
-
+					
+					inner3 = inner2->ReadSubtree();
 
 					while (inner3->ReadToFollowing("pkm")){
 
-						int rifkm = int::Parse(		inner2->GetAttribute("km"));
-						int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
+						int rifkm = int::Parse(		inner3->GetAttribute("km"));
+						int idpstation = int::Parse(	inner3->GetAttribute("idoffstaz"));
 
 						infolrbg->add_progressivakm(rifkm,idpstation);
 
@@ -177,9 +184,9 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 					newitinerario->set_nextstation( int::Parse(nextstation));	
 
-
+					inner2->ReadToFollowing("ListCDB");
 					System::Xml::XmlReader ^inner3 = reader->ReadSubtree();
-					while (inner3->ReadToDescendant("cdb")){
+					while (inner3->ReadToFollowing("cdb")){
 
 
 
@@ -188,17 +195,18 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 					}
 
-					inner3->ReadToFollowing("lrgb");
-					int nid_lrgb = int::Parse(inner3->GetAttribute("nid"));
-					int d_stop = int::Parse(	inner3->GetAttribute("dstop"));
+					inner2->ReadToFollowing("lrgb");
+					int nid_lrgb = int::Parse(inner2->GetAttribute("nid"));
+					int d_stop = int::Parse(	inner2->GetAttribute("dstop"));
 
 					lrbg ^infolrbg = gcnew lrbg(nid_lrgb,d_stop);
 
+					inner3 = inner2->ReadSubtree();
 
 					while (inner3->ReadToFollowing("pkm")){
 
-						int rifkm = int::Parse(		inner2->GetAttribute("km"));
-						int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
+						int rifkm = int::Parse(		inner3->GetAttribute("km"));
+						int idpstation = int::Parse(	inner3->GetAttribute("idoffstaz"));
 
 						infolrbg->add_progressivakm(rifkm,idpstation);
 
