@@ -11,6 +11,7 @@ using namespace System::Threading::Tasks;
 using namespace System::Runtime::InteropServices;
 using namespace System::Globalization;
 using namespace System::Xml;
+using namespace  System::Configuration;
 
 
 #define TRACE
@@ -35,7 +36,15 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	wdogs=w;
 	managerATC=manATC;
 	managerIXL=manIXL;
-	ipixl="127.0.0.1";
+	try {
+ 
+		ipixl = ConfigurationSettings::AppSettings["ip_IXL"] != nullptr ? ConfigurationSettings::AppSettings["ip_IXL"]->ToString() : "127.0.0.1";
+	// Console::WriteLine("IP IXL ",ipixl);
+	} catch(System::Configuration::ConfigurationException  ^error){
+		 ipixl="127.0.0.1";
+		
+	 }
+	Console::WriteLine("IP IXL {0}",ipixl);
 	RaccoltaTrenoRequestCDB  = gcnew Dictionary<Train^,List<int>^> ();
 	EQueueCambioOrario = gcnew EventQueue<List<Fermata^>^>();
 	_shouldStop=false;
@@ -781,6 +790,15 @@ List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int 
 bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 	try{
 		int portixl=4011;
+			try {
+ 
+		portixl = System::Configuration::ConfigurationSettings::AppSettings["port_UDP_send"]!= nullptr ? int::Parse( System::Configuration::ConfigurationSettings::AppSettings["port_UDP_send"]->ToString()) : 4011;
+	// Console::WriteLine("IP IXL ",ipixl);
+	} catch(Exception  ^error){
+		 portixl=4011;
+		
+	 }
+	Console::WriteLine("PORT UDP Send: {0}",portixl);
 		Messaggi ^cmdItini = gcnew Messaggi();
 
 

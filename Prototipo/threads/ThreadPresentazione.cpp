@@ -28,7 +28,16 @@ ThreadPresentazione::ThreadPresentazione(/*phisicalTrainList ^lt,*/  ManagerMsgA
 {
 	/*listaTreni=lt;*/
 	ManaMsgATO=MA;
-	port=13000;
+	
+		try {
+ 
+		port = System::Configuration::ConfigurationSettings::AppSettings["port_TCP_receive"]!= nullptr ? int::Parse( System::Configuration::ConfigurationSettings::AppSettings["port_TCP_receive"]->ToString()) : 13000;
+	// Console::WriteLine("IP IXL ",ipixl);
+	} catch(Exception  ^error){
+		 port=13000;
+		
+	 }
+	Console::WriteLine("PORT TCP Receive: {0}",port);
 	_shouldStop=false;
 }
 
