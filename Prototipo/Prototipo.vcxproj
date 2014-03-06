@@ -75,7 +75,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <_EmbedManagedResourceFile Include="Prototipo.rc" />
+    <ResourceCompile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigurazioneFermate.h">
