@@ -519,14 +519,16 @@
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="Prototipo.rc">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Prototipo.rc">
+      <Filter>File di risorse</Filter>
+    </Resource>
   </ItemGroup>
 </Project>
