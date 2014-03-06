@@ -80,25 +80,29 @@ void TabellaOrario::leggiTabellaOrario()
 		/*ValidationEventHandler ^ed = gcnew ValidationEventHandler( ValidationCallBack );
 		settings->ValidationEventHandler +=ed;*/
 
-		//System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("TabellaOrario.xml");
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("TabellaOrario.xml");
 
 		//System::String^ nome = gcnew System::String(nomeFile.c_str());
-		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 		//	XmlDocument ^document = gcnew XmlDocument();
 		//document->Load(readers);
 		//document->Validate(ed);  
 #endif // VALIDATEXML
 
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("FileConfigurazione//TabellaOrario.xml", settings);
+		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("FileConfigurazione//TabellaOrario.xml", settings);
 
 		// per ogni treno presente nel file di configurazione della tabella orario...
 		while (reader->ReadToFollowing("treno")){
 			System::Xml::XmlReader ^inner = reader->ReadSubtree();
 			// ...leggo l'id del treno
-			System::String ^SystemStringIdTreno = reader->GetAttribute("id");
+			System::String ^SystemStringIdTreno = reader->GetAttribute("trn");
 			// converto l'id del treno da System::String a int
 			int idTreno = int::Parse(SystemStringIdTreno);
+
+			System::String ^SystemStringengineTreno = reader->GetAttribute("engine");
+			// converto l'id del treno da System::String a int
+			int idTrenoengine = int::Parse(SystemStringengineTreno);
 			// creo un nuovo treno
 			List<Fermata^> ^treno = gcnew List<Fermata^>();
 
@@ -203,7 +207,7 @@ void TabellaOrario::leggiTabellaOrario()
 				System::Console::WriteLine();
 			}
 			// a questo punto aggiungo il treno alla tabella orario
-			tabella->Add(idTreno, treno);
+			tabella->Add(idTrenoengine, treno);
 		}
 		reader->Close();
 	}catch(Exception ^e){

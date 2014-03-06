@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <orario xmlns="urn:tabellaorario-schema">
-<treno id="11153">
+<treno engine="665522" trn="11153">
   <stazione id="13000"  name="Via Accademia">
     <arrivo>17:00:00</arrivo>
     <partenza>17:02:00</partenza>
@@ -75,7 +75,7 @@
 
 </treno>
 
-<treno id="1152">
+<treno engine="65280" trn="1152">
   <stazione id="13000"  name="Via Accademia">
     <arrivo>17:00:00</arrivo>
     <partenza>17:02:00</partenza>
@@ -151,7 +151,7 @@
 </treno>
 
 
-  <treno id="1173">
+  <treno engine="65615" trn="1173">
 
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>08:00:00</arrivo>
@@ -246,7 +246,7 @@
     </stazione>-->
 
   </treno>
- <treno id="1166">
+ <treno engine="65551" trn="1166">
  
  
   
@@ -280,7 +280,7 @@
 </treno>
 
 
-   <treno id="1153">
+   <treno engine="65315" trn="1153">
  
   <stazione id="12000"  name="Piazza Dante">
     <arrivo>17:13:00</arrivo>
@@ -321,7 +321,7 @@
 </treno>
 
 
-<treno id="1154">
+<treno engine="65316" trn="1154">
   <stazione id="10000"  name="Vicolo Corto">
     <arrivo>17:00:00</arrivo>
     <partenza>17:02:00</partenza>
@@ -396,7 +396,7 @@
 
 </treno>
   
- <treno id="1151">
+ <treno engine="65290" trn="1151">
  
   <stazione id="12000"  name="Piazza Dante">
     <arrivo>17:13:00</arrivo>
@@ -437,7 +437,7 @@
 </treno>
 
 
-<treno id="1155">
+<treno engine="65999" trn="1155">
 
     
 

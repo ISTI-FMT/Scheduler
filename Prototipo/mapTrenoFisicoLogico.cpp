@@ -16,10 +16,10 @@ mapTrenoFisicoLogico::mapTrenoFisicoLogico(void)
 
 void mapTrenoFisicoLogico::inizializza(){
 	try{
-		//System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("MapTreni.xml");
+		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("MapTreni.xml");
 	
-	//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("FileConfigurazione/MapTreni.xml");
+	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
+	//	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("FileConfigurazione/MapTreni.xml");
 		while (reader->ReadToFollowing("map")){
 			System::Xml::XmlReader ^inner = reader->ReadSubtree();
 
