@@ -1,6 +1,7 @@
 #pragma once
 #using <System.dll>
 #include "..\\messaggi\\StateCDB.h"
+#include "lrbg.h"
 using namespace System;
 using namespace System::Collections::Generic;
 /*utilizzo questa classe per rappresentare le informazioni degli itinerari parsate dal file xml ConfigurazioneItinerari.xml*/
@@ -11,8 +12,7 @@ public ref class Itinerario
 	int id;
 	String ^name;
 	String ^direzione;
-	int lrgb;
-	int dStop;
+	lrbg ^infolrbg;
 	bool porteBanchina;
 	String ^latoBanchina;
 	int prevCDB;
@@ -44,17 +44,16 @@ public:
 	Itinerario(typeItini t);
 	void setId(int i){id = i;}
 	int getId(){return id;}
-	typeItini getTipiItinerario(){return tipoitin;}
+	typeItini getTipoItinerario(){return tipoitin;}
 	void set_nextstation(int i){nextstation = i;}
 	int^ get_nextstation(){return nextstation;}
 	void setName(String ^i){name = i;}
 	String^ getName(){return name;}
 	void setDirezione(String ^d){direzione = d;}
 	String^ getDirezione(){return direzione;}
-	void setLrgb(int l){lrgb = l;}
-	int getLrgb(){return lrgb;}
-	void setDStop(int d){dStop = d;}
-	int getDStop(){return dStop;}
+	void setLrgb(lrbg ^l){infolrbg = l;}
+	lrbg^ getLrgb(){return infolrbg;}
+	
 	void setPorteBanchina(bool p){porteBanchina = p;}
 	bool getPorteBanchina(){return porteBanchina;}
 	void setLatoBanchina(String ^l){latoBanchina = l;}

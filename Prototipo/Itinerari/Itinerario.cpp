@@ -8,8 +8,8 @@ Itinerario::Itinerario(typeItini t)
 	tipoitin=t;
 	name=gcnew String("");
 	direzione = gcnew String("");
-	lrgb = 0;
-	dStop = 0;
+	infolrbg = gcnew lrbg();
+	
 	porteBanchina = false;
 	latoBanchina = gcnew String ("");
 	prevCDB = 0;
@@ -22,8 +22,7 @@ System::String^ Itinerario::ToString(){
 	String ^out="";
 	out+=" Id Itinenario: "+id;
 	out+=" Nome Itinenario: "+name;
-	out+=" Id lrgb: "+lrgb;
-	out+=" D_stop: "+dStop;
+	out+=" info lrgb: "+infolrbg->ToString();
 	out+=" Porte Banchina: "+porteBanchina;
 	out+=" Lato Banchina: "+latoBanchina;
 	out+=" prevCDB: "+prevCDB;

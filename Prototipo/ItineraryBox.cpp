@@ -134,10 +134,10 @@ void ItineraryBox::initCombo(String ^direzione){
 		for each (Itinerario ^itin in valueColl)
 		{
 			if(itin->getDirezione()==direzione){
-				if(itin->getTipiItinerario()==typeItini::Entrata){
+				if(itin->getTipoItinerario()==typeItini::Entrata){
 					comboBoxE->Items->Add(itin);
 				}else{
-					if(itin->getTipiItinerario()==typeItini::Uscita){
+					if(itin->getTipoItinerario()==typeItini::Uscita){
 						comboBoxU->Items->Add(itin);
 					}
 

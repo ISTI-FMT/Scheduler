@@ -18,7 +18,7 @@ questa classe rappresenta un Pacchetto di Mission Data
 L'ATS manda una missione al treno la missione da eseguire specificandola all'interno di un messaggio 
 mission plan
 -------------------------------------------------------------------------------------------------*/
-
+enum QSCALEMissionData { CM = 0 , M = 1 , DC=2};
 ref class pacchettoMissionData : pacchettoBase
 {
 	int L_PACKET;

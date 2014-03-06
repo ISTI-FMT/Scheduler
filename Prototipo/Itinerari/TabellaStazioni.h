@@ -25,10 +25,26 @@ public:
 
 	//fornendo id della stazione e dell'itinerario restiuisce una lista di 2 valori interi che rappresentano rispettivamente
 	//nid_lrgb e D_stop per quell'itinerario 
-	List<int> ^get_infobalise(int idstazione, int iditini){
+	lrbg ^get_infobalise(int idstazione, int iditini){
 
 		if(mapidstazioneitinerari->ContainsKey(idstazione)){
 			return mapidstazioneitinerari[idstazione]->get_infobalise(iditini);
+		}
+		return nullptr;
+
+	}
+	///indica la direzione in cui va il treno true dx da accademia -> vittoria, false viceversa
+	bool get_Direzione_itinerario(int idstazione, int iditini){
+		if(mapidstazioneitinerari->ContainsKey(idstazione)){
+			return mapidstazioneitinerari[idstazione]->get_Direzione_itinerario(iditini);
+		}
+		return false;
+	}
+
+	lrbg ^get_infobalise_fromBinario(int idstazione, int bina){
+
+		if(mapidstazioneitinerari->ContainsKey(idstazione)){
+			return mapidstazioneitinerari[idstazione]->get_infobalise_fromBinario(bina);
 		}
 		return nullptr;
 

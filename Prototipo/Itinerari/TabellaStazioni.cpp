@@ -7,13 +7,14 @@ using namespace System::Globalization;
 using namespace System::Xml;
 using namespace System::Xml::Schema;
 
+
 #define TRACE
 #define VALIDATEXML
 
 TabellaStazioni::TabellaStazioni(void)
 {
 	mapidstazioneitinerari= gcnew Dictionary<int,stazione^ >() ;
-	
+
 
 }
 
@@ -48,6 +49,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
 
 		// per ogni stazione presente nel file di configurazione degli itinerari...
+		
 		while (reader->ReadToFollowing("stazione")){
 			System::Xml::XmlReader ^inner = reader->ReadSubtree();
 			// ...leggo l'id della stazione
@@ -87,10 +89,10 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 						newitinerario->setPorteBanchina(false);
 					}
 
-					int nidlrgb = int::Parse(inner2->GetAttribute("nid_lrgb"));
-					newitinerario->setLrgb(nidlrgb);
-					int dstop = int::Parse(inner2->GetAttribute("d_stop"));
-					newitinerario->setDStop(dstop);
+					//	int nidlrgb = int::Parse(inner2->GetAttribute("nid_lrgb"));
+					//	newitinerario->setLrgb(nidlrgb);
+					//	int dstop = int::Parse(inner2->GetAttribute("d_stop"));
+					//	newitinerario->setDStop(dstop);
 					newitinerario->setLatoBanchina( inner2->GetAttribute("latobanchina"));
 
 					newitinerario->setNextCDB( int::Parse( inner2->GetAttribute("nextcdb")));
@@ -98,7 +100,11 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 					int prevcdb = int::Parse(	inner2->GetAttribute("prevcdb"));
 					newitinerario->setPrevCDB( prevcdb);	
 
+					inner2->ReadToFollowing("ListCDB");
+
 					System::Xml::XmlReader ^inner3 = inner2->ReadSubtree();
+					
+
 					while (inner3->ReadToFollowing("cdb")){
 
 
@@ -107,7 +113,28 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 						newitinerario->getLCDB()->Add(cdb);
 
 					}
+					
 
+					inner2->ReadToFollowing("lrgb");
+
+					int nid_lrgb = int::Parse(inner2->GetAttribute("nid"));
+					int d_stop = int::Parse(	inner2->GetAttribute("dstop"));
+
+					lrbg ^infolrbg = gcnew lrbg(nid_lrgb,d_stop);
+					
+					inner3 = inner2->ReadSubtree();
+
+					while (inner3->ReadToFollowing("pkm")){
+
+						int rifkm = int::Parse(		inner3->GetAttribute("km"));
+						int idpstation = int::Parse(	inner3->GetAttribute("idoffstaz"));
+
+						infolrbg->add_progressivakm(rifkm,idpstation);
+
+
+					}
+
+					newitinerario->setLrgb(infolrbg);
 
 					newstazione->getItinerariid()->Add(Iditinerario,newitinerario);
 
@@ -157,7 +184,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 					newitinerario->set_nextstation( int::Parse(nextstation));	
 
-
+					inner2->ReadToFollowing("ListCDB");
 					System::Xml::XmlReader ^inner3 = reader->ReadSubtree();
 					while (inner3->ReadToFollowing("cdb")){
 
@@ -168,6 +195,24 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 					}
 
+					inner2->ReadToFollowing("lrgb");
+					int nid_lrgb = int::Parse(inner2->GetAttribute("nid"));
+					int d_stop = int::Parse(	inner2->GetAttribute("dstop"));
+
+					lrbg ^infolrbg = gcnew lrbg(nid_lrgb,d_stop);
+
+					inner3 = inner2->ReadSubtree();
+
+					while (inner3->ReadToFollowing("pkm")){
+
+						int rifkm = int::Parse(		inner3->GetAttribute("km"));
+						int idpstation = int::Parse(	inner3->GetAttribute("idoffstaz"));
+
+						infolrbg->add_progressivakm(rifkm,idpstation);
+
+
+					}
+					newitinerario->setLrgb(infolrbg);
 					newstazione->getItinerariid()->Add(Iditinerario,newitinerario);
 
 					if(!newstazione->getItinerari()->ContainsKey(prevcdb)){
@@ -307,7 +352,7 @@ void TabellaStazioni::leggifileconfigurazioneFermate()
 					// setto direzione del binario
 					bin->setDirezione(direzione);
 
-					// ...leggo nid_lrgb del binario
+					/*// ...leggo nid_lrgb del binario
 					System::String ^Strnid_lrgb = inner->GetAttribute("nid_lrgb");
 					// converto nid_lrgb dellbinario da System::String a int
 					int nid_lrgb = int::Parse(Strnid_lrgb);
@@ -319,7 +364,7 @@ void TabellaStazioni::leggifileconfigurazioneFermate()
 					// converto d_stop dellbinario da System::String a int
 					int d_stop = int::Parse(Strd_stop);
 					// setto d_stop del binario
-					bin->setD_stop(d_stop);
+					bin->setD_stop(d_stop);*/
 
 					// ...leggo portebanchina del binario
 					System::String ^Strportebanchina = inner->GetAttribute("portebanchina");
@@ -357,11 +402,34 @@ void TabellaStazioni::leggifileconfigurazioneFermate()
 					// setto prevCDB del binario
 					bin->setPrevCDB(prevCDB);
 
-					reader->ReadToFollowing("cdb");
+					System::Xml::XmlReader ^inner2 = inner->ReadSubtree();
+
+					inner->ReadToFollowing("cdb");
 					System::String ^StrCDB = inner->ReadString();
+					
 					// converto CDB dellbinario da System::String a int
 					//int CDB = int::Parse(StrCDB);
-					bin->setCDB(StrCDB);
+					bin->setCDB(int::Parse(StrCDB));
+					
+
+					inner2->ReadToFollowing("lrgb");
+					int nid_lrgb = int::Parse(inner2->GetAttribute("nid"));
+					int d_stop = int::Parse(	inner2->GetAttribute("dstop"));
+
+					lrbg ^infolrbg = gcnew lrbg(nid_lrgb,d_stop);
+
+
+					while (inner2->ReadToFollowing("pkm")){
+
+						int rifkm = int::Parse(		inner2->GetAttribute("km"));
+						int idpstation = int::Parse(	inner2->GetAttribute("idoffstaz"));
+
+						infolrbg->add_progressivakm(rifkm,idpstation);
+
+
+					}
+					bin->set_info_lrgb(infolrbg);
+					
 
 					// inserisco il binario nella lista
 					newstazione->addBinario(bin);

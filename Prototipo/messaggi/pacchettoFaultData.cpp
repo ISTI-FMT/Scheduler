@@ -73,7 +73,7 @@ void pacchettoFaultData::deserialize(array<Byte>^buffer, int offset)
 	setN_ITER(utility::pop(buffer, 5, offset));
 	offset += 5;
 	//int offset = 89;
-	for(unsigned int i = 0; i < N_ITER; ++i)
+	for(int i = 0; i < N_ITER; ++i)
 	{
 		int NID_COMPONENT=utility::pop(buffer, 4, offset);
 		offset += 4;

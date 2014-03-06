@@ -65,7 +65,7 @@ void pachettoStatoScudetti::deserialize(array<Byte>^buffer, int offset)
 
 	setN_ITER(utility::pop(buffer, 16, offset + 56));
 	int shift = 72;
-	for(unsigned int i = 0; i < N_ITER; ++i)
+	for(int i = 0; i < N_ITER; ++i)
 	{
 		int NID_SCUD=utility::pop(buffer, 32, offset + shift);
 		shift += 32;

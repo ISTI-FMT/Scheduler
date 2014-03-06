@@ -109,7 +109,7 @@ void pacchettostatolineaatc::deserialize(array<Byte>^buffer, int offset)
 	offset += 5;
 	//int offset = 145;
 
-	for(unsigned int i = 0; i < N_ITER; ++i)
+	for(int i = 0; i < N_ITER; ++i)
 	{
 		int NID_CDB=utility::pop(buffer, 32, offset);
 		offset += 32;

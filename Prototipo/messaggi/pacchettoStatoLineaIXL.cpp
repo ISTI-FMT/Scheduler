@@ -79,7 +79,7 @@ void pacchettoStatoLineaIXL::deserialize(array<Byte>^buffer, int offset)
 	setN_ITER(utility::pop(buffer, 16, offset));
 	offset += 16;
 	//int offset = 124;
-	for(unsigned int i = 0; i < N_ITER; ++i)
+	for(int i = 0; i < N_ITER; ++i)
 	{
 		int NID_CDB=utility::pop(buffer, 32, offset);
 		offset += 32;

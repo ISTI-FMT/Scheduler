@@ -13,7 +13,7 @@ Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di u
 Un oggetto di tipo fermata rappresenta una fermata di un treno
 */
 // Commento inutile
-public ref class Fermata
+public ref class Fermata  : public IEquatable<Fermata^>
 {
 	int idStazione;
 	String ^nameStazione;
@@ -44,6 +44,21 @@ public:
 		nameitinerarioentrata=nie;
 		iditinerariouscita=idiu;
 		nameitinerariouscita=niu;
+
+	}
+	Fermata(int i){
+
+		idStazione=i;
+		nameStazione = "";
+		orarioArrivo = 0;
+		orarioPartenza = 0;
+		tempoMinimoAperturaPorte = 0;
+		binarioProgrammato = 0;
+		latoAperturaPorte = noApertura;
+		iditinerarioentrata=0;
+		nameitinerarioentrata="";
+		iditinerariouscita=0;
+		nameitinerariouscita="";
 
 	}
 	// Funzioni per la manipolazione (set e get) dell'id della stazione
@@ -83,9 +98,10 @@ public:
 	void setOrarioPartenza(DateTime orario);
 
 	Fermata ^Clone(){
-			return gcnew Fermata(idStazione,nameStazione,orarioArrivo,orarioPartenza,tempoMinimoAperturaPorte,binarioProgrammato,latoAperturaPorte,iditinerarioentrata,nameitinerarioentrata,iditinerariouscita,nameitinerariouscita);
+		return gcnew Fermata(idStazione,nameStazione,orarioArrivo,orarioPartenza,tempoMinimoAperturaPorte,binarioProgrammato,latoAperturaPorte,iditinerarioentrata,nameitinerarioentrata,iditinerariouscita,nameitinerariouscita);
 	}
 
 	virtual System::String^ ToString() override;
+	virtual bool Equals(Fermata^ otherKey);
 };
 

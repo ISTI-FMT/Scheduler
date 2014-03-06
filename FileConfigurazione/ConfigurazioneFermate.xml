@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configurazionefermate xmlns="urn:conffermate-schema" >
 <fermata id="500" name="Vicolo Stretto">
-    <binario bin="1" namebin="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" nextCDB="11020" prevCDB="10010">
+    <binario bin="1" namebin="I" direzione="dx"  portebanchina="true" latobanchina="dx" nextCDB="11020" prevCDB="10010">
       
        <cdb>504</cdb>
-	    
+	    <lrgb nid="169" dstop="595" >
+          <pkm km="2085" idoffstaz="10000"/>
+      </lrgb>
     </binario>
-    <binario bin="1" namebin="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextCDB="10010" prevCDB="11020">
+    <binario bin="1" namebin="I" direzione="sx"  portebanchina="true" latobanchina="sx" nextCDB="10010" prevCDB="11020">
 
       <cdb>504</cdb>
+        <lrgb nid="169" dstop="195" >
+          <pkm km="2085" idoffstaz="10000"/>
+      </lrgb>
 	  
     </binario>
 
@@ -17,53 +22,77 @@
   </fermata>
 
   <fermata id="400" name="Via Marco Polo">
-    <binario bin="1" namebin="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx" nextCDB="408" prevCDB="404">
+    <binario bin="1" namebin="I" direzione="dx"  portebanchina="true" latobanchina="dx" nextCDB="408" prevCDB="404">
       
        <cdb>406</cdb>
-	    
+	      <lrgb nid="151" dstop="1180" >
+          <pkm km="10910" idoffstaz="10000"/>
+          <pkm km="12910" idoffstaz="13000"/>
+      </lrgb>
     </binario>
-    <binario bin="1"  namebin="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextCDB="404" prevCDB="408">
+    <binario bin="1"  namebin="I" direzione="sx"  portebanchina="true" latobanchina="sx" nextCDB="404" prevCDB="408">
 
       <cdb>406</cdb>
-	  
+	  <lrgb nid="183" dstop="674" >
+          <pkm km="12764" idoffstaz="10000"/>
+      <pkm km="14764" idoffstaz="13000"/>
+      </lrgb>
     </binario>
 
-    <binario bin="2" namebin="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  nextCDB="409" prevCDB="405">
+    <binario bin="2" namebin="II" direzione="dx"  portebanchina="true" latobanchina="sx"  nextCDB="409" prevCDB="405">
 
       <cdb>407</cdb>
-	   
+	   <lrgb nid="152" dstop="1180" >
+          <pkm km="10910" idoffstaz="10000"/>
+       <pkm km="12910" idoffstaz="13000"/>
+      </lrgb>
     </binario>
 
-    <binario bin="2" namebin="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx"  nextCDB="405" prevCDB="409">
+    <binario bin="2" namebin="II" direzione="sx"  portebanchina="true" latobanchina="dx"  nextCDB="405" prevCDB="409">
 
       <cdb>407</cdb>
-	  
+	  <lrgb nid="184" dstop="674" >
+          <pkm km="12764" idoffstaz="10000"/>
+      <pkm km="14764" idoffstaz="13000"/>
+      </lrgb>
     </binario>
    
   </fermata>
 
   <fermata id="410" name="Via Roma">
-    <binario bin="1" namebin="I" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx" nextCDB="420" prevCDB="416">
+    <binario bin="1" namebin="I" direzione="dx"  portebanchina="true" latobanchina="sx" nextCDB="420" prevCDB="416">
 
       <cdb>418</cdb>
-	  
+      <lrgb nid="183" dstop="1726" >
+        <pkm km="12764" idoffstaz="10000"/>
+        <pkm km="14764" idoffstaz="13000"/>
+      </lrgb>
     </binario>
 
-    <binario bin="1" namebin="I" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  nextCDB="416" prevCDB="420">
+    <binario bin="1" namebin="I" direzione="sx"  portebanchina="true" latobanchina="sx"  nextCDB="416" prevCDB="420">
 
       <cdb>418</cdb>
-	   
+	   <lrgb nid="185" dstop="128" >
+       <pkm km="14618" idoffstaz="10000"/>
+       <pkm km="16618" idoffstaz="13000"/>
+      </lrgb>
     </binario>
-    <binario bin="2" namebin="II" direzione="dx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="dx"  nextCDB="421" prevCDB="417">
+    <binario bin="2" namebin="II" direzione="dx"  portebanchina="true" latobanchina="dx"  nextCDB="421" prevCDB="417">
 
       <cdb>419</cdb>
-	   
+      <lrgb nid="184" dstop="1726" >
+       <pkm km="14618" idoffstaz="10000"/>
+     <pkm km="16618" idoffstaz="13000"/>
+      </lrgb>
     </binario>
 
-    <binario bin="2" namebin="II" direzione="sx"  nid_lrgb="5225" d_stop="222" portebanchina="true" latobanchina="sx"  nextCDB="417" prevCDB="421">
+    <binario bin="2" namebin="II" direzione="sx"  portebanchina="true" latobanchina="sx"  nextCDB="417" prevCDB="421">
 
       <cdb>419</cdb>
-	 
+	 <lrgb nid="186" dstop="128" >
+          <pkm km="14618" idoffstaz="10000"/>
+     <pkm km="16618" idoffstaz="13000"/>
+      </lrgb>
     </binario>
     
   </fermata>
