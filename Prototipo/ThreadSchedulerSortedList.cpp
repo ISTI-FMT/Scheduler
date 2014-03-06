@@ -111,14 +111,9 @@ void ThreadSchedulerSortedList::Schedule(){
 						if(((idTRenoCDBPrecIT==Train->getTRN())|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
-							//inserire codice per sapere se questo passo comporta un deadlock o meno
-
+							//Controllo che l'acquisizione del prossimo cdb non crei deadlock
 							if (areeCritiche->richiestaCdb(nextCdbU, Train->getTRN()))
 							{
-								areeCritiche->entrataCdb(nextCdbU, Train->getTRN());
-
-
-								//fine
 								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 
 									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
@@ -127,11 +122,10 @@ void ThreadSchedulerSortedList::Schedule(){
 									}
 								}
 							}
-
 						}
-
-
-					}else{
+					}
+					else
+					{
 						Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
 						controlListtrain->OnNextIt(Train);
 					}
@@ -162,14 +156,9 @@ void ThreadSchedulerSortedList::Schedule(){
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 									//che riporti il cambiamento dello stato dell'itinerario
 
-									//inserire codice per sapere se questo passo comporta un deadlock o meno
+									//Controllo che l'acquisizione del prossimo cdb non crei deadlock
 									if (areeCritiche->richiestaCdb(nextCdbE, Train->getTRN()))
 									{
-										areeCritiche->entrataCdb(nextCdbE, Train->getTRN());
-
-
-										//fine
-
 										if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 
 											List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
@@ -186,15 +175,9 @@ void ThreadSchedulerSortedList::Schedule(){
 							int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_ENGINE();
 							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==Train->getTRN()|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber()){
 
-								//inserire codice per sapere se questo passo comporta un deadlock o meno
-
-								//fine
-
-
+								//Controllo che l'acquisizione del prossimo cdb non crei deadlock
 								if (areeCritiche->richiestaCdb(nextCdbE, Train->getTRN()))
 								{
-									areeCritiche->entrataCdb(nextCdbE, Train->getTRN());
-
 									//se l'itinerario è libero
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
 									//che riporti il cambiamento dello stato dell'itinerario

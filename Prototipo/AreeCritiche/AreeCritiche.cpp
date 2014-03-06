@@ -122,16 +122,24 @@ Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non han
 */
 bool AreeCritiche::richiestaCdb(int cdb, int trn)
 {
+	bool entrataValida = true;
 	for (int i = 0; i < areeCritiche->Count; i++)
 	{
 		AreaCritica^ area = areeCritiche[i];
 
 		if (!area->entrataPermessa(trn, cdb))
 		{
-			return false;
+			entrataValida = false;
+			break;
 		}
 	}
-	return true;
+	
+	if (entrataValida)
+	{
+		entrataCdb(cdb, trn);
+	}
+
+	return entrataValida;
 }
 
 void AreeCritiche::entrataCdb(int cdb, int trn)
