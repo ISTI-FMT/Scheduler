@@ -1,14 +1,13 @@
 #pragma once
+
 enum typeStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
 
-/*Utilizzo questa classe per serializzare le informazioni dello stato dell'itinerario del pacchetto stato itinerario
-rivevuto dall'IXL*/
-
-
-//questa classe rappresenta lo stato di un itinerario
+/*
+Rappresenta le informazioni dello stato dell'itinerario del pacchetto stato itinerario rivevuto dall'IXL
+*/
 public ref class StateItinerario
 {
-	unsigned int NID_ITIN;
+	int NID_ITIN;
 	int Q_STATOITIN ;
 	
 public:
@@ -32,9 +31,6 @@ public:
 				Q_STATOITIN=newitin->getQ_STATOITIN();
 				ret=true;
 			}
-
-
-
 		}
 		return ret;
 	};

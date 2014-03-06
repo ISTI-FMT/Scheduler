@@ -9,11 +9,8 @@ pacchettopresentazione::pacchettopresentazione(void)
 
 }
 
-// metodo per la serializzazion del messaggio
-// il buffer di byte deve essere stato precedentemente correttamente allocato.
 void pacchettopresentazione::serialize(array<Byte>^buffer, int offset)
 {
-	//utility::push(buffer, data.NID_ENGINE, 24, 51);
 	utility::push(buffer, NID_PACKET, 8, offset);
 	offset += 8;
 	setL_PACKET(getSize());
@@ -24,11 +21,8 @@ void pacchettopresentazione::serialize(array<Byte>^buffer, int offset)
 
 }
 
-// metodo per la deserializzazion del messaggio
-// il buffer di byte deve essere stato precedentemente correttamente allocato.
 void pacchettopresentazione::deserialize(array<Byte>^buff, int offset)
 {
-	//data.NID_ENGINE = utility::pop(buff, 24, 51);
 	NID_PACKET = utility::pop(buff, 8, offset);
 	offset += 8;
 	L_PACKET = utility::pop(buff, 13, offset);

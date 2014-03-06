@@ -1,13 +1,13 @@
 #pragma once
-//questa classe rappresenta lo stato di un segnale
 
-/*Utilizzo questa classe per serializzare le informazioni sullo stato dei segnali del pacchetto stato segnali
-rivevuto dall'IXL*/
+/*
+Rappresenta lo stato dei segnali del pacchetto stato segnali rivevuto dall'IXL
+*/
 
 ref class StateSegnale
 {
-	unsigned int NID_SEGN ;
-	unsigned int Q_STATOSEGN ;
+	int NID_SEGN ;
+	int Q_STATOSEGN ;
 public:
 	StateSegnale(void);
 	StateSegnale(int N, int Q){NID_SEGN=N;Q_STATOSEGN=Q;};

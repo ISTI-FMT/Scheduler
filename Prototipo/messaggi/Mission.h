@@ -1,9 +1,9 @@
 #pragma once
 
-/*Utilizzo questa classe per serializzare le informazioni della missione del pacchetto MissionData da inviare all'ATO*/
+/*
+Questa classe rappresenta le informazioni sulla missione da affidare ad un treno
+*/
 
-
-//questa classe rappresenta le informazioni sulla missione da affidare ad un treno
 ref class Mission
 {
 	 int T_START_TIME;

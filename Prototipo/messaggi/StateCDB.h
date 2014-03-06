@@ -2,18 +2,17 @@
 enum  typeStateCDB { cdbOccupato = 1, cdbImpegnato = 2, cdbLibero = 0,  cdbFuoriControllo = 3};
 enum  typeStateDeviatoio{deviatoioStatoIgnoto = 4, deviatoioNonPresente = 0, deviatoioNormale = 1, deviatoioRovescio = 2};
 
-/*Utilizzo questa classe per serializzare le informazioni dello stato del CDB del pacchetto stato linea da ricevere all'ATC o IXL*/
-
-
-//questa classe rappresenta lo stato di un CDB
+/*
+Rappresenta lo stato di un CDB del pacchetto stato linea da ricevere all'ATC o IXL
+*/
 
 public ref class StateCDB
 {
-	unsigned int NID_CDB ;
-	unsigned int Q_STATOCDB ;
-	unsigned int Q_DEVIATOIO ;
-	unsigned int NID_OPERATIONAL ;
-	unsigned int NID_ENGINE ;
+	int NID_CDB ;
+	int Q_STATOCDB ;
+	int Q_DEVIATOIO ;
+	int NID_OPERATIONAL ;
+	int NID_ENGINE ;
 public:
 	StateCDB(void);
 	StateCDB(int nid, int state, int dev);
@@ -68,10 +67,7 @@ public:
 
 	void setNID_ENGINE(int NID){NID_ENGINE=NID;};
 	int getNID_ENGINE(){return NID_ENGINE;};
-
-
-	//int Size(){return 32+2+2;}
-
+	
 	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO,NID_OPERATIONAL,NID_ENGINE);}
 
 	virtual System::String ^ToString() override;

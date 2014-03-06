@@ -1,8 +1,6 @@
 #include "pacchettoCommandData.h"
 #include "utility.h"
 
-
-
 pacchettoCommandData::pacchettoCommandData(void)
 {
 	setNID_PACKET(PacchettoATO::PacchettoCommandData);
@@ -12,11 +10,8 @@ pacchettoCommandData::pacchettoCommandData(void)
 	NID_OPERATIONAL = 0;
 }
 
-// questa funzione prende in ingresso un buffer di byte (la cui dimensione deve essere almeno 10, ma il controllo sulla 
-// dimensione deve essere fatto all'esterno della funzione) e copia in buffer il contenuto del pacchettoCommandData
 void pacchettoCommandData::serialize(array<Byte>^buffer, int offset)
 {
-
 	utility::push(buffer, NID_PACKET, 8, offset);
 	offset +=8;
 	setL_PACKET(getSize());
@@ -54,9 +49,11 @@ void pacchettoCommandData::deserialize(array<Byte>^buffer, int offset)
 
 pacchettoCommandData::~pacchettoCommandData(void)
 {
+
 }
 
-System::String ^pacchettoCommandData::ToString(){
+System::String ^pacchettoCommandData::ToString()
+{
 	System::String ^out = "NID_PACKET "+NID_PACKET+";\n";
 	out = out+"L_PACKET "+getL_PACKET()+";";
 	out = out+"Q_COMMAND_TYPE "+getQ_COMMAND_TYPE()+";";
@@ -67,5 +64,4 @@ System::String ^pacchettoCommandData::ToString(){
 		out = out+"NID_OPERATIONAL "+getNID_OPERATIONAL()+";";
 
 	return out;
-
 }

@@ -5,22 +5,16 @@ pacchettoFaultData::pacchettoFaultData(int ID_PACKET)
 {
 	setNID_PACKET(ID_PACKET);
 	L_PACKET = 0;
-	
+
 	N_ITER = 0;
 	vGuasto = gcnew List<Fault^>();
 }
 
-// metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
 void pacchettoFaultData::setN_ITER(int N)
 {
 	N_ITER = N;
-
 }
 
-
-// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 int pacchettoFaultData::getSize()
 {
 	// intero che rappresenta la dimensione in bit
@@ -56,7 +50,6 @@ void pacchettoFaultData::serialize(array<Byte>^buffer, int offset)
 		utility::push(buffer, vGuasto[i]->getM_FAULT(), 8, offset);
 		offset += 8;
 	}
-
 }
 
 void pacchettoFaultData::deserialize(array<Byte>^buffer, int offset)
@@ -91,12 +84,11 @@ System::String ^pacchettoFaultData::ToString(){
 	out = out+"L_PACKET: "+L_PACKET+";";
 	out = out+vGuasto[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
-	
-		for (int i=1;i<vGuasto->Count;i++)
-		{
-			out = out+vGuasto[i]->ToString();
-		}
 
-	
+	for (int i=1;i<vGuasto->Count;i++)
+	{
+		out = out+vGuasto[i]->ToString();
+	}
+
 	return out;
 }

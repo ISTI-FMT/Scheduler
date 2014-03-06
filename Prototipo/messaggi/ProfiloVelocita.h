@@ -1,13 +1,13 @@
 #pragma once
 
-/*Utilizzo questa classe per serializzare le informazioni sul profilo velocità del pacchetto MissionData da inviare all'ATO*/
+/*
+Rappresenta le informazioni sul profilo velocità del pacchetto MissionData da inviare all'ATO
+*/
 
-
-//questa classe rapprenta un profilo di velocità
 ref class ProfiloVelocita
 {
-	unsigned int D_MISSION ;
-	unsigned int V_MISSION ;
+	int D_MISSION ;
+	int V_MISSION ;
 public:
 	ProfiloVelocita(void);
 	ProfiloVelocita(int D, int V){D_MISSION=D;V_MISSION=V;};

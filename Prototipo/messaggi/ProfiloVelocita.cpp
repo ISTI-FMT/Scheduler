@@ -13,6 +13,5 @@ System::String ^ ProfiloVelocita::ToString(){
 	out = out+"D_MISSION: "+D_MISSION+";";
 	out = out+"V_MISSION: "+V_MISSION+";";
 
-
 	return out;
 };

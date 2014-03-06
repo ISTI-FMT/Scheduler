@@ -54,8 +54,6 @@ void pacchettostatolineaatc::setN_ITER(int N)
 
 }
 
-
-
 void pacchettostatolineaatc::serialize(array<Byte>^buffer, int offset)
 {
 	utility::push(buffer, NID_PACKET, 8, offset);
@@ -73,11 +71,8 @@ void pacchettostatolineaatc::serialize(array<Byte>^buffer, int offset)
 	offset += 2;
 	utility::push(buffer, N_ITER, 5, offset);
 	offset += 5;
-	//pstato1 = new pstatolineastruct[N_ITER];
-	//int offset = 145;
 	for( int i=1;i<pstato->Count;i++)
 	{
-
 		utility::push(buffer, pstato[i]->getNID_CDB(), 32, offset);
 		offset += 32;
 		utility::push(buffer, pstato[i]->getQ_STATOCDB(), 2, offset);

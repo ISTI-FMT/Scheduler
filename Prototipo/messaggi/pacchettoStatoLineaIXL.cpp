@@ -10,17 +10,12 @@ pacchettoStatoLineaIXL::pacchettoStatoLineaIXL(void)
 	vStatoCDB = gcnew List<StateCDB^>();
 }
 
-// metodo che setta N_ITER
 void pacchettoStatoLineaIXL::setN_ITER(int N)
 {
 	N_ITER = N;
 
 }
 
-
-// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 int pacchettoStatoLineaIXL::getSize()
 {
 	// intero che rappresenta la dimensione in bit
@@ -49,8 +44,6 @@ void pacchettoStatoLineaIXL::serialize(array<Byte>^buffer, int offset)
 	offset += 2;
 	utility::push(buffer, N_ITER, 16, offset);
 	offset += 16;
-	//mS1_vect = new missionStruct1[N_ITER1];
-	//int offset = 124;
 	for ( int i=1;i<vStatoCDB->Count;i++)
 	{
 		utility::push(buffer, vStatoCDB[i]->getNID_CDB(), 32, offset);
@@ -64,7 +57,6 @@ void pacchettoStatoLineaIXL::serialize(array<Byte>^buffer, int offset)
 
 void pacchettoStatoLineaIXL::deserialize(array<Byte>^buffer, int offset)
 {
-
 	NID_PACKET=utility::pop(buffer,  8, offset);
 	offset += 8;
 	L_PACKET=utility::pop(buffer, 13, offset);
@@ -78,7 +70,6 @@ void pacchettoStatoLineaIXL::deserialize(array<Byte>^buffer, int offset)
 	vStatoCDB->Add(gcnew StateCDB(tNID_CDB,tQ_STATOCDB,tQ_DEVIATOIO));
 	setN_ITER(utility::pop(buffer, 16, offset));
 	offset += 16;
-	//int offset = 124;
 	for(int i = 0; i < N_ITER; ++i)
 	{
 		int NID_CDB=utility::pop(buffer, 32, offset);

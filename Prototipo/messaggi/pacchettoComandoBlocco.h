@@ -2,15 +2,9 @@
 #include "utility.h"
 #include "pacchettoBase.h"
 
-
-/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto comando blocco che l'ATS invia dal IXL
-nel messaggio di Comando Direzione del Blocco, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
-
-
-/*-----------------------------------------------------------------------------------------------
-questa classe rappresenta un Pacchetto per eseguire dei comandi sui blocchi
-L'ATS invia all'IXl messaggi contenenti comandi sui blocchi
--------------------------------------------------------------------------------------------------*/
+/*
+Rappresenta i dati inviati dal pacchetto ComandoBlocco che l'ATS invia all'IXL
+*/
 enum  typeCmdBlocco { direzionelegale = 1, direzioneillegale = 0};
 
 ref class pacchettoComandoBlocco : pacchettoBase
@@ -21,7 +15,6 @@ ref class pacchettoComandoBlocco : pacchettoBase
 public:
 	pacchettoComandoBlocco(void);
 
-
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
 	void setNID_BLOCCO(int N){NID_BLOCCO = N;};
@@ -29,7 +22,6 @@ public:
 	void setQ_CMDBLOCCO(int Q){Q_CMDBLOCCO = Q;};
 	int getQ_CMDBLOCCO(){return Q_CMDBLOCCO;};
 
-	// funzione che restituisce la dimensione 
 	virtual int getSize() override;
 	virtual void serialize(array<Byte>^buffer, int offset) override;
 	virtual void deserialize(array<Byte>^buffer, int offset) override;
