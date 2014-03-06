@@ -1,6 +1,6 @@
 #pragma once
-enum  typeStateCDB { cdbOccupato = 1, cdbImpegnato = 2, cdbLibero = 0,  cdbFuoriControllo = 3};
-enum  typeStateDeviatoio{deviatoioStatoIgnoto = 4, deviatoioNonPresente = 0, deviatoioNormale = 1, deviatoioRovescio = 2};
+enum  QStateCDB { cdbOccupato = 1, cdbImpegnato = 2, cdbLibero = 0,  cdbFuoriControllo = 3};
+enum  QStateDeviatoio{deviatoioStatoIgnoto = 4, deviatoioNonPresente = 0, deviatoioNormale = 1, deviatoioRovescio = 2};
 
 /*
 Rappresenta lo stato di un CDB del pacchetto stato linea da ricevere all'ATC o IXL
@@ -15,28 +15,28 @@ public ref class StateCDB
 	int NID_ENGINE ;
 public:
 	StateCDB(void);
-	StateCDB(int nid, int state, int dev);
-	StateCDB(int nid, int state,  int dev, int idtrain);
-	StateCDB(int nid, int state, int dev, int idltrain, int idftrain);
+	StateCDB(int nid, QStateCDB state, QStateDeviatoio dev);
+	StateCDB(int nid, QStateCDB state, QStateDeviatoio dev, int idtrain);
+	StateCDB(int nid, QStateCDB state, QStateDeviatoio dev, int idltrain, int idftrain);
 	void setNID_CDB(int NID){NID_CDB=NID;};
 	int getNID_CDB(){return NID_CDB;};
-	void setQ_DEVIATOIO(int Q){
+	void setQ_DEVIATOIO(QStateDeviatoio Q){
 		if((Q>=0) & (Q<3)){
 			Q_DEVIATOIO=Q;
 		}else{
-			Q_DEVIATOIO=typeStateDeviatoio::deviatoioStatoIgnoto;
+			Q_DEVIATOIO=QStateDeviatoio::deviatoioStatoIgnoto;
 		}
 
 	};
-	int getQ_DEVIATOIO(){return Q_DEVIATOIO;};
-	void setQ_STATOCDB(int Q){
+	QStateDeviatoio getQ_DEVIATOIO(){return (QStateDeviatoio)Q_DEVIATOIO;};
+	void setQ_STATOCDB(QStateCDB Q){
 		if((Q>=0)& (Q<4)){
 			Q_STATOCDB=Q;
 		}else{
-			Q_STATOCDB=typeStateCDB::cdbFuoriControllo;
+			Q_STATOCDB=QStateCDB::cdbFuoriControllo;
 		}
 	};
-	int getQ_STATOCDB(){return Q_STATOCDB;};
+	QStateCDB getQ_STATOCDB(){return (QStateCDB)Q_STATOCDB;};
 	bool Update(StateCDB ^newcdb){
 		bool ret=false;
 		if(newcdb->getNID_CDB()==NID_CDB){
@@ -68,7 +68,7 @@ public:
 	void setNID_ENGINE(int NID){NID_ENGINE=NID;};
 	int getNID_ENGINE(){return NID_ENGINE;};
 	
-	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO,NID_OPERATIONAL,NID_ENGINE);}
+	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,(QStateCDB)Q_STATOCDB,(QStateDeviatoio)Q_DEVIATOIO,NID_OPERATIONAL,NID_ENGINE);}
 
 	virtual System::String ^ToString() override;
 

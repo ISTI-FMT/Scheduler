@@ -1,6 +1,6 @@
 #pragma once
 
-enum typeStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
+enum QStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
 
 /*
 Rappresenta le informazioni dello stato dell'itinerario del pacchetto stato itinerario rivevuto dall'IXL
@@ -12,17 +12,17 @@ public ref class StateItinerario
 	
 public:
 	StateItinerario(void);
-	StateItinerario(int N, int Q){NID_ITIN=N;setQ_STATOITIN(Q);};
+	StateItinerario(int N, QStateItineraio Q){NID_ITIN=N;setQ_STATOITIN(Q);};
 	void setNID_ITIN( int N){NID_ITIN=N;};
 	int getNID_ITIN(){return NID_ITIN;};
-	void setQ_STATOITIN( int Q){
+	void setQ_STATOITIN( QStateItineraio Q){
 		if((Q>=0) & (Q<2)){
 			Q_STATOITIN=Q;
 		}else{
-			Q_STATOITIN=typeStateItineraio::itinerarioStatoInAtto;
+			Q_STATOITIN=QStateItineraio::itinerarioStatoInAtto;
 		}
 	};
-	int getQ_STATOITIN(){return Q_STATOITIN;};
+	QStateItineraio getQ_STATOITIN(){return (QStateItineraio)Q_STATOITIN;};
 	int Size(){return 34;}
 	bool Update(StateItinerario ^newitin){
 		bool ret=false;
@@ -35,7 +35,7 @@ public:
 		return ret;
 	};
 
-	StateItinerario ^Clone(){return gcnew StateItinerario(NID_ITIN,Q_STATOITIN);};
+	StateItinerario ^Clone(){return gcnew StateItinerario(NID_ITIN,(QStateItineraio)Q_STATOITIN);};
 
 	virtual System::String ^ToString() override;
 };

@@ -99,7 +99,7 @@ void pacchettostatolineaatc::deserialize(array<Byte>^buffer, int offset)
 	int tQ_DEVIATOIO =utility::pop(buffer, 2, offset);
 	offset += 2;
 	
-	pstato->Add(gcnew StateCDB(tNID_CDB,tQ_STATOCDB,tQ_DEVIATOIO,NID_OPERATIONAL));
+	pstato->Add(gcnew StateCDB(tNID_CDB,(QStateCDB)tQ_STATOCDB,(QStateDeviatoio)tQ_DEVIATOIO,NID_OPERATIONAL));
 	setN_ITER(utility::pop(buffer, 5, offset));
 	offset += 5;
 	//int offset = 145;
@@ -113,6 +113,6 @@ void pacchettostatolineaatc::deserialize(array<Byte>^buffer, int offset)
 		int Q_DEVIATOIO=utility::pop(buffer, 2, offset);
 		offset += 2;
 
-		pstato->Add(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO,NID_OPERATIONAL));
+		pstato->Add(gcnew StateCDB(NID_CDB,(QStateCDB)Q_STATOCDB,(QStateDeviatoio)Q_DEVIATOIO,NID_OPERATIONAL));
 	}
 }

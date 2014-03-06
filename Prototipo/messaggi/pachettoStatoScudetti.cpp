@@ -13,7 +13,6 @@ pachettoStatoScudetti::pachettoStatoScudetti(void)
 void pachettoStatoScudetti::setN_ITER(int N)
 {
 	N_ITER = N;
-
 }
 
 int pachettoStatoScudetti::getSize()
@@ -48,7 +47,6 @@ void pachettoStatoScudetti::serialize(array<Byte>^buffer, int offset)
 
 void pachettoStatoScudetti::deserialize(array<Byte>^buffer, int offset)
 {
-
 	NID_PACKET=utility::pop(buffer,  8, offset);
 	L_PACKET=utility::pop(buffer, 13, offset + 8);
 	int tNID_SCUD=utility::pop(buffer, 32, offset + 21);

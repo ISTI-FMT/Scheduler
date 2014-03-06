@@ -35,8 +35,8 @@ public:
 	
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
-	void setQ_SCALE(int Q){Q_SCALE = Q;};
-	int getQ_SCALE(){return Q_SCALE;};
+	void setQ_SCALE(QSCALEMissionData Q){Q_SCALE = Q;};
+	QSCALEMissionData getQ_SCALE(){return (QSCALEMissionData)Q_SCALE;};
 	// metodo che setta N_ITER1 ed alloca conseguentemente il vettore mS1_vect
 	void setN_ITER1(int N);
 	int getN_ITER1(){return N_ITER1;};

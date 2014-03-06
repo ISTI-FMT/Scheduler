@@ -47,7 +47,6 @@
     <ClCompile Include="messaggi\StateScudetti.cpp" />
     <ClCompile Include="messaggi\StateSegnale.cpp" />
     <ClCompile Include="messaggi\utility.cpp" />
-    <ClCompile Include="messaggi\pacchettoBase.cpp" />
     <ClCompile Include="ParalellMethod.cpp" />
     <ClCompile Include="physicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />

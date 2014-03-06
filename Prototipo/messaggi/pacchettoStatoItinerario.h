@@ -14,7 +14,6 @@ Rappresenta le informazioni contenute nel pacchetto di stato dell'itinerario che
 ref class pacchettoStatoItinerario : pacchettoBase
 {
 	int L_PACKET ;
-	
 	int N_ITER ;
 	List<StateItinerario^> ^vStatoItinerario;
 public:

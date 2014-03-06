@@ -6,10 +6,10 @@ StateCDB::StateCDB(void)
 	NID_CDB = 0;
 	NID_OPERATIONAL=0;
 	NID_ENGINE=0;
-	Q_STATOCDB = typeStateCDB::cdbOccupato;
-	Q_DEVIATOIO = typeStateDeviatoio::deviatoioStatoIgnoto;
+	Q_STATOCDB = QStateCDB::cdbOccupato;
+	Q_DEVIATOIO = QStateDeviatoio::deviatoioStatoIgnoto;
 }
-StateCDB::StateCDB(int nid, int state, int dev)
+StateCDB::StateCDB(int nid, QStateCDB state, QStateDeviatoio dev)
 {
 	NID_CDB = nid;
 	setQ_STATOCDB(state);
@@ -18,7 +18,7 @@ StateCDB::StateCDB(int nid, int state, int dev)
 	NID_ENGINE=0;
 }
 
-StateCDB::StateCDB(int nid, int state, int dev, int idtrain)
+StateCDB::StateCDB(int nid, QStateCDB state, QStateDeviatoio dev, int idtrain)
 {
 	NID_CDB = nid;
 	setQ_STATOCDB(state);
@@ -27,7 +27,7 @@ StateCDB::StateCDB(int nid, int state, int dev, int idtrain)
 	NID_ENGINE=0;
 }
 
-StateCDB::StateCDB(int nid, int state, int dev, int idltrain, int idftrain)
+StateCDB::StateCDB(int nid, QStateCDB state, QStateDeviatoio dev, int idltrain, int idftrain)
 {
 	NID_CDB = nid;
 	setQ_STATOCDB(state);

@@ -78,7 +78,7 @@ namespace Prototipo {
 		void RequestStop();
 	private: 
 		//List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
-		void setCdBItin(List<StateCDB^> ^listCdB, int stato);
+		void setCdBItin(List<StateCDB^> ^listCdB, QStateCDB stato);
 
 	protected:
 		/// <summary>

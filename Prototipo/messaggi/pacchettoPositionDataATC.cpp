@@ -94,7 +94,7 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer, int offset)
 		int tNID_OPERATIONAL  =utility::pop(buffer, 32, 104);
 		int tNID_CDB =utility::pop(buffer, 32, 136);
 
-		ListPostionData->Add(gcnew StateCDB(tNID_CDB,typeStateCDB::cdbOccupato,typeStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
+		ListPostionData->Add(gcnew StateCDB(tNID_CDB,QStateCDB::cdbOccupato,QStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
 		setN_ITER(utility::pop(buffer, 16, 168));
 		int offset = 184;
 
@@ -107,7 +107,7 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer, int offset)
 			tNID_CDB=utility::pop(buffer, 32, offset);
 			offset += 32;
 
-			ListPostionData->Add(gcnew  StateCDB(tNID_CDB,typeStateCDB::cdbOccupato,typeStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
+			ListPostionData->Add(gcnew  StateCDB(tNID_CDB,QStateCDB::cdbOccupato,QStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
 		}
 	}
 

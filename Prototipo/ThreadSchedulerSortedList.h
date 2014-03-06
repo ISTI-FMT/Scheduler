@@ -66,7 +66,7 @@ public:
 	/*void setMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops);*/
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 
-	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
+	bool SendBloccItinIXL(int NID_ITIN, QCmdItinerari Q_CMDITIN);
 	List<int> ^RequestItinerarioIXL(int idstazione ,int iditinerario);
 	static void Connect(EndPoint ^remoteEP, Socket ^client);
 	static void ConnectCallbackMethod(IAsyncResult ^ar);
