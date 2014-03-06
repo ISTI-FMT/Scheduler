@@ -94,6 +94,7 @@ void ThreadSchedulerSortedList::Schedule(){
 					int idstazione = itistazione->Key;
 
 					int resultprecCdbU = tabItinerari->get_CdbPrecItinerario(idstazione,itinUscita);
+					int nextCdbU = tabItinerari->get_CdbSuccItinerario(idstazione,itinUscita);
 
 					//se esiste un itinerario di uscita
 					if(itinUscita>0){
@@ -112,12 +113,18 @@ void ThreadSchedulerSortedList::Schedule(){
 
 							//inserire codice per sapere se questo passo comporta un deadlock o meno
 
-							//fine
-							if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
+							if (areeCritiche->richiestaCdb(nextCdbU, Train->getTRN()))
+							{
+								areeCritiche->entrataCdb(nextCdbU, Train->getTRN());
 
-								List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
-								if(cdbricPrenotazione!=nullptr){
-									RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+
+								//fine
+								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
+
+									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
+									if(cdbricPrenotazione!=nullptr){
+										RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+									}
 								}
 							}
 
@@ -141,6 +148,7 @@ void ThreadSchedulerSortedList::Schedule(){
 					//se esiste un itinerario di entrata
 					if(initEntrata>0){
 						int resultprecE = tabItinerari->get_CdbPrecItinerario(idstazione,initEntrata);
+						int nextCdbE = tabItinerari->get_CdbSuccItinerario(idstazione,initEntrata);
 						Event<StateCDB^> ^eventATC = EQueueATC->getEvent();
 
 						if(eventATC!=nullptr){
@@ -155,14 +163,19 @@ void ThreadSchedulerSortedList::Schedule(){
 									//che riporti il cambiamento dello stato dell'itinerario
 
 									//inserire codice per sapere se questo passo comporta un deadlock o meno
+									if (areeCritiche->richiestaCdb(nextCdbE, Train->getTRN()))
+									{
+										areeCritiche->entrataCdb(nextCdbE, Train->getTRN());
 
-									//fine
 
-									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
+										//fine
 
-										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
-										if(cdbricPrenotazione!=nullptr){
-											RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+										if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
+
+											List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
+											if(cdbricPrenotazione!=nullptr){
+												RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+											}
 										}
 									}
 
@@ -178,15 +191,19 @@ void ThreadSchedulerSortedList::Schedule(){
 								//fine
 
 
+								if (areeCritiche->richiestaCdb(nextCdbE, Train->getTRN()))
+								{
+									areeCritiche->entrataCdb(nextCdbE, Train->getTRN());
 
-								//se l'itinerario è libero
-								//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
-								//che riporti il cambiamento dello stato dell'itinerario
-								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
-									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
+									//se l'itinerario è libero
+									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
+									//che riporti il cambiamento dello stato dell'itinerario
+									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
+										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
 
-									if(cdbricPrenotazione!=nullptr){
-										RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+										if(cdbricPrenotazione!=nullptr){
+											RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+										}
 									}
 								}
 							}
@@ -209,9 +226,6 @@ void ThreadSchedulerSortedList::Schedule(){
 					break;
 				}
 			}
-
-
-
 		}
 	}
 	catch ( ThreadAbortException^ abortException ) 

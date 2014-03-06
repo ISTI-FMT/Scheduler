@@ -136,10 +136,10 @@ bool AreeCritiche::richiestaCdb(int cdb, int trn)
 
 void AreeCritiche::entrataCdb(int cdb, int trn)
 {
+	for (int i = 0; i < areeCritiche->Count; i++)
+	{
+		AreaCritica^ area = areeCritiche[i];
 
-}
-
-void AreeCritiche::uscitaCdb(int cdb, int trn)
-{
-
+		area->entrata(trn, cdb);
+	}
 }

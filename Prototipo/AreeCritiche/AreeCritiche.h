@@ -24,7 +24,5 @@ public:
 	bool richiestaCdb(int cdb, int Trn);
 
 	void entrataCdb(int cdb, int Trn);
-
-	void uscitaCdb(int cdb, int Trn);
 };
 
