@@ -15,7 +15,6 @@ ref class pacchettoCommandData : pacchettoBase
 	int PADDING;
 
 public:
-
 	pacchettoCommandData(void);
 
 	virtual int getSize() override
@@ -35,10 +34,13 @@ public:
 	
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
+
 	void setQ_COMMAND_TYPE(QCmdData Q){Q_COMMAND_TYPE = Q;};
-	QCmdData getQ_COMMAND_TYPE(){return (QCmdData)Q_COMMAND_TYPE;};
+	int getQ_COMMAND_TYPE(){return Q_COMMAND_TYPE;};
+
 	void setM_GOA_LEVEL(int M){M_GOA_LEVEL = M;};
 	int getM_GOA_LEVEL(){return M_GOA_LEVEL;};
+
 	void setNID_OPERATIONAL(int NID){NID_OPERATIONAL = NID;};
 	int getNID_OPERATIONAL(){return NID_OPERATIONAL;};
 
@@ -47,7 +49,6 @@ public:
 	
 	virtual System::String ^ToString() override;
 
-	
 	~pacchettoCommandData(void);
 };
 

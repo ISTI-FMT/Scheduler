@@ -20,7 +20,7 @@ public:
 	void setNID_BLOCCO(int N){NID_BLOCCO = N;};
 	int getNID_BLOCCO(){return NID_BLOCCO;};
 	void setQ_CMDBLOCCO(QCmdBlocco Q){Q_CMDBLOCCO = Q;};
-	QCmdBlocco getQ_CMDBLOCCO(){return (QCmdBlocco)Q_CMDBLOCCO;};
+	int getQ_CMDBLOCCO(){return Q_CMDBLOCCO;};
 
 	virtual int getSize() override;
 	virtual void serialize(array<Byte>^buffer, int offset) override;

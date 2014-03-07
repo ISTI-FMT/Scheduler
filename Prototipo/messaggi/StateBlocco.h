@@ -17,7 +17,7 @@ public:
 	void setNID_BLOCCO(int N){NID_BLOCCO=N;};
 	int getNID_BLOCCO(){return NID_BLOCCO;};
 	void setQ_STATOBLOCCO( QStatoBlocco Q){Q_STATOBLOCCO=Q;};
-	QStatoBlocco getQ_STATOBLOCCO(){return (QStatoBlocco)Q_STATOBLOCCO;};
+	int getQ_STATOBLOCCO(){return Q_STATOBLOCCO;};
 	virtual System::String ^ToString() override;
 };
 

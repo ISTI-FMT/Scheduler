@@ -22,7 +22,7 @@ public:
 			Q_STATOITIN=QStateItineraio::itinerarioStatoInAtto;
 		}
 	};
-	QStateItineraio getQ_STATOITIN(){return (QStateItineraio)Q_STATOITIN;};
+	int getQ_STATOITIN(){return Q_STATOITIN;};
 	int Size(){return 34;}
 	bool Update(StateItinerario ^newitin){
 		bool ret=false;

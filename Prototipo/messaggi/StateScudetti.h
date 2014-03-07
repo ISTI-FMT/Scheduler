@@ -15,7 +15,7 @@ public:
 	void setNID_SCUD( int N){NID_SCUD=N;};
 	int getNID_SCUD(){return NID_SCUD;};
 	void setQ_STATOSCUD( QStatoScud Q){Q_STATOSCUD=Q;};
-	QStatoScud getQ_STATOSCUD(){return (QStatoScud)Q_STATOSCUD;};
+	int getQ_STATOSCUD(){return Q_STATOSCUD;};
 	int Size(){return 32+3;};
 	virtual System::String ^ToString() override;
 };
