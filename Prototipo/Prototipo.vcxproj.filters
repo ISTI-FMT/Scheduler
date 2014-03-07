@@ -139,6 +139,7 @@
     <ClInclude Include="TrenoFisicoLogico.h" />
     <ClInclude Include="Unsubscriber.h" />
     <ClInclude Include="wdogcontrol.h" />
+    <ClInclude Include="FermataType.h" />
   </ItemGroup>
   <ItemGroup>
     <_EmbedManagedResourceFile Include="Prototipo.rc" />

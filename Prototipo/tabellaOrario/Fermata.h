@@ -1,12 +1,11 @@
 #pragma once
+#include "..\FermataType.h"
 
 using namespace System;
 
 
 
 /*Utilizzo questa classe per serializzare le informazioni sulle fermate presenti nella tabella orario*/
-
-enum  FermataType{noApertura = 0,aperturaTrenoDx = 1,aperturaTrenoSx = 2,aperturaTrenoDxSx = 3,aperturaTrenoBanchinaDx = 4,aperturaTrenoBanchinaSx = 5,aperturaTrenoBanchinaDxSx = 6 };
 
 /*
 Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di un singolo treno.
@@ -21,7 +20,7 @@ public ref class Fermata  : public IEquatable<Fermata^>
 	double orarioPartenza;
 	double tempoMinimoAperturaPorte;
 	int binarioProgrammato;
-	int latoAperturaPorte;
+	FermataType latoAperturaPorte;
 
 	int iditinerarioentrata;
 	String ^nameitinerarioentrata;
@@ -31,7 +30,7 @@ public ref class Fermata  : public IEquatable<Fermata^>
 	//ostream& operator<<(ostream &out, const Fermata &stop);
 public:
 	Fermata(void);
-	Fermata(int i, String ^n,double oa, double op,double tmpa,int bp,int lap,int idie,String ^nie,int idiu,String ^niu){
+	Fermata(int i, String ^n,double oa, double op,double tmpa,int bp, FermataType lap,int idie,String ^nie,int idiu,String ^niu){
 		idStazione=i;
 		nameStazione=n;
 		orarioArrivo=oa;
@@ -79,8 +78,8 @@ public:
 	void setBinarioProgrammato(int binario){binarioProgrammato = binario;};
 	int getBinarioProgrammato(){return binarioProgrammato;};
 	// Funzioni per la manipolazione del tempo di apertura delle porte
-	void setLatoAperturaPorte(int lato){latoAperturaPorte = lato;};
-	int getLatoAperturaPorte(){return latoAperturaPorte;};
+	void setLatoAperturaPorte(FermataType lato){latoAperturaPorte = lato;};
+	FermataType getLatoAperturaPorte(){return latoAperturaPorte;};
 
 	bool isPassante();
 

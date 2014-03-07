@@ -161,7 +161,7 @@ void TabellaOrario::leggiTabellaOrario()
 				System::String ^SystemStringLatoProgrammato = inner2->ReadString();	
 				// converto da System::String a std::string
 				//string stringLatoAperturaPorte = convertiString2string(SystemStringLatoProgrammato);
-				int latoParturaPorte;
+				FermataType latoParturaPorte;
 				if(SystemStringLatoProgrammato == "dx")
 					latoParturaPorte = aperturaTrenoDx;
 				else if(SystemStringLatoProgrammato == "sx")

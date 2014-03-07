@@ -161,6 +161,7 @@
       <DependentUpon>..\FileConfigurazione\TabellaOrario.xsd</DependentUpon>
     </ClInclude>
     <ClInclude Include="tabellaOrario\Fermata.h" />
+    <ClInclude Include="FermataType.h" />
     <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
     <ClInclude Include="ThreadSchedulerSortedList.h" />
