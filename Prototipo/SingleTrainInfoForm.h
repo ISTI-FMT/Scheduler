@@ -11,10 +11,10 @@ using namespace System::Windows::Forms;
 
 /*questa classe rappresenta la form con le informazioni del treno*/
 
-ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<SingleTrainInfoForm^>, IObservable<Event<List<Fermata^>^>^>
+ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<SingleTrainInfoForm^>, IObservable<Event<List<Fermata^>^>^>,IObserver<Train^>
 {
 	Train ^train;
-	
+	IDisposable ^unsubscriber;
 	System::Windows::Forms::TableLayoutPanel^  tableLayoutPanelItinerari;
 	System::Windows::Forms::Label^  label5;
 	System::Windows::Forms::Label^  Labeltrn;
@@ -26,9 +26,20 @@ ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<
 	System::Windows::Forms::Button ^ bapply;
 	System::ComponentModel::IContainer^ components;
 	System::Windows::Forms::ErrorProvider^ errorProvider;
+	System::Windows::Forms::RichTextBox^  richTextBox1;
+	System::Windows::Forms::Label^  LabelStateTrain;
+	System::Windows::Forms::ComboBox^  comboBoxCambiaStatoTreno;
+	System::IO::Stream^ stream;
+	System::Drawing::Image ^Imagegreen;
+	System::Drawing::Image ^Imagered;
+	System::Drawing::Icon ^Icongreen;
+	System::Drawing::Icon ^Iconred;
+	StateTrain tempStateTrain;
 	ListTrainModel ^model;
 	TabellaStazioni ^tabItineari;
 	List<IObserver<Event<List<Fermata^>^>^>^> ^observers;
+	delegate void GoCallback(Train^ t);
+	GoCallback ^DelegateCTrain;
 public:
 	SingleTrainInfoForm(Train ^t,  ListTrainModel ^m,TabellaStazioni ^ti);
 	void init();
@@ -40,11 +51,35 @@ public:
 	//Void B_Click(System::Object^  sender, System::EventArgs^  e);
 	Void ButtonClose_Click(System::Object^  sender, System::EventArgs^  e);
 	Void ButtonApply_Click(System::Object^  sender, System::EventArgs^  e);
-	
+	void setinfoTrain(Train^ train);
 	virtual IDisposable ^Subscribe(IObserver<Event<List<Fermata^>^>^> ^observer);
-
+	System::Void comboBoxCambiaStatoTreno_SelectionChangeCommitted(System::Object^  sender, System::EventArgs^  e);
+	System::Void SingleTrainInfoForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 	void setitinerary();
 	void UpdateInfo();
+	void aggiornaiconstate(StateTrain t);
+	String ^fromStateTreno(StateTrain t);
+	String ^forwardItinerario(int index,List<Fermata^> ^Listafermate);
+	virtual void Subscribe(IObservable<Train^> ^provider){
+		if (provider != nullptr) 
+			unsubscriber = provider->Subscribe(this);	
+	};
 
+	virtual void OnCompleted(){
+		Console::WriteLine("The Location Tracker has completed transmitting data to");
+		Unsubscribe();
+
+	};
+	virtual void OnError(Exception ^e){
+		Console::WriteLine("The Location Tracker has Error");
+		Unsubscribe();
+
+	};
+	virtual void OnNext(Train ^t){
+		this->Invoke(DelegateCTrain,t);
+	};
+	virtual void Unsubscribe(){
+		delete unsubscriber;
+	};
 };
 

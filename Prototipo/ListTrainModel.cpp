@@ -9,6 +9,7 @@ ListTrainModel::ListTrainModel(void)
 {
 	ListSortedTrains = gcnew System::Collections::Generic::List< Train^>();
 	observers = gcnew List<IObserver<List<Train^>^>^>();
+	observersTrain = gcnew List<IObserver<Train^>^>();
 }
 
 bool ListTrainModel::RemoveElement(Train^ train){
@@ -50,10 +51,17 @@ List<Train^> ^ListTrainModel::getList(){
 	return ListSortedTrains;
 }
 
+IDisposable ^ListTrainModel::Subscribe(IObserver<Train^> ^observer){
+	if (! observersTrain->Contains(observer)) 
+		observersTrain->Add(observer);
+	return gcnew Unsubscriber<Train^>(observersTrain, observer);
+
+}
+
 IDisposable ^ListTrainModel::Subscribe(IObserver<List<Train^>^> ^observer){
 	if (! observers->Contains(observer)) 
 		observers->Add(observer);
-	return gcnew UnsubModel(observers, observer);
+	return gcnew Unsubscriber<List<Train^>^>(observers, observer);
 
 }
 
@@ -89,6 +97,10 @@ void ListTrainModel::NextIt(Train ^key){
 		key->setTimeStampNextEvent(key->getOrarioPartenza());
 
 	}
+	for each (IObserver<Train^>^ observer in observersTrain)
+	{
+		observer->OnNext(key);
+	}
 }
 
 void ListTrainModel::changePrior(Train ^key, int newprior){
@@ -100,11 +112,21 @@ void ListTrainModel::changePrior(Train ^key, int newprior){
 	}
 
 }
+ void   ListTrainModel::changeState(Train ^key,  StateTrain state){
+	 if(ListSortedTrains->Contains(key)){
+		 key->setStatoTreno(state);
+	 }
+	 for each (IObserver<Train^>^ observer in observersTrain)
+	{
+		
+		observer->OnNext(key);
+	}
 
+ }
 void  ListTrainModel::changeOrari(Train ^key,  List<Fermata^> ^nuoviorari){
 	if(ListSortedTrains->Contains(key)){
 
-
+		
 		key->changeOrari(nuoviorari);
 		Sort();
 	}

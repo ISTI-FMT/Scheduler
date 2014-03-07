@@ -28,6 +28,7 @@ public:
 			return name;
 		}
 	}
+	
 	property String^ ShortDescName 
 	{
 		String^ get()
@@ -38,7 +39,7 @@ public:
 			}else{
 				dir="-->";
 			}
-			return name+dir;
+			return name+dir+id.ToString();
 		}
 	}
 	Itinerario(typeItini t);

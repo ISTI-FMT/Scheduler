@@ -7,7 +7,7 @@ ItineraryBox::ItineraryBox(Fermata ^f, stazione ^s)
 	station=s;
 	init();
 
-	this->setNameStation(f->getnameStazione());
+	this->setNameStation(f->getnameStazione()+" "+s->get_idStazione());
 	this->setInitEntrata(f->getIditinerarioEntrata());
 	this->setInitUscita(f->getIditinerarioUscita());
 	this->setOrarioA(f->getOrarioArrivo());

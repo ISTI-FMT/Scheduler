@@ -32,6 +32,7 @@ public:
 	StateTrain getStatoTreno(){return Statodeltreno;};
 	void setStatoTreno(StateTrain st){Statodeltreno=st;};
 	void setListaFermate(List<Fermata^> ^listIt){Listafermate=listIt; };
+	int getindex(){return indicelistaitinerari;};
 	KeyValuePair<int, int> ^getStazioneItinerario();
 	void changeOrari( List<Fermata^> ^nuoviorari);
 	List<Fermata^>^getListaFermate(){return Listafermate; };

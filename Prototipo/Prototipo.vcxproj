@@ -283,6 +283,10 @@
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd" />
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd" />
   </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="risorse\green.ico" />
+    <_EmbedManagedResourceFile Include="risorse\red.ico" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

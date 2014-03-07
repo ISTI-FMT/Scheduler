@@ -33,6 +33,8 @@ ref class ThreadSchedulerSortedList
 	EventQueue<physicalTrain^> ^EQueueATO;
 	EventQueue<StateCDB^> ^EQueueATC;
 	EventQueue<List<Fermata^>^> ^EQueueCambioOrario;
+	//EventQueue<int> ^EQueueCambioTrenoPrior;
+	//EventQueue<StateTrain> ^EQueueCambioTrenoStato;
 	TabellaOrario ^tabOrario;
 	TabellaStazioni ^tabItinerari;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
