@@ -11,6 +11,7 @@ using namespace System::Threading::Tasks;
 using namespace System::Runtime::InteropServices;
 using namespace System::Globalization;
 using namespace System::Xml;
+using namespace System::Configuration;
 
 
 #define TRACE
@@ -35,7 +36,16 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	wdogs=w;
 	managerATC=manATC;
 	managerIXL=manIXL;
-	ipixl="127.0.0.1";
+
+	try {
+
+		ipixl = ConfigurationSettings::AppSettings["ip_IXL"] != nullptr ? ConfigurationSettings::AppSettings["ip_IXL"]->ToString() : "127.0.0.1";
+		// Console::WriteLine("IP IXL ",ipixl);
+	} catch(System::Configuration::ConfigurationException  ^error){
+		ipixl="127.0.0.1";
+
+	}
+	Console::WriteLine("IP IXL {0}",ipixl);
 	RaccoltaTrenoRequestCDB  = gcnew Dictionary<Train^,List<int>^> ();
 	EQueueCambioOrario = gcnew EventQueue<List<Fermata^>^>();
 	_shouldStop=false;
@@ -455,11 +465,11 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 
 		Messaggi ^missionPlanPkt = gcnew Messaggi(MessATO::MissionPlan);
 		//missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
-		
+
 
 		//tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn));
 
-		
+
 		tabOrario->createMissionPlanMsg(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn),stops);
 
 		// Buffer for reading data
@@ -508,55 +518,55 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 {
 
 
-	// se il teno esiste
-	if(stops!=nullptr)
-	{
-		//Todo: V_mission D_mission tratte
-		if(pvel!=nullptr){
-			pkt->setPV(pvel);
-			pkt->setN_ITER1(pvel->Count-1);
-		}else{
-			pkt->setPV(gcnew ProfiloVelocita);
-			pkt->setN_ITER1(0);
-		}
-		// -1 perchè la prima fermata non viene considerata negli N_ITER
-		pkt->setN_ITER2((stops->Count) - 1);
-		int i=0;
-		for each (Fermata ^stop in stops)
-		{
-			Mission ^mission= gcnew Mission();
-			mission->setQ_DOORS(stop->getLatoAperturaPorte());
+// se il teno esiste
+if(stops!=nullptr)
+{
+//Todo: V_mission D_mission tratte
+if(pvel!=nullptr){
+pkt->setPV(pvel);
+pkt->setN_ITER1(pvel->Count-1);
+}else{
+pkt->setPV(gcnew ProfiloVelocita);
+pkt->setN_ITER1(0);
+}
+// -1 perchè la prima fermata non viene considerata negli N_ITER
+pkt->setN_ITER2((stops->Count) - 1);
+int i=0;
+for each (Fermata ^stop in stops)
+{
+Mission ^mission= gcnew Mission();
+mission->setQ_DOORS(stop->getLatoAperturaPorte());
 
-			int orarioPartenza = (int)stop->getOrarioPartenza();
+int orarioPartenza = (int)stop->getOrarioPartenza();
 
-			mission->setT_START_TIME(orarioPartenza);
-			mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
+mission->setT_START_TIME(orarioPartenza);
+mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
 
-			if(tabItinerari!=nullptr ){
-				if(stop->getIditinerarioEntrata()!=0){
-					lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
-					if(infobalise!=nullptr){
-						mission->setNID_LRGB(infobalise->nid_lrgb);
-						mission->setD_STOP(infobalise->d_stop);
-					}
-				}
-				if(i==0){
-					lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioUscita());
-					if(infobalise!=nullptr){
+if(tabItinerari!=nullptr ){
+if(stop->getIditinerarioEntrata()!=0){
+lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
+if(infobalise!=nullptr){
+mission->setNID_LRGB(infobalise->nid_lrgb);
+mission->setD_STOP(infobalise->d_stop);
+}
+}
+if(i==0){
+lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioUscita());
+if(infobalise!=nullptr){
 
-						mission->setNID_LRGB(infobalise->nid_lrgb);
-						mission->setD_STOP(infobalise->d_stop);
-					}
-				}
+mission->setNID_LRGB(infobalise->nid_lrgb);
+mission->setD_STOP(infobalise->d_stop);
+}
+}
 
-			}
-			i++;
-			pkt->setMission(mission);
+}
+i++;
+pkt->setMission(mission);
 
 
 
-		}
-	}
+}
+}
 }*/
 
 StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^Treno)
@@ -744,6 +754,15 @@ List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int 
 bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN){
 	try{
 		int portixl=4011;
+		try {
+
+			portixl = System::Configuration::ConfigurationSettings::AppSettings["port_UDP_send"]!= nullptr ? int::Parse( System::Configuration::ConfigurationSettings::AppSettings["port_UDP_send"]->ToString()) : 4011;
+			// Console::WriteLine("IP IXL ",ipixl);
+		} catch(Exception  ^error){
+			portixl=4011;
+
+		}
+		Console::WriteLine("PORT UDP Send: {0}",portixl);
 		Messaggi ^cmdItini = gcnew Messaggi(MessIXL::ComandoItinerari);
 		//cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(10);
 		cmdItini->get_pacchettoComandoItinerari()->setNID_ITIN(NID_ITIN);
