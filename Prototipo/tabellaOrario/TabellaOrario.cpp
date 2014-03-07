@@ -80,17 +80,17 @@ void TabellaOrario::leggiTabellaOrario()
 		/*ValidationEventHandler ^ed = gcnew ValidationEventHandler( ValidationCallBack );
 		settings->ValidationEventHandler +=ed;*/
 
-		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("TabellaOrario.xml");
+	//	System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("TabellaOrario.xml");
 
 		//System::String^ nome = gcnew System::String(nomeFile.c_str());
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
+	//	System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 		//	XmlDocument ^document = gcnew XmlDocument();
 		//document->Load(readers);
 		//document->Validate(ed);  
 #endif // VALIDATEXML
 
-		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("FileConfigurazione//TabellaOrario.xml", settings);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create("TabellaOrario.xml", settings);
 
 		// per ogni treno presente nel file di configurazione della tabella orario...
 		while (reader->ReadToFollowing("treno")){
