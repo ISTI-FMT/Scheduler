@@ -162,6 +162,8 @@
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd" />
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd" />
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xsd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormStatoLineaIXL.resx" />

@@ -79,6 +79,9 @@
     <_EmbedManagedResourceFile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AreeCritiche.h">
+      <DependentUpon>..\FileConfigurazione\AreeCritiche.xsd</DependentUpon>
+    </ClInclude>
     <ClInclude Include="AreeCritiche\AreaCriticaCircolare.h" />
     <ClInclude Include="AreeCritiche\AreaCriticaLineare.h" />
     <ClInclude Include="AreeCritiche\AreaCritica.h" />
@@ -292,6 +295,12 @@
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xsd" />
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xsd" />
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xsd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

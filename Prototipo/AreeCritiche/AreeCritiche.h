@@ -14,6 +14,7 @@ private:
 	List<AreaCritica^>^ areeCritiche;
 	Dictionary<int, List<AreaCritica^>^>^ cdbAree;
 	String^ XmlFilename;
+	String^ XsdFilename;
 	/*
 	Effettua l'entrata dentro il cdb. Aggiorna lo stato delle aree critiche coinvolte nel cdb.
 	*/
