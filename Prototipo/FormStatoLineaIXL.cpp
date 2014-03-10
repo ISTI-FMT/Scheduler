@@ -130,3 +130,9 @@ void Prototipo::FormStatoLineaIXL::RequestStop()
     {
         _shouldStop = true;
     }
+
+System::Void Prototipo::FormStatoLineaIXL::FormStatoLineaIXL_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e){
+
+e->Cancel = true;
+
+}

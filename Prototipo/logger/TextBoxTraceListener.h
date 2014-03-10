@@ -28,6 +28,6 @@ public:
 	delegate void SetTextCallback(String ^text);
 	SetTextCallback^ myDelegate;
 	void SetText(String ^text);
-
+	 System::Void TextBoxTraceListener_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 };
 

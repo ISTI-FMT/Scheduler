@@ -42,7 +42,7 @@ void TextBoxTraceListener::init(void){
 
 	myDelegate = gcnew SetTextCallback( this, &TextBoxTraceListener::SetText );
 	form->Resize += gcnew System::EventHandler(this, &TextBoxTraceListener::Form_Resize);
-	
+	form->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &TextBoxTraceListener::TextBoxTraceListener_FormClosing);
 	form->Icon =  gcnew Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("app.ico"));
 	//form->ShowDialog();
 	//Application::Run(form);
@@ -51,6 +51,10 @@ void TextBoxTraceListener::init(void){
 
 };
 
+ System::Void TextBoxTraceListener::TextBoxTraceListener_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e){
+
+	 e->Cancel=true;
+ }
 void TextBoxTraceListener::WriteLine(String ^h){
 	TextWriterTraceListener::WriteLine(h+"\r\n");
 	Write(h+"\r\n");

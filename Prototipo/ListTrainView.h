@@ -129,11 +129,15 @@ namespace Prototipo {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"ListTrainView";
 			this->Text = L"ListTrainView";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &ListTrainView::ListTrainView_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-	};
+	private: System::Void ListTrainView_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+				 	 e->Cancel=true;
+			 }
+};
 }

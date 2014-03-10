@@ -52,6 +52,7 @@ namespace Prototipo {
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 		}
+		System::Void FormStatoLineaIXL_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 		virtual void Subscribe(IObservable<Event<StateCDB^>^> ^provider){
 			if (provider != nullptr) 
 				unsubscriber = provider->Subscribe(this);	
@@ -129,6 +130,7 @@ namespace Prototipo {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"FormStatoLineaIXL";
 			this->Text = L"FormStatoIXL";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &FormStatoLineaIXL::FormStatoLineaIXL_FormClosing);
 			this->ResumeLayout(false);
 
 		}

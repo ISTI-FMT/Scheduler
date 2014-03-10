@@ -108,9 +108,13 @@ namespace Prototipo {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"FormStatoLineaATC";
 			this->Text = L"FormStatoLineaATC";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &FormStatoLineaATC::FormStatoLineaATC_FormClosing);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+	private: System::Void FormStatoLineaATC_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+				 e->Cancel=true;
+			 }
 	};
 }
