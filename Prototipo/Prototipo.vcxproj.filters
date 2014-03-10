@@ -24,12 +24,6 @@
     <ClCompile Include="EventQueue.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="FormStatoLineaIXL.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="form\FormStatoLineaATC.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="form\tableLayoutPanelAllCDB.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
@@ -165,7 +159,7 @@
     <ClCompile Include="phisicalTrainList.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="form\SchedulerForm.cpp">
+    <ClCompile Include="SchedulerForm.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="manager\ManagerMsgATO.cpp">
@@ -207,6 +201,12 @@
     <ClCompile Include="wdogcontrol.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="FormStatoLineaIXL.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="FormStatoLineaATC.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConfigurazioneFermate.h">
@@ -233,7 +233,7 @@
     <ClInclude Include="FormStatoLineaIXL.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="form\FormStatoLineaATC.h">
+    <ClInclude Include="FormStatoLineaATC.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="form\tableLayoutPanelAllCDB.h">
@@ -377,7 +377,7 @@
     <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="form\SchedulerForm.h">
+    <ClInclude Include="SchedulerForm.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="manager\ManagerMsgATO.h">
@@ -474,13 +474,24 @@
     <_EmbedManagedResourceFile Include="risorse\red.ico">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="risorse\app.ico">
+      <Filter>File di risorse</Filter>
+    </_EmbedManagedResourceFile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormStatoLineaIXL.resx" />
-    <EmbeddedResource Include="FormStatoLineaATC.resx" />
-    <EmbeddedResource Include="form\FormStatoLineaATC.resx" />
-    <EmbeddedResource Include="form\SchedulerForm.resx" />
-    <EmbeddedResource Include="ListTrainView.resx" />
+    <!---->
+    <EmbeddedResource Include="FormStatoLineaATC.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SchedulerForm.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListTrainView.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatoLineaIXL.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

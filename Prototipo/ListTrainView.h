@@ -87,6 +87,7 @@ namespace Prototipo {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(ListTrainView::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->SuspendLayout();
@@ -122,11 +123,12 @@ namespace Prototipo {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(439, 472);
+			this->ControlBox = false;
 			this->Controls->Add(this->tableLayoutPanel1);
 			this->Controls->Add(this->label1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"ListTrainView";
 			this->Text = L"ListTrainView";
-			this->ControlBox=false;
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

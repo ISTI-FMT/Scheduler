@@ -1,6 +1,6 @@
 #pragma once
-#include "tableLayoutPanelAllCDB.h"
-#include "..\\EventQueue.h"
+#include "form\\tableLayoutPanelAllCDB.h"
+#include "EventQueue.h"
 
 /*Utilizzo questa classe per rappresentare graficamente una form che contiene le informazioni sullo stato  dei cdb 
 dei messaggi stato della linea dell'ATC*/
@@ -95,15 +95,17 @@ namespace Prototipo {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(FormStatoLineaATC::typeid));
 			this->SuspendLayout();
 			// 
 			// FormStatoLineaATC
 			// 
-			this->ControlBox=false;
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1240, 378);
+			this->ControlBox = false;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"FormStatoLineaATC";
 			this->Text = L"FormStatoLineaATC";
 			this->ResumeLayout(false);

@@ -10,15 +10,12 @@ SingleTrainInfoForm::SingleTrainInfoForm(Train ^t,  ListTrainModel ^m, TabellaSt
 	train=t;
 	stream = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("green.ico");
 	Imagegreen = System::Drawing::Image::FromStream(stream);
-	System::Drawing::Bitmap ^bitmap = gcnew  System::Drawing::Bitmap(Imagegreen);
-    bitmap->SetResolution(72, 72);
-	Icongreen  =  System::Drawing::Icon::FromHandle(bitmap->GetHicon());;
+
+	Icongreen  =  gcnew System::Drawing::Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("green.ico"));
 	stream = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("red.ico");
 	Imagered = System::Drawing::Image::FromStream(stream);
 	
-	bitmap = gcnew  System::Drawing::Bitmap(Imagered);
-    bitmap->SetResolution(72, 72);
-	Iconred =  System::Drawing::Icon::FromHandle(bitmap->GetHicon());;
+	Iconred =  gcnew System::Drawing::Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("red.ico"));
 	init();
 	set();
 	DelegateCTrain = gcnew GoCallback( this, &SingleTrainInfoForm::setinfoTrain );

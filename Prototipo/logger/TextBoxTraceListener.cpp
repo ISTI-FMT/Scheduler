@@ -1,5 +1,6 @@
 #include "TextBoxTraceListener.h"
 #using <system.drawing.dll>
+#include "..//SchedulerForm.h"
 
 using namespace  System::Diagnostics;
 using namespace  System::Windows::Forms;
@@ -41,6 +42,8 @@ void TextBoxTraceListener::init(void){
 
 	myDelegate = gcnew SetTextCallback( this, &TextBoxTraceListener::SetText );
 	form->Resize += gcnew System::EventHandler(this, &TextBoxTraceListener::Form_Resize);
+	
+	form->Icon =  gcnew Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("app.ico"));
 	//form->ShowDialog();
 	//Application::Run(form);
 	form->Visible=true;

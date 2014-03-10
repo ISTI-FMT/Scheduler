@@ -1,28 +1,28 @@
 #pragma once
-#include "..\\tabellaOrario\\TabellaOrario.h"
+#include "tabellaOrario\\TabellaOrario.h"
 #using <System.dll>
-#include "..\\messaggi\pacchettoCommandData.h"
-#include "..\\tabellaOrario\\FormVisualizzeTabOrario.h"
-#include "..\\Itinerari\\FormVisualizzeConfItine.h"
-#include "..\\Itinerari\\FormVisualizzeConfFermate.h"
+#include "messaggi\pacchettoCommandData.h"
+#include "tabellaOrario\\FormVisualizzeTabOrario.h"
+#include "Itinerari\\FormVisualizzeConfItine.h"
+#include "Itinerari\\FormVisualizzeConfFermate.h"
 /*#include "..\\phisicalTrainList.h"*/
-#include "..\\threads\\ThreadListenerATC_IXL.h"
+#include "threads\\ThreadListenerATC_IXL.h"
 
-#include "..\\threads\\ThreadPresentazione.h"
-#include "..\\mapTrenoFisicoLogico.h"
-#include "..\\messaggi\\Messaggi.h"
-#include "..\\logger\\Logger.h"
-#include "..\\Itinerari\\TabellaStazioni.h"
+#include "threads\\ThreadPresentazione.h"
+#include "mapTrenoFisicoLogico.h"
+#include "messaggi\\Messaggi.h"
+#include "logger\\Logger.h"
+#include "Itinerari\\TabellaStazioni.h"
 
-#include "..\\manager\\ManagerStatoLineaATC.h"
-#include "..\\manager\\ManagerStatoLineaIXL.h"
-#include "..\\manager\\ManagerMsgATO.h"
-#include "..\\ThreadSchedulerSortedList.h"
-#include "..\\EventQueue.h"
-#include "..\\wdogcontrol.h"
-#include "..\\FormStatoLineaIXL.h"
+#include "manager\\ManagerStatoLineaATC.h"
+#include "manager\\ManagerStatoLineaIXL.h"
+#include "manager\\ManagerMsgATO.h"
+#include "ThreadSchedulerSortedList.h"
+#include "EventQueue.h"
+#include "wdogcontrol.h"
+#include "FormStatoLineaIXL.h"
 #include "FormStatoLineaATC.h"
-#include "..\\ConfVelocita\\ConfigurazioneVelocita.h"
+#include "ConfVelocita\\ConfigurazioneVelocita.h"
 #define TRACE
 namespace Prototipo {
 	using namespace System::Diagnostics;
@@ -106,6 +106,7 @@ namespace Prototipo {
 			 /// </summary>
 			 void InitializeComponent(void)
 			 {
+				 System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(SchedulerForm::typeid));
 				 this->ExitButton = (gcnew System::Windows::Forms::Button());
 				 this->button1 = (gcnew System::Windows::Forms::Button());
 				 this->button2 = (gcnew System::Windows::Forms::Button());
@@ -174,6 +175,7 @@ namespace Prototipo {
 				 this->Controls->Add(this->button2);
 				 this->Controls->Add(this->button1);
 				 this->Controls->Add(this->ExitButton);
+				 this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 				 this->Name = L"SchedulerForm";
 				 this->Text = L"SchedulerForm";
 				 this->ResumeLayout(false);
