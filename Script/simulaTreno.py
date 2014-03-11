@@ -10,6 +10,7 @@ import socket
 import re
 from array import array
 import thread
+from os import system
 
 SendUDP_IP = "127.0.0.1"
 ReceiveTCP_IP = "127.0.0.1"
@@ -249,12 +250,14 @@ print tNID_ENGINE
 print tNID_OPERATIONAL
 print tNID_CDB
 '''
-
+ 
 spamReader = list(csv.reader(open(sys.argv[1],'U'), delimiter=';'))
 NID_ENGINE = int(spamReader[0][0],10)
 M_PORT = int(spamReader[0][1],10)
 del spamReader[0][0]
 del spamReader[0][0]
+
+
 
 print "Sono il TRENO: ", NID_ENGINE
 #13301;13012;13011;13010;501;14020;14021;14022;14301;14012;14011;14010;502;15020;15021;15022;15301;15012;15011;503;12010;12011;12012;12301;12026;12025;12024;400;402;404;406;408;410;412;414;416;418;420;422;424;426;428;16020;16021;16022;16023;16302;16016;16015;16014;16013;440;442;444;446;448;17010;17011;17012;17013;17014;17302;17016;17018;17020
@@ -282,6 +285,9 @@ buff = messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 sendUDP(buff,1111)
 sendUDP(buff,1111)
 sendUDP(buff,1111)
+
+#Imposto il nome della console
+system("TITLE "+ "Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
 
 
 #####PRESENTAZIONE VS ATS #########
@@ -324,6 +330,8 @@ for line in spamReader:
 		NID_CDB =  int(element,10)
 		push(sendBytes,NID_CDB, 32, 82);#//nid_cdb
 		print "Sono sul CDB: ",element
+		#Imposto il nome della console
+		system("TITLE "+ "Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
 		sendUDP(sendBytes,302)
 		buff = messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 		#for i in range(0,70):
