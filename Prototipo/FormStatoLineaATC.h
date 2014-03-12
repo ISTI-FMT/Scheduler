@@ -114,7 +114,11 @@ namespace Prototipo {
 		}
 #pragma endregion
 	private: System::Void FormStatoLineaATC_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
-				 e->Cancel=true;
+				if(_shouldStop){
+				 e->Cancel=false;
+				}else{
+					e->Cancel=true;
+				}
 			 }
 	};
 }

@@ -18,8 +18,8 @@ ref class TextBoxTraceListener :TextWriterTraceListener
 public:
 	TextBoxTraceListener(void): TextWriterTraceListener(){init();};
 
-	TextBoxTraceListener( System::Windows::Forms::TextBox^  tb): TextWriterTraceListener(){textBox=tb;};
-	TextBoxTraceListener(String ^h): TextWriterTraceListener(h){};
+	//TextBoxTraceListener( System::Windows::Forms::TextBox^  tb): TextWriterTraceListener(){textBox=tb;};
+	TextBoxTraceListener(String ^h): TextWriterTraceListener(h){init();};
 	void  init(void);
 	virtual void WriteLine(String ^h) override;
 	virtual void WriteLine(Object ^h)override;

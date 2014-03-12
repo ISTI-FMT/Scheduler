@@ -54,7 +54,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 
 	ListTrainModel ^model = gcnew ListTrainModel();
 
-	Prototipo::ListTrainView ^view = gcnew Prototipo::ListTrainView(tabItinerari,EQueueCambioOrario);
+	view = gcnew Prototipo::ListTrainView(tabItinerari,EQueueCambioOrario);
 	model->Subscribe(view);
 	view->AddModel(model);
 	controlListtrain = gcnew ControllerListTrain(model);
@@ -369,7 +369,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 void ThreadSchedulerSortedList::RequestStop()
 {
 	_shouldStop = true;
-
+	view->RequestStop();
 }
 
 

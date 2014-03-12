@@ -48,7 +48,8 @@ ref class ThreadSchedulerSortedList
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
 	ControllerListTrain ^controlListtrain;
-	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);;
+	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);
+	Prototipo::ListTrainView ^view;
 public:
 	ThreadSchedulerSortedList(void);
 

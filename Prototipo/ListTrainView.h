@@ -29,11 +29,13 @@ namespace Prototipo {
 		TabellaStazioni ^tabItinerari;
 		Dictionary<String^,SingleTrainInfoForm^> ^dictionaryTrainsInfoForm;
 		EventQueue<List<Fermata^>^> ^EQueueCambioOrario;
+		bool _shouldStop;
 	public:
 		ListTrainView(TabellaStazioni ^ti,EventQueue<List<Fermata^>^> ^ECambioOrario)
 		{
 			myDelegateNewTrain = gcnew GoCallback( this, &ListTrainView::setNewTrain );
 			tabItinerari=ti;
+			_shouldStop=false;
 			InitializeComponent();
 			myDelegateDeleteList = gcnew DeleteListCallback(this, &ListTrainView::DeleteList);
 			myDelegatePaint = gcnew PaintCallback(this, &ListTrainView::RePaintList);
@@ -50,6 +52,7 @@ namespace Prototipo {
 		void RePaintList();
 		void PaintTrain();
 		void ViewDeleteList();
+		void RequestStop(){_shouldStop=true;};
 		Void B_Click(System::Object^  sender, System::EventArgs^  e);
 
 		virtual void OnCompleted();
@@ -137,7 +140,11 @@ namespace Prototipo {
 #pragma endregion
 
 	private: System::Void ListTrainView_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
-				 	 e->Cancel=true;
+				 	if(_shouldStop){
+				 e->Cancel=false;
+				}else{
+					e->Cancel=true;
+				}
 			 }
 };
 }
