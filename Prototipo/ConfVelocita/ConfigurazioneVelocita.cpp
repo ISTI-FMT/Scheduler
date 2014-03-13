@@ -8,7 +8,7 @@ using namespace System::Xml;
 using namespace System::Xml::Schema;
 
 #define TRACE
-//#define VALIDATEXML
+#define VALIDATEXML
 
 ConfigurazioneVelocita::ConfigurazioneVelocita(void)
 {
@@ -43,9 +43,9 @@ void ConfigurazioneVelocita::leggifileConfigurazioneVelocita()
 		document->Load(readers);  */
 
 #endif // VALIDATEXML
-		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneProfiliVelocita.xml");
+		//System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneProfiliVelocita.xml");
 
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
+		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
 
 		// 
 		while (reader->ReadToFollowing("profilovelocita")){
