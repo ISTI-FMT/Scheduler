@@ -38,8 +38,8 @@ void Messaggi::setNID_MESSAGE(int N){
 		break;}
 	case MessATO::Acknol :{set_pacchettoAcknowledgement();break;}
 	case MessIXL::StatoLineaIXL: { set_pacchettoStatoLineaIXL();
-		set_pacchettoStatoItinerari();
-		//set_pacchettoStatoSegnali();
+		//set_pacchettoStatoItinerari();
+		set_pacchettoStatoSegnali();
 		set_pacchettoStatoBlocco();
 		set_pacchettoEnd();
 		break;}
@@ -79,11 +79,11 @@ void Messaggi::serialize(array<Byte>^buffer)
 		break;}
 	case MessATC::StatoLineaATC : 
 		{
-				offset += 51;
-				get_pacchettoPositionDataATC()->serialize(buffer, offset);
-		//offset += get_pacchettoPositionDataATC()->getSize();
-		//get_pacchettoEnd()->serialize(buffer, offset);
-		break;}
+			offset += 51;
+			get_pacchettoPositionDataATC()->serialize(buffer, offset);
+			//offset += get_pacchettoPositionDataATC()->getSize();
+			//get_pacchettoEnd()->serialize(buffer, offset);
+			break;}
 	case MessATO::Acknol :{
 		offset += 51;
 		utility::push(buffer, NID_ENGINE, 24, 51);

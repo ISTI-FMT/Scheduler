@@ -58,7 +58,7 @@ namespace Prototipo {
 		virtual void OnCompleted();
 		virtual void OnError(Exception ^e);
 		virtual void OnNext(List<Train^> ^value);
-		
+
 		virtual void Subscribe(IObservable<List<Train^>^> ^provider);
 		virtual void Unsubscribe();
 
@@ -140,11 +140,16 @@ namespace Prototipo {
 #pragma endregion
 
 	private: System::Void ListTrainView_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
-				 	if(_shouldStop){
-				 e->Cancel=false;
-				}else{
-					e->Cancel=true;
-				}
+				 if(_shouldStop){
+
+					 for each (SingleTrainInfoForm ^var in dictionaryTrainsInfoForm->Values)
+					 {
+						 var->Close();
+					 }
+					 e->Cancel=false;
+				 }else{
+					 e->Cancel=true;
+				 }
 			 }
-};
+	};
 }

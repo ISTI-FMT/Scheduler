@@ -10,17 +10,11 @@ pacchettoStatoSegnali::pacchettoStatoSegnali(void)
 	vStatoSegnale = gcnew List<StateSegnale^>();
 }
 
-// metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
 void pacchettoStatoSegnali::setN_ITER(int N)
 {
 	N_ITER = N;
-
 }
 
-
-// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 int pacchettoStatoSegnali::getSize()
 {
 	// intero che rappresenta la dimensione in bit
@@ -44,7 +38,6 @@ void pacchettoStatoSegnali::serialize(array<Byte>^buffer, int offset)
 	utility::push(buffer, vStatoSegnale[0]->getNID_SEGN(), 32, offset + 21);
 	utility::push(buffer, vStatoSegnale[0]->getQSTATO_SEGN(), 5, offset + 53);
 	utility::push(buffer, N_ITER, 16, offset + 58);
-	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 74;
 	for( int i =1; i <vStatoSegnale->Count;i++)
 	{
@@ -75,10 +68,6 @@ void pacchettoStatoSegnali::deserialize(array<Byte>^buffer, int offset)
 	}
 }
 
-
-
-
-
 System::String ^pacchettoStatoSegnali::ToString(){
 	System::String ^out;
 
@@ -89,10 +78,7 @@ System::String ^pacchettoStatoSegnali::ToString(){
 
 	for( int i =1; i <vStatoSegnale->Count;i++)
 	{
-
-
 		out = out+vStatoSegnale[i]->ToString();
-
 	}
 
 	return out;

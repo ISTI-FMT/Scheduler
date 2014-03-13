@@ -68,7 +68,7 @@ void FormVisualizzeTabOrario::Inizialize(){
 			dataGridView1->Rows[riga]->Cells[4]->Value=Partenza.ToString();
 			dataGridView1->Rows[riga]->Cells[5]->Value=dvar->getBinarioProgrammato();
 			dataGridView1->Rows[riga]->Cells[6]->Value=dvar->gettempoMinimoAperturaPorte();
-			dataGridView1->Rows[riga]->Cells[7]->Value=dvar->getLatoAperturaPorte();
+			dataGridView1->Rows[riga]->Cells[7]->Value=(int) dvar->getLatoAperturaPorte();
 			dataGridView1->Rows[riga]->Cells[8]->Value=dvar->getnameitinerarioEntrata();
 			dataGridView1->Rows[riga]->Cells[9]->Value=dvar->getnameitinerarioUscita();
 			riga++;

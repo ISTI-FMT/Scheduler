@@ -1,9 +1,10 @@
 #pragma once
+#include "..\FermataType.h"
 
-/*Utilizzo questa classe per serializzare le informazioni della missione del pacchetto MissionData da inviare all'ATO*/
+/*
+Questa classe rappresenta le informazioni sulla missione da affidare ad un treno
+*/
 
-
-//questa classe rappresenta le informazioni sulla missione da affidare ad un treno
 ref class Mission
 {
 	 int T_START_TIME;
@@ -24,7 +25,7 @@ public:
 	int getD_LRGB(){return D_LRGB;};
 	void setD_STOP(int D){ D_STOP=D;};
 	int getD_STOP(){return D_STOP;};
-	void setQ_DOORS( int Q){ Q_DOORS=Q;};
+	void setQ_DOORS( FermataType Q){ Q_DOORS=Q;};
 	int getQ_DOORS(){return Q_DOORS;};
 	void setT_DOORS_TIME( int T){ T_DOORS_TIME=T;};
 	int getT_DOORS_TIME(){return T_DOORS_TIME;};

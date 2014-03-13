@@ -476,8 +476,13 @@ System::Void SingleTrainInfoForm::comboBoxCambiaStatoTreno_SelectionChangeCommit
 
 System::Void SingleTrainInfoForm::SingleTrainInfoForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e){
 
+	
+	 	if(e->CloseReason==System::Windows::Forms::CloseReason::UserClosing){
 	 e->Cancel = true;
      Visible=false;
+	 }else{
+		 e->Cancel=false;
+	 }
 
 }
 

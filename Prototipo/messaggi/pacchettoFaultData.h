@@ -6,14 +6,9 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 
-/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto Fault Data che l'ATS riceve dal IXL o ATO
-nel messaggio di Fault Reporting, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
-
-
-/*-----------------------------------------------------------------------------------------------
-questa classe rappresenta un Pacchetto Fault Data
-L'ATS riceve dall'IXl messaggi di fault reporting con cui l'IXL comunica l'occorrenza di guasti
--------------------------------------------------------------------------------------------------*/
+/* 
+Rappresenta le informazioni contenute nel pacchetto Fault Data che l'ATS riceve dal IXL o ATO nel messaggio di Fault Reporting
+*/
 
 ref class pacchettoFaultData : pacchettoBase
 {
@@ -32,9 +27,6 @@ public:
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
 
-	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 	virtual int getSize() override;
 	virtual void serialize(array<Byte>^buffer, int offset) override;
 	virtual void deserialize(array<Byte>^buffer, int offset) override;

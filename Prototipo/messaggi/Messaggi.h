@@ -2,8 +2,6 @@
 #include "pacchettoCommandData.h"
 #include "pacchettoMissionData.h"
 #include "pacchettopresentazione.h"
-
-//#include "pacchettostatolineaatc.h"
 #include "pacchettoPositionDataATC.h"
 #include "pacchettoAcknowledgement.h"
 #include "pacchettoStatoItinerario.h"
@@ -19,31 +17,26 @@
 using namespace System;
 using namespace System::Globalization;
 
-/*Utilizzo questa classe per creare serializzare deserializzare i messaggi specificando
-i pacchetti da inserire nel messaggio*/
-
-//questa classe rappresenta un messaggio cosi come definito nei documenti di specifica
-//e contiene i metodi per serializzare e desirializzare un messaggio
+/*
+Rappresenta un messaggio cosi come definito nei documenti di specifica
+e contiene i metodi per serializzare e desirializzare un messaggio
+*/
 
 enum  MessATC{ StatoLineaATC = 11,  FaultReportingATC = 12 };
 enum  MessIXL{ StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231};
 enum  MessATO{ MissionPlan = 200,  FaultReportingATO = 213, UnconditionCommand=201, Acknol=210,Presentation=215 };
+
 ref class Messaggi
 {
-	// puntatore all'header per i messaggi ATS/ATO
-	//structuredHeader *head;
-	unsigned int NID_MESSAGE;
-	unsigned int L_MESSAGE;
-	unsigned int T_TIME;
-	unsigned int NID_ENGINE;
-	// puntatori alle strutture dati per i pacchetti ATS/ATO
+	int NID_MESSAGE;
+	int L_MESSAGE;
+	int T_TIME;
+	int NID_ENGINE;
+	
 	pacchettoCommandData ^pkgcd1;
 	pacchettoMissionData ^pkgMP;
 	pacchettopresentazione ^pgkPres;
-	//pacchettostatolineaatc ^pkgStatoATC;
 	pacchettoAcknowledgement ^pkgAck;
-
-	// puntatori alle strutture dati per i pacchetti ATS/ATO
 
 	pacchettoStatoLineaIXL ^pkgStatoLineaIXL;
 	pacchettoPositionDataATC ^pkgPositionDataATC;
@@ -77,7 +70,6 @@ private:
 	void set_pacchettoPresentazione(){ pgkPres = gcnew pacchettopresentazione;};
 	void set_pacchettoMissionData(){ pkgMP = gcnew pacchettoMissionData;};
 	void set_pacchettoAcknowledgement(){ pkgAck = gcnew pacchettoAcknowledgement;};
-	//void set_pacchettoStatoLineaATC(){ pkgStatoATC = gcnew pacchettostatolineaatc;};
 
 	void serialize(array<Byte>^buffer);
 
@@ -106,7 +98,6 @@ public:
 	pacchettoCommandData^ get_pacchettoCommandData(){ return pkgcd1;};
 	pacchettoMissionData^ get_pacchettoMissionData(){ return pkgMP;};
 	pacchettopresentazione^ get_pacchettoPresentazione(){ return pgkPres;};
-	//pacchettostatolineaatc^ get_pacchettoStatoLineaATC(){ return pkgStatoATC;};
 	pacchettoAcknowledgement^ get_pacchettoAcknowledgement(){ return pkgAck;};
 
 	array<System::Byte>^ serialize();

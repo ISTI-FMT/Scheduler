@@ -57,6 +57,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies />
+      <IgnoreSpecificDefaultLibraries>OLDNAMES.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>copy app.config "$(TargetPath).config"</Command>
@@ -161,6 +162,7 @@
       <DependentUpon>..\FileConfigurazione\TabellaOrario.xsd</DependentUpon>
     </ClInclude>
     <ClInclude Include="tabellaOrario\Fermata.h" />
+    <ClInclude Include="FermataType.h" />
     <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
     <ClInclude Include="ThreadSchedulerSortedList.h" />
@@ -218,7 +220,6 @@
     <ClCompile Include="messaggi\StateScudetti.cpp" />
     <ClCompile Include="messaggi\StateSegnale.cpp" />
     <ClCompile Include="messaggi\utility.cpp" />
-    <ClCompile Include="messaggi\pacchettoBase.cpp" />
     <ClCompile Include="ParalellMethod.cpp" />
     <ClCompile Include="physicalTrain.cpp" />
     <ClCompile Include="phisicalTrainList.cpp" />

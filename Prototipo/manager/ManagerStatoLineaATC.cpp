@@ -61,7 +61,7 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 					StateCDB ^cdbdel = listcdbetmpo[i];
 					listcdbetmpo->Remove(cdbdel);
 					StateCDB ^ncdbdel = cdbdel->Clone();
-					ncdbdel->setQ_STATOCDB(typeStateCDB::cdbLibero);
+					ncdbdel->setQ_STATOCDB(QStateCDB::cdbLibero);
 					ncdbdel->setNID_ENGINE(0);
 					ncdbdel->setNID_OPERATIONAL(0);
 					addCheckAndSet(ncdbdel,"ATS-ATS");

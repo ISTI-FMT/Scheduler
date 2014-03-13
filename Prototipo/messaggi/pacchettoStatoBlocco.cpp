@@ -9,15 +9,11 @@ pacchettoStatoBlocco::pacchettoStatoBlocco(void)
 	vStatoBlocco =gcnew List<StateBlocco^>();
 }
 
-// metodo che setta N_ITER
 void pacchettoStatoBlocco::setN_ITER(int N)
 {
 	N_ITER = N;
 }
 
-// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 int pacchettoStatoBlocco::getSize()
 {
 	// intero che rappresenta la dimensione in bit
@@ -48,12 +44,10 @@ void pacchettoStatoBlocco::serialize(array<Byte>^buffer, int offset)
 		utility::push(buffer, vStatoBlocco[i]->getQ_STATOBLOCCO(), 2, offset + shift);
 		shift += 2;
 	}
-
 }
 
 void pacchettoStatoBlocco::deserialize(array<Byte>^buffer, int offset)
 {
-
 	NID_PACKET=utility::pop(buffer,  8, offset );
 	L_PACKET=utility::pop(buffer, 13, offset + 8);
 	int tNID_BLOCCO= utility::pop(buffer, 32, offset + 21);
@@ -72,8 +66,6 @@ void pacchettoStatoBlocco::deserialize(array<Byte>^buffer, int offset)
 	}
 }
 
-
-
 System::String ^pacchettoStatoBlocco::ToString(){
 	System::String ^out;
 
@@ -81,12 +73,11 @@ System::String ^pacchettoStatoBlocco::ToString(){
 	out = out+"L_PACKET: "+L_PACKET+";";
 	out = out+vStatoBlocco[0]->ToString();
 	out = out+"N_ITER: "+N_ITER+";";
-	
-		for( int i = 1; i <vStatoBlocco->Count; i++)
-		{
-			out = out+vStatoBlocco[i]->ToString();
 
-		}
-	
+	for( int i = 1; i <vStatoBlocco->Count; i++)
+	{
+		out = out+vStatoBlocco[i]->ToString();
+	}
+
 	return out;
 }

@@ -10,22 +10,15 @@ pachettoStatoScudetti::pachettoStatoScudetti(void)
 	vStatoScudetti = gcnew List<StateScudetti^>();
 }
 
-// metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
 void pachettoStatoScudetti::setN_ITER(int N)
 {
 	N_ITER = N;
-
 }
 
-
-// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 int pachettoStatoScudetti::getSize()
 {
 	// intero che rappresenta la dimensione in bit
 	int size = 0;
-
 
 	size += 72;
 	// 12 bit per ogni N_ITER
@@ -42,7 +35,6 @@ void pachettoStatoScudetti::serialize(array<Byte>^buffer, int offset)
 	utility::push(buffer, vStatoScudetti[0]->getNID_SCUD(), 32, offset + 21);
 	utility::push(buffer, vStatoScudetti[0]->getQ_STATOSCUD(), 3, offset + 53);
 	utility::push(buffer, N_ITER, 16, offset + 56);
-	//mS1_vect = new missionStruct1[N_ITER1];
 	int shift = 72;
 	for( int i =1; i <vStatoScudetti->Count;i++)
 	{
@@ -55,13 +47,10 @@ void pachettoStatoScudetti::serialize(array<Byte>^buffer, int offset)
 
 void pachettoStatoScudetti::deserialize(array<Byte>^buffer, int offset)
 {
-
 	NID_PACKET=utility::pop(buffer,  8, offset);
 	L_PACKET=utility::pop(buffer, 13, offset + 8);
 	int tNID_SCUD=utility::pop(buffer, 32, offset + 21);
 	int tQ_STATOSCUD=utility::pop(buffer, 3, offset + 53);
-
-
 
 	setN_ITER(utility::pop(buffer, 16, offset + 56));
 	int shift = 72;
@@ -75,9 +64,6 @@ void pachettoStatoScudetti::deserialize(array<Byte>^buffer, int offset)
 	}
 }
 
-
-
-
 System::String ^pachettoStatoScudetti::ToString(){
 	System::String ^out;
 
@@ -90,7 +76,6 @@ System::String ^pachettoStatoScudetti::ToString(){
 	{
 		out = out+vStatoScudetti[i]->ToString();
 	}
-
 
 	return out;
 }
