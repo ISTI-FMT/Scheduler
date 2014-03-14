@@ -96,6 +96,7 @@
     </ClCompile>
     <ClCompile Include="TabellaOrarioTest.cpp" />
     <ClCompile Include="TabellaStazioniTest.cpp" />
+    <ClCompile Include="TrainTest.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -4,11 +4,13 @@
 using namespace System::Collections::Generic;
 using namespace System::Threading;
 using namespace System::Collections::Concurrent;
+using namespace System::Diagnostics::CodeAnalysis;
 
 
 /*Utilizzo questa classe per raccogliere in una mappa le informazioni di presentazione inviate all'ATS dagli ATO*/
 /*DISMESSA*/
 //rappresenta una lista di treni che si sono presentati
+[System::Obsolete(""),ExcludeFromCodeCoverage]
 ref class phisicalTrainList
 {
 	ConcurrentDictionary<int,physicalTrain^> ^treni;
