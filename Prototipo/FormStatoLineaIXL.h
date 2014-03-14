@@ -21,10 +21,13 @@ namespace Prototipo {
 	using namespace System::Net::Sockets;
 	using namespace System::Threading;
 	using namespace System::Threading::Tasks;
+	using namespace System::Diagnostics::CodeAnalysis;
+
 
 	/// <summary>
 	/// Riepilogo per FormStatoLineaIXL
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	ref class FormStatoLineaIXL : public System::Windows::Forms::Form , IObserver<Event<StateCDB^>^>
 	{
 		TabellaStazioni ^tabItinerari;

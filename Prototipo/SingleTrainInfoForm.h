@@ -11,6 +11,8 @@ using namespace System::Windows::Forms;
 
 /*questa classe rappresenta la form con le informazioni del treno*/
 
+using namespace System::Diagnostics::CodeAnalysis;
+[ExcludeFromCodeCoverage]
 ref class SingleTrainInfoForm : public System::Windows::Forms::Form,IComparable<SingleTrainInfoForm^>, IObservable<Event<List<Fermata^>^>^>,IObserver<Train^>
 {
 	Train ^train;

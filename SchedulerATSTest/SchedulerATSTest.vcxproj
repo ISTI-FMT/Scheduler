@@ -87,6 +87,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="ConfigurazioneVelocitaTest.cpp" />
     <ClCompile Include="FermataTest.cpp" />
+    <ClCompile Include="mapTrenoFisicoLogicoTest.cpp" />
     <ClCompile Include="MessaggiTest.cpp" />
     <ClCompile Include="StateCDBTest.cpp" />
     <ClCompile Include="stdafx.cpp">

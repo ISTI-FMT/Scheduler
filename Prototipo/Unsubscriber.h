@@ -3,8 +3,11 @@
 #include "Event.h"
 /*classe generica per disiscriversi nel pattern observer*/
 using namespace System::Collections::Generic;
+using namespace System::Diagnostics::CodeAnalysis;
 using namespace System;
 generic <typename T>
+
+[ExcludeFromCodeCoverage]
 public ref class Unsubscriber : public  IDisposable
 {
 	

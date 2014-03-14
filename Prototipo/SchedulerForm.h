@@ -37,11 +37,14 @@ namespace Prototipo {
 	using namespace System::Runtime::InteropServices;
 	using namespace System::Globalization;
 	using namespace System::Xml;
+	using namespace System::Diagnostics::CodeAnalysis;
 	/*Utilizzo questa classe per rappresentare graficamente un pannello di controllo dello scheduler
 	sono presenti alcuni pulsanti che visualizzano informazioni sulla configurazione del sistema*/
 	/// <summary>
 	/// Riepilogo per SchedulerForm
 	/// </summary>
+
+	[ExcludeFromCodeCoverage]
 	public ref class SchedulerForm : public System::Windows::Forms::Form
 	{
 	public:

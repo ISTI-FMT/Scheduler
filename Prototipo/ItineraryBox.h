@@ -3,7 +3,9 @@
 #include "Itinerari\\stazione.h"
 
 /*Utilizzo questa classe per rappresentare graficamente un controllo che visualizzi le informazioni sugli itinerari*/
+using namespace System::Diagnostics::CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 ref class ItineraryBox :
 public System::Windows::Forms::UserControl
 {

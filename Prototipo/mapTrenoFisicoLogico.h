@@ -12,7 +12,7 @@ e raccoglierli in una map tra id del treno fisico e una classe che raccoglie le 
 L'ATS associa ad ogni treno fisico un TRN
 -------------------------------------------------------------------------------------------------*/
 
-ref class mapTrenoFisicoLogico
+public ref class mapTrenoFisicoLogico
 {
 Dictionary<int, TrenoFisicoLogico^>^ map;
 public:
