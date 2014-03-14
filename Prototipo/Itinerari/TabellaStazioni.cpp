@@ -14,7 +14,8 @@ using namespace System::Xml::Schema;
 TabellaStazioni::TabellaStazioni(void)
 {
 	mapidstazioneitinerari= gcnew Dictionary<int,stazione^ >() ;
-
+	leggifileconfigurazioneItinerari();
+	leggifileconfigurazioneFermate();
 
 }
 

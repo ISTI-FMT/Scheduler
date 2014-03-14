@@ -18,6 +18,7 @@ TabellaOrario::TabellaOrario(void)
 {
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
 	schemaxsd="TabellaOrario.xsd";
+	leggiTabellaOrario();
 }
 
 TabellaOrario::TabellaOrario(TabellaStazioni ^T)
@@ -25,6 +26,7 @@ TabellaOrario::TabellaOrario(TabellaStazioni ^T)
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
 	schemaxsd="TabellaOrario.xsd";
 	tabItinerari=T;
+	leggiTabellaOrario();
 }
 
 

@@ -383,11 +383,10 @@ namespace Prototipo {
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //
 				 tabItinerari = gcnew TabellaStazioni();
-				 tabItinerari->leggifileconfigurazioneItinerari();
-				 tabItinerari->leggifileconfigurazioneFermate();
+				 
 
 				 tabellaOrario  = gcnew TabellaOrario(tabItinerari);
-				 tabellaOrario->leggiTabellaOrario();
+				 
 
 				// tabfermate=gcnew tabellaFermate();
 				// tabfermate->leggifileconfigurazioneFermate();

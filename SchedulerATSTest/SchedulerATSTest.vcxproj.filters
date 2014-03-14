@@ -36,6 +36,12 @@
     <ClCompile Include="FermataTest.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="TabellaOrarioTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="TabellaStazioniTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
