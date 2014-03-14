@@ -9,7 +9,7 @@ Contiene metodi per serializzare e deserializzare il contenuto
 
 enum QMissionResponse { MissioneRifiutata = 0, MissioneAccettata = 1 };
 
-ref class pacchettoAcknowledgement : pacchettoBase
+public ref class pacchettoAcknowledgement : pacchettoBase
 {
 	 int L_PACKET;
 	 int T_TRAIN ;

@@ -3,7 +3,7 @@
 /*
 Rappresenta le informazioni contenute nel messaggio di fault
 */
-ref class Fault
+public ref class Fault
 {
 	int NID_COMPONENT ;
 	int M_FAULT ;

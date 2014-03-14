@@ -6,8 +6,10 @@
 Rappresenta i dati inviati dal pacchetto ComandoBlocco che l'ATS invia all'IXL
 */
 enum  QCmdBlocco { direzioneLegale = 1, direzioneIllegale = 0};
+using namespace System::Diagnostics::CodeAnalysis;
 
-ref class pacchettoComandoBlocco : pacchettoBase
+[ExcludeFromCodeCoverage]
+public ref class pacchettoComandoBlocco : pacchettoBase
 {
 	int L_PACKET ;
 	int NID_BLOCCO ;

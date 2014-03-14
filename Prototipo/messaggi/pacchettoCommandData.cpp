@@ -55,7 +55,7 @@ pacchettoCommandData::~pacchettoCommandData(void)
 System::String ^pacchettoCommandData::ToString()
 {
 	int cmdType = (int)getQ_COMMAND_TYPE();
-	System::String ^out = "NID_PACKET "+NID_PACKET+";\n";
+	System::String ^out = "NID_PACKET "+NID_PACKET+";";
 	out = out+"L_PACKET "+getL_PACKET()+";";
 	out = out+"Q_COMMAND_TYPE "+cmdType+";";
 

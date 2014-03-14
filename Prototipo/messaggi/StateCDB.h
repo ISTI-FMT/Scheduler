@@ -21,20 +21,14 @@ public:
 	void setNID_CDB(int NID){NID_CDB=NID;};
 	int getNID_CDB(){return NID_CDB;};
 	void setQ_DEVIATOIO(QStateDeviatoio Q){
-		if((Q>=0) & (Q<3)){
 			Q_DEVIATOIO=Q;
-		}else{
-			Q_DEVIATOIO=QStateDeviatoio::deviatoioStatoIgnoto;
-		}
+		
 
 	};
 	QStateDeviatoio getQ_DEVIATOIO(){return (QStateDeviatoio)Q_DEVIATOIO;};
 	void setQ_STATOCDB(QStateCDB Q){
-		if((Q>=0)& (Q<4)){
 			Q_STATOCDB=Q;
-		}else{
-			Q_STATOCDB=QStateCDB::cdbFuoriControllo;
-		}
+		
 	};
 	QStateCDB getQ_STATOCDB(){return (QStateCDB)Q_STATOCDB;};
 	bool Update(StateCDB ^newcdb){

@@ -1,6 +1,5 @@
 #include "Mission.h"
 
-
 Mission::Mission(void)
 {
 	T_START_TIME = 0;

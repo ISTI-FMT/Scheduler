@@ -6,7 +6,7 @@ enum  QStatoBlocco {  illegale = 0, legale = 1};
 Rappresenta le informazioni dello stato del blocco del pacchetto StatoBlocco da inviare all'IXL
 */
 
-ref class StateBlocco
+public ref class StateBlocco
 {
 	int NID_BLOCCO ;
 	int Q_STATOBLOCCO;

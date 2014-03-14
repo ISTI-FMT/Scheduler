@@ -10,7 +10,7 @@ using namespace System::Collections;
 Rappresenta le informazioni contenute nel pacchetto Stato Segnali che l'ATS riceve dal IXL nel messaggio di stato della linea
 */
 
-ref class pacchettoStatoSegnali : pacchettoBase
+public ref class pacchettoStatoSegnali : pacchettoBase
 {
 	int L_PACKET ;
 	int N_ITER ;

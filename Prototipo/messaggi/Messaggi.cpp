@@ -242,7 +242,7 @@ void Messaggi::deserialize(array<Byte>^buffer)
 
 String ^Messaggi::ToString(){
 
-	String ^out = "NID_MESSAGE "+getNID_MESSAGE()+";\n";
+	String ^out = "NID_MESSAGE "+getNID_MESSAGE()+";";
 	out = out+"L_MESSAGE "+getL_MESSAGE()+";";
 	out = out+"T_TRAIN "+getT_TIME()+";";
 	if(getNID_ENGINE()>0){

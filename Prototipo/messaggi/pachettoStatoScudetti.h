@@ -10,7 +10,7 @@ using namespace System::Collections;
 Rappresenta le informazioni contenute nel pacchetto Stato dei Scudetti che l'ATS riceve dal IXL nel messaggio di stato della linea
 */
 
-ref class pachettoStatoScudetti : pacchettoBase
+public ref class pachettoStatoScudetti : pacchettoBase
 {
 	int L_PACKET ;	
 	int N_ITER ;

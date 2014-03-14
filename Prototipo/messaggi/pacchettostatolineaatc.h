@@ -11,7 +11,7 @@ using namespace System::Collections;
 Rappresenta le informazioni contenute nel pacchetto Stato linea che l'ATS riceve dal ATC, con le informazioni sullo stato dei CDB, nel messaggio di stato della linea
 */
 
-ref class pacchettostatolineaatc : pacchettoBase
+public ref class pacchettostatolineaatc : pacchettoBase
 {
 	int L_PACKET ;
 	int NID_OPERATIONAL ;

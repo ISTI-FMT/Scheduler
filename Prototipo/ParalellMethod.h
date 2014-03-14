@@ -3,7 +3,9 @@
 using namespace System;
 
 /*test nell'utilizzo di metodi paralleli http://msdn.microsoft.com/it-it/library/system.threading.tasks.parallel(v=vs.110).aspx */
+using namespace System::Diagnostics::CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 ref class ParalellMethod
 {
 	array<Byte> ^A_array;

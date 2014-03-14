@@ -5,7 +5,7 @@ Rappresenta le informazioni sullo stato degli scudetti del pacchetto stato scude
 */
 enum QStatoScud { Riposo = 0, OrigineInviato = 1, OrigineInAtto = 2, FineInviato = 3, FineInAtto = 4};
 
-ref class StateScudetti
+public ref class StateScudetti
 {
 	int NID_SCUD ;
 	int Q_STATOSCUD ;

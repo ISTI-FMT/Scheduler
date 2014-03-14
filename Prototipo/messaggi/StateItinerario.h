@@ -5,6 +5,9 @@ enum QStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
 /*
 Rappresenta le informazioni dello stato dell'itinerario del pacchetto stato itinerario rivevuto dall'IXL
 */
+using namespace System::Diagnostics::CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
 public ref class StateItinerario
 {
 	int NID_ITIN;

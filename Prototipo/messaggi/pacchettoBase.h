@@ -10,7 +10,7 @@ enum PacchettoIXL { PacchettoStatoLineaIXL = 0, PacchettoFaultDataIXL = 1, Pacch
 enum PacchettoATO { PacchettoMissionData = 160, PacchettoCommandData = 161, PacchettoFaultData = 170, PacchettoDoorsStatus = 171, PacchettoTrainData = 172, PacchettoEmergencyEvents = 173, PacchettoMissionAck = 174, PacchettoNetworkData = 175};
 enum PacchettoATC { PacchettoFaultDataATC = 18, PacchettoPositionDataATC = 19};
 
-ref class pacchettoBase abstract
+public ref class pacchettoBase abstract
 {
 protected:
 	pacchettoBase() { }
