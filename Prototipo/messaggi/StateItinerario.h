@@ -15,7 +15,7 @@ public ref class StateItinerario
 	
 public:
 	StateItinerario(void);
-	StateItinerario(int N, QStateItineraio Q){NID_ITIN=N;setQ_STATOITIN(Q);};
+	StateItinerario(int N, int Q){NID_ITIN=N;Q_STATOITIN =Q;};
 	void setNID_ITIN( int N){NID_ITIN=N;};
 	int getNID_ITIN(){return NID_ITIN;};
 	void setQ_STATOITIN( QStateItineraio Q){
@@ -38,7 +38,7 @@ public:
 		return ret;
 	};
 
-	StateItinerario ^Clone(){return gcnew StateItinerario(NID_ITIN,(QStateItineraio)Q_STATOITIN);};
+	StateItinerario ^Clone(){return gcnew StateItinerario(NID_ITIN,Q_STATOITIN);};
 
 	virtual System::String ^ToString() override;
 };

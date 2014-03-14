@@ -3,7 +3,9 @@ using namespace System::Net::Sockets;
 using namespace System::Collections::Concurrent;
 
 /*Utilizzo questa classe per ricevere ed inviare messaggi TCP asincroni*/
+using namespace System::Diagnostics::CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 ref class StateObject
 {
 public:

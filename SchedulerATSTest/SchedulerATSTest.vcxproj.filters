@@ -27,6 +27,9 @@
     <ClCompile Include="MessaggiTest.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="StateCDBTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

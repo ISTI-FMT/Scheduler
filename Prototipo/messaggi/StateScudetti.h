@@ -4,7 +4,9 @@
 Rappresenta le informazioni sullo stato degli scudetti del pacchetto stato scudetti rivevuto dall'IXL
 */
 enum QStatoScud { Riposo = 0, OrigineInviato = 1, OrigineInAtto = 2, FineInviato = 3, FineInAtto = 4};
+using namespace System::Diagnostics::CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 public ref class StateScudetti
 {
 	int NID_SCUD ;
