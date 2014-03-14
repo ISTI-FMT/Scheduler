@@ -304,7 +304,7 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 
 					}
 				}
-				if(stop->getIditinerarioEntrata()==0 & stop->getIditinerarioUscita()==0){
+				if((stop->getIditinerarioEntrata()==0) & (stop->getIditinerarioUscita()==0)){
 					lrbg ^infobalise  = tabItinerari->get_infobalise_fromBinario(stop->getIdStazione(),stop->getBinarioProgrammato());
 					mission->setNID_LRGB(infobalise->nid_lrgb);
 					mission->setD_STOP(infobalise->d_stop);

@@ -3,6 +3,9 @@
 /*
 Rappresenta le informazioni contenute nel messaggio di fault
 */
+using namespace System::Diagnostics::CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
 public ref class Fault
 {
 	int NID_COMPONENT ;

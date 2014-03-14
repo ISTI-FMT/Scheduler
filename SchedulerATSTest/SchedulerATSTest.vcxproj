@@ -85,6 +85,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ConfigurazioneVelocitaTest.cpp" />
+    <ClCompile Include="FermataTest.cpp" />
     <ClCompile Include="MessaggiTest.cpp" />
     <ClCompile Include="StateCDBTest.cpp" />
     <ClCompile Include="stdafx.cpp">

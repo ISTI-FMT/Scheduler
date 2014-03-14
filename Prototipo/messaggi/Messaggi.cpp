@@ -309,6 +309,7 @@ int Messaggi::getSize(){
 		default: break;
 		}
 	}catch(Exception ^e){
+		Console::WriteLine("Errore nella Getsize dei messaggi, error: {0}",e->Message);
 		return 1345;
 	}
 	int size = (len/8)+1;

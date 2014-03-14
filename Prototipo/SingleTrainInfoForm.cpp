@@ -266,7 +266,7 @@ String ^SingleTrainInfoForm::forwardItinerario(int index, List<Fermata^> ^Listaf
 			int idstazione = Listafermate[i]->getIdStazione();
 
 			result+= KeyValuePair<int, int>(idstazione, itinUscita);
-			if(i!=index & StateTrain::ENTRATASTAZIONE!=train->getStatoTreno()){
+			if((i!=index) & (StateTrain::ENTRATASTAZIONE!=train->getStatoTreno())){
 			int initEntrata = Listafermate[i]->getIditinerarioEntrata();
 			idstazione = Listafermate[i]->getIdStazione();
 			result+=   KeyValuePair<int, int>(idstazione, initEntrata);

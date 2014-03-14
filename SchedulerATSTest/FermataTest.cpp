@@ -1,17 +1,19 @@
 ﻿
 #include "stdafx.h"
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
+#include "..//Prototipo//FermataType.h"
+#include "stdafx.h"
 namespace SchedulerATSTest {
     using namespace System;
-    ref class StateCDBTest;
+    ref class FermataTest;
     
     
     /// <summary>
-///Classe di test per StateCDBTest.
-///Creata per contenere tutti gli unit test StateCDBTest
+///Classe di test per FermataTest.
+///Creata per contenere tutti gli unit test FermataTest
 ///</summary>
 	[TestClass]
-	public ref class StateCDBTest
+	public ref class FermataTest
 	{
 
 	private: Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^  testContextInstance;
@@ -61,79 +63,59 @@ namespace SchedulerATSTest {
 			//
 #pragma endregion
 			/// <summary>
-			///Test per Costruttore StateCDB
-			///</summary>
-	public: [TestMethod]
-			void StateCDBConstructorTest()
-			{
-				int nid = 10; 
-				int state = 1; 
-				int dev = 0; 
-				int idltrain = 350;
-				int idftrain = 3440; 
-				StateCDB^  target = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));
-				StateCDB^  target2 = (gcnew StateCDB(nid, state, dev, idltrain));
-				StateCDB^  target3 = (gcnew StateCDB(nid, state, dev));
-				Assert::IsTrue(true, "Exception was properly thrown");
-				Assert::IsNotNull(target->ToString());
-			}
-			/// <summary>
 			///Test per Clone
 			///</summary>
 	public: [TestMethod]
 			void CloneTest()
 			{
-				int nid = 10; 
-				int state = 1; 
-				int dev = 0; 
-				int idltrain = 350;
-				int idftrain = 3440; 
-				StateCDB^  target = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));
-				
-				StateCDB^  actual= target->Clone();
-				Assert::AreEqual(target, actual);
-				Assert::AreNotSame(target, actual);
-			}
-			/// <summary>
-			///Test per Update
-			///</summary>
-	public: [TestMethod]
-			void UpdateTest()
-			{
-				StateCDB^  target = (gcnew StateCDB(10,0,1,55,11)); 
-				int nid = 10; 
-				int state = 1; 
-				int dev = 0; 
-				int idltrain = 350;
-				int idftrain = 3440; 
-				StateCDB^  newcdb = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));
-				
-				bool actual = target->Update(newcdb);
-				Assert::AreEqual(target, newcdb);
-			}
-			/// <summary>
-			///Test per Equals
-			///</summary>
-	public: [TestMethod]
-			void EqualsTest()
-			{
-				int nid = 10; 
-				int state = 1; 
-				int dev = 0; 
-				int idltrain = 350;
-				int idftrain = 3440; 
-				StateCDB^  target = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));
+				Fermata^  target = (gcnew Fermata(1)); 
 			
-				StateCDB^  second = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));
-				
-				
-				bool actual = target->Equals(second);
-				Assert::AreEqual(true, actual);
+				Fermata^  actual = target->Clone();
+				Assert::AreEqual(target->ToString(),actual->ToString());
+				Assert::IsTrue(target->Equals(actual));
+				Assert::IsTrue(target->isPassante());
+			}
+			/// <summary>
+			///Test per Costruttore Fermata
+			///</summary>
+	public: [TestMethod]
+			void FermataConstructorTest()
+			{
+				int i = 0; 
+				String^  n = System::String::Empty; 
+				double oa = 0; 
+				double op = 1;
+				double tmpa = 0; 
+				int bp = 0; 
+				FermataType lap = FermataType::aperturaTrenoDx; 
+				int idie = 0; 
+				String^  nie = System::String::Empty; 
+				int idiu = 0;
+				String^  niu = System::String::Empty;
+				Fermata^  target = (gcnew Fermata(i, n, oa, op, tmpa, bp, lap, idie, nie, idiu, niu));
 
-				StateCDB^  tre = (gcnew StateCDB());
-				actual = target->Equals(tre);
-				Assert::AreEqual(false, actual);
-
+				Assert::IsFalse(target->isPassante());
+				Assert::IsTrue(target->ToString()->Length>20);	
+			}
+			/// <summary>
+			///Test per setOrarioArrivo
+			///</summary>
+	public: [TestMethod]
+			void setOrarioArrivoTest()
+			{
+				Fermata^  target = (gcnew Fermata()); 
+				DateTime arr = DateTime::Now; // 
+				target->setOrarioArrivo(arr);
+			}
+			/// <summary>
+			///Test per setOrarioPartenza
+			///</summary>
+	public: [TestMethod]
+			void setOrarioPartenzaTest()
+			{
+				Fermata^  target = (gcnew Fermata());
+				DateTime orario =  DateTime::Now;
+				target->setOrarioPartenza(orario);
 			}
 	};
 }
