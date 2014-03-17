@@ -5,9 +5,14 @@
 /*questa classe rappresenta la struttura dati coda di eventi che lo schedulatore interroga per avere l'evento successivo*/
 using namespace System;
 using namespace System::Collections::Concurrent;
+using namespace System::Diagnostics::CodeAnalysis;
 //rappresenta una coda di eventi che implementa l'interfaccia observer 
-//contiene i metodi per sottoscrivere l'oggetto osservabile
+//contiene i metodi per sottoscrivere l'oggetto osservabile ed è generica 
+
+
+
 generic <typename T>
+[ExcludeFromCodeCoverage]
 public ref class EventQueue  : public IObserver<Event<T>^>
 {
 	IDisposable ^unsubscriber;

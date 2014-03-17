@@ -361,7 +361,7 @@ Void SingleTrainInfoForm::textBox_TextChangedP(System::Object^  sender, System::
 	TextBox ^textarea =(TextBox^) sender ;
 
 	//[0-9]+(?:\.[0-9]*)?
-	System::Text::RegularExpressions::Match ^m = System::Text::RegularExpressions::Regex::Match(textarea->Text,"[0-9]+(?:\.[0-9]*)?");
+	System::Text::RegularExpressions::Match ^m = System::Text::RegularExpressions::Regex::Match(textarea->Text,"[0-9]+(?:\\.[0-9]*)?");
 	if (m->Success){
 
 		try{

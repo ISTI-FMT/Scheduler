@@ -5,7 +5,7 @@ using namespace System;
 /*Utilizzo questa classe per serializzare le informazioni di presentazione inviate all'ATS dagli ATO*/
 
 //questa classe contiene le informazioni di presentazione del treno
-public ref class physicalTrain
+public ref class physicalTrain : public IEquatable<physicalTrain^>
 {
 	int engineNumber;
 	String ^ipAddress;
@@ -21,9 +21,11 @@ public:
 	String^ getIpAddress(){return ipAddress;};
 	void setTcpPort(int port){tcpPort = port;};
 	int getTcpPort(){return tcpPort;};
+	int getCDBLastPos(){return cdblastpos;};
+	void setCDBLastPos(int c){cdblastpos = c;};
 	bool Update(physicalTrain ^t);
 	physicalTrain ^Clone();
-	~physicalTrain(void);
 	virtual System::String ^ToString() override;
+	virtual bool Equals(physicalTrain ^t2);
 };
 

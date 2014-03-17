@@ -27,8 +27,9 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 		port = System::Configuration::ConfigurationSettings::AppSettings["port_UDP_receive"]!= nullptr ? int::Parse( System::Configuration::ConfigurationSettings::AppSettings["port_UDP_receive"]->ToString()) : 4010;
 
 	} catch(Exception  ^error){
+		String ^err= error->Message;
 		port=4010;
-
+		
 	}
 	Console::WriteLine("PORT UDP Receive: {0}",port);
 	_shouldStop=false;
@@ -46,7 +47,7 @@ bool ThreadListenerATC_IXL::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B){
 			scarta=true;
 		}else{
 			scarta=false; 
-			B=A;
+			//B=A;
 			break;
 		}
 	}

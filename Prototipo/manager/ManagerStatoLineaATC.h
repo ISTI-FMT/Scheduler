@@ -10,7 +10,7 @@ using namespace System::Collections::Generic;
 filtra i messaggi inviando allo scheduler solo quelli che hanno subito una modifica*/
 
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni sullo stato della linea fornite da ATC
-ref class ManagerStatoLineaATC : public IObservable<Event<StateCDB^>^>
+public ref class ManagerStatoLineaATC : public IObservable<Event<StateCDB^>^>
 {
 	//id della mappa è id del CDB
 	Dictionary<int, StateCDB^> ^tabellaCDB;

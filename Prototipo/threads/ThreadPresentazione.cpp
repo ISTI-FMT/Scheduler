@@ -34,7 +34,7 @@ ThreadPresentazione::ThreadPresentazione(/*phisicalTrainList ^lt,*/  ManagerMsgA
 		// Console::WriteLine("IP IXL ",ipixl);
 	} catch(Exception  ^error){
 		port=13000;
-
+		String ^err= error->Message;
 	}
 	Console::WriteLine("PORT TCP Receive: {0}",port);
 	_shouldStop=false;

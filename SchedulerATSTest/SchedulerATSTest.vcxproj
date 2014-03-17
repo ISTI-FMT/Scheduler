@@ -89,6 +89,7 @@
     <ClCompile Include="FermataTest.cpp" />
     <ClCompile Include="mapTrenoFisicoLogicoTest.cpp" />
     <ClCompile Include="MessaggiTest.cpp" />
+    <ClCompile Include="physicalTrainTest.cpp" />
     <ClCompile Include="StateCDBTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -96,6 +97,8 @@
     </ClCompile>
     <ClCompile Include="TabellaOrarioTest.cpp" />
     <ClCompile Include="TabellaStazioniTest.cpp" />
+    <ClCompile Include="ThreadListenerATC_IXLTest.cpp" />
+    <ClCompile Include="ThreadPresentazioneTest.cpp" />
     <ClCompile Include="TrainTest.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>

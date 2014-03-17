@@ -14,7 +14,7 @@ il messaggio ricevuto sarà trattato da ManagerMsgATO*/
 L'ATS è in grado di ricevere messaggi di presentazione da parte di sistemi ATO
 -------------------------------------------------------------------------------------------------*/
 
-ref class ThreadPresentazione
+public ref class ThreadPresentazione
 {
 private:
 	/* phisicalTrainList ^listaTreni;*/

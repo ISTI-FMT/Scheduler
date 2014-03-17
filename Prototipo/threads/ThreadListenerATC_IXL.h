@@ -16,7 +16,7 @@ a secondo del tipo di messaggio ricevuto sarà trattato da ManagerStatoLineaATC o
 L'ATS è in grado di ricevere messaggi riguardanti lo stato della linea da parte del sistema ATC e IXL
 -------------------------------------------------------------------------------------------------*/
 
-ref class ThreadListenerATC_IXL
+public ref class ThreadListenerATC_IXL
 {
 	static ManagerStatoLineaIXL ^ManStatoLineaIXL;
 	static ManagerStatoLineaATC ^ManStatoLineaATC;

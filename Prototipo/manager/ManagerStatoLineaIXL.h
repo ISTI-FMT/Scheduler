@@ -11,7 +11,7 @@ using namespace System::Collections::Generic;
 filtra i messaggi inviando allo scheduler solo quelli che hanno subito una modifica*/
 
 //rappresenta una struttura dati che implementa IObservable e contiene una mappa delle informazioni sullo stato della linea fornite da IXL
-ref class ManagerStatoLineaIXL : public IObservable<Event<StateCDB^>^>
+public ref class ManagerStatoLineaIXL : public IObservable<Event<StateCDB^>^>
 {
 	Dictionary<int, StateCDB^> ^tabellaCDB;
 	Dictionary<int, StateItinerario^> ^tabellaItin;

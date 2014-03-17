@@ -1,5 +1,6 @@
 ﻿
 #include "stdafx.h"
+#include "stdafx.h"
 using namespace System::Collections::Generic;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 namespace SchedulerATSTest {
@@ -78,7 +79,9 @@ namespace SchedulerATSTest {
 
 				
 				double time = 0; 
-				Train^  target = (gcnew Train(p, trn, pt, listit, time));
+				Train^  target = (gcnew Train(p, trn,pt));
+				 target = (gcnew Train(p, pt));
+				 target = (gcnew Train(p, trn, pt, listit, time));
 				Train^  target2 = (gcnew Train(p, trn, pt, listit));
 
 				Assert::IsNotNull(target->ToString());
@@ -88,8 +91,64 @@ namespace SchedulerATSTest {
 				Assert::IsNotNull(target->getStazioneItinerario());
 				target->goNextItinerario();
 				target->getStatoTreno();
+				
 				Assert::IsNotNull(target->getStazioneItinerario());
 				Assert::IsNotNull(target->getTimeNextEvent());
+
+			}
+			/// <summary>
+			///Test per CompareTo
+			///</summary>
+	public: [TestMethod]
+			void CompareToTest()
+			{
+				int p = 2; 
+				int trn = 1151; 
+				physicalTrain^  pt = gcnew physicalTrain(1152,"127.0.0.1",3610); 
+
+				TabellaStazioni^  T = gcnew TabellaStazioni();
+				TabellaOrario ^tabo = (gcnew TabellaOrario(T));  
+				List<Fermata^ >^  listit =  tabo->getFermateFor(trn);
+
+				
+				double time = 0; 
+				Train^  target = (gcnew Train(p, trn, pt, listit, time));
+				Train^  otherKey = (gcnew Train(p, trn, pt, listit));
+				
+				
+				int expected = 0; 
+				int actual;
+				actual = target->CompareTo(otherKey);
+				Assert::AreEqual(expected, actual);
+
+				Train^  secondKey = (gcnew Train(p, trn, pt, listit));
+				 expected = 0; 
+				 actual;
+				actual = target->CompareTo(secondKey);
+				Assert::AreEqual(expected, actual);
+
+
+				
+				secondKey = (gcnew Train(3, trn, pt, listit));
+				 expected = -1; 
+				 actual;
+				actual = target->CompareTo(secondKey);
+				Assert::AreEqual(expected, actual);
+
+				secondKey = (gcnew Train(1, trn, pt, listit));
+				 expected = 1; 
+				 actual;
+				actual = target->CompareTo(secondKey);
+				Assert::AreEqual(expected, actual);
+
+				int TRN = 1152; 
+				List<Fermata^ >^  listit2 =  tabo->getFermateFor(TRN);
+				target->changeOrari(listit2);
+				secondKey = (gcnew Train(2, TRN, pt, listit2));
+				 expected = -1; 
+				 actual;
+				actual = target->CompareTo(secondKey);
+				Assert::AreEqual(expected, actual);
 
 			}
 	};
