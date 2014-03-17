@@ -1,11 +1,15 @@
 #pragma once
 #include "Train.h"
+#include "Unsubscriber.h"
 /*rappresenta il modello dei dati nel patter mvc*/
-public ref class ListTrainModel : public IObservable<List<Train^> ^>
+public ref class ListTrainModel : public IObservable<List<Train^> ^>,IObservable<Train ^>
 {
 	System::Collections::Generic::List<Train^> ^ListSortedTrains;
 	 List<IObserver<List<Train^>^>^> ^observers;
+	  List<IObserver<Train^>^> ^observersTrain;
 public:
+	 
+
 	ListTrainModel(void);
 	 void Add(Train^ train);
 	 System::Collections::Generic::List<Train^> ^getList();
@@ -15,26 +19,10 @@ public:
 	 void NextIt(Train ^key);
 	 void changePrior(Train ^key, int newprior);
 	 void changeOrari(Train ^key,  List<Fermata^> ^nuoviorari);
+	 void changeState(Train ^key,  StateTrain state);
 	 Train ^getTrain(String ^t);
 	 virtual IDisposable ^Subscribe(IObserver<List<Train^>^> ^observer);
+	  virtual IDisposable ^Subscribe(IObserver<Train^> ^observer);
 };
 
-ref class UnsubModel : public  IDisposable
-{
-     List<IObserver<List<Train^>^>^>^_observers;
-    IObserver<List<Train^>^> ^_observer;
-
-public:
-	UnsubModel(List<IObserver<List<Train^>^>^> ^observers, IObserver<List<Train^>^> ^observer)
-   {
-      _observers = observers;
-      _observer = observer;
-   };
-private:
-	 ~UnsubModel(){
-      if ((_observer != nullptr)){
-		  _observers->Remove(_observer);
-	  }
-   };
-};
 

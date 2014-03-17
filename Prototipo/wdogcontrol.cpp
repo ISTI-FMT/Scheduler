@@ -137,7 +137,7 @@ void wdogcontrol::onNext(){
 	}catch(Exception ^e){
 		e->ToString();
 		Console::WriteLine("########################");
-		Console::WriteLine("Sei troppo veloce");
+		Console::WriteLine("Chiudo veloce");
 		//Console::WriteLine("Exception ",e->ToString());
 		Console::WriteLine("########################");
 	}

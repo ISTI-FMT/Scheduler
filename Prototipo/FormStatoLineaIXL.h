@@ -52,6 +52,7 @@ namespace Prototipo {
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 		}
+		System::Void FormStatoLineaIXL_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e);
 		virtual void Subscribe(IObservable<Event<StateCDB^>^> ^provider){
 			if (provider != nullptr) 
 				unsubscriber = provider->Subscribe(this);	
@@ -78,7 +79,7 @@ namespace Prototipo {
 		void RequestStop();
 	private: 
 		//List<StateCDB^> ^listCdBItin(int idstazione,int iditineraio);
-		void setCdBItin(List<StateCDB^> ^listCdB, int stato);
+		void setCdBItin(List<StateCDB^> ^listCdB, QStateCDB stato);
 
 	protected:
 		/// <summary>
@@ -108,35 +109,28 @@ namespace Prototipo {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(FormStatoLineaIXL::typeid));
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->SuspendLayout();
 			// 
 			// tableLayoutPanel1
 			// 
-			/*	this->tableLayoutPanel1->ColumnCount = 4;
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle()));
-			this->tableLayoutPanel1->GrowStyle = System::Windows::Forms::TableLayoutPanelGrowStyle::AddColumns;
-			this->tableLayoutPanel1->Location = System::Drawing::Point(12, 12);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(0, 0);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
-			this->tableLayoutPanel1->RowCount = 2;
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(1168, 444);
-			this->tableLayoutPanel1->TabIndex = 0;*/
+			this->tableLayoutPanel1->Size = System::Drawing::Size(200, 100);
+			this->tableLayoutPanel1->TabIndex = 0;
 			// 
 			// FormStatoLineaIXL
 			// 
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			//this->ClientSize = System::Drawing::Size(1192, 836);
 			this->ClientSize = System::Drawing::Size(1240, 378);
-			//this->Controls->Add(this->tableLayoutPanel1);
+			this->ControlBox = false;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"FormStatoLineaIXL";
 			this->Text = L"FormStatoIXL";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &FormStatoLineaIXL::FormStatoLineaIXL_FormClosing);
 			this->ResumeLayout(false);
 
 		}

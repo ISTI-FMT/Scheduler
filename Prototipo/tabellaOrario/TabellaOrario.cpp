@@ -161,7 +161,7 @@ void TabellaOrario::leggiTabellaOrario()
 				System::String ^SystemStringLatoProgrammato = inner2->ReadString();	
 				// converto da System::String a std::string
 				//string stringLatoAperturaPorte = convertiString2string(SystemStringLatoProgrammato);
-				int latoParturaPorte;
+				FermataType latoParturaPorte;
 				if(SystemStringLatoProgrammato == "dx")
 					latoParturaPorte = aperturaTrenoDx;
 				else if(SystemStringLatoProgrammato == "sx")
@@ -228,19 +228,21 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 	// se il teno esiste
 	if(stops!=nullptr)
 	{
-		bool latolinea=false; //indica cone si percorre la linea: se false da o per Monterosa/VicoloCorto true gli altri casi
+		bool latolinea=false; //indica come si percorre la linea: se false da o per Monterosa/VicoloCorto true gli altri casi
 		Fermata ^fakeVicoloCorto = gcnew Fermata(10000);
 		Fermata ^fakeVialeMonterosa = gcnew Fermata(11000);
 		if(!(stops->Contains(fakeVicoloCorto) | stops->Contains(fakeVialeMonterosa)  )){
 			latolinea = true;
 		}
+		//indica la direzione in cui va il treno true dx da accademia -> vittoria, false viceversa
+		bool direzione = tabItinerari->get_Direzione_itinerario(stops[0]->getIdStazione(),stops[0]->getIditinerarioEntrata());
 
 		//Todo: V_mission D_mission tratte
 		if(pvel!=nullptr){
 			pkt->setPV(pvel);
 			pkt->setN_ITER1(pvel->Count-1);
 		}else{
-			pkt->setPV(gcnew ProfiloVelocita);
+			pkt->setPV(gcnew ProfiloVelocita(10700,70));
 			pkt->setN_ITER1(0);
 		}
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
@@ -267,12 +269,16 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 						mission->setD_STOP(infobalise->d_stop);
 						int pkmlrbg = 0;
 						if(latolinea){
-						 pkmlrbg =	infobalise->get_progressivakm(13000);
+							pkmlrbg =	infobalise->get_progressivakm(13000);
 						}else{
-						 pkmlrbg =	infobalise->get_progressivakm(10000);
-							}
+							pkmlrbg =	infobalise->get_progressivakm(10000);
+						}
 						int d_lrgb = Math::Abs(pkmlrbg - prevprogkm);
-						prevprogkm = pkmlrbg +  infobalise->d_stop;
+						if(direzione){
+							prevprogkm = pkmlrbg +  infobalise->d_stop;
+						}else{
+							prevprogkm = pkmlrbg -  infobalise->d_stop;
+						}
 						mission->setD_LRGB(d_lrgb);
 					}
 				}
@@ -283,12 +289,38 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 						mission->setNID_LRGB(infobalise->nid_lrgb);
 						mission->setD_STOP(infobalise->d_stop);
 						mission->setD_LRGB(10);
+						int pkmlrbg = 0;
 						if(latolinea){
-							prevprogkm = infobalise->get_progressivakm(13000);
+							pkmlrbg = infobalise->get_progressivakm(13000) ;
 						}else{
-							prevprogkm = infobalise->get_progressivakm(10000);
-							}
+							pkmlrbg = infobalise->get_progressivakm(10000) ;
+						}
+
+						if(direzione){
+							prevprogkm = pkmlrbg +  infobalise->d_stop;
+						}else{
+							prevprogkm = pkmlrbg -  infobalise->d_stop;
+						}
+
 					}
+				}
+				if(stop->getIditinerarioEntrata()==0 & stop->getIditinerarioUscita()==0){
+					lrbg ^infobalise  = tabItinerari->get_infobalise_fromBinario(stop->getIdStazione(),stop->getBinarioProgrammato());
+					mission->setNID_LRGB(infobalise->nid_lrgb);
+					mission->setD_STOP(infobalise->d_stop);
+					int pkmlrbg = 0;
+					if(latolinea){
+						pkmlrbg =	infobalise->get_progressivakm(13000);
+					}else{
+						pkmlrbg =	infobalise->get_progressivakm(10000);
+					}
+					int d_lrgb = Math::Abs(pkmlrbg - prevprogkm);
+					if(direzione){
+						prevprogkm = pkmlrbg +  infobalise->d_stop;
+					}else{
+						prevprogkm = pkmlrbg -  infobalise->d_stop;
+					}
+					mission->setD_LRGB(d_lrgb);
 				}
 
 			}

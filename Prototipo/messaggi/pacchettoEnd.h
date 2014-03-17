@@ -2,11 +2,9 @@
 #include "utility.h"
 #include "pacchettoBase.h"
 
-/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto End che l'ATS invia dal IXL in vari
-messaggi, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
-
-
-//questa classe rappresenta un Pacchetto END
+/*
+Rappresenta le informazioni contenute nel pacchetto End che l'ATS invia dal IXL in vari messaggi
+*/
 
 ref class pacchettoEnd : pacchettoBase
 {

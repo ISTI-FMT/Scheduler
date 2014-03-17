@@ -9,7 +9,6 @@ pacchettoPositionDataATC::pacchettoPositionDataATC(void)
 	ListPostionData = gcnew List<StateCDB^>();
 }
 
-
 int pacchettoPositionDataATC::getSize()
 {
 	// intero che rappresenta la dimensione in bit
@@ -44,14 +43,11 @@ System::String^ pacchettoPositionDataATC::toPrint(){
 	return out;
 }
 
-// funzione che setta N_ITER
 void pacchettoPositionDataATC::setN_ITER(int N)
 {
 	N_ITER = N;
 
 }
-
-
 
 void pacchettoPositionDataATC::serialize(array<Byte>^buffer, int offset)
 {
@@ -62,7 +58,7 @@ void pacchettoPositionDataATC::serialize(array<Byte>^buffer, int offset)
 	offset += 13;
 
 	if(ListPostionData->Count>0){
-		
+
 		utility::push(buffer,  ListPostionData[0]->getNID_ENGINE(), 32, offset);
 		offset += 32;
 		utility::push(buffer, ListPostionData[0]->getNID_OPERATIONAL(), 32, offset);
@@ -91,14 +87,14 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer, int offset)
 
 	NID_PACKET=utility::pop(buffer,  8, 51);
 	if(NID_PACKET!=255){
-	L_PACKET=utility::pop(buffer, 13, 59);
-	
+		L_PACKET=utility::pop(buffer, 13, 59);
+
 
 		int tNID_ENGINE =utility::pop(buffer, 32, 72);
 		int tNID_OPERATIONAL  =utility::pop(buffer, 32, 104);
 		int tNID_CDB =utility::pop(buffer, 32, 136);
 
-		ListPostionData->Add(gcnew StateCDB(tNID_CDB,typeStateCDB::cdbOccupato,typeStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
+		ListPostionData->Add(gcnew StateCDB(tNID_CDB,QStateCDB::cdbOccupato,QStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
 		setN_ITER(utility::pop(buffer, 16, 168));
 		int offset = 184;
 
@@ -111,7 +107,7 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer, int offset)
 			tNID_CDB=utility::pop(buffer, 32, offset);
 			offset += 32;
 
-			ListPostionData->Add(gcnew  StateCDB(tNID_CDB,typeStateCDB::cdbOccupato,typeStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
+			ListPostionData->Add(gcnew  StateCDB(tNID_CDB,QStateCDB::cdbOccupato,QStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
 		}
 	}
 

@@ -25,79 +25,78 @@ bool Fermata::isPassante(){
 }
 
 
- System::String^ Fermata::ToString() {
-	 String ^out;
-	
-	
-	 TimeSpan Arrivo = TimeSpan::FromSeconds(orarioArrivo*30);
-	 TimeSpan Partenza = TimeSpan::FromSeconds(orarioPartenza*30);
+System::String^ Fermata::ToString() {
+	String ^out;
 
-	 out+="ID stazione : "+idStazione+"\n\r";
-	  out+=" Nome stazione : "+nameStazione+"\n\r";
-	 out+=" orario arrivo : "+ Arrivo.ToString()+"\n\r";
-	 out+=" orario partenza : "+Partenza.ToString()+"\n\r";
-	 out+=" binario programmato : "+binarioProgrammato+"\n\r";
-	  out+=" tempoMinimoAperturaPorte : "+tempoMinimoAperturaPorte+"\n\r";
-	   out+=" latoAperturaPorte : "+latoAperturaPorte+"\n\r";
-	    out+=" iditinerarioentrata : "+iditinerarioentrata+"\n\r";
-	   out+=" nameitinerarioentrata : "+nameitinerarioentrata+"\n\r";
-	    out+=" iditinerariouscita : "+iditinerariouscita+"\n\r";
-	   out+=" nameitinerariouscita : "+nameitinerariouscita+"\n\r";
 
-	 return out;
- }
+	TimeSpan Arrivo = TimeSpan::FromSeconds(orarioArrivo*30);
+	TimeSpan Partenza = TimeSpan::FromSeconds(orarioPartenza*30);
+
+	int lato = (int) latoAperturaPorte;
+	out+="ID stazione : "+idStazione+"\n\r";
+	out+=" Nome stazione : "+nameStazione+"\n\r";
+	out+=" orario arrivo : "+ Arrivo.ToString()+"\n\r";
+	out+=" orario partenza : "+Partenza.ToString()+"\n\r";
+	out+=" binario programmato : "+binarioProgrammato+"\n\r";
+	out+=" tempoMinimoAperturaPorte : "+tempoMinimoAperturaPorte+"\n\r";
+	out+=" latoAperturaPorte : "+ lato +"\n\r";
+	out+=" iditinerarioentrata : "+iditinerarioentrata+"\n\r";
+	out+=" nameitinerarioentrata : "+nameitinerarioentrata+"\n\r";
+	out+=" iditinerariouscita : "+iditinerariouscita+"\n\r";
+	out+=" nameitinerariouscita : "+nameitinerariouscita+"\n\r";
+
+	return out;
+}
 
 /*
 ostream& operator<<(ostream &out, const Fermata &stop)
 {
-	out << "ID stazione : " << stop.idStazione.c_str() << endl;
-	out << "orario arrivo : " << stop.orarioArrivo.tm_hour << ":" << stop.orarioArrivo.tm_min << ":" << stop.orarioArrivo.tm_sec << endl;
-	out << "orario partenza : " << stop.orarioPartenza.tm_hour << ":" << stop.orarioPartenza.tm_min << ":" << stop.orarioPartenza.tm_sec << endl;
-	out << "binario programmato : " << stop.binarioProgrammato << endl;
-	string lato;
-	if(stop.latoAperturaPorte == aperturaTrenoDx)
-		lato = "destra";
-	else if(stop.latoAperturaPorte == aperturaTrenoSx)
-		lato = "sinistra";
-	else if(stop.latoAperturaPorte == aperturaTrenoDxSx)
-		lato = "destra/sinistra";
-	else
-		lato = "no apertura";
-	out << "lato apertura porte : " << lato.c_str() << endl;
+out << "ID stazione : " << stop.idStazione.c_str() << endl;
+out << "orario arrivo : " << stop.orarioArrivo.tm_hour << ":" << stop.orarioArrivo.tm_min << ":" << stop.orarioArrivo.tm_sec << endl;
+out << "orario partenza : " << stop.orarioPartenza.tm_hour << ":" << stop.orarioPartenza.tm_min << ":" << stop.orarioPartenza.tm_sec << endl;
+out << "binario programmato : " << stop.binarioProgrammato << endl;
+string lato;
+if(stop.latoAperturaPorte == aperturaTrenoDx)
+lato = "destra";
+else if(stop.latoAperturaPorte == aperturaTrenoSx)
+lato = "sinistra";
+else if(stop.latoAperturaPorte == aperturaTrenoDxSx)
+lato = "destra/sinistra";
+else
+lato = "no apertura";
+out << "lato apertura porte : " << lato.c_str() << endl;
 
-	return out;
+return out;
 }
 */
 
 
- 	void Fermata::setOrarioArrivo(DateTime arr){
-		DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+void Fermata::setOrarioArrivo(DateTime arr){
+	DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
 
-			TimeSpan sinceMidnighta = arr - orarioSupporto3;
-			
-			double	darrivo = sinceMidnighta.TotalSeconds/30;
-			
+	TimeSpan sinceMidnighta = arr - orarioSupporto3;
+
+	double	darrivo = sinceMidnighta.TotalSeconds/30;
+
 	setOrarioArrivo(darrivo);
 
-	}
-	void Fermata::setOrarioPartenza(DateTime orario){
-				DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+}
+void Fermata::setOrarioPartenza(DateTime orario){
+	DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
 
-			TimeSpan sinceMidnighta = orario - orarioSupporto3;
-			
-			double	dpart= sinceMidnighta.TotalSeconds/30;
-			
+	TimeSpan sinceMidnighta = orario - orarioSupporto3;
+
+	double	dpart= sinceMidnighta.TotalSeconds/30;
+
 	setOrarioPartenza(dpart);
+}
 
 
+bool Fermata::Equals(Fermata^ otherKey){
+	if(idStazione==otherKey->getIdStazione()){
+
+		return true;
+	}else{
+		return false;
 	}
-
-
-	 bool Fermata::Equals(Fermata^ otherKey){
-		 if(idStazione==otherKey->getIdStazione()){
-
-			 return true;
-		 }else{
-			 return false;
-		 }
-	}
+}

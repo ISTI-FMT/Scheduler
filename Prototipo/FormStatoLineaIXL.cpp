@@ -99,13 +99,13 @@ void Prototipo::FormStatoLineaIXL::aggiorna(){
 
 void  Prototipo::FormStatoLineaIXL::findandsetCDB(int id, int stato){
 	if(listbuttonCDB->ContainsKey(id)){
-		if(stato==typeStateCDB::cdbOccupato){
+		if(stato==QStateCDB::cdbOccupato){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::Red;
 		}
-		if(stato==typeStateCDB::cdbLibero){
+		if(stato==QStateCDB::cdbLibero){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::Gray;
 		}
-		if(stato==typeStateCDB::cdbImpegnato){
+		if(stato==QStateCDB::cdbImpegnato){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::White;
 		}
 
@@ -116,7 +116,7 @@ void  Prototipo::FormStatoLineaIXL::findandsetCDB(int id, int stato){
 
 
 
-void Prototipo::FormStatoLineaIXL::setCdBItin(List<StateCDB^> ^listCdB, int stato){
+void Prototipo::FormStatoLineaIXL::setCdBItin(List<StateCDB^> ^listCdB, QStateCDB stato){
 	for each (StateCDB ^cdb in listCdB)
 	{
 		cdb->setQ_STATOCDB(stato);
@@ -130,3 +130,13 @@ void Prototipo::FormStatoLineaIXL::RequestStop()
     {
         _shouldStop = true;
     }
+
+System::Void Prototipo::FormStatoLineaIXL::FormStatoLineaIXL_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e){
+
+if(_shouldStop){
+				 e->Cancel=false;
+				}else{
+					e->Cancel=true;
+				}
+
+}

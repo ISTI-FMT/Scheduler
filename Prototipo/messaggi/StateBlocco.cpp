@@ -11,7 +11,6 @@ StateBlocco::StateBlocco(void)
 System::String ^StateBlocco::ToString(){
 		System::String ^out;
 
-	
 	out = out+"NID_BLOCCO: "+NID_BLOCCO+";";
 	out = out+"Q_STATOBLOCCO: "+Q_STATOBLOCCO+";";
 	

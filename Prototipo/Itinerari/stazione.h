@@ -45,4 +45,28 @@ public:
 		return nullptr;
 
 	}
+	///indica la direzione in cui va il treno true dx da accademia -> vittoria, false viceversa
+	bool get_Direzione_itinerario(int iditini){
+		if(itinerariid->ContainsKey(iditini)){
+			
+			if( itinerariid[iditini]->getDirezione()=="dx"){
+				return true;
+			}else{
+				return false;
+			}
+			
+		}
+		return false;
+	
+	}
+	lrbg ^get_infobalise_fromBinario(int bina){
+		for each (binario ^bin in binari)
+		{
+			if(bin->getBin()==bina){
+				 return	bin->get_info_lrgb();
+			}
+		}
+		return gcnew lrbg();
+	}
+
 };

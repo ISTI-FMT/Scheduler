@@ -13,13 +13,11 @@ pacchettoMissionData::pacchettoMissionData()
 	mS2_vect = gcnew List<Mission^>();
 }
 
-// funzione che sette N_ITER1
 void pacchettoMissionData::setN_ITER1(int N)
 {
 	N_ITER1 = N;
 }
 
-// funzione che sette N_ITER2
 void pacchettoMissionData::setN_ITER2(int N)
 {
 	N_ITER2 = N;
@@ -141,12 +139,6 @@ void pacchettoMissionData::deserialize(array<Byte>^buffer, int offset)
 	}
 }
 
-
-
-
-// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
 int pacchettoMissionData::getSize()
 {
 	// intero che rappresenta la dimensione in bit
@@ -162,9 +154,8 @@ int pacchettoMissionData::getSize()
 	return size;
 }
 
-System::String ^ pacchettoMissionData::ToString(){
-
-
+System::String ^ pacchettoMissionData::ToString()
+{
 	System::String ^out;
 
 	out = out+"NID_PACKET: "+NID_PACKET+";";
@@ -172,23 +163,19 @@ System::String ^ pacchettoMissionData::ToString(){
 	out = out+"Q_SCALE: "+Q_SCALE+";";
 	out = out+mS1_vect[0]->ToString();
 	out = out+"N_ITER1: "+N_ITER1+";";
-	
-		for( int i=1;i<mS1_vect->Count;i++)
-		{
-			out = out+mS1_vect[i]->ToString();
 
+	for( int i=1;i<mS1_vect->Count;i++)
+	{
+		out = out+mS1_vect[i]->ToString();
+	}
 
-		}
-	
 	out = out+ mS2_vect[0]->ToString();
-
 	out = out+"N_ITER2: "+N_ITER2+";";
-	
-		for( int i=1;i<mS2_vect->Count;i++)
-		{
-			out = out+ mS2_vect[i]->ToString();
-		}
-	
 
+	for( int i=1;i<mS2_vect->Count;i++)
+	{
+		out = out+ mS2_vect[i]->ToString();
+	}
+	
 	return out;
 };

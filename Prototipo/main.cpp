@@ -8,7 +8,7 @@
 #include "threads\\ThreadPresentazione.h"
 #include "mapTrenoFisicoLogico.h"
 #include "messaggi\\Messaggi.h"*/
-#include "form\\SchedulerForm.h"
+#include "SchedulerForm.h"
 #include "logger\\Logger.h"
 
 

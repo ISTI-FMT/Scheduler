@@ -8,17 +8,12 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
 
-/*Utilizzo questa classe per rappresentare le informazioni contenute nel pacchetto MissionData che l'ATS invia dal ATO
-nel messaggio di MissionPlan, sono presenti anche i metodi per serializzare e deserializzare il contenuto della classe*/
-
-
-
-/*-----------------------------------------------------------------------------------------------
-questa classe rappresenta un Pacchetto di Mission Data
-L'ATS manda una missione al treno la missione da eseguire specificandola all'interno di un messaggio 
-mission plan
--------------------------------------------------------------------------------------------------*/
 enum QSCALEMissionData { CM = 0 , M = 1 , DC=2};
+
+/*
+Rappresenta le informazioni contenute nel pacchetto MissionData che l'ATS invia dal ATO nel messaggio di MissionPlan
+*/
+
 ref class pacchettoMissionData : pacchettoBase
 {
 	int L_PACKET;
@@ -32,18 +27,15 @@ ref class pacchettoMissionData : pacchettoBase
 	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List<Mission^>^mS2_vect;
 public:
-	// funzione che restituisce la dimensione (ideale, non quella dovuta agli allineamenti 
-	// fatti dal compilatore) in Byte del messaggio tenendo anche in conto l'eventuale padding
-	// questa funzione sarà chiamata da chi vorrà serializzare il messaggio, per poter allocare il buffer
+
 	virtual int getSize() override;
 	virtual void serialize(array<Byte>^buff, int offset) override;
 	virtual void deserialize(array<Byte>^buff, int offset) override;
 	pacchettoMissionData();
-	// funzioni di interfaccia set e get per ogni campo dati del pacchetto
 	
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
-	void setQ_SCALE(int Q){Q_SCALE = Q;};
+	void setQ_SCALE(QSCALEMissionData Q){Q_SCALE = Q;};
 	int getQ_SCALE(){return Q_SCALE;};
 	// metodo che setta N_ITER1 ed alloca conseguentemente il vettore mS1_vect
 	void setN_ITER1(int N);
@@ -52,20 +44,14 @@ public:
 	void setN_ITER2(int N);
 	int getN_ITER2(){return N_ITER2;};
 	
-	
-
+	void setPV( ProfiloVelocita^ one){mS1_vect->Add(one);};
 	void setPV(List< ProfiloVelocita^> ^all){mS1_vect=all;};
 	List< ProfiloVelocita^> ^getPV(){return mS1_vect;};
 
-	void setPV( ProfiloVelocita^ one){mS1_vect->Add(one);};
-	
-	
-
 	void setMission(List< Mission^> ^all){mS2_vect=all;};
-	List< Mission^> ^getlistMission(){return mS2_vect;};
-
 	void setMission( Mission^ one){mS2_vect->Add(one);};
-	
-		virtual System::String ^ToString() override;
+	List< Mission^> ^getlistMission(){return mS2_vect;};
+		
+	virtual System::String ^ToString() override;
 };
 

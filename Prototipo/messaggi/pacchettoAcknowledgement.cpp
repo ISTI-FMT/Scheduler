@@ -9,8 +9,6 @@ pacchettoAcknowledgement::pacchettoAcknowledgement(void)
 	Q_MISSION_RESPONSE = 0;
 }
 
-// metodo per la serializzazion del messaggio
-// il buffer di byte deve essere stato precedentemente correttamente allocato.
 void pacchettoAcknowledgement::serialize(array<Byte>^buffer, int offset)
 {
 	utility::push(buffer, NID_PACKET, 8, offset);
@@ -23,8 +21,7 @@ void pacchettoAcknowledgement::serialize(array<Byte>^buffer, int offset)
 	utility::push(buffer, Q_MISSION_RESPONSE, 1, offset);
 }
 
-// metodo per la deserializzazion del messaggio
-// il buffer di byte deve essere stato precedentemente correttamente allocato.
+
 void pacchettoAcknowledgement::deserialize(array<Byte>^buff, int offset)
 {
 	NID_PACKET = utility::pop(buff, 8, offset);

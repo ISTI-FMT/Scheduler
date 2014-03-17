@@ -13,7 +13,7 @@ enum PacchettoATC { PacchettoFaultDataATC = 18, PacchettoPositionDataATC = 19};
 ref class pacchettoBase abstract
 {
 protected:
-	pacchettoBase();
+	pacchettoBase() { }
 	//ID univoco di pacchetto
 	int NID_PACKET;
 	void setNID_PACKET(int id)

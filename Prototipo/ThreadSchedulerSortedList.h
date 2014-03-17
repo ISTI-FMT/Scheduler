@@ -34,6 +34,8 @@ ref class ThreadSchedulerSortedList
 	EventQueue<physicalTrain^> ^EQueueATO;
 	EventQueue<StateCDB^> ^EQueueATC;
 	EventQueue<List<Fermata^>^> ^EQueueCambioOrario;
+	//EventQueue<int> ^EQueueCambioTrenoPrior;
+	//EventQueue<StateTrain> ^EQueueCambioTrenoStato;
 	TabellaOrario ^tabOrario;
 	TabellaStazioni ^tabItinerari;
 	AreeCritiche ^areeCritiche;
@@ -48,7 +50,8 @@ ref class ThreadSchedulerSortedList
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
 	ControllerListTrain ^controlListtrain;
-	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);;
+	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);
+	Prototipo::ListTrainView ^view;
 public:
 	ThreadSchedulerSortedList(void);
 
@@ -68,7 +71,7 @@ public:
 	/*void setMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops);*/
 	static void ReceiveCallback(IAsyncResult^ asyncResult);
 
-	bool SendBloccItinIXL(int NID_ITIN, int Q_CMDITIN);
+	bool SendBloccItinIXL(int NID_ITIN, QCmdItinerari Q_CMDITIN);
 	List<int> ^RequestItinerarioIXL(int idstazione ,int iditinerario);
 	static void Connect(EndPoint ^remoteEP, Socket ^client);
 	static void ConnectCallbackMethod(IAsyncResult ^ar);

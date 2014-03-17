@@ -1,6 +1,5 @@
 #include "Fault.h"
 
-
 Fault::Fault(void)
 {
 	NID_COMPONENT=0;
@@ -8,11 +7,10 @@ Fault::Fault(void)
 }
 
 System::String ^Fault::ToString(){
-		System::String ^out;
+	System::String ^out;
 
-	
 	out = out+"NID_COMPONENT: "+NID_COMPONENT+";";
 	out = out+"M_FAULT: "+M_FAULT+";";
 
-	 return out;
+	return out;
 }

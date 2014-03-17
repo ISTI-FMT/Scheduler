@@ -1,12 +1,12 @@
 #pragma once
 
-/*Utilizzo questa classe per serializzare le informazioni dei messaggi di fault*/
-
-//rappresenta le informazioni contenute nel messaggio di fault
+/*
+Rappresenta le informazioni contenute nel messaggio di fault
+*/
 ref class Fault
 {
-	unsigned int NID_COMPONENT ;
-	unsigned int M_FAULT ;
+	int NID_COMPONENT ;
+	int M_FAULT ;
 public:
 	Fault(void);
 	Fault(int N, int M){NID_COMPONENT=N;M_FAULT=M;};
