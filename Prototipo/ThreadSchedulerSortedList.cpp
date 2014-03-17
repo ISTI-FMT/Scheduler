@@ -112,7 +112,9 @@ void ThreadSchedulerSortedList::Schedule(){
 							//	( statocdbuscitaitinerario==typeStateCDB::cdbLibero | true)){
 
 							//Controllo che l'acquisizione del prossimo cdb non crei deadlock
-							if (areeCritiche->richiestaCdb(nextCdbU, Train->getTRN()))
+							List<int> ^cdbItinerario =  tabItinerari->get_Cdb_Itinerario(idstazione,itinUscita);
+							int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
+							if (areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))
 							{
 								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 
@@ -157,7 +159,9 @@ void ThreadSchedulerSortedList::Schedule(){
 									//che riporti il cambiamento dello stato dell'itinerario
 
 									//Controllo che l'acquisizione del prossimo cdb non crei deadlock
-									if (areeCritiche->richiestaCdb(nextCdbE, Train->getTRN()))
+									List<int> ^cdbItinerario =  tabItinerari->get_Cdb_Itinerario(idstazione,initEntrata);
+									int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
+									if (areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))
 									{
 										if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 
@@ -175,8 +179,10 @@ void ThreadSchedulerSortedList::Schedule(){
 							int nid_engineTRenoCDBPrecIT = managerATC->getCDB(resultprecE)->getNID_ENGINE();
 							if(managerATC->getCDB(resultprecE)->getNID_OPERATIONAL()==Train->getTRN()|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber()){
 
+								List<int> ^cdbItinerario =  tabItinerari->get_Cdb_Itinerario(idstazione,initEntrata);
+								int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 								//Controllo che l'acquisizione del prossimo cdb non crei deadlock
-								if (areeCritiche->richiestaCdb(nextCdbE, Train->getTRN()))
+								if (areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))
 								{
 									//se l'itinerario è libero
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
