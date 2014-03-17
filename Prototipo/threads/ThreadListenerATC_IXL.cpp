@@ -22,14 +22,13 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 	ManStatoLineaIXL=MC;
 	ManStatoLineaATC=MA;
 	isMessageReceived=false;
-	try {
-
-		port = System::Configuration::ConfigurationSettings::AppSettings["port_UDP_receive"]!= nullptr ? int::Parse( System::Configuration::ConfigurationSettings::AppSettings["port_UDP_receive"]->ToString()) : 4010;
-
-	} catch(Exception  ^error){
-		String ^err= error->Message;
+	try{
+		if(!Int32::TryParse(System::Configuration::ConfigurationSettings::AppSettings["port_UDP_receive"],port)){
+			port=4010;
+		}
+	} catch(System::Configuration::ConfigurationException  ^error){
+		String ^eerr = error->Message;
 		port=4010;
-		
 	}
 	Console::WriteLine("PORT UDP Receive: {0}",port);
 	_shouldStop=false;
@@ -88,7 +87,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 				if(!scarta)
 					end_byte_old=receiveBytes;
 			}
-			
+
 		}
 	}else{
 
@@ -118,7 +117,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 				ind++;
 				}*/
 			}
-			
+
 		}
 
 
