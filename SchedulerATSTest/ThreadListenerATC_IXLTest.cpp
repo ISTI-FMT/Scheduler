@@ -113,7 +113,7 @@ namespace SchedulerATSTest {
 				
 				 Thread::Sleep(1000);
 				 target->RequestStop();
-				  Thread::Sleep(2000);
+				  Thread::Sleep(200);
 			}
 			/// <summary>
 			///Test per Costruttore ThreadListenerATC_IXL
@@ -140,15 +140,17 @@ namespace SchedulerATSTest {
 				IPAddress ^broadcast = IPAddress::Parse("127.0.0.1");
 				IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 4010);
 
-				s->SendTo( sendBytes, ep);
-				s->SendTo( sendBytes, ep);
 				s->SendTo( sendBytes2, ep);
+				s->SendTo( sendBytes2, ep);
+				s->SendTo( sendBytes2, ep);
+				s->SendTo( sendBytes2, ep);
+				s->SendTo( sendBytes, ep);
 
 
 				s->Close();
 				 Thread::Sleep(1000);
 				 target->RequestStop();
-				  Thread::Sleep(2000);
+				  Thread::Sleep(200);
 			}
 			/// <summary>
 			///Test per ConfrontaArrayByte

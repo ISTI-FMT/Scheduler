@@ -70,7 +70,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 
 
-
+	isMessageReceived = true;
 
 	bool scarta=false;
 
@@ -88,7 +88,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 				if(!scarta)
 					end_byte_old=receiveBytes;
 			}
-			isMessageReceived = true;
+			
 		}
 	}else{
 
@@ -118,7 +118,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 				ind++;
 				}*/
 			}
-			isMessageReceived = true;
+			
 		}
 
 
@@ -145,7 +145,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 		//Console::WriteLine(pkt1->ToString());
 		Console::ResetColor();
 
-		isMessageReceived = true;
+		//isMessageReceived = true;
 
 		//aggiorniamo il manager  11 è stato linea ATC mentre 1 è stato linea IXL
 
@@ -185,7 +185,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
-		udpClient->Client->ReceiveBufferSize=2048;
+		//udpClient->Client->ReceiveBufferSize=2048;
 		while ( !_shouldStop )
 		{
 			// Receive a message and write it to the console.
@@ -217,6 +217,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 
 
 		}
+		//udpClient->Close();
 	}
 	catch ( SocketException^ e ) 
 	{

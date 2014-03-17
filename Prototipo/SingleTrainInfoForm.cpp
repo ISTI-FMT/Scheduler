@@ -262,14 +262,15 @@ String ^SingleTrainInfoForm::forwardItinerario(int index, List<Fermata^> ^Listaf
 
 			result+= KeyValuePair<int, int>(idstazione, itinUscita);
 		}else{
-			int itinUscita = Listafermate[i]->getIditinerarioUscita();
+			int initEntrata = Listafermate[i]->getIditinerarioEntrata();
 			int idstazione = Listafermate[i]->getIdStazione();
+			result+=   KeyValuePair<int, int>(idstazione, initEntrata);
+			
+			if((i!=index) /*& (StateTrain::ENTRATASTAZIONE!=train->getStatoTreno())*/){
+			int itinUscita = Listafermate[i]->getIditinerarioUscita();
+			 idstazione = Listafermate[i]->getIdStazione();
 
 			result+= KeyValuePair<int, int>(idstazione, itinUscita);
-			if((i!=index) & (StateTrain::ENTRATASTAZIONE!=train->getStatoTreno())){
-			int initEntrata = Listafermate[i]->getIditinerarioEntrata();
-			idstazione = Listafermate[i]->getIdStazione();
-			result+=   KeyValuePair<int, int>(idstazione, initEntrata);
 			}
 		}
 	}
