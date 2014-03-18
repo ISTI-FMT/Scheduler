@@ -29,7 +29,7 @@ Train::Train(int p, int trn,physicalTrain ^pt, List<Fermata^> ^listf){
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
 	Listafermate=listf;
-	Statodeltreno=StateTrain::USCITASTAZIONE;
+	Statodeltreno=StateTrain::PRONTO;
 	indicelistaitinerari=0;
 	Priorita=p;
 	PhysicalTrainNumber=pt->getEngineNumber();
@@ -43,7 +43,7 @@ Train::Train(int p, int trn,physicalTrain ^pt, List<Fermata^> ^listf, double tim
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
 	Listafermate=listf;
-	Statodeltreno=StateTrain::USCITASTAZIONE;
+	Statodeltreno=StateTrain::PRONTO;
 	indicelistaitinerari=0;
 	Priorita=p;
 	PhysicalTrainNumber=pt->getEngineNumber();

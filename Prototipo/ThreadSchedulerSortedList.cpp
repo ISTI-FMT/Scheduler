@@ -94,8 +94,30 @@ void ThreadSchedulerSortedList::Schedule(){
 			{
 				switch (Train->getStatoTreno())
 				{
-				case PRONTO:
-					break;
+				case PRONTO:{
+
+					DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+						TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
+						int tempo = (int)oraattuale->TotalSeconds/30;
+						int  costante= 3;
+						int resutl = ((int)Train->getOrarioPartenza())-costante;
+
+						List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(Train->getTRN());
+						int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
+
+						int idTRenoCDBPrecIT = managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL();
+						int nid_engineTRenoCDBPrecIT = managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE();
+
+						// controllo posizione e tempo 
+						if(((idTRenoCDBPrecIT==Train->getTRN())|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
+
+							if (areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN()))
+							{
+								Train->setStatoTreno(StateTrain::USCITASTAZIONE);
+							}
+						}
+
+					break;}
 				case USCITASTAZIONE:{
 
 					//itinerario uscita
@@ -126,8 +148,8 @@ void ThreadSchedulerSortedList::Schedule(){
 							int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 							if (areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))
 							{
-								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
-
+								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train))
+								{
 									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
 									if(cdbricPrenotazione!=nullptr){
 										RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
@@ -318,7 +340,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 
 
 					//se il treno si trova sul cdb giusto
-					if(((managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL()==trn)|managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE()==enginenumber)|true){
+				//	if(((managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL()==trn)|managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE()==enginenumber)|true){
 
 						// gli assegni TRN e MISSION
 						if(inviato==nullptr){
@@ -358,7 +380,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 							controlListtrain->OnSetTrain(treno);
 						}
 
-					}
+					//}
 				}
 			}
 		}

@@ -13,7 +13,7 @@ bool AreaCriticaLineare::entrataPermessa(int idTreno, int cdb)
 	bool res = true;
 	if (cdbs->Contains(cdb))
 	{
-		if (cdbs[0] == cdb) //entrata da sinistra
+		if (cdbs[0] == cdb && !treniDestra->Contains(idTreno)) //Entrata da sinistra (se il cdb è il primo della lista e non ero già entrato da destra)
 		{
 			if (!treniSinistra->Contains(idTreno))
 			{
@@ -23,7 +23,7 @@ bool AreaCriticaLineare::entrataPermessa(int idTreno, int cdb)
 				}
 			}
 		}
-		else if (cdbs[cdbs->Count -1] == cdb) //entrata da destra
+		else if (cdbs[cdbs->Count -1] == cdb && !treniSinistra->Contains(idTreno)) //Entrata da sinistra (se il cdb è l'ultimo della lista e non ero già entrato da destra)
 		{
 			if (!treniDestra->Contains(idTreno))
 			{
