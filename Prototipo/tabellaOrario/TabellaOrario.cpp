@@ -165,13 +165,13 @@ void TabellaOrario::leggiTabellaOrario()
 				//string stringLatoAperturaPorte = convertiString2string(SystemStringLatoProgrammato);
 				FermataType latoParturaPorte;
 				if(SystemStringLatoProgrammato == "dx")
-					latoParturaPorte = aperturaTrenoDx;
+					latoParturaPorte = FermataType::aperturaTrenoDx;
 				else if(SystemStringLatoProgrammato == "sx")
-					latoParturaPorte = aperturaTrenoSx;
+					latoParturaPorte = FermataType::aperturaTrenoSx;
 				else if(SystemStringLatoProgrammato == "sd")
-					latoParturaPorte = aperturaTrenoDxSx;
+					latoParturaPorte = FermataType::aperturaTrenoDxSx;
 				else
-					latoParturaPorte = noApertura;
+					latoParturaPorte = FermataType::noApertura;
 				// configuro il lato apertura porte programmato programmato
 				stop->setLatoAperturaPorte(latoParturaPorte);
 

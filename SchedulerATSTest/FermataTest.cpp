@@ -1,8 +1,7 @@
 ﻿
 #include "stdafx.h"
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
-#include "..//Prototipo//FermataType.h"
-#include "stdafx.h"
+
 namespace SchedulerATSTest {
     using namespace System;
     ref class FermataTest;

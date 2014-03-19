@@ -51,7 +51,7 @@ public:
 		orarioPartenza = 0;
 		tempoMinimoAperturaPorte = 0;
 		binarioProgrammato = 0;
-		latoAperturaPorte = noApertura;
+		latoAperturaPorte = FermataType::noApertura;
 		iditinerarioentrata=0;
 		nameitinerarioentrata="";
 		iditinerariouscita=0;

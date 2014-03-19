@@ -266,7 +266,7 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 	eventoIXL = EQueueIXL->getEvent();
 	if(eventoIXL!=nullptr){
 		StateCDB ^eventocambiostatocdb = eventoIXL->getEvent();
-		if(eventocambiostatocdb->getQ_STATOCDB()==QStateCDB::cdbImpegnato ){
+		if(eventocambiostatocdb->getQ_STATOCDB()==(int)QStateCDB::cdbImpegnato ){
 			List<Train^> ^elemetidaeliminare = gcnew List<Train^>();
 			for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
 			{
@@ -393,7 +393,7 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 	{
 		StateCDB ^statocorrentecdb = managerIXL->StatoCDB(cdb);
 		if(statocorrentecdb!=nullptr){
-			if(statocorrentecdb->getQ_STATOCDB()!=QStateCDB::cdbLibero){
+			if(statocorrentecdb->getQ_STATOCDB()!=(int)QStateCDB::cdbLibero){
 				return false;
 			}
 		}else{
@@ -734,7 +734,7 @@ List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int 
 	if(nextcdb>0){
 		StateCDB ^statocorrentecdb = managerIXL->StatoCDB(nextcdb);
 		if(statocorrentecdb!=nullptr){
-			if(statocorrentecdb->getQ_STATOCDB()!=QStateCDB::cdbLibero){
+			if(statocorrentecdb->getQ_STATOCDB()!=(int)QStateCDB::cdbLibero){
 				return nullptr;
 			}
 		}else{

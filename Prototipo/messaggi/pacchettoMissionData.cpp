@@ -7,7 +7,7 @@ pacchettoMissionData::pacchettoMissionData()
 {
 	setNID_PACKET(Pacchetto::PacchettoMissionData);
 	L_PACKET = 0;
-	Q_SCALE = QSCALEMissionData::M;
+	Q_SCALE = (int)QSCALEMissionData::M;
 	N_ITER1 = 0;
 	mS1_vect = gcnew List<ProfiloVelocita^>();
 	mS2_vect = gcnew List<Mission^>();
