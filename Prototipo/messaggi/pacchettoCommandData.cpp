@@ -3,7 +3,7 @@
 
 pacchettoCommandData::pacchettoCommandData(void)
 {
-	setNID_PACKET(PacchettoATO::PacchettoCommandData);
+	setNID_PACKET(Pacchetto::PacchettoCommandData);
 	L_PACKET = 0;
 	Q_COMMAND_TYPE = 0;
 	M_GOA_LEVEL = 0;

@@ -3,7 +3,7 @@
 
 pacchettostatolineaatc::pacchettostatolineaatc(void)
 {
-	setNID_PACKET(PacchettoATC::PacchettoPositionDataATC);
+	setNID_PACKET(Pacchetto::PacchettoPositionDataATC);
 	L_PACKET = 0;
 	NID_OPERATIONAL = 0;
 	pstato = gcnew List<StateCDB^>();

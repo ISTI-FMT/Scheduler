@@ -6,9 +6,12 @@ using namespace System::Collections;
 /* Questa classe astratta contiene metodi e informazioni comuni a tutti i pacchetti inviati e ricevuti dall'ATS.
 E' implementata da ogni classe pacchetto, che aggiunge le informazioni aggiuntive e gestisce la loro serializzazione/deserializzazione */
 
-enum PacchettoIXL { PacchettoStatoLineaIXL = 0, PacchettoFaultDataIXL = 1, PacchettoStatoBloccoIXL = 5,  PacchettoStatoItinerario = 3, PacchettoStatoSegnali = 4, PacchettoEnd = 255, PacchettoComandoItinerari = 10, PacchettoComandoBlocco = 11, PacchettoStatoScudetti = 6 };
-enum PacchettoATO { PacchettoMissionData = 160, PacchettoCommandData = 161, PacchettoFaultData = 170, PacchettoDoorsStatus = 171, PacchettoTrainData = 172, PacchettoEmergencyEvents = 173, PacchettoMissionAck = 174, PacchettoNetworkData = 175};
-enum PacchettoATC { PacchettoFaultDataATC = 18, PacchettoPositionDataATC = 19};
+public enum  Pacchetto : int { PacchettoStatoLineaIXL = 0, PacchettoFaultDataIXL = 1, PacchettoStatoBloccoIXL = 5,  
+	PacchettoStatoItinerario = 3, PacchettoStatoSegnali = 4, PacchettoEnd = 255, PacchettoComandoItinerari = 10, 
+	PacchettoComandoBlocco = 11, PacchettoStatoScudetti = 6, PacchettoMissionData = 160, PacchettoCommandData = 161, 
+	PacchettoFaultData = 170, PacchettoDoorsStatus = 171, PacchettoTrainData = 172, PacchettoEmergencyEvents = 173, 
+	PacchettoMissionAck = 174, PacchettoNetworkData = 175, PacchettoFaultDataATC = 18, PacchettoPositionDataATC = 19};
+
 
 public ref class pacchettoBase abstract
 {
@@ -20,6 +23,11 @@ protected:
 	{
 		NID_PACKET = id;
 	};
+	void setNID_PACKET(Pacchetto id)
+	{
+		NID_PACKET = (int)id;
+	};
+
 public:
 	int get_NID_PACKET()
 	{

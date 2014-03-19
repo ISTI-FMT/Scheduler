@@ -3,7 +3,7 @@
 
 pacchettoComandoBlocco::pacchettoComandoBlocco(void)
 {
-	setNID_PACKET(PacchettoIXL::PacchettoComandoBlocco);
+	setNID_PACKET(Pacchetto::PacchettoComandoBlocco);
 	L_PACKET = 0;
 	NID_BLOCCO = 0;
 	Q_CMDBLOCCO = 0;

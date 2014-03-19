@@ -3,7 +3,7 @@
 
 pacchettoStatoSegnali::pacchettoStatoSegnali(void)
 {
-	setNID_PACKET(PacchettoIXL::PacchettoStatoSegnali);
+	setNID_PACKET(Pacchetto::PacchettoStatoSegnali);
 	L_PACKET = 0;
 
 	N_ITER = 0;
