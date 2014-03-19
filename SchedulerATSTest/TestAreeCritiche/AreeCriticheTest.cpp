@@ -31,36 +31,56 @@ namespace SchedulerATSTest
 			}
 
 	public: [TestMethod]
-			void TestAreeCritiche()
+			void TestAreeCritiche1152_1151stop()
 			{
 				AreeCritiche^ aree = gcnew AreeCritiche();
-				System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("missioni.xml");
-				System::IO::StreamReader^ reader = gcnew StreamReader(readStreamschemaxsd);
-				String^ data = reader->ReadToEnd();
+				aree->leggiFileConfigurazioneAreeCritiche();
 
-				aree->leggiConfigurazioneAreeCritiche(data);
 				bool richiesta;
-				richiesta = aree->richiestaCdb(1,0);
-				Assert::AreEqual(richiesta, true);
-				richiesta = aree->richiestaCdb(6,0);
-				Assert::AreEqual(richiesta, true);
-				richiesta = aree->richiestaCdb(7,0);
+				richiesta = aree->richiestaCdb(13302,1152);
 				Assert::AreEqual(richiesta, true);
 
-				richiesta = aree->richiestaCdb(2,1);
+				richiesta = aree->richiestaCdb(12303,1151);
 				Assert::AreEqual(richiesta, true);
-				richiesta = aree->richiestaCdb(6,1);
+				richiesta = aree->richiestaCdb(503,1151);
 				Assert::AreEqual(richiesta, true);
-				richiesta = aree->richiestaCdb(7,1);
+				richiesta = aree->richiestaCdb(15302,1151);
 				Assert::AreEqual(richiesta, true);
-
-				richiesta = aree->richiestaCdb(8,3);
+				richiesta = aree->richiestaCdb(502,1151);
 				Assert::AreEqual(richiesta, false);
-				
 
-				
+			}
+	public: [TestMethod]
+			void TestAreeCritiche1152_1151incrocio()
+			{
+				AreeCritiche^ aree = gcnew AreeCritiche();
+				aree->leggiFileConfigurazioneAreeCritiche();
 
-				delete reader;
+				//1152=13302,501,14302,502,15301,503,12301,400,428,16302,440,448,17302
+				bool richiesta;
+				richiesta = aree->richiestaCdb(13302,1152);
+				Assert::AreEqual(richiesta, true);
+
+				richiesta = aree->richiestaCdb(12303,1151);
+				Assert::AreEqual(richiesta, true);
+				richiesta = aree->richiestaCdb(503,1151);
+				Assert::AreEqual(richiesta, true);
+				richiesta = aree->richiestaCdb(15302,1151);
+				Assert::AreEqual(richiesta, true);
+				richiesta = aree->richiestaCdb(502,1151);
+				Assert::AreEqual(richiesta, false);
+
+				richiesta = aree->richiestaCdb(501,1152);
+				Assert::AreEqual(richiesta, true);
+				richiesta = aree->richiestaCdb(14302,1152);
+				Assert::AreEqual(richiesta, true);
+				richiesta = aree->richiestaCdb(502,1152);
+				Assert::AreEqual(richiesta, true);
+				richiesta = aree->richiestaCdb(15301,1152);
+				Assert::AreEqual(richiesta, true);
+
+				richiesta = aree->richiestaCdb(502,1151);
+				Assert::AreEqual(richiesta, true);
 
 			}
 

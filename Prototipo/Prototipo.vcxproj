@@ -87,6 +87,7 @@
     <ClInclude Include="AreeCritiche\AreaCriticaLineare.h" />
     <ClInclude Include="AreeCritiche\AreaCritica.h" />
     <ClInclude Include="AreeCritiche\AreeCritiche.h" />
+    <ClInclude Include="AreeCritiche\IstanzaMissione.h" />
     <ClInclude Include="ConfigurazioneFermate.h">
       <DependentUpon>..\FileConfigurazione\ConfigurazioneFermate.xsd</DependentUpon>
     </ClInclude>

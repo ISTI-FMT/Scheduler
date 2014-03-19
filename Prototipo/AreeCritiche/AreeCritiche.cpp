@@ -12,7 +12,7 @@ AreeCritiche::AreeCritiche()
 	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
 }
 
-void AreeCritiche::leggiConfigurazioneAreeCritiche(Stream^ stream)
+void AreeCritiche::leggiFileConfigurazioneAreeCritiche()
 {
 	System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XsdFilename);
 	// Create the XmlSchemaSet class.
@@ -26,8 +26,10 @@ void AreeCritiche::leggiConfigurazioneAreeCritiche(Stream^ stream)
 	settings->IgnoreWhitespace = true;
 	settings->IgnoreComments = true;
 
+	System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XmlFilename);
+
 	//System::String^ nome = gcnew System::String(nomeFile.c_str());
-	System::Xml::XmlReader ^myReader = System::Xml::XmlReader::Create(stream, settings);
+	System::Xml::XmlReader ^myReader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 	List<MissioneAnnotata^>^ missioni = gcnew List<MissioneAnnotata^>();
 	MissioneAnnotata^ missioneCorrente = nullptr;
@@ -127,27 +129,6 @@ void AreeCritiche::leggiConfigurazioneAreeCritiche(Stream^ stream)
 			}
 		}
 	}
-	delete readStreamschemaxsd;
-}
-
-void AreeCritiche::leggiConfigurazioneAreeCritiche(String^ data)
-{
-    MemoryStream^ stream = gcnew MemoryStream();
-    StreamWriter^ writer = gcnew StreamWriter(stream);
-    writer->Write(data);
-    writer->Flush();
-    stream->Position = 0;
-    
-	leggiConfigurazioneAreeCritiche(stream);
-
-	delete stream;
-}
-
-void AreeCritiche::leggiFileConfigurazioneAreeCritiche()
-{
-	System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XmlFilename);
-	leggiConfigurazioneAreeCritiche(readStreamXML);
-	delete readStreamXML;
 }
 
 /*

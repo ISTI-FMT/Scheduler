@@ -147,9 +147,6 @@
     <ClCompile Include="messaggi\utility.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="messaggi\pacchettoBase.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="ParalellMethod.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
@@ -207,10 +204,18 @@
     <ClCompile Include="FormStatoLineaATC.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-
+    <ClCompile Include="AreeCritiche\AreaCriticaCircolare.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="AreeCritiche\AreaCriticaLineare.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="AreeCritiche\AreeCritiche.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-   <ClInclude Include="FermataType.h" >
+    <ClInclude Include="FermataType.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="ConfigurazioneFermate.h">
@@ -432,6 +437,27 @@
     <ClInclude Include="wdogcontrol.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="AreeCritiche.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="AreeCritiche\AreaCriticaCircolare.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="AreeCritiche\AreaCriticaLineare.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="AreeCritiche\AreaCritica.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="AreeCritiche\AreeCritiche.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="AreeCritiche\MissioneAnnotata.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="AreeCritiche\IstanzaMissione.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">
@@ -481,13 +507,12 @@
     <_EmbedManagedResourceFile Include="risorse\app.ico">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
-	<_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xml">
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xml">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xsd">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
-	
   </ItemGroup>
   <ItemGroup>
     <!---->

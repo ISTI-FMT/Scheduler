@@ -119,9 +119,6 @@
       <Project>{cdb5fe80-65aa-4fc0-a3b7-513cf0b38fb1}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <_EmbedManagedResourceFile Include="TestAreeCritiche\missioni.xml" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

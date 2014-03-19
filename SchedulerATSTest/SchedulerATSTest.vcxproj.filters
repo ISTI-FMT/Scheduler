@@ -79,7 +79,4 @@
       <Filter>File di risorse</Filter>
     </Image>
   </ItemGroup>
-  <ItemGroup>
-    <_EmbedManagedResourceFile Include="TestAreeCritiche\missioni.xml" />
-  </ItemGroup>
 </Project>
