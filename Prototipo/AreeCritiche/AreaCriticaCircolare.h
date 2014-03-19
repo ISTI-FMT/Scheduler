@@ -3,7 +3,7 @@
 
 using namespace System::Collections::Generic;
 
-ref class AreaCriticaCircolare :
+public ref class AreaCriticaCircolare :
 public AreaCritica
 {
 private:

@@ -59,6 +59,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies />
+      <IgnoreSpecificDefaultLibraries>OLDNAMES.lib</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,6 +98,7 @@
     </ClCompile>
     <ClCompile Include="TabellaOrarioTest.cpp" />
     <ClCompile Include="TabellaStazioniTest.cpp" />
+    <ClCompile Include="TestAreeCritiche\AreeCriticheTest.cpp" />
     <ClCompile Include="ThreadListenerATC_IXLTest.cpp" />
     <ClCompile Include="ThreadPresentazioneTest.cpp" />
     <ClCompile Include="TrainTest.cpp" />
@@ -116,6 +118,9 @@
     <ProjectReference Include="..\Prototipo\Prototipo.vcxproj">
       <Project>{cdb5fe80-65aa-4fc0-a3b7-513cf0b38fb1}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="TestAreeCritiche\missioni.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

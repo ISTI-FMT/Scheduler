@@ -3,7 +3,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
-ref class MissioneAnnotata
+public ref class MissioneAnnotata
 {
 public:
 	List<int>^ ListaCdb;

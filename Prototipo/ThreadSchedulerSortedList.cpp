@@ -94,7 +94,7 @@ void ThreadSchedulerSortedList::Schedule(){
 			{
 				switch (Train->getStatoTreno())
 				{
-				case PRONTO:{
+				case StateTrain::PRONTO:{
 
 					DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
 						TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
@@ -118,7 +118,7 @@ void ThreadSchedulerSortedList::Schedule(){
 						}
 
 					break;}
-				case USCITASTAZIONE:{
+				case StateTrain::USCITASTAZIONE:{
 
 					//itinerario uscita
 					KeyValuePair<int, int> ^itistazione = Train->getStazioneItinerario();
@@ -165,7 +165,7 @@ void ThreadSchedulerSortedList::Schedule(){
 					}
 					break;
 									}
-				case ENTRATASTAZIONE: {
+				case StateTrain::ENTRATASTAZIONE: {
 
 
 					//itinerario uscita
@@ -239,9 +239,9 @@ void ThreadSchedulerSortedList::Schedule(){
 
 					break;
 									  }
-				case NONPRONTO:
+				case StateTrain::NONPRONTO:
 					break;
-				case TERMINATO:
+				case StateTrain::TERMINATO:
 					break;
 				default:
 					break;

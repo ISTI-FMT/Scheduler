@@ -85,21 +85,25 @@ void  Train::goNextItinerario(){
 KeyValuePair<int, int> ^Train::getStazioneItinerario(){
 	switch (Statodeltreno)
 	{
-	case PRONTO:
+	case StateTrain::PRONTO:{
+
+		return gcnew  KeyValuePair<int, int>();
 		break;
-	case USCITASTAZIONE:{
+
+				}
+	case StateTrain::USCITASTAZIONE:{
 		int itinUscita = Listafermate[indicelistaitinerari]->getIditinerarioUscita();
 		int idstazione = Listafermate[indicelistaitinerari]->getIdStazione();
 		return gcnew  KeyValuePair<int, int>(idstazione, itinUscita);
 		break;}
-	case ENTRATASTAZIONE:{
+	case StateTrain::ENTRATASTAZIONE:{
 		int initEntrata = Listafermate[indicelistaitinerari]->getIditinerarioEntrata();
 		int idstazione = Listafermate[indicelistaitinerari]->getIdStazione();
 		return gcnew  KeyValuePair<int, int>(idstazione, initEntrata);
 		break;}
-	case NONPRONTO:
+	case StateTrain::NONPRONTO:
 		break;
-	case TERMINATO:
+	case StateTrain::TERMINATO:
 		break;
 	default:
 		break;

@@ -12,7 +12,7 @@ using namespace System::Collections::Generic;
 enum AreaCriticaDirezione {Sinistra, Destra};
 
 #pragma once
-ref class AreaCritica abstract
+public ref class AreaCritica abstract
 {
 public:
 	System::String ^nome;

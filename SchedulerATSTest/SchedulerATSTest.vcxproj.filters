@@ -57,6 +57,9 @@
     <ClCompile Include="ThreadListenerATC_IXLTest.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="TestAreeCritiche\AreeCriticheTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -75,5 +78,8 @@
     <Image Include="app.ico">
       <Filter>File di risorse</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="TestAreeCritiche\missioni.xml" />
   </ItemGroup>
 </Project>

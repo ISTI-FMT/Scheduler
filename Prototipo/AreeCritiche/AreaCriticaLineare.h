@@ -1,6 +1,6 @@
 #pragma once
 #include "areacritica.h"
-ref class AreaCriticaLineare :
+public ref class AreaCriticaLineare :
 public AreaCritica
 {
 private:

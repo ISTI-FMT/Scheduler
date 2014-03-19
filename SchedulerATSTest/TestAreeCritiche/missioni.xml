@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document  xmlns="urn:AreeCritiche-schema">
+  <Aree>
+    <Area Id="0" Limite="0">
+      <Cdb Id="7" />
+      <Cdb Id="8" />
+    </Area>
+    <Area Id="1" Limite="0">
+      <Cdb Id="1" />
+      <Cdb Id="6" />
+    </Area>
+    <Area Id="2" Limite="0">
+      <Cdb Id="6" />
+      <Cdb Id="7" />
+    </Area>
+    <Area Id="3" Limite="0">
+      <Cdb Id="2" />
+      <Cdb Id="6" />
+      <Cdb Id="7" />
+    </Area>
+  </Aree>
+  <Missioni>
+    <Missione Trn="0">
+      <Cdb Id="1">
+        <Azione IdArea="1">3</Azione>
+      </Cdb>
+      <Cdb Id="6">
+        <Azione IdArea="2">3</Azione>
+      </Cdb>
+      <Cdb Id="7">
+        <Azione IdArea="0">3</Azione>
+        <Azione IdArea="1">-3</Azione>
+      </Cdb>
+      <Cdb Id="8">
+        <Azione IdArea="2">-3</Azione>
+      </Cdb>
+    </Missione>
+    <Missione Trn="1">
+      <Cdb Id="2">
+        <Azione IdArea="3">3</Azione>
+      </Cdb>
+      <Cdb Id="6" />
+      <Cdb Id="7">
+        <Azione IdArea="0">3</Azione>
+      </Cdb>
+      <Cdb Id="8">
+        <Azione IdArea="3">-3</Azione>
+      </Cdb>
+    </Missione>
+    <Missione Trn="2">
+      <Cdb Id="8">
+        <Azione IdArea="0">2</Azione>
+      </Cdb>
+      <Cdb Id="7" />
+      <Cdb Id="5">
+        <Azione IdArea="0">-2</Azione>
+      </Cdb>
+    </Missione>
+    <Missione Trn="3">
+      <Cdb Id="1">
+        <Azione IdArea="1">3</Azione>
+      </Cdb>
+      <Cdb Id="6">
+        <Azione IdArea="2">3</Azione>
+      </Cdb>
+      <Cdb Id="7">
+        <Azione IdArea="0">3</Azione>
+        <Azione IdArea="1">-3</Azione>
+      </Cdb>
+      <Cdb Id="8">
+        <Azione IdArea="2">-3</Azione>
+      </Cdb>
+    </Missione>
+    <Missione Trn="4">
+      <Cdb Id="9" />
+      <Cdb Id="8" />
+      <Cdb Id="6">
+        <Azione IdArea="1">2</Azione>
+      </Cdb>
+      <Cdb Id="1" />
+    </Missione>
+    <Missione Trn="5">
+      <Cdb Id="9" />
+      <Cdb Id="7">
+        <Azione IdArea="2">2</Azione>
+        <Azione IdArea="3">2</Azione>
+      </Cdb>
+      <Cdb Id="6" />
+      <Cdb Id="2">
+        <Azione IdArea="2">-2</Azione>
+      </Cdb>
+    </Missione>
+  </Missioni>
+</Document>

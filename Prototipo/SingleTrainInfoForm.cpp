@@ -210,7 +210,7 @@ void SingleTrainInfoForm::init(){
 
 	this->LabelStateTrain->Text =fromStateTreno(train->getStatoTreno());
 	aggiornaiconstate(train->getStatoTreno());
-	if(train->getStatoTreno()<3){
+	if((int)train->getStatoTreno()<3){
 		comboBoxCambiaStatoTreno->SelectedIndex=0;
 	}else{
 		comboBoxCambiaStatoTreno->SelectedIndex=1;
@@ -294,15 +294,15 @@ String ^SingleTrainInfoForm::fromStateTreno(StateTrain t){
 	String ^statotreno = gcnew String("");
 	switch (t)
 	{
-	case PRONTO: statotreno = "PRONTO";
+	case StateTrain::PRONTO: statotreno = "PRONTO";
 		break;
-	case USCITASTAZIONE:  statotreno = "USCITASTAZIONE";
+	case StateTrain::USCITASTAZIONE:  statotreno = "USCITASTAZIONE";
 		break;
-	case ENTRATASTAZIONE:  statotreno = "ENTRATASTAZIONE";
+	case StateTrain::ENTRATASTAZIONE:  statotreno = "ENTRATASTAZIONE";
 		break;
-	case NONPRONTO:  statotreno = "NONPRONTO";
+	case StateTrain::NONPRONTO:  statotreno = "NONPRONTO";
 		break;
-	case TERMINATO:  statotreno = "TERMINATO";
+	case StateTrain::TERMINATO:  statotreno = "TERMINATO";
 		break;
 	default:  statotreno = "ND";
 		break;
@@ -443,7 +443,7 @@ IDisposable ^SingleTrainInfoForm::Subscribe(IObserver<Event<List<Fermata^>^>^> ^
 
 void SingleTrainInfoForm::setinfoTrain(Train ^t){
 	if(train==t){
-	if(t->getStatoTreno()!=3){
+		if(t->getStatoTreno()!=StateTrain::NONPRONTO){
 		KeyValuePair<int, int> ^itistazione = t->getStazioneItinerario();
 		int itinUscita = itistazione->Value;
 		int idstazione = itistazione->Key;
@@ -468,9 +468,9 @@ System::Void SingleTrainInfoForm::comboBoxCambiaStatoTreno_SelectionChangeCommit
 		model->changeState(train,StateTrain::NONPRONTO );
 	}else{
 		if(vv=="Pronto"){
-			if(tempStateTrain){
+			//if(tempStateTrain){
 				model->changeState(train,tempStateTrain );
-			}
+			//}
 		}
 	}
 }

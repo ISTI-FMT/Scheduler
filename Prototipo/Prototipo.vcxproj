@@ -298,7 +298,9 @@
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xml">
+      <SubType>Designer</SubType>
+    </_EmbedManagedResourceFile>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xsd" />
     <_EmbedManagedResourceFile Include="risorse\green.ico" />
     <_EmbedManagedResourceFile Include="risorse\red.ico" />

@@ -1,14 +1,15 @@
-#using <System.dll>
+#pragma once
 #include "AreaCritica.h"
 #include "AreaCriticaCircolare.h"
 #include "AreaCriticaLineare.h"
 #include "MissioneAnnotata.h"
 
 using namespace System;
+using namespace System::IO;
 using namespace System::Collections::Generic;
 
-#pragma once
-ref class AreeCritiche
+
+public ref class AreeCritiche
 {
 private:
 	List<AreaCritica^>^ areeCritiche;
@@ -19,9 +20,19 @@ private:
 	Effettua l'entrata dentro il cdb. Aggiorna lo stato delle aree critiche coinvolte nel cdb.
 	*/
 	void entrataCdb(int cdb, int Trn);
+	void leggiConfigurazioneAreeCritiche(Stream^ xmlStream);
 public:
 	AreeCritiche();
+	/*
+	Carica la configurazione delle aree critiche da file
+	*/
 	void leggiFileConfigurazioneAreeCritiche();
+
+	/*
+	Legge la configurazione delle aree critiche da una stringa contenente l'xml delle aree critiche
+	*/
+	void leggiConfigurazioneAreeCritiche(String^ data);
+
 	/*
 	* Ritorna TRUE se un treno può entrare nel cdb, FALSE altrimenti.
 	* Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non hanno raggiunto il massimo numero di treni consentito
