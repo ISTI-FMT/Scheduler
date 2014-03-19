@@ -11,10 +11,13 @@ namespace Prototipo {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Diagnostics::CodeAnalysis;
+
 
 	/// <summary>
 	/// Riepilogo per ListTrainView
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public ref class ListTrainView : public System::Windows::Forms::Form,IObserver<List<Train^>^>
 	{
 

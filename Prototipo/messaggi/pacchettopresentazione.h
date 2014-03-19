@@ -6,7 +6,7 @@
 Rappresenta le informazioni contenute nel pacchetto Presentazione che l'ATS riceve dal ATO nel messaggio di Presentazione
 */
 
-ref class pacchettopresentazione : pacchettoBase
+public ref class pacchettopresentazione : pacchettoBase
 {
 	int L_PACKET;
 	int M_PORT;

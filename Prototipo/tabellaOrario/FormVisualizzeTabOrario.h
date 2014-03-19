@@ -15,7 +15,9 @@
 tabella orario*/
 
 //form per visualizzare sotto forma di tabella le informazioni contenute nel file della tabella orario
+using namespace System::Diagnostics::CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 ref class FormVisualizzeTabOrario : public Form
 {
 	// System::Windows::Forms::Form ^  form;

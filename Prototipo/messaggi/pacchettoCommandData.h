@@ -6,7 +6,7 @@
 Rappresenta le informazioni contenute nel pacchetto Command Data che l'ATS invia dal ATO nel messaggio di Unconditional Command
 */
 enum  QCmdData{ WAKE_UP = 0, Door = 2,  CHANGE_GOA_LEVEL = 3,TRN=4,SLEEP=7 };
-ref class pacchettoCommandData : pacchettoBase
+public ref class pacchettoCommandData : pacchettoBase
 {
 	int L_PACKET;
 	int Q_COMMAND_TYPE;

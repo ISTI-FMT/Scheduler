@@ -2,8 +2,11 @@
 #include "IEvent.h"
 #include "Train.h"
 //rappresenta l'evento scambiato nell'implementazione del pattern observer
+using namespace System::Diagnostics::CodeAnalysis;
+
 
 generic <typename T>
+[ExcludeFromCodeCoverage]
 public ref class Event : public IEvent<T>{
 	T source;
 	Train ^attribute;

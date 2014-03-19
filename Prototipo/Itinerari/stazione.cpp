@@ -32,6 +32,10 @@ System::String^ stazione::ToString() {
 
 
 	}
+	for each (binario ^var in binari)
+	{
+		out+=" "+ var->ToString()+"\n\r";
+	}
 
 
 

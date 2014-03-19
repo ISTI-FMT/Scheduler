@@ -14,7 +14,7 @@ enum QSCALEMissionData { CM = 0 , M = 1 , DC=2};
 Rappresenta le informazioni contenute nel pacchetto MissionData che l'ATS invia dal ATO nel messaggio di MissionPlan
 */
 
-ref class pacchettoMissionData : pacchettoBase
+public ref class pacchettoMissionData : pacchettoBase
 {
 	int L_PACKET;
 	int Q_SCALE ;

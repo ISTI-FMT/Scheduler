@@ -11,7 +11,7 @@ using namespace System::Collections;
 Rappresenta le informazioni contenute nel pacchetto Stato Blocco che l'ATS riceve dal IXL nel messaggio di stato della linea
 */
 
-ref class pacchettoStatoBlocco : pacchettoBase
+public ref class pacchettoStatoBlocco : pacchettoBase
 {
 	int L_PACKET ;
 	int N_ITER ;

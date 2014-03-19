@@ -7,6 +7,9 @@ using namespace System::Windows::Forms;
 /*utilizzo questa classe per rappresentare graficamente una tabella contenete in ogni casella un bottone
 che rappresenta graficamente lo stato degli itinerari*/
 //rappresenta un controllo per la visualizzazione di un singolo itinerario
+using namespace System::Diagnostics::CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
 ref class tableLayoutPanelSingleItin : public System::Windows::Forms::UserControl
 {
 	System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel1;

@@ -5,19 +5,21 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
-
+using namespace System::Diagnostics::CodeAnalysis;
 
 /*
-Rappresenta le informazioni contenute nel pacchetto Stato linea che l'ATS riceve dal ATC, con le informazioni sullo stato dei CDB, nel messaggio di stato della linea
+Rappresenta le informazioni contenute nel pacchetto Stato linea che l'ATS riceve dal ATC, con le informazioni sullo stato dei CDB, nel messaggio di stato della linea 
+**pacchetto cambiato classe inutilizzata
 */
 
-ref class pacchettostatolineaatc : pacchettoBase
+
+[ExcludeFromCodeCoverage]
+public ref class pacchettostatolineaatc : pacchettoBase
 {
 	int L_PACKET ;
 	int NID_OPERATIONAL ;
 	
 	int N_ITER ;
-	// questo vettore verrà allocato con la new quando sarà noto il valore di N_ITER
 	List< StateCDB^> ^pstato;
 public:
 	pacchettostatolineaatc();

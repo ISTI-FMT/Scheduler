@@ -12,7 +12,7 @@ using namespace System::Collections;
 Rappresenta le informazioni contenute nel pacchetto Position Data che l'ATS riceve dal ATC nel messaggio di stato della linea
 */
 
-ref class pacchettoPositionDataATC : pacchettoBase
+public ref class pacchettoPositionDataATC : pacchettoBase
 {
 	int L_PACKET;	
 	int N_ITER;

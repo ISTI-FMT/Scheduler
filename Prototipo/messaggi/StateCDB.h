@@ -15,28 +15,22 @@ public ref class StateCDB
 	int NID_ENGINE ;
 public:
 	StateCDB(void);
-	StateCDB(int nid, QStateCDB state, QStateDeviatoio dev);
-	StateCDB(int nid, QStateCDB state, QStateDeviatoio dev, int idtrain);
-	StateCDB(int nid, QStateCDB state, QStateDeviatoio dev, int idltrain, int idftrain);
+	StateCDB(int nid, int state, int dev);
+	StateCDB(int nid, int state, int dev, int idtrain);
+	StateCDB(int nid, int state, int dev, int idltrain, int idftrain);
 	void setNID_CDB(int NID){NID_CDB=NID;};
 	int getNID_CDB(){return NID_CDB;};
 	void setQ_DEVIATOIO(QStateDeviatoio Q){
-		if((Q>=0) & (Q<3)){
 			Q_DEVIATOIO=Q;
-		}else{
-			Q_DEVIATOIO=QStateDeviatoio::deviatoioStatoIgnoto;
-		}
+		
 
 	};
-	QStateDeviatoio getQ_DEVIATOIO(){return (QStateDeviatoio)Q_DEVIATOIO;};
+	int getQ_DEVIATOIO(){return Q_DEVIATOIO;};
 	void setQ_STATOCDB(QStateCDB Q){
-		if((Q>=0)& (Q<4)){
 			Q_STATOCDB=Q;
-		}else{
-			Q_STATOCDB=QStateCDB::cdbFuoriControllo;
-		}
+		
 	};
-	QStateCDB getQ_STATOCDB(){return (QStateCDB)Q_STATOCDB;};
+	int getQ_STATOCDB(){return Q_STATOCDB;};
 	bool Update(StateCDB ^newcdb){
 		bool ret=false;
 		if(newcdb->getNID_CDB()==NID_CDB){
@@ -68,7 +62,7 @@ public:
 	void setNID_ENGINE(int NID){NID_ENGINE=NID;};
 	int getNID_ENGINE(){return NID_ENGINE;};
 	
-	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,(QStateCDB)Q_STATOCDB,(QStateDeviatoio)Q_DEVIATOIO,NID_OPERATIONAL,NID_ENGINE);}
+	StateCDB ^Clone(){return gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO,NID_OPERATIONAL,NID_ENGINE);}
 
 	virtual System::String ^ToString() override;
 

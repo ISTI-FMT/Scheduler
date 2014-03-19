@@ -41,34 +41,6 @@ void utility::push (array<Byte>^buf, unsigned int data, int len, int off) {
    };
 }
 
-// converte un char in un intero senza segno 0x80 = 128 non -128!!
-/*unsigned int toint(char C) {
- int res =0;
-  if ((C & (1<<7)) != 0) res = res+128;
-  if ((C & (1<<6)) != 0) res = res+64;
-  if ((C & (1<<5)) != 0) res = res+32;
-  if ((C & (1<<4)) != 0) res = res+16;
-  if ((C & (1<<3)) != 0) res = res+8;
-  if ((C & (1<<2)) != 0) res = res+4;
-  if ((C & (1<<1)) != 0) res = res+2;
-  if ((C & (1<<0)) != 0) res = res+1;
-  return res;
-};*/
-
-/*// funzione che copia gli N elementi di un Byte[] in un array<Byte>
-void copiaByteInArray(Byte *source, array<Byte> ^dest, int N)
-{
-	for(int i = 0; i < N; ++i)
-		dest[i] = source[i];
-}
-
-// funzione che copia gli N elementi di un array<Byte> in un Byte[]
-void copiaArrayInByte(array<System::Byte> ^source, Byte *dest, int N)
-{
-	for(int i = 0; i < N; ++i)
-		dest[i] = source[i];
-}
-*/
 //
 // dato un offset >=0 (0..*) che rappresenta la posizione di un bit all'interno
 // del vettore di caratteri buf, restituisce il valore numerico del bit.

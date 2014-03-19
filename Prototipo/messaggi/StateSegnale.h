@@ -5,8 +5,10 @@ Rappresenta lo stato dei segnali del pacchetto stato segnali rivevuto dall'IXL
 */
 
 enum QStatoSegn {NessunAggiornamento = 0, R=1, G=2, Gx = 3, V = 4, RG = 5, RGx = 6, RV = 7, GV = 8, GxVx = 9, GpVp = 10, GG = 11, RGV = 12, RGxVx = 13, RGpVp = 14, RGG = 15};
+using namespace System::Diagnostics::CodeAnalysis;
 
-ref class StateSegnale
+[ExcludeFromCodeCoverage]
+public ref class StateSegnale
 {
 	int NID_SEGN ;
 	int Q_STATOSEGN ;

@@ -7,7 +7,7 @@ Rappresenta le informazioni contenute nel pacchetto Comando Itinerari che l'ATS 
 */
 enum  QCmdItinerari { distruzione = 0,  creazione = 2 };
 
-ref class pacchettoComandoItinerari : pacchettoBase
+public ref class pacchettoComandoItinerari : pacchettoBase
 {
 	int L_PACKET ;
 	int NID_ITIN ;

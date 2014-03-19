@@ -396,7 +396,7 @@ void ThreadSchedulerSortedList::RequestStop()
 {
 	view->RequestStop();
 	_shouldStop = true;
-	
+
 }
 
 
@@ -780,14 +780,15 @@ List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int 
 
 bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, QCmdItinerari Q_CMDITIN){
 	try{
+
 		int portixl=4011;
-		try {
-
-			portixl = System::Configuration::ConfigurationSettings::AppSettings["port_UDP_send"]!= nullptr ? int::Parse( System::Configuration::ConfigurationSettings::AppSettings["port_UDP_send"]->ToString()) : 4011;
-			// Console::WriteLine("IP IXL ",ipixl);
-		} catch(Exception  ^error){
+		try{
+			if(!Int32::TryParse( System::Configuration::ConfigurationSettings::AppSettings["port_UDP_send"],portixl)){
+				portixl=4011;
+			}
+		} catch(System::Configuration::ConfigurationException  ^error){
+			String ^eerr = error->Message;
 			portixl=4011;
-
 		}
 		Console::WriteLine("PORT UDP Send: {0}",portixl);
 		Messaggi ^cmdItini = gcnew Messaggi(MessIXL::ComandoItinerari);

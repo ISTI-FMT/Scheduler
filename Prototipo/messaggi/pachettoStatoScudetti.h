@@ -5,12 +5,14 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Collections;
-
+using namespace System::Diagnostics::CodeAnalysis;
 /*
-Rappresenta le informazioni contenute nel pacchetto Stato dei Scudetti che l'ATS riceve dal IXL nel messaggio di stato della linea
+Rappresenta le informazioni contenute nel pacchetto Stato dei Scudetti che l'ATS riceve dal IXL nel messaggio di stato della linea ** Messaggio cambio pacchetto non più usato
 */
 
-ref class pachettoStatoScudetti : pacchettoBase
+
+[ExcludeFromCodeCoverage]
+public ref class pachettoStatoScudetti : pacchettoBase
 {
 	int L_PACKET ;	
 	int N_ITER ;

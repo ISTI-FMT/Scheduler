@@ -17,11 +17,14 @@ namespace Prototipo {
 	using namespace System::Net::Sockets;
 	using namespace System::Threading;
 	using namespace System::Threading::Tasks;
+	using namespace System::Diagnostics::CodeAnalysis;
+
 
 
 	/// <summary>
 	/// Riepilogo per FormStatoLineaATC
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	ref class FormStatoLineaATC : public System::Windows::Forms::Form , IObserver<Event<StateCDB^>^>
 	{
 		Dictionary<int,Button^> ^listbuttonCDB;

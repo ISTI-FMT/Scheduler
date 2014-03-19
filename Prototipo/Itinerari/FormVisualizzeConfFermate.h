@@ -10,9 +10,12 @@
 	using namespace System::Drawing;
 	using namespace System::Net;
 	using namespace System::Net::Sockets;
+	using namespace System::Diagnostics::CodeAnalysis;
+
 
 	/*utilizzo questa classe per visualizzare graficamente sotto forma di tabella le informazioni contenute 
 	nel file di configurazione della fermate ConfigurazioneFermate.xml*/
+[ExcludeFromCodeCoverage]
 ref class FormVisualizzeConfFermate : public Form
 {
 	// System::Windows::Forms::Form ^  form;

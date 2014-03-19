@@ -9,8 +9,10 @@ using namespace System::Collections;
 /* 
 Rappresenta le informazioni contenute nel pacchetto Fault Data che l'ATS riceve dal IXL o ATO nel messaggio di Fault Reporting
 */
+using namespace System::Diagnostics::CodeAnalysis;
 
-ref class pacchettoFaultData : pacchettoBase
+[ExcludeFromCodeCoverage]
+public ref class pacchettoFaultData : pacchettoBase
 {
 	int L_PACKET ;
 	Fault ^guasto;

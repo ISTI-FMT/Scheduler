@@ -5,8 +5,10 @@ enum  QStatoBlocco {  illegale = 0, legale = 1};
 /*
 Rappresenta le informazioni dello stato del blocco del pacchetto StatoBlocco da inviare all'IXL
 */
+using namespace System::Diagnostics::CodeAnalysis;
 
-ref class StateBlocco
+[ExcludeFromCodeCoverage]
+public ref class StateBlocco
 {
 	int NID_BLOCCO ;
 	int Q_STATOBLOCCO;

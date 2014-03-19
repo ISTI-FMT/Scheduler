@@ -10,8 +10,10 @@ using namespace System::Collections;
 /*
 Rappresenta le informazioni contenute nel pacchetto di stato dell'itinerario che l'ATS riceve dal IXL nel messaggio di stato della linea
 */
+using namespace System::Diagnostics::CodeAnalysis;
 
-ref class pacchettoStatoItinerario : pacchettoBase
+[ExcludeFromCodeCoverage]
+public ref class pacchettoStatoItinerario : pacchettoBase
 {
 	int L_PACKET ;
 	int N_ITER ;

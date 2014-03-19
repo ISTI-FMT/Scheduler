@@ -22,13 +22,13 @@ ThreadListenerATC_IXL::ThreadListenerATC_IXL(ManagerStatoLineaIXL ^MC,ManagerSta
 	ManStatoLineaIXL=MC;
 	ManStatoLineaATC=MA;
 	isMessageReceived=false;
-	try {
-
-		port = System::Configuration::ConfigurationSettings::AppSettings["port_UDP_receive"]!= nullptr ? int::Parse( System::Configuration::ConfigurationSettings::AppSettings["port_UDP_receive"]->ToString()) : 4010;
-
-	} catch(Exception  ^error){
+	try{
+		if(!Int32::TryParse(System::Configuration::ConfigurationSettings::AppSettings["port_UDP_receive"],port)){
+			port=4010;
+		}
+	} catch(System::Configuration::ConfigurationException  ^error){
+		String ^eerr = error->Message;
 		port=4010;
-
 	}
 	Console::WriteLine("PORT UDP Receive: {0}",port);
 	_shouldStop=false;
@@ -46,7 +46,7 @@ bool ThreadListenerATC_IXL::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B){
 			scarta=true;
 		}else{
 			scarta=false; 
-			B=A;
+			//B=A;
 			break;
 		}
 	}
@@ -69,7 +69,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 
 
-
+	isMessageReceived = true;
 
 	bool scarta=false;
 
@@ -87,7 +87,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 				if(!scarta)
 					end_byte_old=receiveBytes;
 			}
-			isMessageReceived = true;
+
 		}
 	}else{
 
@@ -117,7 +117,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 				ind++;
 				}*/
 			}
-			isMessageReceived = true;
+
 		}
 
 
@@ -144,7 +144,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 		//Console::WriteLine(pkt1->ToString());
 		Console::ResetColor();
 
-		isMessageReceived = true;
+		//isMessageReceived = true;
 
 		//aggiorniamo il manager  11 è stato linea ATC mentre 1 è stato linea IXL
 
@@ -184,7 +184,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
-		udpClient->Client->ReceiveBufferSize=2048;
+		//udpClient->Client->ReceiveBufferSize=2048;
 		while ( !_shouldStop )
 		{
 			// Receive a message and write it to the console.
@@ -216,6 +216,7 @@ void ThreadListenerATC_IXL::UDP_Management_receive(){
 
 
 		}
+		//udpClient->Close();
 	}
 	catch ( SocketException^ e ) 
 	{

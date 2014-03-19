@@ -10,6 +10,8 @@ using namespace  System;
 intercettati dal TraceListener */
 
 //questa classe listener estende TextWriterTraceListener e  permette di visualizzare le informazioni di logging in una text box.
+using namespace System::Diagnostics::CodeAnalysis;
+[ExcludeFromCodeCoverage]
 ref class TextBoxTraceListener :TextWriterTraceListener
 {
 	System::Windows::Forms::TextBox^  textBox;

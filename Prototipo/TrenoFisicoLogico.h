@@ -8,11 +8,11 @@ in cui si trova il treno*/
 
 
 //rappresenta le informazioni che mappano ad ogni treno fisico una lista di trenilogici e la loro ultima posizione
-ref class TrenoFisicoLogico
+public ref class TrenoFisicoLogico
 {
-	unsigned int idtrenofisico;
+	int idtrenofisico;
 	List<int> ^ListidTreniLogici;
-	unsigned int cdblastposition;
+	int cdblastposition;
 
 public:
 	TrenoFisicoLogico(void);
