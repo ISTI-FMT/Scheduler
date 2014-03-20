@@ -22,7 +22,7 @@ Rappresenta un messaggio cosi come definito nei documenti di specifica
 e contiene i metodi per serializzare e desirializzare un messaggio
 */
 
-public enum class  Mess : int { StatoLineaATC = 11,  FaultReportingATC = 12, StatoLineaIXL = 1, 
+public enum class  MessageID : int { StatoLineaATC = 11,  FaultReportingATC = 12, StatoLineaIXL = 1, 
 	FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231,MissionPlan = 200,  FaultReportingATO = 213,
 	UnconditionCommand=201, Acknol=210,Presentation=215 };
 
@@ -76,7 +76,7 @@ private:
 
 public:
 	Messaggi(void);
-	Messaggi(Mess NID) ;
+	Messaggi(MessageID NID) ;
 	
 
 	int getNID_MESSAGE(){return NID_MESSAGE;};

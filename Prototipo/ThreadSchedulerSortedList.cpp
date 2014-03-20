@@ -464,7 +464,7 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 	try
 	{
 
-		Messaggi ^missionPlanPkt = gcnew Messaggi(Mess::MissionPlan);
+		Messaggi ^missionPlanPkt = gcnew Messaggi(MessageID::MissionPlan);
 		//missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 
 
@@ -575,7 +575,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 	try
 	{
 
-		Messaggi ^wakeUpPkt = gcnew Messaggi(Mess::UnconditionCommand);
+		Messaggi ^wakeUpPkt = gcnew Messaggi(MessageID::UnconditionCommand);
 		//wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(QCmdData::WAKE_UP);
 
@@ -584,7 +584,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
 
 
-		Messaggi ^trainRunningNumberPkt = gcnew Messaggi(Mess::UnconditionCommand);
+		Messaggi ^trainRunningNumberPkt = gcnew Messaggi(MessageID::UnconditionCommand);
 		//trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(QCmdData::TRN);
 
@@ -596,7 +596,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		// Buffer for reading data
 		array<Byte>^bytes_buffer2 = trainRunningNumberPkt->serialize();
 
-		Messaggi ^missionPlanPkt = gcnew Messaggi(Mess::MissionPlan);
+		Messaggi ^missionPlanPkt = gcnew Messaggi(MessageID::MissionPlan);
 		//missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 
 		tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn));
@@ -765,7 +765,7 @@ bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, QCmdItinerari Q_C
 			portixl=4011;
 		}
 		Console::WriteLine("PORT UDP Send: {0}",portixl);
-		Messaggi ^cmdItini = gcnew Messaggi(Mess::ComandoItinerari);
+		Messaggi ^cmdItini = gcnew Messaggi(MessageID::ComandoItinerari);
 		//cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(10);
 		cmdItini->get_pacchettoComandoItinerari()->setNID_ITIN(NID_ITIN);
 		cmdItini->get_pacchettoComandoItinerari()->setQ_CMDITIN(Q_CMDITIN);

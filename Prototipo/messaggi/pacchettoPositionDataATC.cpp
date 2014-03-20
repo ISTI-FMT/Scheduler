@@ -3,7 +3,7 @@
 
 pacchettoPositionDataATC::pacchettoPositionDataATC(void)
 {
-	setNID_PACKET(Pacchetto::PacchettoPositionDataATC);
+	setNID_PACKET(PacchettoID::PositionDataATC);
 	L_PACKET = 0;
 	N_ITER=0;
 	ListPostionData = gcnew List<StateCDB^>();

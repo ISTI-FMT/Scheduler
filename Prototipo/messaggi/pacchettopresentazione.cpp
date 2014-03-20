@@ -3,7 +3,7 @@
 
 pacchettopresentazione::pacchettopresentazione(void)
 {
-	setNID_PACKET(Pacchetto::PacchettoNetworkData);
+	setNID_PACKET(PacchettoID::NetworkData);
 	L_PACKET = 0;
 	M_PORT =0;
 

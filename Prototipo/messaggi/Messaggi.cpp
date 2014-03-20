@@ -11,7 +11,7 @@ Messaggi::Messaggi(void)
 	NID_ENGINE=0;
 }
 
-Messaggi::Messaggi(Mess NID)
+Messaggi::Messaggi(MessageID NID)
 {
 	setNID_MESSAGE((int)NID);
 	setTime();
@@ -31,22 +31,22 @@ void Messaggi::setNID_MESSAGE(int N){
 	NID_MESSAGE = N;
 	switch (N)
 	{
-	case Mess::MissionPlan : {set_pacchettoMissionData();break;}
-	case Mess::UnconditionCommand : { set_pacchettoCommandData();break;}
-	case Mess::Presentation : { set_pacchettoPresentazione();break;}
-	case Mess::StatoLineaATC : {set_pacchettoPositionDataATC(); 
+	case MessageID::MissionPlan : {set_pacchettoMissionData();break;}
+	case MessageID::UnconditionCommand : { set_pacchettoCommandData();break;}
+	case MessageID::Presentation : { set_pacchettoPresentazione();break;}
+	case MessageID::StatoLineaATC : {set_pacchettoPositionDataATC(); 
 		//set_pacchettoEnd();
 		break;}
-	case Mess::Acknol :{set_pacchettoAcknowledgement();break;}
-	case Mess::StatoLineaIXL: { set_pacchettoStatoLineaIXL();
+	case MessageID::Acknol :{set_pacchettoAcknowledgement();break;}
+	case MessageID::StatoLineaIXL: { set_pacchettoStatoLineaIXL();
 		//set_pacchettoStatoItinerari();
 		set_pacchettoStatoSegnali();
 		set_pacchettoStatoBlocco();
 		set_pacchettoEnd();
 		break;}
-	case Mess::FaultReportingIXL: {set_pacchettoFaultReporting(Pacchetto::PacchettoFaultDataIXL); break;}
-	case Mess::ComandoItinerari: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
-	case Mess::ComandoBlocco: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}
+	case MessageID::FaultReportingIXL: {set_pacchettoFaultReporting(PacchettoID::FaultDataIXL); break;}
+	case MessageID::ComandoItinerari: {set_pacchettoComandoItinerari(); set_pacchettoEnd(); break;}
+	case MessageID::ComandoBlocco: {set_pacchettoComandoBlocco(); set_pacchettoEnd(); break;}
 	default:
 		break;
 	}
@@ -64,34 +64,34 @@ void Messaggi::serialize(array<Byte>^buffer)
 	int offset = 0;
 	switch (N)
 	{
-	case Mess::MissionPlan : {
+	case MessageID::MissionPlan : {
 		offset += 51;
 		get_pacchettoMissionData()->serialize(buffer, offset);
 		break;}
-	case Mess::UnconditionCommand : {
+	case MessageID::UnconditionCommand : {
 		offset += 51;
 		get_pacchettoCommandData()->serialize(buffer, offset);
 		break;}
-	case Mess::Presentation : {
+	case MessageID::Presentation : {
 		offset += 51;
 		utility::push(buffer, NID_ENGINE, 24, 51);
 		offset += 24;
 		get_pacchettoPresentazione()->serialize(buffer, offset);
 		break;}
-	case Mess::StatoLineaATC : 
+	case MessageID::StatoLineaATC : 
 		{
 			offset += 51;
 			get_pacchettoPositionDataATC()->serialize(buffer, offset);
 			//offset += get_pacchettoPositionDataATC()->getSize();
 			//get_pacchettoEnd()->serialize(buffer, offset);
 			break;}
-	case Mess::Acknol :{
+	case MessageID::Acknol :{
 		offset += 51;
 		utility::push(buffer, NID_ENGINE, 24, 51);
 		offset += 24;
 		get_pacchettoAcknowledgement()->serialize(buffer, offset);
 		break;}
-	case Mess::StatoLineaIXL: {
+	case MessageID::StatoLineaIXL: {
 		offset += 51;
 		get_pacchettoStatoLineaIXL()->serialize(buffer, offset);
 		offset += get_pacchettoStatoLineaIXL()->getSize();
@@ -103,17 +103,17 @@ void Messaggi::serialize(array<Byte>^buffer)
 		offset += get_pacchettoStatoBlocco()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
-	case Mess::FaultReportingIXL: {
+	case MessageID::FaultReportingIXL: {
 		offset += 51;
 		get_pacchettoFaultReporting()->serialize(buffer, offset);
 		break;}
-	case Mess::ComandoItinerari: { 
+	case MessageID::ComandoItinerari: { 
 		offset += 51;
 		get_pacchettoComandoItinerari()->serialize(buffer, offset);
 		offset += get_pacchettoComandoItinerari()->getSize();
 		get_pacchettoEnd()->serialize(buffer, offset);
 		break;}
-	case Mess::ComandoBlocco: { 
+	case MessageID::ComandoBlocco: { 
 		offset += 51;
 		get_pacchettoComandoBlocco()->serialize(buffer, offset);
 		offset += get_pacchettoComandoBlocco()->getSize();
@@ -143,21 +143,21 @@ void Messaggi::deserialize(array<Byte>^buffer)
 		int offset = 0;
 		switch (NID_MESSAGE)
 		{
-		case Mess::MissionPlan : {set_pacchettoMissionData();
+		case MessageID::MissionPlan : {set_pacchettoMissionData();
 			offset += 51;
 			pkgMP->deserialize(buffer, offset);
 			break;
 
-									}
-		case Mess::UnconditionCommand : {
+								 }
+		case MessageID::UnconditionCommand : {
 			offset += 51;
 			set_pacchettoCommandData();
 			pkgcd1->deserialize(buffer, offset);
 			break;
 
-										   }
+										}
 
-		case Mess::Presentation : {
+		case MessageID::Presentation : {
 			offset += 51;
 			NID_ENGINE = utility::pop(buffer, 24, 51);
 			offset += 24;
@@ -165,9 +165,9 @@ void Messaggi::deserialize(array<Byte>^buffer)
 			pgkPres->deserialize(buffer, offset);
 			break;
 
-									 }
+								  }
 
-		case Mess::StatoLineaATC : {
+		case MessageID::StatoLineaATC : {
 			offset += 51;
 			set_pacchettoPositionDataATC();
 			pkgPositionDataATC->deserialize(buffer, offset);
@@ -175,18 +175,18 @@ void Messaggi::deserialize(array<Byte>^buffer)
 			//set_pacchettoEnd();
 			//get_pacchettoEnd()->deserialize(buffer, offset);
 			break;
-									  }
+								   }
 
-		case Mess::Acknol : {
+		case MessageID::Acknol : {
 			offset += 51;
 			NID_ENGINE = utility::pop(buffer, 24, 51);
 			offset += 24;
 			set_pacchettoAcknowledgement();
 			pkgAck->deserialize(buffer, offset);
 			break;
-							   }
+							}
 
-		case Mess::StatoLineaIXL: {
+		case MessageID::StatoLineaIXL: {
 			offset += 51;
 			set_pacchettoStatoLineaIXL();
 			get_pacchettoStatoLineaIXL()->deserialize(buffer, offset);
@@ -204,11 +204,11 @@ void Messaggi::deserialize(array<Byte>^buffer)
 			set_pacchettoEnd();
 			get_pacchettoEnd()->deserialize(buffer, offset);
 			break;}
-		case Mess::FaultReportingIXL: {
+		case MessageID::FaultReportingIXL: {
 			offset += 51;
 			get_pacchettoFaultReporting()->deserialize(buffer, offset);
 			break;}
-		case Mess::ComandoItinerari: { 
+		case MessageID::ComandoItinerari: { 
 			offset += 51;
 			set_pacchettoComandoItinerari();
 			get_pacchettoComandoItinerari()->deserialize(buffer, offset);
@@ -216,7 +216,7 @@ void Messaggi::deserialize(array<Byte>^buffer)
 			set_pacchettoEnd();
 			get_pacchettoEnd()->deserialize(buffer, offset);
 			break;}
-		case Mess::ComandoBlocco: { 
+		case MessageID::ComandoBlocco: { 
 			offset += 51;
 			set_pacchettoComandoBlocco();
 			get_pacchettoComandoBlocco()->deserialize(buffer, offset);
@@ -296,17 +296,17 @@ int Messaggi::getSize(){
 	try{
 		switch (NID_MESSAGE)
 		{
-		case Mess::MissionPlan : {len+=pkgMP->getSize();break;}
-		case Mess::UnconditionCommand : {len+=pkgcd1->getSize();break;}
-		case Mess::Presentation : {len+=24+pgkPres->getSize();break;}
-		case Mess::StatoLineaATC : {len+=pkgPositionDataATC->getSize();//+ pkgEnd->getSize();
+		case MessageID::MissionPlan : {len+=pkgMP->getSize();break;}
+		case MessageID::UnconditionCommand : {len+=pkgcd1->getSize();break;}
+		case MessageID::Presentation : {len+=24+pgkPres->getSize();break;}
+		case MessageID::StatoLineaATC : {len+=pkgPositionDataATC->getSize();//+ pkgEnd->getSize();
 			break;}
-		case Mess::Acknol :{len+=24+pkgAck->getSize();break;}
-		case Mess::StatoLineaIXL: {len += pkgStatoLineaIXL->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize();//+ pkgStatoItinerari->getSize()
+		case MessageID::Acknol :{len+=24+pkgAck->getSize();break;}
+		case MessageID::StatoLineaIXL: {len += pkgStatoLineaIXL->getSize() + pkgStatoSegnali->getSize() + pkgStatoBlocco->getSize() + pkgEnd->getSize();//+ pkgStatoItinerari->getSize()
 			break;}
-		case Mess::FaultReportingIXL: {len += pkgFaultData->getSize(); break;}
-		case Mess::ComandoItinerari: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
-		case Mess::ComandoBlocco: {len +=pkgComandoBlocco->getSize()+ pkgEnd->getSize(); break;}
+		case MessageID::FaultReportingIXL: {len += pkgFaultData->getSize(); break;}
+		case MessageID::ComandoItinerari: {len +=pkgComandoItinerario->getSize()+ pkgEnd->getSize(); break;}
+		case MessageID::ComandoBlocco: {len +=pkgComandoBlocco->getSize()+ pkgEnd->getSize(); break;}
 		default: break;
 		}
 	}catch(Exception ^e){

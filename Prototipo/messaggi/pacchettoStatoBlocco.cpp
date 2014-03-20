@@ -3,7 +3,7 @@
 
 pacchettoStatoBlocco::pacchettoStatoBlocco(void)
 {
-	setNID_PACKET(Pacchetto::PacchettoStatoBloccoIXL);
+	setNID_PACKET(PacchettoID::StatoBloccoIXL);
 	L_PACKET = 0;
 	N_ITER = 0;
 	vStatoBlocco =gcnew List<StateBlocco^>();

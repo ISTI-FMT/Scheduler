@@ -5,7 +5,7 @@
 
 pacchettoMissionData::pacchettoMissionData()
 {
-	setNID_PACKET(Pacchetto::PacchettoMissionData);
+	setNID_PACKET(PacchettoID::MissionData);
 	L_PACKET = 0;
 	Q_SCALE = (int)QSCALEMissionData::M;
 	N_ITER1 = 0;
