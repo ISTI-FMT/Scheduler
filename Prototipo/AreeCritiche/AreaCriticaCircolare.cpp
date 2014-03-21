@@ -4,6 +4,7 @@
 AreaCriticaCircolare::AreaCriticaCircolare(List<int> ^listaCdb, int limite)
 {
 	this->cdbs = gcnew HashSet<int> ();
+	this->treni = gcnew HashSet<int> ();
 
 	for(int i = 0; i < listaCdb->Count; i++)
 	{

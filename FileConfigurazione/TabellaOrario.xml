@@ -691,7 +691,7 @@
       <partenza>17:33:00</partenza>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
-      <itinerarioEntrata id="914">II-03</itinerarioEntrata>
+      <itinerarioUscita id="914">II-03</itinerarioUscita>
       <!--<itinerarioUscita id=""></itinerarioUscita>-->
     </stazione>
     
