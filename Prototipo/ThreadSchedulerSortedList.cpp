@@ -125,11 +125,11 @@ void ThreadSchedulerSortedList::Schedule(){
 
 						if (areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN()))
 						{
-							if(bin>0){
-								Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
-							}else{
+							//if(bin>0){
+							//	Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
+						//	}else{
 								Train->setStatoTreno(StateTrain::USCITASTAZIONE);
-							}
+						//	}
 
 						}
 					}
@@ -177,7 +177,7 @@ void ThreadSchedulerSortedList::Schedule(){
 					}
 					else
 					{
-						Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
+						//Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
 						controlListtrain->OnNextIt(Train);
 					}
 					break;
@@ -247,7 +247,7 @@ void ThreadSchedulerSortedList::Schedule(){
 							}
 						}
 					}else{
-						Train->setStatoTreno(StateTrain::USCITASTAZIONE);
+					//	Train->setStatoTreno(StateTrain::USCITASTAZIONE);
 						controlListtrain->OnNextIt(Train);
 					}
 
@@ -354,7 +354,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 				List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn);
 				int prevfirstcdbu = 0;
 				if(listafermate!=nullptr & listaitinerari!=nullptr & listafermate->Count>0 & listaitinerari->Count>0){
-					if(listafermate[0]->getOrarioPartenza()>listaitinerari[0]->getOrarioPartenza()){
+					if(listafermate[0]->getOrarioPartenza()>=listaitinerari[0]->getOrarioPartenza()){
 
 						prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 					}else{
@@ -399,7 +399,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 						//Creo il treno
 						Console::WriteLine("ok {0}",listaitinerari[0]->getOrarioPartenza());
 
-						List<Fermata^> ^listafermate = tabOrario->getItinerariFor(trn);//tabOrario->getFermateFor(trn);
+						List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn); //tabOrario->getItinerariFor(trn);//
 						int priorita = 1;
 						Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
 						//Creo KeyListTrain

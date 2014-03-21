@@ -18,7 +18,7 @@ public ref class Train : public IComparable<Train^>
 	physicalTrain ^PhysicalTrain;
 	List<Fermata^> ^Listafermate;
 	StateTrain Statodeltreno;
-	int indicelistaitinerari;
+	int indicelistafermata;
 	int Priorita;
 	int PhysicalTrainNumber;
 public:
@@ -32,7 +32,7 @@ public:
 	StateTrain getStatoTreno(){return Statodeltreno;};
 	void setStatoTreno(StateTrain st){Statodeltreno=st;};
 	void setListaFermate(List<Fermata^> ^listIt){Listafermate=listIt; };
-	int getindex(){return indicelistaitinerari;};
+	int getindex(){return indicelistafermata;};
 	KeyValuePair<int, int> ^getStazioneItinerario();
 	void changeOrari( List<Fermata^> ^nuoviorari);
 	List<Fermata^>^getListaFermate(){return Listafermate; };
