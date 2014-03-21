@@ -97,25 +97,42 @@ void ThreadSchedulerSortedList::Schedule(){
 				case StateTrain::PRONTO:{
 
 					DateTime mezzanotte = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-						TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
-						int tempo = (int)oraattuale->TotalSeconds/30;
-						int  costante= 3;
-						int resutl = ((int)Train->getOrarioPartenza())-costante;
+					TimeSpan ^oraattuale =  (DateTime::Now - mezzanotte);
+					int tempo = (int)oraattuale->TotalSeconds/30;
+					int  costante= 3;
+					int resutl = ((int)Train->getOrarioPartenza())-costante;
 
-						List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(Train->getTRN());
-						int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
+					List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(Train->getTRN());
+					List<Fermata^> ^listafermate = tabOrario->getFermateFor(Train->getTRN());
+					//int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
+					int prevfirstcdbu = 0;
+					int bin = 0;
+					if(listafermate!=nullptr & listaitinerari!=nullptr & listafermate->Count>0 & listaitinerari->Count>0){
+						if(listafermate[0]->getOrarioPartenza()>listaitinerari[0]->getOrarioPartenza()){
 
-						int idTRenoCDBPrecIT = managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL();
-						int nid_engineTRenoCDBPrecIT = managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE();
+							prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
+						}else{
+							bin = listafermate[0]->getBinarioProgrammato();
+							prevfirstcdbu = tabItinerari->get_CdbFermata(listafermate[0]->getIdStazione(),bin);
+						}
 
-						// controllo posizione e tempo 
-						if(((idTRenoCDBPrecIT==Train->getTRN())|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber())& (resutl<=tempo | true)){//&
+					}
+					/*int idTRenoCDBPrecIT = managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL();
+					int nid_engineTRenoCDBPrecIT = managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE();*/
 
-							if (areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN()))
-							{
+					//  tempo 
+					if((resutl<=tempo | true)){//&
+
+						if (areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN()))
+						{
+							if(bin>0){
+								Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
+							}else{
 								Train->setStatoTreno(StateTrain::USCITASTAZIONE);
 							}
+
 						}
+					}
 
 					break;}
 				case StateTrain::USCITASTAZIONE:{
@@ -164,7 +181,7 @@ void ThreadSchedulerSortedList::Schedule(){
 						controlListtrain->OnNextIt(Train);
 					}
 					break;
-									}
+												}
 				case StateTrain::ENTRATASTAZIONE: {
 
 
@@ -238,7 +255,7 @@ void ThreadSchedulerSortedList::Schedule(){
 
 
 					break;
-									  }
+												  }
 				case StateTrain::NONPRONTO:
 					break;
 				case StateTrain::TERMINATO:
@@ -334,51 +351,63 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 			if((tabOrario->get_TabellaOrario()->ContainsKey(trn)) & (trn>0)){
 				//trova gli itinerari  del treno
 				List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(trn);
-				int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
+				List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn);
+				int prevfirstcdbu = 0;
+				if(listafermate!=nullptr & listaitinerari!=nullptr & listafermate->Count>0 & listaitinerari->Count>0){
+					if(listafermate[0]->getOrarioPartenza()>listaitinerari[0]->getOrarioPartenza()){
+
+						prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
+					}else{
+						int bin = listafermate[0]->getBinarioProgrammato();
+						prevfirstcdbu = tabItinerari->get_CdbFermata(listafermate[0]->getIdStazione(),bin);
+					}
+
+				}
+				// prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 				// cerca se si trova nella stazione in cui deve partire
 				if(lastpos==prevfirstcdbu){
 
 
 					//se il treno si trova sul cdb giusto
-				//	if(((managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL()==trn)|managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE()==enginenumber)|true){
+					//	if(((managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL()==trn)|managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE()==enginenumber)|true){
 
-						// gli assegni TRN e MISSION
-						if(inviato==nullptr){
-							Console::WriteLine("Il treno {0} si trova al posto giusto per partire e gli invio WAKE-UP, TRN={1} e MISSION",enginenumber,trn);
+					// gli assegni TRN e MISSION
+					if(inviato==nullptr){
+						Console::WriteLine("Il treno {0} si trova al posto giusto per partire e gli invio WAKE-UP, TRN={1} e MISSION",enginenumber,trn);
+						inviato = InizializzeATO(trn,phisical);
+						time=DateTime::Now;
+					}
+					TimeSpan ^sec = TimeSpan::Zero; 
+					while ((inviato->fine!=1) & (sec->TotalSeconds<20)){
+						//aspetta un po
+						sec = DateTime::Now - time;
+						if(sec->TotalSeconds>20){
+							//riinvia
+							inviato->fine=0;
+							if(inviato->workSocket!=nullptr){
+								inviato->workSocket->Close();
+							}
 							inviato = InizializzeATO(trn,phisical);
 							time=DateTime::Now;
+							Console::WriteLine(time);
+							Console::WriteLine("Il treno {0} non ha risposto con l'ack all'assegnazione della missione",enginenumber);
 						}
-						TimeSpan ^sec = TimeSpan::Zero; 
-						while ((inviato->fine!=1) & (sec->TotalSeconds<20)){
-							//aspetta un po
-							sec = DateTime::Now - time;
-							if(sec->TotalSeconds>20){
-								//riinvia
-								inviato->fine=0;
-								if(inviato->workSocket!=nullptr){
-									inviato->workSocket->Close();
-								}
-								inviato = InizializzeATO(trn,phisical);
-								time=DateTime::Now;
-								Console::WriteLine(time);
-								Console::WriteLine("Il treno {0} non ha risposto con l'ack all'assegnazione della missione",enginenumber);
-							}
 
 
-						}
-						if(inviato->fine==1){
-							//Creo il treno
-							Console::WriteLine("ok {0}",listaitinerari[0]->getOrarioPartenza());
+					}
+					if(inviato->fine==1){
+						//Creo il treno
+						Console::WriteLine("ok {0}",listaitinerari[0]->getOrarioPartenza());
 
-							List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn);
-							int priorita = 1;
-							Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
-							//Creo KeyListTrain
+						List<Fermata^> ^listafermate = tabOrario->getItinerariFor(trn);//tabOrario->getFermateFor(trn);
+						int priorita = 1;
+						Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
+						//Creo KeyListTrain
 
-							//KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber);
-							//ListSortedTrains->Add(key,treno);
-							controlListtrain->OnSetTrain(treno);
-						}
+						//KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber);
+						//ListSortedTrains->Add(key,treno);
+						controlListtrain->OnSetTrain(treno);
+					}
 
 					//}
 				}

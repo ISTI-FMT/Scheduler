@@ -51,6 +51,8 @@ public:
 	}
 
 	int get_CdbPrecItinerario(int stazione, int iditin);
+
+	int get_CdbFermata(int stazione, int binario );
 	
 	int get_CdbSuccItinerario(int stazione, int iditin);
 
