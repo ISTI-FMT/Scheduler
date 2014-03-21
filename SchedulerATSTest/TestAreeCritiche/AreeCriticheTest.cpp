@@ -33,8 +33,8 @@ namespace SchedulerATSTest
 	public: [TestMethod]
 			void TestAreeCritiche1152_1151stop()
 			{
-				AreeCritiche^ aree = gcnew AreeCritiche();
-				aree->leggiFileConfigurazioneAreeCritiche();
+				AreeCritiche^ aree = gcnew AreeCritiche("..\\..\\FileConfigurazione\\AreeCritiche1151153.xml");
+				
 
 				bool richiesta;
 				richiesta = aree->richiestaCdb(13302,1152);
@@ -53,8 +53,10 @@ namespace SchedulerATSTest
 	public: [TestMethod]
 			void TestAreeCritiche1152_1151incrocio()
 			{
-				AreeCritiche^ aree = gcnew AreeCritiche();
-				aree->leggiFileConfigurazioneAreeCritiche();
+				  String^ path = Directory::GetCurrentDirectory();
+      Console::WriteLine( "The current directory is {0}", path );
+				AreeCritiche^ aree = gcnew AreeCritiche("..\\..\\FileConfigurazione\\AreeCritiche1151153.xml");
+				
 
 				//1152=13302,501,14302,502,15301,503,12301,400,428,16302,440,448,17302
 				bool richiesta;

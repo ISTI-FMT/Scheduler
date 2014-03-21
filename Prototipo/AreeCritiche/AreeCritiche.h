@@ -21,7 +21,8 @@ private:
 	void entrataCdb(int cdb, int Trn);
 public:
 	AreeCritiche();
-	void leggiFileConfigurazioneAreeCritiche();
+	AreeCritiche(String ^xmlAreecritiche);
+	void leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readStreamXML);
 	/*
 	* Ritorna TRUE se un treno può entrare nel cdb, FALSE altrimenti.
 	* Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non hanno raggiunto il massimo numero di treni consentito

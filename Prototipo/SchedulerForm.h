@@ -385,8 +385,7 @@ namespace Prototipo {
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //
 				 areeCritiche = gcnew AreeCritiche();
-				 areeCritiche->leggiFileConfigurazioneAreeCritiche();
-
+				
 				 tabItinerari = gcnew TabellaStazioni();
 				 
 
