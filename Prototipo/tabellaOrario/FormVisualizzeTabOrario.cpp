@@ -1,10 +1,11 @@
 #include "FormVisualizzeTabOrario.h"
 
 
-FormVisualizzeTabOrario::FormVisualizzeTabOrario(TabellaOrario ^tab )
+FormVisualizzeTabOrario::FormVisualizzeTabOrario(TabellaOrario ^tab, TabellaStazioni ^t )
 {
 	tabella=tab;
 	Inizialize();
+	Tabellastazioni=t;
 }
 
 
@@ -22,11 +23,24 @@ void FormVisualizzeTabOrario::Inizialize(){
 	dataGridView1->Size = System::Drawing::Size(890, 344);
 	dataGridView1->TabIndex = 8;
 
+
+	//NewTrain
+	// 
+	this->NewTrain = gcnew Button();
+	this->NewTrain->Location = System::Drawing::Point(12, 370);
+	this->NewTrain->Name = L"NewTrain";
+	this->NewTrain->Size = System::Drawing::Size(146, 23);
+	this->NewTrain->TabIndex = 2;
+	this->NewTrain->Text = L"NewTrain";
+	this->NewTrain->UseVisualStyleBackColor = true;
+	this->NewTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeTabOrario::NewTrain_Click);
+
 	//form = gcnew Form();
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	this->ClientSize = System::Drawing::Size(915, 415);
 	this->Controls->Add(dataGridView1);
+	this->Controls->Add(NewTrain);
 	this->Name = L"Tabella Orario";
 	this->Text = L"Tabella Orario";
 	//form->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
@@ -77,7 +91,7 @@ void FormVisualizzeTabOrario::Inizialize(){
 	}
 
 
-	
+
 
 
 }
@@ -85,4 +99,10 @@ void FormVisualizzeTabOrario::Inizialize(){
 void FormVisualizzeTabOrario::Form_Resize(System::Object^  sender, System::EventArgs^  e) {
 
 	dataGridView1->Size= System::Drawing::Size(this->Width-30,this->Height-50);
+}
+
+void FormVisualizzeTabOrario::NewTrain_Click(System::Object^  sender, System::EventArgs^  e){
+
+	Prototipo::EditorTabellaOrario ^editor = gcnew Prototipo::EditorTabellaOrario(Tabellastazioni);
+	editor->Visible=true;
 }

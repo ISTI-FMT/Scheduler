@@ -16,6 +16,43 @@ ItineraryBox::ItineraryBox(Fermata ^f, stazione ^s)
 	this->comboBoxE->SelectedIndexChanged += gcnew System::EventHandler(this, &ItineraryBox::comboBoxE_SelectedIndexChanged);
 }
 
+ItineraryBox::ItineraryBox(stazione ^s, int i)
+{
+	
+	station=s;
+	init();
+
+	this->setNameStation(s->get_NomeStazione()+" "+s->get_idStazione().ToString());
+	initCombo();
+	
+	// textBoxN
+	// 
+	this->textBoxN = gcnew System::Windows::Forms::TextBox();
+	this->textBoxN->Location = System::Drawing::Point(140, 13);
+	this->textBoxN->Name = L"textBoxN";
+	this->textBoxN->Size = System::Drawing::Size(18, 20);
+	this->textBoxN->TabIndex = 0;
+	this->textBoxN->Text=i.ToString();
+	// 
+	// CheckBoxC
+	// 
+	this->CheckBoxC = gcnew System::Windows::Forms::CheckBox();
+	this->CheckBoxC->AutoSize = true;
+	this->CheckBoxC->Location = System::Drawing::Point(160, 13);
+	this->CheckBoxC->Name = L"CheckBoxC";
+	this->CheckBoxC->Size = System::Drawing::Size(15, 14);
+	this->CheckBoxC->TabIndex = 5;
+	this->CheckBoxC->Checked =true;
+	this->CheckBoxC->UseVisualStyleBackColor = true;
+	this->label->Location = System::Drawing::Point(5, 13);
+	array<System::Windows::Forms::Control^>^temp0 = {textBoxN,CheckBoxC};
+	this->Controls->AddRange( temp0 );
+	//this->comboBoxU->SelectedIndex=0;
+	//this->comboBoxE->SelectedIndex=0;
+	this->comboBoxU->SelectedIndexChanged += gcnew System::EventHandler(this, &ItineraryBox::comboBoxU_SelectedIndexChanged);
+	this->comboBoxE->SelectedIndexChanged += gcnew System::EventHandler(this, &ItineraryBox::comboBoxE_SelectedIndexChanged);
+}
+
 void ItineraryBox::init()
 {
 	this->components = gcnew System::ComponentModel::Container;
@@ -103,7 +140,7 @@ void ItineraryBox::init()
 	this->tableLayoutPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 
 	this->tableLayoutPanel->TabIndex = 12;
-	this->tableLayoutPanel->Size = System::Drawing::Size(142, 54);
+	this->tableLayoutPanel->Size = System::Drawing::Size(142, 70);
 
 	tableLayoutPanel->Controls->Add(orarioA,0,0);
 	tableLayoutPanel->Controls->Add(orarioP,2,0);
@@ -144,6 +181,30 @@ void ItineraryBox::initCombo(String ^direzione){
 
 				}
 			}
+
+		}
+	}
+
+
+}
+
+void ItineraryBox::initCombo(){
+	Dictionary<int,Itinerario^ > ^itinerari =  station->getItinerariid();
+	Dictionary<int,Itinerario^ >::ValueCollection ^valueColl =   station->getItinerariid()->Values;
+	if(comboBoxE->Items->Count==0){
+		for each (Itinerario ^itin in valueColl)
+		{
+			
+				if(itin->getTipoItinerario()==typeItini::Entrata){
+					comboBoxE->Items->Add(itin);
+				}else{
+					if(itin->getTipoItinerario()==typeItini::Uscita){
+						comboBoxU->Items->Add(itin);
+					}
+
+
+				}
+			
 
 		}
 	}
@@ -213,4 +274,19 @@ Void ItineraryBox::comboBoxU_SelectedIndexChanged(System::Object^  sender, Syste
 	Itinerario ^itsel = (Itinerario^) combo->SelectedItem;
 	fermata->setIditinerarioUscita(itsel->getId());*/
 	CambioItineraioUscita(sender,e);
+}
+
+Void ItineraryBox::textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e){
+	System::Windows::Forms::TextBox ^textarea =(System::Windows::Forms::TextBox^) sender ;
+
+	//[0-9]+(?:\.[0-9]*)?
+	System::Text::RegularExpressions::Match ^m = System::Text::RegularExpressions::Regex::Match(textarea->Text,"[0-9]+(?:\\.[0-9]*)?");
+	if (m->Success){
+		if(m->Value->Length!=textarea->Text->Length){
+			textarea->Text=m->Value;
+		}
+	}else{
+		System::Windows::Forms::MessageBox::Show("Please enter only numbers.");
+
+	}
 }

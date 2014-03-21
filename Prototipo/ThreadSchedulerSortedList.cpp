@@ -355,7 +355,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 				int prevfirstcdbu = 0;
 				if(listafermate!=nullptr & listaitinerari!=nullptr & listafermate->Count>0 & listaitinerari->Count>0){
 					if(listafermate[0]->getOrarioPartenza()>=listaitinerari[0]->getOrarioPartenza()){
-
+						int iduscita = listaitinerari[0]->getIditinerarioUscita();
 						prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 					}else{
 						int bin = listafermate[0]->getBinarioProgrammato();

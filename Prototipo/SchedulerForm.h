@@ -340,8 +340,15 @@ namespace Prototipo {
 					 Logger::Info("SchedulerForm"," Tabella Orario Vuota");  
 #endif // TRACE
 				 }else{
-					 FormVisualizzeTabOrario ^formtb= gcnew FormVisualizzeTabOrario(tabellaOrario);
+					  if(tabItinerari->getMap()->Count<1){
+					 MessageBox::Show("Tabella Conf Itinirari Vuota");
+#ifdef TRACE
+					 Logger::Info("SchedulerForm"," Tabella Conf Itinirari Vuota");  
+#endif // TRACE
+				 }else{
+					 FormVisualizzeTabOrario ^formtb= gcnew FormVisualizzeTabOrario(tabellaOrario,tabItinerari);
 					 formtb->Visible=true;
+					  }
 				 }
 
 			 }

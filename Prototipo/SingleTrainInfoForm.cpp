@@ -410,7 +410,7 @@ Void SingleTrainInfoForm::ButtonApply_Click(System::Object^  sender, System::Eve
 	for each (ItineraryBox ^var in tableLayoutPanelItinerari->Controls)
 	{
 
-		nuoviorari->Add(var->getOrari());
+		nuoviorari->Add(var->getFermataAggiornataOrari());
 	}
 
 	// segnala evento!!!

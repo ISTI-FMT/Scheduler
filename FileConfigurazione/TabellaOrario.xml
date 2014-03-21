@@ -542,7 +542,7 @@
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
      <!-- <itinerarioEntrata id="919">04-I</itinerarioEntrata>-->
-      <itinerarioUscita id="905">II-01</itinerarioUscita>
+      <itinerarioUscita id="904">II-01</itinerarioUscita>
     </stazione>
 
  <stazione id="15000"  name="Via Verdi">
