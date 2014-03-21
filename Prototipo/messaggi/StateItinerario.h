@@ -1,6 +1,6 @@
 #pragma once
 
-enum QStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
+public enum class QStateItineraio  {itinerarioStatoNonInAtto = 0, itinerarioStatoInAtto = 1};
 
 /*
 Rappresenta le informazioni dello stato dell'itinerario del pacchetto stato itinerario rivevuto dall'IXL
@@ -19,11 +19,8 @@ public:
 	void setNID_ITIN( int N){NID_ITIN=N;};
 	int getNID_ITIN(){return NID_ITIN;};
 	void setQ_STATOITIN( QStateItineraio Q){
-		if((Q>=0) & (Q<2)){
-			Q_STATOITIN=Q;
-		}else{
-			Q_STATOITIN=QStateItineraio::itinerarioStatoInAtto;
-		}
+					Q_STATOITIN=(int)Q;
+		
 	};
 	int getQ_STATOITIN(){return Q_STATOITIN;};
 	int Size(){return 34;}

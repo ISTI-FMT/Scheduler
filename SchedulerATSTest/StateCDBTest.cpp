@@ -67,13 +67,14 @@ namespace SchedulerATSTest {
 			void StateCDBConstructorTest()
 			{
 				int nid = 10; 
-				int state = 1; 
-				int dev = 0; 
+				QStateCDB state = QStateCDB::cdbLibero; 
+				QStateDeviatoio dev = QStateDeviatoio::deviatoioStatoIgnoto; 
 				int idltrain = 350;
 				int idftrain = 3440; 
 				StateCDB^  target = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));
 				StateCDB^  target2 = (gcnew StateCDB(nid, state, dev, idltrain));
 				StateCDB^  target3 = (gcnew StateCDB(nid, state, dev));
+				target3 = (gcnew StateCDB(nid, 0, 0));
 				Assert::IsTrue(true, "Exception was properly thrown");
 				Assert::IsNotNull(target->ToString());
 			}
@@ -84,8 +85,8 @@ namespace SchedulerATSTest {
 			void CloneTest()
 			{
 				int nid = 10; 
-				int state = 1; 
-				int dev = 0; 
+				QStateCDB state = QStateCDB::cdbLibero; 
+				QStateDeviatoio dev = QStateDeviatoio::deviatoioStatoIgnoto; 
 				int idltrain = 350;
 				int idftrain = 3440; 
 				StateCDB^  target = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));
@@ -100,10 +101,10 @@ namespace SchedulerATSTest {
 	public: [TestMethod]
 			void UpdateTest()
 			{
-				StateCDB^  target = (gcnew StateCDB(10,0,1,55,11)); 
+				StateCDB^  target = (gcnew StateCDB(10, QStateCDB::cdbLibero,QStateDeviatoio::deviatoioStatoIgnoto,55,11)); 
 				int nid = 10; 
-				int state = 1; 
-				int dev = 0; 
+				QStateCDB state = QStateCDB::cdbImpegnato; 
+				QStateDeviatoio dev = QStateDeviatoio::deviatoioNormale; 
 				int idltrain = 350;
 				int idftrain = 3440; 
 				StateCDB^  newcdb = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));
@@ -118,8 +119,8 @@ namespace SchedulerATSTest {
 			void EqualsTest()
 			{
 				int nid = 10; 
-				int state = 1; 
-				int dev = 0; 
+				QStateCDB state = QStateCDB::cdbImpegnato; 
+				QStateDeviatoio dev = QStateDeviatoio::deviatoioNormale; 
 				int idltrain = 350;
 				int idftrain = 3440; 
 				StateCDB^  target = (gcnew StateCDB(nid, state, dev, idltrain, idftrain));

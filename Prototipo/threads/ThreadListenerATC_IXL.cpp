@@ -75,7 +75,7 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 	int NID_MESSAGE= utility::pop(receiveBytes, 8, 0);
 
-	if(NID_MESSAGE==MessIXL::StatoLineaIXL){
+	if(NID_MESSAGE==(int)MessageID::StatoLineaIXL){
 
 		if(end_byte_old==nullptr){
 			end_byte_old=receiveBytes;
@@ -124,9 +124,9 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 	}
 	if(!scarta){
 		String ^mittente = gcnew String("Sconosciuto");
-		if(NID_MESSAGE==MessATC::StatoLineaATC)
+		if(NID_MESSAGE==(int)MessageID::StatoLineaATC)
 			mittente="ATC";
-		if(NID_MESSAGE==MessIXL::StatoLineaIXL)
+		if(NID_MESSAGE==(int)MessageID::StatoLineaIXL)
 			mittente="IXL";
 		Console::WriteLine( "{0} Connected! Messaggio Accettato",mittente );
 		pkt1->deserialize(receiveBytes);
@@ -151,14 +151,14 @@ void ThreadListenerATC_IXL::ReceiveCallback(IAsyncResult^ asyncResult){
 
 		switch (pkt1->getNID_MESSAGE())
 		{
-		case MessATC::StatoLineaATC: {
+		case MessageID::StatoLineaATC: {
 			ManStatoLineaATC->addCheckAndSet(pkt1->get_pacchettoPositionDataATC()->getListCDB(),"ATC");
 			Console::ForegroundColor = ConsoleColor::White;
 			Console::WriteLine("ricevuto messaggio da ATC");
 			break;
 
 									 }
-		case  MessIXL::StatoLineaIXL: {
+		case  MessageID::StatoLineaIXL: {
 
 			ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoLineaIXL()->getCDB(),"IXL");
 			//ManStatoLineaIXL->addCheckAndSet(pkt1->get_pacchettoStatoItinerario()->getItinerario(),"IXL");

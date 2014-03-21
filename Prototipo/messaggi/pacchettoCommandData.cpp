@@ -3,7 +3,7 @@
 
 pacchettoCommandData::pacchettoCommandData(void)
 {
-	setNID_PACKET(PacchettoATO::PacchettoCommandData);
+	setNID_PACKET(PacchettoID::CommandData);
 	L_PACKET = 0;
 	Q_COMMAND_TYPE = 0;
 	M_GOA_LEVEL = 0;
@@ -19,11 +19,11 @@ void pacchettoCommandData::serialize(array<Byte>^buffer, int offset)
 	offset +=13;
 	utility::push(buffer, Q_COMMAND_TYPE, 3, offset);
 	offset +=3;
-	if(Q_COMMAND_TYPE==QCmdData::CHANGE_GOA_LEVEL){
+	if(Q_COMMAND_TYPE==(int)QCmdData::CHANGE_GOA_LEVEL){
 		utility::push(buffer, M_GOA_LEVEL, 2, offset);
 		offset +=2;
 	}
-	if(Q_COMMAND_TYPE==QCmdData::TRN){
+	if(Q_COMMAND_TYPE==(int)QCmdData::TRN){
 		utility::push(buffer, NID_OPERATIONAL, 32, offset);
 		offset +=32;
 	}
@@ -37,11 +37,11 @@ void pacchettoCommandData::deserialize(array<Byte>^buffer, int offset)
 	offset +=13;
 	Q_COMMAND_TYPE=utility::pop(buffer,3, offset);
 	offset +=3;
-	if(Q_COMMAND_TYPE==QCmdData::CHANGE_GOA_LEVEL){
+	if(Q_COMMAND_TYPE==(int)QCmdData::CHANGE_GOA_LEVEL){
 		M_GOA_LEVEL=utility::pop(buffer, 2, offset);
 		offset +=2;
 	}
-	if(Q_COMMAND_TYPE==QCmdData::TRN){
+	if(Q_COMMAND_TYPE==(int)QCmdData::TRN){
 		NID_OPERATIONAL=utility::pop(buffer, 32, offset);
 		offset +=32;
 	}

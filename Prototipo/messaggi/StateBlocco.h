@@ -1,6 +1,6 @@
 #pragma once
 
-enum  QStatoBlocco {  illegale = 0, legale = 1};
+public enum class  QStatoBlocco {  illegale = 0, legale = 1};
 
 /*
 Rappresenta le informazioni dello stato del blocco del pacchetto StatoBlocco da inviare all'IXL
@@ -18,7 +18,7 @@ public:
 	int Size(){return 34;}
 	void setNID_BLOCCO(int N){NID_BLOCCO=N;};
 	int getNID_BLOCCO(){return NID_BLOCCO;};
-	void setQ_STATOBLOCCO( QStatoBlocco Q){Q_STATOBLOCCO=Q;};
+	void setQ_STATOBLOCCO( QStatoBlocco Q){Q_STATOBLOCCO=(int)Q;};
 	int getQ_STATOBLOCCO(){return Q_STATOBLOCCO;};
 	virtual System::String ^ToString() override;
 };

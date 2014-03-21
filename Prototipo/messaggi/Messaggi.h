@@ -22,9 +22,9 @@ Rappresenta un messaggio cosi come definito nei documenti di specifica
 e contiene i metodi per serializzare e desirializzare un messaggio
 */
 
-enum  MessATC{ StatoLineaATC = 11,  FaultReportingATC = 12 };
-enum  MessIXL{ StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231};
-enum  MessATO{ MissionPlan = 200,  FaultReportingATO = 213, UnconditionCommand=201, Acknol=210,Presentation=215 };
+public enum class  MessageID : int { StatoLineaATC = 11,  FaultReportingATC = 12, StatoLineaIXL = 1, 
+	FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231,MissionPlan = 200,  FaultReportingATO = 213,
+	UnconditionCommand=201, Acknol=210,Presentation=215 };
 
 public ref class Messaggi
 {
@@ -76,7 +76,8 @@ private:
 
 public:
 	Messaggi(void);
-	Messaggi(int NID_MESSAGE);
+	Messaggi(MessageID NID) ;
+	
 
 	int getNID_MESSAGE(){return NID_MESSAGE;};
 	int getL_MESSAGE(){return L_MESSAGE;};

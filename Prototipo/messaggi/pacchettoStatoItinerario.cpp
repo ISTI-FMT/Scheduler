@@ -3,7 +3,7 @@
 
 pacchettoStatoItinerario::pacchettoStatoItinerario(void)
 {
-	setNID_PACKET(PacchettoIXL::PacchettoStatoItinerario);
+	setNID_PACKET(PacchettoID::StatoItinerario);
 	L_PACKET = 0;
 	N_ITER = 0;
 	vStatoItinerario = gcnew List<StateItinerario^>();
@@ -58,7 +58,7 @@ void pacchettoStatoItinerario::deserialize(array<Byte>^buffer, int offset)
 	L_PACKET=utility::pop(buffer, 13, offset + 8);
 	int tNID_ITIN   =utility::pop(buffer, 32, offset + 21);
 	int tQ_STATOITIN = utility::pop(buffer, 2, offset + 53);
-	vStatoItinerario->Add(gcnew StateItinerario(tNID_ITIN,(QStateItineraio)tQ_STATOITIN));
+	vStatoItinerario->Add(gcnew StateItinerario(tNID_ITIN,tQ_STATOITIN));
 	setN_ITER(utility::pop(buffer, 16, offset + 55));
 	int shift = 71;
 	for(int i = 0; i < N_ITER; ++i)
@@ -67,7 +67,7 @@ void pacchettoStatoItinerario::deserialize(array<Byte>^buffer, int offset)
 		shift += 32;
 		int Q_STATOITIN=utility::pop(buffer, 2, offset + shift);
 		shift += 2;
-		vStatoItinerario->Add(gcnew StateItinerario(NID_ITIN,(QStateItineraio)Q_STATOITIN));
+		vStatoItinerario->Add(gcnew StateItinerario(NID_ITIN,Q_STATOITIN));
 	}
 }
 

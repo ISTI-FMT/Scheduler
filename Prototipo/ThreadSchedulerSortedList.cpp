@@ -292,7 +292,7 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 	eventoIXL = EQueueIXL->getEvent();
 	if(eventoIXL!=nullptr){
 		StateCDB ^eventocambiostatocdb = eventoIXL->getEvent();
-		if(eventocambiostatocdb->getQ_STATOCDB()==QStateCDB::cdbImpegnato ){
+		if(eventocambiostatocdb->getQ_STATOCDB()==(int)QStateCDB::cdbImpegnato ){
 			List<Train^> ^elemetidaeliminare = gcnew List<Train^>();
 			for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
 			{
@@ -419,7 +419,7 @@ bool ThreadSchedulerSortedList::controllacdb(List<int>^lcdb){
 	{
 		StateCDB ^statocorrentecdb = managerIXL->StatoCDB(cdb);
 		if(statocorrentecdb!=nullptr){
-			if(statocorrentecdb->getQ_STATOCDB()!=QStateCDB::cdbLibero){
+			if(statocorrentecdb->getQ_STATOCDB()!=(int)QStateCDB::cdbLibero){
 				return false;
 			}
 		}else{
@@ -490,7 +490,7 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 	try
 	{
 
-		Messaggi ^missionPlanPkt = gcnew Messaggi(MessATO::MissionPlan);
+		Messaggi ^missionPlanPkt = gcnew Messaggi(MessageID::MissionPlan);
 		//missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 
 
@@ -601,7 +601,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 	try
 	{
 
-		Messaggi ^wakeUpPkt = gcnew Messaggi(MessATO::UnconditionCommand);
+		Messaggi ^wakeUpPkt = gcnew Messaggi(MessageID::UnconditionCommand);
 		//wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(QCmdData::WAKE_UP);
 
@@ -610,7 +610,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
 
 
-		Messaggi ^trainRunningNumberPkt = gcnew Messaggi(MessATO::UnconditionCommand);
+		Messaggi ^trainRunningNumberPkt = gcnew Messaggi(MessageID::UnconditionCommand);
 		//trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 		trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(QCmdData::TRN);
 
@@ -622,7 +622,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		// Buffer for reading data
 		array<Byte>^bytes_buffer2 = trainRunningNumberPkt->serialize();
 
-		Messaggi ^missionPlanPkt = gcnew Messaggi(MessATO::MissionPlan);
+		Messaggi ^missionPlanPkt = gcnew Messaggi(MessageID::MissionPlan);
 		//missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 
 		tabOrario->setMissionPlanMessage(trn, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(trn));
@@ -730,7 +730,7 @@ void ThreadSchedulerSortedList::ReceiveCallback(IAsyncResult^ asyncResult){
 			}
 
 
-			if( pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE()==QMissionResponse::MissioneAccettata){
+			if( pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE()==(int)QMissionResponse::MissioneAccettata){
 				s->Close();
 				so->fine=1;
 
@@ -760,7 +760,7 @@ List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int 
 	if(nextcdb>0){
 		StateCDB ^statocorrentecdb = managerIXL->StatoCDB(nextcdb);
 		if(statocorrentecdb!=nullptr){
-			if(statocorrentecdb->getQ_STATOCDB()!=QStateCDB::cdbLibero){
+			if(statocorrentecdb->getQ_STATOCDB()!=(int)QStateCDB::cdbLibero){
 				return nullptr;
 			}
 		}else{
@@ -791,7 +791,7 @@ bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, QCmdItinerari Q_C
 			portixl=4011;
 		}
 		Console::WriteLine("PORT UDP Send: {0}",portixl);
-		Messaggi ^cmdItini = gcnew Messaggi(MessIXL::ComandoItinerari);
+		Messaggi ^cmdItini = gcnew Messaggi(MessageID::ComandoItinerari);
 		//cmdItini->get_pacchettoComandoItinerari()->setNID_PACKET(10);
 		cmdItini->get_pacchettoComandoItinerari()->setNID_ITIN(NID_ITIN);
 		cmdItini->get_pacchettoComandoItinerari()->setQ_CMDITIN(Q_CMDITIN);

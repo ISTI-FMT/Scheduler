@@ -7,7 +7,7 @@ Questa classe rappresenta le informazioni contenute nel pacchetto Acnowledgement
 Contiene metodi per serializzare e deserializzare il contenuto
 */
 
-enum QMissionResponse { MissioneRifiutata = 0, MissioneAccettata = 1 };
+public enum class QMissionResponse : int { MissioneRifiutata = 0, MissioneAccettata = 1 };
 
 public ref class pacchettoAcknowledgement : pacchettoBase
 {
@@ -24,7 +24,7 @@ public:
 
 	void setL_PACKET(int L){L_PACKET = L;};
 	int getL_PACKET(){return L_PACKET;};
-	void setQ_MISSION_RESPONSE(QMissionResponse Q){Q_MISSION_RESPONSE = Q;};
+	void setQ_MISSION_RESPONSE(QMissionResponse Q){Q_MISSION_RESPONSE = (int)Q;};
 	int getQ_MISSION_RESPONSE(){return Q_MISSION_RESPONSE;};
 	void setT_TRAIN(int N){T_TRAIN = N;};
 	int getT_TRAIN(){return T_TRAIN;};

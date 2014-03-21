@@ -81,7 +81,10 @@ namespace SchedulerATSTest {
 			void deserializeAndReselalizzeTest()
 			{
 				//Deserializza MISSIONPLAN
-				Messaggi^  target = (gcnew Messaggi(200)); 
+				
+				
+				
+				Messaggi^  target = (gcnew Messaggi(MessageID::MissionPlan)); 
 				String ^msgMissPlan  = "C80CA00000E8B402F34000501227BA099CA83FE000A000066010440B478021E3C0000E40208407A03878F00003F0082105A81620F800012202D0416A0782F800004B849C105A82617B400016E1AF8416A0B8D2100006300AA105A83A23140001B801908348";
 				array<Byte>^Bytesd = fromString(msgMissPlan);
 				target->deserialize(Bytesd);
@@ -93,7 +96,7 @@ namespace SchedulerATSTest {
 			
 				CollectionAssert::AreEqual(Bytesd,Bytess);
 				//Deserializza STATOLINEAIXL
-				Messaggi^  statolinea = (gcnew Messaggi(1)); 
+				Messaggi^  statolinea = (gcnew Messaggi(MessageID::StatoLineaIXL)); 
 				String ^msgstatolinea  = "0184BFFFFFFFE01465000001901008F0000019110000019210000019310000019410000019510000019610000019710000019810000019910000019A10000019B10000019C10000019D10000019E10000019F1000001A01000001A11000001A21000001A31000001A41000001A51000001A61000001A71000001A81000001A91000001AA1000001AB1000001AC1000001AD1000001B81000001B91000001BA1000001BB1000001BC1000001BD1000001BE1000001BF1000001C01000001C11000001F51000001F61000001F71000001F81000001F910000271A10000271B10000271C10000271D10000283D10000283E100002B02100002B03100002B04100002B05100002B0C100002B0D100002B0E100002B0F100002C25100002C26100002EEA100002EEB100002EEC100002EED100002EEE100002EEF100002EF0100002EF4100002EF5100002EF6100002EF7100002EF8100002EF9100002EFA10000300D10000300E10000300F1000032D21000032D31000032D41000033F51000033F61000036BA1000036BB1000036BC1000036C41000036C51000036C61000037DD1000037DE100003AA2100003AA3100003AA4100003AAC100003AAD100003AAE100003BC5100003BC6100003E8A100003E8B100003E8C100003E8D100003E8E100003E8F100003E90100003E91100003E94100003E9B100003E96100003E97100003E98100003E95100003E99100003E9A100003FAD100003FAE100003FAF10000427210000427310000427410000427510000427610000427710000427810000427910000427A10000427B10000427C10000428610000428710000428810000428910000428A10000428B10000428C10000428D10000428E10000428F1000042901000043951000043961000043971000043981044FC800013BA04010C00009DD4200004EEC2000027770800015AE080000AD742000056BC100002B5F0800015B0040000AD844000056C4100002B630800017A2080000BD14200005E8C100002F470800017A4040000BD24400005E94200002F4B0800017A6040000BD34200005E9C100002F4F1000017A8040000BD4420000665810000332D080001997080000CCBC200006E28200003715080001B8B040000DC5C200006E30100003719100001B8D040000DC6C2000075F8200003AFD080001D7F040000EBFC200007600100003B01100001D81040000EC0C200007DC8100003EE5080001F73080000FB9C200007DD0100003EE9080001F75040000FBAC400007DD8200003EED080001F77040000FBBC200007DE0100003EF11000021660400010B3440000859C1000042CF0800021680800010B442000085A41000042D30828A240000D49100110000390B40000E4310000296C40000F3CD00003CF440000B55500002D5640000C4F50000313E40000C4FD00003140400010379000040DF400010381000040E1400011319000044C74180";
 				array<Byte>^bbytesd = fromString(msgstatolinea);
 				statolinea->deserialize(bbytesd);
@@ -105,7 +108,7 @@ namespace SchedulerATSTest {
 				CollectionAssert::AreEqual(bbytesd,Bytess);
 
 				//Deserializza STATOLINEAATC
-				Messaggi^  statolineaatc = (gcnew Messaggi(11)); 
+				Messaggi^  statolineaatc = (gcnew Messaggi(MessageID::StatoLineaATC)); 
 				String ^msgstatolineaatc  ="0B0A8000000411A265000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 				bbytesd = fromString(msgstatolineaatc);
 				statolineaatc->deserialize(bbytesd);
@@ -117,7 +120,7 @@ namespace SchedulerATSTest {
 				CollectionAssert::AreEqual(bbytesd,Bytess);
 
 				//Deserializza Presentazione
-				Messaggi^  Presentazione = (gcnew Messaggi(215)); 
+				Messaggi^  Presentazione = (gcnew Messaggi(MessageID::Presentation)); 
 				String ^msgPresentazione  ="D702200002B6602009E32035000E1C0000";
 				bbytesd = fromString(msgPresentazione);
 				Presentazione->deserialize(bbytesd);
@@ -129,7 +132,7 @@ namespace SchedulerATSTest {
 				CollectionAssert::AreEqual(bbytesd,Bytess);
 
 				//Deserializza wakeup
-				Messaggi^  wakeup = (gcnew Messaggi(201)); 
+				Messaggi^  wakeup = (gcnew Messaggi(MessageID::UnconditionCommand)); 
 				String ^msgwakeup  ="C901400000FB14201800";
 				bbytesd = fromString(msgwakeup);
 				wakeup->deserialize(bbytesd);
@@ -142,7 +145,7 @@ namespace SchedulerATSTest {
 
 
 				//Deserializza TRN
-				Messaggi^  trn = (gcnew Messaggi(201)); 
+				Messaggi^  trn = (gcnew Messaggi(MessageID::UnconditionCommand)); 
 				String ^msgtrn  ="C901C00000FB14203880000092A0";
 				bbytesd = fromString(msgtrn);
 				trn->deserialize(bbytesd);
@@ -156,7 +159,7 @@ namespace SchedulerATSTest {
 
 				
 				//Deserializza missionpln con n_iter1 sbagliato
-				Messaggi^  missionpln = (gcnew Messaggi(200)); 
+				Messaggi^  missionpln = (gcnew Messaggi(MessageID::MissionPlan)); 
 				String ^msgmissionpln  ="C80AC00000FB14027554E646E1EA000A0000DD0104247463FC2120000188020888E90905C900005C06BE123A44C0F7C000130127048E91D009B00004680A5123A49C249A000146020888E93108AC0000580064123A00";
 				bbytesd = fromString(msgmissionpln);
 			
@@ -172,7 +175,7 @@ namespace SchedulerATSTest {
 				//
 
 				//Deserializza ack
-				Messaggi^  ack = (gcnew Messaggi(210)); 
+				Messaggi^  ack = (gcnew Messaggi(MessageID::Acknol)); 
 				String ^msgack  ="D20220000004002009F440360000000C80";
 				bbytesd = fromString(msgack);
 				ack->deserialize(bbytesd);
@@ -185,7 +188,7 @@ namespace SchedulerATSTest {
 				
 				//
 				//Deserializza cmdixl
-				Messaggi^  cmdixl = (gcnew Messaggi(10)); 
+				Messaggi^  cmdixl = (gcnew Messaggi(MessageID::ComandoItinerari)); 
 				String ^msgcmdixl  ="0A01E00000FB014037000045F9BFC0";
 				bbytesd = fromString(msgcmdixl);
 				cmdixl->deserialize(bbytesd);
@@ -199,7 +202,7 @@ namespace SchedulerATSTest {
 				//E701E0000003218037000001007FC0
 
 				//Deserializza cmdblocco
-				Messaggi^  cmdblocco = (gcnew Messaggi(231)); 
+				Messaggi^  cmdblocco = (gcnew Messaggi(MessageID::ComandoBlocco)); 
 				String ^msgcmdblocco  ="E701E0000003218037000001007FC0";
 				bbytesd = fromString(msgcmdblocco);
 				cmdblocco->deserialize(bbytesd);
@@ -213,7 +216,7 @@ namespace SchedulerATSTest {
 
 				
 				//Deserializza fault
-				Messaggi^  mfault = (gcnew Messaggi(211)); 
+				Messaggi^  mfault = (gcnew Messaggi(MessageID::FaultReportingIXL)); 
 				String ^msgmfault  ="D301800002B6602026E32000";
 				bbytesd = fromString(msgmfault);
 				mfault->deserialize(bbytesd);
@@ -244,7 +247,7 @@ public: [TestMethod]
 			actual = target->getSize();
 			Assert::AreEqual(expected, actual);
 
-			target = (gcnew Messaggi(211)); 
+			target = (gcnew Messaggi(MessageID::FaultReportingIXL)); 
 			expected = 12; 
 			actual = target->getSize();
 			Assert::AreEqual(expected, actual);

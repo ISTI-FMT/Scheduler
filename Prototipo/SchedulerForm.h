@@ -194,7 +194,7 @@ namespace Prototipo {
 //					 Messaggi ^wakeUpPkt = gcnew Messaggi();
 //
 //
-//					 wakeUpPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
+//					 wakeUpPkt->setNID_MESSAGE(MessageID::UnconditionCommand);
 //
 //
 //					 wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
@@ -214,7 +214,7 @@ namespace Prototipo {
 //					 Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
 //
 //
-//					 trainRunningNumberPkt->setNID_MESSAGE(MessATO::UnconditionCommand);
+//					 trainRunningNumberPkt->setNID_MESSAGE(MessageID::UnconditionCommand);
 //					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
 //					 trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
 //					 trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
@@ -227,7 +227,7 @@ namespace Prototipo {
 //
 //					 Messaggi ^missionPlanPkt = gcnew Messaggi();
 //
-//					 missionPlanPkt->setNID_MESSAGE(MessATO::MissionPlan);
+//					 missionPlanPkt->setNID_MESSAGE(MessageID::MissionPlan);
 //					 missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
 //					 int TRN = tabellaOrario->getFirstTRN();
 //					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(TRN));
