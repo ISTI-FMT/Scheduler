@@ -46,4 +46,27 @@
 </map>
 
 
+  <map>
+    <idtrenologico>5123</idtrenologico>
+    <idtrenofisico>7732</idtrenofisico>
+    <cdbpos>13301</cdbpos>
+  </map>
+
+  <map>
+    <idtrenologico>5123</idtrenologico>
+    <idtrenofisico>7723</idtrenofisico>
+    <cdbpos>17301</cdbpos>
+  </map>
+
+  <map>
+    <idtrenologico>5312</idtrenologico>
+    <idtrenofisico>7237</idtrenofisico>
+    <cdbpos>13302</cdbpos>
+  </map>
+
+  <map>
+    <idtrenologico>5321</idtrenologico>
+    <idtrenofisico>7327</idtrenofisico>
+    <cdbpos>17302</cdbpos>
+  </map>
 </bind>
