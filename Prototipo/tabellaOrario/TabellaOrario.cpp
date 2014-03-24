@@ -392,15 +392,15 @@ void TabellaOrario::ScriviTabellaOrario(System::IO::Stream ^stream){
 	XmlWriterSettings ^settings = gcnew XmlWriterSettings();
 	settings->Indent = true;
 	XmlWriter ^writer = XmlWriter::Create(stream,settings);
-	
-	 writer->WriteStartDocument();
-	 writer->WriteStartElement("orario");
+
+	writer->WriteStartDocument();
+	writer->WriteStartElement("orario");
 	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella )
 	{
 		writer->WriteStartElement("treno");
 		writer->WriteAttributeString("id",kvp.Key.ToString());
 
-		
+
 
 		for each (Fermata ^dvar in kvp.Value)
 		{
@@ -413,24 +413,29 @@ void TabellaOrario::ScriviTabellaOrario(System::IO::Stream ^stream){
 			writer->WriteElementString("binarioprogrammato", dvar->getBinarioProgrammato().ToString());
 			String ^latoParturaPorte ="";
 			if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoDx )
-					latoParturaPorte = "dx";
-				else if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoSx)
-					latoParturaPorte =  "sx";
-				else if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoDxSx )
-					latoParturaPorte ="sd" ;
-				else
-					latoParturaPorte = "";//FermataType::noApertura;
+				latoParturaPorte = "dx";
+			else if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoSx)
+				latoParturaPorte =  "sx";
+			else if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoDxSx )
+				latoParturaPorte ="sd" ;
+			else
+				latoParturaPorte = "";//FermataType::noApertura;
 
 			writer->WriteElementString("latoaperturaporteprogrammato", latoParturaPorte);
-			writer->WriteStartElement("itinerarioEntrata");
-			writer->WriteAttributeString("id", dvar->getIditinerarioEntrata().ToString());
-			writer->WriteString(dvar->getnameitinerarioEntrata());
+			if(dvar->getIditinerarioEntrata()>0){
+				writer->WriteStartElement("itinerarioEntrata");
+				writer->WriteAttributeString("id", dvar->getIditinerarioEntrata().ToString());
+				writer->WriteString(dvar->getnameitinerarioEntrata());
+				writer->WriteEndElement();
+			}
+			if(dvar->getIditinerarioUscita()>0){
+				writer->WriteStartElement("itinerarioUscita");
+				writer->WriteAttributeString("id", dvar->getIditinerarioUscita().ToString());
+				writer->WriteString(dvar->getnameitinerarioUscita());
+				writer->WriteEndElement();
+			}
 			writer->WriteEndElement();
-			writer->WriteStartElement("itinerarioUscita");
-			writer->WriteAttributeString("id", dvar->getIditinerarioUscita().ToString());
-			writer->WriteString(dvar->getnameitinerarioUscita());
-			writer->WriteEndElement();
-			writer->WriteEndElement();
+
 		}
 		writer->WriteEndElement();
 	}

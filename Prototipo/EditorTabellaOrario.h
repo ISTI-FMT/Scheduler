@@ -25,7 +25,7 @@ namespace Prototipo {
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 			tabStazioni=T;
-			
+			this->Icon =  gcnew System::Drawing::Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("app.ico"));
 			comboBox1->SelectedIndex=0;
 			this->tableLayoutPanelItinerari = (gcnew System::Windows::Forms::TableLayoutPanel());
 			// 

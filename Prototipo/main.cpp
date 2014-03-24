@@ -25,7 +25,7 @@ using namespace System::Threading::Tasks;
 
 
 
-
+[STAThread]
 int main()
 {
 	

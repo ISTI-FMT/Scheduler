@@ -51,6 +51,7 @@ void FormVisualizzeTabOrario::Inizialize(){
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	this->ClientSize = System::Drawing::Size(915, 415);
+	this->Icon =  gcnew System::Drawing::Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("app.ico"));
 	this->Controls->Add(dataGridView1);
 	this->Controls->Add(NewTrain);
 	this->Controls->Add(SaveXml);
@@ -123,10 +124,10 @@ void FormVisualizzeTabOrario::NewTrain_Click(System::Object^  sender, System::Ev
 }
 
 void FormVisualizzeTabOrario::SaveXml_Click(System::Object^  sender, System::EventArgs^  e){
-	/* System::IO::Stream ^ myStream;
+	 System::IO::Stream ^ myStream;
       SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog;
-      saveFileDialog1->Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-      saveFileDialog1->FilterIndex = 2;
+      saveFileDialog1->Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+      saveFileDialog1->FilterIndex = 1;
       saveFileDialog1->RestoreDirectory = true;
       if ( saveFileDialog1->ShowDialog() == ::DialogResult::OK )
       {
@@ -137,7 +138,7 @@ void FormVisualizzeTabOrario::SaveXml_Click(System::Object^  sender, System::Eve
             myStream->Close();
          }
       }
-	  */
+	 
 }
 
 

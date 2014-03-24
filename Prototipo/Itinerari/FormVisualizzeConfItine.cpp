@@ -25,6 +25,7 @@ void FormVisualizzeConfItine::Inizialize(){
 
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+	this->Icon =  gcnew System::Drawing::Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("app.ico"));
 	this->ClientSize = System::Drawing::Size(830, 415);
 	this->Controls->Add(dataGridView1);
 	this->Name = L"Tabella Configurazione Itinerari";
