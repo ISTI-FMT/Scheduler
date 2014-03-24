@@ -249,7 +249,7 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			pkt->setN_ITER1(0);
 		}
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
-		// -2 dopo la richesta di modifica del profilo missione richiesta dall'ATO
+		// -2 dopo la richiesta di modifica del profilo missione richiesta dall'ATO
 		pkt->setN_ITER2((stops->Count) - 2);
 		pkt->setQ_SCALE(QSCALEMissionData::M);
 		int i=0;
