@@ -249,25 +249,69 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			pkt->setN_ITER1(0);
 		}
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
-		pkt->setN_ITER2((stops->Count) - 1);
+		// -2 dopo la richesta di modifica del profilo missione richiesta dall'ATO
+		pkt->setN_ITER2((stops->Count) - 2);
 		pkt->setQ_SCALE(QSCALEMissionData::M);
 		int i=0;
 		int prevprogkm = 0;
 		for each (Fermata ^stop in stops)
 		{
-			Mission ^mission= gcnew Mission();
-			mission->setQ_DOORS(stop->getLatoAperturaPorte());
+			//modifica del profilo missione richiesta dall'ATO eliminando la prima stazion richesta da UNIFI
+			if(i>0){
+				Mission ^mission= gcnew Mission();
+				mission->setQ_DOORS(stop->getLatoAperturaPorte());
 
-			int orarioPartenza = (int)stop->getOrarioPartenza();
+				int orarioPartenza = (int)stop->getOrarioPartenza();
 
-			mission->setT_START_TIME(orarioPartenza);
-			mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
+				mission->setT_START_TIME(orarioPartenza);
+				mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
 
-			if(tabItinerari!=nullptr ){
-				if(stop->getIditinerarioEntrata()!=0){
-					lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
-					if(infobalise!=nullptr){
+				if(tabItinerari!=nullptr ){
+					if(stop->getIditinerarioEntrata()!=0){
+						lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
+						if(infobalise!=nullptr){
 
+							mission->setNID_LRGB(infobalise->nid_lrgb);
+							mission->setD_STOP(infobalise->d_stop);
+							int pkmlrbg = 0;
+							if(latolinea){
+								pkmlrbg =	infobalise->get_progressivakm(13000);
+							}else{
+								pkmlrbg =	infobalise->get_progressivakm(10000);
+							}
+							int d_lrgb = Math::Abs(pkmlrbg - prevprogkm);
+							if(direzione){
+								prevprogkm = pkmlrbg +  infobalise->d_stop;
+							}else{
+								prevprogkm = pkmlrbg -  infobalise->d_stop;
+							}
+							mission->setD_LRGB(d_lrgb);
+						}
+					}
+					if(i==0){
+						lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioUscita());
+						if(infobalise!=nullptr){
+
+							mission->setNID_LRGB(infobalise->nid_lrgb);
+							mission->setD_STOP(infobalise->d_stop);
+							mission->setD_LRGB(10);
+							int pkmlrbg = 0;
+							if(latolinea){
+								pkmlrbg = infobalise->get_progressivakm(13000) ;
+							}else{
+								pkmlrbg = infobalise->get_progressivakm(10000) ;
+							}
+
+							if(direzione){
+								prevprogkm = pkmlrbg +  infobalise->d_stop;
+							}else{
+								prevprogkm = pkmlrbg -  infobalise->d_stop;
+							}
+
+						}
+					}
+					if((stop->getIditinerarioEntrata()==0) & (stop->getIditinerarioUscita()==0)){
+						lrbg ^infobalise  = tabItinerari->get_infobalise_fromBinario(stop->getIdStazione(),stop->getBinarioProgrammato());
 						mission->setNID_LRGB(infobalise->nid_lrgb);
 						mission->setD_STOP(infobalise->d_stop);
 						int pkmlrbg = 0;
@@ -284,54 +328,14 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 						}
 						mission->setD_LRGB(d_lrgb);
 					}
-				}
-				if(i==0){
-					lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioUscita());
-					if(infobalise!=nullptr){
 
-						mission->setNID_LRGB(infobalise->nid_lrgb);
-						mission->setD_STOP(infobalise->d_stop);
-						mission->setD_LRGB(10);
-						int pkmlrbg = 0;
-						if(latolinea){
-							pkmlrbg = infobalise->get_progressivakm(13000) ;
-						}else{
-							pkmlrbg = infobalise->get_progressivakm(10000) ;
-						}
-
-						if(direzione){
-							prevprogkm = pkmlrbg +  infobalise->d_stop;
-						}else{
-							prevprogkm = pkmlrbg -  infobalise->d_stop;
-						}
-
-					}
 				}
-				if((stop->getIditinerarioEntrata()==0) & (stop->getIditinerarioUscita()==0)){
-					lrbg ^infobalise  = tabItinerari->get_infobalise_fromBinario(stop->getIdStazione(),stop->getBinarioProgrammato());
-					mission->setNID_LRGB(infobalise->nid_lrgb);
-					mission->setD_STOP(infobalise->d_stop);
-					int pkmlrbg = 0;
-					if(latolinea){
-						pkmlrbg =	infobalise->get_progressivakm(13000);
-					}else{
-						pkmlrbg =	infobalise->get_progressivakm(10000);
-					}
-					int d_lrgb = Math::Abs(pkmlrbg - prevprogkm);
-					if(direzione){
-						prevprogkm = pkmlrbg +  infobalise->d_stop;
-					}else{
-						prevprogkm = pkmlrbg -  infobalise->d_stop;
-					}
-					mission->setD_LRGB(d_lrgb);
-				}
+			
+			
+			pkt->setMission(mission);
 
 			}
 			i++;
-			pkt->setMission(mission);
-
-
-
 		}
 	}
 

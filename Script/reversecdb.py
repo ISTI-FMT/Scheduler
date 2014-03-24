@@ -1,0 +1,24 @@
+#!/usr/bin/python
+import random
+import time
+import os
+import sys
+import csv
+from datetime import datetime
+import fileinput
+import socket
+import re
+from array import array
+import thread
+from os import system
+
+
+
+
+
+
+temp = [13302,13012,13011,13010,501,14020,14021,14022,14302,14012,14011,14010,502,15020,15021,15022,15302,15012,15011,15010,503,12010,12011,12012,12015,12016,12302,12023,12022,12021,12020,401,403,405,407,409,411,413,415,417,419,421,423,425,427,429,16024,16025,16026,16301,16012,16011,16010,441,443,445,447,449,17030,17031,17032,17012,17013,17014,17302,17016,17018,17020]
+
+i =0
+for i in range(0,len(temp)):
+	sys.stdout.write(str(temp[-i])+";") 
