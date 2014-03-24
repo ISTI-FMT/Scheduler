@@ -16,12 +16,14 @@ AreeCritiche::AreeCritiche()
 AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
 {
 	areeCritiche = gcnew List<AreaCritica^>();
+	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
 	XmlFilename = xmlAreecritiche;
 	XsdFilename = gcnew String("AreeCritiche.xsd");
 	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
 	try{
 		System::IO::FileStream ^SourceStream = System::IO::File::Open(xmlAreecritiche, System::IO::FileMode::Open);
 		leggiFileConfigurazioneAreeCritiche(SourceStream);
+		delete SourceStream;
 	}catch(System::Exception ^e){
 		Console::WriteLine("File non esiste");
 	}
