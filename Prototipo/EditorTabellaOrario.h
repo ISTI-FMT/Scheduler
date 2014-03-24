@@ -1,6 +1,7 @@
 #pragma once
 #include "ItineraryBox.h"
 #include "Itinerari\\TabellaStazioni.h"
+#include "tabellaOrario\\TabellaOrario.h"
 namespace Prototipo {
 
 	using namespace System;
@@ -16,6 +17,7 @@ namespace Prototipo {
 	public ref class EditorTabellaOrario : public System::Windows::Forms::Form
 	{
 	public:
+		event EventHandler ^Nuovotreno;
 		EditorTabellaOrario(TabellaStazioni ^T)
 		{
 			InitializeComponent();
@@ -23,6 +25,7 @@ namespace Prototipo {
 			//TODO: aggiungere qui il codice del costruttore.
 			//
 			tabStazioni=T;
+			
 			comboBox1->SelectedIndex=0;
 			this->tableLayoutPanelItinerari = (gcnew System::Windows::Forms::TableLayoutPanel());
 			// 
@@ -71,6 +74,7 @@ namespace Prototipo {
 			 System::Windows::Forms::TableLayoutPanel^  tableLayoutPanelItinerari;
 			 void setitinerary();
 			 TabellaStazioni ^tabStazioni;
+			 TabellaOrario ^tabOrario;
 			 Void textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e);
 	private:
 		/// <summary>
@@ -155,27 +159,70 @@ namespace Prototipo {
 		}
 #pragma endregion
 	private: System::Void AddButton_Click(System::Object^  sender, System::EventArgs^  e) {
-					List<Fermata^>^ newfermatefortrain = gcnew List<Fermata^>();
-				 for each (ItineraryBox ^var in tableLayoutPanelItinerari->Controls)
-				 {
-					KeyValuePair<DateTime, DateTime> ^orari = var->getOrari();
-					 DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss",  System::Globalization::CultureInfo::InvariantCulture);
+				 try{
+					 array<Fermata^>^ newfermatefortrain = gcnew array<Fermata^>(11);
+					 for each (ItineraryBox ^var in tableLayoutPanelItinerari->Controls)
+					 {
+						 if(var->isChecked()){
+							 KeyValuePair<DateTime, DateTime> ^orari = var->getOrari();
+							 DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss",  System::Globalization::CultureInfo::InvariantCulture);
 
-			TimeSpan sinceMidnighta = orari->Key - orarioSupporto3;
-			TimeSpan sinceMidnightp = orari->Value - orarioSupporto3;
-			double	darrivo = sinceMidnighta.TotalSeconds/30;
-			double	dpartenza = sinceMidnightp.TotalSeconds/30;
-				
+							 TimeSpan sinceMidnighta = orari->Key - orarioSupporto3;
+							 TimeSpan sinceMidnightp = orari->Value - orarioSupporto3;
+							 double	darrivo = sinceMidnighta.TotalSeconds/30;
+							 double	dpartenza = sinceMidnightp.TotalSeconds/30;
+							 int indexCombo = comboBox1->SelectedIndex;
+							 int identrata = 0;
+							 String^ nomeentrata = "";
+							 int iduscita =  0;
+							 String^nomeuscita = ""; 
+							 if(indexCombo==0){
+								 identrata = var->getIdIEntrata();
+								 nomeentrata = var->getNameIdEntrata();
+								 iduscita =  var->getIdIUscita();
+								 nomeuscita = var->getNomeIDUscita(); 
+							 }else{
+								 identrata = var->getIdIUscita();
+								 nomeentrata = var->getNomeIDUscita(); 
+								 iduscita =  var->getIdIEntrata();
+								 nomeuscita = var->getNameIdEntrata();
+
+							 }
+							 Fermata^ newfermata = gcnew Fermata(var->getIdStation(),var->getStationName(),darrivo,dpartenza,10,1,FermataType::aperturaTrenoBanchinaDxSx, identrata,  nomeentrata,iduscita,  nomeuscita);
+							 int i = var->getNumpos();
+							 if(i>=0 & i<13){
+								 newfermatefortrain[i] = newfermata;
+								 //newfermatefortrain->Add(newfermata);
+							 }
+
+						 }
+					 }
+					 List<Fermata^>^ newfermate = gcnew List<Fermata^>();
+					 for each (Fermata ^var in newfermatefortrain)
+					 {
+						 if(var){
+							 newfermate->Add(var);
+						 }
+					 }
+
+
+
+					 Console::WriteLine(newfermatefortrain);
+					 Console::WriteLine(newfermate);
 					 
-
-			Fermata^ newfermata = gcnew Fermata(var->getIdStation(),var->getStationName(),darrivo,dpartenza,10,1,FermataType::aperturaTrenoBanchinaDxSx, var->getIdIEntrata(),  var->getNameIdEntrata(), var->getIdIUscita(),  var->getNameIdEntrata());
-					 newfermatefortrain->Add(newfermata);
+					 int TRN = 0 ;
+					 int::TryParse(textBox1->Text,TRN);
+					 // segnala evento!!!
+					
+					 Nuovotreno(gcnew  KeyValuePair<int,  List<Fermata^>^> (TRN,newfermate),e);
+					
+					 this->Close();
+				 }catch(Exception ^e){
+					 Console::WriteLine("Errore {0}", e->Message);
+					 MessageBox::Show("Errore Tabella orario");
 				 }
-				 
-				 // segnala evento!!!
-
-
 
 			 }
+
 	};
 }

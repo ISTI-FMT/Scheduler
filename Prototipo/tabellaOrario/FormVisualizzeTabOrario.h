@@ -25,9 +25,13 @@ ref class FormVisualizzeTabOrario : public Form
 	  System::Windows::Forms::DataGridView^  dataGridView1;
 	  TabellaOrario ^tabella;
 	  Button ^NewTrain;
+	  Button ^SaveXml;
 	  TabellaStazioni ^Tabellastazioni;
 	  void Form_Resize(System::Object^  sender, System::EventArgs^  e);
 	  void NewTrain_Click(System::Object^  sender, System::EventArgs^  e);
+	  void SaveXml_Click(System::Object^  sender, System::EventArgs^  e);
+	  void Addtreno(System::Object^  sender, System::EventArgs^  e);
+	  void Aggiorna();
 public:
 	FormVisualizzeTabOrario(TabellaOrario ^tab, TabellaStazioni ^t);
 	void Inizialize();

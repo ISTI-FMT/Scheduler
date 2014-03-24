@@ -35,12 +35,25 @@ void FormVisualizzeTabOrario::Inizialize(){
 	this->NewTrain->UseVisualStyleBackColor = true;
 	this->NewTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeTabOrario::NewTrain_Click);
 
+	//SaveXml
+	// 
+	this->SaveXml = gcnew Button();
+	int x  =12+146+25;
+	this->SaveXml->Location = System::Drawing::Point(x,370);
+	this->SaveXml->Name = L"SaveXml";
+	this->SaveXml->Size = System::Drawing::Size(146, 23);
+	this->SaveXml->TabIndex = 2;
+	this->SaveXml->Text = L"Save Xml";
+	this->SaveXml->UseVisualStyleBackColor = true;
+	this->SaveXml->Click += gcnew System::EventHandler(this, &FormVisualizzeTabOrario::SaveXml_Click);
+
 	//form = gcnew Form();
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	this->ClientSize = System::Drawing::Size(915, 415);
 	this->Controls->Add(dataGridView1);
 	this->Controls->Add(NewTrain);
+	this->Controls->Add(SaveXml);
 	this->Name = L"Tabella Orario";
 	this->Text = L"Tabella Orario";
 	//form->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
@@ -105,4 +118,62 @@ void FormVisualizzeTabOrario::NewTrain_Click(System::Object^  sender, System::Ev
 
 	Prototipo::EditorTabellaOrario ^editor = gcnew Prototipo::EditorTabellaOrario(Tabellastazioni);
 	editor->Visible=true;
+	editor->Nuovotreno += gcnew System::EventHandler(this,&FormVisualizzeTabOrario::Addtreno);
+
+}
+
+void FormVisualizzeTabOrario::SaveXml_Click(System::Object^  sender, System::EventArgs^  e){
+
+
+}
+
+
+void FormVisualizzeTabOrario::Addtreno(System::Object^  sender, System::EventArgs^  e){
+	KeyValuePair<int,  List<Fermata^>^>^nuovotreno=( KeyValuePair<int,  List<Fermata^>^> )sender;
+
+	int TRN = nuovotreno->Key;
+
+	if( !tabella->get_TabellaOrario()->ContainsKey(TRN)){
+		tabella->get_TabellaOrario()->Add(TRN,nuovotreno->Value);
+		Aggiorna();
+	}else{
+		Console::WriteLine("treno gia esistente in tabella orario");
+	}
+
+}
+
+
+
+void FormVisualizzeTabOrario::Aggiorna(){
+
+	
+	int colonna=0;
+	int riga=0;
+	
+	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella->get_TabellaOrario() )
+	{
+
+		String ^po=kvp.Key+"\n\r";
+		dataGridView1->Rows[riga]->Cells[0]->Value=po;
+
+
+		for each (Fermata ^dvar in kvp.Value)
+		{ 
+			dataGridView1->Rows[riga]->Cells[1]->Value=dvar->getnameStazione();
+			dataGridView1->Rows[riga]->Cells[2]->Value=dvar->getIdStazione();
+			TimeSpan Arrivo = TimeSpan::FromSeconds(dvar->getOrarioArrivo()*30);
+			dataGridView1->Rows[riga]->Cells[3]->Value= Arrivo.ToString();
+			TimeSpan Partenza = TimeSpan::FromSeconds(dvar->getOrarioPartenza()*30);
+			dataGridView1->Rows[riga]->Cells[4]->Value=Partenza.ToString();
+			dataGridView1->Rows[riga]->Cells[5]->Value=dvar->getBinarioProgrammato();
+			dataGridView1->Rows[riga]->Cells[6]->Value=dvar->gettempoMinimoAperturaPorte();
+			dataGridView1->Rows[riga]->Cells[7]->Value=(int) dvar->getLatoAperturaPorte();
+			dataGridView1->Rows[riga]->Cells[8]->Value=dvar->getnameitinerarioEntrata();
+			dataGridView1->Rows[riga]->Cells[9]->Value=dvar->getnameitinerarioUscita();
+			riga++;
+		}
+
+	}
+
+
 }

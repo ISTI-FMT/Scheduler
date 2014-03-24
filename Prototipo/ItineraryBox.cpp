@@ -18,13 +18,13 @@ ItineraryBox::ItineraryBox(Fermata ^f, stazione ^s)
 
 ItineraryBox::ItineraryBox(stazione ^s, int i)
 {
-	
+
 	station=s;
 	init();
 
 	this->setNameStation(s->get_NomeStazione()+" "+s->get_idStazione().ToString());
 	initCombo();
-	
+
 	// textBoxN
 	// 
 	this->textBoxN = gcnew System::Windows::Forms::TextBox();
@@ -191,24 +191,28 @@ void ItineraryBox::initCombo(String ^direzione){
 void ItineraryBox::initCombo(){
 	Dictionary<int,Itinerario^ > ^itinerari =  station->getItinerariid();
 	Dictionary<int,Itinerario^ >::ValueCollection ^valueColl =   station->getItinerariid()->Values;
-	if(comboBoxE->Items->Count==0){
-		for each (Itinerario ^itin in valueColl)
-		{
-			
-				if(itin->getTipoItinerario()==typeItini::Entrata){
-					comboBoxE->Items->Add(itin);
-				}else{
-					if(itin->getTipoItinerario()==typeItini::Uscita){
-						comboBoxU->Items->Add(itin);
-					}
 
+	for each (Itinerario ^itin in valueColl)
+	{
 
-				}
-			
+		if(itin->getTipoItinerario()==typeItini::Entrata){
+			comboBoxE->Items->Add(itin);
+		}else{
+			if(itin->getTipoItinerario()==typeItini::Uscita){
+				comboBoxU->Items->Add(itin);
+			}
+
 
 		}
-	}
 
+
+	}
+	if(comboBoxE->Items->Count==0){
+		comboBoxE->Visible=false;
+	}
+	if(comboBoxU->Items->Count==0){
+		comboBoxU->Visible=false;
+	}
 
 }
 

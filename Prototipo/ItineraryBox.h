@@ -33,7 +33,20 @@ public:
 	void setInitEntrata(int id);
 	void setOrarioP(double id);
 	void setOrarioA(double id);
-	
+	bool isChecked(){
+		if(CheckBoxC){
+		return CheckBoxC->Checked;
+		}
+		return false;
+	}
+	int getNumpos(){
+		try{
+			return int::Parse(textBoxN->Text);
+		}catch(Exception ^e){
+			Console::WriteLine("Parse Int error: ",e->Message);
+			return -1;
+		}
+	}
 	int getIdIUscita(){
 		//'System.NullReferenceException' 
 		 Itinerario^ it = ((Itinerario^)comboBoxU->SelectedItem);
