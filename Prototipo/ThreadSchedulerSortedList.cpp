@@ -102,20 +102,23 @@ void ThreadSchedulerSortedList::Schedule(){
 					int  costante= 3;
 					int resutl = ((int)Train->getOrarioPartenza())-costante;
 
-					List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(Train->getTRN());
 					List<Fermata^> ^listafermate = tabOrario->getFermateFor(Train->getTRN());
+
 					//int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 					int prevfirstcdbu = 0;
 					int bin = 0;
-					if(listafermate!=nullptr & listaitinerari!=nullptr & listafermate->Count>0 & listaitinerari->Count>0){
-						if(listafermate[0]->getOrarioPartenza()>listaitinerari[0]->getOrarioPartenza()){
-
-							prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
-						}else{
+					if(listafermate!=nullptr  & listafermate->Count>0 ){
+						int iu = listafermate[0]->getIditinerarioEntrata();
+						int ie = listafermate[0]->getIditinerarioUscita();
+						if((iu>0)|(ie>0))
+						{
+							prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listafermate[0]->getIdStazione(),listafermate[0]->getIditinerarioUscita());
+						}
+						else
+						{
 							bin = listafermate[0]->getBinarioProgrammato();
 							prevfirstcdbu = tabItinerari->get_CdbFermata(listafermate[0]->getIdStazione(),bin);
 						}
-
 					}
 					/*int idTRenoCDBPrecIT = managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL();
 					int nid_engineTRenoCDBPrecIT = managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE();*/
@@ -361,18 +364,23 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 			// cerchi se c'è una missione per lui nella tabella orario
 			if((tabOrario->get_TabellaOrario()->ContainsKey(trn)) & (trn>0)){
 				//trova gli itinerari  del treno
-				List<Fermata^> ^listaitinerari = tabOrario->getItinerariFor(trn);
 				List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn);
+
+				//int prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 				int prevfirstcdbu = 0;
-				if(listafermate!=nullptr & listaitinerari!=nullptr & listafermate->Count>0 & listaitinerari->Count>0){
-					if(listafermate[0]->getOrarioPartenza()>=listaitinerari[0]->getOrarioPartenza()){
-						int iduscita = listaitinerari[0]->getIditinerarioUscita();
-						prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
-					}else{
-						int bin = listafermate[0]->getBinarioProgrammato();
+				int bin = 0;
+				if(listafermate!=nullptr  & listafermate->Count>0 ){
+					int iu = listafermate[0]->getIditinerarioEntrata();
+					int ie = listafermate[0]->getIditinerarioUscita();
+					if((iu>0)|(ie>0))
+					{
+						prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listafermate[0]->getIdStazione(),listafermate[0]->getIditinerarioUscita());
+					}
+					else
+					{
+						bin = listafermate[0]->getBinarioProgrammato();
 						prevfirstcdbu = tabItinerari->get_CdbFermata(listafermate[0]->getIdStazione(),bin);
 					}
-
 				}
 				// prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 				// cerca se si trova nella stazione in cui deve partire
@@ -408,7 +416,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 					}
 					if(inviato->fine==1){
 						//Creo il treno
-						Console::WriteLine("ok {0}",listaitinerari[0]->getOrarioPartenza());
+						Console::WriteLine("ok {0}",listafermate[0]->getOrarioPartenza());
 
 						List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn); //tabOrario->getItinerariFor(trn);//
 						int priorita = 1;
