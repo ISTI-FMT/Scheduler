@@ -14,7 +14,7 @@ private:
 	HashSet<int>^ treni;
 public:
 	AreaCriticaCircolare(List<int> ^listaCdb, int limite);
-	virtual bool entrataPermessa(int idTreno, int cdb) override;
-	virtual void entrata(int idTreno, int cdb) override;
+	virtual bool entrataPermessa(int idTreno, int cdb, int tipoEntrata) override;
+	virtual void entrata(int idTreno, int cdb, int tipoEntrata) override;
 };
 
