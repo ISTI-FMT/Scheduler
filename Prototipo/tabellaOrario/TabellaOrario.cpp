@@ -388,8 +388,11 @@ List<Fermata^> ^TabellaOrario::getItinerariFor(int TRN){
 }
 
 
-void TabellaOrario::ScriviTabellaOrario(){
-	XmlWriter ^writer = XmlWriter::Create("c:\\temp.xml");
+void TabellaOrario::ScriviTabellaOrario(System::IO::Stream ^stream){
+	XmlWriterSettings ^settings = gcnew XmlWriterSettings();
+	settings->Indent = true;
+	XmlWriter ^writer = XmlWriter::Create(stream,settings);
+	
 	 writer->WriteStartDocument();
 	 writer->WriteStartElement("orario");
 	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella )
@@ -433,117 +436,5 @@ void TabellaOrario::ScriviTabellaOrario(){
 	}
 	writer->WriteEndElement();
 	writer->WriteEndDocument();
-	/*while (reader->ReadToFollowing("treno")){
-			System::Xml::XmlReader ^inner = reader->ReadSubtree();
-			// ...leggo l'id del treno
-			System::String ^SystemStringIdTreno = reader->GetAttribute("id");
-			// converto l'id del treno da System::String a int
-			int idTreno = int::Parse(SystemStringIdTreno);
-			// creo un nuovo treno
-			List<Fermata^> ^treno = gcnew List<Fermata^>();
-
-			// per ogni stazione in cui il treno in question deve fermarsi
-			while (inner->ReadToFollowing("stazione")){
-				// creo una nuova fermata
-				Fermata ^stop = gcnew Fermata;
-				// leggo l'id della stazione
-				System::String ^SystemStringIdStazione = inner->GetAttribute("id");
-				// configuro l'id della stazione
-				stop->setIdStazione( int::Parse(SystemStringIdStazione));
-
-				System::String ^SystemStringnameStazione = inner->GetAttribute("name");
-				stop->setnameStazione(SystemStringnameStazione);
-
-				System::Xml::XmlReader ^inner2 = inner->ReadSubtree();
-
-				// leggo l'orario di arrivo
-				inner2->ReadToFollowing("arrivo");
-				System::String ^SystemStringOrarioArrivo = inner2->ReadString();
-				// aggiungo alla data corrente l'ora, minuto e secondi letti
-				orarioSupporto1 = DateTime::ParseExact(SystemStringOrarioArrivo, "HH:mm:ss", CultureInfo::InvariantCulture);
-				//orarioSupporto2.Today.AddHours(orarioSupporto1.Hour);
-				orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-
-				sinceMidnight = orarioSupporto1 - orarioSupporto3;
-				// calcolo quanti secondi sono passati dalla mezzanotte
-				secs = sinceMidnight.TotalSeconds;
-				// configuro l'orario di arrivo della farmata in risoluzione di 30s
-				stop->setOrarioArrivo(secs/30);
-
-				// leggo l'orario di partenza
-				inner2->ReadToFollowing("partenza");
-				System::String ^SystemStringOrarioPartenza = inner2->ReadString();
-				// aggiungo alla data corrente l'ora, minuto e secondi letti
-				orarioSupporto2=DateTime::ParseExact(SystemStringOrarioPartenza, "HH:mm:ss", CultureInfo::InvariantCulture);
-				//DateTime t = DateTime::ParseExact(SystemStringOrarioPartenza, "HH:mm:ss", CultureInfo::InvariantCulture);
-
-				// calcolo la differenza fra la data preparata e la data "di oggi" (alla mezzanotte)
-				sinceMidnight = orarioSupporto2- orarioSupporto3;
-				// calcolo quanti secondi sono passati dalla mezzanotte
-				secs = sinceMidnight.TotalSeconds;
-				// configuro l'orario di arrivo della farmata in risoluzione di 30 s
-				stop->setOrarioPartenza(secs/30);
-
-
-				stop->settempoMinimoAperturaPorte((stop->getOrarioPartenza()*30)- (stop->getOrarioArrivo()*30)-30);
-
-
-				// leggo il binario programmato
-				inner2->ReadToFollowing("binarioprogrammato");
-				System::String ^SystemStringBinarioProgrammato = inner2->ReadString();
-				// converto il binario programmato da System::String a int
-				int binarioProgrammato =  int::Parse(SystemStringBinarioProgrammato);
-				// configuro il binario programmato
-				stop->setBinarioProgrammato(binarioProgrammato);
-
-				// leggo il lato di apertura porte programmato
-				inner2->ReadToFollowing("latoaperturaporteprogrammato");
-				System::String ^SystemStringLatoProgrammato = inner2->ReadString();	
-				// converto da System::String a std::string
-				//string stringLatoAperturaPorte = convertiString2string(SystemStringLatoProgrammato);
-				FermataType latoParturaPorte;
-				if(SystemStringLatoProgrammato == "dx")
-					latoParturaPorte = FermataType::aperturaTrenoDx;
-				else if(SystemStringLatoProgrammato == "sx")
-					latoParturaPorte = FermataType::aperturaTrenoSx;
-				else if(SystemStringLatoProgrammato == "sd")
-					latoParturaPorte = FermataType::aperturaTrenoDxSx;
-				else
-					latoParturaPorte = FermataType::noApertura;
-				// configuro il lato apertura porte programmato programmato
-				stop->setLatoAperturaPorte(latoParturaPorte);
-
-				while (inner2->Read()) {
-					switch (inner2->NodeType) {
-					case System::Xml::XmlNodeType::Element:
-						if(inner2->Name->Equals("itinerarioEntrata")){
-							System::String ^idItEntrata = inner2->GetAttribute("id");
-							inner2->Read();
-							System::String ^nameEntrata = inner2->Value;
-
-							stop->setIditinerarioEntrata( int::Parse(idItEntrata));
-							stop->setnameitinerarioEntrata(nameEntrata);
-						}
-						if(inner2->Name->Equals("itinerarioUscita")){
-							System::String ^idITUscita = inner2->GetAttribute("id");	
-							inner2->Read();
-							System::String ^nameUscita  = inner2->Value;
-							stop->setIditinerarioUscita( int::Parse(idITUscita));
-							stop->setnameitinerarioUscita(nameUscita);
-						}
-						break;
-					}
-				}
-
-
-				// a questo punto posso aggiungere la fermata alla lista delle fermate del treno in questione
-				treno->Add(stop);
-
-				//System::Console::WriteLine(idTreno+idSTazione+orarioArrivo+orarioPartenza+binarioProgrammato+latoProgrammato);
-				System::Console::WriteLine();
-			}
-			// a questo punto aggiungo il treno alla tabella orario
-			tabella->Add(idTreno, treno);
-		}
-		reader->Close();*/
+	writer->Close();
 }
