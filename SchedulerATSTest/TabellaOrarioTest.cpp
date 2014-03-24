@@ -73,7 +73,7 @@ namespace SchedulerATSTest {
 				Assert::IsNotNull(target->ToString());
 				Assert::IsNotNull(target->getFirstTRN());
 				CollectionAssert::AllItemsAreNotNull(target->get_TabellaOrario());
-				target->ScriviTabellaOrario();
+				//target->ScriviTabellaOrario();
 				/*System::Xml::Serialization::XmlSerializer ^serializer = gcnew System::Xml::Serialization::XmlSerializer(TabellaOrario::typeid);
 				System::IO::StreamWriter ^stream = gcnew System::IO::StreamWriter("C:\\test.xml");
 			     serializer->Serialize(stream, target);*/
