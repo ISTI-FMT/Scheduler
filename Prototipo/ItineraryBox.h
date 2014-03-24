@@ -17,6 +17,8 @@ public System::Windows::Forms::UserControl
 	System::Windows::Forms::ComboBox^  comboBoxU;
 	System::Windows::Forms::DateTimePicker^  orarioP;
 	System::Windows::Forms::DateTimePicker^  orarioA;
+	System::Windows::Forms::TextBox^  textBoxN;
+	System::Windows::Forms::CheckBox^  CheckBoxC;
 	Fermata ^fermata;
 	stazione ^station;
 public:
@@ -24,30 +26,72 @@ public:
 	event EventHandler ^CambioItineraioUscita;
 	event EventHandler ^CambioItineraioEntrata;
 	ItineraryBox(Fermata ^f, stazione ^s);
+	ItineraryBox(stazione ^s, int i);
 	void init();
 	void setNameStation(System::String ^s);
 	void setInitUscita(int id);
 	void setInitEntrata(int id);
 	void setOrarioP(double id);
 	void setOrarioA(double id);
-	int getStationId(){
-		return fermata->getIdStazione();
+	bool isChecked(){
+		if(CheckBoxC){
+		return CheckBoxC->Checked;
+		}
+		return false;
+	}
+	int getNumpos(){
+		try{
+			return int::Parse(textBoxN->Text);
+		}catch(Exception ^e){
+			Console::WriteLine("Parse Int error: ",e->Message);
+			return -1;
+		}
 	}
 	int getIdIUscita(){
-
-		return ((Itinerario^)comboBoxU->SelectedItem)->getId();
+		//'System.NullReferenceException' 
+		 Itinerario^ it = ((Itinerario^)comboBoxU->SelectedItem);
+		 if(it!=nullptr){
+			return it->getId();
+		 }
+		 return 0;
+		
+	}
+	String^ getNomeIDUscita(){
+		//'System.NullReferenceException' 
+		 Itinerario^ it = ((Itinerario^)comboBoxU->SelectedItem);
+		 if(it!=nullptr){
+			return it->getName();
+		 }
+		 return "";
+		
 	}
 	int getIdIEntrata(){
-
-		return ((Itinerario^)comboBoxE->SelectedItem)->getId();
+		 Itinerario^ it = ((Itinerario^)comboBoxE->SelectedItem);
+		 if(it!=nullptr){
+			return it->getId();
+		 }
+		 return 0;
+	}
+	String^ getNameIdEntrata(){
+		 Itinerario^ it = ((Itinerario^)comboBoxE->SelectedItem);
+		 if(it!=nullptr){
+			 return it->getName();
+		 }
+		 return "";
 	}
 	String ^getStationName(){
-		return fermata->getnameStazione();
+		return station->get_NomeStazione();
 	}
 	int getIdStation(){
-		return fermata->getIdStazione();
+		return station->get_idStazione();
 	}
-	Fermata ^getOrari(){
+	KeyValuePair<DateTime, DateTime> ^getOrari(){
+		DateTime arr =  DateTime(orarioA->Value);
+		DateTime parr = DateTime(orarioP->Value);
+
+		return KeyValuePair<DateTime, DateTime>(arr,parr);
+	}
+	Fermata ^getFermataAggiornataOrari(){
 		DateTime arr =  DateTime(orarioA->Value);
 		DateTime parr = DateTime(orarioP->Value);
 
@@ -57,8 +101,10 @@ public:
 		return result;
 	}
 	void initCombo(String^ direzione);
+	void initCombo();
 	//static void CambioItineraioUscita();
 	Void comboBoxE_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 	Void comboBoxU_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+	Void textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e);
 };
 

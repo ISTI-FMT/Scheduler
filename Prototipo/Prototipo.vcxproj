@@ -99,6 +99,9 @@
     </ClInclude>
     <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
     <ClInclude Include="ControllerListTrain.h" />
+    <ClInclude Include="EditorTabellaOrario.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="FormStatoLineaIXL.h">
@@ -188,6 +191,7 @@
     <ClCompile Include="AreeCritiche\AreeCritiche.cpp" />
     <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp" />
     <ClCompile Include="ControllerListTrain.cpp" />
+    <ClCompile Include="EditorTabellaOrario.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FormStatoLineaIXL.cpp" />
     <ClCompile Include="FormStatoLineaATC.cpp" />
@@ -261,6 +265,9 @@
   </ItemGroup>
   <ItemGroup>
     <!-- -->
+    <EmbeddedResource Include="EditorTabellaOrario.resx">
+      <DependentUpon>EditorTabellaOrario.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStatoLineaIXL.resx">
       <DependentUpon>FormStatoLineaIXL.h</DependentUpon>
     </EmbeddedResource>

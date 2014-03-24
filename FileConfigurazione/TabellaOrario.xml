@@ -542,7 +542,7 @@
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
      <!-- <itinerarioEntrata id="919">04-I</itinerarioEntrata>-->
-      <itinerarioUscita id="905">II-01</itinerarioUscita>
+      <itinerarioUscita id="904">II-01</itinerarioUscita>
     </stazione>
 
  <stazione id="15000"  name="Via Verdi">
@@ -550,8 +550,8 @@
       <partenza>09:50:00</partenza>
        <binarioprogrammato>2</binarioprogrammato>
 	   <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="902">01-I</itinerarioEntrata>
-<itinerarioUscita id="906">I-02</itinerarioUscita>
+ <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+<itinerarioUscita id="907">II-02</itinerarioUscita>
     </stazione>
 
     <stazione id="14000"  name="Piazza Università">
@@ -559,8 +559,8 @@
       <partenza>10:10:00</partenza>
        <binarioprogrammato>2</binarioprogrammato>
 	   <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="902">01-I</itinerarioEntrata>
-<itinerarioUscita id="906">I-02</itinerarioUscita>
+ <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+<itinerarioUscita id="907">II-02</itinerarioUscita>
     </stazione>
 
     <stazione id="13000"  name="Via Accademia">
@@ -568,7 +568,7 @@
       <partenza>10:30:00</partenza>
        <binarioprogrammato>1</binarioprogrammato>
 	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="902">01-I</itinerarioEntrata>
+ <itinerarioEntrata id="903">01-II</itinerarioEntrata>
 
     </stazione>
 
@@ -588,8 +588,8 @@
       <partenza>17:05:00</partenza>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
-      <itinerarioEntrata id="905">02-II</itinerarioEntrata>
-      <itinerarioUscita id="901">II-01</itinerarioUscita>
+      <itinerarioEntrata id="904">02-I</itinerarioEntrata>
+      <itinerarioUscita id="900">I-01</itinerarioUscita>
     </stazione>
 
     <stazione id="15000"  name="Via Verdi">
@@ -597,8 +597,8 @@
       <partenza>17:11:00</partenza>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
-      <itinerarioEntrata id="905">02-II</itinerarioEntrata>
-      <itinerarioUscita id="901">II-01</itinerarioUscita>
+      <itinerarioEntrata id="904">02-I</itinerarioEntrata>
+      <itinerarioUscita id="900">I-01</itinerarioUscita>
     </stazione>
 
 
@@ -607,8 +607,8 @@
       <partenza>17:15:00</partenza>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
-      <itinerarioEntrata id="902">01-II</itinerarioEntrata>
-      <itinerarioUscita id="907">II-02</itinerarioUscita>
+      <itinerarioEntrata id="902">01-I</itinerarioEntrata>
+      <itinerarioUscita id="916">I-04</itinerarioUscita>
     </stazione>
 
     <stazione id="400"  name="Via Marco Polo">
@@ -616,7 +616,8 @@
       <partenza>17:19:00</partenza>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
-    
+      <!--<itinerarioEntrata id="">I</itinerarioEntrata>
+<itinerarioUscita id="">I</itinerarioUscita>-->
     </stazione>
 
     <stazione id="410 "  name="Via Roma">
@@ -633,8 +634,8 @@
       <partenza>17:27:00</partenza>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
-      <itinerarioEntrata id="916">04-III</itinerarioEntrata>
-      <itinerarioUscita id="902">III-01</itinerarioUscita>
+      <itinerarioEntrata id="906">02-I</itinerarioEntrata>
+      <itinerarioUscita id="910">I-03</itinerarioUscita>
     </stazione>
 
     <stazione id="17000"  name="Parco della Vittoria">
@@ -642,7 +643,7 @@
       <partenza>17:33:00</partenza>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
-      <itinerarioEntrata id="902">01-II</itinerarioEntrata>
+      <itinerarioEntrata id="903">01-I</itinerarioEntrata>
       <!--<itinerarioUscita id=""></itinerarioUscita>-->
     </stazione>
 

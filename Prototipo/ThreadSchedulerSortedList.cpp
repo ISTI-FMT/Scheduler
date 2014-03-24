@@ -127,9 +127,9 @@ void ThreadSchedulerSortedList::Schedule(){
 						{
 							//if(bin>0){
 							//	Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
-						//	}else{
-								Train->setStatoTreno(StateTrain::USCITASTAZIONE);
-						//	}
+							//	}else{
+							Train->setStatoTreno(StateTrain::USCITASTAZIONE);
+							//	}
 
 						}
 					}
@@ -172,6 +172,9 @@ void ThreadSchedulerSortedList::Schedule(){
 										RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 									}
 								}
+							}else{
+
+								Console::WriteLine("Blocco per area critica {0}", Train->getTRN());
 							}
 						}
 					}
@@ -219,7 +222,12 @@ void ThreadSchedulerSortedList::Schedule(){
 												RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 											}
 										}
+									}else{
+
+										Console::WriteLine("Blocco treno {0}  per area critica", Train->getTRN());
+
 									}
+
 
 							}
 						}else{
@@ -243,11 +251,14 @@ void ThreadSchedulerSortedList::Schedule(){
 											RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
 										}
 									}
+								}else{
+
+									Console::WriteLine("Blocco per area critica {0}", Train->getTRN());
 								}
 							}
 						}
 					}else{
-					//	Train->setStatoTreno(StateTrain::USCITASTAZIONE);
+						//	Train->setStatoTreno(StateTrain::USCITASTAZIONE);
 						controlListtrain->OnNextIt(Train);
 					}
 
@@ -355,7 +366,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 				int prevfirstcdbu = 0;
 				if(listafermate!=nullptr & listaitinerari!=nullptr & listafermate->Count>0 & listaitinerari->Count>0){
 					if(listafermate[0]->getOrarioPartenza()>=listaitinerari[0]->getOrarioPartenza()){
-
+						int iduscita = listaitinerari[0]->getIditinerarioUscita();
 						prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 					}else{
 						int bin = listafermate[0]->getBinarioProgrammato();

@@ -27,6 +27,7 @@ public:
 	int getFirstTRN();
 	// questa funzione legge il file di configurazione contenente la descrizione della tabella orario
 	void leggiTabellaOrario();
+	void ScriviTabellaOrario(System::IO::Stream ^stream);
 	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan le informazioni sui profili velocità, e riempie i campi del messaggio con i dati relativi
 	// al profilo missione associato al TRN passato
 	void setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel);

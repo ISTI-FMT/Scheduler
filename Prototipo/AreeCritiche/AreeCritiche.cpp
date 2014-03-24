@@ -10,9 +10,27 @@ AreeCritiche::AreeCritiche()
 	XmlFilename = gcnew String("AreeCritiche.xml");
 	XsdFilename = gcnew String("AreeCritiche.xsd");
 	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
+	leggiFileConfigurazioneAreeCritiche( System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XmlFilename));
 }
 
-void AreeCritiche::leggiFileConfigurazioneAreeCritiche()
+AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
+{
+	areeCritiche = gcnew List<AreaCritica^>();
+	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
+	XmlFilename = xmlAreecritiche;
+	XsdFilename = gcnew String("AreeCritiche.xsd");
+	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
+	try{
+		System::IO::FileStream ^SourceStream = System::IO::File::Open(xmlAreecritiche, System::IO::FileMode::Open);
+		leggiFileConfigurazioneAreeCritiche(SourceStream);
+		delete SourceStream;
+	}catch(System::Exception ^e){
+		Console::WriteLine("File non esiste");
+	}
+}
+
+
+void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readStreamXML)
 {
 	System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XsdFilename);
 	// Create the XmlSchemaSet class.
@@ -26,7 +44,7 @@ void AreeCritiche::leggiFileConfigurazioneAreeCritiche()
 	settings->IgnoreWhitespace = true;
 	settings->IgnoreComments = true;
 
-	System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XmlFilename);
+	
 
 	//System::String^ nome = gcnew System::String(nomeFile.c_str());
 	System::Xml::XmlReader ^myReader = System::Xml::XmlReader::Create(readStreamXML, settings);
