@@ -9,7 +9,7 @@ private:
 	HashSet<int>^ treniDestra;
 public:
 	AreaCriticaLineare(List<int> ^listaCdb);
-	virtual bool entrataPermessa(int idTreno, int cdb) override;
-	virtual void entrata(int idTreno, int cdb) override;
+	virtual bool entrataPermessa(int idTreno, int cdb, int tipoEntrata) override;
+	virtual void entrata(int idTreno, int cdb, int tipoEntrata) override;
 };
 

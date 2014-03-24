@@ -8,7 +8,7 @@ public ref class MissioneAnnotata
 public:
 	List<int>^ ListaCdb;
 	List<array<int>^>^ AzioniCdb;
-	String^ Trn;
+	int Trn;
 	MissioneAnnotata(void)
 	{
 		ListaCdb = gcnew List<int>();

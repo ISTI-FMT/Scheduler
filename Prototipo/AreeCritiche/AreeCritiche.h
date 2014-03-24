@@ -11,18 +11,14 @@ using namespace System::Collections::Generic;
 public ref class AreeCritiche
 {
 private:
+	Dictionary<int, MissioneAnnotata^>^ missioni;
 	List<AreaCritica^>^ areeCritiche;
 	Dictionary<int, List<AreaCritica^>^>^ cdbAree;
 	String^ XmlFilename;
 	String^ XsdFilename;
-	/*
-	Effettua l'entrata dentro il cdb. Aggiorna lo stato delle aree critiche coinvolte nel cdb.
-	*/
-	void entrataCdb(int cdb, int Trn);
 public:
 	AreeCritiche();
-	AreeCritiche(String ^xmlAreecritiche);
-	void leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readStreamXML);
+	void leggiFileConfigurazioneAreeCritiche();
 	/*
 	* Ritorna TRUE se un treno può entrare nel cdb, FALSE altrimenti.
 	* Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non hanno raggiunto il massimo numero di treni consentito
