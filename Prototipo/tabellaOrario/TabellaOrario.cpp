@@ -19,6 +19,7 @@ TabellaOrario::TabellaOrario(void)
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
 	schemaxsd="TabellaOrario.xsd";
 	leggiTabellaOrario();
+	tabItinerari  = gcnew TabellaStazioni();
 }
 
 TabellaOrario::TabellaOrario(TabellaStazioni ^T)
@@ -388,7 +389,7 @@ List<Fermata^> ^TabellaOrario::getItinerariFor(int TRN){
 
 
 void TabellaOrario::ScriviTabellaOrario(){
-	XmlWriter ^writer = XmlWriter::Create("c:\\employees.xml");
+	XmlWriter ^writer = XmlWriter::Create("c:\\temp.xml");
 	 writer->WriteStartDocument();
 	 writer->WriteStartElement("orario");
 	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella )

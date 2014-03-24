@@ -190,7 +190,7 @@ namespace Prototipo {
 							 }
 							 Fermata^ newfermata = gcnew Fermata(var->getIdStation(),var->getStationName(),darrivo,dpartenza,10,1,FermataType::aperturaTrenoBanchinaDxSx, identrata,  nomeentrata,iduscita,  nomeuscita);
 							 int i = var->getNumpos();
-							 if(i>=0 & i<13){
+							 if((i>=0) & (i<13)){
 								 newfermatefortrain[i] = newfermata;
 								 //newfermatefortrain->Add(newfermata);
 							 }
@@ -213,7 +213,11 @@ namespace Prototipo {
 					 int TRN = 0 ;
 					 int::TryParse(textBox1->Text,TRN);
 					 // segnala evento!!!
-					
+					if(TRN==0){
+
+						MessageBox::Show("Inserisci un Train Running Number");
+						return;
+					}
 					 Nuovotreno(gcnew  KeyValuePair<int,  List<Fermata^>^> (TRN,newfermate),e);
 					
 					 this->Close();

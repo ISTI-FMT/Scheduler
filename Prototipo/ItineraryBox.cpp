@@ -78,7 +78,7 @@ void ItineraryBox::init()
 	this->orarioP->Name = L"orarioP";
 	this->orarioP->Size = System::Drawing::Size(67, 20);
 	this->orarioP->TabIndex = 9;
-	this->orarioP->Value = System::DateTime(2013, 12, 2, 0, 0, 0, 0);
+	this->orarioP->Value =  DateTime::ParseExact("00:00:00", "HH:mm:ss",  System::Globalization::CultureInfo::InvariantCulture);
 
 	// 
 	// orarioA
@@ -89,7 +89,7 @@ void ItineraryBox::init()
 	this->orarioA->Name = L"orarioP";
 	this->orarioA->Size = System::Drawing::Size(67, 20);
 	this->orarioA->TabIndex = 19;
-	this->orarioA->Value = System::DateTime(2013, 12, 2, 0, 0, 0, 0);
+	this->orarioA->Value = DateTime::ParseExact("00:00:00", "HH:mm:ss",  System::Globalization::CultureInfo::InvariantCulture);
 
 	//
 	// label 
