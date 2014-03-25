@@ -2,7 +2,8 @@
 #using <System.Xml.dll>
 using namespace System;
 using namespace System::Collections::Generic;
-
+using namespace System::Xml;
+using namespace System::Xml::Schema;
 
 
 
@@ -16,8 +17,19 @@ mapTrenoFisicoLogico::mapTrenoFisicoLogico(void)
 
 void mapTrenoFisicoLogico::inizializza(){
 	try{
+
+		System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("MapTreni.xsd");
+		// Create the XmlSchemaSet class.
+		XmlSchemaSet^ sc = gcnew XmlSchemaSet;
+
+		// Add the schema to the collection.
+		sc->Add( "urn:conftrenofisicoTreni-schema",  gcnew XmlTextReader (readStreamschemaxsd) );
+		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
+		settings->ValidationType = System::Xml::ValidationType::Schema;
+		//settings->Schemas = sc;
+
 		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("MapTreni.xml");
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML,settings);
 		while (reader->ReadToFollowing("trenofisico")){
 			int engineTreno = int::Parse(reader->GetAttribute("engine_nbr"));
 			reader->ReadToFollowing("trenilogici");
