@@ -216,6 +216,9 @@
     <ClCompile Include="EditorTabellaOrario.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="FormVisualizzeMapTreni.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FermataType.h">
@@ -464,6 +467,9 @@
     <ClInclude Include="EditorTabellaOrario.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="FormVisualizzeMapTreni.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">
@@ -532,6 +538,9 @@
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStatoLineaIXL.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorTabellaOrario.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
   </ItemGroup>

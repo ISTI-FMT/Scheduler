@@ -112,7 +112,10 @@ void FormVisualizzeTabOrario::Inizialize(){
 
 void FormVisualizzeTabOrario::Form_Resize(System::Object^  sender, System::EventArgs^  e) {
 
-	dataGridView1->Size= System::Drawing::Size(this->Width-30,this->Height-50);
+	/*dataGridView1->Size= System::Drawing::Size(this->Width-30,this->Height-150);
+	this->NewTrain->Location = System::Drawing::Point(12, 370);
+		int x  =12+146+25;
+	this->SaveXml->Location = System::Drawing::Point(x,370);*/
 }
 
 void FormVisualizzeTabOrario::NewTrain_Click(System::Object^  sender, System::EventArgs^  e){

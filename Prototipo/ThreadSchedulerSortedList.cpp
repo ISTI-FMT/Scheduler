@@ -50,8 +50,9 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	RaccoltaTrenoRequestCDB  = gcnew Dictionary<Train^,List<int>^> ();
 	EQueueCambioOrario = gcnew EventQueue<List<Fermata^>^>();
 	_shouldStop=false;
+	_blockAreeCritiche=false;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
-	timeRicIXL;
+	//timeRicIXL;
 
 	ListTrainModel ^model = gcnew ListTrainModel();
 
@@ -126,7 +127,7 @@ void ThreadSchedulerSortedList::Schedule(){
 					//  tempo 
 					if((resutl<=tempo | true)){//&
 
-						if (areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN()))
+						if ((areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN())|(_blockAreeCritiche)))
 						{
 							//if(bin>0){
 							//	Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
@@ -166,7 +167,7 @@ void ThreadSchedulerSortedList::Schedule(){
 							//Controllo che l'acquisizione del prossimo cdb non crei deadlock
 							List<int> ^cdbItinerario =  tabItinerari->get_Cdb_Itinerario(idstazione,itinUscita);
 							int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
-							if (areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))
+							if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 							{
 								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train))
 								{
@@ -216,7 +217,7 @@ void ThreadSchedulerSortedList::Schedule(){
 									//Controllo che l'acquisizione del prossimo cdb non crei deadlock
 									List<int> ^cdbItinerario =  tabItinerari->get_Cdb_Itinerario(idstazione,initEntrata);
 									int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
-									if (areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))
+									if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 									{
 										if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 
@@ -242,7 +243,7 @@ void ThreadSchedulerSortedList::Schedule(){
 								List<int> ^cdbItinerario =  tabItinerari->get_Cdb_Itinerario(idstazione,initEntrata);
 								int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 								//Controllo che l'acquisizione del prossimo cdb non crei deadlock
-								if (areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))
+								if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 								{
 									//se l'itinerario è libero
 									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 

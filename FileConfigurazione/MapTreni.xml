@@ -1,72 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<bind xmlns="urn:confMapTreni-schema" >
-<map>
-<idtrenologico>1151</idtrenologico>
-<idtrenofisico>65282</idtrenofisico>
-<cdbpos>12303</cdbpos>
+<bind xmlns="urn:conftrenofisicoTreni-schema" >
+  <trenofisico engine_nbr="65282">
+    <trenilogici>
+    <idtrenologico>1151</idtrenologico>
+   <idtrenologico>5551</idtrenologico>
+    </trenilogici>
+    <cdblastpos>12303</cdblastpos>
 
-</map>
+  </trenofisico>
 
-<map>
-<idtrenologico>1152</idtrenologico>
-<idtrenofisico>65280</idtrenofisico>
-<cdbpos>13302</cdbpos>
+  
+    
+  <trenofisico  engine_nbr="65280">
+     <trenilogici>
+    <idtrenologico>1152</idtrenologico>
+    </trenilogici>
+    <cdbpos>13302</cdbpos>
 
-</map>
+  </trenofisico>
 
-<map>
-<idtrenologico>1122</idtrenologico>
-<idtrenofisico>113322</idtrenofisico>
-<cdbpos>17019</cdbpos>
-</map>
+  <trenofisico engine_nbr="113322">
+     <trenilogici>
+    <idtrenologico>1122</idtrenologico>
+     </trenilogici>
+    
+    <cdbpos>17019</cdbpos>
+  </trenofisico>
 
-<map>
-<idtrenologico>1173</idtrenologico>
-<idtrenofisico>65615</idtrenofisico>
-<cdbpos>17303</cdbpos>
-</map>
+  <trenofisico  engine_nbr="65615">
+     <trenilogici>
+    <idtrenologico>1173</idtrenologico>
+        </trenilogici>
+    
+    <cdbpos>17303</cdbpos>
+  </trenofisico>
 
-<map>
-<idtrenologico>1153</idtrenologico>
-<idtrenofisico>65315</idtrenofisico>
-<cdbpos>13301</cdbpos>
-</map>
-
-<map>
-<idtrenologico>1154</idtrenologico>
-<idtrenofisico>65316</idtrenofisico>
-<cdbpos>10301</cdbpos>
-</map>
-
-
-<map>
-<idtrenologico>1166</idtrenologico>
-<idtrenofisico>65551</idtrenofisico>
-<cdbpos>16301</cdbpos>
-</map>
-
-
-  <map>
-    <idtrenologico>5123</idtrenologico>
-    <idtrenofisico>7732</idtrenofisico>
+  <trenofisico  engine_nbr="65315">
+     <trenilogici>
+    <idtrenologico>1153</idtrenologico>
+        </trenilogici>
+    
     <cdbpos>13301</cdbpos>
-  </map>
+  </trenofisico>
 
-  <map>
+  <trenofisico  engine_nbr="65316">
+    <idtrenologico>1154</idtrenologico>
+    
+    <cdbpos>10301</cdbpos>
+  </trenofisico>
+
+
+  <trenofisico  engine_nbr="65551">
+     <trenilogici>
+    <idtrenologico>1166</idtrenologico>
+        </trenilogici>
+    
+    <cdbpos>16301</cdbpos>
+  </trenofisico>
+
+
+  <trenofisico  engine_nbr="7732">
+     <trenilogici>
+    <idtrenologico>5123</idtrenologico>
+        </trenilogici>
+    
+    <cdbpos>13301</cdbpos>
+  </trenofisico>
+
+  <trenofisico  engine_nbr="113322">
+     <trenilogici>
     <idtrenologico>5132</idtrenologico>
+        </trenilogici>
     <idtrenofisico>7723</idtrenofisico>
     <cdbpos>12302</cdbpos>
-  </map>
+  </trenofisico>
 
-  <map>
+  <trenofisico  engine_nbr="7237">
+     <trenilogici>
     <idtrenologico>5312</idtrenologico>
-    <idtrenofisico>7237</idtrenofisico>
+        </trenilogici>
+    
     <cdbpos>13302</cdbpos>
-  </map>
+  </trenofisico>
 
-  <map>
+  <trenofisico  engine_nbr="7327">
+     <trenilogici>
     <idtrenologico>5321</idtrenologico>
-    <idtrenofisico>7327</idtrenofisico>
+     </trenilogici>
+    
     <cdbpos>407</cdbpos>
-  </map>
+  </trenofisico>
 </bind>

@@ -47,6 +47,7 @@ ref class ThreadSchedulerSortedList
 	Dictionary<Train^,List<int>^> ^RaccoltaTrenoRequestCDB;
 	ConfigurazioneVelocita ^confVelocita;
 	bool _shouldStop;
+	bool _blockAreeCritiche;
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
 	ControllerListTrain ^controlListtrain;
@@ -58,6 +59,20 @@ public:
 
 	ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E3, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel, AreeCritiche^ areeCritiche);
 
+	property bool StopAreecritiche 
+	{
+		bool get()
+		{
+			return _blockAreeCritiche;
+		}
+
+		void set(bool a){
+
+			_blockAreeCritiche=a;
+		}
+
+	}
+
 	void Schedule();
 	void Init();
 	void ControllaMSG_ATO();
@@ -65,6 +80,7 @@ public:
 	bool controllacdb(List<int>^lcdb);
 	void ControllaEventiCambioOrario();
 	void RequestStop();
+	
 
 	StateObject ^InizializzeATO(int trn,physicalTrain ^Treno);
 	StateObject ^SendUpdateMissionATO(int trn,physicalTrain ^Treno,List<Fermata^> ^stops);

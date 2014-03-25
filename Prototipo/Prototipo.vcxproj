@@ -110,6 +110,7 @@
     <ClInclude Include="FormStatoLineaATC.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="FormVisualizzeMapTreni.h" />
     <ClInclude Include="form\tableLayoutPanelAllCDB.h" />
     <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
     <ClInclude Include="IEvent.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FormStatoLineaIXL.cpp" />
     <ClCompile Include="FormStatoLineaATC.cpp" />
+    <ClCompile Include="FormVisualizzeMapTreni.cpp" />
     <ClCompile Include="form\tableLayoutPanelAllCDB.cpp" />
     <ClCompile Include="form\tableLayoutPanelSingleItin.cpp" />
     <ClCompile Include="Itinerari\binario.cpp" />

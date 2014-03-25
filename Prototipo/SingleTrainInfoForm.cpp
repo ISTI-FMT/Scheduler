@@ -148,7 +148,7 @@ void SingleTrainInfoForm::init(){
 	this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Arial", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 		static_cast<System::Byte>(0)));
 	this->richTextBox1->ForeColor = System::Drawing::Color::White;
-	this->richTextBox1->Location = System::Drawing::Point(16, 428);
+	this->richTextBox1->Location = System::Drawing::Point(16, 480);
 	this->richTextBox1->Name = L"richTextBox1";
 	this->richTextBox1->Size = System::Drawing::Size(359, 102);
 	this->richTextBox1->TabIndex = 10;
@@ -183,7 +183,7 @@ void SingleTrainInfoForm::init(){
 
 	//this->tableLayoutPanelItinerari->SetColumnSpan(this->label0, 2);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-	this->ClientSize = System::Drawing::Size(600, 542);
+	this->ClientSize = System::Drawing::Size(600, 600);
 	array<System::Windows::Forms::Control^>^temp0 = {comboBoxCambiaStatoTreno,LabelStateTrain,richTextBox1,label5,Labeltrn,Labelip,LabelEngineNumber,LabelPriorita,textboxPriorita,bclose,bapply,tableLayoutPanelItinerari};
 	this->Controls->AddRange( temp0 );
 	//this->ControlBox=false;

@@ -3,16 +3,22 @@
   <xs:element name="bind">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="map" maxOccurs="unbounded" minOccurs="0">
+        <xs:element name="trenofisico">
           <xs:complexType>
             <xs:sequence>
-              <xs:element type="xs:nonNegativeInteger" name="idtrenologico"/>
-              <xs:element type="xs:nonNegativeInteger" name="idtrenofisico"/>
-              <xs:element type="xs:nonNegativeInteger" name="cdbpos"/>
+              <xs:element name="trenilogici">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:nonNegativeInteger" name="idtrenologico" maxOccurs="unbounded" minOccurs="0"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:nonNegativeInteger" name="cdblastpos"/>
             </xs:sequence>
+            <xs:attribute type="xs:nonNegativeInteger" name="engine_nbr"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-</xs:schema>
+  </xs:schema>
