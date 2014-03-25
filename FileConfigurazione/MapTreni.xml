@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <bind xmlns="urn:conftrenofisicoTreni-schema" >
+ 
   <trenofisico engine_nbr="65282">
     <trenilogici>
     <idtrenologico>1151</idtrenologico>
-   <idtrenologico>5551</idtrenologico>
+      <idtrenologico>9951</idtrenologico>
     </trenilogici>
     <cdblastpos>12303</cdblastpos>
 
@@ -15,7 +16,7 @@
      <trenilogici>
     <idtrenologico>1152</idtrenologico>
     </trenilogici>
-    <cdbpos>13302</cdbpos>
+    <cdblastpos>13302</cdblastpos>
 
   </trenofisico>
 
@@ -24,7 +25,7 @@
     <idtrenologico>1122</idtrenologico>
      </trenilogici>
     
-    <cdbpos>17019</cdbpos>
+    <cdblastpos>17019</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="65615">
@@ -32,7 +33,7 @@
     <idtrenologico>1173</idtrenologico>
         </trenilogici>
     
-    <cdbpos>17303</cdbpos>
+    <cdblastpos>17303</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="65315">
@@ -40,13 +41,14 @@
     <idtrenologico>1153</idtrenologico>
         </trenilogici>
     
-    <cdbpos>13301</cdbpos>
+    <cdblastpos>13301</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="65316">
+     <trenilogici>
     <idtrenologico>1154</idtrenologico>
-    
-    <cdbpos>10301</cdbpos>
+     </trenilogici>
+    <cdblastpos>10301</cdblastpos>
   </trenofisico>
 
 
@@ -55,7 +57,7 @@
     <idtrenologico>1166</idtrenologico>
         </trenilogici>
     
-    <cdbpos>16301</cdbpos>
+    <cdblastpos>16301</cdblastpos>
   </trenofisico>
 
 
@@ -64,7 +66,7 @@
     <idtrenologico>5123</idtrenologico>
         </trenilogici>
     
-    <cdbpos>13301</cdbpos>
+    <cdblastpos>13301</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="7723">
@@ -72,15 +74,15 @@
     <idtrenologico>5132</idtrenologico>
         </trenilogici>
     
-    <cdbpos>12302</cdbpos>
+    <cdblastpos>12302</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="7237">
      <trenilogici>
     <idtrenologico>5312</idtrenologico>
-        </trenilogici>
+     </trenilogici>
     
-    <cdbpos>13302</cdbpos>
+    <cdblastpos>13302</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="7327">
@@ -88,6 +90,6 @@
     <idtrenologico>5321</idtrenologico>
      </trenilogici>
     
-    <cdbpos>407</cdbpos>
+    <cdblastpos>407</cdblastpos>
   </trenofisico>
 </bind>

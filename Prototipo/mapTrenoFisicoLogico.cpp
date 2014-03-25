@@ -26,10 +26,11 @@ void mapTrenoFisicoLogico::inizializza(){
 		sc->Add( "urn:conftrenofisicoTreni-schema",  gcnew XmlTextReader (readStreamschemaxsd) );
 		XmlReaderSettings^ settings = gcnew XmlReaderSettings;
 		settings->ValidationType = System::Xml::ValidationType::Schema;
-		//settings->Schemas = sc;
+		settings->Schemas = sc;
 
 		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("MapTreni.xml");
 		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML,settings);
+		reader->ReadToFollowing("bind");
 		while (reader->ReadToFollowing("trenofisico")){
 			int engineTreno = int::Parse(reader->GetAttribute("engine_nbr"));
 			reader->ReadToFollowing("trenilogici");
@@ -41,7 +42,7 @@ void mapTrenoFisicoLogico::inizializza(){
 				int logico  = System::Int32::Parse( inner->ReadString());
 				trns->Add(logico);
 			}
-			reader->ReadToFollowing("cdbpos");
+			reader->ReadToFollowing("cdblastpos");
 			int cdbpos  = System::Int32::Parse( reader->ReadString());
 
 
@@ -85,7 +86,7 @@ void mapTrenoFisicoLogico::saveXml(System::IO::Stream ^stream){
 			{
 				writer->WriteElementString("idtrenologico", var.ToString());
 			}
-			writer->WriteElementString("cdbpos", dvar->getCDBLastPosition().ToString());
+			writer->WriteElementString("cdblastpos", dvar->getCDBLastPosition().ToString());
 			writer->WriteEndElement();
 		}
 		writer->WriteEndElement();
