@@ -11,7 +11,7 @@ namespace Prototipo {
 	using namespace System::Diagnostics::CodeAnalysis;
 
 
-	
+
 	/// <summary>
 	/// Riepilogo per EditorMapTreni
 	/// </summary>
@@ -47,7 +47,7 @@ namespace Prototipo {
 
 	private: System::Windows::Forms::TextBox^  textBoxEngine;
 	private: System::Windows::Forms::ComboBox^  comboBoxLastPos;
-	private: System::Windows::Forms::ListBox^  listBoxTRN;
+	private: System::Windows::Forms::TextBox^  listBoxTRN;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
@@ -63,7 +63,7 @@ namespace Prototipo {
 			this->buttonOk = (gcnew System::Windows::Forms::Button());
 			this->textBoxEngine = (gcnew System::Windows::Forms::TextBox());
 			this->comboBoxLastPos = (gcnew System::Windows::Forms::ComboBox());
-			this->listBoxTRN = (gcnew System::Windows::Forms::ListBox());
+			this->listBoxTRN = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -110,7 +110,7 @@ namespace Prototipo {
 			// 
 			// listBoxTRN
 			// 
-			this->listBoxTRN->FormattingEnabled = true;
+			this->listBoxTRN->Multiline = true;
 			this->listBoxTRN->Location = System::Drawing::Point(222, 59);
 			this->listBoxTRN->Name = L"listBoxTRN";
 			this->listBoxTRN->Size = System::Drawing::Size(120, 95);
@@ -181,19 +181,20 @@ namespace Prototipo {
 	private: System::Void buttonOk_Click(System::Object^  sender, System::EventArgs^  e) {
 				 try{
 					 List<int> ^list = gcnew List<int>();
-
-					/*	 for each (  System::Windows::Forms::ListBox::ObjectCollection ^var in  listBoxTRN->Items)
-						 {
-							 
-						 }*/
-					 int lastpos = int::Parse(comboBoxLastPos->SelectedValue->ToString());
+					 array<String^> ^listtrn = listBoxTRN->Lines;
+					 for each (  String ^var in  listtrn)
+					 {
+						 list->Add(int::Parse(var));
+					 }
+					 int lastpos = int::Parse(comboBoxLastPos->SelectedItem->ToString());
 					 TrenoFisicoLogico^ newtreno = gcnew TrenoFisicoLogico(int::Parse(textBoxEngine->Text),list,lastpos);
 
-				 //segnala evento
-				  Nuovotreno(newtreno,e);
+					 //segnala evento
+					 Nuovotreno(newtreno,e);
+					 this->Close();
 				 }catch(Exception^e){
 
-					  System::Windows::Forms::MessageBox::Show("Please enter only numbers.");
+					 System::Windows::Forms::MessageBox::Show("Please enter only numbers.");
 				 }
 			 }
 	private: System::Void buttonAnnulla_Click(System::Object^  sender, System::EventArgs^  e) {
