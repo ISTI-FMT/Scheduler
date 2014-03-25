@@ -1,4 +1,5 @@
 #include "mapTrenoFisicoLogico.h"
+#include "EditorMapTreni.h"
 using namespace System::Diagnostics;
 	using namespace System;
 	using namespace System::ComponentModel;

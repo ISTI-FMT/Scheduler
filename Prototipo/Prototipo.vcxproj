@@ -99,6 +99,7 @@
     </ClInclude>
     <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
     <ClInclude Include="ControllerListTrain.h" />
+    <ClInclude Include="EditorMapTreni.h" />
     <ClInclude Include="EditorTabellaOrario.h">
       <FileType>CppForm</FileType>
     </ClInclude>

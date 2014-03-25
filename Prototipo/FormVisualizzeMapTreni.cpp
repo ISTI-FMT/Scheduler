@@ -28,10 +28,10 @@ void FormVisualizzeMapTreni::Inizialize(){
 	// 
 	this->NewTrain = gcnew Button();
 	this->NewTrain->Location = System::Drawing::Point(12, 370);
-	this->NewTrain->Name = L"NewTrain";
+	this->NewTrain->Name = L"NewMapTrain";
 	this->NewTrain->Size = System::Drawing::Size(146, 23);
 	this->NewTrain->TabIndex = 2;
-	this->NewTrain->Text = L"NewTrain";
+	this->NewTrain->Text = L"NewMapTrain";
 	this->NewTrain->UseVisualStyleBackColor = true;
 	this->NewTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeMapTreni::NewTrain_Click);
 
@@ -65,7 +65,62 @@ void FormVisualizzeMapTreni::Inizialize(){
 	this->SuspendLayout();
 
 	dataGridView1->ColumnCount = 5;
-	dataGridView1->RowCount =  mapFisicoLogico->get_Map()->Count*3;
+
+
+	Aggiorna();
+
+
+}
+
+void FormVisualizzeMapTreni::Form_Resize(System::Object^  sender, System::EventArgs^  e) {
+
+	/*dataGridView1->Size= System::Drawing::Size(this->Width-30,this->Height-50);*/
+}
+
+void FormVisualizzeMapTreni::NewTrain_Click(System::Object^  sender, System::EventArgs^  e){
+
+	Prototipo::EditorMapTreni ^editor = gcnew Prototipo::EditorMapTreni();
+	editor->Visible=true;
+	editor->Nuovotreno += gcnew System::EventHandler(this,&FormVisualizzeMapTreni::Addtreno);
+
+}
+
+void FormVisualizzeMapTreni::SaveXml_Click(System::Object^  sender, System::EventArgs^  e){
+	 System::IO::Stream ^ myStream;
+      SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog;
+      saveFileDialog1->Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+      saveFileDialog1->FilterIndex = 1;
+      saveFileDialog1->RestoreDirectory = true;
+      if ( saveFileDialog1->ShowDialog() == ::DialogResult::OK )
+      {
+        if ( (myStream = saveFileDialog1->OpenFile()) != nullptr )
+         {
+			 mapFisicoLogico->saveXml(myStream);
+            // Code to write the stream goes here.
+            myStream->Close();
+         }
+      }
+	 
+}
+
+
+void FormVisualizzeMapTreni::Addtreno(System::Object^  sender, System::EventArgs^  e){
+	TrenoFisicoLogico ^bind = (TrenoFisicoLogico^)sender;
+	if (!mapFisicoLogico->get_Map()->ContainsKey(bind->getIdTrenoFisico())){
+				mapFisicoLogico->get_Map()->Add(bind->getIdTrenoFisico(),bind);
+				Aggiorna();
+	}else{
+		Console::WriteLine("treno gia esistente in maptreni");
+	}
+
+}
+
+
+
+void FormVisualizzeMapTreni::Aggiorna(){
+
+	
+		dataGridView1->RowCount =  mapFisicoLogico->get_Map()->Count*3;
 	int colonna=0;
 	int riga=0;
 	dataGridView1->Columns[ 0 ]->Name = "Id_Engine_Treno";
@@ -92,64 +147,6 @@ void FormVisualizzeMapTreni::Inizialize(){
 		
 
 	}
-
-
-
-
-
-}
-
-void FormVisualizzeMapTreni::Form_Resize(System::Object^  sender, System::EventArgs^  e) {
-
-	/*dataGridView1->Size= System::Drawing::Size(this->Width-30,this->Height-50);*/
-}
-
-void FormVisualizzeMapTreni::NewTrain_Click(System::Object^  sender, System::EventArgs^  e){
-
-	/*Prototipo::EditorTabellaOrario ^editor = gcnew Prototipo::EditorTabellaOrario(Tabellastazioni);
-	editor->Visible=true;
-	editor->Nuovotreno += gcnew System::EventHandler(this,&FormVisualizzeTabOrario::Addtreno);*/
-
-}
-
-void FormVisualizzeMapTreni::SaveXml_Click(System::Object^  sender, System::EventArgs^  e){
-	 System::IO::Stream ^ myStream;
-      SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog;
-      saveFileDialog1->Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
-      saveFileDialog1->FilterIndex = 1;
-      saveFileDialog1->RestoreDirectory = true;
-      if ( saveFileDialog1->ShowDialog() == ::DialogResult::OK )
-      {
-        if ( (myStream = saveFileDialog1->OpenFile()) != nullptr )
-         {
-			 mapFisicoLogico->saveXml(myStream);
-            // Code to write the stream goes here.
-            myStream->Close();
-         }
-      }
-	 
-}
-
-
-void FormVisualizzeMapTreni::Addtreno(System::Object^  sender, System::EventArgs^  e){
-	/*KeyValuePair<int,  List<Fermata^>^>^nuovotreno=( KeyValuePair<int,  List<Fermata^>^> )sender;
-
-	int TRN = nuovotreno->Key;
-
-	if( !tabella->get_TabellaOrario()->ContainsKey(TRN)){
-		tabella->get_TabellaOrario()->Add(TRN,nuovotreno->Value);
-		Aggiorna();
-	}else{
-		Console::WriteLine("treno gia esistente in tabella orario");
-	}*/
-
-}
-
-
-
-void FormVisualizzeMapTreni::Aggiorna(){
-
-	
 
 
 }

@@ -470,6 +470,9 @@
     <ClInclude Include="FormVisualizzeMapTreni.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="EditorMapTreni.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Prototipo.rc">

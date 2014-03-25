@@ -10,10 +10,14 @@ namespace Prototipo {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Diagnostics::CodeAnalysis;
 
+
+	
 	/// <summary>
 	/// Riepilogo per EditorTabellaOrario
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public ref class EditorTabellaOrario : public System::Windows::Forms::Form
 	{
 	public:
