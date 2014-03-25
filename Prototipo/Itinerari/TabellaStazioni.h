@@ -41,6 +41,13 @@ public:
 		return false;
 	}
 
+	bool get_Direzione_binario(int idstazione, int idbin){
+		if(mapidstazioneitinerari->ContainsKey(idstazione)){
+			return mapidstazioneitinerari[idstazione]->get_Direzione_binario(idbin);
+		}
+		return false;
+	}
+
 	lrbg ^get_infobalise_fromBinario(int idstazione, int bina){
 
 		if(mapidstazioneitinerari->ContainsKey(idstazione)){

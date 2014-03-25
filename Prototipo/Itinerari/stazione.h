@@ -36,10 +36,10 @@ public:
 	//fornendo id dell'itinerario restiuisce una lista di 2 valori interi che rappresentano rispettivamente
 	//nid_lrgb e D_stop per quell'itinerario 
 	lrbg ^get_infobalise(int id){
-		
+
 		if(itinerariid->ContainsKey(id)){
-			
-			
+
+
 			return itinerariid[id]->getLrgb();
 		}
 		return nullptr;
@@ -48,22 +48,39 @@ public:
 	///indica la direzione in cui va il treno true dx da accademia -> vittoria, false viceversa
 	bool get_Direzione_itinerario(int iditini){
 		if(itinerariid->ContainsKey(iditini)){
-			
+
 			if( itinerariid[iditini]->getDirezione()=="dx"){
 				return true;
 			}else{
 				return false;
 			}
-			
+
 		}
 		return false;
-	
+
 	}
+
+	bool get_Direzione_binario(int idbin){
+		for each (binario ^var in binari)
+		{
+			if(var->getBin()==idbin){
+				if( var->getDirezione()=="dx"){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+		return false;
+
+	}
+
+
 	lrbg ^get_infobalise_fromBinario(int bina){
 		for each (binario ^bin in binari)
 		{
 			if(bin->getBin()==bina){
-				 return	bin->get_info_lrgb();
+				return	bin->get_info_lrgb();
 			}
 		}
 		return gcnew lrbg();

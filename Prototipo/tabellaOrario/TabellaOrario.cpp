@@ -238,7 +238,10 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			latolinea = true;
 		}
 		//indica la direzione in cui va il treno true dx da accademia -> vittoria, false viceversa
-		bool direzione = tabItinerari->get_Direzione_itinerario(stops[0]->getIdStazione(),stops[0]->getIditinerarioEntrata());
+		bool direzione = tabItinerari->get_Direzione_itinerario(stops[0]->getIdStazione(),stops[0]->getIditinerarioUscita());
+		if(stops[0]->getIditinerarioUscita()==0){
+			direzione = tabItinerari->get_Direzione_binario(stops[0]->getIdStazione(),stops[0]->getBinarioProgrammato());
+		}
 
 		//Todo: V_mission D_mission tratte
 		if(pvel!=nullptr){
