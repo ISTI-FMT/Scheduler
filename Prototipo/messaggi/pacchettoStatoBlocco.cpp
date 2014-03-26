@@ -4,9 +4,9 @@
 pacchettoStatoBlocco::pacchettoStatoBlocco(void)
 {
 	setNID_PACKET(PacchettoID::StatoBloccoIXL);
-	L_PACKET = 0;
-	N_ITER = 0;
-	vStatoBlocco =gcnew List<StateBlocco^>();
+	setL_PACKET(0);
+	setN_ITER(0);
+	setStatoBlocco(gcnew List<StateBlocco^>());
 }
 
 void pacchettoStatoBlocco::setN_ITER(int N)
@@ -69,14 +69,14 @@ void pacchettoStatoBlocco::deserialize(array<Byte>^buffer, int offset)
 System::String ^pacchettoStatoBlocco::ToString(){
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+vStatoBlocco[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+getStatoBlocco()[0]->ToString();
+	out = out+"N_ITER: "+getN_ITER()+";";
 
-	for( int i = 1; i <vStatoBlocco->Count; i++)
+	for( int i = 1; i <getStatoBlocco()->Count; i++)
 	{
-		out = out+vStatoBlocco[i]->ToString();
+		out = out+getStatoBlocco()[i]->ToString();
 	}
 
 	return out;

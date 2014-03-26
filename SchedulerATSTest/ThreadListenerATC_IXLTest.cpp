@@ -92,8 +92,7 @@ namespace SchedulerATSTest {
 
 				oThreadUDP->Start();
 
-				EventQueue<StateCDB^>  ^EventQATC = gcnew EventQueue<StateCDB^> ();
-				 EventQATC->Subscribe(MA);
+				
 
 				 EventQueue<StateCDB^> ^EventQIXL = gcnew EventQueue<StateCDB^>();
 				 EventQIXL->Subscribe(MC);
@@ -116,8 +115,9 @@ namespace SchedulerATSTest {
 				s->SendTo( sendBytes2, ep);
 				
 				s->Close();
-				Assert::IsNotNull(MA->getCDB(501));
-				 Thread::Sleep(1000);
+				Thread::Sleep(1000);
+				Assert::IsNotNull(MC->StatoCDB(13301));
+				 
 				 target->RequestStop();
 				  Thread::Sleep(200);
 			}
@@ -137,8 +137,6 @@ namespace SchedulerATSTest {
 				 EventQueue<StateCDB^>  ^EventQATC = gcnew EventQueue<StateCDB^> ();
 				 EventQATC->Subscribe(MA);
 
-				 EventQueue<StateCDB^> ^EventQIXL = gcnew EventQueue<StateCDB^>();
-				 EventQIXL->Subscribe(MC);
 
 				String ^msgATC  ="0B0A8000000411A265000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 				String ^msgATC2  ="0B022000000411A00B0000FF0000000480000033F600050001004F00000495000043970000000000000000000000000000FF24000004820000283D0000FF020000047F0000300F0001000F0000000000003FAD0000000000000000000000000000000000000000000000000000";
@@ -160,6 +158,7 @@ namespace SchedulerATSTest {
 
 				s->Close();
 				 Thread::Sleep(1000);
+				 Assert::IsNotNull(MA->getCDB(13302));
 				 target->RequestStop();
 				  Thread::Sleep(200);
 			}

@@ -29,6 +29,6 @@ public:
 	void setT_TRAIN(int N){T_TRAIN = N;};
 	int getT_TRAIN(){return T_TRAIN;};
 	
-	~pacchettoAcknowledgement(void);
+	
 	virtual System::String ^ToString() override;	
 };

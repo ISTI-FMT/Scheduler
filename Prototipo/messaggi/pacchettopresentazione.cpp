@@ -5,7 +5,7 @@ pacchettopresentazione::pacchettopresentazione(void)
 {
 	setNID_PACKET(PacchettoID::NetworkData);
 	L_PACKET = 0;
-	M_PORT =0;
+	setM_PORT(0);
 
 }
 
@@ -34,8 +34,8 @@ void pacchettopresentazione::deserialize(array<Byte>^buff, int offset)
 String ^pacchettopresentazione::ToString() {
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+"M_PORT: "+M_PORT+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+"M_PORT: "+getM_PORT()+";";
 	return out;
 }

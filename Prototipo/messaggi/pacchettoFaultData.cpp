@@ -4,9 +4,9 @@
 pacchettoFaultData::pacchettoFaultData(int ID_PACKET)
 {
 	setNID_PACKET(ID_PACKET);
-	L_PACKET = 0;
+	setL_PACKET( 0);
 
-	N_ITER = 0;
+	setN_ITER (0);
 	vGuasto = gcnew List<Fault^>();
 }
 
@@ -80,10 +80,10 @@ void pacchettoFaultData::deserialize(array<Byte>^buffer, int offset)
 System::String ^pacchettoFaultData::ToString(){
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
 	out = out+vGuasto[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	out = out+"N_ITER: "+getN_ITER()+";";
 
 	for (int i=1;i<vGuasto->Count;i++)
 	{

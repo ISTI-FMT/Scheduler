@@ -3,9 +3,9 @@ using namespace System::Net::Sockets;
 using namespace System::Collections::Concurrent;
 
 /*Utilizzo questa classe per ricevere ed inviare messaggi TCP asincroni*/
-//using namespace System::Diagnostics::CodeAnalysis;
+using namespace System::Diagnostics::CodeAnalysis;
 
-//[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage]
 public ref class StateObject{
 public:
     int BUFFER_SIZE;

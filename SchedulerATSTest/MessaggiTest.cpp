@@ -149,7 +149,7 @@ namespace SchedulerATSTest {
 				String ^msgtrn  ="C901C00000FB14203880000092A0";
 				bbytesd = fromString(msgtrn);
 				trn->deserialize(bbytesd);
-				expected = "NID_MESSAGE 201;L_MESSAGE 14;T_TRAIN 2008;NID_PACKET 161;L_PACKET 56;Q_COMMAND_TYPE 4;";
+				expected = "NID_MESSAGE 201;L_MESSAGE 14;T_TRAIN 2008;NID_PACKET 161;L_PACKET 56;Q_COMMAND_TYPE 4;NID_OPERATIONAL 1173;";
 				Assert::AreEqual(trn->ToString(),expected);
 				//Serializza trn
 				Bytess =  trn->serialize();

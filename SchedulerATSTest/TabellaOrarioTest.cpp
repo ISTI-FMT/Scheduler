@@ -70,6 +70,13 @@ namespace SchedulerATSTest {
 			{
 				TabellaStazioni^  T = gcnew TabellaStazioni(); 
 				TabellaOrario^  target = (gcnew TabellaOrario(T));
+
+				String^ tmpFilename = System::IO::Path::GetTempFileName();
+				System::IO::FileStream^ writeStream = gcnew System::IO::FileStream(tmpFilename, System::IO::FileMode::Create);
+				target->ScriviTabellaOrario(writeStream);
+				
+				writeStream->Close();
+
 				Assert::IsNotNull(target->ToString());
 				Assert::IsNotNull(target->getFirstTRN());
 				CollectionAssert::AllItemsAreNotNull(target->get_TabellaOrario());

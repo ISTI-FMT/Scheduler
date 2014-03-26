@@ -4,8 +4,8 @@
 pacchettoComandoBlocco::pacchettoComandoBlocco(void)
 {
 	setNID_PACKET(PacchettoID::ComandoBlocco);
-	L_PACKET = 0;
-	NID_BLOCCO = 0;
+	setL_PACKET(0);
+	setNID_BLOCCO( 0);
 	Q_CMDBLOCCO = 0;
 }
 
@@ -43,9 +43,9 @@ pacchettoComandoBlocco::~pacchettoComandoBlocco(void)
 System::String ^pacchettoComandoBlocco::ToString(){
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+"NID_BLOCCO: "+NID_BLOCCO+";";
-	out = out+"Q_CMDBLOCCO: "+Q_CMDBLOCCO+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+"NID_BLOCCO: "+getNID_BLOCCO()+";";
+	out = out+"Q_CMDBLOCCO: "+getQ_CMDBLOCCO()+";";
 	return out;
 }

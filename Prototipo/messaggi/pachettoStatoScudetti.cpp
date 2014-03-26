@@ -5,9 +5,9 @@
 pachettoStatoScudetti::pachettoStatoScudetti(void)
 {
 	setNID_PACKET(PacchettoID::StatoScudetti);
-	L_PACKET = 0;
-	N_ITER = 0;
-	vStatoScudetti = gcnew List<StateScudetti^>();
+	setL_PACKET(0);
+	setN_ITER(0);
+	setStatoScud( gcnew List<StateScudetti^>());
 }
 
 void pachettoStatoScudetti::setN_ITER(int N)
@@ -60,21 +60,21 @@ void pachettoStatoScudetti::deserialize(array<Byte>^buffer, int offset)
 		shift += 32;
 		int Q_STATOSCUD=utility::pop(buffer, 3, offset + shift);
 		shift += 2;
-		vStatoScudetti->Add(gcnew StateScudetti(NID_SCUD,Q_STATOSCUD));
+		setStatoScud(gcnew StateScudetti(NID_SCUD,Q_STATOSCUD));
 	}
 }
 
 System::String ^pachettoStatoScudetti::ToString(){
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+vStatoScudetti[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+getStatoScud()[0]->ToString();
+	out = out+"N_ITER: "+getN_ITER()+";";
 
-	for( int i =1; i <vStatoScudetti->Count;i++)
+	for( int i =1; i <getStatoScud()->Count;i++)
 	{
-		out = out+vStatoScudetti[i]->ToString();
+		out = out+getStatoScud()[i]->ToString();
 	}
 
 	return out;

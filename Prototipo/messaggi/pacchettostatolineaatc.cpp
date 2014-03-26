@@ -4,9 +4,9 @@
 pacchettostatolineaatc::pacchettostatolineaatc(void)
 {
 	setNID_PACKET(PacchettoID::PositionDataATC);
-	L_PACKET = 0;
-	NID_OPERATIONAL = 0;
-	pstato = gcnew List<StateCDB^>();
+	setL_PACKET(0);
+	setNID_OPERATIONAL ( 0);
+	setCDB( gcnew List<StateCDB^>());
 }
 
 
@@ -31,16 +31,16 @@ int pacchettostatolineaatc::getSize()
 System::String^ pacchettostatolineaatc::toPrint(){
 	String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+"NID_OPERATIONAL: "+NID_OPERATIONAL+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+"NID_OPERATIONAL: "+getNID_OPERATIONAL()+";";
 
-	out = out+pstato[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	out = out+getCDB()[0]->ToString();
+	out = out+"N_ITER: "+getN_ITER()+";";
 
-	for( int i=1;i<pstato->Count;i++)
+	for( int i=1;i<getCDB()->Count;i++)
 	{
-		out = out+pstato[i]->ToString();
+		out = out+getCDB()[i]->ToString();
 
 	}
 
@@ -99,7 +99,7 @@ void pacchettostatolineaatc::deserialize(array<Byte>^buffer, int offset)
 	int tQ_DEVIATOIO =utility::pop(buffer, 2, offset);
 	offset += 2;
 	
-	pstato->Add(gcnew StateCDB(tNID_CDB,(QStateCDB)tQ_STATOCDB,(QStateDeviatoio)tQ_DEVIATOIO,NID_OPERATIONAL));
+	setCDB(gcnew StateCDB(tNID_CDB,(QStateCDB)tQ_STATOCDB,(QStateDeviatoio)tQ_DEVIATOIO,NID_OPERATIONAL));
 	setN_ITER(utility::pop(buffer, 5, offset));
 	offset += 5;
 	//int offset = 145;
@@ -113,6 +113,6 @@ void pacchettostatolineaatc::deserialize(array<Byte>^buffer, int offset)
 		int Q_DEVIATOIO=utility::pop(buffer, 2, offset);
 		offset += 2;
 
-		pstato->Add(gcnew StateCDB(NID_CDB,(QStateCDB)Q_STATOCDB,(QStateDeviatoio)Q_DEVIATOIO,NID_OPERATIONAL));
+		setCDB(gcnew StateCDB(NID_CDB,(QStateCDB)Q_STATOCDB,(QStateDeviatoio)Q_DEVIATOIO,NID_OPERATIONAL));
 	}
 }

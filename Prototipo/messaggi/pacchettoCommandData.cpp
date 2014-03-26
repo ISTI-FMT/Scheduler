@@ -6,8 +6,8 @@ pacchettoCommandData::pacchettoCommandData(void)
 	setNID_PACKET(PacchettoID::CommandData);
 	L_PACKET = 0;
 	Q_COMMAND_TYPE = 0;
-	M_GOA_LEVEL = 0;
-	NID_OPERATIONAL = 0;
+	setM_GOA_LEVEL(GOA_LEVEL::Level_2);
+	setNID_OPERATIONAL(0);
 }
 
 void pacchettoCommandData::serialize(array<Byte>^buffer, int offset)
@@ -47,10 +47,7 @@ void pacchettoCommandData::deserialize(array<Byte>^buffer, int offset)
 	}
 }
 
-pacchettoCommandData::~pacchettoCommandData(void)
-{
 
-}
 
 System::String ^pacchettoCommandData::ToString()
 {
@@ -59,9 +56,9 @@ System::String ^pacchettoCommandData::ToString()
 	out = out+"L_PACKET "+getL_PACKET()+";";
 	out = out+"Q_COMMAND_TYPE "+cmdType+";";
 
-	if(getM_GOA_LEVEL()!=0 && (int)getQ_COMMAND_TYPE() ==4)
+	if(getM_GOA_LEVEL()!=0 && getQ_COMMAND_TYPE() ==(int)QCmdData::CHANGE_GOA_LEVEL)
 		out = out+"M_GOA_LEVEL "+getM_GOA_LEVEL()+";";
-	if(getNID_OPERATIONAL()!=0 && (int)getQ_COMMAND_TYPE() ==5)
+	if(getNID_OPERATIONAL()!=0 && getQ_COMMAND_TYPE() ==(int)QCmdData::TRN)
 		out = out+"NID_OPERATIONAL "+getNID_OPERATIONAL()+";";
 
 	return out;
