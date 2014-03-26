@@ -5,13 +5,11 @@ using namespace System;
 
 
 
-/*Utilizzo questa classe per serializzare le informazioni sulle fermate presenti nella tabella orario*/
-
-/*
+/*Utilizzo questa classe per serializzare le informazioni sulle fermate presenti nella tabella orario
 Questa classe è utilizzata dalla classe TrenoFermate per gestire le fermate di un singolo treno.
 Un oggetto di tipo fermata rappresenta una fermata di un treno
 */
-// Commento inutile
+
 public ref class Fermata  : public IEquatable<Fermata^>
 {
 	int idStazione;
@@ -21,7 +19,6 @@ public ref class Fermata  : public IEquatable<Fermata^>
 	double tempoMinimoAperturaPorte;
 	int binarioProgrammato;
 	FermataType latoAperturaPorte;
-
 	int iditinerarioentrata;
 	String ^nameitinerarioentrata;
 	int iditinerariouscita;
@@ -53,7 +50,7 @@ public:
 		orarioPartenza = 0;
 		tempoMinimoAperturaPorte = 0;
 		binarioProgrammato = 0;
-		latoAperturaPorte = noApertura;
+		latoAperturaPorte = FermataType::noApertura;
 		iditinerarioentrata=0;
 		nameitinerarioentrata="";
 		iditinerariouscita=0;

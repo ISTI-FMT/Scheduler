@@ -10,6 +10,8 @@ using namespace System::Drawing;
 in loop cosi da verificare se effettivamente l'applicazione è "viva"*/
 
 //questo oggetto rappresenta un controllo che implementa un watch dog
+using namespace System::Diagnostics::CodeAnalysis;
+[ExcludeFromCodeCoverage]
 ref class wdogcontrol : public System::Windows::Forms::UserControl
 {
 private: System::Windows::Forms::Label^  label0;

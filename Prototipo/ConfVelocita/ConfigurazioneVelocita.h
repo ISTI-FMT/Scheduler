@@ -6,7 +6,7 @@ using namespace System::Collections::Generic;
 
 //questa classe viene usarta per leggere il file xml delle configurazioni della velocità
 
-ref class ConfigurazioneVelocita
+public ref class ConfigurazioneVelocita
 {
 
 	Dictionary<int,List<ProfiloVelocita^>^> ^mapidtrenologicopvel;

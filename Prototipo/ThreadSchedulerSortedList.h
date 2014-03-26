@@ -13,8 +13,9 @@
 #include "wdogcontrol.h"
 #include "manager\\ManagerStatoLineaATC.h"
 #include "manager\\ManagerStatoLineaIXL.h"
+#include "AreeCritiche\\AreeCritiche.h"
 #include "Train.h"
-#include "StateObject.h"
+//#include "StateObject.h"
 #include "ControllerListTrain.h"
 #include "ListTrainView.h"
 #include "ListTrainModel.h"
@@ -33,8 +34,11 @@ ref class ThreadSchedulerSortedList
 	EventQueue<physicalTrain^> ^EQueueATO;
 	EventQueue<StateCDB^> ^EQueueATC;
 	EventQueue<List<Fermata^>^> ^EQueueCambioOrario;
+	//EventQueue<int> ^EQueueCambioTrenoPrior;
+	//EventQueue<StateTrain> ^EQueueCambioTrenoStato;
 	TabellaOrario ^tabOrario;
 	TabellaStazioni ^tabItinerari;
+	AreeCritiche ^areeCritiche;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
 	ManagerStatoLineaATC ^managerATC;
 	ManagerStatoLineaIXL ^managerIXL;
@@ -42,16 +46,33 @@ ref class ThreadSchedulerSortedList
 	String ^ipixl;
 	Dictionary<Train^,List<int>^> ^RaccoltaTrenoRequestCDB;
 	ConfigurazioneVelocita ^confVelocita;
+	List<physicalTrain^> ^listatrenipresentati;
 	bool _shouldStop;
+	bool _blockAreeCritiche;
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
 	ControllerListTrain ^controlListtrain;
-	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);;
+	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);
+	Prototipo::ListTrainView ^view;
 public:
 	ThreadSchedulerSortedList(void);
 
 
-	ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E3, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel);
+	ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E3, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel, AreeCritiche^ areeCritiche);
+
+	property bool StopAreecritiche 
+	{
+		bool get()
+		{
+			return _blockAreeCritiche;
+		}
+
+		void set(bool a){
+
+			_blockAreeCritiche=a;
+		}
+
+	}
 
 	void Schedule();
 	void Init();
@@ -60,6 +81,7 @@ public:
 	bool controllacdb(List<int>^lcdb);
 	void ControllaEventiCambioOrario();
 	void RequestStop();
+	
 
 	StateObject ^InizializzeATO(int trn,physicalTrain ^Treno);
 	StateObject ^SendUpdateMissionATO(int trn,physicalTrain ^Treno,List<Fermata^> ^stops);

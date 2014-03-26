@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns="urn:AreeCritiche-schema">
+  <Aree>
+    <Area Id="0" Limite="0">
+      <Cdb Id="13302" />
+      <Cdb Id="501" />
+      <Cdb Id="14302" />
+      <Cdb Id="502" />
+    </Area>
+  </Aree>
+  <Missioni>
+    <Missione Trn="1153">
+      <Cdb Id="13301" />
+      <Cdb Id="501" />
+      <Cdb Id="14301" />
+      <Cdb Id="502" />
+      <Cdb Id="15301" />
+      <Cdb Id="503" />
+      <Cdb Id="12301" />
+      <Cdb Id="400" />
+      <Cdb Id="428" />
+      <Cdb Id="16302" />
+      <Cdb Id="440" />
+      <Cdb Id="448" />
+      <Cdb Id="17302" />
+    </Missione>
+    <Missione Trn="1152">
+      <Cdb Id="13302">
+        <Azione IdArea="0">3</Azione>
+      </Cdb>
+      <Cdb Id="501" />
+      <Cdb Id="14302" />
+      <Cdb Id="502" />
+      <Cdb Id="15301">
+        <Azione IdArea="0">-3</Azione>
+      </Cdb>
+      <Cdb Id="503" />
+      <Cdb Id="12301" />
+      <Cdb Id="400" />
+      <Cdb Id="428" />
+      <Cdb Id="16302" />
+      <Cdb Id="440" />
+      <Cdb Id="448" />
+      <Cdb Id="17302" />
+    </Missione>
+    <Missione Trn="1173">
+      <Cdb Id="17303" />
+      <Cdb Id="449" />
+      <Cdb Id="441" />
+      <Cdb Id="16303" />
+      <Cdb Id="16301" />
+      <Cdb Id="429" />
+      <Cdb Id="401" />
+      <Cdb Id="12303" />
+      <Cdb Id="505" />
+      <Cdb Id="11302" />
+      <Cdb Id="504" />
+      <Cdb Id="10302" />
+    </Missione>
+    <Missione Trn="1151">
+      <Cdb Id="12303" />
+      <Cdb Id="503" />
+      <Cdb Id="15302" />
+      <Cdb Id="502">
+        <Azione IdArea="0">2</Azione>
+      </Cdb>
+      <Cdb Id="14302" />
+      <Cdb Id="501" />
+      <Cdb Id="13302" />
+    </Missione>
+    <Missione Trn="1154">
+      <Cdb Id="10301" />
+      <Cdb Id="504" />
+      <Cdb Id="11301" />
+      <Cdb Id="505" />
+      <Cdb Id="12302" />
+      <Cdb Id="400" />
+      <Cdb Id="428" />
+      <Cdb Id="16302" />
+      <Cdb Id="440" />
+      <Cdb Id="448" />
+      <Cdb Id="17302" />
+    </Missione>
+    <Missione Trn="1166">
+      <Cdb Id="441" />
+      <Cdb Id="16303" />
+      <Cdb Id="16301" />
+      <Cdb Id="429" />
+      <Cdb Id="401" />
+      <Cdb Id="12303" />
+      <Cdb Id="505" />
+      <Cdb Id="11302" />
+      <Cdb Id="504" />
+      <Cdb Id="10302" />
+    </Missione>
+  </Missioni>
+</Document>

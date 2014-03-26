@@ -11,10 +11,13 @@ namespace Prototipo {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Diagnostics::CodeAnalysis;
+
 
 	/// <summary>
 	/// Riepilogo per ListTrainView
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	public ref class ListTrainView : public System::Windows::Forms::Form,IObserver<List<Train^>^>
 	{
 
@@ -29,11 +32,13 @@ namespace Prototipo {
 		TabellaStazioni ^tabItinerari;
 		Dictionary<String^,SingleTrainInfoForm^> ^dictionaryTrainsInfoForm;
 		EventQueue<List<Fermata^>^> ^EQueueCambioOrario;
+		bool _shouldStop;
 	public:
 		ListTrainView(TabellaStazioni ^ti,EventQueue<List<Fermata^>^> ^ECambioOrario)
 		{
 			myDelegateNewTrain = gcnew GoCallback( this, &ListTrainView::setNewTrain );
 			tabItinerari=ti;
+			_shouldStop=false;
 			InitializeComponent();
 			myDelegateDeleteList = gcnew DeleteListCallback(this, &ListTrainView::DeleteList);
 			myDelegatePaint = gcnew PaintCallback(this, &ListTrainView::RePaintList);
@@ -50,12 +55,13 @@ namespace Prototipo {
 		void RePaintList();
 		void PaintTrain();
 		void ViewDeleteList();
+		void RequestStop(){_shouldStop=true;};
 		Void B_Click(System::Object^  sender, System::EventArgs^  e);
 
 		virtual void OnCompleted();
 		virtual void OnError(Exception ^e);
 		virtual void OnNext(List<Train^> ^value);
-		
+
 		virtual void Subscribe(IObservable<List<Train^>^> ^provider);
 		virtual void Unsubscribe();
 
@@ -87,6 +93,7 @@ namespace Prototipo {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(ListTrainView::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->SuspendLayout();
@@ -122,16 +129,30 @@ namespace Prototipo {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(439, 472);
+			this->ControlBox = false;
 			this->Controls->Add(this->tableLayoutPanel1);
 			this->Controls->Add(this->label1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"ListTrainView";
 			this->Text = L"ListTrainView";
-			this->ControlBox=false;
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &ListTrainView::ListTrainView_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
+	private: System::Void ListTrainView_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+				 if(_shouldStop){
+
+					 for each (SingleTrainInfoForm ^var in dictionaryTrainsInfoForm->Values)
+					 {
+						 var->Close();
+					 }
+					 e->Cancel=false;
+				 }else{
+					 e->Cancel=true;
+				 }
+			 }
 	};
 }

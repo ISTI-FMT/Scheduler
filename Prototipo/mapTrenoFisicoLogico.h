@@ -12,17 +12,18 @@ e raccoglierli in una map tra id del treno fisico e una classe che raccoglie le 
 L'ATS associa ad ogni treno fisico un TRN
 -------------------------------------------------------------------------------------------------*/
 
-ref class mapTrenoFisicoLogico
+public ref class mapTrenoFisicoLogico
 {
 Dictionary<int, TrenoFisicoLogico^>^ map;
 public:
 
 	mapTrenoFisicoLogico(void);
 
-	void set_Map(Dictionary<int, TrenoFisicoLogico^>^ m){map=m;};
+	//void set_Map(Dictionary<int, TrenoFisicoLogico^>^ m){map=m;};
 	Dictionary<int, TrenoFisicoLogico^>^ get_Map(){return map;};
 
 	void inizializza();
+	void saveXml(System::IO::Stream ^stream);
 	virtual  System::String^ ToString() override{
 		System::String ^out ="";
 		for each( KeyValuePair<int, TrenoFisicoLogico^> kvp in map )

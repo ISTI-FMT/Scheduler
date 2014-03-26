@@ -7,25 +7,18 @@
 using namespace System::Collections::Generic;
 
 /*Utilizzo questa classe per serializzare le informazioni della tabella orario, 
-la liste delle fermate viene inserita in una mappa la cui chiave è l'id della fermata*/
+la liste delle fermate viene inserita in una mappa la cui chiave è l'id della fermata.
+La classe contiene anche un riferimento alle informazioni presenti in Configurazioneitinerari
+per creare la missione per l'ATO
+*/
 
-
-/*---------------------------------------------------------------------------------------------
-
-L'ATS legge il contenuto della tabella orario da un file di configurazione e memorizza queste informazioni
-in apposite strutture dati.
--------------------------------------------------------------------------------------------------*/
-
-// Questa classe è utilizzata per gestire la tabella orario dell'ATS attraverso una lista di oggetti di tipo TrenoFermate
-ref class TabellaOrario
+public ref class TabellaOrario
 {
 	Dictionary<int, List<Fermata^>^> ^tabella;
 	String ^schemaxsd;
 	TabellaStazioni ^tabItinerari;
 	
-	// funzione che converte una System::String in un std::string
-	// string convertiString2string(System::String ^StringValue);
-	//friend ostream& operator<<(ostream &out, TabellaOrario &tabella);
+	
 public:
 	TabellaOrario(void);
 	TabellaOrario(TabellaStazioni ^T);
@@ -34,15 +27,17 @@ public:
 	int getFirstTRN();
 	// questa funzione legge il file di configurazione contenente la descrizione della tabella orario
 	void leggiTabellaOrario();
-	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan, e riempie i campi del messaggio con i dati relativi
-	// alla missione associata al TRN in questione
+	void ScriviTabellaOrario(System::IO::Stream ^stream);
+	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan le informazioni sui profili velocità, e riempie i campi del messaggio con i dati relativi
+	// al profilo missione associato al TRN passato
 	void setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel);
-	
+	// funzione che prende in ingresso un TRN ed un messaggio di tipo missionPlan le informazioni sui profili velocità e la lista della fermate, e crea
+	// il profilo missione per l'ato
 	void createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops);
 	List<Fermata^>^getItinerariFor(int TRN);
 	List<Fermata^>^getFermateFor(int TRN);
 
-	//TrenoFermate^ getTrenoFermate(int TRN);
+	
 	virtual System::String^ ToString() override;
 };
 

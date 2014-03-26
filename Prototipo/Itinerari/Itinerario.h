@@ -5,7 +5,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 /*utilizzo questa classe per rappresentare le informazioni degli itinerari parsate dal file xml ConfigurazioneItinerari.xml*/
-enum typeItini  {Entrata =0, Uscita=1};
+public enum class typeItini  {Entrata =0, Uscita=1};
 //questa classe rappresenta un itinerario
 public ref class Itinerario
 {
@@ -28,6 +28,7 @@ public:
 			return name;
 		}
 	}
+	
 	property String^ ShortDescName 
 	{
 		String^ get()
@@ -38,7 +39,7 @@ public:
 			}else{
 				dir="-->";
 			}
-			return name+dir;
+			return name+dir+id.ToString();
 		}
 	}
 	Itinerario(typeItini t);

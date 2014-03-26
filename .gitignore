@@ -31,3 +31,5 @@ LogMessagePrototipo2.txt
 release
 *.vsp
 *.psess
+*.coverage
+*.ipch

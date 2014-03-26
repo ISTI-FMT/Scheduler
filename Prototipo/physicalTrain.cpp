@@ -6,11 +6,10 @@ physicalTrain::physicalTrain(void)
 	engineNumber = 0;
 	ipAddress = "";
 	tcpPort = 0;
+	cdblastpos = 0;
 }
 
-physicalTrain::~physicalTrain(void)
-{
-}
+
 
 bool physicalTrain::Update(physicalTrain ^t){
 	bool ret = false;
@@ -23,6 +22,10 @@ bool physicalTrain::Update(physicalTrain ^t){
 			tcpPort = t->getTcpPort();
 			ret=true;
 		}
+		if(t->getCDBLastPos()!=getCDBLastPos()){
+			cdblastpos = t->getCDBLastPos();
+			ret=true;
+		}
 	}
 	return ret;
 }
@@ -32,6 +35,15 @@ physicalTrain ^physicalTrain::Clone(){
 
 	return gcnew physicalTrain(engineNumber,ipAddress,tcpPort);
 
+}
+
+bool physicalTrain::Equals(physicalTrain ^t2) {
+	if((engineNumber==t2->getEngineNumber()) & (getIpAddress()==t2->getIpAddress())){
+		if((t2->getTcpPort()==getTcpPort()) &(t2->getCDBLastPos()==getCDBLastPos())){
+			return true;
+		}
+	}
+	return false;
 }
 
 System::String ^physicalTrain::ToString() {

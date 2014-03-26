@@ -177,13 +177,13 @@ while 1:
 		data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
 		buff = map(ord,data)
 		result = des_messageRBC_new(buff)
-		if result[0]==65280:
+		if (result[0]==65280) or (result[0]==7732):
 			list[0]=result
-		if result[0]==65615:
+		if (result[0]==65615) or (result[0]==7723):
 			list[1]=result
-		if result[0]==65315:
+		if (result[0]==65315) or (result[0]==7237):
 			list[2]=result
-		if result[0]==65316:
+		if (result[0]==65316) or (result[0]==7327):
 			list[3]=result
 		if result[0]==65282:
 			list[4]=result

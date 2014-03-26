@@ -3,10 +3,10 @@
 
 pacchettoPositionDataATC::pacchettoPositionDataATC(void)
 {
-	setNID_PACKET(PacchettoATC::PacchettoPositionDataATC);
-	L_PACKET = 0;
-	N_ITER=0;
-	ListPostionData = gcnew List<StateCDB^>();
+	setNID_PACKET(PacchettoID::PositionDataATC);
+	setL_PACKET( 0);
+	setN_ITER(0);
+	setCDB( gcnew List<StateCDB^>());
 }
 
 int pacchettoPositionDataATC::getSize()
@@ -27,16 +27,16 @@ int pacchettoPositionDataATC::getSize()
 System::String^ pacchettoPositionDataATC::toPrint(){
 	String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
 
-	if(ListPostionData->Count>0)
-		out = out+ListPostionData[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	if(getListCDB()->Count>0)
+		out = out+getListCDB()[0]->ToString();
+	out = out+"N_ITER: "+getN_ITER()+";";
 
-	for( int i=1;i<ListPostionData->Count;i++)
+	for( int i=1;i<getListCDB()->Count;i++)
 	{
-		out = out+ListPostionData[i]->ToString();
+		out = out+getListCDB()[i]->ToString();
 
 	}
 
@@ -94,7 +94,7 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer, int offset)
 		int tNID_OPERATIONAL  =utility::pop(buffer, 32, 104);
 		int tNID_CDB =utility::pop(buffer, 32, 136);
 
-		ListPostionData->Add(gcnew StateCDB(tNID_CDB,QStateCDB::cdbOccupato,QStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
+		setCDB(gcnew StateCDB(tNID_CDB,QStateCDB::cdbOccupato,QStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
 		setN_ITER(utility::pop(buffer, 16, 168));
 		int offset = 184;
 
@@ -107,7 +107,7 @@ void pacchettoPositionDataATC::deserialize(array<Byte>^buffer, int offset)
 			tNID_CDB=utility::pop(buffer, 32, offset);
 			offset += 32;
 
-			ListPostionData->Add(gcnew  StateCDB(tNID_CDB,QStateCDB::cdbOccupato,QStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
+			setCDB(gcnew  StateCDB(tNID_CDB,QStateCDB::cdbOccupato,QStateDeviatoio::deviatoioStatoIgnoto,tNID_OPERATIONAL,tNID_ENGINE));
 		}
 	}
 

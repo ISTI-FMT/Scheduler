@@ -54,16 +54,16 @@ void Prototipo::FormStatoLineaATC::aggiorna(){
 
 void  Prototipo::FormStatoLineaATC::findandsetCDB(int id, int stato, int nid_op, int nid_engine){
 	if(listbuttonCDB->ContainsKey(id)){
-		if(stato==QStateCDB::cdbOccupato){
+		if(stato==(int)QStateCDB::cdbOccupato){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::Red;
 			String ^texttoltip =String::Format("NID_O {0}\n\rNID_E {1}", nid_op, nid_engine);
 			ToolTip1->SetToolTip(listbuttonCDB[id], texttoltip );
 		}
-		if(stato==QStateCDB::cdbLibero){
+		if(stato==(int)QStateCDB::cdbLibero){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::Gray;
 			ToolTip1->SetToolTip(listbuttonCDB[id], "Libero" );
 		}
-		if(stato==QStateCDB::cdbImpegnato){
+		if(stato==(int)QStateCDB::cdbImpegnato){
 			listbuttonCDB[id]->BackColor= System::Drawing::Color::White;
 			String ^texttoltip =String::Format("NID_O {0}\n\rNID_E {1}", nid_op, nid_engine);
 			ToolTip1->SetToolTip(listbuttonCDB[id], texttoltip );

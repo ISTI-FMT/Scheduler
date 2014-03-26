@@ -12,31 +12,7 @@ void ManagerStatoLineaIXL::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 	for each (StateCDB ^cdb in listaCDB)
 	{
 		addCheckAndSet(cdb,source);
-		//if(!tabellaCDB->ContainsKey(cdb->getNID_CDB()))
-		//{
-		//	tabellaCDB->Add(cdb->getNID_CDB(), cdb);
-		//	// segnala l'evento!!!
-		//	for each (IObserver<Event^>^ observer in observers)
-		//	{
-		//		observer->OnNext(gcnew Event(cdb->Clone(),source));
-		//	}
-
-
-		//}
-		//else 
-		//{
-		//	bool mod = tabellaCDB[cdb->getNID_CDB()]->Update(cdb);
-		//	if(mod)
-		//	{
-
-		//		// segnala evento!!!
-		//		for each (IObserver<Event^>^ observer in observers)
-		//		{
-		//			observer->OnNext(gcnew Event(cdb->Clone(),source));
-		//		}
-		//	}
-
-		//}
+		
 	}
 }
 
@@ -88,33 +64,7 @@ void ManagerStatoLineaIXL::addCheckAndSet(List<StateItinerario^> ^listaItin, Str
 {
 	for each (StateItinerario ^itin in listaItin)
 	{
-		if(!tabellaItin->ContainsKey(itin->getNID_ITIN()))
-		{
-			tabellaItin->Add(itin->getNID_ITIN(), itin);
-			// segnala l'evento!!!
-			for each (IObserver<Event<StateItinerario^>^>^ observer in observers)
-			{
-				Event<StateItinerario^> ^evento = gcnew Event<StateItinerario^>(itin->Clone());
-
-				observer->OnNext(evento);
-
-			}
-		}
-		else 
-		{
-			bool mod = tabellaItin[itin->getNID_ITIN()]->Update(itin);
-			if(mod)
-			{
-
-				// segnala evento!!!
-				for each (IObserver<Event<StateItinerario^>^>^ observer in observers)
-				{
-					Event<StateItinerario^> ^evento = gcnew Event<StateItinerario^>(itin->Clone());
-					observer->OnNext(evento);
-				}
-			}
-
-		}
+		addCheckAndSet(itin,source);
 	}
 }
 

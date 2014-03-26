@@ -3,11 +3,11 @@
 
 pacchettoStatoSegnali::pacchettoStatoSegnali(void)
 {
-	setNID_PACKET(PacchettoIXL::PacchettoStatoSegnali);
-	L_PACKET = 0;
+	setNID_PACKET(PacchettoID::StatoSegnali);
+	setL_PACKET(0);
 
-	N_ITER = 0;
-	vStatoSegnale = gcnew List<StateSegnale^>();
+	setN_ITER(0);
+	setstatoSegnale( gcnew List<StateSegnale^>());
 }
 
 void pacchettoStatoSegnali::setN_ITER(int N)
@@ -64,21 +64,21 @@ void pacchettoStatoSegnali::deserialize(array<Byte>^buffer, int offset)
 		shift += 32;
 		int Q_STATOSEGN=utility::pop(buffer, 5, offset + shift);
 		shift += 5;
-		vStatoSegnale->Add(gcnew StateSegnale(NID_SEGN,Q_STATOSEGN));
+		setstatoSegnale(gcnew StateSegnale(NID_SEGN,Q_STATOSEGN));
 	}
 }
 
 System::String ^pacchettoStatoSegnali::ToString(){
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+vStatoSegnale[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+getstatoSegnale()[0]->ToString();
+	out = out+"N_ITER: "+getN_ITER()+";";
 
-	for( int i =1; i <vStatoSegnale->Count;i++)
+	for( int i =1; i <getstatoSegnale()->Count;i++)
 	{
-		out = out+vStatoSegnale[i]->ToString();
+		out = out+getstatoSegnale()[i]->ToString();
 	}
 
 	return out;

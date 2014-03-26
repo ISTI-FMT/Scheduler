@@ -5,9 +5,11 @@
 /*
 Rappresenta i dati inviati dal pacchetto ComandoBlocco che l'ATS invia all'IXL
 */
-enum  QCmdBlocco { direzioneLegale = 1, direzioneIllegale = 0};
+public enum class  QCmdBlocco { direzioneLegale = 1, direzioneIllegale = 0};
+using namespace System::Diagnostics::CodeAnalysis;
 
-ref class pacchettoComandoBlocco : pacchettoBase
+[ExcludeFromCodeCoverage]
+public ref class pacchettoComandoBlocco : pacchettoBase
 {
 	int L_PACKET ;
 	int NID_BLOCCO ;
@@ -19,7 +21,7 @@ public:
 	int getL_PACKET(){return L_PACKET;};
 	void setNID_BLOCCO(int N){NID_BLOCCO = N;};
 	int getNID_BLOCCO(){return NID_BLOCCO;};
-	void setQ_CMDBLOCCO(QCmdBlocco Q){Q_CMDBLOCCO = Q;};
+	void setQ_CMDBLOCCO(QCmdBlocco Q){Q_CMDBLOCCO =(int) Q;};
 	int getQ_CMDBLOCCO(){return Q_CMDBLOCCO;};
 
 	virtual int getSize() override;

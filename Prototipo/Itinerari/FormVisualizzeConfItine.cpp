@@ -25,6 +25,7 @@ void FormVisualizzeConfItine::Inizialize(){
 
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+	this->Icon =  gcnew System::Drawing::Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("app.ico"));
 	this->ClientSize = System::Drawing::Size(830, 415);
 	this->Controls->Add(dataGridView1);
 	this->Name = L"Tabella Configurazione Itinerari";
@@ -55,45 +56,46 @@ void FormVisualizzeConfItine::Inizialize(){
 
 	for each( KeyValuePair<int , stazione^> kvp in tabella->getMap() )
 	{
-
-		String ^po=kvp.Key+"\n\r";
-		dataGridView1->Rows[riga]->Cells[0]->Value=po;
-
 		stazione ^station =kvp.Value;
-		// dataGridView1->Rows[riga]->Cells[1]->Value= station->get_idStazione();
-		dataGridView1->Rows[riga]->Cells[1]->Value= station->get_NomeStazione();
+		String ^po=kvp.Key+"\n\r";
+		if(station->get_idStazione()>999){
+			dataGridView1->Rows[riga]->Cells[0]->Value=po;
 
-		for each (KeyValuePair<int,List<Itinerario^>^> ^ikvp in station->getItinerari())
-		{
 
-			dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->Key;
-			List<Itinerario^>^listitn = ikvp->Value;
-			for each (Itinerario ^itvar in listitn)
+			// dataGridView1->Rows[riga]->Cells[1]->Value= station->get_idStazione();
+			dataGridView1->Rows[riga]->Cells[1]->Value= station->get_NomeStazione();
+
+			for each (KeyValuePair<int,List<Itinerario^>^> ^ikvp in station->getItinerari())
 			{
-				dataGridView1->Rows[riga]->Cells[3]->Value=itvar->getId();
-				dataGridView1->Rows[riga]->Cells[4]->Value=itvar->getName();
-				dataGridView1->Rows[riga]->Cells[5]->Value=itvar->getLrgb();
-				
-				dataGridView1->Rows[riga]->Cells[7]->Value=itvar->getLatoBanchina();
-				dataGridView1->Rows[riga]->Cells[8]->Value=itvar->getNextCDB();
-				//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
-				dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
-				dataGridView1->Rows[riga]->Cells[10]->Value=itvar->get_nextstation();
-				List<int> ^lcdb = itvar->getLCDB();
-				for each (int cdbvar in lcdb)
+
+				dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->Key;
+				List<Itinerario^>^listitn = ikvp->Value;
+				for each (Itinerario ^itvar in listitn)
 				{
-					if(cdbvar>0){
-						dataGridView1->Rows[riga]->Cells[11]->Value=cdbvar;
+					dataGridView1->Rows[riga]->Cells[3]->Value=itvar->getId();
+					dataGridView1->Rows[riga]->Cells[4]->Value=itvar->getName();
+					dataGridView1->Rows[riga]->Cells[5]->Value=itvar->getLrgb();
+
+					dataGridView1->Rows[riga]->Cells[7]->Value=itvar->getLatoBanchina();
+					dataGridView1->Rows[riga]->Cells[8]->Value=itvar->getNextCDB();
+					//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
+					dataGridView1->Rows[riga]->Cells[9]->Value=itvar->getPorteBanchina();
+					dataGridView1->Rows[riga]->Cells[10]->Value=itvar->get_nextstation();
+					List<int> ^lcdb = itvar->getLCDB();
+					for each (int cdbvar in lcdb)
+					{
+						if(cdbvar>0){
+							dataGridView1->Rows[riga]->Cells[11]->Value=cdbvar;
+						}
+						riga++;
 					}
-					riga++;
+
+
 				}
 
 
 			}
-
-
 		}
-
 	}
 
 

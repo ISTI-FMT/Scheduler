@@ -8,7 +8,7 @@ Train::Train(int p, int trn, physicalTrain ^pt){
 	PhysicalTrain=pt;
 	Listafermate= gcnew List<Fermata^>();
 	Statodeltreno=StateTrain::NONPRONTO;
-	indicelistaitinerari=0;
+	indicelistafermata=0;
 	Priorita=p;
 	PhysicalTrainNumber=pt->getEngineNumber();
 }
@@ -18,7 +18,7 @@ Train::Train(int p, physicalTrain ^pt){
 	PhysicalTrain=pt;
 	Listafermate= gcnew List<Fermata^>();
 	Statodeltreno=StateTrain::NONPRONTO;
-	indicelistaitinerari=0;
+	indicelistafermata=0;
 	Priorita=p;
 	PhysicalTrainNumber=pt->getEngineNumber();
 
@@ -29,8 +29,8 @@ Train::Train(int p, int trn,physicalTrain ^pt, List<Fermata^> ^listf){
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
 	Listafermate=listf;
-	Statodeltreno=StateTrain::USCITASTAZIONE;
-	indicelistaitinerari=0;
+	Statodeltreno=StateTrain::PRONTO;
+	indicelistafermata=0;
 	Priorita=p;
 	PhysicalTrainNumber=pt->getEngineNumber();
 	setTimeStampNextEvent(listf[0]->getOrarioPartenza());
@@ -43,8 +43,8 @@ Train::Train(int p, int trn,physicalTrain ^pt, List<Fermata^> ^listf, double tim
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
 	Listafermate=listf;
-	Statodeltreno=StateTrain::USCITASTAZIONE;
-	indicelistaitinerari=0;
+	Statodeltreno=StateTrain::PRONTO;
+	indicelistafermata=0;
 	Priorita=p;
 	PhysicalTrainNumber=pt->getEngineNumber();
 	setTimeStampNextEvent(time);
@@ -58,7 +58,7 @@ Train::Train(int p, int trn, physicalTrain ^pt, List<Fermata^> ^listf, StateTrai
 	PhysicalTrain=pt;
 	Listafermate=listf;
 	Statodeltreno=st;
-	indicelistaitinerari=0;
+	indicelistafermata=0;
 	Priorita=p;
 	PhysicalTrainNumber=pt->getEngineNumber();
 	setTimeStampNextEvent(getOrarioPartenza());
@@ -66,7 +66,7 @@ Train::Train(int p, int trn, physicalTrain ^pt, List<Fermata^> ^listf, StateTrai
 
 Double Train::getOrarioPartenza(){
 
-	return Listafermate[indicelistaitinerari]->getOrarioPartenza();
+	return Listafermate[indicelistafermata]->getOrarioPartenza();
 }
 
 void  Train::goNextItinerario(){
@@ -77,7 +77,10 @@ void  Train::goNextItinerario(){
 	}else{
 		if(Statodeltreno==StateTrain::USCITASTAZIONE){
 			Statodeltreno=StateTrain::ENTRATASTAZIONE;
-			indicelistaitinerari++;
+			
+			if(indicelistafermata<Listafermate->Count){
+				indicelistafermata++;
+			}
 		}
 	}
 }
@@ -85,21 +88,25 @@ void  Train::goNextItinerario(){
 KeyValuePair<int, int> ^Train::getStazioneItinerario(){
 	switch (Statodeltreno)
 	{
-	case PRONTO:
+	case StateTrain::PRONTO:{
+
+		return gcnew  KeyValuePair<int, int>();
 		break;
-	case USCITASTAZIONE:{
-		int itinUscita = Listafermate[indicelistaitinerari]->getIditinerarioUscita();
-		int idstazione = Listafermate[indicelistaitinerari]->getIdStazione();
+
+				}
+	case StateTrain::USCITASTAZIONE:{
+		int itinUscita = Listafermate[indicelistafermata]->getIditinerarioUscita();
+		int idstazione = Listafermate[indicelistafermata]->getIdStazione();
 		return gcnew  KeyValuePair<int, int>(idstazione, itinUscita);
 		break;}
-	case ENTRATASTAZIONE:{
-		int initEntrata = Listafermate[indicelistaitinerari]->getIditinerarioEntrata();
-		int idstazione = Listafermate[indicelistaitinerari]->getIdStazione();
+	case StateTrain::ENTRATASTAZIONE:{
+		int initEntrata = Listafermate[indicelistafermata]->getIditinerarioEntrata();
+		int idstazione = Listafermate[indicelistafermata]->getIdStazione();
 		return gcnew  KeyValuePair<int, int>(idstazione, initEntrata);
 		break;}
-	case NONPRONTO:
+	case StateTrain::NONPRONTO:
 		break;
-	case TERMINATO:
+	case StateTrain::TERMINATO:
 		break;
 	default:
 		break;

@@ -1,5 +1,6 @@
 #include "TextBoxTraceListener.h"
 #using <system.drawing.dll>
+#include "..//SchedulerForm.h"
 
 using namespace  System::Diagnostics;
 using namespace  System::Windows::Forms;
@@ -35,12 +36,14 @@ void TextBoxTraceListener::init(void){
 	form->Controls->Add(textBox);
 	form->Name = L"Message Log Monitor";
 	form->Text = L"Message Log Monitor";
-	form->ResumeLayout(false);
+	form->ResumeLayout(true);
 	form->PerformLayout();
 	form->SuspendLayout();
 
 	myDelegate = gcnew SetTextCallback( this, &TextBoxTraceListener::SetText );
 	form->Resize += gcnew System::EventHandler(this, &TextBoxTraceListener::Form_Resize);
+	form->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &TextBoxTraceListener::TextBoxTraceListener_FormClosing);
+	form->Icon =  gcnew Icon(System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("app.ico"));
 	//form->ShowDialog();
 	//Application::Run(form);
 	form->Visible=true;
@@ -48,6 +51,14 @@ void TextBoxTraceListener::init(void){
 
 };
 
+ System::Void TextBoxTraceListener::TextBoxTraceListener_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e){
+	
+	if(e->CloseReason==System::Windows::Forms::CloseReason::UserClosing){
+	e->Cancel=true;
+	 }else{
+		 e->Cancel=false;
+	 }
+ }
 void TextBoxTraceListener::WriteLine(String ^h){
 	TextWriterTraceListener::WriteLine(h+"\r\n");
 	Write(h+"\r\n");
@@ -62,11 +73,11 @@ void TextBoxTraceListener::Write(String ^h){
 		}
 		form->Invoke( myDelegate, h );//try
 	}catch(Exception ^e){
-		init();
-		form->Invoke( myDelegate, h );
+		//init();
+		//form->Invoke( myDelegate, h );
 		Console::WriteLine("Avevi chiuso la finetra del log!!! ",e->Message);
 #ifdef TRACE
-		Logger::Exception(e,"TextBoxTraceListener");  
+	//	Logger::Exception(e,"TextBoxTraceListener");  
 #endif // TRACE
 	}
 };

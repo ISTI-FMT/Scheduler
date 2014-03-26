@@ -54,30 +54,31 @@ void FormVisualizzeConfFermate::Inizialize(){
 
 	for each( KeyValuePair<int ,  stazione ^> ^kvp in tabella->getMap() )
 	{
-
-		String ^po=kvp->Value->get_NomeStazione()+"\n\r";
-		dataGridView1->Rows[riga]->Cells[0]->Value=po;
-
-		
-		List<binario^> ^binari =kvp->Value->getBinari();
-
-		for each (binario^ ikvp in binari)
-		{	
-			dataGridView1->Rows[riga]->Cells[1]->Value= ikvp->getNameBin();
-			dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->getBin();
-			dataGridView1->Rows[riga]->Cells[3]->Value=ikvp->getDirezione();
-			dataGridView1->Rows[riga]->Cells[4]->Value=ikvp->get_info_lrgb();
-			dataGridView1->Rows[riga]->Cells[5]->Value=ikvp->getD_stop();
-			dataGridView1->Rows[riga]->Cells[6]->Value=ikvp->getPorteBanchina();
-			dataGridView1->Rows[riga]->Cells[7]->Value=ikvp->getLatoBanchina();
-			dataGridView1->Rows[riga]->Cells[8]->Value=ikvp->getNextCDB();
-			//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
-			dataGridView1->Rows[riga]->Cells[9]->Value=ikvp->getPrevCDB();
-			dataGridView1->Rows[riga]->Cells[10]->Value=ikvp->getCDB ();
+		if(kvp->Value->get_idStazione()<999){
+			String ^po=kvp->Value->get_NomeStazione()+"\n\r";
+			dataGridView1->Rows[riga]->Cells[0]->Value=po;
 
 
-			riga++;
+			List<binario^> ^binari =kvp->Value->getBinari();
 
+			for each (binario^ ikvp in binari)
+			{	
+				dataGridView1->Rows[riga]->Cells[1]->Value= ikvp->getNameBin();
+				dataGridView1->Rows[riga]->Cells[2]->Value=ikvp->getBin();
+				dataGridView1->Rows[riga]->Cells[3]->Value=ikvp->getDirezione();
+				dataGridView1->Rows[riga]->Cells[4]->Value=ikvp->get_info_lrgb();
+				dataGridView1->Rows[riga]->Cells[5]->Value=ikvp->getD_stop();
+				dataGridView1->Rows[riga]->Cells[6]->Value=ikvp->getPorteBanchina();
+				dataGridView1->Rows[riga]->Cells[7]->Value=ikvp->getLatoBanchina();
+				dataGridView1->Rows[riga]->Cells[8]->Value=ikvp->getNextCDB();
+				//	 dataGridView1->Rows[riga]->Cells[10]->Value=itvar->getPrevCDB();
+				dataGridView1->Rows[riga]->Cells[9]->Value=ikvp->getPrevCDB();
+				dataGridView1->Rows[riga]->Cells[10]->Value=ikvp->getCDB ();
+
+
+				riga++;
+
+			}
 		}
 
 	}

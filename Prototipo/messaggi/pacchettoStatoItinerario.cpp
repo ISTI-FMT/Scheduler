@@ -3,10 +3,10 @@
 
 pacchettoStatoItinerario::pacchettoStatoItinerario(void)
 {
-	setNID_PACKET(PacchettoIXL::PacchettoStatoItinerario);
-	L_PACKET = 0;
-	N_ITER = 0;
-	vStatoItinerario = gcnew List<StateItinerario^>();
+	setNID_PACKET(PacchettoID::StatoItinerario);
+	setL_PACKET ( 0);
+	setN_ITER ( 0);
+	setItinerario(gcnew List<StateItinerario^>());
 }
 
 // metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
@@ -58,7 +58,7 @@ void pacchettoStatoItinerario::deserialize(array<Byte>^buffer, int offset)
 	L_PACKET=utility::pop(buffer, 13, offset + 8);
 	int tNID_ITIN   =utility::pop(buffer, 32, offset + 21);
 	int tQ_STATOITIN = utility::pop(buffer, 2, offset + 53);
-	vStatoItinerario->Add(gcnew StateItinerario(tNID_ITIN,(QStateItineraio)tQ_STATOITIN));
+	vStatoItinerario->Add(gcnew StateItinerario(tNID_ITIN,tQ_STATOITIN));
 	setN_ITER(utility::pop(buffer, 16, offset + 55));
 	int shift = 71;
 	for(int i = 0; i < N_ITER; ++i)
@@ -67,7 +67,7 @@ void pacchettoStatoItinerario::deserialize(array<Byte>^buffer, int offset)
 		shift += 32;
 		int Q_STATOITIN=utility::pop(buffer, 2, offset + shift);
 		shift += 2;
-		vStatoItinerario->Add(gcnew StateItinerario(NID_ITIN,(QStateItineraio)Q_STATOITIN));
+		vStatoItinerario->Add(gcnew StateItinerario(NID_ITIN,Q_STATOITIN));
 	}
 }
 
@@ -75,14 +75,14 @@ void pacchettoStatoItinerario::deserialize(array<Byte>^buffer, int offset)
 System::String ^pacchettoStatoItinerario::ToString(){
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+vStatoItinerario[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+getItinerario()[0]->ToString();
+	out = out+"N_ITER: "+getN_ITER()+";";
 
-	for ( int i=1;i<vStatoItinerario->Count;i++)
+	for ( int i=1;i<getItinerario()->Count;i++)
 	{
-		out = out+vStatoItinerario[i]->ToString();
+		out = out+getItinerario()[i]->ToString();
 	}
 
 	return out;

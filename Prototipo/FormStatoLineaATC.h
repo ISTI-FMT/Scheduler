@@ -1,6 +1,6 @@
 #pragma once
-#include "tableLayoutPanelAllCDB.h"
-#include "..\\EventQueue.h"
+#include "form\\tableLayoutPanelAllCDB.h"
+#include "EventQueue.h"
 
 /*Utilizzo questa classe per rappresentare graficamente una form che contiene le informazioni sullo stato  dei cdb 
 dei messaggi stato della linea dell'ATC*/
@@ -17,11 +17,14 @@ namespace Prototipo {
 	using namespace System::Net::Sockets;
 	using namespace System::Threading;
 	using namespace System::Threading::Tasks;
+	using namespace System::Diagnostics::CodeAnalysis;
+
 
 
 	/// <summary>
 	/// Riepilogo per FormStatoLineaATC
 	/// </summary>
+	[ExcludeFromCodeCoverage]
 	ref class FormStatoLineaATC : public System::Windows::Forms::Form , IObserver<Event<StateCDB^>^>
 	{
 		Dictionary<int,Button^> ^listbuttonCDB;
@@ -95,20 +98,30 @@ namespace Prototipo {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(FormStatoLineaATC::typeid));
 			this->SuspendLayout();
 			// 
 			// FormStatoLineaATC
 			// 
-			this->ControlBox=false;
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1240, 378);
+			this->ControlBox = false;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"FormStatoLineaATC";
 			this->Text = L"FormStatoLineaATC";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &FormStatoLineaATC::FormStatoLineaATC_FormClosing);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+	private: System::Void FormStatoLineaATC_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+				if(_shouldStop){
+				 e->Cancel=false;
+				}else{
+					e->Cancel=true;
+				}
+			 }
 	};
 }

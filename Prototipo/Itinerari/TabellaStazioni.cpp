@@ -14,7 +14,8 @@ using namespace System::Xml::Schema;
 TabellaStazioni::TabellaStazioni(void)
 {
 	mapidstazioneitinerari= gcnew Dictionary<int,stazione^ >() ;
-
+	leggifileconfigurazioneItinerari();
+	leggifileconfigurazioneFermate();
 
 }
 
@@ -269,6 +270,24 @@ int TabellaStazioni::get_CdbPrecItinerario(int stazione, int iditin){
 	return result;
 }
 
+	int TabellaStazioni::get_CdbFermata(int stazione, int bin ){
+		int result=0;
+	if(mapidstazioneitinerari->ContainsKey(stazione)){
+		
+			for each (binario ^var in mapidstazioneitinerari[stazione]->getBinari())
+			{
+				if(var->getBin()==bin){
+					return var->getCDB();
+				}
+			}
+			
+			
+		
+
+	}
+	return result;
+
+	}
 
 
 int TabellaStazioni::get_CdbSuccItinerario(int stazione, int iditin){

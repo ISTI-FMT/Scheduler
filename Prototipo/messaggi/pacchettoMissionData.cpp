@@ -5,12 +5,13 @@
 
 pacchettoMissionData::pacchettoMissionData()
 {
-	setNID_PACKET(PacchettoATO::PacchettoMissionData);
-	L_PACKET = 0;
-	Q_SCALE = QSCALEMissionData::M;
-	N_ITER1 = 0;
-	mS1_vect = gcnew List<ProfiloVelocita^>();
-	mS2_vect = gcnew List<Mission^>();
+	setNID_PACKET(PacchettoID::MissionData);
+	setL_PACKET( 0);
+	setQ_SCALE(QSCALEMissionData::M);
+	setN_ITER1(0);
+	setN_ITER2(0);
+	setPV(gcnew List<ProfiloVelocita^>());
+	setMission(gcnew List<Mission^>());
 }
 
 void pacchettoMissionData::setN_ITER1(int N)
@@ -158,23 +159,23 @@ System::String ^ pacchettoMissionData::ToString()
 {
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+"Q_SCALE: "+Q_SCALE+";";
-	out = out+mS1_vect[0]->ToString();
-	out = out+"N_ITER1: "+N_ITER1+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+"Q_SCALE: "+getQ_SCALE()+";";
+	out = out+getPV()[0]->ToString();
+	out = out+"N_ITER1: "+getN_ITER1()+";";
 
-	for( int i=1;i<mS1_vect->Count;i++)
+	for( int i=1;i<getPV()->Count;i++)
 	{
-		out = out+mS1_vect[i]->ToString();
+		out = out+getPV()[i]->ToString();
 	}
 
-	out = out+ mS2_vect[0]->ToString();
-	out = out+"N_ITER2: "+N_ITER2+";";
+	out = out+ getlistMission()[0]->ToString();
+	out = out+"N_ITER2: "+getN_ITER2()+";";
 
-	for( int i=1;i<mS2_vect->Count;i++)
+	for( int i=1;i<getlistMission()->Count;i++)
 	{
-		out = out+ mS2_vect[i]->ToString();
+		out = out+ getlistMission()[i]->ToString();
 	}
 	
 	return out;

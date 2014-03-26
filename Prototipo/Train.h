@@ -9,7 +9,7 @@ using namespace System::Globalization;
 
 //questa classe viene usata per rappresentare il treno nella lista pronti
 
-enum  StateTrain { PRONTO = 0, USCITASTAZIONE = 1, ENTRATASTAZIONE = 2,  NONPRONTO = 3, TERMINATO=4};
+public enum class StateTrain  { PRONTO = 0, USCITASTAZIONE = 1, ENTRATASTAZIONE = 2,  NONPRONTO = 3, TERMINATO=4};
 
 public ref class Train : public IComparable<Train^>
 { 
@@ -18,7 +18,7 @@ public ref class Train : public IComparable<Train^>
 	physicalTrain ^PhysicalTrain;
 	List<Fermata^> ^Listafermate;
 	StateTrain Statodeltreno;
-	int indicelistaitinerari;
+	int indicelistafermata;
 	int Priorita;
 	int PhysicalTrainNumber;
 public:
@@ -32,6 +32,7 @@ public:
 	StateTrain getStatoTreno(){return Statodeltreno;};
 	void setStatoTreno(StateTrain st){Statodeltreno=st;};
 	void setListaFermate(List<Fermata^> ^listIt){Listafermate=listIt; };
+	int getindex(){return indicelistafermata;};
 	KeyValuePair<int, int> ^getStazioneItinerario();
 	void changeOrari( List<Fermata^> ^nuoviorari);
 	List<Fermata^>^getListaFermate(){return Listafermate; };

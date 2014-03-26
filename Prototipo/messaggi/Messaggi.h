@@ -22,11 +22,11 @@ Rappresenta un messaggio cosi come definito nei documenti di specifica
 e contiene i metodi per serializzare e desirializzare un messaggio
 */
 
-enum  MessATC{ StatoLineaATC = 11,  FaultReportingATC = 12 };
-enum  MessIXL{ StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231};
-enum  MessATO{ MissionPlan = 200,  FaultReportingATO = 213, UnconditionCommand=201, Acknol=210,Presentation=215 };
+public enum class  MessageID : int { StatoLineaATC = 11,  FaultReportingATC = 12, StatoLineaIXL = 1, 
+	FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231,MissionPlan = 200,  FaultReportingATO = 213,
+	UnconditionCommand=201, Acknol=210,Presentation=215 };
 
-ref class Messaggi
+public ref class Messaggi
 {
 	int NID_MESSAGE;
 	int L_MESSAGE;
@@ -70,12 +70,14 @@ private:
 	void set_pacchettoPresentazione(){ pgkPres = gcnew pacchettopresentazione;};
 	void set_pacchettoMissionData(){ pkgMP = gcnew pacchettoMissionData;};
 	void set_pacchettoAcknowledgement(){ pkgAck = gcnew pacchettoAcknowledgement;};
+	void set_pacchettoStatoScudetti(){pkgStatoScudetti = gcnew pachettoStatoScudetti;};
 
 	void serialize(array<Byte>^buffer);
 
 public:
 	Messaggi(void);
-	Messaggi(int NID_MESSAGE);
+	Messaggi(MessageID NID) ;
+	
 
 	int getNID_MESSAGE(){return NID_MESSAGE;};
 	int getL_MESSAGE(){return L_MESSAGE;};

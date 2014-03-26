@@ -6,7 +6,7 @@
 Rappresenta le informazioni contenute nel pacchetto End che l'ATS invia dal IXL in vari messaggi
 */
 
-ref class pacchettoEnd : pacchettoBase
+public ref class pacchettoEnd : pacchettoBase
 {
 public:
 	pacchettoEnd(void);
