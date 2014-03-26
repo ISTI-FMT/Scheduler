@@ -6,7 +6,7 @@ pacchettoComandoItinerari::pacchettoComandoItinerari(void)
 	setNID_PACKET(PacchettoID::ComandoItinerari);
 	setL_PACKET ( 0);
 	setNID_ITIN (0);
-	Q_CMDITIN = 0;
+	setQ_CMDITIN(QCmdItinerari::distruzione);
 }
 
 int pacchettoComandoItinerari::getSize()

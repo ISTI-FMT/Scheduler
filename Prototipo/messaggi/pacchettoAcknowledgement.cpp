@@ -6,7 +6,7 @@ pacchettoAcknowledgement::pacchettoAcknowledgement(void)
 	setNID_PACKET(PacchettoID::MissionAck);
 	setL_PACKET(0);
 	setT_TRAIN(0);
-	Q_MISSION_RESPONSE = 0;
+	setQ_MISSION_RESPONSE(QMissionResponse::MissioneRifiutata);
 }
 
 void pacchettoAcknowledgement::serialize(array<Byte>^buffer, int offset)

@@ -79,6 +79,11 @@ namespace SchedulerATSTest {
 				Assert::AreEqual(0,target->get_CdbPrecItinerario(110, 1));
 				CollectionAssert::AllItemsAreNotNull(target->get_Cdb_Itinerario(stazione, iditin));
 
+				Assert::IsNotNull(target->get_CdbFermata(400,1));
+				Assert::IsNotNull(target->get_Cdb_Itinerario(13000,901));
+
+
+
 				Assert::IsNotNull(target->ToString());
 
 			}

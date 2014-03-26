@@ -19,7 +19,7 @@ public:
 
 	mapTrenoFisicoLogico(void);
 
-	void set_Map(Dictionary<int, TrenoFisicoLogico^>^ m){map=m;};
+	//void set_Map(Dictionary<int, TrenoFisicoLogico^>^ m){map=m;};
 	Dictionary<int, TrenoFisicoLogico^>^ get_Map(){return map;};
 
 	void inizializza();

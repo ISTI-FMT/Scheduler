@@ -53,7 +53,7 @@ void pacchettoStatoBlocco::deserialize(array<Byte>^buffer, int offset)
 	int tNID_BLOCCO= utility::pop(buffer, 32, offset + 21);
 	int tQ_STATOBLOCCO =utility::pop(buffer, 2, offset + 53);
 
-	vStatoBlocco->Add(gcnew StateBlocco(tNID_BLOCCO,tQ_STATOBLOCCO));
+	setStatoBlocco(gcnew StateBlocco(tNID_BLOCCO,tQ_STATOBLOCCO));
 	setN_ITER(utility::pop(buffer, 16, offset + 55));
 	int shift = 71;
 	for(int i = 0; i < N_ITER; ++i)
@@ -62,7 +62,7 @@ void pacchettoStatoBlocco::deserialize(array<Byte>^buffer, int offset)
 		shift += 32;
 		int Q_STATOBLOCCO=utility::pop(buffer, 2, offset + shift);
 		shift += 2;
-		vStatoBlocco->Add(gcnew StateBlocco(NID_BLOCCO,Q_STATOBLOCCO));
+		setStatoBlocco(gcnew StateBlocco(NID_BLOCCO,Q_STATOBLOCCO));
 	}
 }
 

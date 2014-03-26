@@ -5,7 +5,7 @@ pacchettoCommandData::pacchettoCommandData(void)
 {
 	setNID_PACKET(PacchettoID::CommandData);
 	L_PACKET = 0;
-	Q_COMMAND_TYPE = 0;
+	setQ_COMMAND_TYPE(QCmdData::WAKE_UP);
 	setM_GOA_LEVEL(GOA_LEVEL::Level_2);
 	setNID_OPERATIONAL(0);
 }
