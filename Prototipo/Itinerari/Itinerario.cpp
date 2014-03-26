@@ -20,14 +20,16 @@ Itinerario::Itinerario(typeItini t)
 
 System::String^ Itinerario::ToString(){
 	String ^out="";
-	out+=" Id Itinenario: "+id;
-	out+=" Nome Itinenario: "+name;
+	out+=" Id Itinenario: "+getId();
+	out+=" Nome Itinenario: "+getName();
 	out+=" info lrgb: "+infolrbg->ToString();
-	out+=" Porte Banchina: "+porteBanchina;
-	out+=" Lato Banchina: "+latoBanchina;
-	out+=" prevCDB: "+prevCDB;
-	out+=" nextCDB: "+nextCDB;
-	out+=" nextstation: "+nextstation;
+	out+=" Porte Banchina: "+getPorteBanchina();
+	out+=" Lato Banchina: "+getLatoBanchina();
+	out+=" prevCDB: "+getPrevCDB();
+	out+=" nextCDB: "+getNextCDB();
+	out+=" nextstation: "+get_nextstation();
+	int tipoi = (int)getTipoItinerario();
+	out+=" type Itin: "+tipoi.ToString();
 	out+=" CDB: ";
 	for each (int var in cdb)
 	{
