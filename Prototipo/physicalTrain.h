@@ -1,5 +1,7 @@
 #pragma once
+#include "StateObject.h"
 #using <System.dll>
+
 using namespace System;
 
 /*Utilizzo questa classe per serializzare le informazioni di presentazione inviate all'ATS dagli ATO*/
@@ -11,12 +13,15 @@ public ref class physicalTrain : public IEquatable<physicalTrain^>
 	String ^ipAddress;
 	int tcpPort;
 	int cdblastpos;
+	StateObject ^stateobj;
 public:
 	
 	physicalTrain(void);
 	physicalTrain(int e, String^ip, int t){engineNumber=e;ipAddress=ip;tcpPort=t;};
 	void setEngineNumber(int N){engineNumber = N;};
 	int getEngineNumber(){return engineNumber;};
+	void setStateObject(StateObject ^st){stateobj=st;};
+	StateObject ^getStateObject(){return stateobj;};
 	void setIpAddress(String ^IP){ipAddress = IP;};
 	String^ getIpAddress(){return ipAddress;};
 	void setTcpPort(int port){tcpPort = port;};

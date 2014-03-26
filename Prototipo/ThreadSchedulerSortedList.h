@@ -15,7 +15,7 @@
 #include "manager\\ManagerStatoLineaIXL.h"
 #include "AreeCritiche\\AreeCritiche.h"
 #include "Train.h"
-#include "StateObject.h"
+//#include "StateObject.h"
 #include "ControllerListTrain.h"
 #include "ListTrainView.h"
 #include "ListTrainModel.h"
@@ -46,6 +46,7 @@ ref class ThreadSchedulerSortedList
 	String ^ipixl;
 	Dictionary<Train^,List<int>^> ^RaccoltaTrenoRequestCDB;
 	ConfigurazioneVelocita ^confVelocita;
+	List<physicalTrain^> ^listatrenipresentati;
 	bool _shouldStop;
 	bool _blockAreeCritiche;
 	DateTime timeRicIXL;

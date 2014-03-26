@@ -55,7 +55,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	//timeRicIXL;
 
 	ListTrainModel ^model = gcnew ListTrainModel();
-
+	listatrenipresentati = gcnew List<physicalTrain^>();
 	view = gcnew Prototipo::ListTrainView(tabItinerari,EQueueCambioOrario);
 	model->Subscribe(view);
 	view->AddModel(model);
@@ -129,11 +129,8 @@ void ThreadSchedulerSortedList::Schedule(){
 
 						if ((areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN())|(_blockAreeCritiche)))
 						{
-							//if(bin>0){
-							//	Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
-							//	}else{
+
 							Train->setStatoTreno(StateTrain::USCITASTAZIONE);
-							//	}
 
 						}
 					}
@@ -184,7 +181,7 @@ void ThreadSchedulerSortedList::Schedule(){
 					}
 					else
 					{
-						//Train->setStatoTreno(StateTrain::ENTRATASTAZIONE);
+
 						controlListtrain->OnNextIt(Train);
 					}
 					break;
@@ -262,7 +259,7 @@ void ThreadSchedulerSortedList::Schedule(){
 							}
 						}
 					}else{
-						//	Train->setStatoTreno(StateTrain::USCITASTAZIONE);
+
 						controlListtrain->OnNextIt(Train);
 					}
 
@@ -303,7 +300,7 @@ void  ThreadSchedulerSortedList::ControllaEventiCambioOrario(){
 		//aspetta ack
 		DateTime time=DateTime::Now;
 		TimeSpan ^sec =  TimeSpan::Zero;
-
+		//da migliorare
 		while ((inviato->fine!=1) & (sec->TotalSeconds<10)){
 			sec = DateTime::Now - time;
 
@@ -346,15 +343,23 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 }
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){
-	DateTime time=DateTime::Now;
+	
 
-	StateObject ^inviato;
 	// aspetta che si presenti un treno
 	Event<physicalTrain^> ^eventoATO = EQueueATO->getEvent();
 	if(eventoATO!=nullptr){
-		physicalTrain ^phisical = eventoATO->getEvent();
+		physicalTrain ^phl = eventoATO->getEvent();
+		listatrenipresentati->Add(phl);
+		Console::WriteLine("Si è presentato il treno {0}",phl->getEngineNumber());
+
+	}
+	List<physicalTrain^> ^listremove=gcnew List<physicalTrain^>();
+	for each (physicalTrain ^phisical in listatrenipresentati)
+	{
+
+		StateObject ^inviato = phisical->getStateObject();
 		int enginenumber = phisical->getEngineNumber();
-		Console::WriteLine("Si è presentato il treno {0}",enginenumber);
+		
 
 		// se trovi che ha numero logico nella mappa mapTrenoLogFisico 
 		if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
@@ -388,28 +393,29 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 				if(lastpos==prevfirstcdbu){
 
 
-					//se il treno si trova sul cdb giusto
-					//	if(((managerATC->getCDB(prevfirstcdbu)->getNID_OPERATIONAL()==trn)|managerATC->getCDB(prevfirstcdbu)->getNID_ENGINE()==enginenumber)|true){
 
 					// gli assegni TRN e MISSION
 					if(inviato==nullptr){
 						Console::WriteLine("Il treno {0} si trova al posto giusto per partire e gli invio WAKE-UP, TRN={1} e MISSION",enginenumber,trn);
 						inviato = InizializzeATO(trn,phisical);
-						time=DateTime::Now;
+						Console::WriteLine(inviato->time);
+						phisical->setStateObject(inviato);
+						
 					}
 					TimeSpan ^sec = TimeSpan::Zero; 
-					while ((inviato->fine!=1) & (sec->TotalSeconds<20)){
+					if((inviato->fine!=1)){
 						//aspetta un po
-						sec = DateTime::Now - time;
-						if(sec->TotalSeconds>20){
+						
+						sec = DateTime::Now - inviato->time;
+						if(sec->TotalSeconds>30){
 							//riinvia
 							inviato->fine=0;
 							if(inviato->workSocket!=nullptr){
 								inviato->workSocket->Close();
 							}
 							inviato = InizializzeATO(trn,phisical);
-							time=DateTime::Now;
-							Console::WriteLine(time);
+							phisical->setStateObject(inviato);
+							Console::WriteLine(inviato->time);
 							Console::WriteLine("Il treno {0} non ha risposto con l'ack all'assegnazione della missione",enginenumber);
 						}
 
@@ -423,21 +429,21 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 						int priorita = 1;
 						Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
 						//Creo KeyListTrain
-
-						//KeyListTrain ^key = gcnew KeyListTrain(priorita,trn,enginenumber);
-						//ListSortedTrains->Add(key,treno);
+						listremove->Add(phisical);
 						controlListtrain->OnSetTrain(treno);
 					}
-
-					//}
 				}
 			}
 		}
 
-
-
-
 	}
+
+	for each (physicalTrain ^phisical in listremove)
+	{
+		listatrenipresentati->Remove(phisical);
+	}
+
+
 }
 
 
@@ -739,7 +745,6 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		Logger::Exception(e,"ThreadSchedulerTrain::SendTCPMsg");  
 #endif // TRACE
 		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
-
 		return so2;
 	}
 
