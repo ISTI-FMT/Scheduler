@@ -1,7 +1,7 @@
 #pragma once
 #include "utility.h"
 #include "pacchettoBase.h"
-
+#include "..\FermataType.h"
 /*
 Rappresenta le informazioni contenute nel pacchetto Command Data che l'ATS invia dal ATO nel messaggio di Unconditional Command
 */
@@ -12,6 +12,7 @@ public ref class pacchettoCommandData : pacchettoBase
 	int L_PACKET;
 	int Q_COMMAND_TYPE;
 	int M_GOA_LEVEL;
+	int Q_DOORS;
 	int NID_OPERATIONAL ;
 	int PADDING;
 
@@ -44,6 +45,9 @@ public:
 
 	void setNID_OPERATIONAL(int NID){NID_OPERATIONAL = NID;};
 	int getNID_OPERATIONAL(){return NID_OPERATIONAL;};
+
+	void setQ_DOORS( FermataType Q){ Q_DOORS=(int)Q;};
+	int getQ_DOORS(){return Q_DOORS;};
 
 	virtual void serialize(array<Byte>^buffer, int offset) override;
 	virtual void deserialize(array<Byte>^buff, int offset) override;
