@@ -28,6 +28,8 @@ void TextBoxTraceListener::init(void){
 	//textBox->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox2_TextChanged);
 	textBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 	form = gcnew Form();
+	form->StartPosition =  System::Windows::Forms::FormStartPosition::Manual;
+	form->Location = System::Drawing::Point(1, 750);
 	form->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	form->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	form->ClientSize = System::Drawing::Size(1230, 415);

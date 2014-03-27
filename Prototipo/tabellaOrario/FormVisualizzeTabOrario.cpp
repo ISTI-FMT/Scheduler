@@ -47,6 +47,19 @@ void FormVisualizzeTabOrario::Inizialize(){
 	this->SaveXml->UseVisualStyleBackColor = true;
 	this->SaveXml->Click += gcnew System::EventHandler(this, &FormVisualizzeTabOrario::SaveXml_Click);
 
+	//Button ^DeleteTrain;
+	//DeleteTrain
+	// 
+	this->DeleteTrain = gcnew Button();
+	x  =12+146+25+146+25;
+	this->DeleteTrain->Location = System::Drawing::Point(x,370);
+	this->DeleteTrain->Name = L"NewTrain";
+	this->DeleteTrain->Size = System::Drawing::Size(146, 23);
+	this->DeleteTrain->TabIndex = 2;
+	this->DeleteTrain->Text = L"Delete Train";
+	this->DeleteTrain->UseVisualStyleBackColor = true;
+	this->DeleteTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeTabOrario::DeleteTrain_Click);
+
 	//form = gcnew Form();
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -55,6 +68,7 @@ void FormVisualizzeTabOrario::Inizialize(){
 	this->Controls->Add(dataGridView1);
 	this->Controls->Add(NewTrain);
 	this->Controls->Add(SaveXml);
+	this->Controls->Add(DeleteTrain);
 	this->Name = L"Tabella Orario";
 	this->Text = L"Tabella Orario";
 	//form->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
@@ -64,45 +78,9 @@ void FormVisualizzeTabOrario::Inizialize(){
 	this->PerformLayout();
 	this->SuspendLayout();
 
-	dataGridView1->ColumnCount = 10;
-	dataGridView1->RowCount = tabella->get_TabellaOrario()->Count*8;
-	int colonna=0;
-	int riga=0;
-	dataGridView1->Columns[ 0 ]->Name = "Id_Treno";
-	dataGridView1->Columns[ 1 ]->Name = "Nome Stazione";
-	dataGridView1->Columns[ 2 ]->Name = "id Stazione";
-	dataGridView1->Columns[ 3 ]->Name = "Orario Arrivo";
-	dataGridView1->Columns[ 4 ]->Name = "Orario Partenza";
-	dataGridView1->Columns[ 5 ]->Name = "BinProg";
-	dataGridView1->Columns[ 6 ]->Name = "TempoMAPorte";
-	dataGridView1->Columns[ 7 ]->Name = "LatoAPorte";
-	dataGridView1->Columns[ 8 ]->Name = "It Entrata";
-	dataGridView1->Columns[ 9 ]->Name = "It Uscita";
+	
 
-	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella->get_TabellaOrario() )
-	{
-
-		String ^po=kvp.Key+"\n\r";
-		dataGridView1->Rows[riga]->Cells[0]->Value=po;
-
-
-		for each (Fermata ^dvar in kvp.Value)
-		{ 
-			dataGridView1->Rows[riga]->Cells[1]->Value=dvar->getnameStazione();
-			dataGridView1->Rows[riga]->Cells[2]->Value=dvar->getIdStazione();
-			TimeSpan Arrivo = TimeSpan::FromSeconds(dvar->getOrarioArrivo()*30);
-			dataGridView1->Rows[riga]->Cells[3]->Value= Arrivo.ToString();
-			TimeSpan Partenza = TimeSpan::FromSeconds(dvar->getOrarioPartenza()*30);
-			dataGridView1->Rows[riga]->Cells[4]->Value=Partenza.ToString();
-			dataGridView1->Rows[riga]->Cells[5]->Value=dvar->getBinarioProgrammato();
-			dataGridView1->Rows[riga]->Cells[6]->Value=dvar->gettempoMinimoAperturaPorte();
-			dataGridView1->Rows[riga]->Cells[7]->Value=(int) dvar->getLatoAperturaPorte();
-			dataGridView1->Rows[riga]->Cells[8]->Value=dvar->getnameitinerarioEntrata();
-			dataGridView1->Rows[riga]->Cells[9]->Value=dvar->getnameitinerarioUscita();
-			riga++;
-		}
-
-	}
+	Aggiorna();
 
 
 
@@ -163,13 +141,26 @@ void FormVisualizzeTabOrario::Addtreno(System::Object^  sender, System::EventArg
 
 void FormVisualizzeTabOrario::Aggiorna(){
 
+	dataGridView1->ColumnCount = 10;
+	dataGridView1->RowCount = 1;
 	
+	dataGridView1->Columns[ 0 ]->Name = "Id_Treno";
+	dataGridView1->Columns[ 1 ]->Name = "Nome Stazione";
+	dataGridView1->Columns[ 2 ]->Name = "id Stazione";
+	dataGridView1->Columns[ 3 ]->Name = "Orario Arrivo";
+	dataGridView1->Columns[ 4 ]->Name = "Orario Partenza";
+	dataGridView1->Columns[ 5 ]->Name = "BinProg";
+	dataGridView1->Columns[ 6 ]->Name = "TempoMAPorte";
+	dataGridView1->Columns[ 7 ]->Name = "LatoAPorte";
+	dataGridView1->Columns[ 8 ]->Name = "It Entrata";
+	dataGridView1->Columns[ 9 ]->Name = "It Uscita";
 	int colonna=0;
 	int riga=0;
 	
 	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella->get_TabellaOrario() )
 	{
 
+		dataGridView1->RowCount +=  kvp.Value->Count;
 		String ^po=kvp.Key+"\n\r";
 		dataGridView1->Rows[riga]->Cells[0]->Value=po;
 
@@ -194,3 +185,27 @@ void FormVisualizzeTabOrario::Aggiorna(){
 
 
 }
+
+
+void FormVisualizzeTabOrario::DeleteTrain_Click(System::Object^  sender, System::EventArgs^  e){
+	Prototipo::FormDeleteElement ^formdelete = gcnew Prototipo::FormDeleteElement(tabella);
+	formdelete->DeleteTreno +=gcnew System::EventHandler(this, &FormVisualizzeTabOrario::DelTrain);
+	formdelete->Visible=true;
+}
+
+void FormVisualizzeTabOrario::DelTrain(System::Object^  sender, System::EventArgs^  e){
+	try{
+		int elementodaeliminare = (int)sender;
+		if(tabella->get_TabellaOrario()->ContainsKey(elementodaeliminare)){
+			tabella->get_TabellaOrario()->Remove(elementodaeliminare);
+		Aggiorna();
+	}else{
+		Console::WriteLine("treno non esistente in tabella orario");
+	}
+
+
+	}catch(Exception ^e){
+		Console::WriteLine("treno non eliminato {0}",e->Message);
+	}
+}
+

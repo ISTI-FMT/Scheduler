@@ -29,7 +29,7 @@ using namespace System::Threading::Tasks;
 int main()
 {
 	
-
+	 Console::SetWindowPosition( 0, 0 );
 #ifdef TRACE
 			 Logger::Info("main"," New Run Application");  
 #endif // TRACE

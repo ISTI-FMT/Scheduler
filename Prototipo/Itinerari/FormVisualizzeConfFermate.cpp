@@ -34,7 +34,7 @@ void FormVisualizzeConfFermate::Inizialize(){
 	this->SuspendLayout();
 
 	dataGridView1->ColumnCount = 11;
-	dataGridView1->RowCount = 15;
+	dataGridView1->RowCount = 1;
 	int colonna=0;
 	int riga=0;
 
@@ -55,6 +55,7 @@ void FormVisualizzeConfFermate::Inizialize(){
 	for each( KeyValuePair<int ,  stazione ^> ^kvp in tabella->getMap() )
 	{
 		if(kvp->Value->get_idStazione()<999){
+			dataGridView1->RowCount += kvp->Value->getBinari()->Count;
 			String ^po=kvp->Value->get_NomeStazione()+"\n\r";
 			dataGridView1->Rows[riga]->Cells[0]->Value=po;
 

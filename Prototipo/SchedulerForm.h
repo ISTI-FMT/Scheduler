@@ -59,6 +59,8 @@ namespace Prototipo {
 			this->wdogs->TabIndex = 5;
 			this->wdogs->Text = "Wacth DOG";
 			this->Controls->Add(this->wdogs);
+			this->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
+			this->Location = System::Drawing::Point(900, 15);
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//

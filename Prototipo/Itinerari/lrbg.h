@@ -40,6 +40,7 @@ public:
 
 	void add_progressivakm(int km, int offstation);
 	int get_progressivakm(int offsetStation);
+	Dictionary<int,int>^ get_progressivakmD(){return pkmetricaVsStation;};
 	virtual System::String^ ToString() override;
 };
 

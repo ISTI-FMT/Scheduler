@@ -1,5 +1,6 @@
 #include "mapTrenoFisicoLogico.h"
 #include "EditorMapTreni.h"
+#include "FormDeleteElement.h"
 using namespace System::Diagnostics;
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -24,11 +25,14 @@ ref class FormVisualizzeMapTreni : public Form
 	  
 	  Button ^NewTrain;
 	  Button ^SaveXml;
+	  Button^DeleteTrain;
 	  mapTrenoFisicoLogico ^mapFisicoLogico;
 	  void Form_Resize(System::Object^  sender, System::EventArgs^  e);
 	  void NewTrain_Click(System::Object^  sender, System::EventArgs^  e);
 	  void SaveXml_Click(System::Object^  sender, System::EventArgs^  e);
 	  void Addtreno(System::Object^  sender, System::EventArgs^  e);
+	  void DelTrain(System::Object^  sender, System::EventArgs^  e);
+	  void DeleteTrain_Click(System::Object^  sender, System::EventArgs^  e);
 	  void Aggiorna();
 public:
 	FormVisualizzeMapTreni(mapTrenoFisicoLogico ^m);
