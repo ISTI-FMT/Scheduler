@@ -84,6 +84,9 @@ namespace SchedulerATSTest {
 				 target = (gcnew Train(p, trn, pt, listit, time));
 				Train^  target2 = (gcnew Train(p, trn, pt, listit));
 				target2 = (gcnew Train(p, trn, pt, listit,StateTrain::PRONTO));
+				Assert::IsNotNull(target->getindex());
+				Assert::IsNotNull(target->getListaFermate());
+				Assert::IsNotNull(target->getPhysicalTrain());
 				Assert::IsNotNull(target->ToString());
 
 				target->goNextItinerario();

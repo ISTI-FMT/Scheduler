@@ -140,9 +140,9 @@ Dictionary<int,Itinerario^ >::ValueCollection ^valuecollitini = station->getItin
 
 			if(var->getTipoItinerario()==typeItini::Entrata){
 
-				this->addbuttonEntrata(var->getName(),var->getId()+station->get_idStazione());
+				this->addbuttonEntrata(var->ShortName,var->getId()+station->get_idStazione());
 			}else{
-				this->addbuttonUscita(var->getName(),var->getId()+station->get_idStazione());
+				this->addbuttonUscita(var->ShortName,var->getId()+station->get_idStazione());
 
 			}
 		}

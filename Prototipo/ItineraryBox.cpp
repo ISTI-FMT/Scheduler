@@ -246,7 +246,7 @@ void ItineraryBox::setInitEntrata(int id){
 	if(id>0){
 		Itinerario ^i = station->getItinerariid()[id];
 		initCombo(i->getDirezione());
-		int index = comboBoxE->FindString(i->getName());
+		int index = comboBoxE->FindString(i->ShortName);
 		comboBoxE->SelectedIndex = index;
 	}else{
 		comboBoxE->Visible=false;
@@ -259,7 +259,7 @@ void ItineraryBox::setInitUscita(int id){
 	if(id>0){
 		Itinerario ^i = station->getItinerariid()[id];
 		initCombo(i->getDirezione());
-		int index = comboBoxU->FindString(i->getName());
+		int index = comboBoxU->FindString(i->ShortName);
 		comboBoxU->SelectedIndex = index;
 	}else{
 		comboBoxU->Visible=false;

@@ -60,7 +60,7 @@ public:
 		//'System.NullReferenceException' 
 		 Itinerario^ it = ((Itinerario^)comboBoxU->SelectedItem);
 		 if(it!=nullptr){
-			return it->getName();
+			return it->ShortName;
 		 }
 		 return "";
 		
@@ -75,7 +75,7 @@ public:
 	String^ getNameIdEntrata(){
 		 Itinerario^ it = ((Itinerario^)comboBoxE->SelectedItem);
 		 if(it!=nullptr){
-			 return it->getName();
+			 return it->ShortName;
 		 }
 		 return "";
 	}

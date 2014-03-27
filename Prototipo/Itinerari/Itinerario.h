@@ -27,6 +27,10 @@ public:
 		{
 			return name;
 		}
+
+		void set(String ^s){
+			name=s;
+		}
 	}
 	
 	property String^ ShortDescName 
@@ -48,8 +52,7 @@ public:
 	typeItini getTipoItinerario(){return tipoitin;}
 	void set_nextstation(int i){nextstation = i;}
 	int^ get_nextstation(){return nextstation;}
-	void setName(String ^i){name = i;}
-	String^ getName(){return name;}
+	
 	void setDirezione(String ^d){direzione = d;}
 	String^ getDirezione(){return direzione;}
 	void setLrgb(lrbg ^l){infolrbg = l;}

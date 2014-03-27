@@ -7,9 +7,9 @@ Train::Train(int p, int trn, physicalTrain ^pt){
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
 	Listafermate= gcnew List<Fermata^>();
-	Statodeltreno=StateTrain::NONPRONTO;
+	setStatoTreno(StateTrain::NONPRONTO);
 	indicelistafermata=0;
-	Priorita=p;
+	setPriorita(p);
 	PhysicalTrainNumber=pt->getEngineNumber();
 }
 
@@ -17,9 +17,9 @@ Train::Train(int p, physicalTrain ^pt){
 	TrainRunningNumber=0;
 	PhysicalTrain=pt;
 	Listafermate= gcnew List<Fermata^>();
-	Statodeltreno=StateTrain::NONPRONTO;
+	setStatoTreno(StateTrain::NONPRONTO);
 	indicelistafermata=0;
-	Priorita=p;
+	setPriorita(p);
 	PhysicalTrainNumber=pt->getEngineNumber();
 
 }
@@ -28,10 +28,10 @@ Train::Train(int p, int trn,physicalTrain ^pt, List<Fermata^> ^listf){
 
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
-	Listafermate=listf;
-	Statodeltreno=StateTrain::PRONTO;
+	setListaFermate(listf);
+	setStatoTreno(StateTrain::PRONTO);
 	indicelistafermata=0;
-	Priorita=p;
+	setPriorita(p);
 	PhysicalTrainNumber=pt->getEngineNumber();
 	setTimeStampNextEvent(listf[0]->getOrarioPartenza());
 
@@ -42,10 +42,10 @@ Train::Train(int p, int trn,physicalTrain ^pt, List<Fermata^> ^listf, double tim
 
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
-	Listafermate=listf;
-	Statodeltreno=StateTrain::PRONTO;
+	setListaFermate(listf);
+	setStatoTreno(StateTrain::PRONTO);
 	indicelistafermata=0;
-	Priorita=p;
+	setPriorita(p);
 	PhysicalTrainNumber=pt->getEngineNumber();
 	setTimeStampNextEvent(time);
 
@@ -56,10 +56,10 @@ Train::Train(int p, int trn, physicalTrain ^pt, List<Fermata^> ^listf, StateTrai
 
 	TrainRunningNumber=trn;
 	PhysicalTrain=pt;
-	Listafermate=listf;
-	Statodeltreno=st;
+	setListaFermate(listf);
+	setStatoTreno(st);
 	indicelistafermata=0;
-	Priorita=p;
+	setPriorita(p);
 	PhysicalTrainNumber=pt->getEngineNumber();
 	setTimeStampNextEvent(getOrarioPartenza());
 }

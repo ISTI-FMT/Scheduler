@@ -75,7 +75,7 @@ void FormVisualizzeConfItine::Inizialize(){
 				for each (Itinerario ^itvar in listitn)
 				{
 					dataGridView1->Rows[riga]->Cells[3]->Value=itvar->getId();
-					dataGridView1->Rows[riga]->Cells[4]->Value=itvar->getName();
+					dataGridView1->Rows[riga]->Cells[4]->Value=itvar->ShortName;
 
 					dataGridView1->Rows[riga]->Cells[5]->Value=itvar->getLrgb()->nid_lrgb;
 					dataGridView1->Rows[riga]->Cells[6]->Value=itvar->getLrgb()->d_stop;
