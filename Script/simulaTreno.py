@@ -175,6 +175,7 @@ for line in spamReader:
 		sendBytes = messaggi.creamovimento(line[i],NID_ENGINE)
 		sendUDP(sendBytes,302)
 		###SEND FAKE RBC
+		NID_CDB = int(line[i],10)
 		buff = messaggi.messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 		sendUDP(buff,1111)
 		inputt = raw_input("-->> PRESS ENTER <<<--- ")
