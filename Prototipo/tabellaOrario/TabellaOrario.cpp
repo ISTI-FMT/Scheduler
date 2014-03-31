@@ -252,15 +252,14 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			pkt->setN_ITER1(0);
 		}
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
-		// -2 dopo la richiesta di modifica del profilo missione richiesta dall'ATO
-		pkt->setN_ITER2((stops->Count) - 2);
+		
+		pkt->setN_ITER2((stops->Count) - 1);
 		pkt->setQ_SCALE(QSCALEMissionData::M);
 		int i=0;
 		int prevprogkm = 0;
 		for each (Fermata ^stop in stops)
 		{
-			//modifica del profilo missione richiesta dall'ATO eliminando la prima stazion richesta da UNIFI
-			if(i>0){
+			
 				Mission ^mission= gcnew Mission();
 				mission->setQ_DOORS(stop->getLatoAperturaPorte());
 
@@ -336,8 +335,6 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			
 			
 			pkt->setMission(mission);
-
-			}
 			i++;
 		}
 	}
