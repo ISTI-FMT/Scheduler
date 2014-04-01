@@ -31,6 +31,6 @@ public:
 	void UDP_Management_receive();
     static void ReceiveCallback(IAsyncResult^ asyncResult);
 	static void RequestStop();
-	static bool ConfrontaArrayByte(array<Byte>^A,array<Byte>^B);
+	static bool ConfrontaArrayByte( array<Byte>^A, array<Byte>^B);
 };
 

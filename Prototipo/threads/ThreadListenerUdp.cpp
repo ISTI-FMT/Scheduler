@@ -42,6 +42,15 @@ ThreadListenerUdp::ThreadListenerUdp(ManagerStatoLineaIXL ^MC,ManagerStatoLineaA
 bool ThreadListenerUdp::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B)
 {
 	bool scarta = false;
+	if(B==nullptr){
+
+		return scarta;
+	}else{
+		if(B->Length!=A->Length){
+
+			return scarta;
+		}
+	}
 	// header messaggio nid_msg 8 + l_msg 11 + T_Time 32 51/8=6.38
 	for (int ind=7;ind<B->Length;ind++)
 	{
@@ -51,7 +60,7 @@ bool ThreadListenerUdp::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B)
 			scarta=true;
 		}else{
 			scarta=false; 
-			//B=A;
+
 			break;
 		}
 	}
@@ -63,7 +72,7 @@ void ThreadListenerUdp::ReceiveCallback(IAsyncResult^ asyncResult)
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
 	IPEndPoint^ ipEndPoint= gcnew IPEndPoint(IPAddress::Any,port );
 	array<Byte>^ receiveBytes = recv_udpClient->EndReceive(asyncResult, ipEndPoint);
-	
+
 	Messaggi ^pkt1 = gcnew Messaggi();
 	isMessageReceived = true;
 
@@ -75,33 +84,16 @@ void ThreadListenerUdp::ReceiveCallback(IAsyncResult^ asyncResult)
 
 	if(NID_MESSAGE==(int)MessageID::StatoLineaIXL)
 	{
-		if(end_byte_old_ATC==nullptr){
-			end_byte_old_ATC=receiveBytes;
-		}else{
-			if(end_byte_old_ATC->Length!=receiveBytes->Length){
-				end_byte_old_ATC=receiveBytes;
-			}else{
-				scarta = ConfrontaArrayByte(receiveBytes,end_byte_old_ATC);
-				if(!scarta)
-					end_byte_old_ATC=receiveBytes;
-			}
-
+		scarta = ConfrontaArrayByte(receiveBytes,end_byte_old_IXL);
+		if(!scarta){
+			end_byte_old_IXL=receiveBytes;
 		}
 	}
 	else
 	{
-		if(end_byte_old_ATC==nullptr){
+		scarta = ConfrontaArrayByte(receiveBytes,end_byte_old_ATC);
+		if(!scarta){
 			end_byte_old_ATC=receiveBytes;
-		}else{
-
-			if(end_byte_old_ATC->Length!=receiveBytes->Length){
-				end_byte_old_ATC=receiveBytes;
-			}else{
-				scarta = ConfrontaArrayByte(receiveBytes,end_byte_old_ATC);
-				if(!scarta)
-					end_byte_old_ATC=receiveBytes;
-			}
-
 		}
 	}
 
