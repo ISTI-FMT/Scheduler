@@ -7,15 +7,15 @@ namespace SchedulerATSTest {
 	using namespace System::Threading::Tasks;
 	using namespace System::Net::Sockets;
 	using namespace System::Net;
-    ref class ThreadPresentazioneTest;
+    ref class ThreadListenerTcpTest;
     
     
     /// <summary>
-///Classe di test per ThreadPresentazioneTest.
-///Creata per contenere tutti gli unit test ThreadPresentazioneTest
+///Classe di test per ThreadListenerTcpTest.
+///Creata per contenere tutti gli unit test ThreadListenerTcpTest
 ///</summary>
 	[TestClass]
-	public ref class ThreadPresentazioneTest
+	public ref class ThreadListenerTcpTest
 	{
 
 	private:array<Byte>^fromString(String ^msg){
@@ -78,14 +78,14 @@ namespace SchedulerATSTest {
 			//
 #pragma endregion
 			/// <summary>
-			///Test per Costruttore ThreadPresentazione
+			///Test per Costruttore ThreadListenerTcp
 			///</summary>
 	public: [TestMethod]
-			void ThreadPresentazioneConstructorTest()
+			void ThreadListenerTcpConstructorTest()
 			{
 				ManagerMsgATO^  MA = gcnew ManagerMsgATO();
-				ThreadPresentazione^  ThreadP = (gcnew ThreadPresentazione(MA));
-				Thread^ oThreadTCP_ATO = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadPresentazione::TCP_Management_receive ) );
+				ThreadListenerTcp^  ThreadP = (gcnew ThreadListenerTcp(MA));
+				Thread^ oThreadTCP_ATO = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadListenerTcp::TCP_Management_receive ) );
 
 				 oThreadTCP_ATO->Start();
 

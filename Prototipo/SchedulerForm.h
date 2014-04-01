@@ -6,8 +6,8 @@
 #include "Itinerari\\FormVisualizzeConfItine.h"
 #include "Itinerari\\FormVisualizzeConfFermate.h"
 /*#include "..\\phisicalTrainList.h"*/
-#include "threads\\ThreadListenerATC_IXL.h"
-#include "threads\\ThreadPresentazione.h"
+#include "threads\\ThreadListenerUdp.h"
+#include "threads\\ThreadListenerTcp.h"
 #include "mapTrenoFisicoLogico.h"
 #include "messaggi\\Messaggi.h"
 #include "logger\\Logger.h"
@@ -92,8 +92,8 @@ namespace Prototipo {
 		TabellaStazioni ^tabItinerari;
 		FormStatoLineaATC ^stATC;
 		FormStatoLineaIXL ^stif ;
-		ThreadListenerATC_IXL ^ThLATCIXL;
-		ThreadPresentazione ^ThreadP;
+		ThreadListenerUdp ^ThLATCIXL;
+		ThreadListenerTcp ^ThreadP;
 		//ThreadSchedule ^ThSchedule;
 		ThreadSchedulerSortedList ^ThScheduleSortedList;
 		wdogcontrol ^wdogs;
@@ -451,9 +451,9 @@ namespace Prototipo {
 				 ManagerMsgATO ^manaStateATO = gcnew ManagerMsgATO();
 
 
-				 ThreadP= gcnew ThreadPresentazione(/*listaTreni,*/manaStateATO);
+				 ThreadP= gcnew ThreadListenerTcp(/*listaTreni,*/manaStateATO);
 				 //Thread TCP che ascolta i messaggi provenienti dall'ATO
-				 Thread^ oThreadTCP_ATO = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadPresentazione::TCP_Management_receive ) );
+				 Thread^ oThreadTCP_ATO = gcnew Thread( gcnew ThreadStart( ThreadP, &ThreadListenerTcp::TCP_Management_receive ) );
 
 				 oThreadTCP_ATO->Start();
 
@@ -462,9 +462,9 @@ namespace Prototipo {
 				 ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
 
 
-				 ThLATCIXL= gcnew ThreadListenerATC_IXL(manaStateIXL,manaStateATC);
+				 ThLATCIXL= gcnew ThreadListenerUdp(manaStateIXL,manaStateATC);
 
-				 Thread^ oThreadUDP_ATC_IXL = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerATC_IXL::UDP_Management_receive ) );
+				 Thread^ oThreadUDP_ATC_IXL = gcnew Thread( gcnew ThreadStart(ThLATCIXL, &ThreadListenerUdp::UDP_Management_receive ) );
 
 				 oThreadUDP_ATC_IXL->Start();
 

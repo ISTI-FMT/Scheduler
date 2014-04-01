@@ -183,12 +183,6 @@
     <ClCompile Include="ThreadSchedulerSortedList.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="threads\ThreadListenerATC_IXL.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="threads\ThreadPresentazione.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="Train.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
@@ -217,6 +211,12 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="FormVisualizzeMapTreni.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ThreadListenerTcp.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ThreadListenerUdp.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -425,12 +425,6 @@
     <ClInclude Include="ThreadSchedulerSortedList.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="threads\ThreadListenerATC_IXL.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\ThreadPresentazione.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="Train.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
@@ -472,6 +466,12 @@
     </ClInclude>
     <ClInclude Include="EditorMapTreni.h">
       <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="threads\ThreadListenerTcp.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="threads\ThreadListenerUdp.h">
+  <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="FormDeleteElement.h">
       <Filter>File di intestazione</Filter>

@@ -181,8 +181,8 @@
     <ClInclude Include="tabellaOrario\FormVisualizzeTabOrario.h" />
     <ClInclude Include="tabellaOrario\TabellaOrario.h" />
     <ClInclude Include="ThreadSchedulerSortedList.h" />
-    <ClInclude Include="threads\ThreadListenerATC_IXL.h" />
-    <ClInclude Include="threads\ThreadPresentazione.h" />
+    <ClInclude Include="threads\ThreadListenerTcp.h" />
+    <ClInclude Include="threads\ThreadListenerUdp.h" />
     <ClInclude Include="Train.h" />
     <ClInclude Include="TrenoFisicoLogico.h" />
     <ClInclude Include="Unsubscriber.h" />
@@ -252,8 +252,8 @@
     <ClCompile Include="tabellaOrario\FormVisualizzeTabOrario.cpp" />
     <ClCompile Include="tabellaOrario\TabellaOrario.cpp" />
     <ClCompile Include="ThreadSchedulerSortedList.cpp" />
-    <ClCompile Include="threads\ThreadListenerATC_IXL.cpp" />
-    <ClCompile Include="threads\ThreadPresentazione.cpp" />
+    <ClCompile Include="threads\ThreadListenerTcp.cpp" />
+    <ClCompile Include="threads\ThreadListenerUdp.cpp" />
     <ClCompile Include="Train.cpp" />
     <ClCompile Include="TrenoFisicoLogico.cpp" />
     <ClCompile Include="wdogcontrol.cpp" />
