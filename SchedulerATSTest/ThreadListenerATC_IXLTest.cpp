@@ -117,7 +117,7 @@ namespace SchedulerATSTest {
 				s->Close();
 				Thread::Sleep(1000);
 				Assert::IsNotNull(MC->StatoCDB(13301));
-				 
+				 Assert::IsNull(MC->StatoCDB(301));
 				 target->RequestStop();
 				  Thread::Sleep(200);
 			}
@@ -159,6 +159,7 @@ namespace SchedulerATSTest {
 				s->Close();
 				 Thread::Sleep(1000);
 				 Assert::IsNotNull(MA->getCDB(13302));
+				  Assert::IsNotNull(MA->getCDB(302));
 				 target->RequestStop();
 				  Thread::Sleep(200);
 			}

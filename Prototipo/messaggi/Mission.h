@@ -17,7 +17,7 @@ public:
 	
 	Mission(void);
 	Mission( int T,int DD,  int NID,int D, int Q, int TD){T_START_TIME=T;D_LRGB=DD; NID_LRGB=NID;D_STOP=D;Q_DOORS=Q;T_DOORS_TIME=TD;};
-	int Size(){return 12+24+15+4+12;}
+	
 	void setT_START_TIME( int T){ T_START_TIME=T;};
 	int getT_START_TIME(){return T_START_TIME;};
 	void setNID_LRGB( int NID){ NID_LRGB=NID;};

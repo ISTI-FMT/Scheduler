@@ -3,10 +3,10 @@
 
 physicalTrain::physicalTrain(void)
 {
-	engineNumber = 0;
-	ipAddress = "";
-	tcpPort = 0;
-	cdblastpos = 0;
+	setEngineNumber( 0);
+	setIpAddress ("");
+	setTcpPort(0);
+	setCDBLastPos (0);
 }
 
 

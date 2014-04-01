@@ -33,9 +33,9 @@ System::String^ lrbg::ToString(){
 	String ^out="";
 	out+=" nid_lrgb: "+nid_lrgb;
 	out+=" d_stop: "+d_stop;
-	for each (int var in pkmetricaVsStation->Keys)
+	for each (int var in get_progressivakmD()->Keys)
 	{
-		out+=" km_lrgb:  "+pkmetricaVsStation[var]+" from: "+var;
+		out+=" km_lrgb:  "+get_progressivakmD()[var]+" from: "+var;
 	}
 	return out;
 }

@@ -17,7 +17,7 @@ public ref class physicalTrain : public IEquatable<physicalTrain^>
 public:
 	
 	physicalTrain(void);
-	physicalTrain(int e, String^ip, int t){engineNumber=e;ipAddress=ip;tcpPort=t;};
+	physicalTrain(int e, String^ip, int t){	setEngineNumber(e);setIpAddress(ip);setTcpPort(t);setCDBLastPos (0);};
 	void setEngineNumber(int N){engineNumber = N;};
 	int getEngineNumber(){return engineNumber;};
 	void setStateObject(StateObject ^st){stateobj=st;};

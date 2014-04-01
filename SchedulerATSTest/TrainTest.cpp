@@ -145,7 +145,7 @@ namespace SchedulerATSTest {
 				 actual;
 				actual = target->CompareTo(secondKey);
 				Assert::AreEqual(expected, actual);
-
+				
 				int TRN = 1152; 
 				List<Fermata^ >^  listit2 =  tabo->getFermateFor(TRN);
 				target->changeOrari(listit2);
@@ -154,6 +154,13 @@ namespace SchedulerATSTest {
 				 actual;
 				actual = target->CompareTo(secondKey);
 				Assert::AreEqual(expected, actual);
+
+				secondKey = (gcnew Train(2, TRN, pt, tabo->getFermateFor(TRN),0));
+				target->changeOrari( tabo->getFermateFor(trn));
+				 expected = 1; 
+				actual = target->CompareTo(secondKey);
+				Assert::AreEqual(expected, actual);
+				
 
 			}
 	};
