@@ -4,10 +4,10 @@
 pacchettoStatoLineaIXL::pacchettoStatoLineaIXL(void)
 {
 	setNID_PACKET(PacchettoID::StatoLineaIXL);
-	L_PACKET = 0;
+	setL_PACKET(0);
 
-	N_ITER = 0;
-	vStatoCDB = gcnew List<StateCDB^>();
+	setN_ITER(0);
+	setCDB(gcnew List<StateCDB^>());
 }
 
 void pacchettoStatoLineaIXL::setN_ITER(int N)
@@ -67,7 +67,7 @@ void pacchettoStatoLineaIXL::deserialize(array<Byte>^buffer, int offset)
 	offset += 2;
 	int tQ_DEVIATOIO =utility::pop(buffer, 2, offset);
 	offset += 2;
-	vStatoCDB->Add(gcnew StateCDB(tNID_CDB,tQ_STATOCDB,tQ_DEVIATOIO));
+	setCDB(gcnew StateCDB(tNID_CDB,tQ_STATOCDB,tQ_DEVIATOIO));
 	setN_ITER(utility::pop(buffer, 16, offset));
 	offset += 16;
 	for(int i = 0; i < N_ITER; ++i)
@@ -79,7 +79,7 @@ void pacchettoStatoLineaIXL::deserialize(array<Byte>^buffer, int offset)
 		int Q_DEVIATOIO=utility::pop(buffer, 2, offset);
 		offset += 2;
 
-		vStatoCDB->Add(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO));
+		setCDB(gcnew StateCDB(NID_CDB,Q_STATOCDB,Q_DEVIATOIO));
 	}
 }
 
@@ -88,15 +88,15 @@ void pacchettoStatoLineaIXL::deserialize(array<Byte>^buffer, int offset)
 System::String^ pacchettoStatoLineaIXL::ToString(){
 	String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
 
-	out = out+vStatoCDB[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	out = out+getCDB()[0]->ToString();
+	out = out+"N_ITER: "+getN_ITER()+";";
 
-	for  ( int i = 1; i<vStatoCDB->Count; i++)
+	for  ( int i = 1; i<getCDB()->Count; i++)
 	{
-		out = out+vStatoCDB[i]->ToString();
+		out = out+getCDB()[i]->ToString();
 	}
 
 	return out;

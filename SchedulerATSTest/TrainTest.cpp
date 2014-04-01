@@ -1,6 +1,6 @@
 ﻿
 #include "stdafx.h"
-#include "stdafx.h"
+
 using namespace System::Collections::Generic;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 namespace SchedulerATSTest {
@@ -70,12 +70,12 @@ namespace SchedulerATSTest {
 			{
 				int p = 1; 
 				int trn = 1151; 
-				physicalTrain^  pt = gcnew physicalTrain(1152,"127.0.0.1",3610); 
+				physicalTrain^  pt = gcnew physicalTrain(trn,"127.0.0.1",3610); 
 
 				TabellaStazioni^  T = gcnew TabellaStazioni();
 				TabellaOrario ^tabo = (gcnew TabellaOrario(T)); 
-				int TRN = 1151; 
-				List<Fermata^ >^  listit =  tabo->getFermateFor(TRN);
+				
+				List<Fermata^ >^  listit =  tabo->getFermateFor(trn);
 
 				
 				double time = 0; 
@@ -83,11 +83,16 @@ namespace SchedulerATSTest {
 				 target = (gcnew Train(p, pt));
 				 target = (gcnew Train(p, trn, pt, listit, time));
 				Train^  target2 = (gcnew Train(p, trn, pt, listit));
-
+				target2 = (gcnew Train(p, trn, pt, listit,StateTrain::PRONTO));
+				Assert::IsNotNull(target->getindex());
+				Assert::IsNotNull(target->getListaFermate());
+				Assert::IsNotNull(target->getPhysicalTrain());
 				Assert::IsNotNull(target->ToString());
 
 				target->goNextItinerario();
 				target->getStatoTreno();
+				Assert::IsNotNull(target->getStazioneItinerario());
+				target->setStatoTreno(StateTrain::USCITASTAZIONE);
 				Assert::IsNotNull(target->getStazioneItinerario());
 				target->goNextItinerario();
 				target->getStatoTreno();

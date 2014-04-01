@@ -26,7 +26,7 @@ public:
 	virtual void serialize(array<Byte>^buffer, int offset) override;
 	virtual void deserialize(array<Byte>^buffer, int offset) override;
 
-	~pacchettoComandoItinerari(void);
+	
 	virtual System::String ^ToString() override;
 
 };

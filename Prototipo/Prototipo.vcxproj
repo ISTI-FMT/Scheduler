@@ -80,6 +80,14 @@
     <ResourceCompile Include="Prototipo.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AreeCritiche.h">
+      <DependentUpon>..\FileConfigurazione\AreeCritiche.xsd</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="AreeCritiche\AreaCriticaCircolare.h" />
+    <ClInclude Include="AreeCritiche\AreaCriticaLineare.h" />
+    <ClInclude Include="AreeCritiche\AreaCritica.h" />
+    <ClInclude Include="AreeCritiche\AreeCritiche.h" />
+    <ClInclude Include="AreeCritiche\IstanzaMissione.h" />
     <ClInclude Include="ConfigurazioneFermate.h">
       <DependentUpon>..\FileConfigurazione\ConfigurazioneFermate.xsd</DependentUpon>
     </ClInclude>
@@ -91,14 +99,20 @@
     </ClInclude>
     <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
     <ClInclude Include="ControllerListTrain.h" />
+    <ClInclude Include="EditorMapTreni.h" />
+    <ClInclude Include="EditorTabellaOrario.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="FormDeleteElement.h" />
     <ClInclude Include="FormStatoLineaIXL.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="FormStatoLineaATC.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="FormVisualizzeMapTreni.h" />
     <ClInclude Include="form\tableLayoutPanelAllCDB.h" />
     <ClInclude Include="form\tableLayoutPanelSingleItin.h" />
     <ClInclude Include="IEvent.h" />
@@ -146,6 +160,7 @@
     <ClInclude Include="messaggi\StateSegnale.h" />
     <ClInclude Include="messaggi\utility.h" />
     <ClInclude Include="messaggi\pacchettoBase.h" />
+    <ClInclude Include="AreeCritiche\MissioneAnnotata.h" />
     <ClInclude Include="ParalellMethod.h" />
     <ClInclude Include="physicalTrain.h" />
     <ClInclude Include="phisicalTrainList.h" />
@@ -174,11 +189,16 @@
     <ClInclude Include="wdogcontrol.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AreeCritiche\AreaCriticaCircolare.cpp" />
+    <ClCompile Include="AreeCritiche\AreaCriticaLineare.cpp" />
+    <ClCompile Include="AreeCritiche\AreeCritiche.cpp" />
     <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp" />
     <ClCompile Include="ControllerListTrain.cpp" />
+    <ClCompile Include="EditorTabellaOrario.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FormStatoLineaIXL.cpp" />
     <ClCompile Include="FormStatoLineaATC.cpp" />
+    <ClCompile Include="FormVisualizzeMapTreni.cpp" />
     <ClCompile Include="form\tableLayoutPanelAllCDB.cpp" />
     <ClCompile Include="form\tableLayoutPanelSingleItin.cpp" />
     <ClCompile Include="Itinerari\binario.cpp" />
@@ -249,6 +269,9 @@
   </ItemGroup>
   <ItemGroup>
     <!-- -->
+    <EmbeddedResource Include="EditorTabellaOrario.resx">
+      <DependentUpon>EditorTabellaOrario.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStatoLineaIXL.resx">
       <DependentUpon>FormStatoLineaIXL.h</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +287,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -271,7 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xml" />
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneItinerari.xml">
+      <SubType>Designer</SubType>
+    </_EmbedManagedResourceFile>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xml" />
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xml" />
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml" />
@@ -284,10 +310,12 @@
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xml">
+      <SubType>Designer</SubType>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xsd" />
     <_EmbedManagedResourceFile Include="risorse\green.ico" />
     <_EmbedManagedResourceFile Include="risorse\red.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <_EmbedManagedResourceFile Include="risorse\app.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

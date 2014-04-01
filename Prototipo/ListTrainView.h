@@ -47,6 +47,8 @@ namespace Prototipo {
 			//
 			//TODO: aggiungere qui il codice del costruttore.
 			//
+			this->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
+			this->Location = System::Drawing::Point(900, 400);
 		}
 		void AddModel(ListTrainModel ^c );
 		void ViewNewTrain(List<Train^>^ trains);

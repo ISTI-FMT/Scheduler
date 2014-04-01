@@ -59,6 +59,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies />
+      <IgnoreSpecificDefaultLibraries>OLDNAMES.lib</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,6 +98,7 @@
     </ClCompile>
     <ClCompile Include="TabellaOrarioTest.cpp" />
     <ClCompile Include="TabellaStazioniTest.cpp" />
+    <ClCompile Include="TestAreeCritiche\AreeCriticheTest.cpp" />
     <ClCompile Include="ThreadListenerATC_IXLTest.cpp" />
     <ClCompile Include="ThreadPresentazioneTest.cpp" />
     <ClCompile Include="TrainTest.cpp" />

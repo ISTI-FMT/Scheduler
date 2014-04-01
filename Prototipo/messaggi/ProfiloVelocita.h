@@ -3,9 +3,9 @@
 /*
 Rappresenta le informazioni sul profilo velocità del pacchetto MissionData da inviare all'ATO
 */
-using namespace System::Diagnostics::CodeAnalysis;
+//using namespace System::Diagnostics::CodeAnalysis;
 
-[ExcludeFromCodeCoverage]
+//[ExcludeFromCodeCoverage]
 public ref class ProfiloVelocita
 {
 	int D_MISSION ;

@@ -4,9 +4,9 @@
 pacchettoStatoItinerario::pacchettoStatoItinerario(void)
 {
 	setNID_PACKET(PacchettoID::StatoItinerario);
-	L_PACKET = 0;
-	N_ITER = 0;
-	vStatoItinerario = gcnew List<StateItinerario^>();
+	setL_PACKET ( 0);
+	setN_ITER ( 0);
+	setItinerario(gcnew List<StateItinerario^>());
 }
 
 // metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
@@ -75,14 +75,14 @@ void pacchettoStatoItinerario::deserialize(array<Byte>^buffer, int offset)
 System::String ^pacchettoStatoItinerario::ToString(){
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+vStatoItinerario[0]->ToString();
-	out = out+"N_ITER: "+N_ITER+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+getItinerario()[0]->ToString();
+	out = out+"N_ITER: "+getN_ITER()+";";
 
-	for ( int i=1;i<vStatoItinerario->Count;i++)
+	for ( int i=1;i<getItinerario()->Count;i++)
 	{
-		out = out+vStatoItinerario[i]->ToString();
+		out = out+getItinerario()[i]->ToString();
 	}
 
 	return out;

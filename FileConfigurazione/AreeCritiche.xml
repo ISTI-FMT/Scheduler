@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns="urn:AreeCritiche-schema">
+  <Aree>
+    <Area Id="0" Limite="0">
+      <Cdb Id="13301" />
+      <Cdb Id="501" />
+    </Area>
+	<Area Id="1" Limite="0">
+      <Cdb Id="13302" />
+      <Cdb Id="501" />
+    </Area>
+	<Area Id="2" Limite="3">
+      <Cdb Id="501" />
+      <Cdb Id="14301" />
+	  <Cdb Id="502" />
+	  <Cdb Id="14302" />
+    </Area>
+	<Area Id="3" Limite="3">
+      <Cdb Id="502" />
+      <Cdb Id="15301" />
+	  <Cdb Id="503" />
+	  <Cdb Id="15302" />
+    </Area>
+  </Aree>
+  <Missioni>
+  
+    <Missione Trn="5123">
+      <Cdb Id="13301" >
+		<Azione IdArea="0">3</Azione> 
+	  </Cdb>
+	  <Cdb Id="501" >
+		<Azione IdArea="2">1</Azione> 
+	  </Cdb>
+	  <Cdb Id="14301" >
+		<Azione IdArea="0">-3</Azione> 
+	  </Cdb>
+	  <Cdb Id="502" >
+		<Azione IdArea="3">1</Azione> 
+	  </Cdb>
+	  <Cdb Id="15301" >
+		<Azione IdArea="2">-1</Azione> 
+	  </Cdb>
+	  <Cdb Id="503" />
+	  <Cdb Id="12301" >
+		<Azione IdArea="3">-1</Azione> 
+	  </Cdb>
+	  <Cdb Id="402" />
+	  <Cdb Id="428" />
+	  <Cdb Id="16301" />
+	  <Cdb Id="448" />
+	  <Cdb Id="17301" />	  
+    </Missione>
+	
+    <Missione Trn="5132">
+  <Cdb Id="17301" />
+  <Cdb Id="449" />
+  <Cdb Id="16303" />
+  <Cdb Id="429" />
+  <Cdb Id="401" />
+  <Cdb Id="12302" />
+  <Cdb Id="503" >
+    <Azione IdArea="3">1</Azione> 
+	  </Cdb>
+  <Cdb Id="15302" />
+  <Cdb Id="502" >
+  <Azione IdArea="2">1</Azione> 
+	  </Cdb>
+  <Cdb Id="14302" >
+  <Azione IdArea="3">-1</Azione> 
+	  </Cdb>
+  <Cdb Id="501" >
+  <Azione IdArea="0">2</Azione> 
+	  </Cdb>
+  <Cdb Id="13301" >
+  <Azione IdArea="2">-1</Azione> 
+	  </Cdb>
+  </Missione>
+  
+	  <Missione Trn="5312">
+  <Cdb Id="13302" >
+  <Azione IdArea="1">3</Azione> 
+	  </Cdb>
+  <Cdb Id="501" >
+  <Azione IdArea="2">1</Azione> 
+	  </Cdb>
+  <Cdb Id="14302">
+  <Azione IdArea="1">-3</Azione> 
+	  </Cdb>
+  <Cdb Id="502" >
+  <Azione IdArea="3">1</Azione> 
+	  </Cdb>
+  <Cdb Id="15302" >
+  <Azione IdArea="2">-1</Azione> 
+	  </Cdb>
+  <Cdb Id="503" />
+  <Cdb Id="12301" >
+  <Azione IdArea="3">-1</Azione> 
+	  </Cdb>
+  <Cdb Id="402" />
+  <Cdb Id="428" />
+  <Cdb Id="16301" />
+  <Cdb Id="448" />
+  <Cdb Id="17302" />
+  </Missione>
+  
+	  <Missione Trn="5321">
+  <Cdb Id="17302" />
+  <Cdb Id="449" />
+  <Cdb Id="16303" />
+  <Cdb Id="429" />
+  <Cdb Id="401" />
+  <Cdb Id="12302" />
+  <Cdb Id="503" >
+  <Azione IdArea="3">1</Azione> 
+	  </Cdb>
+  <Cdb Id="15302" />
+  <Cdb Id="502" >
+  <Azione IdArea="2">1</Azione> 
+	  </Cdb>
+  <Cdb Id="14302" >
+  <Azione IdArea="3">-1</Azione> 
+	  </Cdb>
+  <Cdb Id="501" >
+  <Azione IdArea="1">2</Azione> 
+	  </Cdb>
+  <Cdb Id="13302" >
+  <Azione IdArea="2">-1</Azione> 
+	  </Cdb>
+  </Missione>
+  </Missioni>
+</Document>

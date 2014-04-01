@@ -89,7 +89,9 @@ namespace SchedulerATSTest {
 
 				 oThreadTCP_ATO->Start();
 
-				
+				EventQueue<physicalTrain^>  ^EventQATO = gcnew EventQueue<physicalTrain^>();
+
+				 EventQATO->Subscribe(MA);
 				
 				String ^msgPresentazione  ="D702200002B6602009E32035000E1C0000";
 				array<Byte> ^sendBytes = fromString(msgPresentazione);
@@ -99,7 +101,7 @@ namespace SchedulerATSTest {
 				IPEndPoint ^ep = gcnew IPEndPoint(broadcastip, 13000);
 				sock->Connect(ep);
 				sock->SendTo( sendBytes, ep);
-
+				
 				sock->Close();
 				 Thread::Sleep(1000);
 				 ThreadP->RequestStop();

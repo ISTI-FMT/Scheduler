@@ -6,14 +6,14 @@ using namespace System::Collections::Concurrent;
 using namespace System::Diagnostics::CodeAnalysis;
 
 [ExcludeFromCodeCoverage]
-ref class StateObject
-{
+public ref class StateObject{
 public:
     int BUFFER_SIZE;
    Socket^ workSocket;
    array<Byte>^ buffer;
    int fine;
    int enginenumber;
+   DateTime time;
    StateObject(int e) 
    {
 	   workSocket=nullptr ;
@@ -21,5 +21,6 @@ public:
       buffer = gcnew array<Byte>(BUFFER_SIZE);
       fine=0;
 	  enginenumber=e;
+	  time = DateTime::Now;
    };
 };

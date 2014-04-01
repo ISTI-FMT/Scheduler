@@ -19,7 +19,6 @@ public ref class Fermata  : public IEquatable<Fermata^>
 	double tempoMinimoAperturaPorte;
 	int binarioProgrammato;
 	FermataType latoAperturaPorte;
-
 	int iditinerarioentrata;
 	String ^nameitinerarioentrata;
 	int iditinerariouscita;

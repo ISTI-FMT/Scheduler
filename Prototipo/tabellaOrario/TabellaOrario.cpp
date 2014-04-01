@@ -19,6 +19,7 @@ TabellaOrario::TabellaOrario(void)
 	tabella = gcnew Dictionary<int, List<Fermata^>^>;
 	schemaxsd="TabellaOrario.xsd";
 	leggiTabellaOrario();
+	tabItinerari  = gcnew TabellaStazioni();
 }
 
 TabellaOrario::TabellaOrario(TabellaStazioni ^T)
@@ -237,7 +238,10 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			latolinea = true;
 		}
 		//indica la direzione in cui va il treno true dx da accademia -> vittoria, false viceversa
-		bool direzione = tabItinerari->get_Direzione_itinerario(stops[0]->getIdStazione(),stops[0]->getIditinerarioEntrata());
+		bool direzione = tabItinerari->get_Direzione_itinerario(stops[0]->getIdStazione(),stops[0]->getIditinerarioUscita());
+		if(stops[0]->getIditinerarioUscita()==0){
+			direzione = tabItinerari->get_Direzione_binario(stops[0]->getIdStazione(),stops[0]->getBinarioProgrammato());
+		}
 
 		//Todo: V_mission D_mission tratte
 		if(pvel!=nullptr){
@@ -248,25 +252,68 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			pkt->setN_ITER1(0);
 		}
 		// -1 perchè la prima fermata non viene considerata negli N_ITER
+		
 		pkt->setN_ITER2((stops->Count) - 1);
 		pkt->setQ_SCALE(QSCALEMissionData::M);
 		int i=0;
 		int prevprogkm = 0;
 		for each (Fermata ^stop in stops)
 		{
-			Mission ^mission= gcnew Mission();
-			mission->setQ_DOORS(stop->getLatoAperturaPorte());
+			
+				Mission ^mission= gcnew Mission();
+				mission->setQ_DOORS(stop->getLatoAperturaPorte());
 
-			int orarioPartenza = (int)stop->getOrarioPartenza();
+				int orarioPartenza = (int)stop->getOrarioPartenza();
 
-			mission->setT_START_TIME(orarioPartenza);
-			mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
+				mission->setT_START_TIME(orarioPartenza);
+				mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
 
-			if(tabItinerari!=nullptr ){
-				if(stop->getIditinerarioEntrata()!=0){
-					lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
-					if(infobalise!=nullptr){
+				if(tabItinerari!=nullptr ){
+					if(stop->getIditinerarioEntrata()!=0){
+						lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioEntrata());
+						if(infobalise!=nullptr){
 
+							mission->setNID_LRGB(infobalise->nid_lrgb);
+							mission->setD_STOP(infobalise->d_stop);
+							int pkmlrbg = 0;
+							if(latolinea){
+								pkmlrbg =	infobalise->get_progressivakm(13000);
+							}else{
+								pkmlrbg =	infobalise->get_progressivakm(10000);
+							}
+							int d_lrgb = Math::Abs(pkmlrbg - prevprogkm);
+							if(direzione){
+								prevprogkm = pkmlrbg +  infobalise->d_stop;
+							}else{
+								prevprogkm = pkmlrbg -  infobalise->d_stop;
+							}
+							mission->setD_LRGB(d_lrgb);
+						}
+					}
+					if(i==0){
+						lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioUscita());
+						if(infobalise!=nullptr){
+
+							mission->setNID_LRGB(infobalise->nid_lrgb);
+							mission->setD_STOP(infobalise->d_stop);
+							mission->setD_LRGB(10);
+							int pkmlrbg = 0;
+							if(latolinea){
+								pkmlrbg = infobalise->get_progressivakm(13000) ;
+							}else{
+								pkmlrbg = infobalise->get_progressivakm(10000) ;
+							}
+
+							if(direzione){
+								prevprogkm = pkmlrbg +  infobalise->d_stop;
+							}else{
+								prevprogkm = pkmlrbg -  infobalise->d_stop;
+							}
+
+						}
+					}
+					if((stop->getIditinerarioEntrata()==0) & (stop->getIditinerarioUscita()==0)){
+						lrbg ^infobalise  = tabItinerari->get_infobalise_fromBinario(stop->getIdStazione(),stop->getBinarioProgrammato());
 						mission->setNID_LRGB(infobalise->nid_lrgb);
 						mission->setD_STOP(infobalise->d_stop);
 						int pkmlrbg = 0;
@@ -283,54 +330,12 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 						}
 						mission->setD_LRGB(d_lrgb);
 					}
+
 				}
-				if(i==0){
-					lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioUscita());
-					if(infobalise!=nullptr){
-
-						mission->setNID_LRGB(infobalise->nid_lrgb);
-						mission->setD_STOP(infobalise->d_stop);
-						mission->setD_LRGB(10);
-						int pkmlrbg = 0;
-						if(latolinea){
-							pkmlrbg = infobalise->get_progressivakm(13000) ;
-						}else{
-							pkmlrbg = infobalise->get_progressivakm(10000) ;
-						}
-
-						if(direzione){
-							prevprogkm = pkmlrbg +  infobalise->d_stop;
-						}else{
-							prevprogkm = pkmlrbg -  infobalise->d_stop;
-						}
-
-					}
-				}
-				if((stop->getIditinerarioEntrata()==0) & (stop->getIditinerarioUscita()==0)){
-					lrbg ^infobalise  = tabItinerari->get_infobalise_fromBinario(stop->getIdStazione(),stop->getBinarioProgrammato());
-					mission->setNID_LRGB(infobalise->nid_lrgb);
-					mission->setD_STOP(infobalise->d_stop);
-					int pkmlrbg = 0;
-					if(latolinea){
-						pkmlrbg =	infobalise->get_progressivakm(13000);
-					}else{
-						pkmlrbg =	infobalise->get_progressivakm(10000);
-					}
-					int d_lrgb = Math::Abs(pkmlrbg - prevprogkm);
-					if(direzione){
-						prevprogkm = pkmlrbg +  infobalise->d_stop;
-					}else{
-						prevprogkm = pkmlrbg -  infobalise->d_stop;
-					}
-					mission->setD_LRGB(d_lrgb);
-				}
-
-			}
-			i++;
+			
+			
 			pkt->setMission(mission);
-
-
-
+			i++;
 		}
 	}
 
@@ -384,4 +389,61 @@ List<Fermata^> ^TabellaOrario::getItinerariFor(int TRN){
 		return result;
 	}
 	return nullptr;
+}
+
+
+void TabellaOrario::ScriviTabellaOrario(System::IO::Stream ^stream){
+	XmlWriterSettings ^settings = gcnew XmlWriterSettings();
+	settings->Indent = true;
+	XmlWriter ^writer = XmlWriter::Create(stream,settings);
+
+	writer->WriteStartDocument();
+	writer->WriteStartElement("orario");
+	for each( KeyValuePair<int , List<Fermata^>^> kvp in tabella )
+	{
+		writer->WriteStartElement("treno");
+		writer->WriteAttributeString("id",kvp.Key.ToString());
+
+
+
+		for each (Fermata ^dvar in kvp.Value)
+		{
+			writer->WriteStartElement("stazione");
+			writer->WriteAttributeString("id",dvar->getIdStazione().ToString());
+			writer->WriteAttributeString("name",dvar->getnameStazione());
+
+			writer->WriteElementString("arrivo", dvar->getOrarioArrivo().ToString());
+			writer->WriteElementString("partenza", dvar->getOrarioPartenza().ToString());
+			writer->WriteElementString("binarioprogrammato", dvar->getBinarioProgrammato().ToString());
+			String ^latoParturaPorte ="";
+			if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoDx )
+				latoParturaPorte = "dx";
+			else if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoSx)
+				latoParturaPorte =  "sx";
+			else if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoDxSx )
+				latoParturaPorte ="sd" ;
+			else
+				latoParturaPorte = "";//FermataType::noApertura;
+
+			writer->WriteElementString("latoaperturaporteprogrammato", latoParturaPorte);
+			if(dvar->getIditinerarioEntrata()>0){
+				writer->WriteStartElement("itinerarioEntrata");
+				writer->WriteAttributeString("id", dvar->getIditinerarioEntrata().ToString());
+				writer->WriteString(dvar->getnameitinerarioEntrata());
+				writer->WriteEndElement();
+			}
+			if(dvar->getIditinerarioUscita()>0){
+				writer->WriteStartElement("itinerarioUscita");
+				writer->WriteAttributeString("id", dvar->getIditinerarioUscita().ToString());
+				writer->WriteString(dvar->getnameitinerarioUscita());
+				writer->WriteEndElement();
+			}
+			writer->WriteEndElement();
+
+		}
+		writer->WriteEndElement();
+	}
+	writer->WriteEndElement();
+	writer->WriteEndDocument();
+	writer->Close();
 }

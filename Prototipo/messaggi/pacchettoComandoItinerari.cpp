@@ -4,9 +4,9 @@
 pacchettoComandoItinerari::pacchettoComandoItinerari(void)
 {
 	setNID_PACKET(PacchettoID::ComandoItinerari);
-	L_PACKET = 0;
-	NID_ITIN = 0;
-	Q_CMDITIN = 0;
+	setL_PACKET ( 0);
+	setNID_ITIN (0);
+	setQ_CMDITIN(QCmdItinerari::distruzione);
 }
 
 int pacchettoComandoItinerari::getSize()
@@ -36,16 +36,14 @@ void pacchettoComandoItinerari::deserialize(array<Byte>^buffer, int offset)
 	Q_CMDITIN=utility::pop(buffer, 2, 104);
 }
 
-pacchettoComandoItinerari::~pacchettoComandoItinerari(void)
-{
-}
+
 
 System::String ^pacchettoComandoItinerari::ToString(){
 	System::String ^out;
 
-	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+"NID_ITIN: "+NID_ITIN+";";
-	out = out+"Q_CMDITIN: "+Q_CMDITIN+";";
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+"NID_ITIN: "+getNID_ITIN()+";";
+	out = out+"Q_CMDITIN: "+getQ_CMDITIN()+";";
 	return out;
 }

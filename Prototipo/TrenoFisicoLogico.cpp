@@ -3,38 +3,38 @@
 
 TrenoFisicoLogico::TrenoFisicoLogico(void)
 {
-	idtrenofisico=0;
+	setIdTrenoFisico(0);
 	ListidTreniLogici = gcnew List<int>();
-	cdblastposition=0;
+	setCDBLastPosition(0);
 }
 
 
 
 TrenoFisicoLogico::TrenoFisicoLogico(int idtrenoF, int idtrenoL, int cdblpos){
-	idtrenofisico=idtrenoF;
+	setIdTrenoFisico(idtrenoF);
 	ListidTreniLogici  = gcnew List<int>();
-	ListidTreniLogici->Add(idtrenoL);
-	cdblastposition=cdblpos;
+	setIdTrenoLogico(idtrenoL);
+	setCDBLastPosition(cdblpos);
 }
 
 TrenoFisicoLogico::TrenoFisicoLogico(int idtrenoF, List<int> ^idltrenoL, int cdblpos){
-	idtrenofisico=idtrenoF;
+	setIdTrenoFisico(idtrenoF);
 	ListidTreniLogici = idltrenoL;
-	cdblastposition=cdblpos;
+	setCDBLastPosition(cdblpos);
 }
 
 String ^TrenoFisicoLogico::ToString(){
 	System::String ^out ="";
 
 
-	out+=" Idtrenofisico: "+idtrenofisico+";";
+	out+=" Idtrenofisico: "+getIdTrenoFisico()+";";
 	for each (int var in ListidTreniLogici)
 	{
 		out+=" IdTrenoTrenoLogico: "+var+";";
 
 	}
 
-	out+=" CDBLastPosition: "+idtrenofisico+";";
+	out+=" CDBLastPosition: "+getCDBLastPosition()+";";
 
 	return out;
 

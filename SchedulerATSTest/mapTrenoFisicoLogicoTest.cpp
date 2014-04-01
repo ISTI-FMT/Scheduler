@@ -70,6 +70,13 @@ namespace SchedulerATSTest {
 				Assert::IsNotNull(target->ToString());
 
 				CollectionAssert::AllItemsAreNotNull(target->get_Map()[65282]->getIdTrenoListTreniLogici());
+				String^ tmpFilename = System::IO::Path::GetTempFileName();
+				
+				System::IO::FileStream^ writeStream = gcnew System::IO::FileStream(tmpFilename, System::IO::FileMode::Create);
+				target->saveXml(writeStream);
+				
+				writeStream->Close();
+
 				Assert::AreNotEqual(-1,target->get_Map()[65282]->getIdTrenoLogico(0));
 			}
 	};

@@ -149,11 +149,38 @@ namespace SchedulerATSTest {
 				String ^msgtrn  ="C901C00000FB14203880000092A0";
 				bbytesd = fromString(msgtrn);
 				trn->deserialize(bbytesd);
-				expected = "NID_MESSAGE 201;L_MESSAGE 14;T_TRAIN 2008;NID_PACKET 161;L_PACKET 56;Q_COMMAND_TYPE 4;";
+				expected = "NID_MESSAGE 201;L_MESSAGE 14;T_TRAIN 2008;NID_PACKET 161;L_PACKET 56;Q_COMMAND_TYPE 4;NID_OPERATIONAL 1173;";
 				Assert::AreEqual(trn->ToString(),expected);
 				//Serializza trn
 				Bytess =  trn->serialize();
 				hex = BitConverter::ToString(Bytess);	
+				CollectionAssert::AreEqual(bbytesd,Bytess);
+
+				//Serializza GOA_LEVEL
+				Messaggi^  goa = (gcnew Messaggi(MessageID::UnconditionCommand)); 
+				goa->get_pacchettoCommandData()->setQ_COMMAND_TYPE(QCmdData::CHANGE_GOA_LEVEL);
+				goa->get_pacchettoCommandData()->setM_GOA_LEVEL(GOA_LEVEL::Level_2);
+				Bytess =  goa->serialize();
+				hex = BitConverter::ToString(Bytess);					
+				bbytesd = fromString(hex->Replace("-",""));								
+				goa->deserialize(bbytesd);	
+				expected = "NID_MESSAGE 201;L_MESSAGE 10;T_TRAIN 1253;NID_PACKET 161;L_PACKET 26;Q_COMMAND_TYPE 3;M_GOA_LEVEL 1;";
+				Assert::IsNotNull(goa->ToString());
+				//DeSerializza GOA
+				CollectionAssert::AreEqual(bbytesd,Bytess);
+
+				//Serializza QDoors
+				Messaggi^  qdoor = (gcnew Messaggi(MessageID::UnconditionCommand)); 
+				qdoor->get_pacchettoCommandData()->setQ_COMMAND_TYPE(QCmdData::Door);
+				qdoor->get_pacchettoCommandData()->setQ_DOORS(FermataType::aperturaTrenoBanchinaSx);
+				Bytess =  qdoor->serialize();
+				hex = BitConverter::ToString(Bytess);					
+				bbytesd = fromString(hex->Replace("-",""));								
+				qdoor->deserialize(bbytesd);	
+				expected = "NID_MESSAGE 201;L_MESSAGE 10;T_TRAIN 1253;NID_PACKET 161;L_PACKET 26;Q_COMMAND_TYPE 2;Q_DOORS 5;";
+				Assert::IsNotNull(qdoor->ToString());
+				//Assert::AreEqual(goa->ToString(),expected);
+				//DeSerializza Qdoors
 				CollectionAssert::AreEqual(bbytesd,Bytess);
 
 

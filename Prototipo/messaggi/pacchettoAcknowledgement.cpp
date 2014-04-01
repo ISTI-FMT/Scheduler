@@ -4,9 +4,9 @@
 pacchettoAcknowledgement::pacchettoAcknowledgement(void)
 {
 	setNID_PACKET(PacchettoID::MissionAck);
-	L_PACKET = 0;
-	T_TRAIN = 0;
-	Q_MISSION_RESPONSE = 0;
+	setL_PACKET(0);
+	setT_TRAIN(0);
+	setQ_MISSION_RESPONSE(QMissionResponse::MissioneRifiutata);
 }
 
 void pacchettoAcknowledgement::serialize(array<Byte>^buffer, int offset)
@@ -37,13 +37,10 @@ System::String ^ pacchettoAcknowledgement::ToString(){
 		System::String ^out;
 
 	out = out+"NID_PACKET: "+NID_PACKET+";";
-	out = out+"L_PACKET: "+L_PACKET+";";
-	out = out+"T_TRAIN: "+T_TRAIN+";";
-	out = out+"Q_MISSION_RESPONSE: "+Q_MISSION_RESPONSE+";";
+	out = out+"L_PACKET: "+getL_PACKET()+";";
+	out = out+"T_TRAIN: "+getT_TRAIN()+";";
+	out = out+"Q_MISSION_RESPONSE: "+getQ_MISSION_RESPONSE()+";";
 	 return out;
 	};
 
-pacchettoAcknowledgement::~pacchettoAcknowledgement(void)
-{
-	
-}
+
