@@ -17,7 +17,7 @@ public ref class ManagerMsgATO : public IObservable<Event<physicalTrain^>^>
 	 List<IObserver<Event<physicalTrain^>^>^> ^observers;
 public:
 	ManagerMsgATO(void);
-	void addCheckAndSet(List<physicalTrain^> ^listatrain, String ^source);
+	
 	void addCheckAndSet(physicalTrain ^onetrain, String ^source);
 
 	

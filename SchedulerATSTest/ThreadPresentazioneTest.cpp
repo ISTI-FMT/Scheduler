@@ -101,7 +101,7 @@ namespace SchedulerATSTest {
 				IPEndPoint ^ep = gcnew IPEndPoint(broadcastip, 13000);
 				sock->Connect(ep);
 				sock->SendTo( sendBytes, ep);
-				
+				sock->SendTo( sendBytes, ep);
 				sock->Close();
 				 Thread::Sleep(1000);
 				 ThreadP->RequestStop();

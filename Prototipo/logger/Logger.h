@@ -11,7 +11,7 @@ L'ATS mantiene aggiornato un file di log in cui vengono memorizzate tutte le azi
 sistema, ad esempio ricezione/invio di messaggi da ATO o ATC.
 **********************************************************************************************************/
 //questa classe permette di uniformare la formattione dei log nel nostro prototipo
-ref class Logger
+public ref class Logger
 {
 public:
 	Logger(void);

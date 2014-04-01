@@ -51,13 +51,25 @@
     <ClCompile Include="physicalTrainTest.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadListenerTcpTest.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadListenerUdpTest.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="TestAreeCritiche\AreeCriticheTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadListenerATC_IXLTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadPresentazioneTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="lrbgTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="TrenoFisicoLogicoTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="ListTrainModelTest.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerTest.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

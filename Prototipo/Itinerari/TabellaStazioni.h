@@ -41,17 +41,11 @@ public:
 		return false;
 	}
 
-	bool get_Direzione_binario(int idstazione, int idbin){
-		if(mapidstazioneitinerari->ContainsKey(idstazione)){
-			return mapidstazioneitinerari[idstazione]->get_Direzione_binario(idbin);
-		}
-		return false;
-	}
 
-	lrbg ^get_infobalise_fromBinario(int idstazione, int bina){
+	lrbg ^get_infobalise_fromBinario(int idstazione, int bina, bool dir){
 
 		if(mapidstazioneitinerari->ContainsKey(idstazione)){
-			return mapidstazioneitinerari[idstazione]->get_infobalise_fromBinario(bina);
+			return mapidstazioneitinerari[idstazione]->get_infobalise_fromBinario(bina,dir);
 		}
 		return nullptr;
 

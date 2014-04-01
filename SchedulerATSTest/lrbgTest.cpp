@@ -1,18 +1,17 @@
 ﻿
 #include "stdafx.h"
-#include "stdafx.h"
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 namespace SchedulerATSTest {
     using namespace System;
-    ref class physicalTrainTest;
+    ref class lrbgTest;
     
     
     /// <summary>
-///Classe di test per physicalTrainTest.
-///Creata per contenere tutti gli unit test physicalTrainTest
+///Classe di test per lrbgTest.
+///Creata per contenere tutti gli unit test lrbgTest
 ///</summary>
 	[TestClass]
-	public ref class physicalTrainTest
+	public ref class lrbgTest
 	{
 
 	private: Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^  testContextInstance;
@@ -62,64 +61,20 @@ namespace SchedulerATSTest {
 			//
 #pragma endregion
 			/// <summary>
-			///Test per Clone
+			///Test per Costruttore lrbg
 			///</summary>
 	public: [TestMethod]
-			void CloneTest()
+			void lrbgConstructorTest()
 			{
-				physicalTrain^  target = gcnew physicalTrain(1152,"127.0.0.1",3610); 
-				
-				physicalTrain^  actual = target->Clone();
-				Assert::AreEqual(true, actual->Equals(target));
-				Assert::AreNotSame(target,actual);
+				int nid = 102; 
+				int ds = 150; 
 
-				 actual->setTcpPort(3555);
-				 Assert::IsFalse(actual->Equals(target));
+				lrbg^  target = (gcnew lrbg(nid, ds));
 
-				  actual->setTcpPort(3610);
-				  actual->setCDBLastPos(13301);
-				 Assert::IsFalse(actual->Equals(target));
-				
-			}
-			/// <summary>
-			///Test per Update
-			///</summary>
-	public: [TestMethod]
-			void UpdateTest()
-			{
-				physicalTrain^  target =  gcnew physicalTrain(1152,"127.0.0.1",3610); 
-				target->setCDBLastPos(222);
-				physicalTrain^  t =gcnew physicalTrain();
-				Assert::IsFalse(t->Equals(target));
-				t->setEngineNumber(1152);
-				bool expected = true; 
-				bool actual = t->Update(target);
-				Assert::AreEqual(expected, actual);
-
-				
-				 expected = false; 
-				 actual = t->Update(target);
-				 Assert::AreEqual( t->ToString(), target->ToString());
-				Assert::AreEqual(expected, actual);
-
-			}
-			/// <summary>
-			///Test per Costruttore physicalTrain
-			///</summary>
-	public: [TestMethod]
-			void physicalTrainConstructorTest()
-			{
-				int e = 0; 
-				String^  ip = System::String::Empty; 
-				int t = 0; 
-				physicalTrain^  target = (gcnew physicalTrain(e, ip, t));
-
-				StateObject ^so = gcnew StateObject(e);
-
-				target->setStateObject(so);
-
-				Assert::IsNotNull(target->getStateObject());
-
+				target->add_progressivakm(3650,1300);
+				int resultas = 3650;
+				Assert::AreEqual(target->get_progressivakm(1300),resultas);
+				Assert::AreEqual(target->get_progressivakm(1000),-1);
 			}
 	};
 }

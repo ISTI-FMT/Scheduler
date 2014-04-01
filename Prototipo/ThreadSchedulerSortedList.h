@@ -27,7 +27,9 @@ using namespace System;
 using namespace System::Net;
 using namespace System::Collections::Generic;
 using namespace System::Threading;
+using namespace System::Diagnostics::CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 ref class ThreadSchedulerSortedList 
 {
 	EventQueue<StateCDB^> ^EQueueIXL;

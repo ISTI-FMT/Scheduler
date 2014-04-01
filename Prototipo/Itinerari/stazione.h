@@ -60,26 +60,17 @@ public:
 
 	}
 
-	bool get_Direzione_binario(int idbin){
-		for each (binario ^var in binari)
-		{
-			if(var->getBin()==idbin){
-				if( var->getDirezione()=="dx"){
-					return true;
-				}else{
-					return false;
-				}
-			}
+	
+
+
+	lrbg ^get_infobalise_fromBinario(int bina, bool dir){
+		String ^dire = "dx";
+		if(!dir){
+			dire="sx";
 		}
-		return false;
-
-	}
-
-
-	lrbg ^get_infobalise_fromBinario(int bina){
 		for each (binario ^bin in binari)
 		{
-			if(bin->getBin()==bina){
+			if((bin->getBin()==bina) &(bin->getDirezione()==dire)  ){
 				return	bin->get_info_lrgb();
 			}
 		}

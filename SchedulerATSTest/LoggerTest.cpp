@@ -4,15 +4,15 @@
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 namespace SchedulerATSTest {
     using namespace System;
-    ref class physicalTrainTest;
+    ref class LoggerTest;
     
     
     /// <summary>
-///Classe di test per physicalTrainTest.
-///Creata per contenere tutti gli unit test physicalTrainTest
+///Classe di test per LoggerTest.
+///Creata per contenere tutti gli unit test LoggerTest
 ///</summary>
 	[TestClass]
-	public ref class physicalTrainTest
+	public ref class LoggerTest
 	{
 
 	private: Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^  testContextInstance;
@@ -62,64 +62,57 @@ namespace SchedulerATSTest {
 			//
 #pragma endregion
 			/// <summary>
-			///Test per Clone
+			///Test per Info
 			///</summary>
 	public: [TestMethod]
-			void CloneTest()
+			void InfoTest()
 			{
-				physicalTrain^  target = gcnew physicalTrain(1152,"127.0.0.1",3610); 
-				
-				physicalTrain^  actual = target->Clone();
-				Assert::AreEqual(true, actual->Equals(target));
-				Assert::AreNotSame(target,actual);
-
-				 actual->setTcpPort(3555);
-				 Assert::IsFalse(actual->Equals(target));
-
-				  actual->setTcpPort(3610);
-				  actual->setCDBLastPos(13301);
-				 Assert::IsFalse(actual->Equals(target));
-				
+				String^  message = System::String::Empty; 
+				String^  module = System::String::Empty; 
+				Logger::Info(message, module);
 			}
 			/// <summary>
-			///Test per Update
+			///Test per Warning
 			///</summary>
 	public: [TestMethod]
-			void UpdateTest()
+			void WarningTest()
 			{
-				physicalTrain^  target =  gcnew physicalTrain(1152,"127.0.0.1",3610); 
-				target->setCDBLastPos(222);
-				physicalTrain^  t =gcnew physicalTrain();
-				Assert::IsFalse(t->Equals(target));
-				t->setEngineNumber(1152);
-				bool expected = true; 
-				bool actual = t->Update(target);
-				Assert::AreEqual(expected, actual);
-
-				
-				 expected = false; 
-				 actual = t->Update(target);
-				 Assert::AreEqual( t->ToString(), target->ToString());
-				Assert::AreEqual(expected, actual);
-
+				String^  message = System::String::Empty; 
+				String^  module = System::String::Empty; 
+				Logger::Warning(message, module);
 			}
 			/// <summary>
-			///Test per Costruttore physicalTrain
+			///Test per Error
 			///</summary>
 	public: [TestMethod]
-			void physicalTrainConstructorTest()
+			void ErrorTest()
 			{
-				int e = 0; 
-				String^  ip = System::String::Empty; 
-				int t = 0; 
-				physicalTrain^  target = (gcnew physicalTrain(e, ip, t));
-
-				StateObject ^so = gcnew StateObject(e);
-
-				target->setStateObject(so);
-
-				Assert::IsNotNull(target->getStateObject());
-
+				String^  message = System::String::Empty; 
+				String^  module = System::String::Empty; 
+				Logger::Error(message, module);
+			}
+			/// <summary>
+			///Test per Info
+			///</summary>
+	public: [TestMethod]
+			void InfoTest1()
+			{
+				int NID_MSG = 0; 
+				String^  io = System::String::Empty; 
+				String^  desc = System::String::Empty; 
+				int dim = 0; 
+				String^  message = System::String::Empty; 
+				String^  module = System::String::Empty; 
+				Logger::Info(NID_MSG, io, desc, dim, message, module);
+			}
+			/// <summary>
+			///Test per Costruttore Logger
+			///</summary>
+	public: [TestMethod]
+			void LoggerConstructorTest()
+			{
+				Logger^  target = (gcnew Logger());
+				Assert::IsNotNull(target);
 			}
 	};
 }

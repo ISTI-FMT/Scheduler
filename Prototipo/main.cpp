@@ -24,8 +24,10 @@ using namespace System::Threading;
 using namespace System::Threading::Tasks;
 
 
+using namespace System::Diagnostics::CodeAnalysis;
 
-[STAThread]
+
+[STAThread,ExcludeFromCodeCoverage]
 int main()
 {
 	

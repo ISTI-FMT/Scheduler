@@ -130,8 +130,8 @@ void ThreadSchedulerSortedList::Schedule(){
 						if ((areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN())|(_blockAreeCritiche)))
 						{
 
-							Train->setStatoTreno(StateTrain::USCITASTAZIONE);
-
+							
+							controlListtrain->changeStato(Train,StateTrain::USCITASTAZIONE);
 						}
 					}
 

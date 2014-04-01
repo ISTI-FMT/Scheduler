@@ -260,6 +260,29 @@ namespace SchedulerATSTest {
 				Messaggi^ msgnul = (gcnew Messaggi()); 
 				msgnul->deserialize(bbytesd);
 
+
+
+				//Serializza fault
+				Messaggi^  fault = (gcnew Messaggi(MessageID::FaultReportingIXL)); 
+				fault->get_pacchettoFaultReporting()->setN_ITER(1);
+				Fault ^f = gcnew Fault();
+				Fault ^fa = gcnew Fault(1552,5551);
+				Fault ^fa1 = gcnew Fault(1552,5551);
+				fault->get_pacchettoFaultReporting()->setFault(fa);
+				fault->get_pacchettoFaultReporting()->setFault(fa1);
+				Bytess =  fault->serialize();
+				hex = BitConverter::ToString(Bytess);					
+				bbytesd = fromString(hex->Replace("-",""));								
+				fault->deserialize(bbytesd);	
+				expected = "NID_MESSAGE 211;L_MESSAGE 13;T_TRAIN 2589;NID_PACKET: 1;L_PACKET: 50;NID_COMPONENT: 1552;M_FAULT: 5551;N_ITER: 1;NID_COMPONENT: 1552;M_FAULT: 5551;NID_COMPONENT: 0;M_FAULT: 175;NID_COMPONENT: 0;M_FAULT: 175;";
+				Assert::IsNotNull(fault->ToString());
+				//Assert::AreEqual(goa->ToString(),expected);
+				//DeSerializza Qdoors
+				CollectionAssert::AreEqual(bbytesd,Bytess);
+
+
+
+
 			}
 
 			/// <summary>

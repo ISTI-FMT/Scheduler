@@ -9,13 +9,11 @@ using namespace System::Collections;
 /* 
 Rappresenta le informazioni contenute nel pacchetto Fault Data che l'ATS riceve dal IXL o ATO nel messaggio di Fault Reporting
 */
-using namespace System::Diagnostics::CodeAnalysis;
 
-[ExcludeFromCodeCoverage]
 public ref class pacchettoFaultData : pacchettoBase
 {
 	int L_PACKET ;
-	Fault ^guasto;
+	
 	int N_ITER ;
 	List<Fault^> ^vGuasto;
 public:
@@ -28,7 +26,7 @@ public:
 	// metodo che setta N_ITER ed alloca conseguentemente il vettore vGuasto
 	void setN_ITER(int N);
 	int getN_ITER(){return N_ITER;};
-
+	void setFault(Fault^ f){vGuasto->Add(f);};
 	virtual int getSize() override;
 	virtual void serialize(array<Byte>^buffer, int offset) override;
 	virtual void deserialize(array<Byte>^buffer, int offset) override;
