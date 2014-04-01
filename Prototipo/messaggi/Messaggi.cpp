@@ -8,7 +8,7 @@ Messaggi::Messaggi(void)
 	setTime();
 
 	L_MESSAGE = 0;
-	NID_ENGINE=0;
+	setNID_ENGINE(0);
 }
 
 Messaggi::Messaggi(MessageID NID)
@@ -16,7 +16,7 @@ Messaggi::Messaggi(MessageID NID)
 	setNID_MESSAGE((int)NID);
 	setTime();
 	L_MESSAGE = 0;
-	NID_ENGINE=0;
+	setNID_ENGINE(0);
 }
 
 

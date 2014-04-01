@@ -35,7 +35,8 @@ ThreadListenerUdp::ThreadListenerUdp(ManagerStatoLineaIXL ^MC,ManagerStatoLineaA
 
 	Console::WriteLine("PORT UDP Receive: {0}",port);
 	_shouldStop=false;
-	end_byte_old = nullptr;
+	end_byte_old_IXL = nullptr;
+	end_byte_old_ATC = nullptr;
 }
 
 bool ThreadListenerUdp::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B)
@@ -62,7 +63,7 @@ void ThreadListenerUdp::ReceiveCallback(IAsyncResult^ asyncResult)
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
 	IPEndPoint^ ipEndPoint= gcnew IPEndPoint(IPAddress::Any,port );
 	array<Byte>^ receiveBytes = recv_udpClient->EndReceive(asyncResult, ipEndPoint);
-
+	
 	Messaggi ^pkt1 = gcnew Messaggi();
 	isMessageReceived = true;
 
@@ -74,15 +75,15 @@ void ThreadListenerUdp::ReceiveCallback(IAsyncResult^ asyncResult)
 
 	if(NID_MESSAGE==(int)MessageID::StatoLineaIXL)
 	{
-		if(end_byte_old==nullptr){
-			end_byte_old=receiveBytes;
+		if(end_byte_old_ATC==nullptr){
+			end_byte_old_ATC=receiveBytes;
 		}else{
-			if(end_byte_old->Length!=receiveBytes->Length){
-				end_byte_old=receiveBytes;
+			if(end_byte_old_ATC->Length!=receiveBytes->Length){
+				end_byte_old_ATC=receiveBytes;
 			}else{
-				scarta = ConfrontaArrayByte(receiveBytes,end_byte_old);
+				scarta = ConfrontaArrayByte(receiveBytes,end_byte_old_ATC);
 				if(!scarta)
-					end_byte_old=receiveBytes;
+					end_byte_old_ATC=receiveBytes;
 			}
 
 		}
@@ -160,6 +161,7 @@ void ThreadListenerUdp::UDP_Management_receive()
 
 		IPEndPoint^ ipEndPoint = gcnew IPEndPoint(IPAddress::Any,port );
 		UdpClient^ udpClient = gcnew UdpClient(ipEndPoint);
+		udpClient->Client->ReceiveBufferSize=14048;
 		while ( !_shouldStop )
 		{
 			IAsyncResult ^result = udpClient->BeginReceive(gcnew AsyncCallback(ThreadListenerUdp::ReceiveCallback),udpClient);

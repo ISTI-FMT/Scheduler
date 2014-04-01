@@ -13,7 +13,7 @@ public ref class ThreadListenerTcp
 {
 private:
 	 //Manager che gestisce i messaggi in arrivo dall'ATO
-	 ManagerMsgATO ^ManaMsgATO;
+	 static ManagerMsgATO ^ManaMsgATO;
 	 //Porta di ascolto. Default 13000
 	 Int32 port;
 	 //TRUE se la chiusura del thread è pending
@@ -22,5 +22,6 @@ public:
 	ThreadListenerTcp(ManagerMsgATO^ MA);
 	void TCP_Management_receive();
 	void RequestStop();
+	static void ReceiveCallback(IAsyncResult^ asyncResult);
 	
 };

@@ -105,6 +105,7 @@
     </ClInclude>
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="FormDeleteElement.h" />
     <ClInclude Include="FormStatoLineaIXL.h">
       <FileType>CppForm</FileType>
     </ClInclude>

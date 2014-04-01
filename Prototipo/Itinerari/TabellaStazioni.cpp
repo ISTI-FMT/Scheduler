@@ -79,7 +79,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 
 
-					newitinerario->setName( inner2->GetAttribute("name"));
+					newitinerario->ShortName =  inner2->GetAttribute("name");
 
 					String^ direzione = inner2->GetAttribute("direzione");
 					newitinerario->setDirezione(direzione);
@@ -162,7 +162,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 
 
-					newitinerario->setName( inner2->GetAttribute("name"));
+					newitinerario->ShortName = inner2->GetAttribute("name");
 
 					String ^direzione = inner2->GetAttribute("direzione");
 					newitinerario->setDirezione(direzione);

@@ -471,6 +471,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="threads\ThreadListenerUdp.h">
+  <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="FormDeleteElement.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

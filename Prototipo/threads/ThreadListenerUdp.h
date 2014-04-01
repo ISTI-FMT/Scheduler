@@ -23,7 +23,7 @@ public ref class ThreadListenerUdp
 	static bool isMessageReceived;
 	//TRUE se la chiusura del thread è pending
 	static bool _shouldStop;
-	static array<Byte>^ end_byte_old;
+	static array<Byte>^ end_byte_old_IXL;
 	static array<Byte>^ end_byte_old_ATC;
 	
 public:

@@ -29,7 +29,7 @@ void FormVisualizzeMapTreni::Inizialize(){
 	this->NewTrain = gcnew Button();
 	this->NewTrain->Location = System::Drawing::Point(12, 370);
 	this->NewTrain->Name = L"NewMapTrain";
-	this->NewTrain->Size = System::Drawing::Size(146, 23);
+	this->NewTrain->Size = System::Drawing::Size(120, 23);
 	this->NewTrain->TabIndex = 2;
 	this->NewTrain->Text = L"NewMapTrain";
 	this->NewTrain->UseVisualStyleBackColor = true;
@@ -38,14 +38,27 @@ void FormVisualizzeMapTreni::Inizialize(){
 	//SaveXml
 	// 
 	this->SaveXml = gcnew Button();
-	int x  =12+146+25;
+	int x  =12+120+25;
 	this->SaveXml->Location = System::Drawing::Point(x,370);
 	this->SaveXml->Name = L"SaveXml";
-	this->SaveXml->Size = System::Drawing::Size(146, 23);
+	this->SaveXml->Size = System::Drawing::Size(120, 23);
 	this->SaveXml->TabIndex = 2;
 	this->SaveXml->Text = L"Save Xml";
 	this->SaveXml->UseVisualStyleBackColor = true;
 	this->SaveXml->Click += gcnew System::EventHandler(this, &FormVisualizzeMapTreni::SaveXml_Click);
+	
+	//Button ^DeleteTrain;
+	//DeleteTrain
+	// 
+	this->DeleteTrain = gcnew Button();
+	x  =12+120+25+120+25;
+	this->DeleteTrain->Location = System::Drawing::Point(x,370);
+	this->DeleteTrain->Name = L"NewTrain";
+	this->DeleteTrain->Size = System::Drawing::Size(120, 23);
+	this->DeleteTrain->TabIndex = 2;
+	this->DeleteTrain->Text = L"Delete Train";
+	this->DeleteTrain->UseVisualStyleBackColor = true;
+	this->DeleteTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeMapTreni::DeleteTrain_Click);
 
 	//form = gcnew Form();
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -55,6 +68,7 @@ void FormVisualizzeMapTreni::Inizialize(){
 	this->Controls->Add(dataGridView1);
 	this->Controls->Add(NewTrain);
 	this->Controls->Add(SaveXml);
+	this->Controls->Add(DeleteTrain);
 	this->Name = L"Tabella Orario";
 	this->Text = L"Tabella Orario";
 	//form->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
@@ -64,7 +78,7 @@ void FormVisualizzeMapTreni::Inizialize(){
 	this->PerformLayout();
 	this->SuspendLayout();
 
-	dataGridView1->ColumnCount = 5;
+	
 
 
 	Aggiorna();
@@ -119,8 +133,8 @@ void FormVisualizzeMapTreni::Addtreno(System::Object^  sender, System::EventArgs
 
 void FormVisualizzeMapTreni::Aggiorna(){
 
-	
-		dataGridView1->RowCount =  mapFisicoLogico->get_Map()->Count*3;
+	dataGridView1->ColumnCount = 5;
+	dataGridView1->RowCount =  1;
 	int colonna=0;
 	int riga=0;
 	dataGridView1->Columns[ 0 ]->Name = "Id_Engine_Treno";
@@ -132,21 +146,45 @@ void FormVisualizzeMapTreni::Aggiorna(){
 
 	for each( KeyValuePair<int , TrenoFisicoLogico^> ^kvp in mapFisicoLogico->get_Map() )
 	{
-
+		TrenoFisicoLogico^ trenof = kvp->Value;
+		dataGridView1->RowCount += trenof->getIdTrenoListTreniLogici()->Count;
 		String ^po=kvp->Key+"\n\r";
 		dataGridView1->Rows[riga]->Cells[0]->Value=po;
-		TrenoFisicoLogico^ trenof = kvp->Value;
-
+		
+		
 		for each (int dvar in trenof->getIdTrenoListTreniLogici())
 		{ 
 			
 			dataGridView1->Rows[riga]->Cells[2]->Value=dvar;
 			dataGridView1->Rows[riga]->Cells[4]->Value=trenof->getCDBLastPosition();
 			riga++;
+			
 		}
 		
 
 	}
 
 
+}
+
+void FormVisualizzeMapTreni::DeleteTrain_Click(System::Object^  sender, System::EventArgs^  e){
+	Prototipo::FormDeleteElement ^formdelete = gcnew Prototipo::FormDeleteElement(mapFisicoLogico);
+	formdelete->DeleteTreno +=gcnew System::EventHandler(this, &FormVisualizzeMapTreni::DelTrain);
+	formdelete->Visible=true;
+}
+
+void FormVisualizzeMapTreni::DelTrain(System::Object^  sender, System::EventArgs^  e){
+	try{
+		int elementodaeliminare = (int)sender;
+		if(mapFisicoLogico->get_Map()->ContainsKey(elementodaeliminare)){
+			mapFisicoLogico->get_Map()->Remove(elementodaeliminare);
+		Aggiorna();
+	}else{
+		MessageBox::Show("Treno non esistente in maptreni");
+	}
+
+
+	}catch(Exception ^e){
+		Console::WriteLine("treno non eliminato {0}",e->Message);
+	}
 }

@@ -13,7 +13,7 @@ TrenoFisicoLogico::TrenoFisicoLogico(void)
 TrenoFisicoLogico::TrenoFisicoLogico(int idtrenoF, int idtrenoL, int cdblpos){
 	setIdTrenoFisico(idtrenoF);
 	ListidTreniLogici  = gcnew List<int>();
-	ListidTreniLogici->Add(idtrenoL);
+	setIdTrenoLogico(idtrenoL);
 	setCDBLastPosition(cdblpos);
 }
 
@@ -27,14 +27,14 @@ String ^TrenoFisicoLogico::ToString(){
 	System::String ^out ="";
 
 
-	out+=" Idtrenofisico: "+idtrenofisico+";";
+	out+=" Idtrenofisico: "+getIdTrenoFisico()+";";
 	for each (int var in ListidTreniLogici)
 	{
 		out+=" IdTrenoTrenoLogico: "+var+";";
 
 	}
 
-	out+=" CDBLastPosition: "+idtrenofisico+";";
+	out+=" CDBLastPosition: "+getCDBLastPosition()+";";
 
 	return out;
 

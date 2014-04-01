@@ -4,9 +4,7 @@
 /*
 Questa classe rappresenta le informazioni sulla missione da affidare ad un treno
 */
-using namespace System::Diagnostics::CodeAnalysis;
 
-[ExcludeFromCodeCoverage]
 public ref class Mission
 {
 	 int T_START_TIME;
