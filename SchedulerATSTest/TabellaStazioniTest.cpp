@@ -89,7 +89,7 @@ namespace SchedulerATSTest {
 
 				Assert::IsNotNull(target->ToString());
 				Assert::IsNotNull(target->getMap()[13000]->getItinerariid()[901]->ShortDescName);
-				Assert::IsNotNull(target->getMap()[15000]->getItinerariid()[904]->ShortDescName);
+				Assert::IsNotNull(target->getMap()[15000]->getItinerariid()[906]->ShortDescName);
 				Assert::IsNotNull(target->getMap()[400]->getBinari()[0]);
 				target->getMap()[400]->getBinari()[0]->setLatoBanchina(3);
 				

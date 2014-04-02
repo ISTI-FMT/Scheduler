@@ -263,8 +263,8 @@ String ^Messaggi::ToString(){
 
 	if(pkgStatoLineaIXL)
 		out= out+get_pacchettoStatoLineaIXL()->ToString();
-	if(pkgStatoItinerari)
-		out= out+get_pacchettoStatoItinerario()->ToString();
+	/*if(pkgStatoItinerari)
+		out= out+get_pacchettoStatoItinerario()->ToString();*/
 	if(pkgStatoSegnali)
 		out= out+get_pacchettoStatoSegnali()->ToString();
 	if(pkgFaultData)
@@ -275,8 +275,8 @@ String ^Messaggi::ToString(){
 		out= out+get_pacchettoComandoItinerari()->ToString();
 	if(pkgComandoBlocco)
 		out= out+get_pacchettoComandoBlocco()->ToString();
-	if(pkgStatoScudetti)
-		out= out+get_pacchettoStatoScudetti()->ToString();
+	/*if(pkgStatoScudetti)
+		out= out+get_pacchettoStatoScudetti()->ToString();*/
 	if(pkgEnd)
 		out= out+get_pacchettoEnd()->ToString();
 
