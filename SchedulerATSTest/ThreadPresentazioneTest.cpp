@@ -101,9 +101,15 @@ namespace SchedulerATSTest {
 				IPEndPoint ^ep = gcnew IPEndPoint(broadcastip, 13000);
 				sock->Connect(ep);
 				sock->SendTo( sendBytes, ep);
+				sock->Close();
+
+				sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
+				
+				sock->Connect(ep);
 				sock->SendTo( sendBytes, ep);
 				sock->Close();
-				 Thread::Sleep(1000);
+
+				 Thread::Sleep(10000);
 				 ThreadP->RequestStop();
 				  Thread::Sleep(200);
 			}

@@ -103,6 +103,7 @@
     <ClCompile Include="TabellaOrarioTest.cpp" />
     <ClCompile Include="TabellaStazioniTest.cpp" />
     <ClCompile Include="TestAreeCritiche\AreeCriticheTest.cpp" />
+    <ClCompile Include="ThreadListenerATCTest.cpp" />
     <ClCompile Include="ThreadListenerATC_IXLTest.cpp" />
     <ClCompile Include="ThreadPresentazioneTest.cpp" />
     <ClCompile Include="TrainTest.cpp" />
