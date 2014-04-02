@@ -11,12 +11,27 @@ using namespace System::Collections::Generic;
 public ref class AreeCritiche
 {
 private:
+	/*
+	 * Dizionario che associa TRN a missioni annotate
+	 */
 	Dictionary<int, MissioneAnnotata^>^ missioni;
 	List<AreaCritica^>^ areeCritiche;
 	Dictionary<int, List<AreaCritica^>^>^ cdbAree;
 	String^ XmlFilename;
 	String^ XsdFilename;
+	array<int>^ limitiAree;
 public:
+	MissioneAnnotata^ get_Missione(int trn) 
+	{ 
+		MissioneAnnotata^ res = nullptr;
+		if (missioni->ContainsKey(trn))
+		{
+			res = missioni[trn]; 
+		}
+		return res;
+	}
+
+	array<int>^ get_limitiAree() { return limitiAree;}
 	AreeCritiche();
 	AreeCritiche(String ^xmlAreecritiche);
 	void leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readStreamXML);

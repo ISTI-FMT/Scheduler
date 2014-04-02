@@ -18,7 +18,6 @@ Debug
 *.sdf
 *.opensdf
 *.suo
-*.sln
 
 *.cache
 *.obj

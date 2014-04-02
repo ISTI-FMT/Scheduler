@@ -144,7 +144,7 @@ sendUDP(buff,1111)
 sendUDP(buff,1111)
 
 #Imposto il nome della console
-system("Treno: " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
+system("TITLE "+"Treno: " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
 
 #####PRESENTAZIONE VS ATS #########
 #115;16;258;65280;25;53;3610 Presentazione
@@ -179,7 +179,7 @@ for line in spamReader:
 		sendUDP(sendBytes,302)
 		###SEND FAKE RBC
 		NID_CDB = int(line[i],10)
-		system("Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
+		system("TITLE "+"Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
 		buff = messaggi.messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 		sendUDP(buff,1111)
 		inputt = raw_input("-->> PRESS ENTER <<<--- ")

@@ -103,6 +103,7 @@ namespace Prototipo {
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::CheckBox^  checkBoxAreeCritiche;
+	private: System::Windows::Forms::CheckBox^  checkBoxLivenees;
 	private: System::Windows::Forms::Button^  buttonMapTreni;
 	private: System::Windows::Forms::Button^  button4;
 
@@ -121,6 +122,7 @@ namespace Prototipo {
 				 this->button3 = (gcnew System::Windows::Forms::Button());
 				 this->button4 = (gcnew System::Windows::Forms::Button());
 				 this->checkBoxAreeCritiche = (gcnew System::Windows::Forms::CheckBox());
+				  this->checkBoxLivenees = (gcnew System::Windows::Forms::CheckBox());
 				 this->buttonMapTreni = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
 				 // 
@@ -190,6 +192,25 @@ namespace Prototipo {
 				 this->checkBoxAreeCritiche->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 				 this->checkBoxAreeCritiche->UseVisualStyleBackColor = true;
 				 this->checkBoxAreeCritiche->CheckedChanged += gcnew System::EventHandler(this, &SchedulerForm::checkBoxAreeCritiche_CheckedChanged);
+				
+				  // 
+				 // checkBoxLivenees
+				 // 
+				 this->checkBoxLivenees->AutoSize = true;
+				 this->checkBoxLivenees->CheckAlign = System::Drawing::ContentAlignment::BottomCenter;
+				 this->checkBoxLivenees->Checked = true;
+				 this->checkBoxLivenees->CheckState = System::Windows::Forms::CheckState::Checked;
+				 this->checkBoxLivenees->FlatStyle = System::Windows::Forms::FlatStyle::System;
+				 this->checkBoxLivenees->Location = System::Drawing::Point(226, 100);
+				 this->checkBoxLivenees->Name = L"checkBoxLivenees";
+				 this->checkBoxLivenees->Size = System::Drawing::Size(167, 18);
+				 this->checkBoxLivenees->TabIndex = 5;
+				 this->checkBoxLivenees->Text = L"Abilita/Disabilita Livenees";
+				 this->checkBoxLivenees->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+				 this->checkBoxLivenees->UseVisualStyleBackColor = true;
+				 this->checkBoxLivenees->CheckedChanged += gcnew System::EventHandler(this, &SchedulerForm::checkBoxLivenees_CheckedChanged);
+				 // 
+				 
 				 // 
 				 // buttonMapTreni
 				 // 
@@ -213,6 +234,7 @@ namespace Prototipo {
 				 this->Controls->Add(this->button2);
 				 this->Controls->Add(this->button1);
 				 this->Controls->Add(this->ExitButton);
+				 this->Controls->Add(this->checkBoxLivenees);
 				 this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 				 this->Name = L"SchedulerForm";
 				 this->Text = L"SchedulerForm";
@@ -537,6 +559,21 @@ namespace Prototipo {
 
 				 }
 			 }
+
+			 
+	private: System::Void checkBoxLivenees_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+				 if(checkBoxLivenees->Checked){
+					 ThScheduleSortedList->StopLiveness=false;
+
+				 }else{
+					 if(!checkBoxLivenees->Checked){
+						 ThScheduleSortedList->StopLiveness=true;
+
+
+					 }
+				 }
+			 }
+
 	};
 
 

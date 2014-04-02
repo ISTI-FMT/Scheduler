@@ -27,7 +27,11 @@ using namespace System;
 using namespace System::Net;
 using namespace System::Collections::Generic;
 using namespace System::Threading;
+
 using namespace System::Diagnostics::CodeAnalysis;
+
+using namespace LivenessCheck;
+
 
 [ExcludeFromCodeCoverage]
 ref class ThreadSchedulerSortedList 
@@ -41,6 +45,7 @@ ref class ThreadSchedulerSortedList
 	TabellaOrario ^tabOrario;
 	TabellaStazioni ^tabItinerari;
 	AreeCritiche ^areeCritiche;
+	Liveness^ liveness;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
 	ManagerStatoLineaATC ^managerATC;
 	ManagerStatoLineaIXL ^managerIXL;
@@ -51,16 +56,18 @@ ref class ThreadSchedulerSortedList
 	List<physicalTrain^> ^listatrenipresentati;
 	bool _shouldStop;
 	bool _blockAreeCritiche;
+	bool _blockLiveness;
 	DateTime timeRicIXL;
 	//System::Collections::Generic::SortedList<KeyListTrain^, Train^> ^ListSortedTrains;
 	ControllerListTrain ^controlListtrain;
 	static ManualResetEvent ^mre = gcnew ManualResetEvent(false);
 	Prototipo::ListTrainView ^view;
+	bool CheckLiveness(int trn, int nextCdb);
 public:
 	ThreadSchedulerSortedList(void);
-
-
-	ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E3, TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel, AreeCritiche^ areeCritiche);
+	ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,EventQueue<StateCDB^>^E1,EventQueue<physicalTrain^>^E3, 
+								TabellaOrario ^tabo, TabellaStazioni ^tabi,mapTrenoFisicoLogico ^mapTreno, wdogcontrol ^w, ManagerStatoLineaATC ^manATC,
+								ManagerStatoLineaIXL ^manIXL, ConfigurazioneVelocita ^cvel, AreeCritiche^ areeCritiche);
 
 	property bool StopAreecritiche 
 	{
@@ -68,12 +75,22 @@ public:
 		{
 			return _blockAreeCritiche;
 		}
-
-		void set(bool a){
-
+		void set(bool a)
+		{
 			_blockAreeCritiche=a;
 		}
+	}
 
+	property bool StopLiveness 
+	{
+		bool get()
+		{
+			return _blockLiveness;
+		}
+		void set(bool a)
+		{
+			_blockLiveness=a;
+		}
 	}
 
 	void Schedule();
@@ -83,7 +100,6 @@ public:
 	bool controllacdb(List<int>^lcdb);
 	void ControllaEventiCambioOrario();
 	void RequestStop();
-	
 
 	StateObject ^InizializzeATO(int trn,physicalTrain ^Treno);
 	StateObject ^SendUpdateMissionATO(int trn,physicalTrain ^Treno,List<Fermata^> ^stops);
