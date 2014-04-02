@@ -12,6 +12,7 @@ using namespace System::Runtime::InteropServices;
 using namespace System::Globalization;
 using namespace System::Xml;
 using namespace System::Configuration;
+using namespace LivenessCheck;
 
 
 #define TRACE
@@ -47,10 +48,13 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 
 	}
 	Console::WriteLine("IP IXL {0}",ipixl);
+	liveness = gcnew Liveness(areeCritiche->get_limitiAree());
 	RaccoltaTrenoRequestCDB  = gcnew Dictionary<Train^,List<int>^> ();
 	EQueueCambioOrario = gcnew EventQueue<List<Fermata^>^>();
 	_shouldStop=false;
-	_blockAreeCritiche=false;
+
+	//settare a true per ignorare i controlli sulle aree critiche
+	_blockAreeCritiche = true;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	//timeRicIXL;
 
@@ -63,12 +67,21 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 
 	//Application::Run(view);
 	view->Visible=true;
-
-
-
 }
 
+bool ThreadSchedulerSortedList::CheckLiveness(int trn, int nextCdb)
+{
+	//Eseguo il controllo sulla liveness.
+	//Al momento il controllo non tiene in considerazione le aree critiche perchè, al momento, le aree critiche sono ricevute in input staticamente
+	//e non tengono conto di quali treni sono effettivamente in movimento ma considerano tutti i treni del sistema contemporaneamente
+	System::Collections::Generic::Stack<System::Collections::Generic::KeyValuePair<int, int>>^ path = liveness->CheckLiveness(trn, nextCdb, false);
+	if (path == nullptr)
+	{
+		Console::WriteLine("Check liveness fallito!");
+	}
 
+	return path != nullptr;
+}
 
 void ThreadSchedulerSortedList::Schedule(){
 	try
@@ -77,10 +90,7 @@ void ThreadSchedulerSortedList::Schedule(){
 		//inizializzazione ATS
 		Init();
 
-
-
 		DateTime time=DateTime::Now;
-
 
 		while(!_shouldStop){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
@@ -129,9 +139,18 @@ void ThreadSchedulerSortedList::Schedule(){
 
 						if ((areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN())|(_blockAreeCritiche)))
 						{
+							if (!_blockLiveness)
+							{
+								MissioneLiveness^ missione = gcnew MissioneLiveness(Train->getTRN());
+								MissioneAnnotata^ missioneAnnotata = areeCritiche->get_Missione(Train->getTRN());
+								missione->Cdbs = missioneAnnotata->ListaCdb->ToArray();
+								missione->AzioniCdb = missioneAnnotata->AzioniCdb;
+								liveness->AggiungiMissione(missione);
+
+								 liveness->MuoviTreno(Train->getTRN(), prevfirstcdbu);
+							}
 
 							Train->setStatoTreno(StateTrain::USCITASTAZIONE);
-
 						}
 					}
 
@@ -166,11 +185,19 @@ void ThreadSchedulerSortedList::Schedule(){
 							int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 							if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 							{
-								if(!RaccoltaTrenoRequestCDB->ContainsKey(Train))
+								if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
 								{
-									List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
-									if(cdbricPrenotazione!=nullptr){
-										RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train))
+									{
+										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
+										if(cdbricPrenotazione!=nullptr){
+											if (!_blockLiveness)
+											{
+												liveness->MuoviTreno(Train->getTRN(), lastcdbiti);
+											}
+
+											RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+										}
 									}
 								}
 							}else{
@@ -216,11 +243,18 @@ void ThreadSchedulerSortedList::Schedule(){
 									int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 									if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 									{
-										if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
+										if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
+										{
+											if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 
-											List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
-											if(cdbricPrenotazione!=nullptr){
-												RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+												List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
+												if(cdbricPrenotazione!=nullptr){
+													if (!_blockLiveness)
+													{
+														liveness->MuoviTreno(Train->getTRN(), lastcdbiti);
+													}
+													RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+												}
 											}
 										}
 									}else{
@@ -242,14 +276,22 @@ void ThreadSchedulerSortedList::Schedule(){
 								//Controllo che l'acquisizione del prossimo cdb non crei deadlock
 								if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 								{
-									//se l'itinerario è libero
-									//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
-									//che riporti il cambiamento dello stato dell'itinerario
-									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
-										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
+									if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
+									{
+										//se l'itinerario è libero
+										//continuo ad inviare il msg finche nn arriva un evento di stato della linea IXL 
+										//che riporti il cambiamento dello stato dell'itinerario
+										if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 
-										if(cdbricPrenotazione!=nullptr){
-											RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+											List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
+
+											if(cdbricPrenotazione!=nullptr){
+												if (!_blockLiveness)
+												{
+													liveness->MuoviTreno(Train->getTRN(), lastcdbiti);
+												}
+												RaccoltaTrenoRequestCDB->Add(Train,cdbricPrenotazione);
+											}
 										}
 									}
 								}else{
@@ -271,6 +313,7 @@ void ThreadSchedulerSortedList::Schedule(){
 				case StateTrain::NONPRONTO:
 					break;
 				case StateTrain::TERMINATO:
+					liveness->RimuoviMissione(Train->getTRN());
 					break;
 				default:
 					break;
@@ -343,7 +386,7 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 }
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){
-	
+
 
 	// aspetta che si presenti un treno
 	Event<physicalTrain^> ^eventoATO = EQueueATO->getEvent();
@@ -359,7 +402,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 
 		StateObject ^inviato = phisical->getStateObject();
 		int enginenumber = phisical->getEngineNumber();
-		
+
 
 		// se trovi che ha numero logico nella mappa mapTrenoLogFisico 
 		if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
@@ -400,12 +443,12 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 						inviato = InizializzeATO(trn,phisical);
 						Console::WriteLine(inviato->time);
 						phisical->setStateObject(inviato);
-						
+
 					}
 					TimeSpan ^sec = TimeSpan::Zero; 
 					if((inviato->fine!=1)){
 						//aspetta un po
-						
+
 						sec = DateTime::Now - inviato->time;
 						if(sec->TotalSeconds>30){
 							//riinvia
