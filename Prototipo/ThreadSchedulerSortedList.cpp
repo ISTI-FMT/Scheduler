@@ -74,7 +74,7 @@ bool ThreadSchedulerSortedList::CheckLiveness(int trn, int nextCdb)
 	//Eseguo il controllo sulla liveness.
 	//Al momento il controllo non tiene in considerazione le aree critiche perchè, al momento, le aree critiche sono ricevute in input staticamente
 	//e non tengono conto di quali treni sono effettivamente in movimento ma considerano tutti i treni del sistema contemporaneamente
-	System::Collections::Generic::Stack<System::Collections::Generic::KeyValuePair<int, int>>^ path = liveness->CheckLiveness(trn, nextCdb, false);
+	System::Collections::Generic::Stack<Movimento^>^ path = liveness->LivenessCheck(trn, nextCdb, false);
 	if (path == nullptr)
 	{
 		Console::WriteLine("Check liveness fallito!");

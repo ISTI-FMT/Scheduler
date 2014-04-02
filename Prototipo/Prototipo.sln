@@ -2,13 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Prototipo", "Prototipo.vcxproj", "{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843} = {F7BFF241-00B7-4EBF-8A67-33C77AC6B843}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SchedulerATSTest", "..\SchedulerATSTest\SchedulerATSTest.vcxproj", "{9757CB21-B840-49A6-B057-9F322E543DD6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivenessCheck", "..\LivenessCheck\LivenessCheck.csproj", "{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,16 +35,6 @@ Global
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.ActiveCfg = Release|Win32
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.Build.0 = Release|Win32
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F7BFF241-00B7-4EBF-8A67-33C77AC6B843}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

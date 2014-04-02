@@ -27,6 +27,7 @@ using namespace System;
 using namespace System::Net;
 using namespace System::Collections::Generic;
 using namespace System::Threading;
+using namespace LivenessCheck;
 
 ref class ThreadSchedulerSortedList 
 {
@@ -39,7 +40,7 @@ ref class ThreadSchedulerSortedList
 	TabellaOrario ^tabOrario;
 	TabellaStazioni ^tabItinerari;
 	AreeCritiche ^areeCritiche;
-	LivenessCheck::Liveness^ liveness;
+	Liveness^ liveness;
 	mapTrenoFisicoLogico ^mapTrenoLogFisico;
 	ManagerStatoLineaATC ^managerATC;
 	ManagerStatoLineaIXL ^managerIXL;
