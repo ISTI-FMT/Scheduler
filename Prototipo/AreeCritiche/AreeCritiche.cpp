@@ -156,8 +156,7 @@ Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non han
 */
 bool AreeCritiche::richiestaCdb(int cdb, int trn)
 {
-	return true;
-
+	
 	bool entrataValida = true;
 	if (missioni->ContainsKey(trn))
 	{

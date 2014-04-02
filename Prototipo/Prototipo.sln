@@ -7,32 +7,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SchedulerATSTest", "..\Sche
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Win32 = Debug|Win32
-		Release|Any CPU = Release|Any CPU
-		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Debug|Win32.ActiveCfg = Debug|Win32
 		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Debug|Win32.Build.0 = Debug|Win32
-		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Release|Any CPU.ActiveCfg = Release|Win32
-		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Release|Win32.ActiveCfg = Release|Win32
 		{CDB5FE80-65AA-4FC0-A3B7-513CF0B38FB1}.Release|Win32.Build.0 = Release|Win32
-		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Win32.ActiveCfg = Debug|Win32
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Win32.Build.0 = Debug|Win32
-		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Any CPU.ActiveCfg = Release|Win32
-		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.ActiveCfg = Release|Win32
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
