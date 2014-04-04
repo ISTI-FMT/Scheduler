@@ -845,7 +845,7 @@
     </itinerariIngresso>
 
     <itinerariUscita>
-      <partenza id="902" name="III-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="443"   nextstation="17000" >
+      <partenza id="902" name="III-01" direzione="dx" portebanchina="true" latobanchina="sx"  prevcdb="16303" nextcdb="443"   nextstation="17000" >
         <ListCDB>
           <cdb>16012</cdb>
           <cdb>16011</cdb>
@@ -857,7 +857,7 @@
           <pkm km="17860" idoffstaz="10000"/>
         </lrgb>
       </partenza>
-      <partenza id="919" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16301" nextcdb="427"   nextstation="12000" >
+      <partenza id="919" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16303" nextcdb="427"   nextstation="12000" >
 
         <ListCDB>
           <cdb>16026</cdb>
@@ -927,7 +927,7 @@
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
       </partenza>
-      <partenza id="908" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="16303" nextcdb="426"   nextstation="12000" >
+      <partenza id="908" name="I-02" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="16301" nextcdb="426"   nextstation="12000" >
 
         <ListCDB>
           <cdb>16027</cdb>
@@ -942,7 +942,7 @@
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
       </partenza>
-      <partenza id="917" name="I-04" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="16303" nextcdb="427"   nextstation="17000" >
+      <partenza id="917" name="I-04" direzione="sx" portebanchina="true" latobanchina="sx" prevcdb="16301" nextcdb="427"   nextstation="17000" >
 
         <ListCDB>
           <cdb>16027</cdb>
@@ -958,7 +958,7 @@
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
       </partenza>
-      <partenza id="910" name="I-03" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="16303" nextcdb="442"   nextstation="17000" >
+      <partenza id="910" name="I-03" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="16301" nextcdb="442"   nextstation="17000" >
 
         <ListCDB>
           <cdb>16017</cdb>
@@ -974,7 +974,7 @@
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
       </partenza>
-      <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="16303" nextcdb="443"   nextstation="17000" >
+      <partenza id="900" name="I-01" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="16301" nextcdb="443"   nextstation="17000" >
         <ListCDB>
 
           <cdb>16017</cdb>

@@ -375,8 +375,7 @@
       <partenza>08:30:00</partenza>
        <binarioprogrammato>1</binarioprogrammato>
 	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="905">01-I</itinerarioEntrata>
-<itinerarioUscita id="919">I-04</itinerarioUscita>
+<itinerarioUscita id="917">I-04</itinerarioUscita>
     </stazione>
 
     <stazione id="410"  name="Via Roma">
