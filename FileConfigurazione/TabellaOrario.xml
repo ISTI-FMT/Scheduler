@@ -154,16 +154,16 @@
   <treno id="1173">
 
     <stazione id="17000"  name="Parco della Vittoria">
-      <arrivo>08:00:00</arrivo>
-      <partenza>08:10:00</partenza>
+      <arrivo>07:00:00</arrivo>
+      <partenza>07:10:00</partenza>
        <binarioprogrammato>3</binarioprogrammato>
 	   <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
 <itinerarioUscita id="913">III-03</itinerarioUscita>
     </stazione>
 
     <stazione id="16000"  name="Viale dei Giardini">
-      <arrivo>08:20:00</arrivo>
-      <partenza>08:30:00</partenza>
+      <arrivo>07:20:00</arrivo>
+      <partenza>07:30:00</partenza>
        <binarioprogrammato>1</binarioprogrammato>
 	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
  <itinerarioEntrata id="905">01-III</itinerarioEntrata>

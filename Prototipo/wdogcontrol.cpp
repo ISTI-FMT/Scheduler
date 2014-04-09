@@ -132,8 +132,9 @@ void wdogcontrol::InitializeComponent(){
 
 void wdogcontrol::onNext(){
 	try{
-
-	this->Invoke(myDelegate);
+		if(this->InvokeRequired){
+			this->Invoke(myDelegate);
+		}
 	}catch(Exception ^e){
 		e->ToString();
 		Console::WriteLine("########################");

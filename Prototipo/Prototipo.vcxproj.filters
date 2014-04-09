@@ -219,6 +219,9 @@
     <ClCompile Include="threads\ThreadListenerUdp.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="TrainGraph.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FermataType.h">
@@ -471,9 +474,12 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="threads\ThreadListenerUdp.h">
-  <Filter>File di intestazione</Filter>
+      <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="FormDeleteElement.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="TrainGraph.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
@@ -547,6 +553,9 @@
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="EditorTabellaOrario.resx">
+      <Filter>File di risorse</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainGraph.resx">
       <Filter>File di risorse</Filter>
     </EmbeddedResource>
   </ItemGroup>

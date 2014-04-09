@@ -125,7 +125,7 @@ NID_OPERATIONAL=0
 bandiera=True
 if(sys.argv[2]=='1'):
 	bandiera=False
-	op = sys.argv[1][18:22]
+	op = sys.argv[3]#[18:22]
 	NID_OPERATIONAL=int(op)
 	
 
