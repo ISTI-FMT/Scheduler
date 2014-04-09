@@ -50,14 +50,14 @@ namespace Prototipo {
 			series1->Legend = L"Legend1";
 			series1->Name = key.ToString()+"P";
 			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;//StepLine;
-			series1->BorderWidth = 3;
+			series1->BorderWidth = 1;
 			series1->MarkerSize = 15;
 			series1->MarkerStyle = System::Windows::Forms::DataVisualization::Charting::MarkerStyle::Star10;
 			series1->ToolTip = "#VALX{T} : #SERIESNAME";
 
 
-			//series2->ChartArea = L"ChartArea1";
-			//series2->Legend = L"Legend1";
+			series2->ChartArea = L"ChartArea1";
+			series2->Legend = L"Legend1";
 			series2->Name = key.ToString()+"R";
 			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;//StepLine;
 			series2->BorderWidth = 3;
@@ -65,16 +65,12 @@ namespace Prototipo {
 			series2->MarkerStyle = System::Windows::Forms::DataVisualization::Charting::MarkerStyle::Star10;
 			series2->ToolTip = "#VALX{T} : #SERIESNAME";
 
-			//series1->Points[0]->AxisLabel = "9-10";
-			//	series1->XValueType = System::Windows::Forms::DataVisualization::Charting::ChartValueType::String;
 
 
 			List<Fermata^>^ ListFer= tabOrario->getFermateFor(key);
 			for each (Fermata ^var in ListFer)
 			{
-				//series1->Points->AddXY(var->getnameStazione(),setOrario(var->getOrarioArrivo()));
-				//series1->Points->AddXY(var->getnameStazione(),setOrario(var->getOrarioPartenza()));
-				//	String ^ nomestazione = var->getIdStazione().ToString();
+
 				String ^ nomestazione = var->getnameStazione();
 				int i = 1;
 				//array<String^> ^stazi = gcnew array<String^>(12){"","Parco della Vittoria","Viale dei Giardini","Via Roma","Via Marco Polo","Piazza Dante","Viale Monterosa","Vicolo Corto","Vicolo Stretto","Via Accademia","Piazza Università","Via Verdi"};
@@ -92,10 +88,7 @@ namespace Prototipo {
 				series1->Points->AddXY(setOrario(var->getOrarioPartenza()),i);
 				//	series2->Points->AddXY(setOrario(var->getOrarioArrivo()),i);
 				series2->Points->AddXY(setOrario(var->getOrarioPartenza()),i);
-				//	series1->Points->AddXY(1,555);
 
-				//series1->Points->AddXY("ciao",setOrario(var->getOrarioArrivo()));
-				//	series1->Points->AddXY(i,setOrario(var->getOrarioPartenza()));
 
 			}
 
@@ -126,8 +119,18 @@ namespace Prototipo {
 							break;
 						}
 					}else{
-						if(cdb==407){
+						if(cdb==407 || cdb==406){
 							x=8;
+							_bandiera=true;
+							break;
+						}
+						if(cdb==418 || cdb==419){
+							x=9;
+							_bandiera=true;
+							break;
+						}
+						if(cdb==504){
+							x=5;
 							_bandiera=true;
 							break;
 						}
@@ -232,6 +235,8 @@ namespace Prototipo {
 			chartArea1->AxisX->LabelStyle->Format = L"T";
 			chartArea1->AxisX->LineColor = System::Drawing::Color::White;
 			chartArea1->AxisX->LineWidth = 3;
+			chartArea1->AxisX->MajorGrid->LineColor = System::Drawing::Color::White;
+			chartArea1->AxisX->MinorGrid->LineColor = System::Drawing::Color::White;
 			chartArea1->AxisX->TitleForeColor = System::Drawing::Color::White;
 			chartArea1->AxisY->Interval = 1;
 			chartArea1->AxisY->IntervalAutoMode = System::Windows::Forms::DataVisualization::Charting::IntervalAutoMode::VariableCount;
@@ -239,8 +244,10 @@ namespace Prototipo {
 			chartArea1->AxisY->LabelStyle->ForeColor = System::Drawing::Color::White;
 			chartArea1->AxisY->LineColor = System::Drawing::Color::White;
 			chartArea1->AxisY->LineWidth = 3;
+			chartArea1->AxisY->MajorGrid->LineColor = System::Drawing::Color::White;
 			chartArea1->AxisY->Maximum = 12;
 			chartArea1->AxisY->Minimum = 1;
+			chartArea1->AxisY->MinorGrid->LineColor = System::Drawing::Color::White;
 			chartArea1->BackColor = System::Drawing::Color::Gray;
 			chartArea1->CursorX->Interval = 0.5;
 			chartArea1->CursorX->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Hours;
@@ -256,7 +263,7 @@ namespace Prototipo {
 			this->chart1->Legends->Add(legend1);
 			this->chart1->Location = System::Drawing::Point(1, 1);
 			this->chart1->Name = L"chart1";
-			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Bright;
+			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
 			this->chart1->Size = System::Drawing::Size(1272, 720);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
@@ -287,13 +294,15 @@ namespace Prototipo {
 				 }
 			 }
 			 DateTime Prototipo::TrainGraph::setOrario(double o){
+				 DateTime orarioSupporto = DateTime::ParseExact("00:00:00", "HH:mm:ss",  System::Globalization::CultureInfo::InvariantCulture);
 				 if(o>0){
 					 Double times = o*30;
 					 TimeSpan sinceMidnight = TimeSpan::FromSeconds(times);
-					 DateTime orarioSupporto = DateTime::ParseExact("00:00:00", "HH:mm:ss",  System::Globalization::CultureInfo::InvariantCulture);
+
 					 DateTime 	TimeStampNextEvent= orarioSupporto+sinceMidnight;
 					 return TimeStampNextEvent;
 				 }
+				 return orarioSupporto;
 			 }
 
 	private: System::Void chart1_Customize(System::Object^  sender, System::EventArgs^  e) {
@@ -318,20 +327,9 @@ namespace Prototipo {
 			 }
 	private: System::Void chart1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 
-				 /*	 double cursorX = this->chart1->ChartAreas["ChartArea1"]->AxisX->PixelPositionToValue(e->Location.X);
-				 DateTime td = setOrario(cursorX);
-				 int cursorY = Convert::ToInt32(this->chart1->ChartAreas["ChartArea1"]->AxisY->PixelPositionToValue(e->Location.Y));
-				 toolTip1->SetToolTip(chart1,td+" "+cursorY);*/
 				 // Call HitTest
 				 System::Windows::Forms::DataVisualization::Charting::HitTestResult ^result =this->chart1->HitTest( e->X, e->Y );
 
-				 // Reset Data Point Attributes
-				 /* for each( System::Windows::Forms::DataVisualization::Charting::DataPoint ^point in Chart1.Series[0].Points )
-				 {
-				 point->BackSecondaryColor = Color::Black;
-				 point->BackHatchStyle = System::Windows::Forms::DataVisualization::Charting::ChartHatchStyle::None;
-				 point->BorderWidth = 1;
-				 }*/
 
 				 // If the mouse if over a data point
 				 if(result->ChartElementType == System::Windows::Forms::DataVisualization::Charting::ChartElementType::DataPoint)
@@ -341,10 +339,6 @@ namespace Prototipo {
 					 Console::WriteLine(result->Series->Name);
 					 Console::WriteLine(point);
 
-					 // Change the appearance of the data point
-					 /* point->Color = Color::White;
-					 point->BackHatchStyle = System::Windows::Forms::DataVisualization::Charting::ChartHatchStyle::Percent25;
-					 point->BorderWidth = 2;*/
 				 }
 				 else
 				 {
@@ -368,16 +362,16 @@ namespace Prototipo {
 
 				 }
 				 System::Windows::Forms::DataVisualization::Charting::LegendItem ^legendItem = dynamic_cast< System::Windows::Forms::DataVisualization::Charting::LegendItem^>(result->Object);
-				  if (legendItem )
-                {
-                    // Legend item result
-                    String ^nameserie = legendItem->SeriesName;
-					if(!this->chart1->Series[nameserie]->Enabled){
-						this->chart1->Series[nameserie]->Enabled=true;
-					}else{
-						this->chart1->Series[nameserie]->Enabled=false;
-					}
-				  }
+				 if (legendItem )
+				 {
+					 // Legend item result
+					 String ^nameserie = legendItem->SeriesName;
+					 if(!this->chart1->Series[nameserie]->Enabled){
+						 this->chart1->Series[nameserie]->Enabled=true;
+					 }else{
+						 this->chart1->Series[nameserie]->Enabled=false;
+					 }
+				 }
 
 			 }
 	private: System::Void chart1_CustomizeLegend(System::Object^  sender, System::Windows::Forms::DataVisualization::Charting::CustomizeLegendEventArgs^  e) {
@@ -400,12 +394,6 @@ namespace Prototipo {
 						 legendItem->Color = Color::FromArgb(100, serie->Color);
 					 e->LegendItems->Add(legendItem);
 				 }
-
-
-
-
-
-
 
 			 }
 	};
