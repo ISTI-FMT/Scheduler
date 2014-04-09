@@ -57,7 +57,7 @@ namespace Prototipo {
 
 
 			series2->ChartArea = L"ChartArea1";
-			series2->Legend = L"Legend1";
+			series2->Legend = L"Legend2";
 			series2->Name = key.ToString()+"R";
 			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;//StepLine;
 			series2->BorderWidth = 3;
@@ -222,6 +222,7 @@ namespace Prototipo {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^  legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Legend^  legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->BeginInit();
@@ -259,11 +260,23 @@ namespace Prototipo {
 			chartArea1->CursorY->SelectionColor = System::Drawing::Color::Lime;
 			chartArea1->Name = L"ChartArea1";
 			this->chart1->ChartAreas->Add(chartArea1);
+			legend1->Alignment = System::Drawing::StringAlignment::Center;
+			legend1->BackColor = System::Drawing::Color::DarkGray;
+			legend1->Docking = System::Windows::Forms::DataVisualization::Charting::Docking::Bottom;
+			legend1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
+			legend1->IsTextAutoFit = false;
 			legend1->Name = L"Legend1";
+			legend2->Alignment = System::Drawing::StringAlignment::Center;
+			legend2->BackColor = System::Drawing::Color::DarkGray;
+			legend2->Docking = System::Windows::Forms::DataVisualization::Charting::Docking::Bottom;
+			legend2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
+			legend2->IsTextAutoFit = false;
+			legend2->Name = L"Legend2";
 			this->chart1->Legends->Add(legend1);
+			this->chart1->Legends->Add(legend2);
 			this->chart1->Location = System::Drawing::Point(1, 1);
 			this->chart1->Name = L"chart1";
-			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Excel;
+			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Bright;
 			this->chart1->Size = System::Drawing::Size(1272, 720);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
@@ -328,7 +341,7 @@ namespace Prototipo {
 	private: System::Void chart1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 
 				 // Call HitTest
-				 System::Windows::Forms::DataVisualization::Charting::HitTestResult ^result =this->chart1->HitTest( e->X, e->Y );
+			/*	 System::Windows::Forms::DataVisualization::Charting::HitTestResult ^result =this->chart1->HitTest( e->X, e->Y );
 
 
 				 // If the mouse if over a data point
@@ -344,16 +357,16 @@ namespace Prototipo {
 				 {
 					 // Set default cursor
 					 this->Cursor = Cursors::Default;
-				 }
+				 }*/
 
 			 }
 	private: System::Void chart1_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 
-				 double cursorX = this->chart1->ChartAreas["ChartArea1"]->AxisX->PixelPositionToValue(e->Location.X);
+			/*	 double cursorX = this->chart1->ChartAreas["ChartArea1"]->AxisX->PixelPositionToValue(e->Location.X);
 				 DateTime td = DateTime::FromOADate(cursorX);
 				 int cursorY = Convert::ToInt32(this->chart1->ChartAreas["ChartArea1"]->AxisY->PixelPositionToValue(e->Location.Y));
 				 Console::WriteLine("X:{0} Y:{1}",td,cursorY);
-
+				 */
 				 System::Windows::Forms::DataVisualization::Charting::HitTestResult ^result =this->chart1->HitTest( e->X, e->Y );
 				 if(result->ChartElementType == System::Windows::Forms::DataVisualization::Charting::ChartElementType::DataPoint)
 				 {
@@ -378,23 +391,50 @@ namespace Prototipo {
 
 
 
-				 e->LegendItems->Clear();
-				 for each ( System::Windows::Forms::DataVisualization::Charting::Series ^serie in this->chart1->Series)
-				 {
-					 System::Windows::Forms::DataVisualization::Charting::LegendItem ^legendItem = (gcnew System::Windows::Forms::DataVisualization::Charting::LegendItem());
-					 legendItem->SeriesName = serie->Name;
-					 legendItem->Name = serie->Name + "_legend_item";
+				 bool bandiera = false;
+				 if(e->LegendItems[0]->Name->Contains("R")){
+					 e->LegendItems->Clear();
+					 for each ( System::Windows::Forms::DataVisualization::Charting::Series ^serie in this->chart1->Series)
+					 {
+						 if(serie->Name->Contains("R")){
+							 System::Windows::Forms::DataVisualization::Charting::LegendItem ^legendItem = (gcnew System::Windows::Forms::DataVisualization::Charting::LegendItem());
+							 legendItem->SeriesName = serie->Name;
+							 legendItem->Name = serie->Name + "_legend_item";
 
-					 int i = legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::SeriesSymbol, "", System::Drawing::ContentAlignment::MiddleCenter);
+							 int i = legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::SeriesSymbol, "", System::Drawing::ContentAlignment::MiddleCenter);
 
-					 legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::Text, serie->Name, System::Drawing::ContentAlignment::MiddleCenter);
-					 if (serie->Enabled)
-						 legendItem->Color = serie->Color;
-					 else
-						 legendItem->Color = Color::FromArgb(100, serie->Color);
-					 e->LegendItems->Add(legendItem);
+							 legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::Text, serie->Name, System::Drawing::ContentAlignment::MiddleCenter);
+							 if (serie->Enabled)
+								 legendItem->Color = serie->Color;
+							 else
+								 legendItem->Color = Color::FromArgb(100, serie->Color);
+							 e->LegendItems->Add(legendItem);
+						 }
+					 }
+
+				 }else{
+
+					 e->LegendItems->Clear();
+					 for each ( System::Windows::Forms::DataVisualization::Charting::Series ^serie in this->chart1->Series)
+					 {
+						 if(serie->Name->Contains("P")){
+							 System::Windows::Forms::DataVisualization::Charting::LegendItem ^legendItem = (gcnew System::Windows::Forms::DataVisualization::Charting::LegendItem());
+							 legendItem->SeriesName = serie->Name;
+							 legendItem->Name = serie->Name + "_legend_item";
+
+							 int i = legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::SeriesSymbol, "", System::Drawing::ContentAlignment::MiddleCenter);
+
+							 legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::Text, serie->Name, System::Drawing::ContentAlignment::MiddleCenter);
+							 if (serie->Enabled)
+								 legendItem->Color = serie->Color;
+							 else
+								 legendItem->Color = Color::FromArgb(100, serie->Color);
+							 e->LegendItems->Add(legendItem);
+						 }
+					 }
+
+
 				 }
-
 			 }
 	};
 }
