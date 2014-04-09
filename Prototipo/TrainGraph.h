@@ -84,9 +84,9 @@ namespace Prototipo {
 				}
 
 
-				//	series1->Points->AddXY(setOrario(var->getOrarioArrivo()),i);
+					series1->Points->AddXY(setOrario(var->getOrarioArrivo()),i);
 				series1->Points->AddXY(setOrario(var->getOrarioPartenza()),i);
-				//	series2->Points->AddXY(setOrario(var->getOrarioArrivo()),i);
+					series2->Points->AddXY(setOrario(var->getOrarioArrivo()),i);
 				series2->Points->AddXY(setOrario(var->getOrarioPartenza()),i);
 
 
@@ -149,7 +149,7 @@ namespace Prototipo {
 						if(old!=0){
 							var->XValue+=old;
 						}
-						if(var->YValues[0]==x){
+						if(var->YValues[0]==x && old==0){
 							double date = Convert::ToSingle(DateTime::Now.ToOADate());
 							old = date-var->XValue;
 							var->XValue = date;
@@ -266,18 +266,22 @@ namespace Prototipo {
 			legend1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
 			legend1->IsTextAutoFit = false;
 			legend1->Name = L"Legend1";
+			legend1->Title = L"Programmato";
+			legend1->TitleFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7, System::Drawing::FontStyle::Bold));
 			legend2->Alignment = System::Drawing::StringAlignment::Center;
 			legend2->BackColor = System::Drawing::Color::DarkGray;
 			legend2->Docking = System::Windows::Forms::DataVisualization::Charting::Docking::Bottom;
 			legend2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
 			legend2->IsTextAutoFit = false;
 			legend2->Name = L"Legend2";
+			legend2->Title = L"Reale";
+			legend2->TitleFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7, System::Drawing::FontStyle::Bold));
 			this->chart1->Legends->Add(legend1);
 			this->chart1->Legends->Add(legend2);
 			this->chart1->Location = System::Drawing::Point(1, 1);
 			this->chart1->Name = L"chart1";
 			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Bright;
-			this->chart1->Size = System::Drawing::Size(1272, 720);
+			this->chart1->Size = System::Drawing::Size(1272, 920);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
 			this->chart1->Customize += gcnew System::EventHandler(this, &TrainGraph::chart1_Customize);
@@ -289,7 +293,7 @@ namespace Prototipo {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1276, 716);
+			this->ClientSize = System::Drawing::Size(1276, 921);
 			this->Controls->Add(this->chart1);
 			this->Name = L"TrainGraph";
 			this->Text = L"TrainGraph";
@@ -410,7 +414,7 @@ namespace Prototipo {
 
 								 int i = legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::SeriesSymbol, "", System::Drawing::ContentAlignment::MiddleCenter);
 
-								 legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::Text, serie->Name, System::Drawing::ContentAlignment::MiddleCenter);
+								 legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::Text, serie->Name->Substring(0,serie->Name->Length-1), System::Drawing::ContentAlignment::MiddleCenter);
 								 if (serie->Enabled)
 									 legendItem->Color = serie->Color;
 								 else
@@ -431,7 +435,7 @@ namespace Prototipo {
 
 								 int i = legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::SeriesSymbol, "", System::Drawing::ContentAlignment::MiddleCenter);
 
-								 legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::Text, serie->Name, System::Drawing::ContentAlignment::MiddleCenter);
+								 legendItem->Cells->Add(System::Windows::Forms::DataVisualization::Charting::LegendCellType::Text, serie->Name->Substring(0,serie->Name->Length-1), System::Drawing::ContentAlignment::MiddleCenter);
 								 if (serie->Enabled)
 									 legendItem->Color = serie->Color;
 								 else
