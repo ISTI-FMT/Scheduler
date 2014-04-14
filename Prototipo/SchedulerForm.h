@@ -495,7 +495,9 @@ namespace Prototipo {
 				 //filtri osservabili per i messaggi provenienti rispettivamente da IXL e ATC
 				 ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
 				 ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
-
+				 stif = gcnew FormStatoLineaIXL();
+				 stif->Subscribe(manaStateIXL);
+				 stif->Visible=true;
 
 				 ThLATCIXL= gcnew ThreadListenerUdp(manaStateIXL,manaStateATC);
 
@@ -508,9 +510,7 @@ namespace Prototipo {
 				 ////
 				 // EventQueue<StateCDB^>  ^visualQIXL = gcnew EventQueue<StateCDB^>();
 				 // visualQIXL->Subscribe(manaStateIXL);
-				 stif = gcnew FormStatoLineaIXL();
-				 stif->Subscribe(manaStateIXL);
-				 stif->Visible=true;
+				
 				 // Thread ^ oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoLineaIXL::aggiorna));
 				 //oThreadformStatoI->Start();
 				 /////

@@ -25,7 +25,7 @@ namespace Prototipo {
 		bool _shouldStop;
 		delegate void GoNext(StateCDB ^cdb);
 		GoNext^ myDelegate;
-
+	
 		static array<String^> ^cdbstazionamento = gcnew cli::array< System::String^  >(25) {L"13301", L"13302", L"14301", L"14302", L"15301", 
 			L"15302", L"11301", L"11302", L"12301", L"12302", L"12303", L"10301", L"10302", L"406", L"407", L"418", L"419",L"504", L"16301", L"16302", 
 			L"16303", L"17301", L"17302", L"17303", L"17304"};
@@ -85,17 +85,18 @@ namespace Prototipo {
 
 
 					series1->Points->AddXY(setOrario(var->getOrarioArrivo()),i);
-				series1->Points->AddXY(setOrario(var->getOrarioPartenza()),i);
-					series2->Points->AddXY(setOrario(var->getOrarioArrivo()),i);
+				  series1->Points->AddXY(setOrario(var->getOrarioPartenza()),i);
+				series2->Points->AddXY(setOrario(var->getOrarioArrivo()),i);
 				series2->Points->AddXY(setOrario(var->getOrarioPartenza()),i);
-
+				
+				
 
 			}
 
 			//series1->Points->AddXY();
 			this->chart1->Series->Add(series2);
 			this->chart1->Series->Add(series1);
-
+			
 		}
 
 		//	}	
@@ -249,7 +250,7 @@ namespace Prototipo {
 			chartArea1->AxisY->Maximum = 12;
 			chartArea1->AxisY->Minimum = 1;
 			chartArea1->AxisY->MinorGrid->LineColor = System::Drawing::Color::White;
-			chartArea1->BackColor = System::Drawing::Color::Gray;
+			chartArea1->BackColor = System::Drawing::Color::DarkGray;
 			chartArea1->CursorX->Interval = 0.5;
 			chartArea1->CursorX->IntervalType = System::Windows::Forms::DataVisualization::Charting::DateTimeIntervalType::Hours;
 			chartArea1->CursorX->IsUserEnabled = true;
@@ -296,6 +297,7 @@ namespace Prototipo {
 			this->ClientSize = System::Drawing::Size(1276, 921);
 			this->Controls->Add(this->chart1);
 			this->Name = L"TrainGraph";
+			this->ShowInTaskbar = false;
 			this->Text = L"TrainGraph";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->EndInit();
 			this->ResumeLayout(false);
@@ -344,13 +346,26 @@ namespace Prototipo {
 			 }
 	private: System::Void chart1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 
+				  
+				 
+				 chart1->ChartAreas["ChartArea1"]->CursorX->Interval=0;
+					 chart1->ChartAreas["ChartArea1"]->CursorY->Interval=0;
+
+					 chart1->ChartAreas["ChartArea1"]->CursorX->SetCursorPixelPosition(e->Location,true);
+					 chart1->ChartAreas["ChartArea1"]->CursorY->SetCursorPixelPosition(e->Location,true);
+
+
 				 // Call HitTest
-				 /*	 System::Windows::Forms::DataVisualization::Charting::HitTestResult ^result =this->chart1->HitTest( e->X, e->Y );
+				/* 	 System::Windows::Forms::DataVisualization::Charting::HitTestResult ^result =this->chart1->HitTest( e->X, e->Y );
 
-
+					 if(result->Series){
+						 Console::WriteLine(result->Series->Name);
+					 }
 				 // If the mouse if over a data point
 				 if(result->ChartElementType == System::Windows::Forms::DataVisualization::Charting::ChartElementType::DataPoint)
 				 {
+					
+
 				 // Find selected data point
 				 System::Windows::Forms::DataVisualization::Charting::DataPoint ^point = this->chart1->Series[result->Series->Name]->Points[result->PointIndex];
 				 Console::WriteLine(result->Series->Name);
@@ -401,7 +416,21 @@ namespace Prototipo {
 	private: System::Void chart1_CustomizeLegend(System::Object^  sender, System::Windows::Forms::DataVisualization::Charting::CustomizeLegendEventArgs^  e) {
 
 
-				 try{
+				 try{ 
+					 Color colore = Color::White;
+					 for each ( System::Windows::Forms::DataVisualization::Charting::Series ^serie in this->chart1->Series)
+					 {    
+						/* if ( serie->Color ==Color::Gray)
+							  serie->Color = Color::White;*/
+							
+							 if(serie->Name->Contains("R")){
+								colore  = serie->Color;
+							 }
+							 if(serie->Name->Contains("P")){
+								 serie->Color =  colore;
+							 }
+
+					 }
 					 bool bandiera = false;
 					 if( e->LegendName=="Legend2"){
 						 e->LegendItems->Clear();
