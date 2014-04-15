@@ -52,6 +52,8 @@ namespace Prototipo {
 			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;//StepLine;
 			series1->BorderWidth = 1;
 			series1->MarkerSize = 15;
+			series1->BorderDashStyle = System::Windows::Forms::DataVisualization::Charting::ChartDashStyle::Dash;
+			
 			series1->MarkerStyle = System::Windows::Forms::DataVisualization::Charting::MarkerStyle::Star10;
 			series1->ToolTip = "#VALX{T} : #SERIESNAME";
 
@@ -417,7 +419,7 @@ namespace Prototipo {
 
 
 				 try{ 
-					 Color colore = Color::White;
+					Color colore = Color::White;
 					 for each ( System::Windows::Forms::DataVisualization::Charting::Series ^serie in this->chart1->Series)
 					 {    
 						/* if ( serie->Color ==Color::Gray)
