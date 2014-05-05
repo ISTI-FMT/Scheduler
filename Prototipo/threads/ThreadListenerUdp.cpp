@@ -54,9 +54,11 @@ bool ThreadListenerUdp::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B)
 	// header messaggio nid_msg 8 + l_msg 11 + T_Time 32 51/8=6.38
 	for (int ind=7;ind<B->Length;ind++)
 	{
-		String ^A_string = B[ind].ToString();
-		String ^B_string = A[ind].ToString();
-		if(A_string->Equals(B_string)){
+		//String ^A_string = B[ind].ToString();
+		//String ^B_string = A[ind].ToString();
+		Byte ^A_s = A[ind];
+		Byte ^B_s = B[ind];
+		if(A_s->Equals(B_s)){
 			scarta=true;
 		}else{
 			scarta=false; 
