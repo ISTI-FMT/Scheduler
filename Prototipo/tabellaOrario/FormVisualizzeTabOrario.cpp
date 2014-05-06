@@ -22,6 +22,7 @@ void FormVisualizzeTabOrario::Inizialize(){
 	dataGridView1->Name = L"dataGridView1";
 	dataGridView1->Size = System::Drawing::Size(890, 344);
 	dataGridView1->TabIndex = 8;
+	dataGridView1->ReadOnly = true;
 
 
 	//NewTrain

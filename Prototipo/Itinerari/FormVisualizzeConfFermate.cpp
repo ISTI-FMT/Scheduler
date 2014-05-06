@@ -20,6 +20,7 @@ void FormVisualizzeConfFermate::Inizialize(){
 	dataGridView1->Name = L"dataGridViewit";
 	dataGridView1->Size = System::Drawing::Size(810, 360);
 	dataGridView1->TabIndex = 18;
+	dataGridView1->ReadOnly = true;
 
 
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
