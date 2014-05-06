@@ -22,6 +22,8 @@
 #include "FormStatoLineaATC.h"
 #include "FormVisualizzeMapTreni.h"
 #include "ConfVelocita\\ConfigurazioneVelocita.h"
+#include "TrainGraph.h"
+
 #define TRACE
 namespace Prototipo {
 	using namespace System::Diagnostics;
@@ -38,7 +40,7 @@ namespace Prototipo {
 	using namespace System::Xml;
 	using namespace System::Diagnostics::CodeAnalysis;
 	/*Utilizzo questa classe per rappresentare graficamente un pannello di controllo dello scheduler
-	sono presenti alcuni pulsanti che visualizzano informazioni sulla configurazione del sistema*/
+	sono presenti alcuni pulsanti che permettono di visualizzare le informazioni sulla configurazione del sistema*/
 	/// <summary>
 	/// Riepilogo per SchedulerForm
 	/// </summary>
@@ -91,7 +93,8 @@ namespace Prototipo {
 		/*		phisicalTrainList ^listaTreni;*/
 		TabellaStazioni ^tabItinerari;
 		FormStatoLineaATC ^stATC;
-		FormStatoLineaIXL ^stif ;
+		FormStatoLineaIXL ^stif;
+		TrainGraph ^formtraingraph;
 		ThreadListenerUdp ^ThLATCIXL;
 		ThreadListenerTcp ^ThreadP;
 		//ThreadSchedule ^ThSchedule;
@@ -103,7 +106,9 @@ namespace Prototipo {
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::CheckBox^  checkBoxAreeCritiche;
+	private: System::Windows::Forms::CheckBox^  checkBoxLivenees;
 	private: System::Windows::Forms::Button^  buttonMapTreni;
+	private: System::Windows::Forms::Button^  trainGraphButton;
 	private: System::Windows::Forms::Button^  button4;
 
 
@@ -121,7 +126,9 @@ namespace Prototipo {
 				 this->button3 = (gcnew System::Windows::Forms::Button());
 				 this->button4 = (gcnew System::Windows::Forms::Button());
 				 this->checkBoxAreeCritiche = (gcnew System::Windows::Forms::CheckBox());
+				 this->checkBoxLivenees = (gcnew System::Windows::Forms::CheckBox());
 				 this->buttonMapTreni = (gcnew System::Windows::Forms::Button());
+				 this->trainGraphButton = (gcnew System::Windows::Forms::Button());
 				 this->SuspendLayout();
 				 // 
 				 // ExitButton
@@ -191,6 +198,22 @@ namespace Prototipo {
 				 this->checkBoxAreeCritiche->UseVisualStyleBackColor = true;
 				 this->checkBoxAreeCritiche->CheckedChanged += gcnew System::EventHandler(this, &SchedulerForm::checkBoxAreeCritiche_CheckedChanged);
 				 // 
+				 // checkBoxLivenees
+				 // 
+				 this->checkBoxLivenees->AutoSize = true;
+				 this->checkBoxLivenees->CheckAlign = System::Drawing::ContentAlignment::BottomCenter;
+				 this->checkBoxLivenees->Checked = true;
+				 this->checkBoxLivenees->CheckState = System::Windows::Forms::CheckState::Checked;
+				 this->checkBoxLivenees->FlatStyle = System::Windows::Forms::FlatStyle::System;
+				 this->checkBoxLivenees->Location = System::Drawing::Point(226, 100);
+				 this->checkBoxLivenees->Name = L"checkBoxLivenees";
+				 this->checkBoxLivenees->Size = System::Drawing::Size(153, 18);
+				 this->checkBoxLivenees->TabIndex = 5;
+				 this->checkBoxLivenees->Text = L"Abilita/Disabilita Livenees";
+				 this->checkBoxLivenees->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+				 this->checkBoxLivenees->UseVisualStyleBackColor = true;
+				 this->checkBoxLivenees->CheckedChanged += gcnew System::EventHandler(this, &SchedulerForm::checkBoxLivenees_CheckedChanged);
+				 // 
 				 // buttonMapTreni
 				 // 
 				 this->buttonMapTreni->Location = System::Drawing::Point(21, 256);
@@ -201,11 +224,22 @@ namespace Prototipo {
 				 this->buttonMapTreni->UseVisualStyleBackColor = true;
 				 this->buttonMapTreni->Click += gcnew System::EventHandler(this, &SchedulerForm::buttonMapTreni_Click);
 				 // 
+				 // trainGraphButton
+				 // 
+				 this->trainGraphButton->Location = System::Drawing::Point(197, 256);
+				 this->trainGraphButton->Name = L"trainGraphButton";
+				 this->trainGraphButton->Size = System::Drawing::Size(146, 23);
+				 this->trainGraphButton->TabIndex = 7;
+				 this->trainGraphButton->Text = L"Train Graph";
+				 this->trainGraphButton->UseVisualStyleBackColor = true;
+				 this->trainGraphButton->Click += gcnew System::EventHandler(this, &SchedulerForm::trainGraphButton_Click);
+				 // 
 				 // SchedulerForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(408, 332);
+				 this->Controls->Add(this->trainGraphButton);
 				 this->Controls->Add(this->buttonMapTreni);
 				 this->Controls->Add(this->checkBoxAreeCritiche);
 				 this->Controls->Add(this->button4);
@@ -213,6 +247,7 @@ namespace Prototipo {
 				 this->Controls->Add(this->button2);
 				 this->Controls->Add(this->button1);
 				 this->Controls->Add(this->ExitButton);
+				 this->Controls->Add(this->checkBoxLivenees);
 				 this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 				 this->Name = L"SchedulerForm";
 				 this->Text = L"SchedulerForm";
@@ -365,7 +400,7 @@ namespace Prototipo {
 				 stif->RequestStop() ;
 				 ThLATCIXL->RequestStop();
 				 ThreadP->RequestStop();
-
+				 formtraingraph->RequestStop();
 				 // ThSchedule->RequestStop();
 				 ThScheduleSortedList->RequestStop();
 				 Application::Exit();
@@ -460,7 +495,9 @@ namespace Prototipo {
 				 //filtri osservabili per i messaggi provenienti rispettivamente da IXL e ATC
 				 ManagerStatoLineaIXL ^manaStateIXL = gcnew ManagerStatoLineaIXL();
 				 ManagerStatoLineaATC ^manaStateATC = gcnew ManagerStatoLineaATC();
-
+				 stif = gcnew FormStatoLineaIXL();
+				 stif->Subscribe(manaStateIXL);
+				 stif->Visible=true;
 
 				 ThLATCIXL= gcnew ThreadListenerUdp(manaStateIXL,manaStateATC);
 
@@ -473,9 +510,7 @@ namespace Prototipo {
 				 ////
 				 // EventQueue<StateCDB^>  ^visualQIXL = gcnew EventQueue<StateCDB^>();
 				 // visualQIXL->Subscribe(manaStateIXL);
-				 stif = gcnew FormStatoLineaIXL();
-				 stif->Subscribe(manaStateIXL);
-				 stif->Visible=true;
+				
 				 // Thread ^ oThreadformStatoI  = gcnew Thread( gcnew ThreadStart(stif,&FormStatoLineaIXL::aggiorna));
 				 //oThreadformStatoI->Start();
 				 /////
@@ -486,6 +521,9 @@ namespace Prototipo {
 				 stATC = gcnew FormStatoLineaATC(/*visualQATC*/);
 				 stATC->Subscribe(manaStateATC);
 				 stATC->Visible=true;
+
+				 formtraingraph = gcnew TrainGraph(tabellaOrario);
+				 formtraingraph->Subscribe(manaStateATC);
 				 /* Thread ^	 oThreadformStatoATC  = gcnew Thread( gcnew ThreadStart(stATC,&FormStatoLineaATC::aggiorna));
 				 oThreadformStatoATC->Start();*/
 				 /////
@@ -537,7 +575,25 @@ namespace Prototipo {
 
 				 }
 			 }
-	};
+
+			 
+	private: System::Void checkBoxLivenees_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+				 if(checkBoxLivenees->Checked){
+					 ThScheduleSortedList->StopLiveness=false;
+
+				 }else{
+					 if(!checkBoxLivenees->Checked){
+						 ThScheduleSortedList->StopLiveness=true;
+
+
+					 }
+				 }
+			 }
+
+	private: System::Void trainGraphButton_Click(System::Object^  sender, System::EventArgs^  e) {
+				 formtraingraph->Visible=true;
+			 }
+};
 
 
 }

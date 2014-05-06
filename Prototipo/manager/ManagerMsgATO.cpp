@@ -6,13 +6,6 @@ ManagerMsgATO::ManagerMsgATO(void)
 	observers = gcnew List<IObserver<Event<physicalTrain^>^>^>();
 }
 
-void ManagerMsgATO::addCheckAndSet(List<physicalTrain^> ^listatrain, String ^source)
-{
-	for each (physicalTrain ^onetrain in listatrain)
-	{
-		addCheckAndSet(onetrain,source);
-	}
-}
 
 void ManagerMsgATO::addCheckAndSet(physicalTrain ^onetrain, String ^source)
 {
@@ -28,7 +21,7 @@ void ManagerMsgATO::addCheckAndSet(physicalTrain ^onetrain, String ^source)
 	else 
 	{
 		bool mod = tabellaTrain[onetrain->getEngineNumber()]->Update(onetrain);
-		if(mod)
+		/*if(mod)
 		{
 
 			// segnala evento!!!
@@ -38,8 +31,9 @@ void ManagerMsgATO::addCheckAndSet(physicalTrain ^onetrain, String ^source)
 			// lo segnalo
 
 			Notify(onetrain);
-		}
-
+		}*/
+		//Segnalo sempre
+		Notify(onetrain);
 	}
 
 }

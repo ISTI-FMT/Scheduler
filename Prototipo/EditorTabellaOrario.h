@@ -68,7 +68,7 @@ namespace Prototipo {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::MaskedTextBox^  textBox1;
 	protected: 
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
@@ -79,7 +79,7 @@ namespace Prototipo {
 			 void setitinerary();
 			 TabellaStazioni ^tabStazioni;
 			 TabellaOrario ^tabOrario;
-			 Void textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e);
+			
 	private:
 		/// <summary>
 		/// Variabile di progettazione necessaria.
@@ -93,7 +93,7 @@ namespace Prototipo {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox1 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -103,10 +103,11 @@ namespace Prototipo {
 			// textBox1
 			// 
 			this->textBox1->Location = System::Drawing::Point(23, 28);
+			this->textBox1->Mask = L"9999999";
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 0;
-			this->textBox1->TextChanged += gcnew System::EventHandler(this, &EditorTabellaOrario::textBox_TextChangedP);
+			
 			// 
 			// label1
 			// 

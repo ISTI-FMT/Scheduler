@@ -15,10 +15,10 @@ void ManagerStatoLineaATC::addCheckAndSet(List<StateCDB^> ^listaCDB, String ^sou
 		if(CDB->getNID_CDB()>0){
 			
 			int idltreno = CDB->getNID_OPERATIONAL();
-			if(idltreno==4294967288){
+		/*	if(idltreno==4294967288){
 				idltreno=1152;
 				CDB->setNID_OPERATIONAL(idltreno);
-			}
+			}*/
 			int idftreno = CDB->getNID_ENGINE();
 			//Console::WriteLine("CDB {0}, nid_op {1}",CDB->getNID_CDB(), CDB->getNID_OPERATIONAL());
 			if((idltreno>0) | (idftreno>0)){

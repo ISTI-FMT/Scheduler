@@ -4,7 +4,7 @@
 #include "pacchettopresentazione.h"
 #include "pacchettoPositionDataATC.h"
 #include "pacchettoAcknowledgement.h"
-#include "pacchettoStatoItinerario.h"
+/*#include "pacchettoStatoItinerario.h"*/
 #include "pacchettoComandoItinerari.h"
 #include "pacchettoStatoLineaIXL.h"
 #include "pacchettoStatoBlocco.h"
@@ -12,7 +12,7 @@
 #include "pacchettoStatoSegnali.h"
 #include "pacchettoEnd.h"
 #include "pacchettoFaultData.h"
-#include "pachettoStatoScudetti.h"
+/*#include "pachettoStatoScudetti.h"*/
 
 using namespace System;
 using namespace System::Globalization;
@@ -41,11 +41,11 @@ public ref class Messaggi
 	pacchettoStatoLineaIXL ^pkgStatoLineaIXL;
 	pacchettoPositionDataATC ^pkgPositionDataATC;
 
-	pacchettoStatoItinerario ^pkgStatoItinerari;
+	/*pacchettoStatoItinerario ^pkgStatoItinerari;*/
 	pacchettoStatoSegnali ^pkgStatoSegnali;
 	pacchettoFaultData ^pkgFaultData;
 	pacchettoStatoBlocco ^pkgStatoBlocco;
-	pachettoStatoScudetti ^pkgStatoScudetti;
+	/*pachettoStatoScudetti ^pkgStatoScudetti;*/
 
 
 	pacchettoComandoItinerari ^pkgComandoItinerario;
@@ -62,7 +62,7 @@ private:
 	void set_pacchettoComandoBlocco(){pkgComandoBlocco = gcnew pacchettoComandoBlocco;};
 	void set_pacchettoFaultReporting(int ID_PACKET) {pkgFaultData = gcnew pacchettoFaultData(ID_PACKET);}
 	void set_pacchettoPositionDataATC() {pkgPositionDataATC = gcnew pacchettoPositionDataATC;}
-	void set_pacchettoStatoItinerari() {pkgStatoItinerari = gcnew pacchettoStatoItinerario;}
+	/*void set_pacchettoStatoItinerari() {pkgStatoItinerari = gcnew pacchettoStatoItinerario;}*/
 	void set_pacchettoStatoLineaIXL() {pkgStatoLineaIXL = gcnew pacchettoStatoLineaIXL;}
 	void set_pacchettoStatoSegnali() {pkgStatoSegnali = gcnew pacchettoStatoSegnali;}
 	void set_pacchettoStatoBlocco() {pkgStatoBlocco = gcnew pacchettoStatoBlocco;}
@@ -70,7 +70,7 @@ private:
 	void set_pacchettoPresentazione(){ pgkPres = gcnew pacchettopresentazione;};
 	void set_pacchettoMissionData(){ pkgMP = gcnew pacchettoMissionData;};
 	void set_pacchettoAcknowledgement(){ pkgAck = gcnew pacchettoAcknowledgement;};
-	void set_pacchettoStatoScudetti(){pkgStatoScudetti = gcnew pachettoStatoScudetti;};
+	/*void set_pacchettoStatoScudetti(){pkgStatoScudetti = gcnew pachettoStatoScudetti;};*/
 
 	void serialize(array<Byte>^buffer);
 
@@ -88,13 +88,13 @@ public:
 
 
 	pacchettoEnd ^ get_pacchettoEnd(){return pkgEnd;};
-	pachettoStatoScudetti^ get_pacchettoStatoScudetti(){return pkgStatoScudetti;};
+	/*pachettoStatoScudetti^ get_pacchettoStatoScudetti(){return pkgStatoScudetti;};*/
 	pacchettoComandoItinerari^ get_pacchettoComandoItinerari(){return pkgComandoItinerario;};
 	pacchettoComandoBlocco^ get_pacchettoComandoBlocco(){return pkgComandoBlocco;};
 	pacchettoFaultData^ get_pacchettoFaultReporting(){return pkgFaultData;}
 	pacchettoStatoLineaIXL ^get_pacchettoStatoLineaIXL(){return pkgStatoLineaIXL;}
 	pacchettoPositionDataATC ^get_pacchettoPositionDataATC(){return pkgPositionDataATC;}
-	pacchettoStatoItinerario^ get_pacchettoStatoItinerario(){return pkgStatoItinerari;}
+	/*pacchettoStatoItinerario^ get_pacchettoStatoItinerario(){return pkgStatoItinerari;}*/
 	pacchettoStatoSegnali ^get_pacchettoStatoSegnali(){return pkgStatoSegnali;}
 	pacchettoStatoBlocco ^get_pacchettoStatoBlocco(){return pkgStatoBlocco;}
 	pacchettoCommandData^ get_pacchettoCommandData(){ return pkgcd1;};

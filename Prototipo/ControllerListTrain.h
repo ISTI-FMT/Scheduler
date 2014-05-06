@@ -3,6 +3,9 @@
 #include "Train.h"
 
 /*rappresenta il controllo nel pattern mvc*/
+using namespace System::Diagnostics::CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
 ref class ControllerListTrain
 {
 	
@@ -15,6 +18,7 @@ public:
 	  System::Collections::Generic::List< Train^> ^ getListTrain();
 	 void OnDelete();
 	 void changePrior(Train ^key, int newprior);
+	 void changeStato(Train ^key, StateTrain state);
 	 void RePaint();
 	 void Sort();
 	 void AggiornaOrario(Train ^train, List<Fermata^> ^nuovior);

@@ -29,7 +29,6 @@ AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
 	}
 }
 
-
 void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readStreamXML)
 {
 	System::IO::Stream^ readStreamschemaxsd = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XsdFilename);
@@ -44,13 +43,12 @@ void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readS
 	settings->IgnoreWhitespace = true;
 	settings->IgnoreComments = true;
 
-	
-
 	//System::String^ nome = gcnew System::String(nomeFile.c_str());
 	System::Xml::XmlReader ^myReader = System::Xml::XmlReader::Create(readStreamXML, settings);
 
 	MissioneAnnotata^ missioneCorrente = nullptr;
 	SortedDictionary<int, int>^ limiti = gcnew SortedDictionary<int, int>();
+	List<int>^ limitiAreeTmp = gcnew List<int>();
 	while (myReader->Read())
 	{
 		if (myReader->NodeType != XmlNodeType::Element)
@@ -79,10 +77,12 @@ void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readS
 			if (limite == 0)
 			{
 				area = gcnew AreaCriticaLineare(listaCdb);
+				limitiAreeTmp->Add(0);
 			}
 			else
 			{
 				area = gcnew AreaCriticaCircolare(listaCdb, limite);
+				limitiAreeTmp->Add(limite);
 			}
 			area->nome = Convert::ToString(id);
 			areeCritiche->Add(area);
@@ -147,6 +147,7 @@ void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readS
 			}
 		}
 	}
+	limitiAree = limitiAreeTmp->ToArray();
 }
 
 /*
@@ -155,6 +156,7 @@ Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non han
 */
 bool AreeCritiche::richiestaCdb(int cdb, int trn)
 {
+	
 	bool entrataValida = true;
 	if (missioni->ContainsKey(trn))
 	{

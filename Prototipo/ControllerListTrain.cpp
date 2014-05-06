@@ -35,6 +35,9 @@ void ControllerListTrain::changePrior(Train ^key, int newprior){
 	model->changePrior(key,newprior);
 	
 }
+ void ControllerListTrain::changeStato(Train ^key, StateTrain state){
+	 model->changeState(key,state);
+ }
 
  void ControllerListTrain::AggiornaOrario(Train ^train, List<Fermata^> ^nuovior){
 	 model->changeOrari(train,nuovior);

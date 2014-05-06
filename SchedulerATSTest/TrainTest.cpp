@@ -95,7 +95,9 @@ namespace SchedulerATSTest {
 				target->setStatoTreno(StateTrain::USCITASTAZIONE);
 				Assert::IsNotNull(target->getStazioneItinerario());
 				target->goNextItinerario();
-				target->getStatoTreno();
+				Assert::IsNotNull(target->getStazioneItinerario());
+				target->goNextItinerario();
+				Assert::AreEqual(StateTrain::USCITASTAZIONE,target->getStatoTreno());
 				
 				Assert::IsNotNull(target->getStazioneItinerario());
 				Assert::IsNotNull(target->getTimeNextEvent());
@@ -145,7 +147,7 @@ namespace SchedulerATSTest {
 				 actual;
 				actual = target->CompareTo(secondKey);
 				Assert::AreEqual(expected, actual);
-
+				
 				int TRN = 1152; 
 				List<Fermata^ >^  listit2 =  tabo->getFermateFor(TRN);
 				target->changeOrari(listit2);
@@ -154,6 +156,27 @@ namespace SchedulerATSTest {
 				 actual;
 				actual = target->CompareTo(secondKey);
 				Assert::AreEqual(expected, actual);
+
+				secondKey = (gcnew Train(2, TRN, pt, tabo->getFermateFor(TRN),0));
+				target->changeOrari( tabo->getFermateFor(trn));
+				 expected = 1; 
+				actual = target->CompareTo(secondKey);
+				Assert::AreEqual(expected, actual);
+
+
+				secondKey = nullptr;
+				 expected = 1; 
+				actual = target->CompareTo(secondKey);
+				Assert::AreEqual(expected, actual);
+
+
+				secondKey = (gcnew Train(p, trn, pt));
+				target = (gcnew Train(p, TRN, pt));
+				 expected = 1; 
+				actual = target->CompareTo(secondKey);
+				Assert::AreEqual(expected, actual);
+
+				
 
 			}
 	};

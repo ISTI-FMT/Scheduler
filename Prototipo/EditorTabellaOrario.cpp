@@ -22,17 +22,4 @@ void Prototipo::EditorTabellaOrario::setitinerary(){
 	}
 }
 
-Void Prototipo::EditorTabellaOrario::textBox_TextChangedP(System::Object^  sender, System::EventArgs^  e){
-	System::Windows::Forms::TextBox ^textarea =(System::Windows::Forms::TextBox^) sender ;
 
-	//[0-9]+(?:\.[0-9]*)?
-	System::Text::RegularExpressions::Match ^m = System::Text::RegularExpressions::Regex::Match(textarea->Text,"[0-9]+(?:\\.[0-9]*)?");
-	if (m->Success){
-		if(m->Value->Length!=textarea->Text->Length){
-			textarea->Text=m->Value;
-		}
-	}else{
-		System::Windows::Forms::MessageBox::Show("Please enter only numbers.");
-
-	}
-}

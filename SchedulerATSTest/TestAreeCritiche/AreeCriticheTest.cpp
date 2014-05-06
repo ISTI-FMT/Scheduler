@@ -50,6 +50,12 @@ namespace SchedulerATSTest
 				Assert::AreEqual(richiesta, false);
 
 			}
+			public: [TestMethod]
+			void TestAreeCritiche()
+			{
+					AreeCritiche^ aree = gcnew AreeCritiche();
+					Assert::IsNotNull(aree);
+			}
 	public: [TestMethod]
 			void TestAreeCritiche1152_1151incrocio()
 			{

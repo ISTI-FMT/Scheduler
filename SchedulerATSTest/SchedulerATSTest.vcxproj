@@ -79,6 +79,7 @@
       <Private>false</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -88,6 +89,9 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="ConfigurazioneVelocitaTest.cpp" />
     <ClCompile Include="FermataTest.cpp" />
+    <ClCompile Include="ListTrainModelTest.cpp" />
+    <ClCompile Include="LoggerTest.cpp" />
+    <ClCompile Include="lrbgTest.cpp" />
     <ClCompile Include="mapTrenoFisicoLogicoTest.cpp" />
     <ClCompile Include="MessaggiTest.cpp" />
     <ClCompile Include="physicalTrainTest.cpp" />
@@ -99,9 +103,11 @@
     <ClCompile Include="TabellaOrarioTest.cpp" />
     <ClCompile Include="TabellaStazioniTest.cpp" />
     <ClCompile Include="TestAreeCritiche\AreeCriticheTest.cpp" />
+    <ClCompile Include="ThreadListenerATCTest.cpp" />
     <ClCompile Include="ThreadListenerATC_IXLTest.cpp" />
     <ClCompile Include="ThreadPresentazioneTest.cpp" />
     <ClCompile Include="TrainTest.cpp" />
+    <ClCompile Include="TrenoFisicoLogicoTest.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>

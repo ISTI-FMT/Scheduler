@@ -65,8 +65,10 @@ Train::Train(int p, int trn, physicalTrain ^pt, List<Fermata^> ^listf, StateTrai
 }
 
 Double Train::getOrarioPartenza(){
-
-	return Listafermate[indicelistafermata]->getOrarioPartenza();
+	if(Listafermate->Count>indicelistafermata){
+			return Listafermate[indicelistafermata]->getOrarioPartenza();
+	}
+	return 0;
 }
 
 void  Train::goNextItinerario(){

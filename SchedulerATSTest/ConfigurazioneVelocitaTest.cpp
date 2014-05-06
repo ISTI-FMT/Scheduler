@@ -68,7 +68,8 @@ namespace SchedulerATSTest {
 			void ConfigurazioneVelocitaConstructorTest()
 			{
 				ConfigurazioneVelocita^  target = (gcnew ConfigurazioneVelocita());
-				Assert::IsTrue(target->ToString()->Length>20);		
+				Assert::IsTrue(target->ToString()->Length>20);	
+				ProfiloVelocita ^t = gcnew ProfiloVelocita();
 				List<ProfiloVelocita^>^ resultnull =target->getProfiloVelocita(55);
 				List<ProfiloVelocita^>^ result = target->getProfiloVelocita(1152);
 				Assert::IsNull(resultnull);

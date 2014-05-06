@@ -111,13 +111,16 @@ namespace SchedulerATSTest {
 				IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 4010);
 
 				s->SendTo( sendBytes, ep);
-				s->SendTo( sendBytes2, ep);
+				//s->SendTo( sendBytes2, ep);
+				s->Close();
+				s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
+					System::Net::Sockets::ProtocolType::Udp);
 				s->SendTo( sendBytes2, ep);
 				
-				s->Close();
-				Thread::Sleep(1000);
+				
+				Thread::Sleep(10000);
 				Assert::IsNotNull(MC->StatoCDB(13301));
-				 
+				 Assert::IsNull(MC->StatoCDB(301));
 				 target->RequestStop();
 				  Thread::Sleep(200);
 			}
@@ -127,7 +130,7 @@ namespace SchedulerATSTest {
 	public: [TestMethod]
 			void ThreadListenerUdpConstructorTest2()
 			{
-				ManagerStatoLineaIXL^  MC = gcnew ManagerStatoLineaIXL();
+			/*	ManagerStatoLineaIXL^  MC = gcnew ManagerStatoLineaIXL();
 				ManagerStatoLineaATC^  MA = gcnew ManagerStatoLineaATC();
 				ThreadListenerUdp^  target = (gcnew ThreadListenerUdp(MC, MA));
 				Thread^ oThreadUDP = gcnew Thread( gcnew ThreadStart( target, &ThreadListenerUdp::UDP_Management_receive ) );
@@ -138,10 +141,14 @@ namespace SchedulerATSTest {
 				 EventQATC->Subscribe(MA);
 
 
-				String ^msgATC  ="0B0A8000000411A265000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-				String ^msgATC2  ="0B022000000411A00B0000FF0000000480000033F600050001004F00000495000043970000000000000000000000000000FF24000004820000283D0000FF020000047F0000300F0001000F0000000000003FAD0000000000000000000000000000000000000000000000000000";
+				String ^msgATC   ="0B022000000411A00B0000FF0000000480000032D200050001004F00000495000043970000FF2300000481000033F50000FF24000004820000283D0000FF020000047F0000300F0001000F0000048E00003FAD0000000000000000000000000000000000000000000000000000";
+				String ^msgATC2  ="0B022000000411A00B0000FF0000000480000036C500050001004F00000495000043970000FF2300000481000033F50000FF24000004820000283D0000FF020000047F0000300F0001000F0000048E00003FAD0000000000000000000000000000000000000000000000000000";
+				String ^msgATC3  ="0B022000000411A00B0000FF0000000480000036C600050001004F00000495000043970000FF2300000481000033F50000FF24000004820000283D0000FF020000047F0000300F0001000F0000048E00003FAD0000000000000000000000000000000000000000000000000000";
+				String ^msgATC4  ="0B022000000411A00B0000FF0000000480000037DE00050001004F00000495000043970000FF2300000481000033F50000FF24000004820000283D0000FF020000047F0000300F0001000F0000048E00003FAD0000000000000000000000000000000000000000000000000000";
 				array<Byte> ^sendBytes = fromString(msgATC);
 				array<Byte> ^sendBytes2 = fromString(msgATC2);
+				array<Byte> ^sendBytes3 = fromString(msgATC3);
+				array<Byte> ^sendBytes4 = fromString(msgATC4);
 
 				Socket ^s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
 					System::Net::Sockets::ProtocolType::Udp);
@@ -149,18 +156,34 @@ namespace SchedulerATSTest {
 				IPAddress ^broadcast = IPAddress::Parse("127.0.0.1");
 				IPEndPoint ^ep = gcnew IPEndPoint(broadcast, 4010);
 
-				s->SendTo( sendBytes2, ep);
-				s->SendTo( sendBytes2, ep);
-				s->SendTo( sendBytes2, ep);
-				s->SendTo( sendBytes2, ep);
 				s->SendTo( sendBytes, ep);
-
-
 				s->Close();
-				 Thread::Sleep(1000);
-				 Assert::IsNotNull(MA->getCDB(13302));
+
+				s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
+					System::Net::Sockets::ProtocolType::Udp);
+				s->SendTo( sendBytes, ep);
+				s->Close();
+
+				s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
+					System::Net::Sockets::ProtocolType::Udp);
+				s->SendTo( sendBytes2, ep);
+				s->Close();
+				Thread::Sleep(10000);
+				s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
+					System::Net::Sockets::ProtocolType::Udp);
+				s->SendTo( sendBytes3, ep);
+				s->Close();
+				s = gcnew Socket(System::Net::Sockets::AddressFamily::InterNetwork, System::Net::Sockets::SocketType::Dgram,
+					System::Net::Sockets::ProtocolType::Udp);
+				s->SendTo( sendBytes4, ep);
+
+
+				
+				 Thread::Sleep(10000);
+				 Assert::IsNotNull(MA->getCDB(13301));
+				  Assert::IsNotNull(MA->getCDB(302));
 				 target->RequestStop();
-				  Thread::Sleep(200);
+				  Thread::Sleep(200);*/
 			}
 			/// <summary>
 			///Test per ConfrontaArrayByte

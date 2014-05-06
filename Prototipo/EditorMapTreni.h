@@ -45,7 +45,7 @@ namespace Prototipo {
 	private: System::Windows::Forms::Button^  buttonOk;
 	protected: 
 
-	private: System::Windows::Forms::TextBox^  textBoxEngine;
+	private: System::Windows::Forms::MaskedTextBox^  textBoxEngine;
 	private: System::Windows::Forms::ComboBox^  comboBoxLastPos;
 	private: System::Windows::Forms::TextBox^  listBoxTRN;
 	private: System::Windows::Forms::Label^  label1;
@@ -61,7 +61,7 @@ namespace Prototipo {
 		{
 			this->buttonAnnulla = (gcnew System::Windows::Forms::Button());
 			this->buttonOk = (gcnew System::Windows::Forms::Button());
-			this->textBoxEngine = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxEngine = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->comboBoxLastPos = (gcnew System::Windows::Forms::ComboBox());
 			this->listBoxTRN = (gcnew System::Windows::Forms::TextBox());
 			this->labelInfo = (gcnew System::Windows::Forms::Label());
@@ -94,9 +94,10 @@ namespace Prototipo {
 			// 
 			this->textBoxEngine->Location = System::Drawing::Point(41, 30);
 			this->textBoxEngine->Name = L"textBoxEngine";
+			this->textBoxEngine->Mask = L"9999999";
 			this->textBoxEngine->Size = System::Drawing::Size(120, 20);
 			this->textBoxEngine->TabIndex = 2;
-			this->textBoxEngine->TextChanged += gcnew System::EventHandler(this, &EditorMapTreni::textBoxEngine_TextChanged);
+			
 			// 
 			// comboBoxLastPos
 			// 
@@ -178,20 +179,7 @@ namespace Prototipo {
 		}
 
 
-	private: System::Void textBoxEngine_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-				 System::Windows::Forms::TextBox ^textarea =(System::Windows::Forms::TextBox^) sender ;
-
-				 //[0-9]+(?:\.[0-9]*)?
-				 System::Text::RegularExpressions::Match ^m = System::Text::RegularExpressions::Regex::Match(textarea->Text,"[0-9]+(?:\\.[0-9]*)?");
-				 if (m->Success){
-					 if(m->Value->Length!=textarea->Text->Length){
-						 textarea->Text=m->Value;
-					 }
-				 }else{
-					 System::Windows::Forms::MessageBox::Show("Please enter only numbers.");
-
-				 }
-			 }
+	
 	private: System::Void buttonOk_Click(System::Object^  sender, System::EventArgs^  e) {
 				 try{
 					 List<int> ^list = gcnew List<int>();
