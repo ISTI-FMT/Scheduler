@@ -1,4 +1,5 @@
 @echo on
 Title FinestraTReno
-START  python simulaTreno.py Treno65551percorso1166.txt 0
+START  python simulaRBC.py 
+START  python simulaTreno.py Treno65280percorso1152.txt 0
 

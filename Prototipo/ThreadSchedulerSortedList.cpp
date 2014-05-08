@@ -869,6 +869,13 @@ List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int 
 	if(controllacdb(listaNIDcdb)){
 
 		if(SendBloccItinIXL(idstazione+iditinerario, QCmdItinerari::creazione)){
+			SendBloccItinIXL(idstazione+iditinerario, QCmdItinerari::creazione);
+			SendBloccItinIXL(idstazione+iditinerario, QCmdItinerari::creazione);
+			SendBloccItinIXL(idstazione+iditinerario, QCmdItinerari::creazione);
+			SendBloccItinIXL(idstazione+iditinerario, QCmdItinerari::creazione);
+			SendBloccItinIXL(idstazione+iditinerario, QCmdItinerari::creazione);
+			SendBloccItinIXL(idstazione+iditinerario, QCmdItinerari::creazione);
+			SendBloccItinIXL(idstazione+iditinerario, QCmdItinerari::creazione);
 			return listaNIDcdb;
 		}
 	}

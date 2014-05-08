@@ -146,6 +146,9 @@ namespace Prototipo {
 				//this->chart1->Series[trn.ToString()+"R"]->Points;
 				if(_bandiera){
 					double old =0;
+					//errore se arriva un treno sconosciuto correggere
+					//if(this->chart1->Series->Contains(trn.ToString()+"R")){
+					try{
 					for each (System::Windows::Forms::DataVisualization::Charting::DataPoint ^var in this->chart1->Series[trn.ToString()+"R"]->Points)
 					{
 
@@ -159,7 +162,7 @@ namespace Prototipo {
 
 						}
 
-					}
+					}}catch(Exception ^e){Console::WriteLine(e->Message);}
 				}
 			}
 

@@ -11,7 +11,7 @@ import re
 from array import array
 import messaggi
 
-receive_UDP_IP = "127.0.0.1"  #ASCOLTO TRENI
+receive_UDP_IP = ""  #ASCOLTO TRENI
 UDP_PORT = 1111
 	
 def date_key(row):

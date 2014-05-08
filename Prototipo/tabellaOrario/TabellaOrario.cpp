@@ -268,7 +268,7 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 			int orarioPartenza = (int)stop->getOrarioPartenza();
 
 			mission->setT_START_TIME(orarioPartenza);
-			mission->setT_DOORS_TIME( (int )stop->gettempoMinimoAperturaPorte());
+			mission->setT_DOORS_TIME(1);// (int )stop->gettempoMinimoAperturaPorte());
 
 			if(tabItinerari!=nullptr ){
 				if(stop->getIditinerarioEntrata()!=0){
