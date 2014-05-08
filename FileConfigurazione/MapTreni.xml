@@ -12,7 +12,7 @@
 
   
     
-  <trenofisico  engine_nbr="65000">
+  <trenofisico  engine_nbr="65280">
      <trenilogici>
     <idtrenologico>1152</idtrenologico>
     </trenilogici>
@@ -29,7 +29,7 @@
     <cdblastpos>17303</cdblastpos>
   </trenofisico>
 
-  <trenofisico  engine_nbr="65280">
+  <trenofisico  engine_nbr="65315">
      <trenilogici>
     <idtrenologico>1153</idtrenologico>
         </trenilogici>
@@ -83,6 +83,6 @@
     <idtrenologico>5321</idtrenologico>
      </trenilogici>
     
-    <cdblastpos>407</cdblastpos>
+    <cdblastpos>12301</cdblastpos>
   </trenofisico>
 </bind>

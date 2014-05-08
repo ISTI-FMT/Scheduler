@@ -16,7 +16,7 @@ from Tkinter import *
 
 SendUDP_IP = "127.0.0.1" #send fake Rbc
 ReceiveTCP_IP = ""  #receive any ip
-SendTCP_IP = "192.168.1.213" #send presentazione ATS
+SendTCP_IP = "146.48.84.70" #send presentazione ATS
 
 
 
