@@ -8,6 +8,7 @@ from datetime import datetime
 import fileinput
 import socket
 import re
+import thread
 from array import array
 import messaggi
 
@@ -31,8 +32,57 @@ def sendTCP(MESSAGE):
 	sock.send(MESSAGE)
 	sock.close()
 
+	
+def scarta(buffold,buffnew):
+	scarta = False
+	for i in xrange(8,len(buff),2):
+		biteA = buffold[i]
+		biteB = buffnew[i]
+		if(biteA==biteB):
+			scarta = True
+		else:
+			scarta = False
+			break
+	return scarta
 
+def scarta2(buffold,buffnew):
+	scarta = False
+	result1 = messaggi.deserializzaStatoLineaIXL2(buffold)
+	result2 = messaggi.deserializzaStatoLineaIXL2(buffnew)
+	for i in range(0,len(result1)):
+		if( result1[i] == result2[i]):
+			scarta = True
+		else:
+			scarta = False
+			break
+	return scarta
+	
+def serverUDP(host, port):
+	x=0
+	old = bytearray()
+	sock = socket.socket( socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_UDP)
+	sock.bind( (host,port) )
+	#sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+	while 1:
+		data, addr = sock.recvfrom(2048) # buffer size is 1024 bytes
+		buff = map(ord,data)
+		ifd = len(buff)
+		if(len(buff)>1300):
+			buf = buff[28:1353]
+			if x==0:
+				old = buf
+				result = messaggi.deserializzaStatoLineaIXL(buf)
+				print "qui",result
+			else:
+				risp  = scarta2(old, buf)
+				if(not risp):
+					result = messaggi.deserializzaStatoLineaIXL(buf)
+					print result
+					old = buf
+			x+=1
+			
 
+thread.start_new_thread(serverUDP, ("192.168.1.213", 4010))
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 sock.bind((receive_UDP_IP, UDP_PORT))
 sock.setblocking(0)

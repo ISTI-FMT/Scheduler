@@ -12,7 +12,7 @@ from array import array
 import thread
 from os import system
 import messaggi
-from Tkinter import *
+
 
 SendUDP_IP = "127.0.0.1" #send fake Rbc
 ReceiveTCP_IP = ""  #receive any ip

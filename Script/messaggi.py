@@ -10,6 +10,68 @@ MessATC=enum   (StatoLineaATC = 11,  FaultReportingATC = 12 );
 MessIXL =enum  ( StatoLineaIXL = 1,  FaultReportingIXL = 211 , ComandoItinerari = 10, ComandoBlocco=231);
 MessATO = enum( MissionPlan = 200,  FaultReportingATO = 213, UnconditionCommand=201, Acknol=210,Presentation=215 )
 
+
+def deserializzaStatoLineaIXL(buf):
+	dictcdb = {}
+	
+	NID_MESSAGE= pop(buf, 8, 0);
+	L_MESSAGE=pop(buf,11, 8);
+	T_TIME=pop(buf, 32, 19);
+	NID_PACKET=pop(buf,  8, 51);
+	L_PACKET=pop(buf, 13, 59);
+	offset=59+13
+	tNID_CDB =pop(buf, 32, offset);
+	offset += 32;
+	tQ_STATOCDB =pop(buf, 2, offset);
+	offset += 2;
+	tQ_DEVIATOIO =pop(buf, 2, offset);
+	offset += 2;
+	cdb = [tNID_CDB,tQ_STATOCDB,tQ_DEVIATOIO]
+	dictcdb[tNID_CDB] = cdb
+	N_ITER = pop(buf, 16, offset)
+	offset += 16;
+	for i in range(0,N_ITER):
+		NID_CDB=pop(buf, 32, offset);
+		offset += 32;
+		Q_STATOCDB=pop(buf, 2, offset);
+		offset += 2;
+		Q_DEVIATOIO=pop(buf, 2, offset);
+		offset += 2;
+		cdb = [NID_CDB,Q_STATOCDB,Q_DEVIATOIO]
+		dictcdb[NID_CDB] = cdb
+	return dictcdb
+    
+
+def deserializzaStatoLineaIXL2(buf):
+    dictcdb = []
+    NID_MESSAGE= pop(buf, 8, 0);
+    L_MESSAGE=pop(buf,11, 8);
+    T_TIME=pop(buf, 32, 19);
+    NID_PACKET=pop(buf,  8, 51);
+    L_PACKET=pop(buf, 13, 59);
+    offset=59+13
+    tNID_CDB =pop(buf, 32, offset);
+    offset += 32;
+    tQ_STATOCDB =pop(buf, 2, offset);
+    offset += 2;
+    tQ_DEVIATOIO =pop(buf, 2, offset);
+    offset += 2;
+    cdb = [tNID_CDB,tQ_STATOCDB,tQ_DEVIATOIO]
+    dictcdb.append(cdb)
+    N_ITER = pop(buf, 16, offset)
+    offset += 16;
+    for i in range(0,N_ITER):
+        NID_CDB=pop(buf, 32, offset);
+        offset += 32;
+        Q_STATOCDB=pop(buf, 2, offset);
+        offset += 2;
+        Q_DEVIATOIO=pop(buf, 2, offset);
+        offset += 2;
+        cdb = [NID_CDB,Q_STATOCDB,Q_DEVIATOIO]
+        dictcdb.append(cdb)
+    return dictcdb    
+    
+
 def deserializzaMissionDATA(buf):
     NID_MESSAGE= pop(buf, 8, 0);
     L_MESSAGE=pop(buf,11, 8);
