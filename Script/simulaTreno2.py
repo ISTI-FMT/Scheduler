@@ -55,6 +55,11 @@ def date_key(row):
 def sendUDP(message, UDP_PORT):
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 	sock.sendto( message, (SendUDP_IP, UDP_PORT))
+	
+	
+def sendUDPR(message, UDP_PORT):
+	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
+	sock.sendto( message, ("192.168.1.213", UDP_PORT))
 
 def sendTCP(MESSAGE):
 	TCP_PORT = 13000
@@ -136,7 +141,7 @@ NID_CDB =  int(spamReader[0][0],10)
 sendBytes =  messaggi.creamovimento(spamReader[0][0],NID_ENGINE)
 print "Sono sul CDB1: ",NID_CDB
 ###SEND NETWORK
-sendUDP(sendBytes,302)
+sendUDPR(sendBytes,302)
 buff = messaggi.messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 #for i in range(0,70):
 sendUDP(buff,1111)
@@ -144,7 +149,7 @@ sendUDP(buff,1111)
 sendUDP(buff,1111)
 
 #Imposto il nome della console
-system("TITLE "+"Treno: " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
+#system("TITLE "+"Treno: " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
 
 #####PRESENTAZIONE VS ATS #########
 #115;16;258;65280;25;53;3610 Presentazione
@@ -179,10 +184,10 @@ for line in spamReader:
 	while i<len(line):	
 		###SEND NETWORK
 		sendBytes = messaggi.creamovimento(line[i],NID_ENGINE)
-		sendUDP(sendBytes,302)
+		sendUDPR(sendBytes,302)
 		###SEND FAKE RBC
 		NID_CDB = int(line[i],10)
-		system("TITLE "+"Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
+		#system("TITLE "+"Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
 		buff = messaggi.messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 		sendUDP(buff,1111)
 		sockfarbc = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP

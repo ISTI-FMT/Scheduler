@@ -60,7 +60,7 @@ def scarta2(buffold,buffnew):
 def serverUDP(host, port):
 	x=0
 	old = bytearray()
-	sock = socket.socket( socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_UDP)
+	sock = socket.socket( socket.AF_INET, socket.SOCK_DGRAM) # UDP, socket.SOCK_RAW, socket.IPPROTO_UDP)
 	sock.bind( (host,port) )
 	print "p"
 	#sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -69,9 +69,9 @@ def serverUDP(host, port):
 		buff = map(ord,data)
 		#print buff
 		ifd = len(buff)
-		#print ifd
+		print ifd
 		if(len(buff)>1300 and len(buff)<1400):
-			buf = buff[28:1353]#[51:]
+			buf = buff#[28:1353]#[51:]
 			#print buf
 			#exit(0)
 			if x==0:

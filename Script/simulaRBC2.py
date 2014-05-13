@@ -15,14 +15,19 @@ import xmlconfReader
 
 receive_UDP_IP = "127.0.0.1"  #ASCOLTO TRENI
 UDP_PORT = 1111
-confitinerari = "..\\FileConfigurazione\\ConfigurazioneItinerari.xml"
+confitinerari = "../FileConfigurazione/ConfigurazioneItinerari.xml"
 	
 def date_key(row):
     return datetime.strptime(row[2].strip(), "%d-%m-%Y %H:%M")
 
    
 def sendUDP(message, _UDP_PORT):
-	UDP_IP = "127.0.0.1" #send IP ATS
+	UDP_IP = "192.168.1.213" #send IP ATS
+	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
+	sock.sendto( message, (UDP_IP, _UDP_PORT))
+	
+def sendUDPL(message, _UDP_PORT):
+	UDP_IP = "127.0.0.1" #send IP MA ATO
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 	sock.sendto( message, (UDP_IP, _UDP_PORT))
 
@@ -37,7 +42,7 @@ def sendTCP(MESSAGE):
 	
 def scarta(buffold,buffnew):
 	scarta = False
-	for i in xrange(8,len(buff),2):
+	for i in xrange(8,len(buffnew),2):
 		biteA = buffold[i]
 		biteB = buffnew[i]
 		if(biteA==biteB):
@@ -74,12 +79,12 @@ def serverUDP(host, port):
 			if x==0:
 				old = buf
 				result = messaggi.deserializzaStatoLineaIXL(buf)
-				print "qui",result
+				#print "qui",result
 			else:
 				risp  = scarta2(old, buf)
 				if(not risp):
 					result = messaggi.deserializzaStatoLineaIXL(buf)
-					print result
+					#print result
 					old = buf
 			x+=1
 			
@@ -95,9 +100,9 @@ sock.setblocking(0)
 
 x=0
 old = bytearray()
-sockixl = socket.socket( socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_UDP)#socket.SOCK_DGRAM) #, 
-portss = 403
-sockixl.bind( ("",portss) )
+sockixl = socket.socket( socket.AF_INET, socket.SOCK_DGRAM) #socket.SOCK_RAW, socket.IPPROTO_UDP)#
+portss = 4010
+sockixl.bind( ("192.168.1.101",portss) )
 #print portss
 
 resultixl = {}
@@ -108,7 +113,7 @@ while 1:
 	try:
 		data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
 		buff = map(ord,data)
-		print addr
+		#print addr
 		result = messaggi.des_messageRBC_new(buff)
 		if (result[0]==65280) or (result[0]==7732):
 			lista[0]=result
@@ -122,7 +127,7 @@ while 1:
 			lista[4]=result
 		if result[0]==65551:
 			lista[5]=result
-		print "received message:", data
+		#print "received message:", data
 		print "result ",result
 		
 				
@@ -135,18 +140,19 @@ while 1:
 	dataixl, addrixl = sockixl.recvfrom(2048) # buffer size is 1024 bytes
 	buffixl = map(ord,dataixl)
 	if(len(buffixl)>1300  and len(buffixl)<1400):
-		buf = buffixl[28:1353]
-		#print buf
+		buf = buffixl#[28:1353]
+		#print len(buf)
 		if x==0:
 			old = buf
 			resultixl = messaggi.deserializzaStatoLineaIXL(buf)
-			print "qui",resultixl
+			#print "qui",resultixl
 			x+=1
 		else:
-			risp  = scarta2(old, buf)
+			risp  = scarta2(old, buffixl)
+			#print risp
 			if(not risp):
 				resultixl = messaggi.deserializzaStatoLineaIXL(buf)
-				print "qui",resultixl
+				#print "qui",resultixl
 				old = buf
 	#print "list ", lista 
 	for pronti in lista.values():
@@ -164,10 +170,13 @@ while 1:
 						if triscdb[1]==2 and qdev==triscdb[2]:
 							bandiera = True
 							sendmdg.append(fcdb)
+						else:
+							bandiera=False
 							#manda il tris element
 				if bandiera:
 					print "tris ",triscdb
-					sendUDP(str(sendmdg),pronti[1])
+					print pronti[0]
+					sendUDPL(str(sendmdg),pronti[0])
 					print "element ", str(sendmdg)
 					bandiera = False
 						
