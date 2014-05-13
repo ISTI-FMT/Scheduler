@@ -146,6 +146,7 @@ namespace Prototipo {
 				//this->chart1->Series[trn.ToString()+"R"]->Points;
 				if(_bandiera){
 					double old =0;
+					try{
 					for each (System::Windows::Forms::DataVisualization::Charting::DataPoint ^var in this->chart1->Series[trn.ToString()+"R"]->Points)
 					{
 
@@ -159,6 +160,9 @@ namespace Prototipo {
 
 						}
 
+					}
+					}catch(Exception ^e){
+						Console::WriteLine(e->Message);
 					}
 				}
 			}
