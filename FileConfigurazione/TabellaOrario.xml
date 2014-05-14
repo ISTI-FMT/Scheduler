@@ -653,21 +653,15 @@
 
   
 
-    <stazione id="400"  name="Via Marco Polo">
-      <arrivo>22:00:00</arrivo>
-      <partenza>22:10:00</partenza>
-      <binarioprogrammato>2</binarioprogrammato>
-      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
-      
-    </stazione>
+    
 
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>22:20:00</arrivo>
       <partenza>22:30:00</partenza>
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
-      <itinerarioEntrata id="909">02-II</itinerarioEntrata>
-      <itinerarioUscita id="904">II-01</itinerarioUscita>
+      
+      <itinerarioUscita id="905">I-01</itinerarioUscita>
     </stazione>
 
 

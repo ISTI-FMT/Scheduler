@@ -66,7 +66,7 @@ Train::Train(int p, int trn, physicalTrain ^pt, List<Fermata^> ^listf, StateTrai
 
 Double Train::getOrarioPartenza(){
 	if(Listafermate->Count>indicelistafermata){
-			return Listafermate[indicelistafermata]->getOrarioPartenza();
+		return Listafermate[indicelistafermata]->getOrarioPartenza();
 	}
 	return 0;
 }
@@ -79,41 +79,44 @@ void  Train::goNextItinerario(){
 	}else{
 		if(Statodeltreno==StateTrain::USCITASTAZIONE){
 			Statodeltreno=StateTrain::ENTRATASTAZIONE;
-			
-			if(indicelistafermata<Listafermate->Count){
+
+			if(indicelistafermata<Listafermate->Count-1){
 				indicelistafermata++;
+			}else{
+				Statodeltreno=StateTrain::TERMINATO;
 			}
 		}
 	}
 }
 
 KeyValuePair<int, int> ^Train::getStazioneItinerario(){
-	switch (Statodeltreno)
-	{
-	case StateTrain::PRONTO:{
+	
+		switch (Statodeltreno)
+		{
+		case StateTrain::PRONTO:{
 
-		return gcnew  KeyValuePair<int, int>();
-		break;
+			return gcnew  KeyValuePair<int, int>();
+			break;
 
-				}
-	case StateTrain::USCITASTAZIONE:{
-		int itinUscita = Listafermate[indicelistafermata]->getIditinerarioUscita();
-		int idstazione = Listafermate[indicelistafermata]->getIdStazione();
-		return gcnew  KeyValuePair<int, int>(idstazione, itinUscita);
-		break;}
-	case StateTrain::ENTRATASTAZIONE:{
-		int initEntrata = Listafermate[indicelistafermata]->getIditinerarioEntrata();
-		int idstazione = Listafermate[indicelistafermata]->getIdStazione();
-		return gcnew  KeyValuePair<int, int>(idstazione, initEntrata);
-		break;}
-	case StateTrain::NONPRONTO:
-		break;
-	case StateTrain::TERMINATO:
-		break;
-	default:
-		break;
-	}
-
+								}
+		case StateTrain::USCITASTAZIONE:{
+			int itinUscita = Listafermate[indicelistafermata]->getIditinerarioUscita();
+			int idstazione = Listafermate[indicelistafermata]->getIdStazione();
+			return gcnew  KeyValuePair<int, int>(idstazione, itinUscita);
+			break;}
+		case StateTrain::ENTRATASTAZIONE:{
+			int initEntrata = Listafermate[indicelistafermata]->getIditinerarioEntrata();
+			int idstazione = Listafermate[indicelistafermata]->getIdStazione();
+			return gcnew  KeyValuePair<int, int>(idstazione, initEntrata);
+			break;}
+		case StateTrain::NONPRONTO:
+			break;
+		case StateTrain::TERMINATO:
+			break;
+		default:
+			break;
+		}
+	
 	return nullptr;
 }
 
@@ -174,23 +177,23 @@ void Train::changeOrari( List<Fermata^> ^nuoviorari){
 	Console::WriteLine("AGGIORNATI ORARI NEL MODELLO");
 	/*for each (Fermata ^var in Listafermate)
 	{
-		int idstazione = var->getIdStazione();
-		if(nuoviorari->Contains(idstazione)){
-			DateTime arrivo = nuoviorari[idstazione].Key;
-			DateTime partenza = nuoviorari[idstazione].Value;
-			DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
+	int idstazione = var->getIdStazione();
+	if(nuoviorari->Contains(idstazione)){
+	DateTime arrivo = nuoviorari[idstazione].Key;
+	DateTime partenza = nuoviorari[idstazione].Value;
+	DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
 
-			TimeSpan sinceMidnighta = arrivo - orarioSupporto3;
-			TimeSpan sinceMidnightp = partenza - orarioSupporto3;
-			double	darrivo = sinceMidnighta.TotalSeconds/30;
-			double	dpartenza = sinceMidnightp.TotalSeconds/30;
-			if(var->getOrarioArrivo()!=darrivo){
-				var->setOrarioArrivo(darrivo);
-			}
-			if(var->getOrarioPartenza()!=dpartenza){
-				var->setOrarioPartenza(dpartenza);
-			}
-		}
+	TimeSpan sinceMidnighta = arrivo - orarioSupporto3;
+	TimeSpan sinceMidnightp = partenza - orarioSupporto3;
+	double	darrivo = sinceMidnighta.TotalSeconds/30;
+	double	dpartenza = sinceMidnightp.TotalSeconds/30;
+	if(var->getOrarioArrivo()!=darrivo){
+	var->setOrarioArrivo(darrivo);
+	}
+	if(var->getOrarioPartenza()!=dpartenza){
+	var->setOrarioPartenza(dpartenza);
+	}
+	}
 	}*/
 
 

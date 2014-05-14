@@ -21,10 +21,10 @@ void TextBoxTraceListener::init(void){
 	textBox->TabIndex = 4;
 	//textBox->BackColor = System::Drawing::Color::Black;
 	textBox->Font = (gcnew System::Drawing::Font(L"Courier New", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
-				static_cast<System::Byte>(0)));
+		static_cast<System::Byte>(0)));
 	//textBox->Font = (gcnew System::Drawing::Font(L"Courier New", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 	//			static_cast<System::Byte>(0)));
-//	textBox->ForeColor = System::Drawing::Color::White;
+	//	textBox->ForeColor = System::Drawing::Color::White;
 	//textBox->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox2_TextChanged);
 	textBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 	form = gcnew Form();
@@ -53,14 +53,14 @@ void TextBoxTraceListener::init(void){
 
 };
 
- System::Void TextBoxTraceListener::TextBoxTraceListener_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e){
-	
+System::Void TextBoxTraceListener::TextBoxTraceListener_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e){
+
 	if(e->CloseReason==System::Windows::Forms::CloseReason::UserClosing){
-	e->Cancel=true;
-	 }else{
-		 e->Cancel=false;
-	 }
- }
+		e->Cancel=true;
+	}else{
+		e->Cancel=false;
+	}
+}
 void TextBoxTraceListener::WriteLine(String ^h){
 	TextWriterTraceListener::WriteLine(h+"\r\n");
 	Write(h+"\r\n");
@@ -79,7 +79,7 @@ void TextBoxTraceListener::Write(String ^h){
 		//form->Invoke( myDelegate, h );
 		Console::WriteLine("Avevi chiuso la finetra del log!!! ",e->Message);
 #ifdef TRACE
-	//	Logger::Exception(e,"TextBoxTraceListener");  
+		//	Logger::Exception(e,"TextBoxTraceListener");  
 #endif // TRACE
 	}
 };
@@ -93,30 +93,39 @@ void TextBoxTraceListener::SetText(String ^text)
 	// calling thread to the thread ID of the creating thread.
 	// If these threads are different, it returns true.
 
-	if (textBox->Lines->Length>100){
+	if (textBox->Lines->Length>250){
 		String ^old = textBox->Text;
-		int start = old->Length/2;
-		String ^newstr = old->Substring(start);
+		String ^newstr = old->Substring(200);
 		textBox->Text=newstr;
 	}
 
 	//04/05/2013 13:05:08;Info;Presentazione;19652;215;ATS;146.48.84.52;D7-20-00-00-00-20-40-00-8C-A3-20-F0-00-00-0E-1A;9
 	//TimeStamp;typeTrace;module;pid;nid_msg;dest;mitt;message;size =9
-	if(text->Contains(";")){
+	try{
+		if(text->Contains(";")){
 
-		array<String^> ^arraystr=text->Split(';');
-		if(arraystr->Length>=7){
-			//String ^result = String::Format("{0} Module:{1} NID_MSG:{2} Message:{3} {4} Send in/out:{5} Size:{6}",arraystr[0],arraystr[2],
-			//	arraystr[4],arraystr[7],arraystr[6],arraystr[5],arraystr[8]);
-			String ^result = String::Format("{4} {0} Module:{1} NID_MSG:{2} Message:{3}\r\n",arraystr[0],arraystr[2],
-				arraystr[4],arraystr[7],arraystr[6],arraystr[5],arraystr[8]);
-			textBox->Text += result;
+			array<String^> ^arraystr=text->Split(';');
+			if(arraystr->Length>=7){
+				//String ^result = String::Format("{0} Module:{1} NID_MSG:{2} Message:{3} {4} Send in/out:{5} Size:{6}",arraystr[0],arraystr[2],
+				//	arraystr[4],arraystr[7],arraystr[6],arraystr[5],arraystr[8]);
+				String ^result = String::Format("{4} {0} Module:{1} NID_MSG:{2} Message:{3}\r\n",arraystr[0],arraystr[2],
+					arraystr[4],arraystr[7],arraystr[6],arraystr[5],arraystr[8]->Substring(0,170));
+				RealSetText(result);
+			}else{
+				RealSetText( text->Substring(0,170)+"\r\n");
+			}
 		}else{
-			textBox->Text += text;
+			RealSetText(text->Substring(0,170)+"\r\n");
 		}
-	}else{
-		textBox->Text += text;
+	}catch(Exception ^e){
+		RealSetText(text+"\r\n");
 	}
+
+}
+
+void TextBoxTraceListener::RealSetText(String ^text)
+{
+	textBox->Text += text;
 	textBox->SelectionStart = textBox->Text->Length;
 	textBox->ScrollToCaret();
 }
