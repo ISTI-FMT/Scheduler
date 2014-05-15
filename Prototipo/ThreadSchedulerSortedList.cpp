@@ -314,11 +314,17 @@ void ThreadSchedulerSortedList::Schedule(){
 												  }
 				case StateTrain::NONPRONTO:
 					break;
-				case StateTrain::TERMINATO:
+				case StateTrain::TERMINATO:{
 					liveness->RimuoviMissione(Train->getTRN());
-					TrainTermined->Add(Train);
-					
-					break;
+
+					List<int>^ licdb = tabItinerari->get_Cdb_Itinerario( Train->getStazioneItinerario()->Key, Train->getStazioneItinerario()->Value);
+					int cdbfinecorsa = licdb[licdb->Count-1];
+					int nid_engineTRenoCDBPrecIT = managerATC->getCDB(cdbfinecorsa)->getNID_ENGINE();
+					if(managerATC->getCDB(cdbfinecorsa)->getNID_OPERATIONAL()==Train->getTRN()|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber()){
+						TrainTermined->Add(Train);
+					}
+
+					break;}
 				default:
 					break;
 				}
@@ -326,18 +332,16 @@ void ThreadSchedulerSortedList::Schedule(){
 			for each (Train^ var in TrainTermined)
 			{
 				controlListtrain->OnDelete(var);
+
 				if( mapTrenoLogFisico->get_Map()[ var->getPTN()]->getNextLogicTrain()>0){
-						KeyValuePair<int, int> ^itistazione = var->getStazioneItinerario();
-						int itinUscita = itistazione->Value;
-						int idstazione = itistazione->Key;
-						List<int>^ licdb = tabItinerari->get_Cdb_Itinerario(idstazione,itinUscita);
-						mapTrenoLogFisico->get_Map()[ var->getPTN()]->setCDBLastPosition(licdb[licdb->Count-1]);
-						physicalTrain^ ftrain = var->getPhysicalTrain();
-						ftrain->setStateObject(nullptr);
-						listatrenipresentati->Add(ftrain);
-						
-						Pronto_ATO();
-					}
+					List<int>^ licdb = tabItinerari->get_Cdb_Itinerario( var->getStazioneItinerario()->Key, var->getStazioneItinerario()->Value);
+					mapTrenoLogFisico->get_Map()[ var->getPTN()]->setCDBLastPosition(licdb[licdb->Count-1]);
+					physicalTrain^ ftrain = var->getPhysicalTrain();
+					ftrain->setStateObject(nullptr);
+					listatrenipresentati->Add(ftrain);
+
+					Pronto_ATO();
+				}
 			}
 		}
 	}
