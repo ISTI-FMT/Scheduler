@@ -33,18 +33,32 @@ def serverTCP(host, port,ACK):
 		s.bind((host, port))
 		s.listen(1)
 		conn, addr = s.accept()
-		print "##########################CAMBIO MISSION###############################"
-		print 'CAMBIO MISSION Connection address:', addr
+		
+		print 'CAMBIO Connection address:', addr
 		data = conn.recv(1024)
 		if not data: break
 		#print "received data:", data
-		buffer3 = map(ord,data)
-		print "CAMBIO MISSION received data:", messaggi.deserializzaMissionDATA(buffer3)
-		conn.send(ACK)
-		#conn.close()
-		#s.close()
-		print "##########################END MISSION###############################"		# echo
-		#conn.close()
+		buffer1 = map(ord,data)
+		if not (buffer1[1]==6):
+			print "##########################CAMBIO TRN###############################"
+			MESSAGE2 = conn.recv(14)
+			buffer2 = map(ord,MESSAGE2)
+			MESSAGE3 = conn.recv(2048)
+			buffer3 = map(ord,MESSAGE3)
+			messaggi.deserializzaCommandDATA(buffer1)
+			NID_OPERATIONAL = messaggi.deserializzaCommandDATA(buffer2)
+			print "NID_OPERATIONAL ",NID_OPERATIONAL
+			print "received data:", messaggi.deserializzaMissionDATA(buffer3)
+			conn.send(ACK)
+			print "##########################END CAMBIO TRN###############################"
+		else:
+			print "##########################CAMBIO MISSION###############################"
+			print "CAMBIO MISSION received data:", messaggi.deserializzaMissionDATA(buffer1)
+			conn.send(ACK)
+			#conn.close()
+			#s.close()
+			print "##########################END MISSION###############################"		# echo
+			#conn.close()
 
 
 
