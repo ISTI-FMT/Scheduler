@@ -6,6 +6,7 @@ TrenoFisicoLogico::TrenoFisicoLogico(void)
 	setIdTrenoFisico(0);
 	ListidTreniLogici = gcnew List<int>();
 	setCDBLastPosition(0);
+	nextlogic = 0;
 }
 
 
@@ -15,12 +16,14 @@ TrenoFisicoLogico::TrenoFisicoLogico(int idtrenoF, int idtrenoL, int cdblpos){
 	ListidTreniLogici  = gcnew List<int>();
 	setIdTrenoLogico(idtrenoL);
 	setCDBLastPosition(cdblpos);
+	nextlogic = 0;
 }
 
 TrenoFisicoLogico::TrenoFisicoLogico(int idtrenoF, List<int> ^idltrenoL, int cdblpos){
 	setIdTrenoFisico(idtrenoF);
 	ListidTreniLogici = idltrenoL;
 	setCDBLastPosition(cdblpos);
+	nextlogic = 0;
 }
 
 String ^TrenoFisicoLogico::ToString(){
@@ -42,7 +45,7 @@ String ^TrenoFisicoLogico::ToString(){
 }
 
 int TrenoFisicoLogico::getIdTrenoLogico(int i){
-	if(ListidTreniLogici->Count>=i){
+	if(ListidTreniLogici->Count>i){
 		return ListidTreniLogici[i];
 
 	}

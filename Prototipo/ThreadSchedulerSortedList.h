@@ -96,6 +96,7 @@ public:
 	void Schedule();
 	void Init();
 	void ControllaMSG_ATO();
+	void Pronto_ATO();
 	void ControllaMSG_IXL();
 	bool controllacdb(List<int>^lcdb);
 	void ControllaEventiCambioOrario();

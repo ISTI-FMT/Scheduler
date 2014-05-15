@@ -16,7 +16,8 @@ void ControllerListTrain::OnSetTrain(Train^ train){
 		model->Add(train);
 	
 }
-void ControllerListTrain::OnDelete(){
+void ControllerListTrain::OnDelete(Train^ train){
+	model->RemoveElement(train);
 }
 
 System::Collections::Generic::List<Train^> ^ControllerListTrain::getListTrain(){

@@ -111,8 +111,11 @@ KeyValuePair<int, int> ^Train::getStazioneItinerario(){
 			break;}
 		case StateTrain::NONPRONTO:
 			break;
-		case StateTrain::TERMINATO:
-			break;
+		case StateTrain::TERMINATO:{
+			int initEntrata = Listafermate[indicelistafermata]->getIditinerarioEntrata();
+			int idstazione = Listafermate[indicelistafermata]->getIdStazione();
+			return gcnew  KeyValuePair<int, int>(idstazione, initEntrata);
+			break;}
 		default:
 			break;
 		}

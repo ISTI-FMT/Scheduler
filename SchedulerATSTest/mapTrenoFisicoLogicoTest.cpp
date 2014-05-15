@@ -77,6 +77,9 @@ namespace SchedulerATSTest {
 				
 				writeStream->Close();
 
+				Assert::AreNotEqual(0,target->get_Map()[65282]->getNextLogicTrain());
+				Assert::AreNotEqual(0,target->get_Map()[65282]->getCurrentLogicTrain());
+
 				Assert::AreNotEqual(-1,target->get_Map()[65282]->getIdTrenoLogico(0));
 			}
 	};
