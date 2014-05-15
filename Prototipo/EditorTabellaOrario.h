@@ -107,7 +107,6 @@ namespace Prototipo {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(100, 20);
 			this->textBox1->TabIndex = 0;
-			
 			// 
 			// label1
 			// 
@@ -120,6 +119,7 @@ namespace Prototipo {
 			// 
 			// comboBox1
 			// 
+			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"Sinistra", L"Destra"});
 			this->comboBox1->Location = System::Drawing::Point(212, 28);
@@ -142,7 +142,7 @@ namespace Prototipo {
 			this->AddButton->Name = L"AddButton";
 			this->AddButton->Size = System::Drawing::Size(75, 23);
 			this->AddButton->TabIndex = 4;
-			this->AddButton->Text = L"Add";
+			this->AddButton->Text = L"Aggiungi";
 			this->AddButton->UseVisualStyleBackColor = true;
 			this->AddButton->Click += gcnew System::EventHandler(this, &EditorTabellaOrario::AddButton_Click);
 			// 
@@ -157,7 +157,7 @@ namespace Prototipo {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->textBox1);
 			this->Name = L"EditorTabellaOrario";
-			this->Text = L"EditorTabellaOrario";
+			this->Text = L"Editor TabellaOrario";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

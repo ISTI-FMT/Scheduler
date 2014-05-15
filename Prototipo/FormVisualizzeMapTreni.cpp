@@ -32,7 +32,7 @@ void FormVisualizzeMapTreni::Inizialize(){
 	this->NewTrain->Name = L"NewMapTrain";
 	this->NewTrain->Size = System::Drawing::Size(120, 23);
 	this->NewTrain->TabIndex = 2;
-	this->NewTrain->Text = L"NewMapTrain";
+	this->NewTrain->Text = L"Nuovo Treno";
 	this->NewTrain->UseVisualStyleBackColor = true;
 	this->NewTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeMapTreni::NewTrain_Click);
 
@@ -44,7 +44,7 @@ void FormVisualizzeMapTreni::Inizialize(){
 	this->SaveXml->Name = L"SaveXml";
 	this->SaveXml->Size = System::Drawing::Size(120, 23);
 	this->SaveXml->TabIndex = 2;
-	this->SaveXml->Text = L"Save Xml";
+	this->SaveXml->Text = L"Salva XML";
 	this->SaveXml->UseVisualStyleBackColor = true;
 	this->SaveXml->Click += gcnew System::EventHandler(this, &FormVisualizzeMapTreni::SaveXml_Click);
 	
@@ -57,7 +57,7 @@ void FormVisualizzeMapTreni::Inizialize(){
 	this->DeleteTrain->Name = L"NewTrain";
 	this->DeleteTrain->Size = System::Drawing::Size(120, 23);
 	this->DeleteTrain->TabIndex = 2;
-	this->DeleteTrain->Text = L"Delete Train";
+	this->DeleteTrain->Text = L"Elimina treno";
 	this->DeleteTrain->UseVisualStyleBackColor = true;
 	this->DeleteTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeMapTreni::DeleteTrain_Click);
 
@@ -70,8 +70,8 @@ void FormVisualizzeMapTreni::Inizialize(){
 	this->Controls->Add(NewTrain);
 	this->Controls->Add(SaveXml);
 	this->Controls->Add(DeleteTrain);
-	this->Name = L"Tabella Orario";
-	this->Text = L"Tabella Orario";
+	this->Name = L"Editor MapTreni";
+	this->Text = L"Editor MapTreni";
 	//form->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 	this->Resize += gcnew System::EventHandler(this, &FormVisualizzeMapTreni::Form_Resize);
 	//form->MaximizeBox = false;    

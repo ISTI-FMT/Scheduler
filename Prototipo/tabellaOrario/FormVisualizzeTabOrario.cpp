@@ -32,7 +32,7 @@ void FormVisualizzeTabOrario::Inizialize(){
 	this->NewTrain->Name = L"NewTrain";
 	this->NewTrain->Size = System::Drawing::Size(146, 23);
 	this->NewTrain->TabIndex = 2;
-	this->NewTrain->Text = L"NewTrain";
+	this->NewTrain->Text = L"Nuovo Treno";
 	this->NewTrain->UseVisualStyleBackColor = true;
 	this->NewTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeTabOrario::NewTrain_Click);
 
@@ -44,7 +44,7 @@ void FormVisualizzeTabOrario::Inizialize(){
 	this->SaveXml->Name = L"SaveXml";
 	this->SaveXml->Size = System::Drawing::Size(146, 23);
 	this->SaveXml->TabIndex = 2;
-	this->SaveXml->Text = L"Save Xml";
+	this->SaveXml->Text = L"Salva Xml";
 	this->SaveXml->UseVisualStyleBackColor = true;
 	this->SaveXml->Click += gcnew System::EventHandler(this, &FormVisualizzeTabOrario::SaveXml_Click);
 
@@ -57,7 +57,7 @@ void FormVisualizzeTabOrario::Inizialize(){
 	this->DeleteTrain->Name = L"NewTrain";
 	this->DeleteTrain->Size = System::Drawing::Size(146, 23);
 	this->DeleteTrain->TabIndex = 2;
-	this->DeleteTrain->Text = L"Delete Train";
+	this->DeleteTrain->Text = L"Elimina Treno";
 	this->DeleteTrain->UseVisualStyleBackColor = true;
 	this->DeleteTrain->Click += gcnew System::EventHandler(this, &FormVisualizzeTabOrario::DeleteTrain_Click);
 

@@ -112,8 +112,8 @@ namespace Prototipo {
 			this->ControlBox = false;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
-			this->Name = L"FormStatoLineaATC";
-			this->Text = L"FormStatoLineaATC";
+			this->Name = L"Stato Linea ATC";
+			this->Text = L"Stato Linea ATC";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &FormStatoLineaATC::FormStatoLineaATC_FormClosing);
 			this->ResumeLayout(false);
 

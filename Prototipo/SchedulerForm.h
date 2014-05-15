@@ -158,7 +158,7 @@ namespace Prototipo {
 				 this->button2->Name = L"button2";
 				 this->button2->Size = System::Drawing::Size(146, 23);
 				 this->button2->TabIndex = 2;
-				 this->button2->Text = L"Visualize Tabella Orario";
+				 this->button2->Text = L"Visualizza Tabella Orario";
 				 this->button2->UseVisualStyleBackColor = true;
 				 this->button2->Click += gcnew System::EventHandler(this, &SchedulerForm::button2_Click);
 				 // 
@@ -168,7 +168,7 @@ namespace Prototipo {
 				 this->button3->Name = L"button3";
 				 this->button3->Size = System::Drawing::Size(146, 23);
 				 this->button3->TabIndex = 3;
-				 this->button3->Text = L"Visualize Conf. Itinerari";
+				 this->button3->Text = L"Visualizza Conf. Itinerari";
 				 this->button3->UseVisualStyleBackColor = true;
 				 this->button3->Click += gcnew System::EventHandler(this, &SchedulerForm::button3_Click);
 				 // 
@@ -178,7 +178,7 @@ namespace Prototipo {
 				 this->button4->Name = L"button4";
 				 this->button4->Size = System::Drawing::Size(146, 23);
 				 this->button4->TabIndex = 4;
-				 this->button4->Text = L"Visualize Conf. Fermate";
+				 this->button4->Text = L"Visualizza Conf. Fermate";
 				 this->button4->UseVisualStyleBackColor = true;
 				 this->button4->Click += gcnew System::EventHandler(this, &SchedulerForm::button4_Click);
 				 // 
@@ -220,7 +220,7 @@ namespace Prototipo {
 				 this->buttonMapTreni->Name = L"buttonMapTreni";
 				 this->buttonMapTreni->Size = System::Drawing::Size(146, 23);
 				 this->buttonMapTreni->TabIndex = 6;
-				 this->buttonMapTreni->Text = L"Visualize MapTreni";
+				 this->buttonMapTreni->Text = L"Visualizza MapTreni";
 				 this->buttonMapTreni->UseVisualStyleBackColor = true;
 				 this->buttonMapTreni->Click += gcnew System::EventHandler(this, &SchedulerForm::buttonMapTreni_Click);
 				 // 
@@ -249,147 +249,15 @@ namespace Prototipo {
 				 this->Controls->Add(this->ExitButton);
 				 this->Controls->Add(this->checkBoxLivenees);
 				 this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
-				 this->Name = L"SchedulerForm";
-				 this->Text = L"SchedulerForm";
+				 this->Name = L"Scheduler";
+				 this->Text = L"Scheduler";
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
 
 			 }
-			 //			 void TCP_Management()
-			 //			 {
-			 //				 physicalTrain ^Treno = listaTreni->getPrimo();
-			 //
-			 //				 try
-			 //				 {
-			 //
-			 //
-			 //					 Messaggi ^wakeUpPkt = gcnew Messaggi();
-			 //
-			 //
-			 //					 wakeUpPkt->setNID_MESSAGE(MessageID::UnconditionCommand);
-			 //
-			 //
-			 //					 wakeUpPkt->get_pacchettoCommandData()->setNID_PACKET(161);
-			 //					 wakeUpPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(WAKE_UP);
-			 //					 DateTime orarioSupporto3 = DateTime::ParseExact("00:00:00", "HH:mm:ss", CultureInfo::InvariantCulture);
-			 //					 TimeSpan ^sinceMidnight =  DateTime::Now - orarioSupporto3;
-			 //					 wakeUpPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
-			 //
-			 //
-			 //
-			 //
-			 //
-			 //					 // Buffer for reading data
-			 //					 array<Byte>^bytes_buffer1 =wakeUpPkt->serialize();
-			 //
-			 //
-			 //					 Messaggi ^trainRunningNumberPkt = gcnew Messaggi();
-			 //
-			 //
-			 //					 trainRunningNumberPkt->setNID_MESSAGE(MessageID::UnconditionCommand);
-			 //					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_PACKET(161);
-			 //					 trainRunningNumberPkt->get_pacchettoCommandData()->setQ_COMMAND_TYPE(TRN);
-			 //					 trainRunningNumberPkt->setT_TIME((int)sinceMidnight->TotalSeconds/30);
-			 //
-			 //					 trainRunningNumberPkt->get_pacchettoCommandData()->setNID_OPERATIONAL(tabellaOrario->getFirstTRN());
-			 //
-			 //
-			 //					 // Buffer for reading data
-			 //					 array<Byte>^bytes_buffer2 = trainRunningNumberPkt->serialize();
-			 //
-			 //					 Messaggi ^missionPlanPkt = gcnew Messaggi();
-			 //
-			 //					 missionPlanPkt->setNID_MESSAGE(MessageID::MissionPlan);
-			 //					 missionPlanPkt->get_pacchettoMissionData()->setNID_PACKET(160);
-			 //					 int TRN = tabellaOrario->getFirstTRN();
-			 //					 tabellaOrario->setMissionPlanMessage(TRN, missionPlanPkt->get_pacchettoMissionData(), confVelocita->getProfiloVelocita(TRN));
-			 //
-			 //
-			 //
-			 //					 // Buffer for reading data
-			 //					 array<Byte>^bytes_buffer3 =  missionPlanPkt->serialize();
-			 //
-			 //					 // Creates the Socket to send data over a TCP connection.
-			 //					 Socket ^sock = gcnew Socket( System::Net::Sockets::AddressFamily::InterNetwork,System::Net::Sockets::SocketType::Stream,System::Net::Sockets::ProtocolType::Tcp );
-			 //
-			 //
-			 //					 String ^IP = gcnew String(Treno->getIpAddress());
-			 //					 sock->Connect(IP, Treno->getTcpPort());
-			 //
-			 //					 NetworkStream ^myStream = gcnew NetworkStream(sock);
-			 //
-			 //					 myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
-			 //#ifdef TRACE
-			 //
-			 //					 Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"Init");
-			 //
-			 //#endif // TRACE
-			 //					 myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
-			 //#ifdef TRACE
-			 //
-			 //					 Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"Init");
-			 //
-			 //#endif // TRACE
-			 //					 myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
-			 //#ifdef TRACE
-			 //
-			 //					 Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"Init");
-			 //
-			 //#endif // TRACE
-			 //
-			 //					 Messaggi ^pktAck = gcnew Messaggi();
-			 //
-			 //					 pktAck->set_pacchettoAcknowledgement();
-			 //
-			 //					 // Buffer for reading data
-			 //					 array<Byte>^bytes_buffer4 = gcnew array<Byte>(pktAck->getSize());
-			 //
-			 //					 myStream->Read(bytes_buffer4, 0, pktAck->getSize());
-			 //					 pktAck->deserialize(bytes_buffer4);
-			 //
-			 //#ifdef TRACE
-			 //
-			 //					 Logger::Info(pktAck->getNID_MESSAGE(),IP->ToString(),"ATS",pktAck->getSize(),BitConverter::ToString(bytes_buffer4),"Init");
-			 //
-			 //#endif // TRACE
-			 //
-			 //
-			 //
-			 //
-			 //					 Console::WriteLine( "RESPONSE\n ", pktAck->get_pacchettoAcknowledgement()->getQ_MISSION_RESPONSE());
-			 //
-			 //
-			 //					Console::WriteLine( "DONE\n");
-			 //					 myStream->Close();
-			 //					 sock->Close();
-			 //				 }
-			 //				 catch ( SocketException^ e ) 
-			 //				 {
-			 //					 Console::WriteLine( "SocketException: {0}", e );
-			 //#ifdef TRACE
-			 //					 Logger::Exception(e,"SchedulerForm");  
-			 //#endif // TRACE
-			 //				 }
-			 //
-			 //
-			 //			 }
+		
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-
-				 /*				 if(!listaTreni->is_Empthy()){
-				 Thread  ^oThread = gcnew Thread( gcnew ThreadStart(this, &Prototipo::SchedulerForm::TCP_Management) );
-
-				 oThread->Start();
-
-				 }else{
-
-				 #ifdef TRACE
-				 Logger::Info("SchedulerForm"," Lista treni Vuota");  
-				 #endif // TRACE
-
-				 MessageBox::Show("Lista treni Vuota");
-				 }*/
-
 
 			 }
 	private: System::Void ExitButton_Click(System::Object^  sender, System::EventArgs^  e) {

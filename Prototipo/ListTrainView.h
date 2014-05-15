@@ -135,8 +135,8 @@ namespace Prototipo {
 			this->Controls->Add(this->tableLayoutPanel1);
 			this->Controls->Add(this->label1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
-			this->Name = L"ListTrainView";
-			this->Text = L"ListTrainView";
+			this->Name = L"Lista Treni";
+			this->Text = L"Lista Treni";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &ListTrainView::ListTrainView_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
