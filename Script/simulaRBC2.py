@@ -16,6 +16,10 @@ import xmlconfReader
 receive_UDP_IP = "127.0.0.1"  #ASCOLTO TRENI
 UDP_PORT = 1111
 confitinerari = "../FileConfigurazione/ConfigurazioneItinerari.xml"
+
+if os.getcwd()=='/Users/isiu':
+	confitinerari = "/Users/isiu/github/Scheduler/FileConfigurazione/ConfigurazioneItinerari.xml"
+
 	
 def date_key(row):
     return datetime.strptime(row[2].strip(), "%d-%m-%Y %H:%M")
