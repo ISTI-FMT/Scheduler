@@ -406,7 +406,16 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 				RaccoltaTrenoRequestCDB->Remove(var);
 			}
 		}
-	}
+	}/*else{
+		for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+		{
+				KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
+				SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
+				
+		}
+
+
+	}*/
 }
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){

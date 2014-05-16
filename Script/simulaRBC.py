@@ -116,7 +116,7 @@ while 1:
 		print "nessun messaggio ricevuto"
 	print "list ", lista 
 	buff = messaggi.messageRBC1(lista)
-	#sendUDP(buff,4010)
+	sendUDP(buff,4010)
 	time.sleep(2)
 	#raw_input("-->> PRESS ENTER <<<--- ")
 
