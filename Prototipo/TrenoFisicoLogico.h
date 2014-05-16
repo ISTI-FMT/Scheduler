@@ -13,6 +13,7 @@ public ref class TrenoFisicoLogico
 	int idtrenofisico;
 	List<int> ^ListidTreniLogici;
 	int cdblastposition;
+	int nextlogic;
 
 public:
 	TrenoFisicoLogico(void);
@@ -28,6 +29,28 @@ public:
 
 	int getCDBLastPosition(){return cdblastposition;};
 	void setCDBLastPosition(int pos){cdblastposition=pos;};
+
+	int getNextLogicTrain(){
+		nextlogic++;
+		if(nextlogic<ListidTreniLogici->Count){
+ 
+			return ListidTreniLogici[nextlogic];
+		}
+		return 0;
+	
+	};
+
+	int getCurrentLogicTrain(){
+		if(nextlogic<ListidTreniLogici->Count){
+			
+			return  ListidTreniLogici[nextlogic];
+			
+		}
+		return 0;
+	
+	};
+	
+
 
 
 	virtual String ^ToString() override;

@@ -33,18 +33,32 @@ def serverTCP(host, port,ACK):
 		s.bind((host, port))
 		s.listen(1)
 		conn, addr = s.accept()
-		print "##########################CAMBIO MISSION###############################"
-		print 'CAMBIO MISSION Connection address:', addr
+		
+		print 'CAMBIO Connection address:', addr
 		data = conn.recv(1024)
 		if not data: break
 		#print "received data:", data
-		buffer3 = map(ord,data)
-		print "CAMBIO MISSION received data:", messaggi.deserializzaMissionDATA(buffer3)
-		conn.send(ACK)
-		#conn.close()
-		#s.close()
-		print "##########################END MISSION###############################"		# echo
-		#conn.close()
+		buffer1 = map(ord,data)
+		if not (buffer1[1]==6):
+			print "##########################CAMBIO TRN###############################"
+			MESSAGE2 = conn.recv(14)
+			buffer2 = map(ord,MESSAGE2)
+			MESSAGE3 = conn.recv(2048)
+			buffer3 = map(ord,MESSAGE3)
+			messaggi.deserializzaCommandDATA(buffer1)
+			NID_OPERATIONAL = messaggi.deserializzaCommandDATA(buffer2)
+			print "NID_OPERATIONAL ",NID_OPERATIONAL
+			print "received data:", messaggi.deserializzaMissionDATA(buffer3)
+			conn.send(ACK)
+			print "##########################END CAMBIO TRN###############################"
+		else:
+			print "##########################CAMBIO MISSION###############################"
+			print "CAMBIO MISSION received data:", messaggi.deserializzaMissionDATA(buffer1)
+			conn.send(ACK)
+			#conn.close()
+			#s.close()
+			print "##########################END MISSION###############################"		# echo
+			#conn.close()
 
 
 
@@ -55,6 +69,11 @@ def date_key(row):
 def sendUDP(message, UDP_PORT):
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 	sock.sendto( message, (SendUDP_IP, UDP_PORT))
+	
+	
+def sendUDPR(message, UDP_PORT):
+	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
+	sock.sendto( message, ("192.168.1.213", UDP_PORT))
 
 def sendTCP(MESSAGE):
 	TCP_PORT = 13000
@@ -136,7 +155,7 @@ NID_CDB =  int(spamReader[0][0],10)
 sendBytes =  messaggi.creamovimento(spamReader[0][0],NID_ENGINE)
 print "Sono sul CDB1: ",NID_CDB
 ###SEND NETWORK
-sendUDP(sendBytes,302)
+sendUDPR(sendBytes,302)
 buff = messaggi.messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 #for i in range(0,70):
 sendUDP(buff,1111)
@@ -144,7 +163,7 @@ sendUDP(buff,1111)
 sendUDP(buff,1111)
 
 #Imposto il nome della console
-system("TITLE "+"Treno: " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
+#system("TITLE "+"Treno: " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
 
 #####PRESENTAZIONE VS ATS #########
 #115;16;258;65280;25;53;3610 Presentazione
@@ -158,7 +177,7 @@ if bandiera==True:
 		print "Ricevo Wake-up TRN MISSION"
 		
 		NID_OPERATIONAL = ReceiveTCP(M_PORT,messaggi.sendACk(NID_ENGINE))
-		print NID_OPERATIONAL
+		print "nid_op", NID_OPERATIONAL
 		####ASCOLTO TCP
 		thread.start_new_thread(serverTCP, (ReceiveTCP_IP, M_PORT,messaggi.sendACk(NID_ENGINE)))
 	except socket.error as msg:
@@ -167,32 +186,48 @@ if bandiera==True:
 
 
     
-#exit(0)
 
+#exit(0)
+data = []
+scatti = []
 
 ####### MOVIMENTO VS RBC NEXT MOV######
 for line in spamReader:
 	i = 0
+	
 	while i<len(line):	
 		###SEND NETWORK
 		sendBytes = messaggi.creamovimento(line[i],NID_ENGINE)
-		sendUDP(sendBytes,302)
+		sendUDPR(sendBytes,302)
 		###SEND FAKE RBC
 		NID_CDB = int(line[i],10)
-		system("TITLE "+"Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
+		#system("TITLE "+"Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
 		buff = messaggi.messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
 		sendUDP(buff,1111)
-		inputt = raw_input("-->> PRESS ENTER <<<--- ")
-		if(inputt.upper()=="RETURN" or inputt.upper()=="R"):
-			i-=1
-		else:
-			i+=1
+		sockfarbc = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
+		sockfarbc.bind(("127.0.0.1", NID_ENGINE))
+		#sockfarbc.setblocking(0)
+		if not data and len(scatti)==0:
+			data, addr = sockfarbc.recvfrom(1024)
+			list = data.replace('[','').replace("]","").replace('u','').replace('\'','').replace(" ","")
+			scatti = list.split(',')
+			print list
+			data = []
+		if len(scatti)>0:
+			if scatti[0]==line[i+1]:
+				print scatti[0]
+				del scatti[0]
+				print scatti
+				i+=1
+			else:
+				scatti=[]
+		print "live"
+		time.sleep(2)
+		#inputt = raw_input("-->> PRESS ENTER <<<--- ")
+		#if(inputt.upper()=="RETURN" or inputt.upper()=="R"):
+		#	i-=1
+		#else:
+		#	i+=1
 		
 
 exit(0)
-
-
-
-
-
-

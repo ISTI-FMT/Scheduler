@@ -100,7 +100,7 @@ void ThreadSchedulerSortedList::Schedule(){
 			ControllaMSG_ATO();
 			ControllaMSG_IXL();
 			ControllaEventiCambioOrario();
-
+			List<Train^>^ TrainTermined = gcnew List<Train^>();
 			for each (Train^ Train in controlListtrain->getListTrain())
 			{
 				switch (Train->getStatoTreno())
@@ -314,11 +314,33 @@ void ThreadSchedulerSortedList::Schedule(){
 												  }
 				case StateTrain::NONPRONTO:
 					break;
-				case StateTrain::TERMINATO:
+				case StateTrain::TERMINATO:{
 					liveness->RimuoviMissione(Train->getTRN());
-					break;
+
+					List<int>^ licdb = tabItinerari->get_Cdb_Itinerario( Train->getStazioneItinerario()->Key, Train->getStazioneItinerario()->Value);
+					int cdbfinecorsa = licdb[licdb->Count-1];
+					int nid_engineTRenoCDBPrecIT = managerATC->getCDB(cdbfinecorsa)->getNID_ENGINE();
+					if(managerATC->getCDB(cdbfinecorsa)->getNID_OPERATIONAL()==Train->getTRN()|nid_engineTRenoCDBPrecIT==Train->getPhysicalTrain()->getEngineNumber()){
+						TrainTermined->Add(Train);
+					}
+
+					break;}
 				default:
 					break;
+				}
+			}
+			for each (Train^ var in TrainTermined)
+			{
+				controlListtrain->OnDelete(var);
+
+				if( mapTrenoLogFisico->get_Map()[ var->getPTN()]->getNextLogicTrain()>0){
+					List<int>^ licdb = tabItinerari->get_Cdb_Itinerario( var->getStazioneItinerario()->Key, var->getStazioneItinerario()->Value);
+					mapTrenoLogFisico->get_Map()[ var->getPTN()]->setCDBLastPosition(licdb[licdb->Count-1]);
+					physicalTrain^ ftrain = var->getPhysicalTrain();
+					ftrain->setStateObject(nullptr);
+					listatrenipresentati->Add(ftrain);
+
+					Pronto_ATO();
 				}
 			}
 		}
@@ -398,6 +420,9 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 		Console::WriteLine("Si è presentato il treno {0}",phl->getEngineNumber());
 
 	}
+	Pronto_ATO();
+}
+void ThreadSchedulerSortedList::Pronto_ATO(){
 	List<physicalTrain^> ^listremove=gcnew List<physicalTrain^>();
 	for each (physicalTrain ^phisical in listatrenipresentati)
 	{
@@ -409,7 +434,7 @@ void ThreadSchedulerSortedList::ControllaMSG_ATO(){
 		// se trovi che ha numero logico nella mappa mapTrenoLogFisico 
 		if(mapTrenoLogFisico->get_Map()->ContainsKey(enginenumber)){
 			TrenoFisicoLogico ^infotrenofisico = mapTrenoLogFisico->get_Map()[enginenumber];
-			int trn = infotrenofisico->getIdTrenoLogico(0);
+			int trn = infotrenofisico->getCurrentLogicTrain();//getIdTrenoLogico(0);
 			int lastpos =infotrenofisico->getCDBLastPosition();
 
 			// cerchi se c'è una missione per lui nella tabella orario

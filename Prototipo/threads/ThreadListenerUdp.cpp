@@ -72,7 +72,7 @@ bool ThreadListenerUdp::ConfrontaArrayByte(array<Byte>^A,array<Byte>^B)
 void ThreadListenerUdp::ReceiveCallback(IAsyncResult^ asyncResult)
 {
 	UdpClient^ recv_udpClient = (UdpClient^)(asyncResult->AsyncState);
-	IPEndPoint^ ipEndPoint= gcnew IPEndPoint(IPAddress::Any,port );
+	IPEndPoint^ ipEndPoint= gcnew IPEndPoint(IPAddress::Parse("192.168.1.213"),port );/*IPAddress::Any*/
 	array<Byte>^ receiveBytes = recv_udpClient->EndReceive(asyncResult, ipEndPoint);
 
 	Messaggi ^pkt1 = gcnew Messaggi();
