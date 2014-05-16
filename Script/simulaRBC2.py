@@ -103,6 +103,8 @@ old = bytearray()
 sockixl = socket.socket( socket.AF_INET, socket.SOCK_DGRAM) #socket.SOCK_RAW, socket.IPPROTO_UDP)#
 portss = 4010
 sockixl.bind( ("192.168.1.101",portss) )
+sockixl.setblocking(0)
+
 #print portss
 
 resultixl = {}
@@ -129,31 +131,34 @@ while 1:
 			lista[5]=result
 		#print "received message:", data
 		print "result ",result
+	except socket.error as msg:
+			p=0
+			#sock.close() 
+			#print "nessun messaggio ricevuto"	
+	try:
+		dataixl, addrixl = sockixl.recvfrom(2048) # buffer size is 1024 bytes
+		buffixl = map(ord,dataixl)
+		if(len(buffixl)>1300  and len(buffixl)<1400):
+			buf = buffixl#[28:1353]
+			#print len(buf)
+			if x==0:
+				old = buf
+				resultixl = messaggi.deserializzaStatoLineaIXL(buf)
+				#print "qui",resultixl
+				x+=1
+			else:
+				risp  = scarta2(old, buffixl)
+				#print risp
+				if(not risp):
+					resultixl = messaggi.deserializzaStatoLineaIXL(buf)
+					#print "qui",resultixl
+					old = buf
 		
-				
 	except socket.error as msg:
 		p=0
 		#sock.close() 
-		#print "nessun messaggio ricevuto"
-	
-	
-	dataixl, addrixl = sockixl.recvfrom(2048) # buffer size is 1024 bytes
-	buffixl = map(ord,dataixl)
-	if(len(buffixl)>1300  and len(buffixl)<1400):
-		buf = buffixl#[28:1353]
-		#print len(buf)
-		if x==0:
-			old = buf
-			resultixl = messaggi.deserializzaStatoLineaIXL(buf)
-			#print "qui",resultixl
-			x+=1
-		else:
-			risp  = scarta2(old, buffixl)
-			#print risp
-			if(not risp):
-				resultixl = messaggi.deserializzaStatoLineaIXL(buf)
-				#print "qui",resultixl
-				old = buf
+		#print "nessun messaggio ricevuto"					
+					
 	#print "list ", lista 
 	for pronti in lista.values():
 		xcdb= str(pronti[2])
@@ -165,13 +170,14 @@ while 1:
 				for tupla in element:
 					fcdb = int(tupla[0])
 					qdev = int(tupla[1])
-					if resultixl.has_key(fcdb):
-						triscdb = resultixl[fcdb]
-						if triscdb[1]==2 and qdev==triscdb[2]:
-							bandiera = True
-							sendmdg.append(fcdb)
-						else:
-							bandiera=False
+					if resultixl:
+						if resultixl.has_key(fcdb):
+							triscdb = resultixl[fcdb]
+							if triscdb[1]==2 and qdev==triscdb[2]:
+								bandiera = True
+								sendmdg.append(fcdb)
+							else:
+								bandiera=False
 							#manda il tris element
 				if bandiera:
 					print "tris ",triscdb
@@ -179,12 +185,13 @@ while 1:
 					sendUDPL(str(sendmdg),pronti[0])
 					print "element ", str(sendmdg)
 					bandiera = False
-						
-					
+		
+			
+
 	#print lista				
 	buffi = messaggi.messageRBC1(lista)
 	sendUDP(buffi,4010)
-	#time.sleep(2)
+	time.sleep(0.1)
 	#raw_input("-->> PRESS ENTER <<<--- ")
 
 	
