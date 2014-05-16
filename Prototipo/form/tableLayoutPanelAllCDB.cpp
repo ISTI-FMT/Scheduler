@@ -55,28 +55,32 @@ void tableLayoutPanelAllCDB::init(){
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 19)));
-
-	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 19)));
-
-	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 19)));
 
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 19)));
+
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 19)));
+
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
+	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 	this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 
-	this->tableLayoutPanel1->Size = System::Drawing::Size(200, 150);
+	this->tableLayoutPanel1->Size = System::Drawing::Size(220, 250);
 	this->tableLayoutPanel1->TabIndex = 12;
 
 
@@ -120,10 +124,10 @@ Button^ tableLayoutPanelAllCDB::getButton(String ^textbutton){
 
 	button->BackColor = System::Drawing::Color::Fuchsia;
 	button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-	button->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.25F));
+	button->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif",7.25F));
 	//button->Location = System::Drawing::Point(91, 3);
 	button->Name = textbutton;
-	button->Size = System::Drawing::Size(45,20);
+	button->Size = System::Drawing::Size(55,20);
 	button->TabIndex = 0;
 	button->Text = textbutton;
 	button->UseVisualStyleBackColor = true;
@@ -133,6 +137,20 @@ Button^ tableLayoutPanelAllCDB::getButton(String ^textbutton){
 
 	return button;
 
+}
+
+Label^ tableLayoutPanelAllCDB::getLabel(String ^textLabel){
+	Label ^label = gcnew Label();
+	label->Anchor = System::Windows::Forms::AnchorStyles::Top;
+	label->AutoSize = true;
+	label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.25F));
+	label->ForeColor = System::Drawing::Color::Blue;
+	//label->Location = System::Drawing::Point(0, -2);
+	label->Name = L"1";
+	//label->Size = System::Drawing::Size(15, 119);
+	label->TabIndex = 1;
+	label->Text = textLabel;
+	return label;
 }
 
 
@@ -163,13 +181,20 @@ void tableLayoutPanelAllCDB::addbutton(String ^namebutton, int riga, int colonna
 
 }
 
+void tableLayoutPanelAllCDB::addlabel(String ^namelabel, int riga, int colonna){
 
+	Label ^lab = getLabel(namelabel);
+	
+	this->tableLayoutPanel1->Controls->Add(lab, colonna, riga);
+	//	rigae++;
+
+}
 
 void tableLayoutPanelAllCDB::read(){
 	int riga=0;
 	//"CDB.csv"
 	String^ tmpFilename = System::IO::Path::GetTempFileName();
-	Stream^ readStream = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("CDB.csv");
+	Stream^ readStream = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("CDBv.csv");
 	FileStream^ writeStream = gcnew FileStream(tmpFilename, FileMode::Create);
 	readStream->CopyTo(writeStream);
 	readStream->Close();
@@ -186,7 +211,14 @@ void tableLayoutPanelAllCDB::read(){
 		for each (String ^elemento in elementi)
 		{
 			if(elemento->Length>0){
-				addbutton(elemento,riga,colonna);
+				int cdb = 0;
+				bool result = Int32::TryParse(elemento, cdb);
+				if(result){
+					addbutton(elemento,riga,colonna);
+				}else{
+
+					addlabel(elemento,riga,colonna);
+				}
 			}
 			colonna++;
 		}

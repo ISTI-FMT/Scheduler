@@ -510,9 +510,6 @@
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xsd">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDB.csv">
-      <Filter>File di risorse</Filter>
-    </_EmbedManagedResourceFile>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xml">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
@@ -537,6 +534,7 @@
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\AreeCritiche.xsd">
       <Filter>File di risorse</Filter>
     </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDBv.csv" />
   </ItemGroup>
   <ItemGroup>
     <!---->

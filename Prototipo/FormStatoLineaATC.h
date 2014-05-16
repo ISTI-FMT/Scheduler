@@ -108,7 +108,7 @@ namespace Prototipo {
 			this->Location = System::Drawing::Point(1, 370);
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1240, 378);
+			this->ClientSize = System::Drawing::Size(1500, 420);
 			this->ControlBox = false;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));

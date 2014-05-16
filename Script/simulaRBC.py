@@ -87,7 +87,7 @@ def serverUDP(host, port):
 			x+=1
 			
 
-thread.start_new_thread(serverUDP, ("192.168.1.101", 4010))
+#thread.start_new_thread(serverUDP, ("192.168.1.101", 4010))
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 sock.bind((receive_UDP_IP, UDP_PORT))
 sock.setblocking(0)

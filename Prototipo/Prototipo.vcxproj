@@ -184,8 +184,8 @@
     <ClInclude Include="threads\ThreadListenerTcp.h" />
     <ClInclude Include="threads\ThreadListenerUdp.h" />
     <ClInclude Include="Train.h" />
-    <ClInclude Include="TrainGraph.h" >
-	 <FileType>CppForm</FileType>
+    <ClInclude Include="TrainGraph.h">
+      <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="TrenoFisicoLogico.h" />
     <ClInclude Include="Unsubscriber.h" />
@@ -263,7 +263,7 @@
     <ClCompile Include="wdogcontrol.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDB.csv">
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\CDBv.csv">
       <FileType>Document</FileType>
     </_EmbedManagedResourceFile>
     <None Include="app.config">

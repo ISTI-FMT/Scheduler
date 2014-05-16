@@ -25,7 +25,9 @@ public:
 	void init();
 	TableLayoutPanel ^getTableLayoutPanel(){return tableLayoutPanel1;};
 	Button^ getButton(String ^textbutton);
+	Label^ getLabel(String ^textlabel);
 	void addbutton(String ^namebutton, int riga, int colonna);
+	void addlabel(String ^namelabel, int riga, int colonna);
 	//void addbuttonUscita(String ^namebutton, int id);
 	/*Void button_Click(System::Object^  sender, System::EventArgs^  e);*/
 	void read();

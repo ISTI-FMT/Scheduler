@@ -305,6 +305,7 @@ namespace Prototipo {
 			this->Name = L"TrainGraph";
 			this->ShowInTaskbar = false;
 			this->Text = L"TrainGraph";
+			this->Resize += gcnew System::EventHandler(this, &TrainGraph::TrainGraph_Resize);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->chart1))->EndInit();
 			this->ResumeLayout(false);
 
@@ -488,5 +489,10 @@ namespace Prototipo {
 
 				 }
 			 }
-	};
+	private: System::Void TrainGraph_Resize(System::Object^  sender, System::EventArgs^  e) {
+				// this->ClientSize = System::Drawing::Size(1276, 921);
+				 this->chart1->Size =  System::Drawing::Size(this->Width-5,this->Height-1);//System::Drawing::Size(1272, 920);
+				
+			 }
+};
 }
