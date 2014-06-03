@@ -142,17 +142,13 @@ void ThreadSchedulerSortedList::Schedule(){
 							if (!_blockLiveness)
 							{
 								MissioneLiveness^ missione = gcnew MissioneLiveness(Train->getTRN());
-								MissioneAnnotata^ missioneAnnotata = areeCritiche->get_Missione(Train->getTRN());
-								if(missioneAnnotata!=nullptr){
-									missione->Cdbs = missioneAnnotata->ListaCdb->ToArray();
-									missione->AzioniCdb = missioneAnnotata->AzioniCdb;
-									liveness->AggiungiMissione(missione);
-									liveness->MuoviTreno(Train->getTRN(), prevfirstcdbu);
-								}
+								List<int>^ cdbs = tabOrario->getCDBSignificativiFor(Train->getTRN());
+								missione->Cdbs = cdbs->ToArray();
+								liveness->AggiungiMissione(missione);
+								liveness->MuoviTreno(Train->getTRN(), prevfirstcdbu);
 							}
 
 							controlListtrain->changeStato(Train,StateTrain::USCITASTAZIONE);
-
 						}
 					}
 

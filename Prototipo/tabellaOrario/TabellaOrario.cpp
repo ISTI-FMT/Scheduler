@@ -226,6 +226,63 @@ void TabellaOrario::setMissionPlanMessage(int TRN, pacchettoMissionData ^pkt, Li
 	List<Fermata^> ^stops = tabella[TRN];
 	createMissionPlanMsg(TRN,pkt,pvel,stops);
 }
+
+List<int>^ TabellaOrario::getCDBSignificativiFor(int trn)
+{
+	List<int>^ res = gcnew List<int>();
+	List<Fermata^> ^listafermate = getFermateFor(trn);
+	if(listafermate!=nullptr  & listafermate->Count>0 )
+	{
+		for each (Fermata^ fermata in listafermate)
+		{
+			int ie = fermata->getIditinerarioEntrata();
+			int iu = fermata->getIditinerarioUscita();
+			int prevfirstcdbu;
+			if((iu>0)||(ie>0))
+			{
+				//Controllo prima gli itinerari di ingresso, poi quelli di uscita
+				//visto che sono percorsi in questo ordine
+				if (ie > 0)
+				{
+					prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(fermata->getIdStazione(),ie);
+
+					//Inserisco il CDB precedente all'itinerario non è già presente
+					if (res->Count == 0 || res[res->Count - 1] != prevfirstcdbu)
+                    {
+						res->Add(prevfirstcdbu);
+                    }
+					List<int>^ cdbs = tabItinerari->get_Cdb_Itinerario(fermata->getIdStazione(),ie);
+
+					//Inserisco l'ultimo CDB dell'itinerario
+					res->Add(cdbs[cdbs->Count -1]);
+				}
+				if (iu > 0)
+				{
+					prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(fermata->getIdStazione(),iu);
+
+					//Inserisco il CDB precedente all'itinerario non è già presente
+					if (res->Count == 0 || res[res->Count - 1] != prevfirstcdbu)
+                    {
+						res->Add(prevfirstcdbu);
+                    }
+					List<int>^ cdbs = tabItinerari->get_Cdb_Itinerario(fermata->getIdStazione(),iu);
+
+					//Inserisco l'ultimo CDB dell'itinerario
+					res->Add(cdbs[cdbs->Count -1]);
+				}
+			}
+			else //Caso in cui la stazione non ha itinerari ma solo fermate
+			{
+				int bin = fermata->getBinarioProgrammato();
+				prevfirstcdbu = tabItinerari->get_CdbFermata(fermata->getIdStazione(),bin);
+				res->Add(prevfirstcdbu);
+			}
+		}
+	}
+	return res;
+}
+
+
 void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops){
 
 	// se il teno esiste

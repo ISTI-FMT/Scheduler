@@ -2,6 +2,7 @@
 #include "Fermata.h"
 #include "..\\messaggi\\pacchettoMissionData.h"
 #include "..\\Itinerari\\TabellaStazioni.h"
+#include "..\\AreeCritiche\\MissioneAnnotata.h"
 
 #using <System.dll>
 using namespace System::Collections::Generic;
@@ -17,7 +18,6 @@ public ref class TabellaOrario
 	Dictionary<int, List<Fermata^>^> ^tabella;
 	String ^schemaxsd;
 	TabellaStazioni ^tabItinerari;
-	
 	
 public:
 	TabellaOrario(void);
@@ -36,6 +36,9 @@ public:
 	void createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, List<ProfiloVelocita^>^pvel, List<Fermata^> ^stops);
 	List<Fermata^>^getItinerariFor(int TRN);
 	List<Fermata^>^getFermateFor(int TRN);
+
+	//Ritorna la lista dei CDB significativi di una missione, composta da punti di stazionamento e punti di ingresso e uscita da una stazione
+	List<int>^ getCDBSignificativiFor(int TRN);
 
 	
 	virtual System::String^ ToString() override;
