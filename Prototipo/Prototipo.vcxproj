@@ -99,6 +99,7 @@
     </ClInclude>
     <ClInclude Include="ConfVelocita\ConfigurazioneVelocita.h" />
     <ClInclude Include="ControllerListTrain.h" />
+    <ClInclude Include="AreeCritiche\Deadlock.h" />
     <ClInclude Include="EditorMapTreni.h" />
     <ClInclude Include="EditorTabellaOrario.h">
       <FileType>CppForm</FileType>
@@ -197,6 +198,7 @@
     <ClCompile Include="AreeCritiche\AreeCritiche.cpp" />
     <ClCompile Include="ConfVelocita\ConfigurazioneVelocita.cpp" />
     <ClCompile Include="ControllerListTrain.cpp" />
+    <ClCompile Include="AreeCritiche\Deadlock.cpp" />
     <ClCompile Include="EditorTabellaOrario.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FormStatoLineaIXL.cpp" />

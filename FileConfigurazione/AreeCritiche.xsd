@@ -51,6 +51,24 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Deadlocks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Deadlock" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Posizione" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="TRN" type="xs:nonNegativeInteger" />
+                        <xs:attribute name="CDB" type="xs:nonNegativeInteger" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

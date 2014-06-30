@@ -222,6 +222,9 @@
     <ClCompile Include="TrainGraph.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="AreeCritiche\Deadlock.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FermataType.h">
@@ -480,6 +483,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="TrainGraph.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="AreeCritiche\Deadlock.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

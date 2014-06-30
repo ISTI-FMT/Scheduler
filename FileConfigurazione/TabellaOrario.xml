@@ -601,8 +601,7 @@
       <partenza>13:33:00</partenza>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
-      <itinerarioEntrata id="903">01-I</itinerarioEntrata>
-      <!--<itinerarioUscita id=""></itinerarioUscita>-->
+      <itinerarioEntrata id="902">01-II</itinerarioEntrata>
     </stazione>
 
   </treno>
@@ -642,7 +641,7 @@
       <partenza>10:30:00</partenza>
        <binarioprogrammato>1</binarioprogrammato>
 	   <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
- <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+ <itinerarioEntrata id="902">01-I</itinerarioEntrata>
 
     </stazione>
 

@@ -5,21 +5,14 @@ using namespace System::Xml::Schema;
 
 AreeCritiche::AreeCritiche()
 {
-	areeCritiche = gcnew List<AreaCritica^>();
-	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
-	XmlFilename = gcnew String("AreeCritiche.xml");
-	XsdFilename = gcnew String("AreeCritiche.xsd");
-	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
+	Init();
 	leggiFileConfigurazioneAreeCritiche( System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XmlFilename));
 }
 
 AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
 {
-	areeCritiche = gcnew List<AreaCritica^>();
-	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
+	Init();
 	XmlFilename = xmlAreecritiche;
-	XsdFilename = gcnew String("AreeCritiche.xsd");
-	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
 	try{
 		System::IO::FileStream ^SourceStream = System::IO::File::Open(xmlAreecritiche, System::IO::FileMode::Open);
 		leggiFileConfigurazioneAreeCritiche(SourceStream);
@@ -27,6 +20,17 @@ AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
 	}catch(System::Exception ^e){
 		Console::WriteLine("File non esiste");
 	}
+}
+
+void AreeCritiche::Init()
+{
+	areeCritiche = gcnew List<AreaCritica^>();
+	deadlockNoti = gcnew List<Deadlock^>();
+	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
+	XmlFilename = gcnew String("AreeCritiche.xml");
+	XsdFilename = gcnew String("AreeCritiche.xsd");
+	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
+	posizioniTreni = gcnew Dictionary<int,int>();
 }
 
 void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readStreamXML)
@@ -146,8 +150,35 @@ void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readS
 				missioneCorrente->AzioniCdb->Add(valuesArray);
 			}
 		}
+		if (myReader->Name == "Deadlock")
+		{
+			Deadlock^ dl = gcnew Deadlock();
+
+			XmlReader^ posizioniReader = myReader->ReadSubtree();
+			while (posizioniReader->Read())
+			{
+				if (posizioniReader->NodeType == XmlNodeType::Element
+					&& posizioniReader->Name == "Posizione")
+				{
+					int trn = Convert::ToInt32(myReader->GetAttribute("TRN"));
+					int cdb = Convert::ToInt32(myReader->GetAttribute("CDB"));
+
+					dl->Posizioni->Add(trn, cdb);
+				}
+			}
+			deadlockNoti->Add(dl);
+		}
 	}
 	limitiAree = limitiAreeTmp->ToArray();
+}
+
+void AreeCritiche::MuoviTreno(int trn, int cdb)
+{
+	posizioniTreni[trn] = cdb;
+}
+void AreeCritiche::EliminaTreno(int trn)
+{
+	posizioniTreni->Remove(trn);
 }
 
 /*
@@ -156,7 +187,6 @@ Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non han
 */
 bool AreeCritiche::richiestaCdb(int cdb, int trn)
 {
-	
 	bool entrataValida = true;
 	if (missioni->ContainsKey(trn))
 	{
@@ -188,6 +218,53 @@ bool AreeCritiche::richiestaCdb(int cdb, int trn)
 
 					area->entrata(trn, cdb, azione);
 				}
+			}
+		}
+	}
+
+	
+	//Controllo ogni deadlock noto per determinare 
+	//se le posizioni correnti dei treni corrispondono
+	//ad un deadlock noto
+	for each (Deadlock^ deadlock in this->deadlockNoti)
+	{
+		if (deadlock->Posizioni->Count == posizioniTreni->Count)
+		{
+			bool posizioniCorrispondono = true;
+			for each (int key in deadlock->Posizioni->Keys)
+			{
+				//calcolo la posizione corrente del treno che può essere
+				//una posizione nota oppure quella in cui il treno sta per andare
+				int posizioneTreno = -1;
+				if (posizioniTreni->ContainsKey(key))
+				{
+					posizioneTreno = posizioniTreni[key];
+				}
+				if (key == trn)
+				{
+					posizioneTreno = cdb;
+				}
+
+				//posizione del treno nel deadlock
+				int posizioneDeadlock = deadlock->Posizioni[key];
+				
+				//Se il treno del deadlock non esiste, non posso essere in un deadlock
+				if (posizioneTreno == -1)
+				{
+					posizioniCorrispondono = false;
+					break;
+				}
+				if (posizioneTreno != deadlock->Posizioni[key])
+				{
+					posizioniCorrispondono = false;
+					break;
+				}
+			}
+
+			if (posizioniCorrispondono)
+			{
+				entrataValida = false;
+				break;
 			}
 		}
 	}

@@ -3,6 +3,7 @@
 #include "AreaCriticaCircolare.h"
 #include "AreaCriticaLineare.h"
 #include "MissioneAnnotata.h"
+#include "Deadlock.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -16,10 +17,13 @@ private:
 	 */
 	Dictionary<int, MissioneAnnotata^>^ missioni;
 	List<AreaCritica^>^ areeCritiche;
+	array<int>^ limitiAree;
+	Dictionary<int, int>^ posizioniTreni;
+	List<Deadlock^>^ deadlockNoti;
 	Dictionary<int, List<AreaCritica^>^>^ cdbAree;
 	String^ XmlFilename;
 	String^ XsdFilename;
-	array<int>^ limitiAree;
+	void Init();
 public:
 	MissioneAnnotata^ get_Missione(int trn) 
 	{ 
@@ -40,5 +44,7 @@ public:
 	* Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non hanno raggiunto il massimo numero di treni consentito
 	*/
 	bool richiestaCdb(int cdb, int Trn);
+	void MuoviTreno(int trn, int cdb);
+	void EliminaTreno(int trn);
 };
 

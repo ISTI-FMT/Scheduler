@@ -139,6 +139,8 @@ void ThreadSchedulerSortedList::Schedule(){
 
 						if ((areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN())|(_blockAreeCritiche)))
 						{
+							areeCritiche->MuoviTreno(Train->getTRN(), prevfirstcdbu);
+
 							if (!_blockLiveness)
 							{
 								MissioneLiveness^ missione = gcnew MissioneLiveness(Train->getTRN());
@@ -183,6 +185,8 @@ void ThreadSchedulerSortedList::Schedule(){
 							int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 							if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 							{
+								areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
+
 								if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
 								{
 									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train))
@@ -241,6 +245,8 @@ void ThreadSchedulerSortedList::Schedule(){
 									int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 									if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 									{
+										areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
+
 										if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
 										{
 											if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
@@ -274,6 +280,8 @@ void ThreadSchedulerSortedList::Schedule(){
 								//Controllo che l'acquisizione del prossimo cdb non crei deadlock
 								if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 								{
+									areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
+
 									if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
 									{
 										//se l'itinerario è libero
@@ -312,6 +320,7 @@ void ThreadSchedulerSortedList::Schedule(){
 					break;
 				case StateTrain::TERMINATO:{
 					liveness->RimuoviMissione(Train->getTRN());
+					areeCritiche->EliminaTreno(Train->getTRN());
 
 					List<int>^ licdb = tabItinerari->get_Cdb_Itinerario( Train->getStazioneItinerario()->Key, Train->getStazioneItinerario()->Value);
 					int cdbfinecorsa = licdb[licdb->Count-1];
@@ -403,15 +412,15 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 			}
 		}
 	}/*else{
-		for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
-		{
-				KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
-				SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
-				
-		}
+	 for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+	 {
+	 KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
+	 SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
+
+	 }
 
 
-	}*/
+	 }*/
 }
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){
