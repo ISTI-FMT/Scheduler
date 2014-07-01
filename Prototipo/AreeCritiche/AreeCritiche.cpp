@@ -221,7 +221,6 @@ bool AreeCritiche::richiestaCdb(int cdb, int trn)
 			}
 		}
 	}
-
 	
 	//Controllo ogni deadlock noto per determinare 
 	//se le posizioni correnti dei treni corrispondono
@@ -263,6 +262,22 @@ bool AreeCritiche::richiestaCdb(int cdb, int trn)
 
 			if (posizioniCorrispondono)
 			{
+				Console::WriteLine("Entrata bloccata da Deadlock noto");
+				for each (int key in posizioniTreni->Keys)
+				{
+					int posizioneTreno = -1;
+					if (posizioniTreni->ContainsKey(key))
+					{
+						posizioneTreno = posizioniTreni[key];
+					}
+					if (key == trn)
+					{
+						posizioneTreno = cdb;
+					}
+
+					Console::Write(" {0}:{1}", key , posizioneTreno);
+				}
+				Console::WriteLine();
 				entrataValida = false;
 				break;
 			}

@@ -54,7 +54,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	_shouldStop=false;
 
 	//settare a true per ignorare i controlli sulle aree critiche
-	_blockAreeCritiche = true;
+	//_blockAreeCritiche = true;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
 	//timeRicIXL;
 
@@ -185,14 +185,15 @@ void ThreadSchedulerSortedList::Schedule(){
 							int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 							if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 							{
-								areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
-
 								if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
 								{
 									if(!RaccoltaTrenoRequestCDB->ContainsKey(Train))
 									{
 										List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,itinUscita);
 										if(cdbricPrenotazione!=nullptr){
+
+											//richiesta di itinerario effettuata
+											areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
 											if (!_blockLiveness)
 											{
 												liveness->MuoviTreno(Train->getTRN(), lastcdbiti);
@@ -245,14 +246,16 @@ void ThreadSchedulerSortedList::Schedule(){
 									int lastcdbiti = cdbItinerario[cdbItinerario->Count-1];
 									if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 									{
-										areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
-
 										if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
 										{
 											if(!RaccoltaTrenoRequestCDB->ContainsKey(Train)){
 
 												List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
 												if(cdbricPrenotazione!=nullptr){
+
+													//richiesta di itinerario effettuata
+													areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
+
 													if (!_blockLiveness)
 													{
 														liveness->MuoviTreno(Train->getTRN(), lastcdbiti);
@@ -280,8 +283,6 @@ void ThreadSchedulerSortedList::Schedule(){
 								//Controllo che l'acquisizione del prossimo cdb non crei deadlock
 								if ((areeCritiche->richiestaCdb(lastcdbiti, Train->getTRN()))|(_blockAreeCritiche))
 								{
-									areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
-
 									if (_blockLiveness || CheckLiveness(Train->getTRN(), lastcdbiti))
 									{
 										//se l'itinerario è libero
@@ -292,6 +293,9 @@ void ThreadSchedulerSortedList::Schedule(){
 											List<int>^cdbricPrenotazione = RequestItinerarioIXL(idstazione,initEntrata);
 
 											if(cdbricPrenotazione!=nullptr){
+
+												//richiesta di itinerario effettuata
+												areeCritiche->MuoviTreno(Train->getTRN(), lastcdbiti);
 												if (!_blockLiveness)
 												{
 													liveness->MuoviTreno(Train->getTRN(), lastcdbiti);
