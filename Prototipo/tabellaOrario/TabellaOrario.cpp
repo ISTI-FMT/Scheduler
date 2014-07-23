@@ -147,9 +147,11 @@ void TabellaOrario::leggiTabellaOrario()
 				// configuro l'orario di arrivo della farmata in risoluzione di 30 s
 				stop->setOrarioPartenza(secs/30);
 
-
-				stop->settempoMinimoAperturaPorte((stop->getOrarioPartenza()*30)- (stop->getOrarioArrivo()*30)-30);
-
+				//TEMPO apertura porte
+				inner2->ReadToFollowing("tempoaperturaporte");
+				System::String ^SystemStringtemposperturaporte = inner2->ReadString();
+				//stop->settempoMinimoAperturaPorte((stop->getOrarioPartenza()*30)- (stop->getOrarioArrivo()*30)-30);
+				stop->settempoMinimoAperturaPorte( int::Parse(SystemStringtemposperturaporte));
 
 				// leggo il binario programmato
 				inner2->ReadToFollowing("binarioprogrammato");
@@ -355,7 +357,8 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 
 						mission->setNID_LRGB(infobalise->nid_lrgb);
 						mission->setD_STOP(infobalise->d_stop);
-						mission->setD_LRGB(10);
+						//errore controlla dove t trovi leggi dal file di config
+						mission->setD_LRGB(0);
 						int pkmlrbg = 0;
 						if(latolinea){
 							pkmlrbg = infobalise->get_progressivakm(13000) ;
@@ -473,6 +476,7 @@ void TabellaOrario::ScriviTabellaOrario(System::IO::Stream ^stream){
 
 			writer->WriteElementString("arrivo", dvar->getOrarioArrivo().ToString());
 			writer->WriteElementString("partenza", dvar->getOrarioPartenza().ToString());
+			writer->WriteElementString("tempoaperturaporte", dvar->gettempoMinimoAperturaPorte().ToString());
 			writer->WriteElementString("binarioprogrammato", dvar->getBinarioProgrammato().ToString());
 			String ^latoParturaPorte ="";
 			if(dvar->getLatoAperturaPorte() ==FermataType::aperturaTrenoDx )
@@ -483,6 +487,8 @@ void TabellaOrario::ScriviTabellaOrario(System::IO::Stream ^stream){
 				latoParturaPorte ="sd" ;
 			else
 				latoParturaPorte = "";//FermataType::noApertura;
+
+			
 
 			writer->WriteElementString("latoaperturaporteprogrammato", latoParturaPorte);
 			if(dvar->getIditinerarioEntrata()>0){
