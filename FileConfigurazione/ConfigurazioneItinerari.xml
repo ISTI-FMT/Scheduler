@@ -44,7 +44,7 @@
           <cdb q_dev="0" >13010</cdb>
           <cdb q_dev="0" >501</cdb>
         </ListCDB>
-        <lrgb nid="103" dstop="140" >
+        <lrgb nid="103" dstop="130" >
           <pkm km="0" idoffstaz="13000"/>
         </lrgb>
       </partenza>
@@ -611,9 +611,9 @@
           <cdb q_dev="0" >12010</cdb>
           <cdb q_dev="0" >503</cdb>
         </ListCDB>
-        <lrgb nid="140" dstop="0" >
-          <pkm km="11120" idoffstaz="13000"/>
-          <pkm km="9120" idoffstaz="10000"/>
+        <lrgb nid="141" dstop="165" >
+          <pkm km="11305" idoffstaz="13000"/>
+          <pkm km="9305" idoffstaz="10000"/>
         </lrgb>
       </partenza>
       <partenza id="912" name="III-03" direzione="sx" portebanchina="true" latobanchina="dx" prevcdb="12303" nextcdb="11010"    nextstation="11000" >

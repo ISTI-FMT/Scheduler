@@ -355,10 +355,22 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 					lrbg ^infobalise = tabItinerari->get_infobalise(stop->getIdStazione(),stop->getIditinerarioUscita());
 					if(infobalise!=nullptr){
 
-						mission->setNID_LRGB(infobalise->nid_lrgb);
-						mission->setD_STOP(infobalise->d_stop);
+						int nid_lrgb = infobalise->nid_lrgb;
+						int dstop = infobalise->d_stop;
+						mission->setD_STOP(dstop);
 						//errore controlla dove t trovi leggi dal file di config
-						mission->setD_LRGB(0);
+						int distPrimaBalise = 2;
+						//parto da una stazione intermedia
+						if(stop->getIdStazione()!=13000 ^ stop->getIdStazione()!=1000 ^ stop->getIdStazione()!=17000){
+							distPrimaBalise=0;
+							dstop=dstop+20;
+							nid_lrgb=0;
+							mission->setD_STOP(0);
+						}
+						mission->setNID_LRGB(nid_lrgb);
+						
+						mission->setD_LRGB(distPrimaBalise);
+						
 						int pkmlrbg = 0;
 						if(latolinea){
 							pkmlrbg = infobalise->get_progressivakm(13000) ;
@@ -367,9 +379,9 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 						}
 
 						if(direzione){
-							prevprogkm = pkmlrbg +  infobalise->d_stop;
+							prevprogkm = pkmlrbg +  (dstop);
 						}else{
-							prevprogkm = pkmlrbg -  infobalise->d_stop;
+							prevprogkm = pkmlrbg -  (dstop);
 						}
 
 					}
