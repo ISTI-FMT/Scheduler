@@ -403,15 +403,15 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 			}
 		}
 	}/*else{
-		for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
-		{
-				KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
-				SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
-				
-		}
+	 for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+	 {
+	 KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
+	 SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
+
+	 }
 
 
-	}*/
+	 }*/
 }
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){
@@ -466,46 +466,50 @@ void ThreadSchedulerSortedList::Pronto_ATO(){
 				// prevfirstcdbu = tabItinerari->get_CdbPrecItinerario(listaitinerari[0]->getIdStazione(),listaitinerari[0]->getIditinerarioUscita());
 				// cerca se si trova nella stazione in cui deve partire
 				if(lastpos==prevfirstcdbu){
+					StateCDB ^statocorrentecdb = managerIXL->StatoCDB(lastpos);
+					if(statocorrentecdb!=nullptr){
+						//cerca se il binario in cui la sera prima ho lasciato il treno è occupato
+						if((QStateCDB)statocorrentecdb->getQ_STATOCDB()==QStateCDB::cdbOccupato){
 
+							// gli assegni TRN e MISSION
+							if(inviato==nullptr){
+								Console::WriteLine("Il treno {0} si trova al posto giusto per partire e gli invio WAKE-UP, TRN={1} e MISSION",enginenumber,trn);
+								inviato = InizializzeATO(trn,phisical);
+								Console::WriteLine(inviato->time);
+								phisical->setStateObject(inviato);
 
-
-					// gli assegni TRN e MISSION
-					if(inviato==nullptr){
-						Console::WriteLine("Il treno {0} si trova al posto giusto per partire e gli invio WAKE-UP, TRN={1} e MISSION",enginenumber,trn);
-						inviato = InizializzeATO(trn,phisical);
-						Console::WriteLine(inviato->time);
-						phisical->setStateObject(inviato);
-
-					}
-					TimeSpan ^sec = TimeSpan::Zero; 
-					if((inviato->fine!=1)){
-						//aspetta un po
-
-						sec = DateTime::Now - inviato->time;
-						if(sec->TotalSeconds>30){
-							//riinvia
-							inviato->fine=0;
-							if(inviato->workSocket!=nullptr){
-								inviato->workSocket->Close();
 							}
-							inviato = InizializzeATO(trn,phisical);
-							phisical->setStateObject(inviato);
-							Console::WriteLine(inviato->time);
-							Console::WriteLine("Il treno {0} non ha risposto con l'ack all'assegnazione della missione",enginenumber);
+							TimeSpan ^sec = TimeSpan::Zero; 
+							if((inviato->fine!=1)){
+								//aspetta un po
+
+								sec = DateTime::Now - inviato->time;
+								if(sec->TotalSeconds>30){
+									//riinvia
+									inviato->fine=0;
+									if(inviato->workSocket!=nullptr){
+										inviato->workSocket->Close();
+									}
+									inviato = InizializzeATO(trn,phisical);
+									phisical->setStateObject(inviato);
+									Console::WriteLine(inviato->time);
+									Console::WriteLine("Il treno {0} non ha risposto con l'ack all'assegnazione della missione",enginenumber);
+								}
+
+
+							}
+							if(inviato->fine==1){
+								//Creo il treno
+								Console::WriteLine("ok {0}",listafermate[0]->getOrarioPartenza());
+
+								List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn); //tabOrario->getItinerariFor(trn);//
+								int priorita = 1;
+								Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
+								//Creo KeyListTrain
+								listremove->Add(phisical);
+								controlListtrain->OnSetTrain(treno);
+							}
 						}
-
-
-					}
-					if(inviato->fine==1){
-						//Creo il treno
-						Console::WriteLine("ok {0}",listafermate[0]->getOrarioPartenza());
-
-						List<Fermata^> ^listafermate = tabOrario->getFermateFor(trn); //tabOrario->getItinerariFor(trn);//
-						int priorita = 1;
-						Train ^treno = gcnew Train(priorita,trn,phisical,listafermate);
-						//Creo KeyListTrain
-						listremove->Add(phisical);
-						controlListtrain->OnSetTrain(treno);
 					}
 				}
 			}

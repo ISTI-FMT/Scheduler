@@ -11,6 +11,7 @@
                   <xs:sequence>
                     <xs:element name="arrivo" type="xs:time" />
                     <xs:element name="partenza" type="xs:time" />
+                    <xs:element name="tempoaperturaporte" type="xs:nonNegativeInteger" />
                     <xs:element name="binarioprogrammato" type="xs:nonNegativeInteger" />
 					<xs:element name="latoaperturaporteprogrammato" type="xs:string" />
 					<xs:element name="itinerarioEntrata" minOccurs="0">

@@ -269,6 +269,7 @@
     <None Include="app.config">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -310,8 +311,12 @@
       <SubType>Designer</SubType>
     </_EmbedManagedResourceFile>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneProfiliVelocita.xml" />
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xml" />
-    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml" />
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\MapTreni.xml">
+      <SubType>Designer</SubType>
+    </_EmbedManagedResourceFile>
+    <_EmbedManagedResourceFile Include="..\FileConfigurazione\TabellaOrario.xml">
+      <SubType>Designer</SubType>
+    </_EmbedManagedResourceFile>
   </ItemGroup>
   <ItemGroup>
     <_EmbedManagedResourceFile Include="..\FileConfigurazione\ConfigurazioneFermate.xsd" />

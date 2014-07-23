@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <bind xmlns="urn:conftrenofisicoTreni-schema" >
  
-  <trenofisico engine_nbr="65282">
+  <trenofisico engine_nbr="65280">
     <trenilogici>
     <idtrenologico>1151</idtrenologico>
       <idtrenologico>5111</idtrenologico>
@@ -12,7 +12,7 @@
 
   
     
-  <trenofisico  engine_nbr="65280">
+  <trenofisico  engine_nbr="65000">
      <trenilogici>
     <idtrenologico>1152</idtrenologico>
     </trenilogici>
@@ -21,7 +21,7 @@
   </trenofisico>
 
 
-  <trenofisico  engine_nbr="65615">
+  <trenofisico  engine_nbr="65315">
      <trenilogici>
     <idtrenologico>1173</idtrenologico>
         </trenilogici>
@@ -29,7 +29,7 @@
     <cdblastpos>17303</cdblastpos>
   </trenofisico>
 
-  <trenofisico  engine_nbr="65315">
+  <trenofisico  engine_nbr="65281">
      <trenilogici>
     <idtrenologico>1153</idtrenologico>
         </trenilogici>
@@ -62,7 +62,7 @@
     <cdblastpos>13301</cdblastpos>
   </trenofisico>
 
-  <trenofisico  engine_nbr="7723">
+  <trenofisico  engine_nbr="65615">
      <trenilogici>
     <idtrenologico>5132</idtrenologico>
         </trenilogici>
