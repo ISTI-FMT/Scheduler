@@ -459,7 +459,7 @@ namespace Prototipo {
 
 				 //fine
 
-
+				 Console::WriteLine("Inizio Fase Configurazione dello Scheduler");
 				 //
 				 //Leggo dai file di configurazione le informazioni sugli itinerari, la tabella orario, le informazioni sulle stazioni e le informazioni sui treni
 				 //
@@ -545,6 +545,8 @@ namespace Prototipo {
 
 				 Thread^	 oThreadSchedule  = gcnew Thread( gcnew ThreadStart(ThScheduleSortedList,&ThreadSchedulerSortedList::Schedule));
 				 oThreadSchedule->Start();
+
+				 Console::WriteLine("Fine Fase Configurazione dello Scheduler");
 
 			 }
 	private: System::Void checkBoxAreeCritiche_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {

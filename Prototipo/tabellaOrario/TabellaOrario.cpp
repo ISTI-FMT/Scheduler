@@ -8,6 +8,7 @@ using namespace System;
 using namespace System::Globalization;
 using namespace System::Xml;
 using namespace System::Xml::Schema;
+using namespace System::IO;
 
 //Questa classe viene usata per leggere e gestire la tabella orario
 
@@ -82,11 +83,18 @@ void TabellaOrario::leggiTabellaOrario()
 		settings->Schemas = sc;
 		/*ValidationEventHandler ^ed = gcnew ValidationEventHandler( ValidationCallBack );
 		settings->ValidationEventHandler +=ed;*/
-
 		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("TabellaOrario.xml");
+		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
+		String ^path = Directory::GetCurrentDirectory();
+		String ^nomefile = "\\FileConfigurazione\\TabellaOrario.xml";
+		
+		if(File::Exists(path+nomefile)){
+			reader = System::Xml::XmlReader::Create(path+nomefile, settings);
+			Console::WriteLine("Caricato File Tabella Orario dal Disco");
+		}
 
 		//System::String^ nome = gcnew System::String(nomeFile.c_str());
-		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
+		
 
 		//	XmlDocument ^document = gcnew XmlDocument();
 		//document->Load(readers);
@@ -205,7 +213,7 @@ void TabellaOrario::leggiTabellaOrario()
 				treno->Add(stop);
 
 				//System::Console::WriteLine(idTreno+idSTazione+orarioArrivo+orarioPartenza+binarioProgrammato+latoProgrammato);
-				System::Console::WriteLine();
+				//System::Console::WriteLine();
 			}
 			// a questo punto aggiungo il treno alla tabella orario
 			tabella->Add(idTreno, treno);

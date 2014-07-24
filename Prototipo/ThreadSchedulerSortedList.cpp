@@ -537,9 +537,9 @@ void ThreadSchedulerSortedList::RequestStop()
 
 void ThreadSchedulerSortedList::Init(){
 
-	Console::WriteLine("Inizio Inizializzazione dello Scheduler");
+	//Console::WriteLine("Inizio Inizializzazione dello Scheduler");
 	//TODO: in questa fase ad es. controllare che lo stato di tutti i cdb proveniente dall'IXL sia consistente
-	Console::WriteLine("Fine Inizializzazione dello Scheduler");
+	//Console::WriteLine("Fine Inizializzazione dello Scheduler");
 
 
 

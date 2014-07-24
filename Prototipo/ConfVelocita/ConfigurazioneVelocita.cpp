@@ -6,7 +6,7 @@ using namespace System;
 using namespace System::Globalization;
 using namespace System::Xml;
 using namespace System::Xml::Schema;
-
+using namespace System::IO;
 #define TRACE
 #define VALIDATEXML
 
@@ -38,6 +38,14 @@ void ConfigurazioneVelocita::leggifileConfigurazioneVelocita()
 		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneProfiliVelocita.xml");
 
 		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML, settings);
+
+		String ^path = Directory::GetCurrentDirectory();
+		String ^nomefile = "\\FileConfigurazione\\ConfigurazioneProfiliVelocita.xml";
+		
+		if(File::Exists(path+nomefile)){
+			reader = System::Xml::XmlReader::Create(path+nomefile, settings);
+			Console::WriteLine("Caricato File Tabella Profili Velocità dal Disco");
+		}
 
 	/*	XmlDocument ^document = gcnew XmlDocument();
 		document->Load(readers);  */

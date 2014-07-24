@@ -5,7 +5,7 @@ using namespace System::Collections::Generic;
 using namespace System::Xml;
 using namespace System::Xml::Schema;
 
-
+using namespace System::IO;
 
 mapTrenoFisicoLogico::mapTrenoFisicoLogico(void)
 {
@@ -30,6 +30,17 @@ void mapTrenoFisicoLogico::inizializza(){
 
 		System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("MapTreni.xml");
 		System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML,settings);
+
+		String ^path = Directory::GetCurrentDirectory();
+		String ^nomefile = "\\FileConfigurazione\\MapTreni.xml";
+		
+		if(File::Exists(path+nomefile)){
+			reader = System::Xml::XmlReader::Create(path+nomefile, settings);
+			Console::WriteLine("Caricato File Map Treni dal Disco");
+		}
+
+
+
 		reader->ReadToFollowing("bind");
 		while (reader->ReadToFollowing("trenofisico")){
 			int engineTreno = int::Parse(reader->GetAttribute("engine_nbr"));
