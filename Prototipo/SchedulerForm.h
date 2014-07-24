@@ -55,7 +55,7 @@ namespace Prototipo {
 			InitializeComponent();
 			this->wdogs =( gcnew wdogcontrol());
 			//this->wdogs->BackColor = System::Drawing::Color::Blue;
-			this->wdogs->Location =  System::Drawing::Point(0, 300);
+			this->wdogs->Location =  System::Drawing::Point(0, 350);
 			this->wdogs->Name = "firstControl1";
 			this->wdogs->Size =  System::Drawing::Size(75, 16);
 			this->wdogs->TabIndex = 5;
@@ -109,6 +109,9 @@ namespace Prototipo {
 	private: System::Windows::Forms::CheckBox^  checkBoxLivenees;
 	private: System::Windows::Forms::Button^  buttonMapTreni;
 	private: System::Windows::Forms::Button^  trainGraphButton;
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::PictureBox^  pictureBox2;
+	private: System::Windows::Forms::PictureBox^  pictureBox3;
 	private: System::Windows::Forms::Button^  button4;
 
 
@@ -129,6 +132,12 @@ namespace Prototipo {
 				 this->checkBoxLivenees = (gcnew System::Windows::Forms::CheckBox());
 				 this->buttonMapTreni = (gcnew System::Windows::Forms::Button());
 				 this->trainGraphButton = (gcnew System::Windows::Forms::Button());
+				 this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+				 this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+				 this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox2))->BeginInit();
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox3))->BeginInit();
 				 this->SuspendLayout();
 				 // 
 				 // ExitButton
@@ -150,6 +159,7 @@ namespace Prototipo {
 				 this->button1->TabIndex = 1;
 				 this->button1->Text = L"InviaMissione";
 				 this->button1->UseVisualStyleBackColor = true;
+				 this->button1->Visible = false;
 				 this->button1->Click += gcnew System::EventHandler(this, &SchedulerForm::button1_Click);
 				 // 
 				 // button2
@@ -189,7 +199,7 @@ namespace Prototipo {
 				 this->checkBoxAreeCritiche->Checked = true;
 				 this->checkBoxAreeCritiche->CheckState = System::Windows::Forms::CheckState::Checked;
 				 this->checkBoxAreeCritiche->FlatStyle = System::Windows::Forms::FlatStyle::System;
-				 this->checkBoxAreeCritiche->Location = System::Drawing::Point(226, 83);
+				 this->checkBoxAreeCritiche->Location = System::Drawing::Point(197, 146);
 				 this->checkBoxAreeCritiche->Name = L"checkBoxAreeCritiche";
 				 this->checkBoxAreeCritiche->Size = System::Drawing::Size(167, 18);
 				 this->checkBoxAreeCritiche->TabIndex = 5;
@@ -205,7 +215,7 @@ namespace Prototipo {
 				 this->checkBoxLivenees->Checked = true;
 				 this->checkBoxLivenees->CheckState = System::Windows::Forms::CheckState::Checked;
 				 this->checkBoxLivenees->FlatStyle = System::Windows::Forms::FlatStyle::System;
-				 this->checkBoxLivenees->Location = System::Drawing::Point(226, 100);
+				 this->checkBoxLivenees->Location = System::Drawing::Point(197, 163);
 				 this->checkBoxLivenees->Name = L"checkBoxLivenees";
 				 this->checkBoxLivenees->Size = System::Drawing::Size(153, 18);
 				 this->checkBoxLivenees->TabIndex = 5;
@@ -226,7 +236,7 @@ namespace Prototipo {
 				 // 
 				 // trainGraphButton
 				 // 
-				 this->trainGraphButton->Location = System::Drawing::Point(197, 256);
+				 this->trainGraphButton->Location = System::Drawing::Point(21, 304);
 				 this->trainGraphButton->Name = L"trainGraphButton";
 				 this->trainGraphButton->Size = System::Drawing::Size(146, 23);
 				 this->trainGraphButton->TabIndex = 7;
@@ -234,11 +244,45 @@ namespace Prototipo {
 				 this->trainGraphButton->UseVisualStyleBackColor = true;
 				 this->trainGraphButton->Click += gcnew System::EventHandler(this, &SchedulerForm::trainGraphButton_Click);
 				 // 
+				 // pictureBox1
+				 // 
+				 this->pictureBox1->ErrorImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBox1.ErrorImage")));
+				 this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBox1.Image")));
+				 this->pictureBox1->Location = System::Drawing::Point(267, 12);
+				 this->pictureBox1->Name = L"pictureBox1";
+				 this->pictureBox1->Size = System::Drawing::Size(184, 76);
+				 this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+				 this->pictureBox1->TabIndex = 8;
+				 this->pictureBox1->TabStop = false;
+				 // 
+				 // pictureBox2
+				 // 
+				 this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBox2.Image")));
+				 this->pictureBox2->Location = System::Drawing::Point(346, 333);
+				 this->pictureBox2->Name = L"pictureBox2";
+				 this->pictureBox2->Size = System::Drawing::Size(55, 43);
+				 this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+				 this->pictureBox2->TabIndex = 9;
+				 this->pictureBox2->TabStop = false;
+				 // 
+				 // pictureBox3
+				 // 
+				 this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBox3.Image")));
+				 this->pictureBox3->Location = System::Drawing::Point(407, 333);
+				 this->pictureBox3->Name = L"pictureBox3";
+				 this->pictureBox3->Size = System::Drawing::Size(44, 43);
+				 this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+				 this->pictureBox3->TabIndex = 10;
+				 this->pictureBox3->TabStop = false;
+				 // 
 				 // SchedulerForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-				 this->ClientSize = System::Drawing::Size(408, 332);
+				 this->ClientSize = System::Drawing::Size(463, 388);
+				 this->Controls->Add(this->pictureBox3);
+				 this->Controls->Add(this->pictureBox2);
+				 this->Controls->Add(this->pictureBox1);
 				 this->Controls->Add(this->trainGraphButton);
 				 this->Controls->Add(this->buttonMapTreni);
 				 this->Controls->Add(this->checkBoxAreeCritiche);
@@ -251,6 +295,9 @@ namespace Prototipo {
 				 this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 				 this->Name = L"SchedulerForm";
 				 this->Text = L"SchedulerForm";
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox2))->EndInit();
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox3))->EndInit();
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
 
