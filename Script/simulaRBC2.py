@@ -129,9 +129,9 @@ while 1:
 			lista[2]=result
 		if (result[0]==65316) or (result[0]==7327):
 			lista[3]=result
-		if result[0]==65282:
+		if result[0]==65282 or (result[0]==65281):
 			lista[4]=result
-		if result[0]==65551:
+		if result[0]==65551 or (result[0]==65000):
 			lista[5]=result
 		#print "received message:", data
 		print "result ",result

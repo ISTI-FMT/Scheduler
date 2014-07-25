@@ -73,7 +73,7 @@ def sendUDP(message, UDP_PORT):
 	
 def sendUDPR(message, UDP_PORT):
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
-	sock.sendto( message, ("192.168.1.213", UDP_PORT))
+	sock.sendto( message, ("192.168.1.116", UDP_PORT))
 
 def sendTCP(MESSAGE):
 	TCP_PORT = 13000
