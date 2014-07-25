@@ -18,7 +18,7 @@ UDP_PORT = 1111
 confitinerari = "../FileConfigurazione/ConfigurazioneItinerari.xml"
 
 if os.getcwd()=='/Users/isiu':
-	confitinerari = "/Users/isiu/github/Scheduler/FileConfigurazione/ConfigurazioneItinerari.xml"
+	confitinerari = "/Users/isiu/github/Scheduler/FileConfigurazione/ConfigurazioneItinerariFAKERBC.xml"
 
 	
 def date_key(row):
@@ -123,7 +123,7 @@ while 1:
 		result = messaggi.des_messageRBC_new(buff)
 		if (result[0]==65280) or (result[0]==7732):
 			lista[0]=result
-		if (result[0]==65615) or (result[0]==7723):
+		if (result[0]==65555) or (result[0]==7723):
 			lista[1]=result
 		if (result[0]==65315) or (result[0]==7237):
 			lista[2]=result
@@ -177,6 +177,7 @@ while 1:
 					if resultixl:
 						if resultixl.has_key(fcdb):
 							triscdb = resultixl[fcdb]
+							print triscdb
 							if triscdb[1]==2 and qdev==triscdb[2]:
 								bandiera = True
 								sendmdg.append(fcdb)

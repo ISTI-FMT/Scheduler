@@ -213,17 +213,21 @@ for line in spamReader:
 		sockfarbc = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
 		sockfarbc.bind(("127.0.0.1", NID_ENGINE))
 		#sockfarbc.setblocking(0)
+		print i
+		print len(line)
+		print data
 		if not data and len(scatti)==0:
+			print "cccc"
 			data, addr = sockfarbc.recvfrom(1024)
 			list = data.replace('[','').replace("]","").replace('u','').replace('\'','').replace(" ","")
 			scatti = list.split(',')
-			print list
+			print "lista", list
 			data = []
 		if len(scatti)>0:
 			if scatti[0]==line[i+1]:
-				print scatti[0]
+				print "Scatto", scatti[0]
 				del scatti[0]
-				print scatti
+				print "scatti", scatti
 				i+=1
 			else:
 				scatti=[]
