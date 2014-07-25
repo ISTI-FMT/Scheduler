@@ -562,6 +562,19 @@
           <pkm km="9124" idoffstaz="10000"/>
         </lrgb>
       </partenza>
+       <partenza id="907" name="II-02" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="403" nextstation="16000" >
+        <ListCDB>
+          <cdb q_dev="1" >12023</cdb>
+          <cdb q_dev="1" >12022</cdb>
+          <cdb q_dev="0" >12021</cdb>
+          <cdb q_dev="0" >12020</cdb>
+          <cdb q_dev="0" >401</cdb>
+        </ListCDB>
+        <lrgb nid="142" dstop="120" >
+          <pkm km="11380" idoffstaz="13000"/>
+          <pkm km="9380" idoffstaz="10000"/>
+        </lrgb>
+      </partenza>
       <partenza id="913" name="II-03" direzione="sx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="11010"  nextstation="11000" >
         <ListCDB>
           <cdb q_dev="1" >12016</cdb>
@@ -589,19 +602,7 @@
           <pkm km="9380" idoffstaz="10000"/>
         </lrgb>
       </partenza>
-      <partenza id="907" name="II-02" direzione="dx" portebanchina="true" latobanchina="ds" prevcdb="12302" nextcdb="403" nextstation="16000" >
-        <ListCDB>
-          <cdb q_dev="1" >12023</cdb>
-          <cdb q_dev="1" >12022</cdb>
-          <cdb q_dev="0" >12021</cdb>
-          <cdb q_dev="0" >12020</cdb>
-          <cdb q_dev="0" >401</cdb>
-        </ListCDB>
-        <lrgb nid="142" dstop="120" >
-          <pkm km="11380" idoffstaz="13000"/>
-          <pkm km="9380" idoffstaz="10000"/>
-        </lrgb>
-      </partenza>
+
       <partenza id="903" name="III-01" direzione="sx" portebanchina="true" latobanchina="dx"  prevcdb="12303" nextcdb="15010"   nextstation="15000" >
         <ListCDB>
           <cdb q_dev="2" >12016</cdb>
