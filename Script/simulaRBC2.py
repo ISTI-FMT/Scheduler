@@ -123,7 +123,7 @@ while 1:
 		result = messaggi.des_messageRBC_new(buff)
 		if (result[0]==65280) or (result[0]==7732):
 			lista[0]=result
-		if (result[0]==65555) or (result[0]==7723):
+		if (result[0]==65005) or (result[0]==7723):
 			lista[1]=result
 		if (result[0]==65315) or (result[0]==7237):
 			lista[2]=result
