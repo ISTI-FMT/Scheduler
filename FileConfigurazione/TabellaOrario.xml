@@ -288,8 +288,8 @@
 
   <treno id="1154">
     <stazione id="10000"  name="Vicolo Corto">
-      <arrivo>19:00:00</arrivo>
-      <partenza>19:02:00</partenza>
+      <arrivo>08:00:00</arrivo>
+      <partenza>08:02:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
@@ -297,16 +297,16 @@
     </stazione>
 
     <stazione id="500"  name="Vicolo Stretto">
-      <arrivo>19:02:00</arrivo>
-      <partenza>19:03:00</partenza>
+      <arrivo>08:05:00</arrivo>
+      <partenza>08:07:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
     </stazione>
 
     <stazione id="11000"  name="Viale Monterosa">
-      <arrivo>19:04:00</arrivo>
-      <partenza>19:05:00</partenza>
+      <arrivo>08:10:00</arrivo>
+      <partenza>08:12:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
@@ -315,8 +315,8 @@
     </stazione>
 
     <stazione id="12000"  name="Piazza Dante">
-      <arrivo>19:13:00</arrivo>
-      <partenza>19:15:00</partenza>
+      <arrivo>08:15:00</arrivo>
+      <partenza>08:17:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>ds</latoaperturaporteprogrammato>
@@ -325,8 +325,8 @@
     </stazione>
 
     <stazione id="400"  name="Via Marco Polo">
-      <arrivo>19:17:00</arrivo>
-      <partenza>19:19:00</partenza>
+      <arrivo>08:20:00</arrivo>
+      <partenza>08:22:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
@@ -335,8 +335,8 @@
     </stazione>
 
     <stazione id="410"  name="Via Roma">
-      <arrivo>19:21:00</arrivo>
-      <partenza>19:23:00</partenza>
+      <arrivo>08:25:00</arrivo>
+      <partenza>08:27:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
@@ -345,8 +345,8 @@
     </stazione>
 
     <stazione id="16000"  name="Viale dei Giardini">
-      <arrivo>19:25:00</arrivo>
-      <partenza>19:27:00</partenza>
+      <arrivo>08:30:00</arrivo>
+      <partenza>08:32:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
@@ -355,8 +355,8 @@
     </stazione>
 
     <stazione id="17000"  name="Parco della Vittoria">
-      <arrivo>19:29:00</arrivo>
-      <partenza>19:33:00</partenza>
+      <arrivo>08:35:00</arrivo>
+      <partenza>08:37:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
@@ -370,8 +370,8 @@
   <treno id="1166">
 
     <stazione id="12000"  name="Piazza Dante">
-      <arrivo>11:50:00</arrivo>
-      <partenza>11:52:00</partenza>
+      <arrivo>08:01:00</arrivo>
+      <partenza>08:03:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
@@ -380,8 +380,8 @@
     </stazione>
 
     <stazione id="11000"  name="Viale Monterosa">
-      <arrivo>12:00:00</arrivo>
-      <partenza>12:02:00</partenza>
+      <arrivo>08:05:00</arrivo>
+      <partenza>08:07:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
@@ -390,8 +390,8 @@
     </stazione>
 
     <stazione id="10000"  name="Vicolo Corto">
-      <arrivo>12:10:00</arrivo>
-      <partenza>12:15:00</partenza>
+      <arrivo>08:10:00</arrivo>
+      <partenza>08:15:00</partenza>
       <tempoaperturaporte>10</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
