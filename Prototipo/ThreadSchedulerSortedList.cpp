@@ -137,12 +137,22 @@ void ThreadSchedulerSortedList::Schedule(){
 					//  tempo 
 					if((resutl<=tempo | true)){//&
 
+						int trn = Train->getTRN();
+
+						List<int>^ cdbs = tabOrario->getCDBSignificativiFor(Train->getTRN());
+						GestioneAreeCritiche::MissioneTreno^ nuovaMissione = gcnew GestioneAreeCritiche::MissioneTreno(Convert::ToString(trn), cdbs);
+
+						List<GestioneAreeCritiche::MissioneTreno^>^ missioniTreno = areeCritiche->get_missioniTreno();
+						missioniTreno->Add(nuovaMissione);
+
+						GestioneAreeCritiche::Output::DatiAree^ areeNew = GestioneAreeCritiche::TrovaAree::TrovaAreeCritiche::Trova(missioniTreno, true, false);
+						areeCritiche->Carica(areeNew);
+
 						if ((areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN())|(_blockAreeCritiche)))
 						{
 							if (!_blockLiveness)
 							{
 								MissioneLiveness^ missione = gcnew MissioneLiveness(Train->getTRN());
-								List<int>^ cdbs = tabOrario->getCDBSignificativiFor(Train->getTRN());
 								missione->Cdbs = cdbs->ToArray();
 								liveness->AggiungiMissione(missione);
 								liveness->MuoviTreno(Train->getTRN(), prevfirstcdbu);

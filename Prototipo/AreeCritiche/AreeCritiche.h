@@ -40,5 +40,9 @@ public:
 	* Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non hanno raggiunto il massimo numero di treni consentito
 	*/
 	bool richiestaCdb(int cdb, int Trn);
+
+	List<GestioneAreeCritiche::MissioneTreno^>^ get_missioniTreno();
+
+	void Carica(GestioneAreeCritiche::Output::DatiAree^ dati);
 };
 

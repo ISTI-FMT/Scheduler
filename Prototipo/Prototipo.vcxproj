@@ -294,6 +294,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="GestioneAreeCritiche">
+      <HintPath>lib\GestioneAreeCritiche.exe</HintPath>
+    </Reference>
     <Reference Include="LivenessCheck">
       <HintPath>lib\LivenessCheck.dll</HintPath>
     </Reference>

@@ -17,6 +17,7 @@ AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
 {
 	areeCritiche = gcnew List<AreaCritica^>();
 	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
+	
 	XmlFilename = xmlAreecritiche;
 	XsdFilename = gcnew String("AreeCritiche.xsd");
 	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
@@ -26,6 +27,47 @@ AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
 		delete SourceStream;
 	}catch(System::Exception ^e){
 		Console::WriteLine("File non esiste");
+	}
+}
+
+List<GestioneAreeCritiche::MissioneTreno^>^ AreeCritiche::get_missioniTreno()
+{
+	List<GestioneAreeCritiche::MissioneTreno^>^ res = gcnew List<GestioneAreeCritiche::MissioneTreno^>();
+	for each(MissioneAnnotata^ missione in missioni->Values)
+	{
+		int trn = missione->Trn;
+		List<int>^ listaCdb = missione->ListaCdb;
+
+		GestioneAreeCritiche::MissioneTreno^ mt = gcnew GestioneAreeCritiche::MissioneTreno(Convert::ToString(trn), listaCdb);
+		res->Add(mt);
+	}
+	return res;
+}
+
+void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati)
+{
+	List<AreaCritica^>^ areeCritiche = gcnew List<AreaCritica^>();
+	int idArea = 0;
+	for each (GestioneAreeCritiche::AreeCritiche::IAreaCritica^ area in dati->AreeCritiche)
+	{
+		if (area->TipoArea == GestioneAreeCritiche::AreeCritiche::TipoArea::Lineare)
+		{
+			GestioneAreeCritiche::AreeCritiche::AreaCriticaLineare^ lineare = (GestioneAreeCritiche::AreeCritiche::AreaCriticaLineare^) area;
+			AreaCriticaLineare^ areanew = gcnew AreaCriticaLineare(lineare->ListaCdb);
+			areanew->nome = Convert::ToString(idArea);
+
+			areeCritiche->Add(areanew);		
+		}
+		else
+		{
+			GestioneAreeCritiche::AreeCritiche::AreaCriticaCircolare^ circolare = (GestioneAreeCritiche::AreeCritiche::AreaCriticaCircolare^) area;
+			AreaCriticaCircolare^ areanew = gcnew AreaCriticaCircolare(circolare->ListaCdb, circolare->Limite);
+			areanew->nome = Convert::ToString(idArea);
+
+			areeCritiche->Add(areanew);		
+		}
+
+		idArea++;
 	}
 }
 
