@@ -16,7 +16,6 @@
     <cdblastpos>13302</cdblastpos>
   </trenofisico>
 
-
   <trenofisico  engine_nbr="65315">
      <trenilogici>
     <idtrenologico>1173</idtrenologico>
@@ -56,22 +55,12 @@
     <cdblastpos>10301</cdblastpos>
   </trenofisico>
 
-
   <trenofisico  engine_nbr="65551">
      <trenilogici>
     <idtrenologico>1166</idtrenologico>
         </trenilogici>
     
     <cdblastpos>16301</cdblastpos>
-  </trenofisico>
-
-
-  <trenofisico  engine_nbr="7732">
-     <trenilogici>
-    <idtrenologico>5123</idtrenologico>
-        </trenilogici>
-    
-    <cdblastpos>13301</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="65615">
@@ -96,5 +85,13 @@
      </trenilogici>
     
     <cdblastpos>12301</cdblastpos>
+  </trenofisico>
+
+  <trenofisico  engine_nbr="7732">
+    <trenilogici>
+      <idtrenologico>5123</idtrenologico>
+    </trenilogici>
+
+    <cdblastpos>13301</cdblastpos>
   </trenofisico>
 </bind>

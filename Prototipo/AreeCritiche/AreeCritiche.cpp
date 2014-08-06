@@ -6,28 +6,33 @@ using namespace System::Xml::Schema;
 AreeCritiche::AreeCritiche()
 {
 	areeCritiche = gcnew List<AreaCritica^>();
+	limitiAree = gcnew array<int>(0);
+
 	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
 	XmlFilename = gcnew String("AreeCritiche.xml");
 	XsdFilename = gcnew String("AreeCritiche.xsd");
 	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
-	leggiFileConfigurazioneAreeCritiche( System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XmlFilename));
+	
+	//leggiFileConfigurazioneAreeCritiche( System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XmlFilename));
 }
 
 AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
 {
 	areeCritiche = gcnew List<AreaCritica^>();
+	limitiAree = gcnew array<int>(0);
+
 	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
-	
 	XmlFilename = xmlAreecritiche;
 	XsdFilename = gcnew String("AreeCritiche.xsd");
 	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
-	try{
+	
+	/*try{
 		System::IO::FileStream ^SourceStream = System::IO::File::Open(xmlAreecritiche, System::IO::FileMode::Open);
 		leggiFileConfigurazioneAreeCritiche(SourceStream);
 		delete SourceStream;
 	}catch(System::Exception ^e){
 		Console::WriteLine("File non esiste");
-	}
+	}*/
 }
 
 List<GestioneAreeCritiche::MissioneTreno^>^ AreeCritiche::get_missioniTreno()

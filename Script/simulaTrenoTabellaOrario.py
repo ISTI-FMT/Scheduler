@@ -2,6 +2,7 @@
 import random
 import time
 import os
+import subprocess
 import sys
 import csv
 from datetime import datetime
@@ -19,9 +20,11 @@ ReceiveTCP_IP = ""  #receive any ip
 SendTCP_IP = "192.168.1.213" #send presentazione ATS
 
 
+class Treno:
+	trn = ''
+	cdbs = []
 
-
-if len(sys.argv) < 2:
+if len(sys.argv) < 3:
 	print "script.py <namefile> 0 or 1 se fare o meno la presentazione"
 	exit(1)
 	
@@ -90,6 +93,38 @@ def ReceiveTCP(TCP_PORT, ACK):
 	return NID_OPERATIONAL
 	
 
+def getMission(missiontrn):
+	process = subprocess.Popen(
+		[ "GeneraPercorsoTreni.exe", "..\FileConfigurazione"] , stdout=subprocess.PIPE, stderr=subprocess.PIPE
+	)
+
+	missions = ''
+	while True:
+		out = process.stdout.read(1)
+		if out == '' and process.poll() != None:
+			break
+		if out != '':
+			missions += out
+			
+	for line in missions.splitlines():
+		line = line.strip()
+		if not line:continue
+		linetokens = line.split("=")
+		
+		trn = linetokens[0].strip()
+		cdbs = linetokens[1].strip().split(';')
+		
+		if (trn != missiontrn):
+			continue;
+		
+		treno = Treno()
+		treno.trn = trn
+		treno.cdbs = cdbs
+		
+		return treno
+	
+	return None
+
 '''
 my_array = array('I',[int('0B',16),int('04',16),int('80',16),int('00',16),int('00',16),int('0E',16),int('61',16),int('00',16),int('E5',16),int('00',16),int('00',16),int('04',16),int('80',16),int('00',16),int('00',16),int('1A',16),int('C6',16),int('00',16),int('00',16),int('33',16),int('F5',16),int('00',16),int('01',16),int('00',16),int('00',16),int('04',16),int('81',16),int('00',16),int('00',16),int('1B',16),int('28',16),int('00',16),int('00',16),int('2C',16),int('25',16),int('00',16)])
 
@@ -113,27 +148,31 @@ print tNID_OPERATIONAL
 print tNID_CDB
 '''
 
-spamReader = list(csv.reader(open(sys.argv[1],'U'), delimiter=';'))
-NID_ENGINE = int(spamReader[0][0],10)
-M_PORT = int(spamReader[0][1],10)
-del spamReader[0][0]
-del spamReader[0][0]
+trn = sys.argv[1]
+engine = sys.argv[2]
+port = sys.argv[3]
+
+#spamReader = list(csv.reader(open(sys.argv[1],'U'), delimiter=';'))
+NID_ENGINE = int(engine)
+M_PORT = int(port)
+treno = getMission(trn)
 
 print "Sono il TRENO: ", NID_ENGINE
+print "Percorso: ", treno.cdbs
+
 #13301;13012;13011;13010;501;14020;14021;14022;14301;14012;14011;14010;502;15020;15021;15022;15301;15012;15011;503;12010;12011;12012;12301;12026;12025;12024;400;402;404;406;408;410;412;414;416;418;420;422;424;426;428;16020;16021;16022;16023;16302;16016;16015;16014;16013;440;442;444;446;448;17010;17011;17012;17013;17014;17302;17016;17018;17020
 NID_OPERATIONAL=0
 bandiera=True
-if(sys.argv[2]=='1'):
+if(sys.argv[4]=='1'):
 	bandiera=False
-	op = sys.argv[3]#[18:22]
+	op = sys.argv[5]#[18:22]
 	NID_OPERATIONAL=int(op)
-	
 
 ########## MOVIMENTO VS RBC inizializzazione ######
 
-print spamReader[0][0]
-NID_CDB =  int(spamReader[0][0],10)
-sendBytes =  messaggi.creamovimento(spamReader[0][0],NID_ENGINE)
+print treno.cdbs[0]
+NID_CDB = int(treno.cdbs[0])
+sendBytes =  messaggi.creamovimento(treno.cdbs[0],NID_ENGINE)
 print "Sono sul CDB1: ",NID_CDB
 ###SEND NETWORK
 sendUDP(sendBytes,302)
@@ -171,28 +210,21 @@ if bandiera==True:
 
 
 ####### MOVIMENTO VS RBC NEXT MOV######
-for line in spamReader:
-	i = 0
-	while i<len(line):	
-		###SEND NETWORK
-		sendBytes = messaggi.creamovimento(line[i],NID_ENGINE)
-		sendUDP(sendBytes,302)
-		###SEND FAKE RBC
-		NID_CDB = int(line[i],10)
-		system("TITLE "+"Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
-		buff = messaggi.messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
-		sendUDP(buff,1111)
-		inputt = raw_input("-->> PRESS ENTER <<<--- ")
-		if(inputt.upper()=="RETURN" or inputt.upper()=="R"):
-			i-=1
-		else:
-			i+=1
-		
+i = 0
+while i< len(treno.cdbs[0]):	
+	###SEND NETWORK
+	sendBytes = messaggi.creamovimento(str(treno.cdbs[i]),NID_ENGINE)
+	sendUDP(sendBytes,302)
+	###SEND FAKE RBC
+	NID_CDB = int(treno.cdbs[i],10)
+	system("TITLE "+"Treno " + str(NID_ENGINE) + " (CDB " + str(NID_CDB) + ")")
+	buff = messaggi.messageRBC_new(NID_ENGINE,NID_OPERATIONAL,NID_CDB)
+	sendUDP(buff,1111)
+	inputt = raw_input("-->> PRESS ENTER <<<--- ")
+	if(inputt.upper()=="RETURN" or inputt.upper()=="R"):
+		i-=1
+	else:
+		i+=1
+	
 
 exit(0)
-
-
-
-
-
-
