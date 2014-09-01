@@ -31,6 +31,50 @@ namespace SchedulerATSTest
 			}
 
 	public: [TestMethod]
+			void TestAreeCriticheGetDirezione()
+			{
+				AreeCritiche^ aree = gcnew AreeCritiche();
+
+				List<int>^ area = gcnew List<int>();
+				area->Add(1);
+				area->Add(2);
+				area->Add(3);
+
+				List<int>^ missione = gcnew List<int>();
+				missione->Add(0);
+				missione->Add(1);
+				missione->Add(2);
+				missione->Add(3);
+				missione->Add(7);
+
+				int direzione = aree->get_Direzione(area,missione, 1);
+				Assert::AreEqual(direzione, 3);
+
+				direzione = aree->get_Direzione(area, missione, 2);
+				Assert::AreEqual(direzione, 3);
+
+				direzione = aree->get_Direzione(area, missione, 3);
+				Assert::AreEqual(direzione, 3);
+
+
+				missione = gcnew List<int>();
+				missione->Add(6);
+				missione->Add(3);
+				missione->Add(2);
+				missione->Add(1);
+				missione->Add(4);
+
+				direzione = aree->get_Direzione(area,missione, 1);
+				Assert::AreEqual(direzione, 2);
+
+				direzione = aree->get_Direzione(area, missione, 2);
+				Assert::AreEqual(direzione, 2);
+
+				direzione = aree->get_Direzione(area, missione, 3);
+				Assert::AreEqual(direzione, 2);
+			}
+
+	public: [TestMethod]
 			void TestAreeCritiche1152_1151stop()
 			{
 				AreeCritiche^ aree = gcnew AreeCritiche("..\\..\\FileConfigurazione\\AreeCritiche1151153.xml");

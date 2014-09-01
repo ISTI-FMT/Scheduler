@@ -146,7 +146,16 @@ void ThreadSchedulerSortedList::Schedule(){
 						missioniTreno->Add(nuovaMissione);
 
 						GestioneAreeCritiche::Output::DatiAree^ areeNew = GestioneAreeCritiche::TrovaAree::TrovaAreeCritiche::Trova(missioniTreno, true, false);
+
+
+
+						//TODO: FINISH HERE
+
+
 						areeCritiche->Carica(areeNew);
+
+
+						//-----------------
 
 						if ((areeCritiche->richiestaCdb(prevfirstcdbu, Train->getTRN())|(_blockAreeCritiche)))
 						{
@@ -216,7 +225,6 @@ void ThreadSchedulerSortedList::Schedule(){
 					}
 					else
 					{
-
 						controlListtrain->OnNextIt(Train);
 					}
 					break;

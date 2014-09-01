@@ -11,8 +11,7 @@ AreeCritiche::AreeCritiche()
 	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
 	XmlFilename = gcnew String("AreeCritiche.xml");
 	XsdFilename = gcnew String("AreeCritiche.xsd");
-	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
-	
+
 	//leggiFileConfigurazioneAreeCritiche( System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream(XmlFilename));
 }
 
@@ -24,14 +23,13 @@ AreeCritiche::AreeCritiche(String ^xmlAreecritiche)
 	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
 	XmlFilename = xmlAreecritiche;
 	XsdFilename = gcnew String("AreeCritiche.xsd");
-	cdbAree = gcnew Dictionary<int, List<AreaCritica^>^>();
-	
+
 	/*try{
-		System::IO::FileStream ^SourceStream = System::IO::File::Open(xmlAreecritiche, System::IO::FileMode::Open);
-		leggiFileConfigurazioneAreeCritiche(SourceStream);
-		delete SourceStream;
+	System::IO::FileStream ^SourceStream = System::IO::File::Open(xmlAreecritiche, System::IO::FileMode::Open);
+	leggiFileConfigurazioneAreeCritiche(SourceStream);
+	delete SourceStream;
 	}catch(System::Exception ^e){
-		Console::WriteLine("File non esiste");
+	Console::WriteLine("File non esiste");
 	}*/
 }
 
@@ -49,10 +47,132 @@ List<GestioneAreeCritiche::MissioneTreno^>^ AreeCritiche::get_missioniTreno()
 	return res;
 }
 
-void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati)
+int AreeCritiche::get_Direzione(List<int>^ area, List<int>^ missione, int cdbPosizione)
 {
-	List<AreaCritica^>^ areeCritiche = gcnew List<AreaCritica^>();
+	//il CDB non fa parte dell'area o della missione. 
+	//nessuna azione da fare
+	if (!area->Contains(cdbPosizione) || !missione->Contains(cdbPosizione))
+	{
+		return NessunaAzione;
+	}
+
+	int idxMissione = missione->IndexOf(cdbPosizione);
+	int idxArea = area->IndexOf(cdbPosizione);
+
+	//il treno è alla fine dell'area
+	//devo calcolare in che direzione sta andando
+	if (idxArea == area->Count - 1)
+	{
+		//il treno è alla fine della missione
+		if (idxMissione == missione->Count -1)
+		{
+			return EntraSinistra;
+		}
+		//il treno è all'inizio della missione
+		else if (idxMissione == 0)
+		{
+			return EntraDestra;
+		}
+		//il treno è a metà della missione
+		else
+		{
+			int cdbPrec = missione[idxMissione - 1];
+			//se il cdb precedente è nell'area, sono entrato da sinistra
+			if (idxArea > 0 && area[idxArea - 1] == cdbPrec)
+			{
+				return EntraSinistra;
+			}
+			else
+			{
+				return EntraDestra;
+			}
+		}
+	}
+	else if (idxArea == 0)
+	{
+		//il treno è alla fine della missione
+		if (idxMissione == missione->Count -1)
+		{
+			return EntraDestra;
+		}
+		//il treno è all'inizio della missione
+		else if (idxMissione == 0)
+		{
+			return EntraSinistra;
+		}
+		//il treno è a metà della missione
+		else
+		{
+			int cdbSucc = missione[idxMissione + 1];
+			//se il cdb successivo è nell'area, sono entrato da sinistra
+			if (area[idxArea + 1] == cdbSucc)
+			{
+				return EntraSinistra;
+			}
+			else
+			{
+				return EntraDestra;
+			}
+		}
+	}
+	else
+	{
+		//il treno termina la missione in mezzo ad un'area
+		if (idxMissione == missione->Count -1)
+		{
+			int cdbPrec = missione[idxMissione - 1];
+			//se il cdb precedente è nell'area, sono entrato da sinistra
+			if (idxArea > 0 && area[idxArea - 1] == cdbPrec)
+			{
+				return EntraSinistra;
+			}
+			else
+			{
+				return EntraDestra;
+			}
+		}
+		//il treno inizia la missione in mezzo ad un'area
+		else if (idxMissione == 0)
+		{
+			int cdbSucc = missione[idxMissione + 1];
+			//se il cdb successivo è nell'area, sono entrato da sinistra
+			if (area[idxArea + 1] == cdbSucc)
+			{
+				return EntraSinistra;
+			}
+			else
+			{
+				return EntraDestra;
+			}
+		}
+		//il treno è a metà della missione ed in mezzo ad un area
+		else
+		{
+			int cdbSucc = missione[idxMissione + 1];
+			//se il cdb successivo è nell'area, sono entrato da sinistra
+			if (area[idxArea + 1] == cdbSucc)
+			{
+				return EntraSinistra;
+			}
+			else
+			{
+				return EntraDestra;
+			}
+		}
+
+	}
+}
+
+void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati, Dictionary<int,int>^ posizioniTreni)
+{
+	areeCritiche = gcnew List<AreaCritica^>();
+	limitiAree = gcnew array<int>(dati->AreeCritiche->Count);
+	missioni = gcnew Dictionary<int,MissioneAnnotata^>();
+
 	int idArea = 0;
+	Console::WriteLine("Loading Areas");
+
+	//Carico aree
 	for each (GestioneAreeCritiche::AreeCritiche::IAreaCritica^ area in dati->AreeCritiche)
 	{
 		if (area->TipoArea == GestioneAreeCritiche::AreeCritiche::TipoArea::Lineare)
@@ -61,7 +181,8 @@ void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati)
 			AreaCriticaLineare^ areanew = gcnew AreaCriticaLineare(lineare->ListaCdb);
 			areanew->nome = Convert::ToString(idArea);
 
-			areeCritiche->Add(areanew);		
+			limitiAree[idArea] = 0;
+			areeCritiche->Add(areanew);
 		}
 		else
 		{
@@ -69,11 +190,110 @@ void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati)
 			AreaCriticaCircolare^ areanew = gcnew AreaCriticaCircolare(circolare->ListaCdb, circolare->Limite);
 			areanew->nome = Convert::ToString(idArea);
 
-			areeCritiche->Add(areanew);		
+			limitiAree[idArea] = circolare->Limite;
+			areeCritiche->Add(areanew);
 		}
-
 		idArea++;
 	}
+
+	//Carico missioni annotate
+	for each (GestioneAreeCritiche::Output::MissioneAnnotata^ missione in dati->MissioniAnnotate)
+	{
+		MissioneAnnotata^ missionenew = gcnew MissioneAnnotata();
+		missionenew->Trn = Convert::ToInt32(missione->Trn);
+		missionenew->AzioniCdb = missione->AzioniCdb;
+		missionenew->ListaCdb = missione->ListaCdb;
+
+		missioni->Add(missionenew->Trn, missionenew);
+	}
+
+	//Ricalcolo lo stato corrente delle aree basandomi sulle posizioni dei treni
+	for each (int trn in posizioniTreni->Keys)
+	{
+		int cdb = posizioniTreni[trn];
+		int idx;
+		if (missioni->ContainsKey(trn))
+		{
+			MissioneAnnotata^ missione = missioni[trn];
+			idx = missione->ListaCdb->IndexOf(cdb);
+
+			for (int i = 0; i < areeCritiche->Count; i++)
+			{
+				AreaCritica^ area = areeCritiche[i];
+
+				if (area->isInside(cdb))
+				{
+					//Circolare
+					if (area->GetType() == AreaCriticaCircolare::typeid)
+					{
+						if (!area->entrataPermessa(trn, cdb, 1))
+						{
+							Console::WriteLine("ERRORE: Stato Aree non corretto! TRN:{0}", trn);
+						}
+						else
+						{
+							//determino se il treno è in procinto di uscire dall'area critica
+							bool uscendo = false;
+							if (idx < missione->ListaCdb->Count -1)
+							{ 
+								int nextcdb = missione->ListaCdb[idx+1];
+								if (!area->isInside(nextcdb))
+								{
+									uscendo = true;
+								}
+							}
+
+							if (!uscendo)
+							{
+								area->entrata(trn, cdb, EntrataCircolare);
+							}
+						}
+					}
+					//Lineare
+					else
+					{
+						AreaCriticaLineare^ areaLineare = (AreaCriticaLineare^) area;
+
+						if (idx < missione->ListaCdb->Count - 1)
+						{
+							//cdb successivo della missione
+							int cdbsucc = missione->ListaCdb[idx + 1];
+
+							int idxCdbArea = areaLineare->cdbs->IndexOf(cdb);
+							if (idxCdbArea < areaLineare->cdbs->Count - 1)
+							{
+								//cdb successivo dell'area lineare
+								int cdbAreaSucc = areaLineare->cdbs[idxCdbArea + 1];
+								if (cdbsucc == cdbAreaSucc)
+								{
+									area->entrata(trn, cdb, EntraSinistra);
+								}
+							}							
+						}
+
+						
+
+
+						if (cdb == areaLineare->cdbs[0])
+						{
+							area->entrata(trn, cdb, EntraSinistra);
+						}
+						else
+						{
+							
+
+						}
+						/*else if (cdb == areaLineare->cdbs[areaLineare->cdbs->Count -1 ])
+						{
+							area->entrata(trn, cdb, EntraDestra);
+						}*/
+					}
+				}
+			}
+		}
+	}
+
+
 }
 
 void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readStreamXML)
@@ -203,7 +423,6 @@ Il treno può entrare nel cdb se tutte le aree critiche che lo contengono non han
 */
 bool AreeCritiche::richiestaCdb(int cdb, int trn)
 {
-	
 	bool entrataValida = true;
 	if (missioni->ContainsKey(trn))
 	{

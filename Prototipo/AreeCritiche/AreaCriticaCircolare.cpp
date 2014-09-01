@@ -14,6 +14,11 @@ AreaCriticaCircolare::AreaCriticaCircolare(List<int> ^listaCdb, int limite)
 	this->limite = limite;
 }
 
+bool AreaCriticaCircolare::isInside(int trn)
+{
+	return cdbs->Contains(trn);
+}
+
 bool AreaCriticaCircolare::entrataPermessa(int idTreno, int cdb, int tipoEntrata)
 {
 	bool res = true;

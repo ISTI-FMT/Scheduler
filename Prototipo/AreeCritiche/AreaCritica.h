@@ -19,6 +19,6 @@ public:
 	/* Ritorna TRUE se l'area contiene già il numero massimo di treni */
 	virtual bool entrataPermessa(int idTreno, int cdb, int tipoEntrata) abstract;
 	virtual void entrata(int idTreno, int cdb, int tipoEntrata) abstract;
-
+	virtual bool isInside(int trn) abstract;
 };
 

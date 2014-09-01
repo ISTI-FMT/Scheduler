@@ -94,4 +94,12 @@
 
     <cdblastpos>13301</cdblastpos>
   </trenofisico>
+
+  <trenofisico  engine_nbr="7723">
+    <trenilogici>
+      <idtrenologico>5132</idtrenologico>
+    </trenilogici>
+
+    <cdblastpos>12302</cdblastpos>
+  </trenofisico>
 </bind>

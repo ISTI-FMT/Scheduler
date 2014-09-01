@@ -16,10 +16,20 @@ private:
 	 */
 	Dictionary<int, MissioneAnnotata^>^ missioni;
 	List<AreaCritica^>^ areeCritiche;
-	Dictionary<int, List<AreaCritica^>^>^ cdbAree;
 	String^ XmlFilename;
 	String^ XsdFilename;
 	array<int>^ limitiAree;
+
+	static const int NessunaAzione = 0;
+    static const int EntraSinistra = 3;
+    static const int EsciSinistra = -3;
+    static const int EntraDestra = 2;
+    static const int EsciDestra = -2;
+    static const int EntraStessaDirezione = 4;
+    static const int EsciStessaDirezione = -4;
+
+    static const int EntrataCircolare = 1;
+	static const int UscitaCircolare = -1;
 public:
 	MissioneAnnotata^ get_Missione(int trn) 
 	{ 
@@ -30,6 +40,9 @@ public:
 		}
 		return res;
 	}
+
+	//Data un'area lineare, una missione e il cdb in cui si trova un treno, ritorna la direzione in cui il treno è entrato nell'area
+	int get_Direzione(List<int>^ area, List<int>^ missione, int cdbPosizione);
 
 	array<int>^ get_limitiAree() { return limitiAree;}
 	AreeCritiche();
@@ -43,6 +56,6 @@ public:
 
 	List<GestioneAreeCritiche::MissioneTreno^>^ get_missioniTreno();
 
-	void Carica(GestioneAreeCritiche::Output::DatiAree^ dati);
+	void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati, Dictionary<int,int>^ posizioniTreni);
 };
 

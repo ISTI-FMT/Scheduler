@@ -8,6 +8,11 @@ AreaCriticaLineare::AreaCriticaLineare(List<int> ^lcdb)
 	treniDestra = gcnew HashSet<int>();
 }
 
+bool AreaCriticaLineare::isInside(int trn)
+{
+	return cdbs->Contains(trn);
+}
+
 bool AreaCriticaLineare::entrataPermessa(int idTreno, int cdb, int tipoEntrata)
 {
 	bool res = true;

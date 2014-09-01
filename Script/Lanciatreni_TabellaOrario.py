@@ -7,7 +7,8 @@ DETACHED_PROCESS = 0x00000008
 treni = [
 		[5132, 7723],
 		[5321, 7327],
-		[5123, 7732]
+		[5123, 7732],
+		[5312, 7237]
 		]
 
 subprocess.Popen(["python simulaRBC.py "], creationflags=DETACHED_PROCESS, shell=True)
