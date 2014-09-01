@@ -14,6 +14,11 @@ AreaCriticaCircolare::AreaCriticaCircolare(List<int> ^listaCdb, int limite)
 	this->limite = limite;
 }
 
+void AreaCriticaCircolare::Reset()
+{
+	treni->Clear();
+}
+
 bool AreaCriticaCircolare::isInside(int trn)
 {
 	return cdbs->Contains(trn);

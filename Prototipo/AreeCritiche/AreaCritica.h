@@ -20,5 +20,6 @@ public:
 	virtual bool entrataPermessa(int idTreno, int cdb, int tipoEntrata) abstract;
 	virtual void entrata(int idTreno, int cdb, int tipoEntrata) abstract;
 	virtual bool isInside(int trn) abstract;
+	virtual void Reset() abstract;
 };
 

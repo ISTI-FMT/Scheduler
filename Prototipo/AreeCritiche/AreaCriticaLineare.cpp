@@ -13,6 +13,12 @@ bool AreaCriticaLineare::isInside(int trn)
 	return cdbs->Contains(trn);
 }
 
+void AreaCriticaLineare::Reset()
+{
+	treniSinistra->Clear();
+	treniDestra->Clear();
+}
+
 bool AreaCriticaLineare::entrataPermessa(int idTreno, int cdb, int tipoEntrata)
 {
 	bool res = true;

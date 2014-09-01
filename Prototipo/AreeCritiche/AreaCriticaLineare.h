@@ -12,5 +12,6 @@ public:
 	virtual bool entrataPermessa(int idTreno, int cdb, int tipoEntrata) override;
 	virtual void entrata(int idTreno, int cdb, int tipoEntrata) override;
 	virtual bool isInside(int trn) override;
+	virtual void Reset() override;
 };
 

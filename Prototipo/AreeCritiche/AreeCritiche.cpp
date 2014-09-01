@@ -207,6 +207,18 @@ void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati, Dictiona
 		missioni->Add(missionenew->Trn, missionenew);
 	}
 
+
+
+	ResetContatori(posizioniTreni);
+}
+
+void AreeCritiche::ResetContatori(Dictionary<int,int>^ posizioniTreni)
+{
+	for each (AreaCritica^ area in areeCritiche)
+	{
+		area->Reset();
+	}
+
 	//Ricalcolo lo stato corrente delle aree basandomi sulle posizioni dei treni
 	for each (int trn in posizioniTreni->Keys)
 	{
@@ -253,47 +265,18 @@ void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati, Dictiona
 					else
 					{
 						AreaCriticaLineare^ areaLineare = (AreaCriticaLineare^) area;
-
-						if (idx < missione->ListaCdb->Count - 1)
-						{
-							//cdb successivo della missione
-							int cdbsucc = missione->ListaCdb[idx + 1];
-
-							int idxCdbArea = areaLineare->cdbs->IndexOf(cdb);
-							if (idxCdbArea < areaLineare->cdbs->Count - 1)
-							{
-								//cdb successivo dell'area lineare
-								int cdbAreaSucc = areaLineare->cdbs[idxCdbArea + 1];
-								if (cdbsucc == cdbAreaSucc)
-								{
-									area->entrata(trn, cdb, EntraSinistra);
-								}
-							}							
-						}
-
 						
-
-
-						if (cdb == areaLineare->cdbs[0])
+						int direzione = get_Direzione(areaLineare->cdbs, missione->ListaCdb, cdb);
+						if (direzione != NessunaAzione)
 						{
-							area->entrata(trn, cdb, EntraSinistra);
+							area->entrata(trn, cdb, direzione);
 						}
-						else
-						{
-							
-
-						}
-						/*else if (cdb == areaLineare->cdbs[areaLineare->cdbs->Count -1 ])
-						{
-							area->entrata(trn, cdb, EntraDestra);
-						}*/
+					
 					}
 				}
 			}
 		}
 	}
-
-
 }
 
 void AreeCritiche::leggiFileConfigurazioneAreeCritiche(System::IO::Stream^ readStreamXML)

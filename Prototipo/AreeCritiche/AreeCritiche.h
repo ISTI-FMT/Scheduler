@@ -56,6 +56,10 @@ public:
 
 	List<GestioneAreeCritiche::MissioneTreno^>^ get_missioniTreno();
 
+	//Ricrea le aree critiche a partire da una configurazione
 	void AreeCritiche::Carica(GestioneAreeCritiche::Output::DatiAree^ dati, Dictionary<int,int>^ posizioniTreni);
+
+	//Resetta tutti i contatori delle aree in base alle posizioni attuali dei treni
+	void ResetContatori(Dictionary<int,int>^ posizioniTreni);
 };
 
