@@ -669,7 +669,7 @@
           <cdb q_dev="1" >16023</cdb>
           <cdb q_dev="0" >16302</cdb>
         </ListCDB>
-        <lrgb nid="198" dstop="170" >
+        <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
@@ -709,7 +709,7 @@
           <cdb q_dev="1" >16023</cdb>
           <cdb q_dev="0" >16302</cdb>
         </ListCDB>
-        <lrgb nid="198" dstop="170" >
+        <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
@@ -737,7 +737,7 @@
           <cdb q_dev="1" >16016</cdb>
           <cdb q_dev="0" >16302</cdb>
         </ListCDB>
-        <lrgb nid="198" dstop="150" >
+        <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
@@ -777,7 +777,7 @@
           <cdb q_dev="1" >16016</cdb>
           <cdb q_dev="0" >16302</cdb>
         </ListCDB>
-        <lrgb nid="198" dstop="150" >
+        <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
@@ -831,7 +831,7 @@
           <cdb q_dev="0" >16020</cdb>
           <cdb q_dev="0" >428</cdb>
         </ListCDB>
-        <lrgb nid="198" dstop="150" >
+        <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
@@ -845,7 +845,7 @@
           <cdb q_dev="0" >16024</cdb>
           <cdb q_dev="0" >429</cdb>
         </ListCDB>
-        <lrgb nid="198" dstop="150" >
+        <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
@@ -858,7 +858,7 @@
           <cdb q_dev="0" >16013</cdb>
           <cdb q_dev="0" >440</cdb>
         </ListCDB>
-        <lrgb nid="198" dstop="170" >
+        <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>
@@ -872,7 +872,7 @@
           <cdb q_dev="0" >16010</cdb>
           <cdb q_dev="0" >441</cdb>
         </ListCDB>
-        <lrgb nid="198" dstop="170" >
+        <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
           <pkm km="17760" idoffstaz="10000"/>
         </lrgb>

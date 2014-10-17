@@ -107,7 +107,7 @@ while 1:
 			lista[3]=result
 		if result[0]==65282:
 			lista[4]=result
-		if result[0]==65551:
+		if result[0]==65551  or (result[0]==65000):
 			lista[5]=result
 		print "received message:", data
 		

@@ -1,0 +1,4 @@
+Ciao,
+ volevo segnalare che la versione 11 del piano schematico contiene ancora un'incongruenza segnala sulla versione 9. 
+ Il gruppo di boe prima dei CDB 400 e 401 vengono chiamate nel fine Monopoli_1 149-151, 150-152 mentre nel file Monopoli_2 179-181, 180-182, avevamo stabilito di chiamarle come indicato dal file Monopoli_1.
+ Rispetto alla versione 9 abbiamo trovato solo una modifica, che ci interessano per il calcolo delle distanze tra le stazioni, ed è nella posizione della boe 198 in viale dei giardini, ma nient'altro che influenzi la distanza tra le stazioni. ti può tornare?
