@@ -136,7 +136,7 @@ def messPres(NID_ENGINE,M_PORT):
 
 def creamovimento(cdb,NID_ENGINE):
     sendBytes = bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-    push(sendBytes, 18, 8, 0); #//nid_msg
+    push(sendBytes, 10, 8, 0); #//nid_msg
     push(sendBytes, 12, 10, 8); #//L_msg
     push(sendBytes, 5555, 32, 18); #//T_msg
     push(sendBytes, NID_ENGINE, 32, 50); #//nid_op

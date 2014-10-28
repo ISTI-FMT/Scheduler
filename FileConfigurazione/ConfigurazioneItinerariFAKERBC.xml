@@ -583,6 +583,20 @@
           <cdb q_dev="0" >12021</cdb>
           <cdb q_dev="0" >12020</cdb>
           <cdb q_dev="0" >401</cdb>
+          <cdb q_dev="1" >403</cdb>
+          <cdb q_dev="1" >405</cdb>
+          <cdb q_dev="1" >407</cdb>
+          <cdb q_dev="1" >409</cdb>
+          <cdb q_dev="1" >411</cdb>
+          <cdb q_dev="1" >413</cdb>
+          <cdb q_dev="1" >415</cdb>
+          <cdb q_dev="1" >417</cdb>
+          <cdb q_dev="1" >419</cdb>
+          <cdb q_dev="1" >421</cdb>
+          <cdb q_dev="1" >423</cdb>
+          <cdb q_dev="1" >425</cdb>
+          <cdb q_dev="1" >427</cdb>
+          <cdb q_dev="1" >429</cdb>
         </ListCDB>
         <lrgb nid="142" dstop="120" >
           <pkm km="11380" idoffstaz="13000"/>
@@ -610,6 +624,20 @@
           <cdb q_dev="0" >12025</cdb>
           <cdb q_dev="0" >12024</cdb>
           <cdb q_dev="0" >400</cdb>
+          <cdb q_dev="1" >402</cdb>
+          <cdb q_dev="1" >404</cdb>
+          <cdb q_dev="1" >406</cdb>
+          <cdb q_dev="1" >408</cdb>
+          <cdb q_dev="1" >410</cdb>
+          <cdb q_dev="1" >412</cdb>
+          <cdb q_dev="1" >414</cdb>
+          <cdb q_dev="1" >416</cdb>
+          <cdb q_dev="1" >418</cdb>
+          <cdb q_dev="1" >420</cdb>
+          <cdb q_dev="1" >422</cdb>
+          <cdb q_dev="1" >424</cdb>
+          <cdb q_dev="1" >426</cdb>
+          <cdb q_dev="1" >428</cdb>
         </ListCDB>
         <lrgb nid="142" dstop="120" >
           <pkm km="11380" idoffstaz="13000"/>
@@ -681,7 +709,7 @@
           <cdb q_dev="0" >16021</cdb>
           <cdb q_dev="1" >16022</cdb>
           <cdb q_dev="1" >16023</cdb>
-          <cdb q_dev="0" >16302</cdb>
+          <cdb q_dev="1" >16302</cdb>
         </ListCDB>
         <lrgb nid="198" dstop="160" >
           <pkm km="19760" idoffstaz="13000"/>
