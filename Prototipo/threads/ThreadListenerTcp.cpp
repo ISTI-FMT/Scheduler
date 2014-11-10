@@ -168,7 +168,7 @@ void  ThreadListenerTcp::ReceiveCallback(IAsyncResult^ asyncResult){
 					ManaMsgATO->addCheckAndSet(treno, "ATO");
 #ifdef TRACE
 
-				Logger::Info(pkt1->ToString(),"Presentazione");
+				Logger::Info(pkt1->toPrint(),"Presentazione");
 
 #endif // TRACE
 

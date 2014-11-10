@@ -51,7 +51,7 @@ public:
 	void setMission(List< Mission^> ^all){mS2_vect=all;};
 	void setMission( Mission^ one){mS2_vect->Add(one);};
 	List< Mission^> ^getlistMission(){return mS2_vect;};
-		
+	System::String ^ToPrint();
 	virtual System::String ^ToString() override;
 };
 

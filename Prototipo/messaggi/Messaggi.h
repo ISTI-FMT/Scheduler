@@ -106,7 +106,7 @@ public:
 	void deserialize(array<Byte>^buffer);
 
 	int getSize();
-
+	System::String ^toPrint();
 	virtual System::String ^ToString() override;
 };
 

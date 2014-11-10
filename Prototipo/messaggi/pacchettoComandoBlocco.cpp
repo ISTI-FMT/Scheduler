@@ -49,3 +49,4 @@ System::String ^pacchettoComandoBlocco::ToString(){
 	out = out+"Q_CMDBLOCCO: "+getQ_CMDBLOCCO()+";";
 	return out;
 }
+

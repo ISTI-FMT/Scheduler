@@ -288,6 +288,53 @@ String ^Messaggi::ToString(){
 
 }
 
+String ^Messaggi::toPrint(){
+
+	String ^out = "NID_MESSAGE "+getNID_MESSAGE()+";";
+	out = out+"L_MESSAGE "+getL_MESSAGE()+";";
+	
+	if(getNID_ENGINE()>0){
+		out = out+"NID_ENGINE "+getNID_ENGINE()+";";
+	}
+	if(pkgcd1)
+		out= out+get_pacchettoCommandData()->ToString();
+
+	if( pkgMP)
+		out= out+get_pacchettoMissionData()->ToPrint();
+	if(pgkPres)
+		out= out+get_pacchettoPresentazione()->ToString();
+	if(pkgPositionDataATC)
+		out= out+get_pacchettoPositionDataATC()->toPrint();
+	if(pkgAck)
+		out= out+get_pacchettoAcknowledgement()->ToString();
+
+	if(pkgStatoLineaIXL)
+		out= out+get_pacchettoStatoLineaIXL()->ToString();
+	/*if(pkgStatoItinerari)
+		out= out+get_pacchettoStatoItinerario()->ToString();*/
+	if(pkgStatoSegnali)
+		out= out+get_pacchettoStatoSegnali()->ToString();
+	if(pkgFaultData)
+		out= out+get_pacchettoFaultReporting()->ToString();
+	if(pkgStatoBlocco)
+		out= out+get_pacchettoStatoBlocco()->ToString();
+	if(pkgComandoItinerario)
+		out= out+get_pacchettoComandoItinerari()->ToString();
+	if(pkgComandoBlocco)
+		out= out+get_pacchettoComandoBlocco()->ToString();
+	/*if(pkgStatoScudetti)
+		out= out+get_pacchettoStatoScudetti()->ToString();*/
+	if(pkgEnd)
+		out= out+get_pacchettoEnd()->ToString();
+
+
+
+
+
+	return out;
+
+}
+
 int Messaggi::getSize(){
 
 	// 51 bit per l'header

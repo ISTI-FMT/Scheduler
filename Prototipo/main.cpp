@@ -30,7 +30,7 @@ using namespace System::Diagnostics::CodeAnalysis;
 [STAThread,ExcludeFromCodeCoverage]
 int main()
 {
-	
+	try{
 	 Console::SetWindowPosition( 0, 0 );
 #ifdef TRACE
 			 Logger::Info("main"," New Run Application");  
@@ -38,6 +38,9 @@ int main()
 	Prototipo::SchedulerForm ^form = gcnew Prototipo::SchedulerForm();
 
 	System::Windows::Forms::Application::Run(form);
+	}catch(System::Exception  ^e){
 
+		Console::WriteLine(e->Message);
+	}
 	return 0;
 }

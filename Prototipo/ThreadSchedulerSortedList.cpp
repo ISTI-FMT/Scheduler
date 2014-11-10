@@ -90,7 +90,7 @@ void ThreadSchedulerSortedList::Schedule(){
 		//inizializzazione ATS
 		Init();
 
-		DateTime time=DateTime::Now;
+		//DateTime time=DateTime::Now;
 
 		while(!_shouldStop){
 			//dormi un po 100  millisecondi cosi da eseguire un ciclo ogni 100 ms
@@ -652,7 +652,7 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 #ifdef TRACE
 
 		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
-		Logger::Info(missionPlanPkt->ToString(),"ThreadSchedulerTrain::MissionPlan");
+		Logger::Info(missionPlanPkt->toPrint(),"ThreadSchedulerTrain::MissionPlan");
 #endif // TRACE
 
 		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
@@ -806,7 +806,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 #ifdef TRACE
 
 		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
-		Logger::Info(missionPlanPkt->ToString(),"ThreadSchedulerTrain::MissionPlan");
+		Logger::Info(missionPlanPkt->toPrint(),"ThreadSchedulerTrain::MissionPlan");
 #endif // TRACE
 		//sock->Shutdown(System::Net::Sockets::SocketShutdown::Send);
 		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
@@ -943,7 +943,7 @@ bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, QCmdItinerari Q_C
 #ifdef TRACE
 
 		Logger::Info(cmdItini->getNID_MESSAGE(),"ATS->IXL",broadcast->ToString(),cmdItini->getSize(),BitConverter::ToString(sendBytes),"ThreadSchedulerTrain::BloccoItinerarioIXL");
-		Logger::Info(cmdItini->ToString(),"ThreadSchedulerTrain::BloccoItinerarioIXL");
+		Logger::Info(cmdItini->toPrint(),"ThreadSchedulerTrain::BloccoItinerarioIXL");
 #endif // TRACE
 
 		return true;

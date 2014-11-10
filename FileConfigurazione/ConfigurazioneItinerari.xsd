@@ -75,7 +75,7 @@
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
-                          <xs:element name="lrgb">
+                   <!--      <xs:element name="lrgb">
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="pkm"  maxOccurs="unbounded">
@@ -88,7 +88,7 @@
                               <xs:attribute name="nid" type="xs:nonNegativeInteger"/>
                               <xs:attribute name="dstop" type="xs:nonNegativeInteger"/>
                             </xs:complexType>
-                          </xs:element>
+                          </xs:element>--> 
                         </xs:sequence>
                         <xs:attribute name="id" type="xs:nonNegativeInteger"/>
                         <xs:attribute name="name" type="xs:string"/>

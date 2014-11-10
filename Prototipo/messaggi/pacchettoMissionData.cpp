@@ -180,3 +180,20 @@ System::String ^ pacchettoMissionData::ToString()
 	
 	return out;
 };
+
+System::String ^ pacchettoMissionData::ToPrint()
+{
+	System::String ^out;
+
+	out = out+"NID_PACKET: "+get_NID_PACKET()+";";
+	
+	out = out+ getlistMission()[0]->ToString();
+	out = out+"N_ITER2: "+getN_ITER2()+";";
+
+	for( int i=1;i<getlistMission()->Count;i++)
+	{
+		out = out+ getlistMission()[i]->ToString();
+	}
+	
+	return out;
+};
