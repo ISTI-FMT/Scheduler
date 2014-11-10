@@ -27,7 +27,7 @@ public:
 	  static void Info(String ^ message, String ^ module)
     {
 		int id = Process::GetCurrentProcess()->Id;
-		String ^result =  String::Format("{0};{1};",id,message);
+		String ^result =  String::Format("{0}#{1};",id,message);
         WriteEntry(result, "Info", module);
     }
 

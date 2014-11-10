@@ -17,8 +17,8 @@ void Logger::WriteEntry(String ^message, String ^type, String ^module)
 		type,
 		module,
 		message);
-
-	if(mess->Contains(";")){
+	int count = message->Split('#')->Length - 1;
+	if(count==0){
 
 		array<String^> ^arraystr=mess->Split(';');
 		if(arraystr->Length>=7){

@@ -422,6 +422,23 @@ Void SingleTrainInfoForm::ButtonApply_Click(System::Object^  sender, System::Eve
 	}
 	//model->changeOrari(train,nuoviorari);
 	//
+
+	//train->setStatoTreno(StateTrain::NONPRONTO);
+	Object ^bb = comboBoxCambiaStatoTreno->SelectedItem;
+	String ^vv = bb->ToString();
+	Console::WriteLine(" Cambio Stato {0}",vv);
+	if(vv=="Non Pronto"){
+		tempStateTrain = train->getStatoTreno();
+		model->changeState(train,StateTrain::NONPRONTO );
+	}else{
+		if(vv=="Pronto"){
+			//if(tempStateTrain){
+				model->changeState(train,tempStateTrain );
+			//}
+		}
+	}
+
+
 }
 
 Int32 SingleTrainInfoForm::CompareTo(SingleTrainInfoForm^otherKey){
@@ -458,21 +475,8 @@ void SingleTrainInfoForm::setinfoTrain(Train ^t){
 
 System::Void SingleTrainInfoForm::comboBoxCambiaStatoTreno_SelectionChangeCommitted(System::Object^  sender, System::EventArgs^  e) {
 
+	MessageBox::Show("Please press apply to change state of train.");
 	
-	//train->setStatoTreno(StateTrain::NONPRONTO);
-	Object ^bb = comboBoxCambiaStatoTreno->SelectedItem;
-	String ^vv = bb->ToString();
-	Console::WriteLine(" Cambio Stato {0}",vv);
-	if(vv=="Non Pronto"){
-		tempStateTrain = train->getStatoTreno();
-		model->changeState(train,StateTrain::NONPRONTO );
-	}else{
-		if(vv=="Pronto"){
-			//if(tempStateTrain){
-				model->changeState(train,tempStateTrain );
-			//}
-		}
-	}
 }
 
 System::Void SingleTrainInfoForm::SingleTrainInfoForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e){
