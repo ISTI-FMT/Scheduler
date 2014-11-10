@@ -33,3 +33,5 @@ release
 *.coverage
 *.ipch
 *.pyc
+*.mdf
+*.ldf
