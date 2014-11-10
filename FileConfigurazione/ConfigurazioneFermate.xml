@@ -4,7 +4,7 @@
     <binario bin="1" namebin="I" direzione="dx"  portebanchina="true" latobanchina="dx" nextCDB="11020" prevCDB="10010">
       
        <cdb>504</cdb>
-	    <lrgb nid="169" dstop="595" >
+	    <lrgb nid="169" dstop="1195" >
           <pkm km="2085" idoffstaz="10000"/>
       </lrgb>
     </binario>

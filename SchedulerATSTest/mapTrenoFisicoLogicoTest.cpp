@@ -69,7 +69,7 @@ namespace SchedulerATSTest {
 				mapTrenoFisicoLogico^  target = (gcnew mapTrenoFisicoLogico());
 				Assert::IsNotNull(target->ToString());
 
-				CollectionAssert::AllItemsAreNotNull(target->get_Map()[65282]->getIdTrenoListTreniLogici());
+				CollectionAssert::AllItemsAreNotNull(target->get_Map()[65000]->getIdTrenoListTreniLogici());
 				String^ tmpFilename = System::IO::Path::GetTempFileName();
 				
 				System::IO::FileStream^ writeStream = gcnew System::IO::FileStream(tmpFilename, System::IO::FileMode::Create);
@@ -77,10 +77,10 @@ namespace SchedulerATSTest {
 				
 				writeStream->Close();
 
-				Assert::AreNotEqual(0,target->get_Map()[65282]->getNextLogicTrain());
-				Assert::AreNotEqual(0,target->get_Map()[65282]->getCurrentLogicTrain());
+				Assert::AreNotEqual(0,target->get_Map()[65280]->getNextLogicTrain());
+				Assert::AreNotEqual(0,target->get_Map()[65280]->getCurrentLogicTrain());
 
-				Assert::AreNotEqual(-1,target->get_Map()[65282]->getIdTrenoLogico(0));
+				Assert::AreNotEqual(-1,target->get_Map()[65280]->getIdTrenoLogico(0));
 			}
 	};
 }

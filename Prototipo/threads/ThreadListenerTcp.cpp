@@ -166,7 +166,11 @@ void  ThreadListenerTcp::ReceiveCallback(IAsyncResult^ asyncResult){
 					//listaTreni->setMapTreni(treno);
 
 					ManaMsgATO->addCheckAndSet(treno, "ATO");
+#ifdef TRACE
 
+				Logger::Info(pkt1->ToString(),"Presentazione");
+
+#endif // TRACE
 
 					String ^stringip = gcnew String(treno->getIpAddress());
 					Console::ForegroundColor = ConsoleColor::DarkGreen;

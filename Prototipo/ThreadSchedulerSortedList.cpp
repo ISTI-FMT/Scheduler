@@ -402,16 +402,16 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 				RaccoltaTrenoRequestCDB->Remove(var);
 			}
 		}
-	}/*else{
-	 for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
-	 {
-	 KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
-	 SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
+	}else{
+		for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+		{
+			KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
+			SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
 
-	 }
+		}
 
 
-	 }*/
+	}
 }
 
 void ThreadSchedulerSortedList::ControllaMSG_ATO(){
@@ -652,7 +652,7 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 #ifdef TRACE
 
 		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
-
+		Logger::Info(missionPlanPkt->ToString(),"ThreadSchedulerTrain::MissionPlan");
 #endif // TRACE
 
 		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
@@ -806,7 +806,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 #ifdef TRACE
 
 		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
-
+		Logger::Info(missionPlanPkt->ToString(),"ThreadSchedulerTrain::MissionPlan");
 #endif // TRACE
 		//sock->Shutdown(System::Net::Sockets::SocketShutdown::Send);
 		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
@@ -943,7 +943,7 @@ bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, QCmdItinerari Q_C
 #ifdef TRACE
 
 		Logger::Info(cmdItini->getNID_MESSAGE(),"ATS->IXL",broadcast->ToString(),cmdItini->getSize(),BitConverter::ToString(sendBytes),"ThreadSchedulerTrain::BloccoItinerarioIXL");
-
+		Logger::Info(cmdItini->ToString(),"ThreadSchedulerTrain::BloccoItinerarioIXL");
 #endif // TRACE
 
 		return true;

@@ -3,10 +3,10 @@
  
   <trenofisico engine_nbr="65280">
     <trenilogici>
-      <idtrenologico>1151</idtrenologico>
-      <!--<idtrenologico>5111</idtrenologico>-->
+      <idtrenologico>1177</idtrenologico>
+      <idtrenologico>5111</idtrenologico>
     </trenilogici>
-    <cdblastpos>12303</cdblastpos>
+    <cdblastpos>17303</cdblastpos>
   </trenofisico>
     
   <trenofisico  engine_nbr="65000">
@@ -19,10 +19,10 @@
 
   <trenofisico  engine_nbr="65315">
      <trenilogici>
-    <idtrenologico>1173</idtrenologico>
+    <idtrenologico>5151</idtrenologico>
         </trenilogici>
     
-    <cdblastpos>17303</cdblastpos>
+    <cdblastpos>12301</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="65281">
@@ -43,10 +43,10 @@
 
   <trenofisico  engine_nbr="65666">
     <trenilogici>
-      <idtrenologico>1166</idtrenologico>
+      <idtrenologico>1154</idtrenologico>
     </trenilogici>
 
-    <cdblastpos>12302</cdblastpos>
+    <cdblastpos>10301</cdblastpos>
   </trenofisico>
 
   <trenofisico  engine_nbr="65316">
