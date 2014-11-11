@@ -196,7 +196,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 					}
 
-				/*	inner2->ReadToFollowing("lrgb");
+					inner2->ReadToFollowing("lrgb");
 					int nid_lrgb = int::Parse(inner2->GetAttribute("nid"));
 					int d_stop = int::Parse(	inner2->GetAttribute("dstop"));
 
@@ -213,7 +213,7 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 
 
 					}
-					newitinerario->setLrgb(infolrbg);*/
+					newitinerario->setLrgb(infolrbg);
 					newstazione->getItinerariid()->Add(Iditinerario,newitinerario);
 
 					if(!newstazione->getItinerari()->ContainsKey(prevcdb)){

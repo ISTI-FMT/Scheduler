@@ -361,16 +361,16 @@ void  ThreadSchedulerSortedList::ControllaEventiCambioOrario(){
 		//invia messaggio all'ato
 		StateObject ^inviato =	SendUpdateMissionATO(train->getTRN(),train->getPhysicalTrain(),nuoviorari);
 		//aspetta ack
-		DateTime time=DateTime::Now;
-		TimeSpan ^sec =  TimeSpan::Zero;
+	//	DateTime time=DateTime::Now;
+	//	TimeSpan ^sec =  TimeSpan::Zero;
 		//da migliorare
-		while ((inviato->fine!=1) & (sec->TotalSeconds<10)){
-			sec = DateTime::Now - time;
+	//	while ((inviato->fine!=1) & (sec->TotalSeconds<10)){
+		//	sec = DateTime::Now - time;
 
 			//reinvia
 
 
-		}
+	//	}
 		if(inviato->fine==1){
 			//aggiorna modello se ack è giusto
 			controlListtrain->AggiornaOrario(train, nuoviorari);
