@@ -99,15 +99,15 @@ while 1:
 		result = messaggi.des_messageRBC_new(buff)
 		if (result[0]==65280) or (result[0]==7732):
 			lista[0]=result
-		if (result[0]==65615) or (result[0]==7723):
+		if (result[0]==65615) or (result[0]==7723) or (result[0]==65000):
 			lista[1]=result
 		if (result[0]==65315) or (result[0]==7237):
 			lista[2]=result
-		if (result[0]==65316) or (result[0]==7327):
+		if (result[0]==65316) or (result[0]==7327)or (result[0]==65666):
 			lista[3]=result
-		if result[0]==65282:
+		if result[0]==65282 or (result[0]==65281):
 			lista[4]=result
-		if result[0]==65551  or (result[0]==65000):
+		if result[0]==65551  :
 			lista[5]=result
 		print "received message:", data
 		

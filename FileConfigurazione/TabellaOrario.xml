@@ -328,6 +328,73 @@
     </stazione>
 
   </treno>
+  
+  
+  
+  <treno id="1199">
+
+    
+    <stazione id="16000"  name="Viale dei Giardini">
+      <arrivo>07:20:00</arrivo>
+      <partenza>07:30:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>1</binarioprogrammato>
+      <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
+      <itinerarioUscita id="917">I-04</itinerarioUscita>
+    </stazione>
+
+    <stazione id="410"  name="Via Roma">
+      <arrivo>08:40:00</arrivo>
+      <partenza>08:50:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+      <!--<itinerarioEntrata id=""></itinerarioEntrata>
+<itinerarioUscita id=""></itinerarioUscita>-->
+    </stazione>
+
+    <stazione id="400"  name="Via Marco Polo">
+      <arrivo>09:00:00</arrivo>
+      <partenza>09:10:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+      <!--<itinerarioEntrata id=""></itinerarioEntrata>
+<itinerarioUscita id=""></itinerarioUscita>-->
+    </stazione>
+
+    <stazione id="12000"  name="Piazza Dante">
+      <arrivo>09:20:00</arrivo>
+      <partenza>09:30:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>3</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+      <itinerarioEntrata id="909">02-II</itinerarioEntrata>
+      <itinerarioUscita id="913">II-03</itinerarioUscita>
+    </stazione>
+
+    <stazione id="11000"  name="Viale Monterosa">
+      <arrivo>09:40:00</arrivo>
+      <partenza>09:50:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
+      <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+      <itinerarioUscita id="907">II-02</itinerarioUscita>
+    </stazione>
+
+    <stazione id="10000"  name="Vicolo Corto">
+      <arrivo>10:00:00</arrivo>
+      <partenza>10:10:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+      <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+
+    </stazione>
+
+  </treno>
+  
 
   <treno id="1177">
 
