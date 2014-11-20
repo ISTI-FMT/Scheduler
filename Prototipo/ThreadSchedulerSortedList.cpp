@@ -56,7 +56,7 @@ ThreadSchedulerSortedList::ThreadSchedulerSortedList(EventQueue<StateCDB^> ^E0,E
 	//settare a true per ignorare i controlli sulle aree critiche
 	_blockAreeCritiche = true;
 	//ListSortedTrains = gcnew System::Collections::Generic::SortedList<KeyListTrain^, Train^>();
-	//timeRicIXL;
+
 
 	ListTrainModel ^model = gcnew ListTrainModel();
 	listatrenipresentati = gcnew List<physicalTrain^>();
@@ -361,16 +361,16 @@ void  ThreadSchedulerSortedList::ControllaEventiCambioOrario(){
 		//invia messaggio all'ato
 		StateObject ^inviato =	SendUpdateMissionATO(train->getTRN(),train->getPhysicalTrain(),nuoviorari);
 		//aspetta ack
-	//	DateTime time=DateTime::Now;
-	//	TimeSpan ^sec =  TimeSpan::Zero;
+		//	DateTime time=DateTime::Now;
+		//	TimeSpan ^sec =  TimeSpan::Zero;
 		//da migliorare
-	//	while ((inviato->fine!=1) & (sec->TotalSeconds<10)){
+		//	while ((inviato->fine!=1) & (sec->TotalSeconds<10)){
 		//	sec = DateTime::Now - time;
 
-			//reinvia
+		//reinvia
 
 
-	//	}
+		//	}
 		if(inviato->fine==1){
 			//aggiorna modello se ack è giusto
 			controlListtrain->AggiornaOrario(train, nuoviorari);
@@ -403,13 +403,18 @@ void ThreadSchedulerSortedList::ControllaMSG_IXL(){
 			}
 		}
 	}else{
-		for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
-		{
-			KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
-			SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
 
+		TimeSpan ^sec = DateTime::Now - timeRicIXL;
+
+		if(sec->TotalSeconds>5){
+
+			for each (KeyValuePair<Train^,List<int>^> ^kvpair in RaccoltaTrenoRequestCDB)
+			{
+				KeyValuePair<int, int> ^stait =	kvpair->Key->getStazioneItinerario();
+				SendBloccItinIXL(stait->Key+stait->Value, QCmdItinerari::creazione);
+
+			}
 		}
-
 
 	}
 }
@@ -888,6 +893,7 @@ void ThreadSchedulerSortedList::ReceiveCallback(IAsyncResult^ asyncResult){
 
 
 List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int iditinerario){
+
 	List<int> ^listaNIDcdb = tabItinerari->get_Cdb_Itinerario(idstazione,iditinerario);
 	int nextcdb = tabItinerari->get_CdbSuccItinerario(idstazione,iditinerario);
 	if(nextcdb>0){
@@ -912,6 +918,7 @@ List<int> ^ThreadSchedulerSortedList::RequestItinerarioIXL(int idstazione , int 
 }
 
 bool ThreadSchedulerSortedList::SendBloccItinIXL(int NID_ITIN, QCmdItinerari Q_CMDITIN){
+	timeRicIXL  = DateTime::Now;
 	try{
 
 		int portixl=4011;

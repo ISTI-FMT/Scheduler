@@ -103,7 +103,7 @@ while 1:
 			lista[1]=result
 		if (result[0]==65315) or (result[0]==7237):
 			lista[2]=result
-		if (result[0]==65316) or (result[0]==7327)or (result[0]==65666):
+		if (result[0]==65316) or (result[0]==7327)or (result[0]==65666) or (result[0]==55666):
 			lista[3]=result
 		if result[0]==65282 or (result[0]==65281):
 			lista[4]=result
