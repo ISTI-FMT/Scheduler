@@ -123,7 +123,7 @@ while 1:
 		result = messaggi.des_messageRBC_new(buff)
 		if (result[0]==65280) or (result[0]==7732):
 			lista[0]=result
-		if (result[0]==65005) or (result[0]==7723):
+		if (result[0]==65005) or (result[0]==7723) or (result[0]==55666):
 			lista[1]=result
 		if (result[0]==65315) or (result[0]==7237):
 			lista[2]=result
@@ -171,6 +171,7 @@ while 1:
 			for element in dictxmli[xcdb]:
 				bandiera = False
 				sendmdg =[]
+				k=len(element)
 				for tupla in element:
 					fcdb = int(tupla[0])
 					qdev = int(tupla[1])
@@ -181,10 +182,12 @@ while 1:
 							if triscdb[1]==2 and qdev==triscdb[2]:
 								bandiera = True
 								sendmdg.append(fcdb)
+								k-=1
 							else:
 								bandiera=False
+								break
 							#manda il tris element
-				if bandiera:
+				if bandiera and k==0:
 					print "tris ",triscdb
 					print pronti[0]
 					sendUDPL(str(sendmdg),pronti[0])
