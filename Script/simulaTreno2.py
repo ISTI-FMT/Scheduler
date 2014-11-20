@@ -232,7 +232,7 @@ for line in spamReader:
 			else:
 				scatti=[]
 		print "live"
-		time.sleep(2)
+		time.sleep(4)
 		#inputt = raw_input("-->> PRESS ENTER <<<--- ")
 		#if(inputt.upper()=="RETURN" or inputt.upper()=="R"):
 		#	i-=1
