@@ -655,9 +655,9 @@ StateObject ^ThreadSchedulerSortedList::SendUpdateMissionATO(int trn,physicalTra
 		sock->Connect(IP, Treno->getTcpPort());
 		sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
 #ifdef TRACE
-
-		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
-		Logger::Info(missionPlanPkt->toPrint(),"ThreadSchedulerTrain::MissionPlan");
+		String ^infotrain = trn.ToString()+"/"+Treno->getEngineNumber();
+		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO"+"{"+infotrain+"}",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
+		Logger::Info(missionPlanPkt->toPrint(),"ThreadSchedulerTrain::MissionPlan"+"{"+infotrain+"}");
 #endif // TRACE
 
 		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
@@ -791,8 +791,8 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		//sock->BeginSend(bytes_buffer1, 0, wakeUpPkt->getSize(),System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
 		//myStream->Write(bytes_buffer1, 0, wakeUpPkt->getSize());
 #ifdef TRACE
-
-		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedulerTrain::WakeUP");
+		String ^infotrain = trn.ToString()+"/"+Treno->getEngineNumber();
+		Logger::Info(wakeUpPkt->getNID_MESSAGE(),"ATS->ATO"+"{"+infotrain+"}",IP->ToString(),wakeUpPkt->getSize(),BitConverter::ToString(bytes_buffer1),"ThreadSchedulerTrain::WakeUP");
 
 #endif // TRACE
 		sock->Send(bytes_buffer2,bytes_buffer2->Length, System::Net::Sockets::SocketFlags::None);
@@ -801,7 +801,7 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		//myStream->Write(bytes_buffer2, 0, trainRunningNumberPkt->getSize());
 #ifdef TRACE
 
-		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedulerTrain::TRN");
+		Logger::Info(trainRunningNumberPkt->getNID_MESSAGE(),"ATS->ATO"+"{"+infotrain+"}",IP->ToString(),trainRunningNumberPkt->getSize(),BitConverter::ToString(bytes_buffer2),"ThreadSchedulerTrain::TRN");
 
 #endif // TRACE
 		sock->Send(bytes_buffer3,bytes_buffer3->Length, System::Net::Sockets::SocketFlags::None);
@@ -809,9 +809,9 @@ StateObject ^ThreadSchedulerSortedList::InizializzeATO(int trn, physicalTrain ^T
 		//sock->BeginSend(bytes_buffer3, 0, missionPlanPkt->getSize() ,System::Net::Sockets::SocketFlags::None, gcnew AsyncCallback( &ThreadSchedulerTrain::SendCallback ), sock);
 		//myStream->Write(bytes_buffer3, 0, missionPlanPkt->getSize());
 #ifdef TRACE
-
-		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
-		Logger::Info(missionPlanPkt->toPrint(),"ThreadSchedulerTrain::MissionPlan");
+		
+		Logger::Info(missionPlanPkt->getNID_MESSAGE(),"ATS->ATO"+"{"+infotrain+"}",IP->ToString(),missionPlanPkt->getSize(),BitConverter::ToString(bytes_buffer3),"ThreadSchedulerTrain::MissionPlan");
+		Logger::Info(missionPlanPkt->toPrint(),"ThreadSchedulerTrain::MissionPlan"+"{"+infotrain+"}");
 #endif // TRACE
 		//sock->Shutdown(System::Net::Sockets::SocketShutdown::Send);
 		StateObject^ so2 = gcnew StateObject(Treno->getEngineNumber());
