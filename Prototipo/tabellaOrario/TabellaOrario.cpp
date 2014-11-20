@@ -371,7 +371,7 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 						//parto da una stazione intermedia
 						if(stop->getIdStazione()!=13000 ^ stop->getIdStazione()!=1000 ^ stop->getIdStazione()!=17000){
 							distPrimaBalise=0;
-							dstop=dstop+20;
+							dstop=0;
 							nid_lrgb=0;
 							mission->setD_STOP(0);
 						}

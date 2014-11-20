@@ -4,7 +4,7 @@
     <stazione id="13000"  name="Via Accademia">
       <arrivo>08:00:00</arrivo>
       <partenza>08:02:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioUscita id="900">I-01</itinerarioUscita>
@@ -13,7 +13,7 @@
     <stazione id="14000"  name="Piazza Università">
       <arrivo>08:04:00</arrivo>
       <partenza>08:05:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -23,7 +23,7 @@
     <stazione id="15000"  name="Via Verdi">
       <arrivo>08:09:00</arrivo>
       <partenza>08:11:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -34,7 +34,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>08:13:00</arrivo>
       <partenza>08:15:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="902">01-I</itinerarioEntrata>
@@ -44,7 +44,7 @@
     <stazione id="400"  name="Via Marco Polo">
       <arrivo>08:18:00</arrivo>
       <partenza>08:19:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="">I</itinerarioEntrata>
@@ -54,7 +54,7 @@
     <stazione id="410 "  name="Via Roma">
       <arrivo>08:21:00</arrivo>
       <partenza>08:23:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="4181">418</itinerarioEntrata>
@@ -64,7 +64,7 @@
     <stazione id="16000"  name="Viale dei Giardini">
       <arrivo>08:25:00</arrivo>
       <partenza>08:27:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="907">02-II</itinerarioEntrata>
@@ -74,7 +74,7 @@
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>08:29:00</arrivo>
       <partenza>08:33:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-I</itinerarioEntrata>
@@ -87,7 +87,7 @@
     <stazione id="13000"  name="Via Accademia">
       <arrivo>08:00:00</arrivo>
       <partenza>08:00:10</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioUscita id="901">II-01</itinerarioUscita>
@@ -96,7 +96,7 @@
     <stazione id="14000"  name="Piazza Università">
       <arrivo>08:04:00</arrivo>
       <partenza>08:04:10</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -106,7 +106,7 @@
     <stazione id="15000"  name="Via Verdi">
       <arrivo>08:09:00</arrivo>
       <partenza>08:09:10</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -117,7 +117,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>09:13:00</arrivo>
       <partenza>09:13:10</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="902">01-I</itinerarioEntrata>
@@ -127,7 +127,7 @@
     <stazione id="400"  name="Via Marco Polo">
       <arrivo>09:17:00</arrivo>
       <partenza>09:17:10</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="">I</itinerarioEntrata>
@@ -137,7 +137,7 @@
     <stazione id="410 "  name="Via Roma">
       <arrivo>09:21:00</arrivo>
       <partenza>09:21:10</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="4181">418</itinerarioEntrata>
@@ -147,7 +147,7 @@
     <stazione id="16000"  name="Viale dei Giardini">
       <arrivo>09:25:00</arrivo>
       <partenza>09:27:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="907">02-II</itinerarioEntrata>
@@ -157,7 +157,7 @@
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>09:29:00</arrivo>
       <partenza>09:33:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="902">01-II</itinerarioEntrata>
@@ -171,7 +171,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>08:13:00</arrivo>
       <partenza>08:15:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioUscita id="903">III-01</itinerarioUscita>
@@ -181,7 +181,7 @@
     <stazione id="15000"  name="Via Verdi">
       <arrivo>08:20:00</arrivo>
       <partenza>08:22:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -191,7 +191,7 @@
     <stazione id="14000"  name="Piazza Università">
       <arrivo>08:30:00</arrivo>
       <partenza>08:35:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -202,20 +202,62 @@
     <stazione id="13000"  name="Via Accademia">
       <arrivo>08:40:00</arrivo>
       <partenza>08:45:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
     </stazione>
 
   </treno>
-  
+   <treno id="1175">
+
+    <stazione id="12000"  name="Piazza Dante">
+      <arrivo>08:13:00</arrivo>
+      <partenza>08:15:00</partenza>
+      <tempoaperturaporte>2</tempoaperturaporte>
+      <binarioprogrammato>3</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+      <itinerarioUscita id="905">I-01</itinerarioUscita>
+    </stazione>
+
+
+    <stazione id="15000"  name="Via Verdi">
+      <arrivo>08:20:00</arrivo>
+      <partenza>08:22:00</partenza>
+      <tempoaperturaporte>2</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+      <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+      <itinerarioUscita id="907">II-02</itinerarioUscita>
+    </stazione>
+
+    <stazione id="14000"  name="Piazza Università">
+      <arrivo>08:30:00</arrivo>
+      <partenza>08:35:00</partenza>
+      <tempoaperturaporte>2</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+      <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+      <itinerarioUscita id="907">II-02</itinerarioUscita>
+    </stazione>
+
+
+    <stazione id="13000"  name="Via Accademia">
+      <arrivo>08:40:00</arrivo>
+      <partenza>08:45:00</partenza>
+      <tempoaperturaporte>2</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
+      <itinerarioEntrata id="903">01-II</itinerarioEntrata>
+    </stazione>
+
+  </treno>
   <treno id="1173">
 
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>07:00:00</arrivo>
       <partenza>07:10:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioUscita id="913">III-03</itinerarioUscita>
@@ -224,7 +266,7 @@
     <stazione id="16000"  name="Viale dei Giardini">
       <arrivo>07:20:00</arrivo>
       <partenza>07:30:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="905">01-III</itinerarioEntrata>
@@ -234,7 +276,7 @@
     <stazione id="410"  name="Via Roma">
       <arrivo>08:40:00</arrivo>
       <partenza>08:50:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id=""></itinerarioEntrata>
@@ -244,7 +286,7 @@
     <stazione id="400"  name="Via Marco Polo">
       <arrivo>09:00:00</arrivo>
       <partenza>09:10:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id=""></itinerarioEntrata>
@@ -254,7 +296,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>09:20:00</arrivo>
       <partenza>09:30:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="909">02-II</itinerarioEntrata>
@@ -264,7 +306,7 @@
     <stazione id="11000"  name="Viale Monterosa">
       <arrivo>09:40:00</arrivo>
       <partenza>09:50:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -274,7 +316,7 @@
     <stazione id="10000"  name="Vicolo Corto">
       <arrivo>10:00:00</arrivo>
       <partenza>10:10:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -287,7 +329,7 @@
     <stazione id="10000"  name="Vicolo Corto">
       <arrivo>08:00:00</arrivo>
       <partenza>08:02:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioUscita id="900">I-01</itinerarioUscita>
@@ -296,7 +338,7 @@
     <stazione id="500"  name="Vicolo Stretto">
       <arrivo>08:05:00</arrivo>
       <partenza>08:07:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
     </stazione>
@@ -304,7 +346,7 @@
     <stazione id="11000"  name="Viale Monterosa">
       <arrivo>08:10:00</arrivo>
       <partenza>08:12:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -314,7 +356,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>08:15:00</arrivo>
       <partenza>08:17:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>ds</latoaperturaporteprogrammato>
       <itinerarioEntrata id="911">03-II</itinerarioEntrata>
@@ -324,7 +366,7 @@
     <stazione id="400"  name="Via Marco Polo">
       <arrivo>08:20:00</arrivo>
       <partenza>08:22:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="">I</itinerarioEntrata>
@@ -334,7 +376,7 @@
     <stazione id="410"  name="Via Roma">
       <arrivo>08:25:00</arrivo>
       <partenza>08:27:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="4181">418</itinerarioEntrata>
@@ -344,7 +386,7 @@
     <stazione id="16000"  name="Viale dei Giardini">
       <arrivo>08:30:00</arrivo>
       <partenza>08:32:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="907">02-II</itinerarioEntrata>
@@ -354,7 +396,7 @@
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>08:35:00</arrivo>
       <partenza>08:37:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="900">01-IV</itinerarioEntrata>
@@ -368,7 +410,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>08:01:00</arrivo>
       <partenza>08:03:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="908">02-III</itinerarioEntrata>-->
@@ -378,7 +420,7 @@
     <stazione id="11000"  name="Viale Monterosa">
       <arrivo>08:05:00</arrivo>
       <partenza>08:07:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -388,7 +430,7 @@
     <stazione id="10000"  name="Vicolo Corto">
       <arrivo>08:10:00</arrivo>
       <partenza>08:15:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -401,7 +443,7 @@
     <stazione id="13000"  name="Via Accademia">
       <arrivo>13:00:00</arrivo>
       <partenza>13:02:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioUscita id="900">I-01</itinerarioUscita>
@@ -410,7 +452,7 @@
     <stazione id="14000"  name="Piazza Università">
       <arrivo>13:04:00</arrivo>
       <partenza>13:05:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -420,7 +462,7 @@
     <stazione id="15000"  name="Via Verdi">
       <arrivo>13:09:00</arrivo>
       <partenza>13:11:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -431,7 +473,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>13:13:00</arrivo>
       <partenza>13:15:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="902">01-I</itinerarioEntrata>
@@ -441,7 +483,7 @@
     <stazione id="400"  name="Via Marco Polo">
       <arrivo>13:17:00</arrivo>
       <partenza>13:19:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="">I</itinerarioEntrata>
@@ -451,7 +493,7 @@
     <stazione id="410 "  name="Via Roma">
       <arrivo>13:21:00</arrivo>
       <partenza>13:23:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="4181">418</itinerarioEntrata>
@@ -461,7 +503,7 @@
     <stazione id="16000"  name="Viale dei Giardini">
       <arrivo>13:25:00</arrivo>
       <partenza>13:27:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="906">02-I</itinerarioEntrata>
@@ -471,7 +513,7 @@
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>13:29:00</arrivo>
       <partenza>13:33:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-I</itinerarioEntrata>
@@ -486,7 +528,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>09:20:00</arrivo>
       <partenza>09:30:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!-- <itinerarioEntrata id="919">04-I</itinerarioEntrata>-->
@@ -496,7 +538,7 @@
     <stazione id="15000"  name="Via Verdi">
       <arrivo>09:40:00</arrivo>
       <partenza>09:50:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -506,7 +548,7 @@
     <stazione id="14000"  name="Piazza Università">
       <arrivo>10:00:00</arrivo>
       <partenza>10:10:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -516,7 +558,7 @@
     <stazione id="13000"  name="Via Accademia">
       <arrivo>10:20:00</arrivo>
       <partenza>10:30:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -529,7 +571,7 @@
     <stazione id="13000"  name="Via Accademia">
       <arrivo>21:00:00</arrivo>
       <partenza>21:02:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioUscita id="901">II-01</itinerarioUscita>
@@ -538,7 +580,7 @@
     <stazione id="14000"  name="Piazza Università">
       <arrivo>21:04:00</arrivo>
       <partenza>21:05:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -548,7 +590,7 @@
     <stazione id="15000"  name="Via Verdi">
       <arrivo>21:09:00</arrivo>
       <partenza>21:11:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -559,7 +601,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>21:13:00</arrivo>
       <partenza>21:15:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="902">01-I</itinerarioEntrata>
@@ -569,7 +611,7 @@
     <stazione id="400"  name="Via Marco Polo">
       <arrivo>21:17:00</arrivo>
       <partenza>21:19:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="">I</itinerarioEntrata>
@@ -579,7 +621,7 @@
     <stazione id="410 "  name="Via Roma">
       <arrivo>21:21:00</arrivo>
       <partenza>21:23:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="4181">418</itinerarioEntrata>
@@ -589,7 +631,7 @@
     <stazione id="16000"  name="Viale dei Giardini">
       <arrivo>21:25:00</arrivo>
       <partenza>21:27:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="906">02-I</itinerarioEntrata>
@@ -599,7 +641,7 @@
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>21:29:00</arrivo>
       <partenza>21:33:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-I</itinerarioEntrata>
@@ -618,7 +660,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>22:20:00</arrivo>
       <partenza>22:30:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>3</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
 
@@ -630,7 +672,7 @@
     <stazione id="15000"  name="Via Verdi">
       <arrivo>22:40:00</arrivo>
       <partenza>22:50:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -640,7 +682,7 @@
     <stazione id="14000"  name="Piazza Università">
       <arrivo>23:00:00</arrivo>
       <partenza>23:10:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="903">01-II</itinerarioEntrata>
@@ -650,7 +692,7 @@
     <stazione id="13000"  name="Via Accademia">
       <arrivo>23:20:00</arrivo>
       <partenza>23:30:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="902">01-I</itinerarioEntrata>
@@ -663,7 +705,7 @@
     <stazione id="13000"  name="Via Accademia">
       <arrivo>17:00:00</arrivo>
       <partenza>17:02:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioUscita id="901">II-01</itinerarioUscita>
@@ -672,7 +714,7 @@
     <stazione id="14000"  name="Piazza Università">
       <arrivo>17:04:00</arrivo>
       <partenza>17:05:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="905">02-II</itinerarioEntrata>
@@ -682,7 +724,7 @@
     <stazione id="15000"  name="Via Verdi">
       <arrivo>17:09:00</arrivo>
       <partenza>17:11:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="904">02-I</itinerarioEntrata>
@@ -693,7 +735,7 @@
     <stazione id="12000"  name="Piazza Dante">
       <arrivo>17:13:00</arrivo>
       <partenza>17:15:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="902">01-I</itinerarioEntrata>
@@ -703,7 +745,7 @@
     <stazione id="400"  name="Via Marco Polo">
       <arrivo>17:17:00</arrivo>
       <partenza>17:19:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="">I</itinerarioEntrata>
@@ -713,7 +755,7 @@
     <stazione id="410 "  name="Via Roma">
       <arrivo>17:21:00</arrivo>
       <partenza>17:23:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>1</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <!--<itinerarioEntrata id="4181">418</itinerarioEntrata>
@@ -723,7 +765,7 @@
     <stazione id="16000"  name="Viale dei Giardini">
       <arrivo>17:25:00</arrivo>
       <partenza>17:27:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="907">02-II</itinerarioEntrata>
@@ -733,7 +775,7 @@
     <stazione id="17000"  name="Parco della Vittoria">
       <arrivo>17:29:00</arrivo>
       <partenza>17:33:00</partenza>
-      <tempoaperturaporte>10</tempoaperturaporte>
+      <tempoaperturaporte>2</tempoaperturaporte>
       <binarioprogrammato>2</binarioprogrammato>
       <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
       <itinerarioEntrata id="902">01-II</itinerarioEntrata>

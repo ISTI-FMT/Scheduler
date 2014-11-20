@@ -464,8 +464,8 @@
           <cdb q_dev="0" >12301</cdb>
         </ListCDB>
         <lrgb nid="137" dstop="180" >
-          <pkm km="11270" idoffstaz="13000"/>
-          <pkm km="9270" idoffstaz="10000"/>
+          <pkm km="11100" idoffstaz="13000"/>
+          <pkm km="9100" idoffstaz="10000"/>
         </lrgb>
       </ingresso>
       <ingresso id="918" name="04-II" direzione="sx"  portebanchina="true" latobanchina="ds" prevcdb="400" nextcdb="12016" >
@@ -518,8 +518,8 @@
           <cdb q_dev="0" >12303</cdb>
         </ListCDB>
         <lrgb nid="141" dstop="165" >
-          <pkm km="11420" idoffstaz="13000"/>
-          <pkm km="9420" idoffstaz="10000"/>
+          <pkm km="11305" idoffstaz="13000"/>
+          <pkm km="9305" idoffstaz="10000"/>
         </lrgb>
       </ingresso>
     </itinerariIngresso>
@@ -532,8 +532,8 @@
           <cdb q_dev="0" >503</cdb>
         </ListCDB>
         <lrgb nid="137" dstop="180" >
-          <pkm km="11270" idoffstaz="13000"/>
-          <pkm km="9270" idoffstaz="10000"/>
+          <pkm km="11100" idoffstaz="13000"/>
+          <pkm km="9100" idoffstaz="10000"/>
         </lrgb>
       </partenza>
       <partenza id="916" name="I-04" direzione="dx" portebanchina="true" latobanchina="dx" prevcdb="12301" nextcdb="402"   nextstation="16000" >
