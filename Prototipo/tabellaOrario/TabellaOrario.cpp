@@ -365,18 +365,20 @@ void TabellaOrario::createMissionPlanMsg(int TRN, pacchettoMissionData ^pkt, Lis
 
 						int nid_lrgb = infobalise->nid_lrgb;
 						int dstop = infobalise->d_stop;
-						
+						mission->setD_STOP(dstop);
+						mission->setNID_LRGB(nid_lrgb);
 						//errore controlla dove t trovi leggi dal file di config
 						int distPrimaBalise = 2;
 						//parto da una stazione intermedia
-						if(stop->getIdStazione()!=13000 ^ stop->getIdStazione()!=1000 ^ stop->getIdStazione()!=17000){
+						if(stop->getIdStazione()!=13000 ^ stop->getIdStazione()!=10000 ^ stop->getIdStazione()!=17000){
 							distPrimaBalise=0;
-							dstop=0;
-							nid_lrgb=0;
-							mission->setD_STOP(dstop);
+							dstop+=20;
+							//nid_lrgb=0;
+							mission->setD_STOP(0);
+							mission->setNID_LRGB(0);
 						}
-						mission->setNID_LRGB(nid_lrgb);
-						mission->setD_STOP(dstop);
+						
+						
 						mission->setD_LRGB(distPrimaBalise);
 						
 						int pkmlrbg = 0;

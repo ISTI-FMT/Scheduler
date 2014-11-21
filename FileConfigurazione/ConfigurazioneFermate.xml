@@ -30,7 +30,7 @@
           <pkm km="12910" idoffstaz="13000"/>
       </lrgb>
     </binario>
-    <binario bin="11"  namebin="I" direzione="sx"  portebanchina="true" latobanchina="sx" nextCDB="404" prevCDB="408">
+    <binario bin="1"  namebin="I" direzione="sx"  portebanchina="true" latobanchina="sx" nextCDB="404" prevCDB="408">
 
       <cdb>406</cdb>
 	  <lrgb nid="183" dstop="674" >
@@ -48,7 +48,7 @@
       </lrgb>
     </binario>
 
-    <binario bin="22" namebin="II" direzione="sx"  portebanchina="true" latobanchina="dx"  nextCDB="405" prevCDB="409">
+    <binario bin="2" namebin="II" direzione="sx"  portebanchina="true" latobanchina="dx"  nextCDB="405" prevCDB="409">
 
       <cdb>407</cdb>
 	  <lrgb nid="184" dstop="674" >
