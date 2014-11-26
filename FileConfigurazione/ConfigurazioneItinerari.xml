@@ -9,7 +9,7 @@
           <cdb q_dev="1">13012</cdb>
           <cdb q_dev="0">13301</cdb>
         </ListCDB>
-        <lrgb nid="102" dstop="50" >
+        <lrgb nid="102" dstop="70" >
           <pkm km="0" idoffstaz="13000"/>
         </lrgb>
       </ingresso>
@@ -20,7 +20,7 @@
           <cdb q_dev="2">13012</cdb>
           <cdb q_dev="0">13302</cdb>
         </ListCDB>
-        <lrgb nid="103" dstop="50" >
+        <lrgb nid="103" dstop="70" >
           <pkm km="0" idoffstaz="13000"/>
         </lrgb>
       </ingresso>
@@ -186,7 +186,7 @@
           <cdb q_dev="2" >15012</cdb>
           <cdb q_dev="0" >15302</cdb>
         </ListCDB>
-        <lrgb nid="127" dstop="130" >
+        <lrgb nid="127" dstop="115" >
           <pkm km="7480" idoffstaz="13000"/>
         </lrgb>
       </ingresso>
@@ -948,7 +948,7 @@
           <cdb q_dev="2" >17014</cdb>
           <cdb q_dev="0" >17301</cdb>
         </ListCDB>
-        <lrgb nid="219" dstop="100" >
+        <lrgb nid="219" dstop="300" >
           <pkm km="24080" idoffstaz="13000"/>
           <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
@@ -962,7 +962,7 @@
           <cdb q_dev="1" >17014</cdb>
           <cdb q_dev="0" >17302</cdb>
         </ListCDB>
-        <lrgb nid="220" dstop="100" >
+        <lrgb nid="220" dstop="300" >
           <pkm km="24080" idoffstaz="13000"/>
           <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
@@ -977,7 +977,7 @@
           <cdb q_dev="1" >17034</cdb>
           <cdb q_dev="0" >17303</cdb>
         </ListCDB>
-        <lrgb nid="221" dstop="100" >
+        <lrgb nid="221" dstop="300" >
           <pkm km="24080" idoffstaz="13000"/>
           <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
@@ -992,7 +992,7 @@
           <cdb q_dev="2" >17034</cdb>
           <cdb q_dev="0" >17304</cdb>
         </ListCDB>
-        <lrgb nid="222" dstop="100" >
+        <lrgb nid="222" dstop="300" >
           <pkm km="24080" idoffstaz="13000"/>
           <pkm km="22080" idoffstaz="10000"/>
         </lrgb>

@@ -6,7 +6,7 @@ using namespace System;
 using namespace System::Globalization;
 using namespace System::Xml;
 using namespace System::Xml::Schema;
-
+using namespace System::IO;
 
 #define TRACE
 #define VALIDATEXML
@@ -45,6 +45,14 @@ void TabellaStazioni::leggifileconfigurazioneItinerari()
 		/*	XmlDocument ^document = gcnew XmlDocument();
 		document->Load(readers);  */
 #endif // VALIDATEXML
+
+		String ^path = Directory::GetCurrentDirectory();
+		String ^nomefile = "\\FileConfigurazione\\ConfigurazioneItinerari.xml";
+		
+		if(File::Exists(path+nomefile)){
+			reader = System::Xml::XmlReader::Create(path+nomefile, settings);
+			Console::WriteLine("Caricato File Configurazione Itinerari dal Disco");
+		}
 
 		//System::IO::Stream^ readStreamXML = System::Reflection::Assembly::GetExecutingAssembly()->GetManifestResourceStream("ConfigurazioneItinerari.xml");
 		//System::Xml::XmlReader ^reader = System::Xml::XmlReader::Create(readStreamXML);
