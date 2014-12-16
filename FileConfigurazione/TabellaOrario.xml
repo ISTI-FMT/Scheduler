@@ -1,5 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <orario xmlns="urn:tabellaorario-schema">
+ <treno id="5553">
+   
+
+    <stazione id="12000"  name="Piazza Dante">
+      <arrivo>08:13:00</arrivo>
+      <partenza>08:15:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>1</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+    
+      <itinerarioUscita id="916">I-04</itinerarioUscita>
+    </stazione>
+
+    <stazione id="16000"  name="Viale dei Giardini">
+      <arrivo>08:25:00</arrivo>
+      <partenza>08:27:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>dx</latoaperturaporteprogrammato>
+     <itinerarioEntrata id="907">02-II</itinerarioEntrata>
+      <itinerarioUscita id="911">II-03</itinerarioUscita>
+    </stazione>
+
+    <stazione id="17000"  name="Parco della Vittoria">
+      <arrivo>08:29:00</arrivo>
+      <partenza>08:33:00</partenza>
+      <tempoaperturaporte>10</tempoaperturaporte>
+      <binarioprogrammato>2</binarioprogrammato>
+      <latoaperturaporteprogrammato>sx</latoaperturaporteprogrammato>
+      <itinerarioEntrata id="903">01-I</itinerarioEntrata>
+      <!--<itinerarioUscita id=""></itinerarioUscita>-->
+    </stazione>
+
+  </treno>
+
   <treno id="1153">
     <stazione id="13000"  name="Via Accademia">
       <arrivo>08:00:00</arrivo>

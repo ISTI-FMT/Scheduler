@@ -813,7 +813,7 @@
       </partenza>
       <partenza id="919" name="III-04" direzione="sx" portebanchina="true" latobanchina="sx"  prevcdb="16303" nextcdb="427"   nextstation="12000" >
         <ListCDB>
-          <cdb q_dev="1" >16026</cdb>
+		  <cdb q_dev="1" >16026</cdb>
           <cdb q_dev="0" >16025</cdb>
           <cdb q_dev="0" >16024</cdb>
           <cdb q_dev="0" >429</cdb>
@@ -948,7 +948,7 @@
           <cdb q_dev="2" >17014</cdb>
           <cdb q_dev="0" >17301</cdb>
         </ListCDB>
-        <lrgb nid="219" dstop="300" >
+        <lrgb nid="219" dstop="390" >
           <pkm km="24080" idoffstaz="13000"/>
           <pkm km="22080" idoffstaz="10000"/>
         </lrgb>
